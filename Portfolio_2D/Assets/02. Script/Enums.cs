@@ -3,7 +3,7 @@
     public enum BattleState
     { 
         NONE = -1,
-        BATTLE,
+        WATTINGTURN,
         PLAYERTURN,
         ENEMYTURN,
         PAUSE,
@@ -15,6 +15,12 @@
     {
         FrontLine,
         RearLine
+    }
+
+    public enum UnitType
+    {
+        Player,
+        Enemy
     }
 
 }

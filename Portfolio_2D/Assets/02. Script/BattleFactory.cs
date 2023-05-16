@@ -7,8 +7,7 @@ namespace Portfolio
     public class BattleFactory : MonoBehaviour
     {
         [Header("Unit")]
-        [SerializeField] private Unit_Playable PlayerUnit;
-        [SerializeField] private Unit_Enemy EnemyUnit;
+        [SerializeField] private Unit unit;
         [SerializeField] private UnitSequenceUI unitSequenceUI;
         [SerializeField] private RectTransform unitSequenceUIParent;
 
@@ -27,7 +26,8 @@ namespace Portfolio
                     continue;
                 }
 
-                var newUnit = Instantiate(PlayerUnit, gridPosition.transform);
+                var newUnit = Instantiate(unit, gridPosition.transform);
+                newUnit.unitType = UnitType.Player;
                 gridPosition.unit = newUnit;
                 var newUnitSequenceUI = Instantiate(unitSequenceUI, unitSequenceUIParent);
                 unitBase = new UnitTurnBase(newUnit, newUnitSequenceUI);
@@ -48,7 +48,8 @@ namespace Portfolio
                     continue;
                 }
 
-                var newUnit = Instantiate(EnemyUnit, gridPosition.transform);
+                var newUnit = Instantiate(unit, gridPosition.transform);
+                newUnit.unitType = UnitType.Enemy;
                 gridPosition.unit = newUnit;
                 var newUnitSequenceUI = Instantiate(unitSequenceUI, unitSequenceUIParent);
                 unitBase = new UnitTurnBase(newUnit, newUnitSequenceUI);

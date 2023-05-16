@@ -5,8 +5,13 @@ using UnityEngine.Events;
 
 namespace Portfolio
 {
-    public abstract class Unit : MonoBehaviour
+    public class Unit : MonoBehaviour
     {
+        public UnitType unitType;
+
+        [SerializeField] private GameObject currentTurnSprite;
+        [SerializeField] private GameObject selectedSprite;
+
         [SerializeField] private int maxHP = 100;
         [SerializeField] private int currentHP = 100;
         [SerializeField] private float speed = 100f;
@@ -24,6 +29,20 @@ namespace Portfolio
             }
         }
 
-        public abstract void OnSelectedTurnEvent();
+        public void OnSelectedTurnEvent()
+        {
+            switch (unitType)
+            {
+                case UnitType.Player:
+                    Debug.Log("아군 턴");
+                    break;
+                case UnitType.Enemy:
+                    Debug.Log("적군 턴");
+                    break;
+            }
+        }
+
+        public void SetCurrentTurnSprite(bool isActive) => currentTurnSprite.gameObject.SetActive(isActive);
+        public void SetSelectedSprte(bool isActive) => selectedSprite.gameObject.SetActive(isActive);
     }
 }

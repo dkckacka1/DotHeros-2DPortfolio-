@@ -39,14 +39,14 @@ namespace Portfolio
 
         private void Start()
         {
-            battleState = BattleState.BATTLE;
+            battleState = BattleState.WATTINGTURN;
         }
 
         private void Update()
         {
             switch (battleState)
             {
-                case BattleState.BATTLE:
+                case BattleState.WATTINGTURN:
                     {
                     }
                     break;
@@ -65,7 +65,40 @@ namespace Portfolio
         public UnitTurnBase FindUnitinUnitList(Unit unit) => unitList.Find((findunit) => findunit.unit == unit);
         public List<UnitTurnBase> GetUnitList() => unitList;
 
+        public void SwitchBattleState(BattleState state)
+        {
+            battleState = state;
+            InvokeStateEvent(state);
+        }
 
+        public void PublishEvent(BattleState state, UnityAction action)
+        {
+            if (StateEventHandlerDic.ContainsKey(state))
+            {
+                StateEventHandlerDic[state].AddListener(action);
+            }
+            else
+            {
+                StateEventHandlerDic.Add(state, new UnityEvent());
+                StateEventHandlerDic[state].AddListener(action);
+            }
+        }
+
+        public void UnPublishEvent(BattleState state, UnityAction action)
+        {
+            if (StateEventHandlerDic.ContainsKey(state))
+            {
+                StateEventHandlerDic[state].RemoveListener(action);
+            }
+        }
+
+        public void InvokeStateEvent(BattleState state)
+        {
+            if (StateEventHandlerDic.ContainsKey(state))
+            {
+                StateEventHandlerDic[state]?.Invoke();
+            }
+        }
     }
 
 }
