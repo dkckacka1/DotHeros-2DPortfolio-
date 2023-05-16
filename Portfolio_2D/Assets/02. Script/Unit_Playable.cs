@@ -6,16 +6,9 @@ namespace Portfolio
 {
     public class Unit_Playable : Unit
     {
-        // Start is called before the first frame update
-        void Start()
+        public override void OnSelectedTurnEvent()
         {
-
-        }
-
-        // Update is called once per frame
-        void Update()
-        {
-
+            Debug.Log("æ∆±∫ ≈œ");
         }
     }
 

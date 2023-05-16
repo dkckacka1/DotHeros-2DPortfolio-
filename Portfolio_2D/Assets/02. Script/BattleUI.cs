@@ -7,7 +7,6 @@ namespace Portfolio
     public class BattleUI : MonoBehaviour
     {
         [SerializeField] private BattleSequenceUI sequenceUI;
-
         public BattleSequenceUI SequenceUI { get => sequenceUI;}
     }
 }

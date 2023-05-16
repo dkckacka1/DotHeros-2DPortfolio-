@@ -7,29 +7,54 @@ namespace Portfolio
     public class BattleFactory : MonoBehaviour
     {
         [Header("Unit")]
-        [SerializeField] private Unit_Playable unitPlayable;
-        [SerializeField] private Unit_Enemy unitEnemy;
-        [SerializeField] private Transform unitParent;
+        [SerializeField] private Unit_Playable PlayerUnit;
+        [SerializeField] private Unit_Enemy EnemyUnit;
         [SerializeField] private UnitSequenceUI unitSequenceUI;
         [SerializeField] private RectTransform unitSequenceUIParent;
 
-        [Header("Fomation")]
-        [SerializeField] Fomation playableUnitFomation;
-        [SerializeField] Fomation enemyUnitFomation;
+        [Header("Grid")]
+        [SerializeField] List<GridPosition> playerGrids;
+        [SerializeField] List<GridPosition> enemyGrids;
 
-        public UnitBase CreatePlayableUnitBase()
+        public UnitTurnBase CreatePlayableUnitBase()
         {
-            var newUnit = Instantiate(unitPlayable, unitParent);
-            var newUnitSequenceUI = Instantiate(unitSequenceUI, unitSequenceUIParent);
-            UnitBase unitBase = new UnitBase(newUnit, newUnitSequenceUI);
+            UnitTurnBase unitBase = null;
+
+            foreach (var gridPosition in playerGrids)
+            {
+                if (gridPosition.unit != null)
+                {
+                    continue;
+                }
+
+                var newUnit = Instantiate(PlayerUnit, gridPosition.transform);
+                gridPosition.unit = newUnit;
+                var newUnitSequenceUI = Instantiate(unitSequenceUI, unitSequenceUIParent);
+                unitBase = new UnitTurnBase(newUnit, newUnitSequenceUI);
+                break;
+            }
+
             return unitBase;
         }
 
-        public UnitBase CreateEnemyUnitBase()
+        public UnitTurnBase CreateEnemyUnitBase()
         {
-            var newUnit = Instantiate(unitEnemy, unitParent);
-            var newUnitSequenceUI = Instantiate(unitSequenceUI, unitSequenceUIParent);
-            UnitBase unitBase = new UnitBase(newUnit, newUnitSequenceUI);
+            UnitTurnBase unitBase = null;
+
+            foreach (var gridPosition in enemyGrids)
+            {
+                if (gridPosition.unit != null)
+                {
+                    continue;
+                }
+
+                var newUnit = Instantiate(EnemyUnit, gridPosition.transform);
+                gridPosition.unit = newUnit;
+                var newUnitSequenceUI = Instantiate(unitSequenceUI, unitSequenceUIParent);
+                unitBase = new UnitTurnBase(newUnit, newUnitSequenceUI);
+                break;
+            }
+
             return unitBase;
         }
     }

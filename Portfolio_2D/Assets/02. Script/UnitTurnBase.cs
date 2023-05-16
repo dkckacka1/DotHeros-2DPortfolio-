@@ -1,16 +1,20 @@
 ﻿using UnityEngine;
+using UnityEngine.Events;
 
 namespace Portfolio
 {
-    public class UnitBase
+    public class UnitTurnBase
     {
         public Unit unit;
         public float currentTurnCount;
         public UnitSequenceUI unitSequenceUI;
 
-        public UnitBase(Unit unit, UnitSequenceUI unitSequenceUI)
+        public UnityAction onSelectedTurnEvent;
+
+        public UnitTurnBase(Unit unit, UnitSequenceUI unitSequenceUI)
         {
             this.unit = unit;
+            onSelectedTurnEvent = unit.OnSelectedTurnEvent;
             this.unitSequenceUI = unitSequenceUI;
             currentTurnCount = 0f;
         }

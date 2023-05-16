@@ -1,6 +1,6 @@
 ﻿namespace Portfolio
 {
-    public enum BattleSTate
+    public enum BattleState
     { 
         NONE = -1,
         BATTLE,
@@ -9,6 +9,12 @@
         PAUSE,
         SETTING,
         COUNT
+    }
+
+    public enum LineType
+    {
+        FrontLine,
+        RearLine
     }
 
 }
