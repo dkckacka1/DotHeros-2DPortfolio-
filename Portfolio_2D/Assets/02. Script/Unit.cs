@@ -9,9 +9,6 @@ namespace Portfolio
     {
         public UnitType unitType;
 
-        [SerializeField] private GameObject currentTurnSprite;
-        [SerializeField] private GameObject selectedSprite;
-
         [SerializeField] private int maxHP = 100;
         [SerializeField] private int currentHP = 100;
         [SerializeField] private float speed = 100f;
@@ -29,6 +26,17 @@ namespace Portfolio
             }
         }
 
+        public UnitUI unitUI;
+
+        private void Awake()
+        {
+            unitUI = GetComponent<UnitUI>();
+        }
+
+        public void TurnEnd()
+        {
+        }
+
         public void OnSelectedTurnEvent()
         {
             switch (unitType)
@@ -41,8 +49,5 @@ namespace Portfolio
                     break;
             }
         }
-
-        public void SetCurrentTurnSprite(bool isActive) => currentTurnSprite.gameObject.SetActive(isActive);
-        public void SetSelectedSprte(bool isActive) => selectedSprite.gameObject.SetActive(isActive);
     }
 }

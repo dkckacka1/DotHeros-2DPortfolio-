@@ -25,6 +25,8 @@ namespace Portfolio
         public BattleUI BattleUI { get => battleUI; }
         public BattleFactory BattleFactory { get => battleFactory; }
 
+        public BattleState BattleState { get => battleState; }
+
         private void Awake()
         {
             if (Instance != null)
@@ -39,18 +41,7 @@ namespace Portfolio
 
         private void Start()
         {
-            battleState = BattleState.WATTINGTURN;
-        }
-
-        private void Update()
-        {
-            switch (battleState)
-            {
-                case BattleState.WATTINGTURN:
-                    {
-                    }
-                    break;
-            }
+            battleState = BattleState.PLAY;
         }
 
         public void AddUnitinUnitList(UnitTurnBase unit) => unitList.Add(unit);
@@ -64,6 +55,14 @@ namespace Portfolio
         }
         public UnitTurnBase FindUnitinUnitList(Unit unit) => unitList.Find((findunit) => findunit.unit == unit);
         public List<UnitTurnBase> GetUnitList() => unitList;
+
+        public void UnitListCycleMethod(UnityAction<Unit> action)
+        {
+            foreach (var unitBase in unitList)
+            {
+                action?.Invoke(unitBase.unit);
+            }
+        }
 
         public void SwitchBattleState(BattleState state)
         {

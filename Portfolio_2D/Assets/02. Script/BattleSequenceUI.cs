@@ -8,19 +8,28 @@ namespace Portfolio
     public class BattleSequenceUI : MonoBehaviour
     {
         [SerializeField] Image sequenceUI;
+        [SerializeField] UnitSequenceUI sequenceUIObject;
 
-        private float sequenceUIwidth;
+        private float sequenceUIHeight;
+        private float unitSequenceUIHeight;
+        private float sequenceDefaultYPos;
 
         private void Awake()
         {
-            sequenceUIwidth = sequenceUI.rectTransform.rect.width - 50f;
+            sequenceUIHeight = sequenceUI.rectTransform.rect.height;
+            unitSequenceUIHeight = (sequenceUIObject.transform as RectTransform).rect.height;
+            sequenceDefaultYPos = sequenceUIHeight - unitSequenceUIHeight;
+            Debug.Log(sequenceDefaultYPos);
         }
 
-        public void SetSequenceUnitUIXPosition(UnitSequenceUI targetSequenceUI, float normalizedXPos)
+        public void SetSequenceUnitUIYPosition(UnitSequenceUI targetSequenceUI, float normalizedYPos)
         {
-            float xPos = normalizedXPos* sequenceUIwidth;
-            float yPos = targetSequenceUI.transform.position.y;
-            targetSequenceUI.transform.position = new Vector3(xPos, yPos);
+            float yPos = ((1 - normalizedYPos) * sequenceDefaultYPos) * -1;
+            (targetSequenceUI.transform as RectTransform).anchoredPosition = new Vector2(0, yPos);
+            ////targetSequenceUI.transform.position = new Vector3(xPos, yPos);
+            ////Debug.Log(targetSequenceUI.transform.position);
+            //targetSequenceUI.transform.localPosition = new Vector3(0, yPos);
+            //Debug.Log(targetSequenceUI.transform.position);
         }
     }
 

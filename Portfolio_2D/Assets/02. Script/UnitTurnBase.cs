@@ -9,12 +9,10 @@ namespace Portfolio
         public float currentTurnCount;
         public UnitSequenceUI unitSequenceUI;
 
-        public UnityAction onSelectedTurnEvent;
 
         public UnitTurnBase(Unit unit, UnitSequenceUI unitSequenceUI)
         {
             this.unit = unit;
-            onSelectedTurnEvent = unit.OnSelectedTurnEvent;
             this.unitSequenceUI = unitSequenceUI;
             currentTurnCount = 0f;
         }

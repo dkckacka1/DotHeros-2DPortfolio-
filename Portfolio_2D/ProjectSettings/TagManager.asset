@@ -41,3 +41,12 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: BackGround
+    uniqueID: 1021986713
+    locked: 0
+  - name: Grid
+    uniqueID: 3275122795
+    locked: 0
+  - name: Unit
+    uniqueID: 263923263
+    locked: 0

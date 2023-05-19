@@ -26,17 +26,6 @@ namespace Portfolio
 
             SelectedUnits = new List<Unit>();
 
-            BattleManager.Instance.PublishEvent(BattleState.PLAYERTURN, () => {
-                isActionTime = true; 
-            });
-            BattleManager.Instance.PublishEvent(BattleState.WATTINGTURN, () => { 
-                isActionTime = false;
-                ClearSelectedUnits();
-            });
-            BattleManager.Instance.PublishEvent(BattleState.ENEMYTURN, () => { 
-                isActionTime = false;
-                ClearSelectedUnits();
-            });
         }
 
         void Update()
@@ -56,7 +45,6 @@ namespace Portfolio
 
         private void SelectedUnit(Unit unit)
         {
-            unit.SetSelectedSprte(true);
             SelectedUnits.Add(unit);
         }
 
@@ -65,7 +53,6 @@ namespace Portfolio
             Debug.Log("Clear");
             foreach (var unit in SelectedUnits)
             {
-                unit.SetSelectedSprte(false);
             }
 
             SelectedUnits.Clear();

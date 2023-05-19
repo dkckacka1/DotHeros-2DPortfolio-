@@ -12,7 +12,7 @@ namespace Portfolio
 
         [SerializeField] private UnitTurnBase currentTurnUnit = null;
 
-        private bool isUnitTurn;
+        private TurnType currentTurnType;
 
         private void Awake()
         {
@@ -28,24 +28,20 @@ namespace Portfolio
 
         private void Update()
         {
-            if (!isUnitTurn)
+            if (BattleManager.Instance.BattleState == BattleState.PLAY && currentTurnType == TurnType.WAITTING)
             {
                 foreach (UnitTurnBase unitTurnBase in BattleManager.Instance.GetUnitList())
                 {
                     if (unitTurnBase.currentTurnCount >= turnCount)
                     {
                         currentTurnUnit = unitTurnBase;
-                        AllUnitTurnSpriteActive();
-                        currentTurnUnit.onSelectedTurnEvent?.Invoke();
-                        isUnitTurn = true;
-                        Debug.Log(unitTurnBase.unit.unitType);
                         switch (unitTurnBase.unit.unitType)
                         {
                             case UnitType.Player:
-                                BattleManager.Instance.SwitchBattleState(BattleState.PLAYERTURN);
+                                currentTurnType = TurnType.PLAYER;
                                 break;
                             case UnitType.Enemy:
-                                BattleManager.Instance.SwitchBattleState(BattleState.ENEMYTURN);
+                                currentTurnType = TurnType.ENEMY;
                                 break;
                         }
 
@@ -60,16 +56,8 @@ namespace Portfolio
         private void ProceedTurn(UnitTurnBase unitTurnBase)
         {
             unitTurnBase.AddUnitTurnCount(unitTurnBase.unit.Speed * Time.deltaTime);
-            float SequenceUIXNormalizedPos = unitTurnBase.GetCurrentTurnCount() / turnCount;
-            BattleManager.Instance.BattleUI.SequenceUI.SetSequenceUnitUIXPosition(unitTurnBase.unitSequenceUI, SequenceUIXNormalizedPos);
-        }
-
-        private void AllUnitTurnSpriteActive()
-        {
-            foreach (UnitTurnBase unit in BattleManager.Instance.GetUnitList())
-            {
-                unit.unit.SetCurrentTurnSprite(currentTurnUnit?.unit == unit.unit);
-            }
+            float SequenceUIYNormalizedPos = unitTurnBase.GetCurrentTurnCount() / turnCount;
+            BattleManager.Instance.BattleUI.SequenceUI.SetSequenceUnitUIYPosition(unitTurnBase.unitSequenceUI, SequenceUIYNormalizedPos);
         }
 
         public void TurnEnd()
@@ -77,11 +65,10 @@ namespace Portfolio
             if (currentTurnUnit == null) return;
 
             currentTurnUnit.ResetUnitTurnCount();
-            BattleManager.Instance.BattleUI.SequenceUI.SetSequenceUnitUIXPosition(currentTurnUnit.unitSequenceUI, 0);
+            BattleManager.Instance.BattleUI.SequenceUI.SetSequenceUnitUIYPosition(currentTurnUnit.unitSequenceUI, 0);
+            BattleManager.Instance.UnitListCycleMethod((unit) => unit.unitUI.SetTargetedUI(false));
             currentTurnUnit = null;
-            AllUnitTurnSpriteActive();
-            isUnitTurn = false;
-            BattleManager.Instance.SwitchBattleState(BattleState.WATTINGTURN);
+            currentTurnType = TurnType.WAITTING;
         }
     }
 

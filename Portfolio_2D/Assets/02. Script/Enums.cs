@@ -3,12 +3,18 @@
     public enum BattleState
     { 
         NONE = -1,
-        WATTINGTURN,
-        PLAYERTURN,
-        ENEMYTURN,
+        PLAY,
         PAUSE,
         SETTING,
         COUNT
+    }
+
+    public enum TurnType
+    {
+        NONE = -1,
+        WAITTING,
+        PLAYER,
+        ENEMY
     }
 
     public enum LineType
