@@ -26,6 +26,14 @@ namespace Portfolio
             {
                 TurnBaseSystem.Instance.TurnEnd();
             }
+
+            if (Input.GetKeyDown(KeyCode.A))
+            {
+                foreach (var unit in ActionSystem.Instance.SelectedUnits)
+                {
+                    unit.TakeDamage(10);
+                }
+            }
         }
     }
 

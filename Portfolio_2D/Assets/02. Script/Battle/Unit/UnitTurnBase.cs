@@ -17,6 +17,17 @@ namespace Portfolio
             currentTurnCount = 0f;
         }
 
+        public void TurnStart()
+        {
+            unit.StartCurrentTurn();
+        }
+
+        public void TurnEnd()
+        {
+            ResetUnitTurnCount();
+            unit.EndCurrentTurn();
+        }
+
         public void AddUnitTurnCount(float count) => currentTurnCount += count;
         public void ResetUnitTurnCount() => currentTurnCount = 0;
         public float GetCurrentTurnCount() => currentTurnCount;

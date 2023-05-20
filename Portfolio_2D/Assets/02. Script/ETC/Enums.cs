@@ -29,4 +29,12 @@
         Enemy
     }
 
+    public enum ElementalType
+    {
+        Fire,
+        Water,
+        Ground,
+        Light,
+        Dark
+    }
 }

@@ -34,16 +34,7 @@ namespace Portfolio
                 {
                     if (unitTurnBase.currentTurnCount >= turnCount)
                     {
-                        currentTurnUnit = unitTurnBase;
-                        switch (unitTurnBase.unit.unitType)
-                        {
-                            case UnitType.Player:
-                                currentTurnType = TurnType.PLAYER;
-                                break;
-                            case UnitType.Enemy:
-                                currentTurnType = TurnType.ENEMY;
-                                break;
-                        }
+                        StartTurn(unitTurnBase);
 
                         break;
                     }
@@ -60,15 +51,34 @@ namespace Portfolio
             BattleManager.Instance.BattleUI.SequenceUI.SetSequenceUnitUIYPosition(unitTurnBase.unitSequenceUI, SequenceUIYNormalizedPos);
         }
 
+        public void StartTurn(UnitTurnBase unitbase)
+        {
+            currentTurnUnit = unitbase;
+            switch (unitbase.unit.unitType)
+            {
+                case UnitType.Player:
+                    ActionSystem.Instance.IsPlayerActionTime = true;
+                    currentTurnType = TurnType.PLAYER;
+                    break;
+                case UnitType.Enemy:
+                    currentTurnType = TurnType.ENEMY;
+                    break;
+            }
+
+            currentTurnUnit.TurnStart();
+        }
+
         public void TurnEnd()
         {
             if (currentTurnUnit == null) return;
 
-            currentTurnUnit.ResetUnitTurnCount();
+            currentTurnUnit.TurnEnd();
             BattleManager.Instance.BattleUI.SequenceUI.SetSequenceUnitUIYPosition(currentTurnUnit.unitSequenceUI, 0);
-            BattleManager.Instance.UnitListCycleMethod((unit) => unit.unitUI.SetTargetedUI(false));
+            ActionSystem.Instance.ClearSelectedUnits();
             currentTurnUnit = null;
             currentTurnType = TurnType.WAITTING;
+            ActionSystem.Instance.IsPlayerActionTime = false;
+
         }
     }
 

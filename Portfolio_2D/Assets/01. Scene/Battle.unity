@@ -664,6 +664,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eef3d6b21348cdf4e9c61a2b2618f071, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isPlayerTarget: 1
+  isEnemyTarget: 1
+  isFrontTarget: 1
+  isRearTarget: 1
+  playerGrids:
+  - {fileID: 85177422}
+  - {fileID: 647259306}
+  - {fileID: 1563841254}
+  - {fileID: 633906624}
+  - {fileID: 871957536}
+  enemyGrids:
+  - {fileID: 2038171332}
+  - {fileID: 707417479}
+  - {fileID: 1974123067}
+  - {fileID: 1678396119}
+  - {fileID: 199923369}
 --- !u!1 &316095304
 GameObject:
   m_ObjectHideFlags: 0

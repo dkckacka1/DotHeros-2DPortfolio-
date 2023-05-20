@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4732733324907409770}
   - component: {fileID: 1551832080303035804}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Square
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -94,7 +94,8 @@ GameObject:
   m_Component:
   - component: {fileID: 6840948354922503341}
   - component: {fileID: 3911325031194125493}
-  m_Layer: 0
+  - component: {fileID: 7430899860164689443}
+  m_Layer: 6
   m_Name: Grid
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -132,3 +133,29 @@ MonoBehaviour:
   lineType: 0
   LinkedGridPosition: []
   unit: {fileID: 0}
+--- !u!61 &7430899860164689443
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8359288783969584059}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0.2989682}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1.5522671, y: 1.6979363}
+  m_EdgeRadius: 0

@@ -417,6 +417,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7790943002634067223}
+  - component: {fileID: 3733868280926391611}
   m_Layer: 5
   m_Name: HPUI
   m_TagString: Untagged
@@ -446,6 +447,20 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0.72698975}
   m_SizeDelta: {x: 0, y: -0.9881}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &3733868280926391611
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3963451827722964942}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17691093ce5182d44bac93f27a82ff63, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hpSlider: {fileID: 2836346844763649699}
+  hpText: {fileID: 3379406821238245992}
 --- !u!1 &4016814592319958430
 GameObject:
   m_ObjectHideFlags: 0
@@ -639,7 +654,7 @@ MonoBehaviour:
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
-  m_Transition: 1
+  m_Transition: 0
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
@@ -908,7 +923,6 @@ GameObject:
   - component: {fileID: 7066011998833549734}
   - component: {fileID: -2896235905177263044}
   - component: {fileID: 7998194954082249218}
-  - component: {fileID: 6440286160971664996}
   m_Layer: 6
   m_Name: Unit
   m_TagString: Untagged
@@ -946,11 +960,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   unitType: 0
-  currentTurnSprite: {fileID: 2615199297547266008}
-  selectedSprite: {fileID: 5216990787763196663}
   maxHP: 100
   currentHP: 100
   speed: 100
+  attackPoint: 10
 --- !u!114 &7998194954082249218
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -964,29 +977,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   unitUICanvas: {fileID: 2967828235907159284}
---- !u!61 &6440286160971664996
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7066011998833549732}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0.17}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 1.5, y: 1.5}
-  m_EdgeRadius: 0
+  currentTurnUIObject: {fileID: 2615199297547266008}
+  targetedUIObject: {fileID: 5216990787763196663}
+  unitHPUI: {fileID: 3733868280926391611}
