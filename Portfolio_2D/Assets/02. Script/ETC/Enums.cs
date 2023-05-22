@@ -37,4 +37,43 @@
         Light,
         Dark
     }
+
+    public enum EquipmentItemType
+    {
+        Weapon,
+        Helmet,
+        Armor,
+        Amulet,
+        Ring,
+        Shoe
+    }
+
+    public enum SetType
+    {
+        Critical,
+        Hit,
+        Speed,
+        Attack,
+        Defence,
+        Health,
+        Resistance,
+        Destruction
+    }
+
+    public enum EquipmentOptionStat
+    {
+        NONE = -1,
+        AttackPercent,
+        AttackPoint,
+        DefencePercent,
+        DefencePoint,
+        CriticalPercent,
+        CriticalDamagePercent,
+        Speed,
+        EffectHitPercent,
+        EffectResistancePercent,
+        HealthPercent,
+        HealthPoint,
+
+    }
 }

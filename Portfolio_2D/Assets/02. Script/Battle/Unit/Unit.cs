@@ -20,8 +20,14 @@ namespace Portfolio
         [Header("UnitAttribute")]
         [SerializeField] private float maxHP = 100;
         [SerializeField] private float currentHP = 100;
-        [SerializeField] private float speed = 100f;
         [SerializeField] private float attackPoint = 10f;
+        [SerializeField] private float speed = 100f;
+        [SerializeField] private float defencePoint = 0f;
+        [SerializeField] private float criticalPoint = 0f;
+        [SerializeField] private float criticalDamage = 0f;
+        [SerializeField] private float effectTarget = 0f;
+        [SerializeField] private float effectResistance = 0f;
+
 
         [Header("UnitTurnSystem")]
         private bool isTrun;

@@ -4,9 +4,8 @@ using UnityEngine;
 
 namespace Portfolio
 {
-    public class SkillData
+    public class SkillData : Data
     {
-        public int ID;
         public string skillName;
         public string skillDesc;
 

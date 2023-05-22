@@ -4,13 +4,8 @@ using UnityEngine;
 
 namespace Portfolio
 {
-    public class UnitData : MonoBehaviour
+    public class Data
     {
         public int ID;
-
-        public string name;
-        public ElementalType elementalType;
-
     }
-
 }
