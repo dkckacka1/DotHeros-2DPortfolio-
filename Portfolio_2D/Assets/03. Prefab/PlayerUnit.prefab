@@ -921,10 +921,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7066011998833549734}
-  - component: {fileID: -2896235905177263044}
+  - component: {fileID: -4005493934192378178}
   - component: {fileID: 7998194954082249218}
   m_Layer: 6
-  m_Name: Unit
+  m_Name: PlayerUnit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -947,7 +947,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &-2896235905177263044
+--- !u!114 &-4005493934192378178
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -956,14 +956,20 @@ MonoBehaviour:
   m_GameObject: {fileID: 7066011998833549732}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6b3e7b305c14cd1439889c0852b0cb3a, type: 3}
+  m_Script: {fileID: 11500000, guid: 137a5555b48ee864a99cd3efa347d03b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   unitType: 0
   maxHP: 100
   currentHP: 100
-  speed: 100
   attackPoint: 10
+  speed: 100
+  defencePoint: 0
+  criticalPoint: 0
+  criticalDamage: 0
+  effectTarget: 0
+  effectResistance: 0
+  skillUI: {fileID: 6562929814234236488, guid: 1ee5d7ba55db37241bcc79e7bc9636ad, type: 3}
 --- !u!114 &7998194954082249218
 MonoBehaviour:
   m_ObjectHideFlags: 0

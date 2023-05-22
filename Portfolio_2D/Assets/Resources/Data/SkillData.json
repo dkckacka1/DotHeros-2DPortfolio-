@@ -1,0 +1,18 @@
+[
+  {
+    "ID": 100,
+    "skillName": "기본 공격",
+    "skillDesc": "기본 공격 설명",
+    "isActiveSkill": true,
+    "isAutoTarget": true,
+    "isPlayerTarget": true,
+    "isEnemyTarget": true,
+    "isFrontTarget": true,
+    "isRearTarget": true,
+    "targetNum": 1,
+    "activeSkillCoolTime": 0,
+    "optionName1": "NULL",
+    "optionName2": "NULL",
+    "optionName3": "NULL"
+  }
+]

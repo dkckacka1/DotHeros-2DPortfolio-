@@ -6,25 +6,11 @@ namespace Portfolio
 {
     public class TurnBaseSystem : MonoBehaviour
     {
-        public static TurnBaseSystem Instance { get; private set; }
-
         [SerializeField] private float turnCount = 100f;
 
         [SerializeField] private UnitTurnBase currentTurnUnit = null;
 
         private TurnType currentTurnType;
-
-        private void Awake()
-        {
-            if (Instance == null)
-            {
-                Instance = this;
-            }
-            else
-            {
-                Destroy(this.gameObject);
-            }
-        }
 
         private void Update()
         {
@@ -48,7 +34,7 @@ namespace Portfolio
         {
             unitTurnBase.AddUnitTurnCount(unitTurnBase.unit.Speed * Time.deltaTime);
             float SequenceUIYNormalizedPos = unitTurnBase.GetCurrentTurnCount() / turnCount;
-            BattleManager.Instance.BattleUI.SequenceUI.SetSequenceUnitUIYPosition(unitTurnBase.unitSequenceUI, SequenceUIYNormalizedPos);
+            BattleManager.BattleUIManager.SequenceUI.SetSequenceUnitUIYPosition(unitTurnBase.unitSequenceUI, SequenceUIYNormalizedPos);
         }
 
         public void StartTurn(UnitTurnBase unitbase)
@@ -57,7 +43,7 @@ namespace Portfolio
             switch (unitbase.unit.unitType)
             {
                 case UnitType.Player:
-                    ActionSystem.Instance.IsPlayerActionTime = true;
+                    BattleManager.ActionSystem.IsPlayerActionTime = true;
                     currentTurnType = TurnType.PLAYER;
                     break;
                 case UnitType.Enemy:
@@ -73,11 +59,11 @@ namespace Portfolio
             if (currentTurnUnit == null) return;
 
             currentTurnUnit.TurnEnd();
-            BattleManager.Instance.BattleUI.SequenceUI.SetSequenceUnitUIYPosition(currentTurnUnit.unitSequenceUI, 0);
-            ActionSystem.Instance.ClearSelectedUnits();
+            BattleManager.BattleUIManager.SequenceUI.SetSequenceUnitUIYPosition(currentTurnUnit.unitSequenceUI, 0);
+            BattleManager.ActionSystem.ClearSelectedUnits();
             currentTurnUnit = null;
             currentTurnType = TurnType.WAITTING;
-            ActionSystem.Instance.IsPlayerActionTime = false;
+            BattleManager.ActionSystem.IsPlayerActionTime = false;
 
         }
     }

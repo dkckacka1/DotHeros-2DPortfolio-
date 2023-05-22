@@ -20,6 +20,9 @@ namespace Portfolio
 
         public int targetNum;
 
+        public int activeSkillCoolTime = 0;
+
+
         public string optionName1;
         public string optionName2;
         public string optionName3;

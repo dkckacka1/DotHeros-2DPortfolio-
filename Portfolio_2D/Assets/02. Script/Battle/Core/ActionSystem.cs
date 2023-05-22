@@ -7,8 +7,6 @@ namespace Portfolio
 {
     public class ActionSystem : MonoBehaviour
     {
-        public static ActionSystem Instance { get; private set; }
-
         private bool isPlayerActionTime = false;
 
         private List<Unit> selectedUnits;
@@ -31,17 +29,7 @@ namespace Portfolio
 
         private void Awake()
         {
-            if (Instance == null)
-            {
-                Instance = this;
-            }
-            else
-            {
-                Destroy(this.gameObject);
-            }
-
             SelectedUnits = new List<Unit>();
-
         }
 
         void Update()

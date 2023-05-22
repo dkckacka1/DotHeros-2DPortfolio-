@@ -7,9 +7,8 @@ namespace Portfolio
     public class BattleFactory : MonoBehaviour
     {
         [Header("Unit")]
-        [SerializeField] private Unit unit;
-        [SerializeField] private UnitSequenceUI unitSequenceUI;
-        [SerializeField] private RectTransform unitSequenceUIParent;
+        [SerializeField] private PlayerUnit playerUnit;
+        [SerializeField] private EnemyUnit enemyUnit;
 
         [Header("Grid")]
         [SerializeField] List<GridPosition> playerGrids;
@@ -26,11 +25,9 @@ namespace Portfolio
                     continue;
                 }
 
-                var newUnit = Instantiate(unit, gridPosition.transform);
-                newUnit.unitType = UnitType.Player;
+                var newUnit = Instantiate(playerUnit, gridPosition.transform);
                 gridPosition.unit = newUnit;
-                var newUnitSequenceUI = Instantiate(unitSequenceUI, unitSequenceUIParent);
-                unitBase = new UnitTurnBase(newUnit, newUnitSequenceUI);
+                unitBase = new UnitTurnBase(newUnit, gridPosition, BattleManager.BattleUIManager.CreateUnitSequenceUI(), BattleManager.BattleUIManager.CreateUnitSkillUI());
                 break;
             }
 
@@ -48,11 +45,9 @@ namespace Portfolio
                     continue;
                 }
 
-                var newUnit = Instantiate(unit, gridPosition.transform);
-                newUnit.unitType = UnitType.Enemy;
+                var newUnit = Instantiate(enemyUnit, gridPosition.transform);
                 gridPosition.unit = newUnit;
-                var newUnitSequenceUI = Instantiate(unitSequenceUI, unitSequenceUIParent);
-                unitBase = new UnitTurnBase(newUnit, newUnitSequenceUI);
+                unitBase = new UnitTurnBase(newUnit, gridPosition, BattleManager.BattleUIManager.CreateUnitSequenceUI());
                 break;
             }
 

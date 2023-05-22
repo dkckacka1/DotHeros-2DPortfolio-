@@ -44,7 +44,6 @@ namespace Portfolio
         //===========================================================
         // Property
         //===========================================================
-        public float Speed { get => speed; set => speed = value; }
         public float MaxHP { get => maxHP; set => maxHP = value; }
         public float CurrentHP 
         { 
@@ -63,8 +62,13 @@ namespace Portfolio
             }
         }
 
-
         public float AttackPoint { get => attackPoint; set => attackPoint = value; }
+        public float Speed { get => speed; set => speed = value; }
+        public float DefencePoint { get => defencePoint; set => defencePoint = value; }
+        public float CriticalPoint { get => criticalPoint; set => criticalPoint = value; }
+        public float CriticalDamage { get => criticalDamage; set => criticalDamage = value; }
+        public float EffectTarget { get => effectTarget; set => effectTarget = value; }
+        public float EffectResistance { get => effectResistance; set => effectResistance = value; }
 
         //===========================================================
         // UnityEvent
@@ -107,6 +111,11 @@ namespace Portfolio
         //===========================================================
         // BattleMethod
         //===========================================================
+        public void BasicAttack(Unit targetUnit)
+        {
+            targetUnit.TakeDamage(attackPoint);
+        }
+
         public void TakeDamage(float DamagePoint)
         {
             CurrentHP -= DamagePoint;

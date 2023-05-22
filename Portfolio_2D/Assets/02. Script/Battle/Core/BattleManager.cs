@@ -9,9 +9,13 @@ namespace Portfolio
     public class BattleManager : MonoBehaviour
     {
 
-        [SerializeField] private BattleUI battleUI;
+        [SerializeField] private static BattleUIManager battleUI;
 
-        [SerializeField] private BattleFactory battleFactory;
+        [SerializeField] private static BattleFactory battleFactory;
+
+        [SerializeField] private static TurnBaseSystem turnBaseSystem;
+
+        [SerializeField] private static ActionSystem actionSystem;
          
         private List<UnitTurnBase> unitList;
 
@@ -22,10 +26,12 @@ namespace Portfolio
         private Dictionary<BattleState, UnityEvent> StateEventHandlerDic = new Dictionary<BattleState, UnityEvent>();
 
         public static BattleManager Instance { get; private set; }
-        public BattleUI BattleUI { get => battleUI; }
-        public BattleFactory BattleFactory { get => battleFactory; }
 
         public BattleState BattleState { get => battleState; }
+        public static BattleUIManager BattleUIManager { get => battleUI; }
+        public static BattleFactory BattleFactory { get => battleFactory; }
+        public static TurnBaseSystem TurnBaseSystem { get => turnBaseSystem;}
+        public static ActionSystem ActionSystem { get => actionSystem;}
 
         private void Awake()
         {
@@ -36,6 +42,12 @@ namespace Portfolio
             }
 
             Instance = this;
+
+            battleUI = GetComponentInChildren<BattleUIManager>();
+            battleFactory = GetComponentInChildren<BattleFactory>();
+            turnBaseSystem = GetComponentInChildren<TurnBaseSystem>();
+            actionSystem = GetComponentInChildren<ActionSystem>();
+
             unitList = new List<UnitTurnBase>();
         }
 

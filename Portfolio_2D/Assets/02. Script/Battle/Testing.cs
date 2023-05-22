@@ -10,26 +10,21 @@ namespace Portfolio
         {
             if (Input.GetKeyDown(KeyCode.T))
             {
-                var unitBase = BattleManager.Instance.BattleFactory.CreatePlayableUnitBase();
+                var unitBase = BattleManager.BattleFactory.CreatePlayableUnitBase();
                 unitBase.unit.Speed = Random.Range(50, 101);
                 BattleManager.Instance.AddUnitinUnitList(unitBase);
             }
 
             if (Input.GetKeyDown(KeyCode.Y))
             {
-                var unitBase = BattleManager.Instance.BattleFactory.CreateEnemyUnitBase();
+                var unitBase = BattleManager.BattleFactory.CreateEnemyUnitBase();
                 unitBase.unit.Speed = Random.Range(50, 101);
                 BattleManager.Instance.AddUnitinUnitList(unitBase);
             }
 
-            if (Input.GetKeyDown(KeyCode.E))
-            {
-                TurnBaseSystem.Instance.TurnEnd();
-            }
-
             if (Input.GetKeyDown(KeyCode.A))
             {
-                foreach (var unit in ActionSystem.Instance.SelectedUnits)
+                foreach (var unit in BattleManager.ActionSystem.SelectedUnits)
                 {
                     unit.TakeDamage(10);
                 }
