@@ -4,8 +4,9 @@ using UnityEngine;
 
 namespace Portfolio
 {
-    public class EnemyUnitData : UnitData
+    public class EnemyUnitData : Data
     {
+        public int unitID = 0;
         public int level = 1;
     }
 }

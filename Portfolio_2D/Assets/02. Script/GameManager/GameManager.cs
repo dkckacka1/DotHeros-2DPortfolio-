@@ -11,7 +11,8 @@ namespace Portfolio
         //===========================================================
         // Dictionary
         //===========================================================
-        private Dictionary<int, Data> DataDictionary = new Dictionary<int, Data>();
+        private Dictionary<int, Skill> SkillDictionary = new Dictionary<int, Skill>();
+        private Dictionary<int, Unit> UnitDictionary = new Dictionary<int, Unit>();
 
         private static GameManager instance;
         public static GameManager Instance { get => instance; }
@@ -30,10 +31,13 @@ namespace Portfolio
                 Destroy(this.gameObject);
             }
 
-            ResourcesLoader.TryLoadSkillData(DataDictionary);
-            ResourcesLoader.TryLoadUnitData(DataDictionary);
-            Debug.Log(TryGetData(10000, out SkillData data1));
-            Debug.Log(TryGetData(100, out UnitData data2));
+            ResourcesLoader.TryLoadSkillData(SkillDictionary);
+            ResourcesLoader.TryLoadUnitData(UnitDictionary);
+
+            foreach (var unitKV in UnitDictionary)
+            {
+                Debug.Log(unitKV.Value.ToString());
+            }
         }
 
         private void Start()
@@ -44,42 +48,32 @@ namespace Portfolio
             }
         }
 
-        public bool TryGetData<T>(int ID, out T data) where T : Data
+        public bool TryGetUnit(int id, out Unit skill)
         {
-            if (!DataDictionary.ContainsKey(ID))
+            if (!UnitDictionary.ContainsKey(id))
             {
-                Debug.Log("Key is not Contains");
-                data = null;
+                Debug.Log("Unit ID is not ContainsKey");
+
+                skill = null;
                 return false;
             }
-            else
-            {
-                if (!(DataDictionary[ID] is T))
-                {
-                    Debug.Log("Value is not " + typeof(T).Name);
-                    data = null;
-                    return false;
-                }
-                else
-                {
-                    data = DataDictionary[ID] as T;
-                }
-            }
 
+            skill = UnitDictionary[id];
             return true;
         }
 
-        public List<T> GetDataList<T>() where T : Data
+        public bool TryGetSkill(int id, out Skill skill)
         {
-            var keyValueList = DataDictionary.Where((item) => item.Value is T).ToList();
-
-            List<T> dataList = new List<T>();
-            foreach (var list in keyValueList)
+            if (!SkillDictionary.ContainsKey(id))
             {
-                dataList.Add(list.Value as T);
+                Debug.Log("skill ID is not ContainsKey");
+
+                skill = null;
+                return false;
             }
 
-            return dataList;
+            skill = SkillDictionary[id];
+            return true;
         }
     }
 }

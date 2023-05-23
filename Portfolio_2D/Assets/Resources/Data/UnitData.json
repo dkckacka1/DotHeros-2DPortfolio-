@@ -10,6 +10,11 @@
     "criticalPoint": 0.0,
     "criticalDamage": 0.0,
     "effectHit": 0.0,
-    "effectResistance": 0.0
+    "effectResistance": 0.0,
+    "basicAttackSKillID": 10000,
+    "activeSkillID_1": -1,
+    "activeSkillID_2": -1,
+    "passiveSkillID_1": -1,
+    "passiveSkillID_2": -1
   }
 ]

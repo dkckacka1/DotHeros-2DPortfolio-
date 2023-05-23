@@ -12,7 +12,7 @@ namespace Portfolio
         public ChangeCurrnetHPEventArgs(float currentHP) => this.currentHP = currentHP;
     }
 
-    public class BattleUnit : MonoBehaviour
+    public abstract class BattleUnit : MonoBehaviour
     {
         [SerializeField] UnitType unitType;
 

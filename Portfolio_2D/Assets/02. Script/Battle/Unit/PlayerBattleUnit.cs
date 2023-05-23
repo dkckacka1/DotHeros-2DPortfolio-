@@ -11,6 +11,7 @@ namespace Portfolio
         public override void SetUnit(Unit unit)
         {
             base.SetUnit(unit);
+
         }
     }
 }

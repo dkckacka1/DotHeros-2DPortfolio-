@@ -10,7 +10,7 @@ namespace Portfolio
 {
     public static class ResourcesLoader
     {
-        public static bool TryLoadSkillData(Dictionary<int, Data> DataDic)
+        public static bool TryLoadSkillData(Dictionary<int, Skill> skillDataDic)
         {
             string skillResourcePath = @"Data/SkillData";
 
@@ -19,13 +19,13 @@ namespace Portfolio
 
             foreach (var skillData in obj)
             {
-                DataDic.Add(skillData.ID, skillData);
+                skillDataDic.Add(skillData.ID, new Skill(skillData));
             }
 
             return true;
         }
 
-        public static bool TryLoadUnitData(Dictionary<int, Data> DataDic)
+        public static bool TryLoadUnitData(Dictionary<int, Unit> unitDataDic)
         {
             string UnitResourcePath = @"Data/UnitData";
 
@@ -34,7 +34,7 @@ namespace Portfolio
 
             foreach (var unitData in obj)
             {
-                DataDic.Add(unitData.ID, unitData);
+                unitDataDic.Add(unitData.ID, new Unit(unitData));
             }
 
             return true;

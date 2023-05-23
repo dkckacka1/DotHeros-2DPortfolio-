@@ -50,5 +50,10 @@ namespace Portfolio
             optionSkill_2?.TakeAction(targetUnit);
             optionSkill_3?.TakeAction(targetUnit);
         }
+
+        public override string ToString()
+        {
+            return @$"{skillData.skillName}";
+        }
     }
 }

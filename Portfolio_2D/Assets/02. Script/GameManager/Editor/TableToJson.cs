@@ -35,7 +35,7 @@ namespace Portfolio.Editor
             string unitJsonPath = Application.dataPath + Constant.jsonFolderPath + Constant.unitDataJsonName;
             if (File.Exists(skillJsonPath))
             {
-                var text = File.OpenText(skillJsonPath);
+                var text = File.OpenText(unitJsonPath);
                 string json = text.ReadToEnd();
                 Debug.Log(json);
                 var unitDatas = JsonConvert.DeserializeObject<UnitData[]>(json);
@@ -194,6 +194,21 @@ namespace Portfolio.Editor
 
                                     writer.WritePropertyName("effectResistance");
                                     writer.WriteValue(reader.GetValue(index++));
+
+                                    writer.WritePropertyName("basicAttackSKillID");
+                                    writer.WriteValue(int.Parse(reader.GetValue(index++).ToString()));
+
+                                    writer.WritePropertyName("activeSkillID_1");
+                                    writer.WriteValue(int.Parse(reader.GetValue(index++).ToString()));
+
+                                    writer.WritePropertyName("activeSkillID_2");
+                                    writer.WriteValue(int.Parse(reader.GetValue(index++).ToString()));
+
+                                    writer.WritePropertyName("passiveSkillID_1");
+                                    writer.WriteValue(int.Parse(reader.GetValue(index++).ToString()));
+
+                                    writer.WritePropertyName("passiveSkillID_2");
+                                    writer.WriteValue(int.Parse(reader.GetValue(index++).ToString()));
                                 }
                             }
                             while (reader.NextResult());
