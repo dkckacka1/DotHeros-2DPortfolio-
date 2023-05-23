@@ -83,17 +83,19 @@ namespace Portfolio
         // CreateUnit
         //===========================================================
 
-        public virtual void SetUnit(Unit unit)
+        public virtual void SetUnit(Unit unit, UnitSkillUI skillUI)
         {
-            this.maxHP = unit.UnitData.maxHP;
-            this.currentHP = unit.UnitData.maxHP;
-            this.attackPoint = unit.UnitData.attackPoint;
-            this.speed = unit.UnitData.speed;
-            this.defencePoint = unit.UnitData.defencePoint;
-            this.criticalPoint = unit.UnitData.criticalPoint;
-            this.criticalDamage = unit.UnitData.criticalDamage;
-            this.effectHit = unit.UnitData.effectHit;
-            this.effectResistance = unit.UnitData.effectResistance;
+            this.maxHP = unit.Data.maxHP;
+            this.currentHP = unit.Data.maxHP;
+            this.attackPoint = unit.Data.attackPoint;
+            this.speed = unit.Data.speed;
+            this.defencePoint = unit.Data.defencePoint;
+            this.criticalPoint = unit.Data.criticalPoint;
+            this.criticalDamage = unit.Data.criticalDamage;
+            this.effectHit = unit.Data.effectHit;
+            this.effectResistance = unit.Data.effectResistance;
+
+            skillUI.SetSkill(unit.basicAttackSkill, unit.activeSkill_1, unit.activeSkill_2);
         }
 
         //===========================================================

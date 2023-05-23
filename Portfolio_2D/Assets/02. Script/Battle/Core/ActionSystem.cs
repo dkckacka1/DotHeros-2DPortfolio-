@@ -16,6 +16,7 @@ namespace Portfolio
         public bool isEnemyTarget = true;
         public bool isFrontTarget = true;
         public bool isRearTarget = true;
+        public int targetNum = 10;
 
         [Header("Grid")]
         [SerializeField] List<GridPosition> playerGrids;
@@ -92,6 +93,15 @@ namespace Portfolio
             }
 
             SelectedUnits.Clear();
+        }
+
+        public void SetHowToTarget(Skill skill)
+        {
+            isPlayerTarget = skill.Data.isPlayerTarget;
+            isEnemyTarget = skill.Data.isEnemyTarget;
+            isFrontTarget = skill.Data.isFrontTarget;
+            isRearTarget = skill.Data.isRearTarget;
+            targetNum = skill.Data.targetNum;
         }
     }
 }

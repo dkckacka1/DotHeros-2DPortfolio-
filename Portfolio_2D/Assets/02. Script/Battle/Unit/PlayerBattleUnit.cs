@@ -8,9 +8,9 @@ namespace Portfolio
     {
         private UnitSkillUI skillUI;
 
-        public override void SetUnit(Unit unit)
+        public override void SetUnit(Unit unit, UnitSkillUI skillUI)
         {
-            base.SetUnit(unit);
+            base.SetUnit(unit, skillUI);
 
         }
     }

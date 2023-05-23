@@ -14,5 +14,11 @@ namespace Portfolio.skill.Option
         }
 
         public abstract void TakeAction(BattleUnit targetUnit);
+
+        protected string ActionText()
+        {
+            string str = GetType().Name + " is Action";
+            return str;
+        }
     }
 }

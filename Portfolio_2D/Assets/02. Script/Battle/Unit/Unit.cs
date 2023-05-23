@@ -8,7 +8,7 @@ namespace Portfolio
 {
     public class Unit 
     {
-        private UnitData unitData;
+        private UnitData data;
 
         public int unitLevel = 1;
         public int unitGrade = 1;
@@ -24,11 +24,11 @@ namespace Portfolio
         public Skill passiveSkill_1;
         public Skill passiveSkill_2;
 
-        public UnitData UnitData { get => unitData; }
+        public UnitData Data { get => data; }
 
         public Unit(UnitData unitData)
         {
-            this.unitData = unitData;
+            this.data = unitData;
 
             GameManager.Instance.TryGetSkill(unitData.basicAttackSKillID, out basicAttackSkill);
             if (unitData.activeSkillID_1 != -1)
@@ -51,7 +51,7 @@ namespace Portfolio
 
         public override string ToString()
         {
-            string str = $@"UnitName = {unitData.unitName}
+            string str = $@"UnitName = {data.unitName}
 basicAttackSkillName = {basicAttackSkill.ToString()}";
 
             return str;
