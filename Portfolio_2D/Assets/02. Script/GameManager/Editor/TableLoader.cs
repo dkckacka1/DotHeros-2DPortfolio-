@@ -13,10 +13,11 @@ namespace Portfolio.Editor
             Debug.Log(TableToJson.CheckValidJson());
         }
 
-        [MenuItem("Tools/Json/CreateSkillTable")]
+        [MenuItem("Tools/Json/CreateJsonFile")]
         private static void TestMethod()
         {
             Debug.Log(TableToJson.GetSkillTable());
+            Debug.Log(TableToJson.GetUnitTable());
         }
     } 
 }

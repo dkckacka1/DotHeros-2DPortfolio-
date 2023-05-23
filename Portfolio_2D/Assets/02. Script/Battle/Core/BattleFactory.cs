@@ -7,8 +7,8 @@ namespace Portfolio
     public class BattleFactory : MonoBehaviour
     {
         [Header("Unit")]
-        [SerializeField] private PlayerUnit playerUnit;
-        [SerializeField] private EnemyUnit enemyUnit;
+        [SerializeField] private PlayerBattleUnit playerUnit;
+        [SerializeField] private EnemyBattleUnit enemyUnit;
 
         [Header("Grid")]
         [SerializeField] List<GridPosition> playerGrids;

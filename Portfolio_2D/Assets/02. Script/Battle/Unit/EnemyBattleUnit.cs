@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Portfolio
 {
-    public class EnemyUnit : Unit
+    public class EnemyBattleUnit : BattleUnit
     {
 
     }

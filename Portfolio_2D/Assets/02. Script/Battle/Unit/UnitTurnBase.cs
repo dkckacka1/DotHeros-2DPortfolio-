@@ -5,13 +5,13 @@ namespace Portfolio
 {
     public class UnitTurnBase
     {
-        public Unit unit;
+        public BattleUnit unit;
         public float currentTurnCount;
         public GridPosition unitGridPosition;
         public UnitSequenceUI unitSequenceUI;
         public UnitSkillUI unitSkillUI;
 
-        public UnitTurnBase(Unit unit, GridPosition gridPosition, UnitSequenceUI unitSequenceUI, UnitSkillUI unitSkillUI = null)
+        public UnitTurnBase(BattleUnit unit, GridPosition gridPosition, UnitSequenceUI unitSequenceUI, UnitSkillUI unitSkillUI = null)
         {
             this.unit = unit;
             this.unitGridPosition = gridPosition;

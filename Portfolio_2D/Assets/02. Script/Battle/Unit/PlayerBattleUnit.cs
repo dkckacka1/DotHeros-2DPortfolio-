@@ -4,8 +4,13 @@ using UnityEngine;
 
 namespace Portfolio
 {
-    public class PlayerUnit : Unit
+    public class PlayerBattleUnit : BattleUnit
     {
         private UnitSkillUI skillUI;
+
+        public override void SetUnit(Unit unit)
+        {
+            base.SetUnit(unit);
+        }
     }
 }

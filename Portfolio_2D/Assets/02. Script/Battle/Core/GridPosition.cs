@@ -10,7 +10,7 @@ namespace Portfolio
 
         public List<GridPosition> LinkedGridPosition;
 
-        public Unit unit;
+        public BattleUnit unit;
     }
 
 }

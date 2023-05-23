@@ -1,6 +1,6 @@
 [
   {
-    "ID": 100,
+    "ID": 10000,
     "skillName": "기본 공격",
     "skillDesc": "기본 공격 설명",
     "isActiveSkill": true,
@@ -11,7 +11,7 @@
     "isRearTarget": true,
     "targetNum": 1,
     "activeSkillCoolTime": 0,
-    "optionName1": "NULL",
+    "optionName1": "BasicAttack",
     "optionName2": "NULL",
     "optionName3": "NULL"
   }

@@ -11,7 +11,6 @@ namespace Portfolio
 
         // UnitAttribute
         public float maxHP = 100;
-        public float currentHP = 100;
         public float attackPoint = 10f;
         public float defencePoint = 0f;
         public float speed = 100f;
@@ -19,8 +18,6 @@ namespace Portfolio
         public float criticalDamage = 0f;
         public float effectHit = 0f;
         public float effectResistance = 0f;
-
-
 
         // Apparence
     }

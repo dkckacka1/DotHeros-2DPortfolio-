@@ -1,0 +1,15 @@
+[
+  {
+    "ID": 100,
+    "unitName": "테스트",
+    "elementalType": "Fire",
+    "maxHP": "100",
+    "attackPoint": 10.0,
+    "defencePoint": 0.0,
+    "speed": 100.0,
+    "criticalPoint": 0.0,
+    "criticalDamage": 0.0,
+    "effectHit": 0.0,
+    "effectResistance": 0.0
+  }
+]

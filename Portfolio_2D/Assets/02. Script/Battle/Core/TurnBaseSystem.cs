@@ -40,7 +40,7 @@ namespace Portfolio
         public void StartTurn(UnitTurnBase unitbase)
         {
             currentTurnUnit = unitbase;
-            switch (unitbase.unit.unitType)
+            switch (unitbase.unit.UnitType)
             {
                 case UnitType.Player:
                     BattleManager.ActionSystem.IsPlayerActionTime = true;

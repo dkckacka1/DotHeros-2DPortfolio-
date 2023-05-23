@@ -57,7 +57,7 @@ namespace Portfolio
         }
 
         public void AddUnitinUnitList(UnitTurnBase unit) => unitList.Add(unit);
-        public void RemoveUnitinUnitList(Unit unit)
+        public void RemoveUnitinUnitList(BattleUnit unit)
         {
             unitList.Remove(unitList.Find((findunit) => findunit.unit == unit));
         }
@@ -65,10 +65,10 @@ namespace Portfolio
         {
             unitList.Clear();
         }
-        public UnitTurnBase FindUnitinUnitList(Unit unit) => unitList.Find((findunit) => findunit.unit == unit);
+        public UnitTurnBase FindUnitinUnitList(BattleUnit unit) => unitList.Find((findunit) => findunit.unit == unit);
         public List<UnitTurnBase> GetUnitList() => unitList;
 
-        public void UnitListCycleMethod(UnityAction<Unit> action)
+        public void UnitListCycleMethod(UnityAction<BattleUnit> action)
         {
             foreach (var unitBase in unitList)
             {

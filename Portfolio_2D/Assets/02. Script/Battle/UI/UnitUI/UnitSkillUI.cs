@@ -7,14 +7,14 @@ namespace Portfolio
 {
     public class UnitSkillUI : MonoBehaviour
     {
-        private Unit unit;
+        private BattleUnit unit;
 
         [SerializeField] Button turnEndBtn;
         [SerializeField] Button BasicAttackBtn;
         [SerializeField] Button activeSkill_1_ActionBtn;
         [SerializeField] Button activeSkill_2_ActionBtn;
 
-        public void SetUnit(Unit unit)
+        public void SetUnit(BattleUnit unit)
         {
             this.unit = unit;
         }

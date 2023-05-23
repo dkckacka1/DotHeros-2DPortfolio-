@@ -24,7 +24,7 @@ namespace Portfolio
 
         public void SetTargetedUI(bool isTarget) => targetedUIObject.SetActive(isTarget);
 
-        public void SetUnit(Unit unit)
+        public void SetUnit(BattleUnit unit)
         {
             unitHPUI.SetHP(unit.MaxHP);
         }

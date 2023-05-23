@@ -9,7 +9,7 @@ namespace Portfolio
     {
         private bool isPlayerActionTime = false;
 
-        private List<Unit> selectedUnits;
+        private List<BattleUnit> selectedUnits;
 
         [Header("HowTargeted")]
         public bool isPlayerTarget = true;
@@ -25,11 +25,11 @@ namespace Portfolio
         // Property
         //===========================================================
         public bool IsPlayerActionTime { get => isPlayerActionTime; set => isPlayerActionTime = value; }
-        public List<Unit> SelectedUnits { get => selectedUnits; set => selectedUnits = value; }
+        public List<BattleUnit> SelectedUnits { get => selectedUnits; set => selectedUnits = value; }
 
         private void Awake()
         {
-            SelectedUnits = new List<Unit>();
+            SelectedUnits = new List<BattleUnit>();
         }
 
         void Update()
@@ -43,7 +43,7 @@ namespace Portfolio
                 if (hit2D.collider?.transform.gameObject.layer == 6)
                 {
                     GridPosition grid = hit2D.transform.GetComponent<GridPosition>();
-                    Unit targetUnit = grid.unit;
+                    BattleUnit targetUnit = grid.unit;
                     if (CanTargetedUnit(grid, targetUnit))
                     {
                         if (!SelectedUnits.Contains(targetUnit))
@@ -60,11 +60,11 @@ namespace Portfolio
             }
         }
 
-        private bool CanTargetedUnit(GridPosition grid, Unit unit)
+        private bool CanTargetedUnit(GridPosition grid, BattleUnit unit)
         {
             if (unit == null) return false;
-            if (!isPlayerTarget && unit.unitType == UnitType.Player) return false;
-            if (!isEnemyTarget && unit.unitType == UnitType.Enemy) return false;
+            if (!isPlayerTarget && unit.UnitType == UnitType.Player) return false;
+            if (!isEnemyTarget && unit.UnitType == UnitType.Enemy) return false;
             if (!isFrontTarget && grid.lineType == LineType.FrontLine) return false;
             if (!isRearTarget && grid.lineType == LineType.RearLine) return false;
 
@@ -72,13 +72,13 @@ namespace Portfolio
             return true;
         }
 
-        private void SelectedUnit(Unit unit)
+        private void SelectedUnit(BattleUnit unit)
         {
             SelectedUnits.Add(unit);
             unit.Select();
         }
 
-        private void UnSelectedUnit(Unit unit)
+        private void UnSelectedUnit(BattleUnit unit)
         {
             SelectedUnits.Remove(unit);
             unit.UnSelect();
