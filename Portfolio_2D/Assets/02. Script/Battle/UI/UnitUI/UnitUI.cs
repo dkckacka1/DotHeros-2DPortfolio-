@@ -15,6 +15,8 @@ namespace Portfolio
 
         [SerializeField] private UnitHPUI unitHPUI;
 
+        
+
         private void Awake()
         {
             unitUICanvas.worldCamera = Camera.main;

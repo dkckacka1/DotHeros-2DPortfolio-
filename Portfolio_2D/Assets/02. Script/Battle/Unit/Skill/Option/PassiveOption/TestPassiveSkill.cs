@@ -9,6 +9,10 @@ namespace Portfolio.skill.Option
     {
         private float healValue = 10;
 
+        public TestPassiveSkill(int skillID) : base(skillID)
+        {
+        }
+
         public override void TakeAction(BattleUnit targetUnit, int skillLevel = 1)
         {
             Debug.Log(GetType().Name + " is TakeAction");

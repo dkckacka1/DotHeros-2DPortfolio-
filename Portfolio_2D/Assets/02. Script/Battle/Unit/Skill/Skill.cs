@@ -42,8 +42,9 @@ namespace Portfolio
             string className = $"Portfolio.skill.Option.{optionName}";
 
             Type type = Type.GetType(className);
+            object[] parameters = { data.ID};
 
-            optionSkill = Activator.CreateInstance(type) as OptionSkill;
+            optionSkill = Activator.CreateInstance(type, parameters) as OptionSkill;
         }
 
         public void SetCurrentTurnUnit(BattleUnit battleUnit)

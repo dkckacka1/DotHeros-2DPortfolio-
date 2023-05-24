@@ -6,7 +6,13 @@ namespace Portfolio.skill.Option
 {
     public abstract class OptionSkill
     {
+        protected int skillID;
         protected BattleUnit currentTurnUnit;
+
+        public OptionSkill(int skillID)
+        {
+            this.skillID = skillID;
+        }
 
         public void SetCurrentTurnUnit(BattleUnit CurrentTurnUnit)
         {

@@ -31,6 +31,7 @@ namespace Portfolio
         [SerializeField] private float effectResistance = 0f;
 
         private UnitUI unitUI;
+        private List<SkillStack> skillStackList = new List<SkillStack>();
 
         //===========================================================
         // Event
@@ -110,6 +111,7 @@ namespace Portfolio
         public virtual void UnitTurnBase_OnTurnStartEvent(object sender, EventArgs e)
         {
             unitUI.SetCurrentTurnUI(true);
+            ProcessStackSkill();
 
             OnStartCurrentTurnEvent?.Invoke(this, EventArgs.Empty);
         }
@@ -146,6 +148,33 @@ namespace Portfolio
 
         private void Dead()
         {
+        }
+
+        private void ProcessStackSkill()
+        {
+            foreach (var skillStack in skillStackList)
+            {
+                skillStack.ProcessStack();
+            }
+        }
+
+        public void TakeStackSkill(int skillID, int stackCount, EventHandler OnSkillAction)
+        {
+            SkillStack skill = skillStackList.Find((skill) => skill.SkillID == skillID);
+
+            if (skill == null)
+            {
+                skill = new SkillStack(skillID, stackCount, OnSkillAction, OnStackEndAction);
+            }
+            else
+            {
+                skill.StackCount = stackCount;
+            }
+        }
+
+        private void OnStackEndAction(object sender, EventArgs e)
+        {
+
         }
     }
 
