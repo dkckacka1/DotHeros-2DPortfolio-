@@ -12,6 +12,8 @@ namespace Portfolio
         public bool isActiveSkill;
 
         public bool isAutoTarget;
+        public AutoPeerTargetType autoPeerTargetType;
+        public AutoProcessionTargetType autoProcessionTargetType;
 
         public bool isPlayerTarget;
         public bool isEnemyTarget;

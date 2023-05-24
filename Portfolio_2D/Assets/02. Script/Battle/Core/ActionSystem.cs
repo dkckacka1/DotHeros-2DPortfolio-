@@ -1,32 +1,38 @@
+using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using System;
 
 namespace Portfolio
 {
     public class ActionSystem : MonoBehaviour
     {
         private bool isPlayerActionTime = false;
+        private bool isSkillAction = false;
 
         private List<BattleUnit> selectedUnits;
 
         [Header("HowTargeted")]
+        public bool isAutoTarget = true;
         public bool isPlayerTarget = true;
         public bool isEnemyTarget = true;
         public bool isFrontTarget = true;
         public bool isRearTarget = true;
+        public AutoPeerTargetType autoPeer = AutoPeerTargetType.NONE;
+        public AutoProcessionTargetType autoProcession = AutoProcessionTargetType.NONE;
         public int targetNum = 10;
 
         [Header("Grid")]
-        [SerializeField] List<GridPosition> playerGrids;
-        [SerializeField] List<GridPosition> enemyGrids;
+        [SerializeField] List<GridPosition> unitGrids;
 
         //===========================================================
         // Property
         //===========================================================
         public bool IsPlayerActionTime { get => isPlayerActionTime; set => isPlayerActionTime = value; }
         public List<BattleUnit> SelectedUnits { get => selectedUnits; set => selectedUnits = value; }
+        public bool IsSkillAction { get => isSkillAction; set => isSkillAction = value; }
 
         private void Awake()
         {
@@ -35,7 +41,7 @@ namespace Portfolio
 
         void Update()
         {
-            if (!isPlayerActionTime) return;
+            if (!isPlayerActionTime || !isSkillAction || isAutoTarget) return;
 
             if (Input.GetMouseButtonDown(0))
             {
@@ -49,7 +55,15 @@ namespace Portfolio
                     {
                         if (!SelectedUnits.Contains(targetUnit))
                         {
-                            SelectedUnit(targetUnit);
+                            if (selectedUnits.Count >= targetNum)
+                            {
+                                UnSelectedUnit(SelectedUnits[0]);
+                                SelectedUnit(targetUnit);
+                            }
+                            else
+                            {
+                                SelectedUnit(targetUnit);
+                            }
                         }
                         else
                         {
@@ -64,6 +78,8 @@ namespace Portfolio
         private bool CanTargetedUnit(GridPosition grid, BattleUnit unit)
         {
             if (unit == null) return false;
+
+            if (targetNum <= 0) return false;
             if (!isPlayerTarget && unit.UnitType == UnitType.Player) return false;
             if (!isEnemyTarget && unit.UnitType == UnitType.Enemy) return false;
             if (!isFrontTarget && grid.lineType == LineType.FrontLine) return false;
@@ -97,11 +113,50 @@ namespace Portfolio
 
         public void SetHowToTarget(Skill skill)
         {
+            if (skill == null)
+            {
+                Debug.Log("skill is null");
+            }
+
+            isAutoTarget = skill.Data.isAutoTarget;
             isPlayerTarget = skill.Data.isPlayerTarget;
             isEnemyTarget = skill.Data.isEnemyTarget;
             isFrontTarget = skill.Data.isFrontTarget;
             isRearTarget = skill.Data.isRearTarget;
             targetNum = skill.Data.targetNum;
+            autoPeer = skill.Data.autoPeerTargetType;
+            autoProcession = skill.Data.autoProcessionTargetType;
+
+            if (isAutoTarget)
+            {
+                SelectAutoTarget();
+            }
         }
+
+        public void SelectAutoTarget()
+        {
+            var list = unitGrids.
+                Where((grid) => isUnitAtGrid(grid) && IsTargetUnitTypeAtGrid(grid) && IsTargetLineTypeAtGrid(grid)).
+                OrderByDescending((grid) => Convert.ToInt32((int)grid.GetUnitType == (int)autoPeer)).
+                ThenByDescending((grid) => Convert.ToInt32((int)grid.lineType == (int)autoProcession));
+
+            int count = 0;
+
+            foreach (var unit in list)
+            {
+                if (count >= targetNum)
+                {
+                    break;
+                }
+
+                ++count;
+                SelectedUnit(unit.unit);
+            }
+        }
+
+        private bool isUnitAtGrid(GridPosition grid) => grid.isUnit;
+        private bool IsTargetUnitTypeAtGrid(GridPosition grid) => (isPlayerTarget && grid.GetUnitType == UnitType.Player) || (isEnemyTarget && grid.GetUnitType == UnitType.Enemy);
+        private bool IsTargetLineTypeAtGrid(GridPosition grid) => (isFrontTarget && grid.lineType == LineType.FrontLine) || (isRearTarget && grid.lineType == LineType.RearLine);
+        
     }
 }

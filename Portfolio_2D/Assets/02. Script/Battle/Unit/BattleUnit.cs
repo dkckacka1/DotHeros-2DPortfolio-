@@ -16,6 +16,9 @@ namespace Portfolio
     {
         [SerializeField] UnitType unitType;
 
+        [Header("UnitTurnSystem")]
+        private bool isTrun;
+
         [Header("UnitAttribute")]
         [SerializeField] private float maxHP = 100;
         [SerializeField] private float currentHP = 100;
@@ -26,9 +29,6 @@ namespace Portfolio
         [SerializeField] private float criticalDamage = 0f;
         [SerializeField] private float effectHit = 0f;
         [SerializeField] private float effectResistance = 0f;
-
-        [Header("UnitTurnSystem")]
-        private bool isTrun;
 
         private UnitUI unitUI;
 
@@ -76,7 +76,7 @@ namespace Portfolio
             unitUI = GetComponent<UnitUI>();
             unitUI.SetUnit(this);
 
-            OnChangedCurrentHPEvent += unitUI.Unit_OnCurrentHPChangedEvent;
+            OnChangedCurrentHPEvent += unitUI.BattleUnit_OnCurrentHPChangedEvent;
         }
 
         //===========================================================
@@ -95,20 +95,26 @@ namespace Portfolio
             this.effectHit = unit.Data.effectHit;
             this.effectResistance = unit.Data.effectResistance;
 
-            skillUI.SetSkill(unit.basicAttackSkill, unit.activeSkill_1, unit.activeSkill_2);
+            unit.passiveSkill_1?.SetCurrentTurnUnit(this);
+            unit.passiveSkill_2?.SetCurrentTurnUnit(this);
+
+            unit.passiveSkill_1?.TakeAction(this, new SkillActionEventArgs(this, unit.passiveSkillLevel_1));
+            unit.passiveSkill_2?.TakeAction(this, new SkillActionEventArgs(this, unit.passiveSkillLevel_2));
+
+            skillUI.SetSkill(unit.basicAttackSkill, unit.activeSkill_1, unit.activeSkill_2, unit.activeSkillLevel_1, unit.activeSkillLevel_2);
         }
 
         //===========================================================
         // TurnSystem & ActionSystem
         //===========================================================
-        public void StartCurrentTurn()
+        public virtual void UnitTurnBase_OnTurnStartEvent(object sender, EventArgs e)
         {
             unitUI.SetCurrentTurnUI(true);
 
             OnStartCurrentTurnEvent?.Invoke(this, EventArgs.Empty);
         }
 
-        public void EndCurrentTurn()
+        public virtual void UnitTurnBase_OnTurnEndEvent(object sender, EventArgs e)
         {
             unitUI.SetCurrentTurnUI(false);
 

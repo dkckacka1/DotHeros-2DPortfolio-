@@ -25,6 +25,7 @@
 
     public enum UnitType
     {
+        NONE = -1,
         Player,
         Enemy
     }
@@ -74,6 +75,19 @@
         EffectResistancePercent,
         HealthPercent,
         HealthPoint,
+    }
 
+    public enum AutoPeerTargetType
+    {
+        NONE = -1,
+        PlayerFirst,
+        EnemyFirst,
+    }
+
+    public enum AutoProcessionTargetType
+    {
+        NONE = -1,
+        FrontLineFirst,
+        RearLineFirst
     }
 }

@@ -95,6 +95,12 @@ namespace Portfolio.Editor
                                     writer.WritePropertyName("isAutoTarget");
                                     writer.WriteValue(bool.Parse(reader.GetValue(index++).ToString()));
 
+                                    writer.WritePropertyName("autoPeerTargetType");
+                                    writer.WriteValue(int.Parse(reader.GetValue(index++).ToString()));
+
+                                    writer.WritePropertyName("autoProcessionTargetType");
+                                    writer.WriteValue(int.Parse(reader.GetValue(index++).ToString()));
+
                                     writer.WritePropertyName("isPlayerTarget");
                                     writer.WriteValue(bool.Parse(reader.GetValue(index++).ToString()));
 
@@ -121,6 +127,8 @@ namespace Portfolio.Editor
 
                                     writer.WritePropertyName("optionName3");
                                     writer.WriteValue(reader.GetValue(index++).ToString());
+
+                                    writer.WriteEndObject();
                                 }
                             }
                             while (reader.NextResult());
@@ -209,6 +217,8 @@ namespace Portfolio.Editor
 
                                     writer.WritePropertyName("passiveSkillID_2");
                                     writer.WriteValue(int.Parse(reader.GetValue(index++).ToString()));
+
+                                    writer.WriteEndObject();
                                 }
                             }
                             while (reader.NextResult());

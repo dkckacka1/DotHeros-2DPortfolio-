@@ -13,7 +13,7 @@ namespace Portfolio.skill.Option
             this.currentTurnUnit = CurrentTurnUnit;
         }
 
-        public abstract void TakeAction(BattleUnit targetUnit);
+        public abstract void TakeAction(BattleUnit targetUnit,int skillLevel = 1);
 
         protected string ActionText()
         {

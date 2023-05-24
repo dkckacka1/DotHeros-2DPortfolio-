@@ -64,7 +64,6 @@ namespace Portfolio
             currentTurnUnit = null;
             currentTurnType = TurnType.WAITTING;
             BattleManager.ActionSystem.IsPlayerActionTime = false;
-
         }
     }
 

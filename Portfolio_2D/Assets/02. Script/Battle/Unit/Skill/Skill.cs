@@ -28,12 +28,12 @@ namespace Portfolio
 
             if (skillData.optionName2 != "NULL")
             {
-                SetOptionSkill(skillData.optionName1, out optionSkill_2);
+                SetOptionSkill(skillData.optionName2, out optionSkill_2);
             }
 
             if (skillData.optionName3 != "NULL")
             {
-                SetOptionSkill(skillData.optionName1, out optionSkill_3);
+                SetOptionSkill(skillData.optionName3, out optionSkill_3);
             }
         }
 
@@ -53,11 +53,24 @@ namespace Portfolio
             optionSkill_3?.SetCurrentTurnUnit(battleUnit);
         }
 
-        public void TakeAction(object sender, BattleUnit targetUnit)
+        public void TakeAction(object sender, EventArgs e)
         {
-            optionSkill_1?.TakeAction(targetUnit);
-            optionSkill_2?.TakeAction(targetUnit);
-            optionSkill_3?.TakeAction(targetUnit);
+            SkillActionEventArgs args = (SkillActionEventArgs)e;
+            if (optionSkill_1 != null)
+            {
+                Debug.Log(optionSkill_1);
+            }
+            if (optionSkill_2 != null)
+            {
+                Debug.Log(optionSkill_2);
+            }
+            if (optionSkill_3 != null)
+            {
+                Debug.Log(optionSkill_3);
+            }
+            optionSkill_1?.TakeAction(args.targetUnit, args.skillLevel);
+            optionSkill_2?.TakeAction(args.targetUnit, args.skillLevel);
+            optionSkill_3?.TakeAction(args.targetUnit, args.skillLevel);
         }
 
         public override string ToString()

@@ -11,6 +11,10 @@ namespace Portfolio
         public List<GridPosition> LinkedGridPosition;
 
         public BattleUnit unit;
+
+        public bool isUnit { get => (unit != null); }
+
+        public UnitType GetUnitType { get => (isUnit) ? unit.UnitType : UnitType.NONE;  }
     }
 
 }

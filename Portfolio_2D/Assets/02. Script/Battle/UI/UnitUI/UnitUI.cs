@@ -29,7 +29,7 @@ namespace Portfolio
             unitHPUI.SetHP(unit.MaxHP);
         }
 
-        public void Unit_OnCurrentHPChangedEvent(object sender, EventArgs e)
+        public void BattleUnit_OnCurrentHPChangedEvent(object sender, EventArgs e)
         {
             ChangeCurrnetHPEventArgs args = (ChangeCurrnetHPEventArgs)e;
 
