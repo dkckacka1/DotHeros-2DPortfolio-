@@ -1,1 +1,4 @@
-TesttsetS
+상태이상 시스템 (추상) abnormalCondition
+
+버프 디버프 여부 (isBuff)
+
