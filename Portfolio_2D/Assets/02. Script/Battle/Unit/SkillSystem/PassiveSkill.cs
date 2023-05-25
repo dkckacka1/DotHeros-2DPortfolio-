@@ -6,8 +6,6 @@ namespace Portfolio.skill
 {
     public class PassiveSkill : Skill
     {
-        private Module passiveModule_1;
-
         public PassiveSkillData GetData { get => (this.skillData as PassiveSkillData); }
 
         public PassiveSkill(SkillData skillData) : base(skillData)

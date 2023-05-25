@@ -6,5 +6,9 @@ namespace Portfolio.skill
         public string skillDesc;
 
         public SkillType skillType;
+
+        public string moduleName_1;
+        public string moduleName_2;
+        public string moduleName_3;
     }
 }

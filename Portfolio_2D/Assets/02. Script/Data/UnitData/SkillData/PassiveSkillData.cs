@@ -9,7 +9,5 @@
         public bool isOnStartTurn;
         public bool isOnAttack;
         public bool isOnTakeDamage;
-
-        public string ModuleName;
     }
 }

@@ -10,6 +10,8 @@
     "isOnStartTurn": true,
     "isOnAttack": true,
     "isOnTakeDamage": true,
-    "ModuleName": "TestPassiveModule"
+    "moduleName_1": "TestPassiveModule",
+    "moduleName_2": "NULL",
+    "moduleName_3": "NULL"
   }
 ]

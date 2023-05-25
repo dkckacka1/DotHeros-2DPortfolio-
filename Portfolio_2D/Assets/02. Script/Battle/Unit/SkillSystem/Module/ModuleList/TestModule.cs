@@ -6,7 +6,12 @@ namespace Portfolio.skill
 {
     public class TestModule : Module, IStackable, IStatChangeable
     {
-        public int StackCount => throw new System.NotImplementedException();
+        public TestModule()
+        {
+            moduleName = "테스트 모듈";
+        }
+
+        public int StackCount => 3;
 
         public bool IsStackBuff => throw new System.NotImplementedException();
 
@@ -20,6 +25,16 @@ namespace Portfolio.skill
 
         public override void Action(BattleUnit unit)
         {
+        }
+
+        public void TikAction(BattleUnit targetUnit)
+        {
+        }
+
+        public override string ShowDesc(int skillLevel)
+        {
+            Debug.Log($"{moduleName}은 레벨{skillLevel} 입니다.");
+            return $"{moduleName}은 레벨{skillLevel} 입니다.";
         }
     }
 }

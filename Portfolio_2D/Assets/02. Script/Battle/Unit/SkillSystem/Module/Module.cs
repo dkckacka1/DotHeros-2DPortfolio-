@@ -9,6 +9,8 @@ namespace Portfolio.skill
         public string moduleName;
         public string moduleDesc;
 
-        public abstract void Action(BattleUnit unit);
+        public abstract void Action(BattleUnit targetUnit);
+
+        public abstract string ShowDesc(int skillLevel);
     }
 }

@@ -19,7 +19,6 @@ namespace Portfolio
             sequenceUIHeight = sequenceUI.rectTransform.rect.height;
             unitSequenceUIHeight = (sequenceUIObject.transform as RectTransform).rect.height;
             sequenceDefaultYPos = sequenceUIHeight - unitSequenceUIHeight;
-            Debug.Log(sequenceDefaultYPos);
         }
 
         public void SetSequenceUnitUIYPosition(UnitSequenceUI targetSequenceUI, float normalizedYPos)

@@ -31,22 +31,16 @@ namespace Portfolio
         {
             this.data = unitData;
             GameManager.Instance.TryGetSkill(unitData.basicAttackSKillID, out basicAttackSkill);
-            if (unitData.activeSkillID_1 != -1)
-            {
-                GameManager.Instance.TryGetSkill(unitData.activeSkillID_1, out activeSkill_1);
-            }
-            if (unitData.activeSkillID_2 != -1)
-            {
-                GameManager.Instance.TryGetSkill(unitData.activeSkillID_2, out activeSkill_2);
-            }
-            if (unitData.passiveSkillID_1 != -1)
-            {
-                GameManager.Instance.TryGetSkill(unitData.passiveSkillID_1, out passiveSkill_1);
-            }
-            if (unitData.passiveSkillID_2 != -1)
-            {
-                GameManager.Instance.TryGetSkill(unitData.passiveSkillID_2, out passiveSkill_2);
-            }
+            GameManager.Instance.TryGetSkill(unitData.activeSkillID_1, out activeSkill_1);
+            GameManager.Instance.TryGetSkill(unitData.activeSkillID_2, out activeSkill_2);
+            GameManager.Instance.TryGetSkill(unitData.passiveSkillID_1, out passiveSkill_1);
+            GameManager.Instance.TryGetSkill(unitData.passiveSkillID_2, out passiveSkill_2);
+
+            basicAttackSkill?.ShowDesc(1);
+            activeSkill_1?.ShowDesc(activeSkillLevel_1);
+            activeSkill_2?.ShowDesc(activeSkillLevel_2);
+            passiveSkill_1?.ShowDesc(passiveSkillLevel_1);
+            passiveSkill_2?.ShowDesc(passiveSkillLevel_2);
         }
     }
 }

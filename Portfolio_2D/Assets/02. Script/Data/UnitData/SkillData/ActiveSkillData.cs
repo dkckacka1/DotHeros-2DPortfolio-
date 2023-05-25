@@ -15,9 +15,5 @@
 
         public AutoPeerTargetType autoPeerTargetType;
         public AutoProcessionTargetType autoProcessionTargetType;
-
-        public string moduleName_1;
-        public string moduleName_2;
-        public string moduleName_3;
     }
 }

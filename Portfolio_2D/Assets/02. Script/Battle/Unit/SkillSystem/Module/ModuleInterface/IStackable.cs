@@ -6,5 +6,7 @@
         public bool IsStackBuff { get; }
         public bool IsStackOverlap { get; }
         public bool IsStackSum { get; }
+
+        public void TikAction(BattleUnit targetUnit);
     }
 }
