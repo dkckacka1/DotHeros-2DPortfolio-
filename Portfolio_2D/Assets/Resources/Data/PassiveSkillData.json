@@ -3,7 +3,7 @@
     "ID": 20000,
     "skillName": "테스트용 패시브 스킬1",
     "skillDesc": "테스트용 패시브 스킬1",
-    "skillType": 0,
+    "skillType": 1,
     "isAllPlayer": false,
     "isAllEnemy": false,
     "isOnStartBattle": true,

@@ -74,7 +74,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4484268b76c20a418ca8dcb32bf868e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  unitType: 0
+  unitType: 1
   maxHP: 100
   currentHP: 100
   attackPoint: 10

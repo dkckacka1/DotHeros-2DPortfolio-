@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using System;
+using Portfolio.skill;
 
 namespace Portfolio
 {
@@ -110,37 +111,40 @@ namespace Portfolio
 
             SelectedUnits.Clear();
         }
-        //    // TODO
-        //public void SetHowToTarget(Skill skill)
-        //{
-        //    if (skill == null)
-        //    {
-        //        Debug.Log("skill is null");
-        //    }
+        public void SetHowToTarget(ActiveSkill skill)
+        {
+            if (skill == null)
+            {
+                Debug.Log("skill is null");
+            }
 
-        //    //isAutoTarget = skill.Data.isAutoTarget;
-        //    //isPlayerTarget = skill.Data.isPlayerTarget;
-        //    //isEnemyTarget = skill.Data.isEnemyTarget;
-        //    //isFrontTarget = skill.Data.isFrontTarget;
-        //    //isRearTarget = skill.Data.isRearTarget;
-        //    //targetNum = skill.Data.targetNum;
-        //    //autoPeer = skill.Data.autoPeerTargetType;
-        //    //autoProcession = skill.Data.autoProcessionTargetType;
+            isAutoTarget = skill.GetData.isAutoTarget;
+            isPlayerTarget = skill.GetData.isPlayerTarget;
+            isEnemyTarget = skill.GetData.isEnemyTarget;
+            isFrontTarget = skill.GetData.isFrontTarget;
+            isRearTarget = skill.GetData.isRearTarget;
+            targetNum = skill.GetData.targetNum;
+            autoPeer = skill.GetData.autoPeerTargetType;
+            autoProcession = skill.GetData.autoProcessionTargetType;
 
-        //    if (isAutoTarget)
-        //    {
-        //        SelectAutoTarget();
-        //    }
-        //}
+            if (isAutoTarget)
+            {
+                SelectAutoTarget();
+            }
+        }
 
         public void SelectAutoTarget()
         {
             var list = unitGrids.
                 Where((grid) => isUnitAtGrid(grid) && IsTargetUnitTypeAtGrid(grid) && IsTargetLineTypeAtGrid(grid)).
-                OrderByDescending((grid) => Convert.ToInt32((int)grid.GetUnitType == (int)autoPeer)).
-                ThenByDescending((grid) => Convert.ToInt32((int)grid.lineType == (int)autoProcession));
+                OrderByDescending((grid) => Convert.ToInt32((int)grid.GetUnitType == (int)autoPeer) + Convert.ToInt32((int)grid.lineType == (int)autoProcession));
 
             int count = 0;
+            Debug.Log(list.Count());
+            foreach (var unit in list)
+            {
+                Debug.Log(unit.name);
+            }
 
             foreach (var unit in list)
             {
@@ -155,8 +159,16 @@ namespace Portfolio
         }
 
         private bool isUnitAtGrid(GridPosition grid) => grid.isUnit;
-        private bool IsTargetUnitTypeAtGrid(GridPosition grid) => (isPlayerTarget && grid.GetUnitType == UnitType.Player) || (isEnemyTarget && grid.GetUnitType == UnitType.Enemy);
+        private bool IsTargetUnitTypeAtGrid(GridPosition grid)
+        {
+            //Debug.Log($"grid = {grid.unit.name}\n" +
+                //$"isPlayerTarget = {isPlayerTarget}\n" +
+                //$"isEnemyTarget = {isEnemyTarget}\n" +
+                //$"grid.GetUnitType = {grid.GetUnitType}\n" +
+                //$"(isPlayerTarget && grid.GetUnitType == UnitType.Player) || (isEnemyTarget && grid.GetUnitType == UnitType.Enemy) = {(isPlayerTarget && grid.GetUnitType == UnitType.Player) || (isEnemyTarget && grid.GetUnitType == UnitType.Enemy)}");
+            return (isPlayerTarget && grid.GetUnitType == UnitType.Player) || (isEnemyTarget && grid.GetUnitType == UnitType.Enemy);
+        }
         private bool IsTargetLineTypeAtGrid(GridPosition grid) => (isFrontTarget && grid.lineType == LineType.FrontLine) || (isRearTarget && grid.lineType == LineType.RearLine);
-        
+
     }
 }

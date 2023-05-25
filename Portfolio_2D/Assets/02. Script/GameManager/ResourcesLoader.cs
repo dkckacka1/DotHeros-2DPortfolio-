@@ -5,30 +5,35 @@ using System.Linq;
 using Newtonsoft.Json;
 using Portfolio;
 using System;
+using Portfolio.skill;
 
 namespace Portfolio
 {
     public static class ResourcesLoader
     {
-        //        // TODO
-        //public static bool TryLoadSkillData(Dictionary<int, Skill> skillDataDic)
-        //{
-        //    string skillResourcePath = @"Data/SkillData";
+        private const string dataResourcesPath = @"Data/";
 
-        //    var json = Resources.Load<TextAsset>(skillResourcePath);
-        //    var obj = JsonConvert.DeserializeObject<SkillData[]>(json.text);
+        public static void LoadAllData(Dictionary<int, Data> dataDic)
+        {
+            LoadData<UnitData>(dataDic, dataResourcesPath + Constant.unitDataJsonName);
+            LoadData<ActiveSkillData>(dataDic, dataResourcesPath + Constant.activeSkillJsonName);
+            LoadData<PassiveSkillData>(dataDic, dataResourcesPath + Constant.passiveSkillJsonName);
+        }
 
-        //    foreach (var skillData in obj)
-        //    {
-        //        //skillDataDic.Add(skillData.ID, new Skill(skillData));
-        //    }
+        private static void LoadData<T>(Dictionary<int, Data> dataDic, string jsonPath) where T : Data
+        {
+            var json = Resources.Load<TextAsset>(jsonPath);
+            var datas = JsonConvert.DeserializeObject<T[]>(json.text);
 
-        //    return true;
-        //}
+            foreach (var data in datas)
+            {
+                dataDic.Add(data.ID ,data);
+            }
+        }
 
         public static bool TryLoadUnitData(Dictionary<int, Unit> unitDataDic)
         {
-            string UnitResourcePath = @"Data/UnitData";
+            string UnitResourcePath = dataResourcesPath + Constant.unitDataJsonName;
 
             var json = Resources.Load<TextAsset>(UnitResourcePath);
             var obj = JsonConvert.DeserializeObject<UnitData[]>(json.text);

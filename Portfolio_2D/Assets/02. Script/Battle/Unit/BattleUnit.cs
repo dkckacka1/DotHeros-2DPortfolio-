@@ -107,7 +107,7 @@ namespace Portfolio
             //unit.passiveSkill_1?.TakeAction(this, new SkillActionEventArgs(this, unit.passiveSkillLevel_1));
             //unit.passiveSkill_2?.TakeAction(this, new SkillActionEventArgs(this, unit.passiveSkillLevel_2));
 
-            //skillUI.SetSkill(unit.basicAttackSkill, unit.activeSkill_1, unit.activeSkill_2, unit.activeSkillLevel_1, unit.activeSkillLevel_2);
+            skillUI.SetSkill(unit);
         }
 
         //===========================================================

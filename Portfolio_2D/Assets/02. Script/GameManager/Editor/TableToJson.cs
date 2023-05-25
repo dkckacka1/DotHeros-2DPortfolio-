@@ -11,13 +11,14 @@ using Portfolio.skill;
 
 namespace Portfolio.Editor
 {
+
     public static class TableToJson
     {
 
-        // TODO
+
         public static bool CheckValidJson()
         {
-            string activeSkillJson = Application.dataPath + Constant.jsonFolderPath + Constant.activeSkillJsonName;
+            string activeSkillJson = Application.dataPath + Constant.jsonFolderPath + Constant.activeSkillJsonName + ".json";
             if (File.Exists(activeSkillJson))
             {
                 var text = File.OpenText(activeSkillJson);
@@ -35,7 +36,7 @@ namespace Portfolio.Editor
                 return false;
             }
 
-            string passiveSkillJson = Application.dataPath + Constant.jsonFolderPath + Constant.passiveSkillJsonName;
+            string passiveSkillJson = Application.dataPath + Constant.jsonFolderPath + Constant.passiveSkillJsonName+ ".json";
             if (File.Exists(passiveSkillJson))
             {
                 var text = File.OpenText(activeSkillJson);
@@ -53,7 +54,7 @@ namespace Portfolio.Editor
                 return false;
             }
 
-            string unitJsonPath = Application.dataPath + Constant.jsonFolderPath + Constant.unitDataJsonName;
+            string unitJsonPath = Application.dataPath + Constant.jsonFolderPath + Constant.unitDataJsonName + ".json";
             if (File.Exists(activeSkillJson))
             {
                 var text = File.OpenText(unitJsonPath);
@@ -77,9 +78,9 @@ namespace Portfolio.Editor
 
         public static bool GetSkillTable()
         {
-            string xlsxPath = Application.dataPath + Constant.dataTablePath + Constant.skillDataTableName;
-            string passiveSkilljsonPath = Application.dataPath + Constant.jsonFolderPath + Constant.passiveSkillJsonName;
-            string activeSkilljsonPath = Application.dataPath + Constant.jsonFolderPath + Constant.activeSkillJsonName;
+            string xlsxPath = Application.dataPath + Constant.dataTablePath + Constant.skillDataTableName + ".xlsx";
+            string passiveSkilljsonPath = Application.dataPath + Constant.jsonFolderPath + Constant.passiveSkillJsonName + ".json";
+            string activeSkilljsonPath = Application.dataPath + Constant.jsonFolderPath + Constant.activeSkillJsonName + ".json";
 
             if (File.Exists(xlsxPath))
             {
@@ -120,8 +121,8 @@ namespace Portfolio.Editor
 
         public static bool GetUnitTable()
         {
-            string xlsxPath = Application.dataPath + Constant.dataTablePath + Constant.unitDataTableName;
-            string jsonPath = Application.dataPath + Constant.jsonFolderPath + Constant.unitDataJsonName;
+            string xlsxPath = Application.dataPath + Constant.dataTablePath + Constant.unitDataTableName + ".xlsx";
+            string jsonPath = Application.dataPath + Constant.jsonFolderPath + Constant.unitDataJsonName + ".json";
 
             if (File.Exists(xlsxPath))
             {

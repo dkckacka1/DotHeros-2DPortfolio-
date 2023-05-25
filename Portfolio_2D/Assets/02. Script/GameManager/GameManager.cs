@@ -3,20 +3,24 @@ using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Portfolio.skill;
 
 namespace Portfolio
 {
     public class GameManager : MonoBehaviour
     {
         //===========================================================
-        // Dictionary
+        // Singleton
         //===========================================================
-        // TODO
-        //private Dictionary<int, Skill> SkillDictionary = new Dictionary<int, Skill>();
-        private Dictionary<int, Unit> UnitDictionary = new Dictionary<int, Unit>();
-
         private static GameManager instance;
         public static GameManager Instance { get => instance; }
+
+        //===========================================================
+        // Dictionary
+        //===========================================================
+        private Dictionary<int, Data> dataDictionary = new Dictionary<int, Data>();
+        private Dictionary<int, Unit> unitDictionary = new Dictionary<int, Unit>();
+        private Dictionary<int, Skill> skillDictionary = new Dictionary<int, Skill>();
 
         public bool isTest;
 
@@ -32,13 +36,9 @@ namespace Portfolio
                 Destroy(this.gameObject);
             }
 
-            //ResourcesLoader.TryLoadSkillData(SkillDictionary);
-            ResourcesLoader.TryLoadUnitData(UnitDictionary);
-
-            foreach (var unitKV in UnitDictionary)
-            {
-                Debug.Log(unitKV.Value.ToString());
-            }
+            ResourcesLoader.LoadAllData(dataDictionary);
+            LoadSkill();
+            LoadUnit();
         }
 
         private void Start()
@@ -49,32 +49,95 @@ namespace Portfolio
             }
         }
 
-        public bool TryGetUnit(int id, out Unit skill)
+        public bool TryGetData<T>(int ID, out T data) where T : Data
         {
-            if (!UnitDictionary.ContainsKey(id))
+            if (!dataDictionary.ContainsKey(ID))
             {
-                Debug.Log("Unit ID is not ContainsKey");
+                Debug.Log("KeyValue is not Contains");
+                data = null;
+                return false;
+            }
 
+            if (!(dataDictionary[ID] is T))
+            {
+                Debug.Log("Value is not " + typeof(T).Name);
+                data = null;
+                return false;
+            }
+
+            data = dataDictionary[ID] as T;
+            return true;
+        }
+
+        public List<Data> GetDatas<T>() where T : Data
+        {
+            var list = dataDictionary.Values.Where((data) => data is T).ToList();
+
+            return list;
+        }
+
+        public bool TryGetUnit(int ID, out Unit unit)
+        {
+            if (!unitDictionary.ContainsKey(ID))
+            {
+                Debug.Log(ID + " is not Contains");
+                unit = null;
+                return false;
+            }
+
+            unit = unitDictionary[ID];
+            return true;
+        }
+
+        public bool TryGetSkill<T>(int ID, out T skill) where T : Skill
+        {
+            if (!skillDictionary.ContainsKey(ID))
+            {
+                Debug.Log(ID + " is not Contains");
                 skill = null;
                 return false;
             }
 
-            skill = UnitDictionary[id];
+            if (!(skillDictionary[ID] is T))
+            {
+                Debug.Log("Value is not " + typeof(T).Name);
+                skill = null;
+                return false;
+            }
+
+            skill = skillDictionary[ID] as T;
             return true;
         }
 
-        //public bool TryGetSkill(int id, out Skill skill)
-        //{
-        //    if (!SkillDictionary.ContainsKey(id))
-        //    {
-        //        Debug.Log("skill ID is not ContainsKey");
+        #region LoadSystem
 
-        //        skill = null;
-        //        return false;
-        //    }
+        private void LoadUnit()
+        {
+            foreach (var data in GetDatas<UnitData>())
+            {
+                unitDictionary.Add(data.ID, new Unit((UnitData)data));
+            }
+        }
 
-        //    skill = SkillDictionary[id];
-        //    return true;
-        //}
+        private void LoadSkill()
+        {
+            foreach (var data in GetDatas<SkillData>())
+            {
+                switch (((SkillData)data).skillType)
+                {
+                    case SkillType.ActiveSkill:
+                        {
+                            skillDictionary.Add(data.ID, new ActiveSkill((ActiveSkillData)data));
+                        }
+                        break;
+                    case SkillType.PassiveSkill:
+                        {
+                            skillDictionary.Add(data.ID, new PassiveSkill((PassiveSkillData)data));
+                        }
+                        break;
+                }
+            }
+        } 
+        #endregion
     }
 }

@@ -15,6 +15,7 @@ namespace Portfolio.skill
 
         public ActiveSkill(ActiveSkillData skillData) : base(skillData)
         {
+            sk
         }
 
         public override void Action(int skillLevel)
@@ -31,6 +32,7 @@ namespace Portfolio.skill
 
         protected override void SetModule()
         {
+
         }
     }
 }
