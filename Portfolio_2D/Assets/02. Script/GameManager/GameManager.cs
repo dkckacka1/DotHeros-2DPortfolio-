@@ -1,4 +1,4 @@
-using Portfolio.skill.Option;
+using Portfolio;
 using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
@@ -11,7 +11,8 @@ namespace Portfolio
         //===========================================================
         // Dictionary
         //===========================================================
-        private Dictionary<int, Skill> SkillDictionary = new Dictionary<int, Skill>();
+        // TODO
+        //private Dictionary<int, Skill> SkillDictionary = new Dictionary<int, Skill>();
         private Dictionary<int, Unit> UnitDictionary = new Dictionary<int, Unit>();
 
         private static GameManager instance;
@@ -31,7 +32,7 @@ namespace Portfolio
                 Destroy(this.gameObject);
             }
 
-            ResourcesLoader.TryLoadSkillData(SkillDictionary);
+            //ResourcesLoader.TryLoadSkillData(SkillDictionary);
             ResourcesLoader.TryLoadUnitData(UnitDictionary);
 
             foreach (var unitKV in UnitDictionary)
@@ -62,18 +63,18 @@ namespace Portfolio
             return true;
         }
 
-        public bool TryGetSkill(int id, out Skill skill)
-        {
-            if (!SkillDictionary.ContainsKey(id))
-            {
-                Debug.Log("skill ID is not ContainsKey");
+        //public bool TryGetSkill(int id, out Skill skill)
+        //{
+        //    if (!SkillDictionary.ContainsKey(id))
+        //    {
+        //        Debug.Log("skill ID is not ContainsKey");
 
-                skill = null;
-                return false;
-            }
+        //        skill = null;
+        //        return false;
+        //    }
 
-            skill = SkillDictionary[id];
-            return true;
-        }
+        //    skill = SkillDictionary[id];
+        //    return true;
+        //}
     }
 }

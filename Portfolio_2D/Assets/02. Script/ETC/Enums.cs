@@ -90,4 +90,10 @@
         FrontLineFirst,
         RearLineFirst
     }
+
+    public enum SkillType
+    {
+        ActiveSkill,
+        PassiveSkill
+    }
 }

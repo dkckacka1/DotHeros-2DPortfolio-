@@ -14,10 +14,10 @@ namespace Portfolio.Editor
         }
 
         [MenuItem("Tools/Json/CreateJsonFile")]
-        private static void TestMethod()
+        private static void CreateJsonFile()
         {
-            Debug.Log(TableToJson.GetSkillTable());
             Debug.Log(TableToJson.GetUnitTable());
+            Debug.Log(TableToJson.GetSkillTable());
         }
     } 
 }

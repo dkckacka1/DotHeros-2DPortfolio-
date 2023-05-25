@@ -1,0 +1,34 @@
+[
+  {
+    "ID": 10000,
+    "skillName": "기본 공격",
+    "skillDesc": "기본 공격 설명",
+    "skillType": 0,
+    "isAutoTarget": true,
+    "skillCoolTime": 0,
+    "isPlayerTarget": true,
+    "isEnemyTarget": true,
+    "isFrontTarget": true,
+    "isRearTarget": true,
+    "targetNum": 1,
+    "moduleName_1": "TestModule",
+    "moduleName_2": "NULL",
+    "moduleName_3": "NULL"
+  },
+  {
+    "ID": 10001,
+    "skillName": "테스트용 스킬1",
+    "skillDesc": "기본 공격 설명",
+    "skillType": 0,
+    "isAutoTarget": true,
+    "skillCoolTime": 2,
+    "isPlayerTarget": true,
+    "isEnemyTarget": true,
+    "isFrontTarget": true,
+    "isRearTarget": true,
+    "targetNum": 3,
+    "moduleName_1": "TestModule",
+    "moduleName_2": "NULL",
+    "moduleName_3": "NULL"
+  }
+]

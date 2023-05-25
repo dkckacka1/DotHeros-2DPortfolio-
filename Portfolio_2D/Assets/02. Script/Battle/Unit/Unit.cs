@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using Portfolio.skill;
 
 namespace Portfolio
 {
@@ -29,32 +30,24 @@ namespace Portfolio
         public Unit(UnitData unitData)
         {
             this.data = unitData;
-
-            GameManager.Instance.TryGetSkill(unitData.basicAttackSKillID, out basicAttackSkill);
-            if (unitData.activeSkillID_1 != -1)
-            {
-                GameManager.Instance.TryGetSkill(unitData.activeSkillID_1, out activeSkill_1);
-            }
-            if (unitData.activeSkillID_2 != -1)
-            {
-                GameManager.Instance.TryGetSkill(unitData.activeSkillID_2, out activeSkill_2);
-            }
-            if (unitData.passiveSkillID_1 != -1)
-            {
-                GameManager.Instance.TryGetSkill(unitData.passiveSkillID_1, out passiveSkill_1);
-            }
-            if (unitData.passiveSkillID_2 != -1)
-            {
-                GameManager.Instance.TryGetSkill(unitData.passiveSkillID_2, out passiveSkill_2);
-            }
-        }
-
-        public override string ToString()
-        {
-            string str = $@"UnitName = {data.unitName}
-basicAttackSkillName = {basicAttackSkill.ToString()}";
-
-            return str;
+            //TODO
+            //GameManager.Instance.TryGetSkill(unitData.basicAttackSKillID, out basicAttackSkill);
+            //if (unitData.activeSkillID_1 != -1)
+            //{
+            //    GameManager.Instance.TryGetSkill(unitData.activeSkillID_1, out activeSkill_1);
+            //}
+            //if (unitData.activeSkillID_2 != -1)
+            //{
+            //    GameManager.Instance.TryGetSkill(unitData.activeSkillID_2, out activeSkill_2);
+            //}
+            //if (unitData.passiveSkillID_1 != -1)
+            //{
+            //    GameManager.Instance.TryGetSkill(unitData.passiveSkillID_1, out passiveSkill_1);
+            //}
+            //if (unitData.passiveSkillID_2 != -1)
+            //{
+            //    GameManager.Instance.TryGetSkill(unitData.passiveSkillID_2, out passiveSkill_2);
+            //}
         }
     }
 }

@@ -31,14 +31,19 @@ namespace Portfolio
         [SerializeField] private float effectResistance = 0f;
 
         private UnitUI unitUI;
-        private List<SkillStack> skillStackList = new List<SkillStack>();
+        // TODO
+        //private List<SkillStack> skillStackList = new List<SkillStack>();
 
         //===========================================================
         // Event
         //===========================================================
+        public event EventHandler OnStartBattleEvent; // 전투 시작시 호출될 이벤트
         public event EventHandler OnStartCurrentTurnEvent; // 자신의 턴이 왔다면 호출될 이벤트
         public event EventHandler OnEndCurrentTurnEvent; // 자신의 턴이 종료될때 호출될 이벤트
         public event EventHandler OnChangedCurrentHPEvent; // 자신의 체력이 변화될때 호출될 이벤트
+        public event EventHandler OnAttackEvent; // 자신이 공격(기본공격, 스킬공격)시 호출될 이벤트
+        public event EventHandler OnTakeAttackEvent; // 자신이 공격받았을때 호출될 이벤트
+        public event EventHandler OnDeadEvent; // 자신이 죽었을때 호출될 이벤트
 
         //===========================================================
         // Property
@@ -96,13 +101,13 @@ namespace Portfolio
             this.effectHit = unit.Data.effectHit;
             this.effectResistance = unit.Data.effectResistance;
 
-            unit.passiveSkill_1?.SetCurrentTurnUnit(this);
-            unit.passiveSkill_2?.SetCurrentTurnUnit(this);
+            //unit.passiveSkill_1?.SetCurrentTurnUnit(this);
+            //unit.passiveSkill_2?.SetCurrentTurnUnit(this);
 
-            unit.passiveSkill_1?.TakeAction(this, new SkillActionEventArgs(this, unit.passiveSkillLevel_1));
-            unit.passiveSkill_2?.TakeAction(this, new SkillActionEventArgs(this, unit.passiveSkillLevel_2));
+            //unit.passiveSkill_1?.TakeAction(this, new SkillActionEventArgs(this, unit.passiveSkillLevel_1));
+            //unit.passiveSkill_2?.TakeAction(this, new SkillActionEventArgs(this, unit.passiveSkillLevel_2));
 
-            skillUI.SetSkill(unit.basicAttackSkill, unit.activeSkill_1, unit.activeSkill_2, unit.activeSkillLevel_1, unit.activeSkillLevel_2);
+            //skillUI.SetSkill(unit.basicAttackSkill, unit.activeSkill_1, unit.activeSkill_2, unit.activeSkillLevel_1, unit.activeSkillLevel_2);
         }
 
         //===========================================================
@@ -152,24 +157,24 @@ namespace Portfolio
 
         private void ProcessStackSkill()
         {
-            foreach (var skillStack in skillStackList)
-            {
-                skillStack.ProcessStack();
-            }
+            //foreach (var skillStack in skillStackList)
+            //{
+            //    skillStack.ProcessStack();
+            //}
         }
 
         public void TakeStackSkill(int skillID, int stackCount, EventHandler OnSkillAction)
         {
-            SkillStack skill = skillStackList.Find((skill) => skill.SkillID == skillID);
+            //SkillStack skill = skillStackList.Find((skill) => skill.SkillID == skillID);
 
-            if (skill == null)
-            {
-                skill = new SkillStack(skillID, stackCount, OnSkillAction, OnStackEndAction);
-            }
-            else
-            {
-                skill.StackCount = stackCount;
-            }
+            //if (skill == null)
+            //{
+            //    skill = new SkillStack(skillID, stackCount, OnSkillAction, OnStackEndAction);
+            //}
+            //else
+            //{
+            //    skill.StackCount = stackCount;
+            //}
         }
 
         private void OnStackEndAction(object sender, EventArgs e)

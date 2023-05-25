@@ -1,3 +1,5 @@
+using System;
+using System.Data;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,22 +7,23 @@ using UnityEditor;
 using System.IO;
 using ExcelDataReader;
 using Newtonsoft.Json;
+using Portfolio.skill;
 
 namespace Portfolio.Editor
 {
     public static class TableToJson
     {
 
+        // TODO
         public static bool CheckValidJson()
         {
-            string skillJsonPath = Application.dataPath + Constant.jsonFolderPath + Constant.skillDataJsonName;
-
-            if (File.Exists(skillJsonPath))
+            string activeSkillJson = Application.dataPath + Constant.jsonFolderPath + Constant.activeSkillJsonName;
+            if (File.Exists(activeSkillJson))
             {
-                var text = File.OpenText(skillJsonPath);
+                var text = File.OpenText(activeSkillJson);
                 string json = text.ReadToEnd();
                 Debug.Log(json);
-                var skillDatas = JsonConvert.DeserializeObject<SkillData[]>(json);
+                var skillDatas = JsonConvert.DeserializeObject<ActiveSkillData[]>(json);
                 foreach (var skill in skillDatas)
                 {
                     Debug.Log(skill);
@@ -28,12 +31,30 @@ namespace Portfolio.Editor
             }
             else
             {
-                Debug.Log("skillJson이 존재하지 않습니다.");
+                Debug.Log("activeSkillData 존재하지 않습니다.");
+                return false;
+            }
+
+            string passiveSkillJson = Application.dataPath + Constant.jsonFolderPath + Constant.passiveSkillJsonName;
+            if (File.Exists(passiveSkillJson))
+            {
+                var text = File.OpenText(activeSkillJson);
+                string json = text.ReadToEnd();
+                Debug.Log(json);
+                var skillDatas = JsonConvert.DeserializeObject<PassiveSkillData[]>(json);
+                foreach (var skill in skillDatas)
+                {
+                    Debug.Log(skill);
+                }
+            }
+            else
+            {
+                Debug.Log("activeSkillData 존재하지 않습니다.");
                 return false;
             }
 
             string unitJsonPath = Application.dataPath + Constant.jsonFolderPath + Constant.unitDataJsonName;
-            if (File.Exists(skillJsonPath))
+            if (File.Exists(activeSkillJson))
             {
                 var text = File.OpenText(unitJsonPath);
                 string json = text.ReadToEnd();
@@ -52,88 +73,35 @@ namespace Portfolio.Editor
 
             return true;
         }
+        #region 스킬데이터 로드
 
         public static bool GetSkillTable()
         {
             string xlsxPath = Application.dataPath + Constant.dataTablePath + Constant.skillDataTableName;
-            string jsonPath = Application.dataPath + Constant.jsonFolderPath + Constant.skillDataJsonName;
+            string passiveSkilljsonPath = Application.dataPath + Constant.jsonFolderPath + Constant.passiveSkillJsonName;
+            string activeSkilljsonPath = Application.dataPath + Constant.jsonFolderPath + Constant.activeSkillJsonName;
 
             if (File.Exists(xlsxPath))
             {
-                Debug.Log("파일 확인");
+                // 파일 확인
                 using (var stream = File.Open(xlsxPath, FileMode.Open, FileAccess.Read))
                 {
                     Debug.Log("stream 생성");
                     using (var reader = ExcelReaderFactory.CreateReader(stream))
                     {
-                        Debug.Log("reader 생성");
-                        using (var writer = new JsonTextWriter(File.CreateText(jsonPath)))
+                        var tables = reader.AsDataSet().Tables; // 엑셀 시트의 개수
+                        for (int i = 0; i < tables.Count; i++)
                         {
-                            Debug.Log("writer 생성");
-                            writer.Formatting = Formatting.Indented;
-                            writer.WriteStartArray();
-                            reader.Read();
-                            do
+                            var sheet = tables[i];
+                            var tableReader = sheet.CreateDataReader();
+                            if (i == 0)
                             {
-                                while (reader.Read())
-                                {
-                                    int index = 0;
-                                    writer.WriteStartObject();
-
-                                    writer.WritePropertyName("ID");
-                                    writer.WriteValue(int.Parse(reader.GetValue(index++).ToString()));
-
-                                    writer.WritePropertyName("skillName");
-                                    writer.WriteValue(reader.GetValue(index++).ToString());
-
-                                    writer.WritePropertyName("skillDesc");
-                                    writer.WriteValue(reader.GetValue(index++).ToString());
-
-                                    writer.WritePropertyName("isActiveSkill");
-                                    writer.WriteValue(bool.Parse(reader.GetValue(index++).ToString()));
-
-                                    writer.WritePropertyName("isAutoTarget");
-                                    writer.WriteValue(bool.Parse(reader.GetValue(index++).ToString()));
-
-                                    writer.WritePropertyName("autoPeerTargetType");
-                                    writer.WriteValue(int.Parse(reader.GetValue(index++).ToString()));
-
-                                    writer.WritePropertyName("autoProcessionTargetType");
-                                    writer.WriteValue(int.Parse(reader.GetValue(index++).ToString()));
-
-                                    writer.WritePropertyName("isPlayerTarget");
-                                    writer.WriteValue(bool.Parse(reader.GetValue(index++).ToString()));
-
-                                    writer.WritePropertyName("isEnemyTarget");
-                                    writer.WriteValue(bool.Parse(reader.GetValue(index++).ToString()));
-
-                                    writer.WritePropertyName("isFrontTarget");
-                                    writer.WriteValue(bool.Parse(reader.GetValue(index++).ToString()));
-
-                                    writer.WritePropertyName("isRearTarget");
-                                    writer.WriteValue(bool.Parse(reader.GetValue(index++).ToString()));
-
-                                    writer.WritePropertyName("targetNum");
-                                    writer.WriteValue(int.Parse(reader.GetValue(index++).ToString()));
-
-                                    writer.WritePropertyName("activeSkillCoolTime");
-                                    writer.WriteValue(int.Parse(reader.GetValue(index++).ToString()));
-
-                                    writer.WritePropertyName("optionName1");
-                                    writer.WriteValue(reader.GetValue(index++).ToString());
-
-                                    writer.WritePropertyName("optionName2");
-                                    writer.WriteValue(reader.GetValue(index++).ToString());
-
-                                    writer.WritePropertyName("optionName3");
-                                    writer.WriteValue(reader.GetValue(index++).ToString());
-
-                                    writer.WriteEndObject();
-                                }
+                                WriteJson(tableReader, sheet.Columns.Count, activeSkilljsonPath);
                             }
-                            while (reader.NextResult());
-
-                            writer.WriteEndArray();
+                            else if (i == 1)
+                            {
+                                WriteJson(tableReader, sheet.Columns.Count, passiveSkilljsonPath);
+                            }
                         }
                     }
                 }
@@ -141,8 +109,15 @@ namespace Portfolio.Editor
                 return true;
             }
 
+            Debug.LogError("엑셀 파일이 확인되지 않습니다.");
             return false;
         }
+
+        
+
+        #endregion
+        #region 유닛데이터 로드
+
         public static bool GetUnitTable()
         {
             string xlsxPath = Application.dataPath + Constant.dataTablePath + Constant.unitDataTableName;
@@ -156,78 +131,72 @@ namespace Portfolio.Editor
                     Debug.Log("stream 생성");
                     using (var reader = ExcelReaderFactory.CreateReader(stream))
                     {
-                        Debug.Log("reader 생성");
-                        using (var writer = new JsonTextWriter(File.CreateText(jsonPath)))
-                        {
-                            Debug.Log("writer 생성");
-                            writer.Formatting = Formatting.Indented;
-                            writer.WriteStartArray();
-                            reader.Read();
-                            do
-                            {
-                                while (reader.Read())
-                                {
-                                    int index = 0;
-                                    writer.WriteStartObject();
-
-                                    writer.WritePropertyName("ID");
-                                    writer.WriteValue(int.Parse(reader.GetValue(index++).ToString()));
-
-                                    writer.WritePropertyName("unitName");
-                                    writer.WriteValue(reader.GetValue(index++).ToString());
-
-                                    writer.WritePropertyName("elementalType");
-                                    writer.WriteValue(reader.GetValue(index++).ToString());
-
-                                    writer.WritePropertyName("maxHP");
-                                    writer.WriteValue(reader.GetValue(index++).ToString());
-
-                                    writer.WritePropertyName("attackPoint");
-                                    writer.WriteValue(reader.GetValue(index++));
-
-                                    writer.WritePropertyName("defencePoint");
-                                    writer.WriteValue(reader.GetValue(index++));
-
-                                    writer.WritePropertyName("speed");
-                                    writer.WriteValue(reader.GetValue(index++));
-
-                                    writer.WritePropertyName("criticalPoint");
-                                    writer.WriteValue(reader.GetValue(index++));
-
-                                    writer.WritePropertyName("criticalDamage");
-                                    writer.WriteValue(reader.GetValue(index++));
-
-                                    writer.WritePropertyName("effectHit");
-                                    writer.WriteValue(reader.GetValue(index++));
-
-                                    writer.WritePropertyName("effectResistance");
-                                    writer.WriteValue(reader.GetValue(index++));
-
-                                    writer.WritePropertyName("basicAttackSKillID");
-                                    writer.WriteValue(int.Parse(reader.GetValue(index++).ToString()));
-
-                                    writer.WritePropertyName("activeSkillID_1");
-                                    writer.WriteValue(int.Parse(reader.GetValue(index++).ToString()));
-
-                                    writer.WritePropertyName("activeSkillID_2");
-                                    writer.WriteValue(int.Parse(reader.GetValue(index++).ToString()));
-
-                                    writer.WritePropertyName("passiveSkillID_1");
-                                    writer.WriteValue(int.Parse(reader.GetValue(index++).ToString()));
-
-                                    writer.WritePropertyName("passiveSkillID_2");
-                                    writer.WriteValue(int.Parse(reader.GetValue(index++).ToString()));
-
-                                    writer.WriteEndObject();
-                                }
-                            }
-                            while (reader.NextResult());
-
-                            writer.WriteEndArray();
-                        }
+                        var tables = reader.AsDataSet().Tables; // 엑셀 시트의 개수
+                        var sheet = tables[0];
+                        var tableReader = sheet.CreateDataReader();
+                        WriteJson(tableReader, sheet.Columns.Count, jsonPath);
                     }
                 }
 
+                return true;
+            }
+
+            return false;
+        }
+        #endregion
+
+        private static bool WriteJson(DataTableReader reader, int rowCount, string excelPath)
+        {
+            using (var writer = new JsonTextWriter(File.CreateText(excelPath)))
+            {
+                List<string> propertyList = new List<string>();
+
+                reader.Read();
+                for (int i = 0; i < rowCount; i++)
+                {
+                    try
+                    {
+                        propertyList.Add(reader.GetString(i));
+                    }
+                    catch (InvalidCastException)
+                    {
+                        Debug.LogError("Invalid data type.");
+                        return false;
+                    }
+                }
+
+                writer.Formatting = Formatting.Indented;
+                writer.WriteStartArray();
+                do
+                {
+                    while (reader.Read())
+                    {
+                        writer.WriteStartObject();
+                        for (int i = 0; i < propertyList.Count; i++)
+                        {
+                            writer.WritePropertyName(propertyList[i]);
+                            if (int.TryParse(reader.GetValue(i).ToString(), out int intValue))
+                            {
+                                Debug.Log($"{propertyList[i]}의 타입은 {typeof(int)} 입니다 {intValue}.");
+                                writer.WriteValue(intValue);
+                            }
+                            else if (bool.TryParse(reader.GetValue(i).ToString(), out bool boolValue))
+                            {
+                                Debug.Log($"{propertyList[i]}의 타입은 {typeof(bool)} 입니다.{boolValue}");
+                                writer.WriteValue(boolValue);
+                            }
+                            else
+                            {
+                                Debug.Log($"{propertyList[i]}의 타입은 {typeof(string)} 입니다.{reader.GetString(i)}");
+                                writer.WriteValue(reader.GetString(i));
+                            }
+                        }
+
+                        writer.WriteEndObject();
+                    }
+                }
+                while (reader.NextResult());
+                writer.WriteEndArray();
                 return true;
             }
 

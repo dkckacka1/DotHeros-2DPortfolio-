@@ -110,28 +110,28 @@ namespace Portfolio
 
             SelectedUnits.Clear();
         }
+        //    // TODO
+        //public void SetHowToTarget(Skill skill)
+        //{
+        //    if (skill == null)
+        //    {
+        //        Debug.Log("skill is null");
+        //    }
 
-        public void SetHowToTarget(Skill skill)
-        {
-            if (skill == null)
-            {
-                Debug.Log("skill is null");
-            }
+        //    //isAutoTarget = skill.Data.isAutoTarget;
+        //    //isPlayerTarget = skill.Data.isPlayerTarget;
+        //    //isEnemyTarget = skill.Data.isEnemyTarget;
+        //    //isFrontTarget = skill.Data.isFrontTarget;
+        //    //isRearTarget = skill.Data.isRearTarget;
+        //    //targetNum = skill.Data.targetNum;
+        //    //autoPeer = skill.Data.autoPeerTargetType;
+        //    //autoProcession = skill.Data.autoProcessionTargetType;
 
-            isAutoTarget = skill.Data.isAutoTarget;
-            isPlayerTarget = skill.Data.isPlayerTarget;
-            isEnemyTarget = skill.Data.isEnemyTarget;
-            isFrontTarget = skill.Data.isFrontTarget;
-            isRearTarget = skill.Data.isRearTarget;
-            targetNum = skill.Data.targetNum;
-            autoPeer = skill.Data.autoPeerTargetType;
-            autoProcession = skill.Data.autoProcessionTargetType;
-
-            if (isAutoTarget)
-            {
-                SelectAutoTarget();
-            }
-        }
+        //    if (isAutoTarget)
+        //    {
+        //        SelectAutoTarget();
+        //    }
+        //}
 
         public void SelectAutoTarget()
         {
