@@ -9,13 +9,18 @@ namespace Portfolio
     {
         [SerializeField] private Canvas unitUICanvas;
 
+        [Header("턴 UI")]
         [SerializeField] private GameObject currentTurnUIObject;
         [SerializeField] private GameObject targetedUIObject;
 
-
+        [Header("HP바 UI")]
         [SerializeField] private UnitHPUI unitHPUI;
 
-        
+        [Header("상태이상 UI")]
+        [SerializeField] private RectTransform conditionLayout;
+        [SerializeField] private UnitConditionUI conditionUIPrefab;
+
+
 
         private void Awake()
         {
@@ -36,6 +41,13 @@ namespace Portfolio
             ChangeCurrnetHPEventArgs args = (ChangeCurrnetHPEventArgs)e;
 
             unitHPUI.ChangeHP(args.currentHP);
+        }
+
+        public UnitConditionUI CreateConditionUI(int count)
+        {
+            var ui = Instantiate(conditionUIPrefab, conditionLayout);
+            ui.SetCount(count);
+            return ui;
         }
     }
 

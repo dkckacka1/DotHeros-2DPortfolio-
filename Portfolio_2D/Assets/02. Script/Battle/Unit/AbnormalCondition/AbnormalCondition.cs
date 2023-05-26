@@ -10,8 +10,7 @@ namespace Portfolio.Condition
         public bool isBuff = true; // 벼프형 상태이상인지 디버프형 상태이상인지
         public bool isOverlaping;
         public bool isSumCount;
-
         public abstract void ApplyCondition(BattleUnit unit);
-    } 
+    }
 }
 

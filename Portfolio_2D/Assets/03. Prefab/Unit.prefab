@@ -1024,3 +1024,5 @@ MonoBehaviour:
   currentTurnUIObject: {fileID: 2615199297547266008}
   targetedUIObject: {fileID: 5216990787763196663}
   unitHPUI: {fileID: 3733868280926391611}
+  conditionLayout: {fileID: 7286817382653164475}
+  conditionUIPrefab: {fileID: 8375094920632498939, guid: 3b2028c472465a04288e984f5c251d57, type: 3}

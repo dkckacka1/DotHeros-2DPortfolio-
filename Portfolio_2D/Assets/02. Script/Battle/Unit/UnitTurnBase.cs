@@ -21,6 +21,8 @@ namespace Portfolio
             this.unitGridPosition = gridPosition;
             this.unitSequenceUI = unitSequenceUI;
 
+            unitSequenceUI.SetNameText(unit.name);
+
             OnTurnStartEvent += unit.UnitTurnBase_OnTurnStartEvent;
             OnTurnEndEvent += unit.UnitTurnBase_OnTurnEndEvent;
 

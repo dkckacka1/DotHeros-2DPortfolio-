@@ -15,7 +15,7 @@
     "autoPeerTargetType": 1,
     "autoProcessionTargetType": 0,
     "moduleName_1": "TestModule",
-    "moduleName_2": "NULL",
+    "moduleName_2": "PoisonTest",
     "moduleName_3": "NULL"
   },
   {

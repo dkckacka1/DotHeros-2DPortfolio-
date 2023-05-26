@@ -20,6 +20,7 @@ namespace Portfolio
                 {
                     isTurn = false;
                     BattleManager.TurnBaseSystem.TurnEnd();
+                    timer = 0;
                 }
             }
         }

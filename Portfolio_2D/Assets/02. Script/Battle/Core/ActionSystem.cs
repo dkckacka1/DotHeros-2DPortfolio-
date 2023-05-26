@@ -192,10 +192,10 @@ namespace Portfolio
                         ((grid.GetUnitType == UnitType.Player && passiveSkill.GetData.isAllPlayer) ||
                         (grid.GetUnitType == UnitType.Enemy && passiveSkill.GetData.isAllEnemy))).Select((grid) => grid.unit).ToList();
 
-            foreach (var unit in list)
-            {
-                Debug.Log(unit.name);
-            }
+            //foreach (var unit in list)
+            //{
+            //    Debug.Log(unit.name);
+            //}
             return list;
         }
     }

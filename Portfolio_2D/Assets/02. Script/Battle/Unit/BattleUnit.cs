@@ -3,6 +3,7 @@ using Portfolio.skill;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace Portfolio
@@ -31,12 +32,14 @@ namespace Portfolio
     public class AbnormalConditionSystem
     {
         public int count;
+        public int overlapingCount = 1;
         public AbnormalCondition condition;
-
-        public AbnormalConditionSystem(int count, AbnormalCondition condition)
+        public UnitConditionUI conditionUI;
+        public AbnormalConditionSystem(int count, AbnormalCondition condition, UnitConditionUI conditionUI)
         {
             this.count = count;
             this.condition = condition;
+            this.conditionUI = conditionUI;
         }
     }
 
@@ -147,6 +150,8 @@ namespace Portfolio
         {
             unitUI.SetCurrentTurnUI(true);
 
+            TicConditionCycle();
+
             OnStartCurrentTurnEvent?.Invoke(this, EventArgs.Empty);
         }
 
@@ -232,6 +237,41 @@ namespace Portfolio
             {
                 targetUnit.OnTakeAttackEvent += ((sender, e) => skill.Action(this, new SkillActionEventArgs(skillLevel, this, targetUnit)));
             }
+        }
+
+        //===========================================================
+        // AbnormalConditionSystem
+        //===========================================================
+
+        public void AddCondition(string conditionID, AbnormalCondition condition, int count)
+        {
+            if (conditionDic.ContainsKey(conditionID))
+                // 이미 적용된 상태이상 일때
+            {
+
+            }
+            else
+                // 적용안된 상태이상 일때
+            {
+                conditionDic.Add(conditionID, new AbnormalConditionSystem(count, condition, this.unitUI.CreateConditionUI(count)));
+                if (conditionDic[conditionID].condition is ContinuationCondition)
+                    // 지속형 상태이상일때
+                {
+                    (conditionDic[conditionID].condition as ContinuationCondition).ApplyCondition(this);
+                }
+            }
+        }
+
+        private void TicConditionCycle()
+        {
+            var conditions = conditionDic.Values.Select((conditionSystem) => conditionSystem.condition).Where((condition) => condition is TickCondition);
+            // 상태이상 효과중 틱 상태이상만 가져와서 순회
+
+            foreach (var condition in conditions)
+            {
+                (condition as TickCondition).ApplyCondition(this);
+            }
+
         }
     }
 }

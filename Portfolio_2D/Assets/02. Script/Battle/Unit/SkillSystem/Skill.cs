@@ -37,7 +37,7 @@ namespace Portfolio.skill
         {
             //Debug.Log($"{GetType().Name} 액션 실행");
 
-            Debug.Log(e is SkillActionEventArgs);
+            //Debug.Log(e is SkillActionEventArgs);
             if (!(e is SkillActionEventArgs))
             {
                 return;
@@ -59,7 +59,12 @@ namespace Portfolio.skill
         private Module CreateModule(string moduleName)
         {
             //Debug.Log(moduleName);
-            var obj = Activator.CreateInstance(Type.GetType("Portfolio.skill.module." + moduleName));
+            object obj = Activator.CreateInstance(Type.GetType("Portfolio.skill.module." + moduleName));
+            if (obj == null)
+            {
+                Debug.LogWarning("Portfolio.skill.module." + moduleName + " is Invalid ModuleName");
+                return null;
+            }
             return obj as Module;
         }
     } 

@@ -1,16 +1,15 @@
-using Portfolio.skill;
+using Portfolio.Condition;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Portfolio.Condition;
 
 namespace Portfolio.skill.module
 {
-    public class TestPassiveModule : Module
+    public class PoisonTest : Module
     {
         public override void Action(SkillActionEventArgs args)
         {
-            args.targetUnit.AddCondition("AttackIncrease", new IncreaseAttackDamage(), 3);
+            args.targetUnit.AddCondition("Potion", new Poison(), 4);
         }
 
         public override string ShowDesc(int skillLevel)
