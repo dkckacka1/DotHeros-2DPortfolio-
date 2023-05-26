@@ -96,4 +96,10 @@
         ActiveSkill,
         PassiveSkill
     }
+
+    public enum ConditionType
+    {
+        Continuation = 0, // 지속형
+        Tick    // 틱형
+    }
 }

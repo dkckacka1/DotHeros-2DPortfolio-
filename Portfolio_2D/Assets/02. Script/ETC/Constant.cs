@@ -12,5 +12,7 @@
         public const string passiveSkillJsonName = @"PassiveSkillData";
         public const string unitDataTableName = @"UnitDataTable";
         public const string unitDataJsonName = @"UnitData";
+        public const string conditionDataTableName = @"ConditionDataTable";
+        public const string conditionDataJsonName = @"ConditionData";
     }
 }

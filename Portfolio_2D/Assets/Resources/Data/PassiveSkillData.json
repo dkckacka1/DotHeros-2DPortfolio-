@@ -1,6 +1,7 @@
 [
   {
     "ID": 20000,
+    "skillClassName": "TestPassiveSkill",
     "skillName": "테스트용 패시브 스킬1",
     "skillDesc": "테스트용 패시브 스킬1",
     "skillType": 1,
@@ -10,8 +11,8 @@
     "isOnStartTurn": true,
     "isOnAttack": true,
     "isOnTakeDamage": true,
-    "moduleName_1": "TestPassiveModule",
-    "moduleName_2": "NULL",
-    "moduleName_3": "NULL"
+    "conditinID_1": 1000,
+    "conditinID_2": -1,
+    "conditinID_3": -1
   }
 ]

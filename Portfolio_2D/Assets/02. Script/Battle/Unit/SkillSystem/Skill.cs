@@ -9,63 +9,30 @@ namespace Portfolio.skill
     {
         protected SkillData skillData;
 
-        protected Module skillModule_1;
-        protected Module skillModule_2;
-        protected Module skillModule_3;
-
         public Skill(SkillData skillData)
         {
             this.skillData = skillData;
-
-            if (skillData.moduleName_1 != "NULL")
-            {
-                skillModule_1 = CreateModule(skillData.moduleName_1);
-            }
-
-            if (skillData.moduleName_2 != "NULL")
-            {
-                skillModule_2 = CreateModule(skillData.moduleName_2);
-            }
-
-            if (skillData.moduleName_3 != "NULL")
-            {
-                skillModule_3 = CreateModule(skillData.moduleName_3);
-            }
         }
 
-        public virtual void Action(object sender, EventArgs e)
-        {
-            //Debug.Log($"{GetType().Name} 액션 실행");
-
-            //Debug.Log(e is SkillActionEventArgs);
-            if (!(e is SkillActionEventArgs))
-            {
-                return;
-            }
-
-            skillModule_1?.Action(e as SkillActionEventArgs);
-            skillModule_2?.Action(e as SkillActionEventArgs);
-            skillModule_3?.Action(e as SkillActionEventArgs);
-        }
+        public abstract void Action(object sender, EventArgs e);
 
         public virtual void ShowDesc(int skillLevel)
         {
             //Debug.Log($"{this.skillData.skillDesc} + {skillLevel}");
-            skillModule_1?.ShowDesc(skillLevel);
-            skillModule_2?.ShowDesc(skillLevel);
-            skillModule_3?.ShowDesc(skillLevel);
         }
 
-        private Module CreateModule(string moduleName)
+        protected bool TryGetSkillActionArgs(EventArgs args, out SkillActionEventArgs skillargs)
         {
-            //Debug.Log(moduleName);
-            object obj = Activator.CreateInstance(Type.GetType("Portfolio.skill.module." + moduleName));
-            if (obj == null)
+
+            if (args != null && args is SkillActionEventArgs)
             {
-                Debug.LogWarning("Portfolio.skill.module." + moduleName + " is Invalid ModuleName");
-                return null;
+                skillargs = args as SkillActionEventArgs;
+                return true;
             }
-            return obj as Module;
+
+            Debug.LogWarning("Action Eventargs error");
+            skillargs = null;
+            return false;
         }
     } 
 }

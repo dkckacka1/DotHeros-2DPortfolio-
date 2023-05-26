@@ -16,8 +16,9 @@ namespace Portfolio.Editor
         [MenuItem("Tools/Json/CreateJsonFile")]
         private static void CreateJsonFile()
         {
-            Debug.Log(TableToJson.GetUnitTable());
-            Debug.Log(TableToJson.GetSkillTable());
+            Debug.Log("蜡粗 Json 颇老 积己 = " + TableToJson.GetUnitTable());
+            Debug.Log("胶懦 Json 颇老 积己 = " + TableToJson.GetSkillTable());
+            Debug.Log("牧叼记 Json 颇老 积己 = " + TableToJson.GetConditionTable());
         }
     } 
 }

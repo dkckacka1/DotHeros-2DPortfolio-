@@ -1,0 +1,22 @@
+[
+  {
+    "ID": 1000,
+    "conditionName": "공격력 증가",
+    "conditionDesc": "공격력을 40% 증가 시킵니다.",
+    "conditionClassName": "IncreaseAttackDamage",
+    "conditionType": 0,
+    "isBuff": true,
+    "isOverlaping": false,
+    "isSumCount": true
+  },
+  {
+    "ID": 1001,
+    "conditionName": "독",
+    "conditionDesc": "최대 체력의 10%만큼 감소시킵니다.",
+    "conditionClassName": "Poison",
+    "conditionType": 1,
+    "isBuff": false,
+    "isOverlaping": true,
+    "isSumCount": true
+  }
+]

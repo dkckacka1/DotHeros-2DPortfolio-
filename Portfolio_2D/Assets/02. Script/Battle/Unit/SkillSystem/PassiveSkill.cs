@@ -5,17 +5,12 @@ using UnityEngine;
 
 namespace Portfolio.skill
 {
-    public class PassiveSkill : Skill
+    public abstract class PassiveSkill : Skill
     {
         public PassiveSkillData GetData { get => (this.skillData as PassiveSkillData); }
 
         public PassiveSkill(SkillData skillData) : base(skillData)
         {
-        }
-
-        public override void Action(object sender, EventArgs e)
-        {
-            base.Action(sender, e);
         }
 
         public override void ShowDesc(int skillLevel)

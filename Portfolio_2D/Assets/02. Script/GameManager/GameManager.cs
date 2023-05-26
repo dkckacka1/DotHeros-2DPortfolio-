@@ -4,6 +4,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Portfolio.skill;
+using System;
+using Portfolio.condition;
 
 namespace Portfolio
 {
@@ -21,6 +23,7 @@ namespace Portfolio
         private Dictionary<int, Data> dataDictionary = new Dictionary<int, Data>();
         private Dictionary<int, Unit> unitDictionary = new Dictionary<int, Unit>();
         private Dictionary<int, Skill> skillDictionary = new Dictionary<int, Skill>();
+        private Dictionary<int, Condition> conditionDictionary = new Dictionary<int, Condition>();
 
         public bool isTest;
 
@@ -39,13 +42,14 @@ namespace Portfolio
             ResourcesLoader.LoadAllData(dataDictionary);
             LoadSkill();
             LoadUnit();
+            LoadCondition();
         }
 
         private void Start()
         {
             if (!isTest)
             {
-                Debug.Log("GameManager Test");
+                Debug.LogWarning("GameManager Test");
             }
         }
 
@@ -53,14 +57,14 @@ namespace Portfolio
         {
             if (!dataDictionary.ContainsKey(ID))
             {
-                Debug.Log("KeyValue is not Contains");
+                Debug.LogWarning("KeyValue is not Contains");
                 data = null;
                 return false;
             }
 
             if (!(dataDictionary[ID] is T))
             {
-                Debug.Log("Value is not " + typeof(T).Name);
+                Debug.LogWarning("Value is not " + typeof(T).Name);
                 data = null;
                 return false;
             }
@@ -80,7 +84,7 @@ namespace Portfolio
         {
             if (!unitDictionary.ContainsKey(ID))
             {
-                Debug.Log(ID + " is not Contains");
+                Debug.LogWarning(ID + " is not Contains");
                 unit = null;
                 return false;
             }
@@ -89,18 +93,31 @@ namespace Portfolio
             return true;
         }
 
+        public bool TryGetCondition(int ID, out Condition condition)
+        {
+            if (!conditionDictionary.ContainsKey(ID))
+            {
+                Debug.LogWarning(ID + " is not Contains");
+                condition = null;
+                return false;
+            }
+
+            condition = conditionDictionary[ID];
+            return true;
+        }
+
         public bool TryGetSkill<T>(int ID, out T skill) where T : Skill
         {
             if (!skillDictionary.ContainsKey(ID))
             {
-                Debug.Log(ID + " is not Contains");
+                Debug.LogWarning(ID + " is not Contains");
                 skill = null;
                 return false;
             }
 
             if (!(skillDictionary[ID] is T))
             {
-                Debug.Log("Value is not " + typeof(T).Name);
+                Debug.LogWarning("Value is not " + typeof(T).Name);
                 skill = null;
                 return false;
             }
@@ -109,7 +126,7 @@ namespace Portfolio
             return true;
         }
 
-        #region LoadSystem
+        #region 데이터를 형식으로 변환
 
         private void LoadUnit()
         {
@@ -123,21 +140,38 @@ namespace Portfolio
         {
             foreach (var data in GetDatas<SkillData>())
             {
-                switch (((SkillData)data).skillType)
+                SkillData skillData = (data as SkillData);
+                //Debug.Log((data as SkillData).skillClassName);
+                var type = Type.GetType("Portfolio.skill." + (data as SkillData).skillClassName);
+                //Debug.Log(type);
+                object obj = null;
+                switch (skillData.skillType)
                 {
                     case SkillType.ActiveSkill:
                         {
-                            skillDictionary.Add(data.ID, new ActiveSkill((ActiveSkillData)data));
+                            obj = Activator.CreateInstance(type, skillData as ActiveSkillData);
+                            skillDictionary.Add(data.ID, obj as ActiveSkill);
                         }
                         break;
                     case SkillType.PassiveSkill:
                         {
-                            skillDictionary.Add(data.ID, new PassiveSkill((PassiveSkillData)data));
+                            obj = Activator.CreateInstance(type, skillData as PassiveSkillData);
+                            skillDictionary.Add(data.ID, obj as PassiveSkill);
                         }
                         break;
                 }
             }
-        } 
+        }
+
+        private void LoadCondition()
+        {
+            foreach (var data in GetDatas<ConditionData>())
+            {
+                var type = Type.GetType("Portfolio.condition." + (data as ConditionData).conditionClassName);
+                object obj = Activator.CreateInstance(type, data as ConditionData);
+                conditionDictionary.Add(data.ID, obj as Condition);
+            }
+        }
         #endregion
     }
 }

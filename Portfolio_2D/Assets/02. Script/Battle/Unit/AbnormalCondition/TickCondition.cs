@@ -2,9 +2,12 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 
-namespace Portfolio.Condition
+namespace Portfolio.condition
 {
-    public abstract class TickCondition : AbnormalCondition
+    public abstract class TickCondition : Condition
     {
+        protected TickCondition(ConditionData conditionData) : base(conditionData)
+        {
+        }
     }
 }

@@ -8,14 +8,13 @@ using System.IO;
 using ExcelDataReader;
 using Newtonsoft.Json;
 using Portfolio.skill;
+using Portfolio.condition;
 
 namespace Portfolio.Editor
 {
 
     public static class TableToJson
     {
-
-
         public static bool CheckValidJson()
         {
             string activeSkillJson = Application.dataPath + Constant.jsonFolderPath + Constant.activeSkillJsonName + ".json";
@@ -23,16 +22,16 @@ namespace Portfolio.Editor
             {
                 var text = File.OpenText(activeSkillJson);
                 string json = text.ReadToEnd();
-                Debug.Log(json);
+                //Debug.Log(json);
                 var skillDatas = JsonConvert.DeserializeObject<ActiveSkillData[]>(json);
-                foreach (var skill in skillDatas)
-                {
-                    Debug.Log(skill);
-                }
+                //foreach (var skill in skillDatas)
+                //{
+                //    Debug.Log(skill);
+                //}
             }
             else
             {
-                Debug.Log("activeSkillData 존재하지 않습니다.");
+                Debug.LogWarning("activeSkillData 존재하지 않습니다.");
                 return false;
             }
 
@@ -41,16 +40,16 @@ namespace Portfolio.Editor
             {
                 var text = File.OpenText(activeSkillJson);
                 string json = text.ReadToEnd();
-                Debug.Log(json);
+                //Debug.Log(json);
                 var skillDatas = JsonConvert.DeserializeObject<PassiveSkillData[]>(json);
-                foreach (var skill in skillDatas)
-                {
-                    Debug.Log(skill);
-                }
+                //foreach (var skill in skillDatas)
+                //{
+                //    Debug.Log(skill);
+                //}
             }
             else
             {
-                Debug.Log("activeSkillData 존재하지 않습니다.");
+                Debug.LogWarning("activeSkillData 존재하지 않습니다.");
                 return false;
             }
 
@@ -59,16 +58,34 @@ namespace Portfolio.Editor
             {
                 var text = File.OpenText(unitJsonPath);
                 string json = text.ReadToEnd();
-                Debug.Log(json);
+                //Debug.Log(json);
                 var unitDatas = JsonConvert.DeserializeObject<UnitData[]>(json);
-                foreach (var unit in unitDatas)
-                {
-                    Debug.Log(unit);
-                }
+                //foreach (var unit in unitDatas)
+                //{
+                //    Debug.Log(unit);
+                //}
             }
             else
             {
-                Debug.Log("unitJson이 존재하지 않습니다.");
+                Debug.LogWarning("unitJson이 존재하지 않습니다.");
+                return false;
+            }
+
+            string conditionJsonPath = Application.dataPath + Constant.jsonFolderPath + Constant.conditionDataJsonName + ".json";
+            if (File.Exists(activeSkillJson))
+            {
+                var text = File.OpenText(conditionJsonPath);
+                string json = text.ReadToEnd();
+                //Debug.Log(json);
+                var conditionDatas = JsonConvert.DeserializeObject<ConditionData[]>(json);
+                //foreach (var unit in conditionDatas)
+                //{
+                //    Debug.Log(unit);
+                //}
+            }
+            else
+            {
+                Debug.LogWarning("conditionJson이 존재하지 않습니다.");
                 return false;
             }
 
@@ -87,7 +104,7 @@ namespace Portfolio.Editor
                 // 파일 확인
                 using (var stream = File.Open(xlsxPath, FileMode.Open, FileAccess.Read))
                 {
-                    Debug.Log("stream 생성");
+                    //Debug.Log("stream 생성");
                     using (var reader = ExcelReaderFactory.CreateReader(stream))
                     {
                         var tables = reader.AsDataSet().Tables; // 엑셀 시트의 개수
@@ -114,9 +131,35 @@ namespace Portfolio.Editor
             return false;
         }
 
-        
-
         #endregion
+        #region 상태이상 데이터 로드
+        public static bool GetConditionTable()
+        {
+            string xlsxPath = Application.dataPath + Constant.dataTablePath + Constant.conditionDataTableName + ".xlsx";
+            string jsonPath = Application.dataPath + Constant.jsonFolderPath + Constant.conditionDataJsonName + ".json";
+
+            if (File.Exists(xlsxPath))
+            {
+                //Debug.Log("파일 확인");
+                using (var stream = File.Open(xlsxPath, FileMode.Open, FileAccess.Read))
+                {
+                    //Debug.Log("stream 생성");
+                    using (var reader = ExcelReaderFactory.CreateReader(stream))
+                    {
+                        var tables = reader.AsDataSet().Tables; // 엑셀 시트의 개수
+                        var sheet = tables[0];
+                        var tableReader = sheet.CreateDataReader();
+                        WriteJson(tableReader, sheet.Columns.Count, jsonPath);
+                    }
+                }
+
+                return true;
+            }
+
+            return false;
+        }
+        #endregion
+
         #region 유닛데이터 로드
 
         public static bool GetUnitTable()
@@ -126,10 +169,10 @@ namespace Portfolio.Editor
 
             if (File.Exists(xlsxPath))
             {
-                Debug.Log("파일 확인");
+                //Debug.Log("파일 확인");
                 using (var stream = File.Open(xlsxPath, FileMode.Open, FileAccess.Read))
                 {
-                    Debug.Log("stream 생성");
+                    //Debug.Log("stream 생성");
                     using (var reader = ExcelReaderFactory.CreateReader(stream))
                     {
                         var tables = reader.AsDataSet().Tables; // 엑셀 시트의 개수
@@ -178,17 +221,17 @@ namespace Portfolio.Editor
                             writer.WritePropertyName(propertyList[i]);
                             if (int.TryParse(reader.GetValue(i).ToString(), out int intValue))
                             {
-                                Debug.Log($"{propertyList[i]}의 타입은 {typeof(int)} 입니다 {intValue}.");
+                                //Debug.Log($"{propertyList[i]}의 타입은 {typeof(int)} 입니다 {intValue}.");
                                 writer.WriteValue(intValue);
                             }
                             else if (bool.TryParse(reader.GetValue(i).ToString(), out bool boolValue))
                             {
-                                Debug.Log($"{propertyList[i]}의 타입은 {typeof(bool)} 입니다.{boolValue}");
+                                //Debug.Log($"{propertyList[i]}의 타입은 {typeof(bool)} 입니다.{boolValue}");
                                 writer.WriteValue(boolValue);
                             }
                             else
                             {
-                                Debug.Log($"{propertyList[i]}의 타입은 {typeof(string)} 입니다.{reader.GetString(i)}");
+                                //Debug.Log($"{propertyList[i]}의 타입은 {typeof(string)} 입니다.{reader.GetString(i)}");
                                 writer.WriteValue(reader.GetString(i));
                             }
                         }

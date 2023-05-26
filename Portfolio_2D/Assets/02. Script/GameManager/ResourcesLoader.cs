@@ -6,6 +6,7 @@ using Newtonsoft.Json;
 using Portfolio;
 using System;
 using Portfolio.skill;
+using Portfolio.condition;
 
 namespace Portfolio
 {
@@ -18,6 +19,7 @@ namespace Portfolio
             LoadData<UnitData>(dataDic, dataResourcesPath + Constant.unitDataJsonName);
             LoadData<ActiveSkillData>(dataDic, dataResourcesPath + Constant.activeSkillJsonName);
             LoadData<PassiveSkillData>(dataDic, dataResourcesPath + Constant.passiveSkillJsonName);
+            LoadData<ConditionData>(dataDic, dataResourcesPath + Constant.conditionDataJsonName);
         }
 
         private static void LoadData<T>(Dictionary<int, Data> dataDic, string jsonPath) where T : Data
@@ -29,21 +31,6 @@ namespace Portfolio
             {
                 dataDic.Add(data.ID ,data);
             }
-        }
-
-        public static bool TryLoadUnitData(Dictionary<int, Unit> unitDataDic)
-        {
-            string UnitResourcePath = dataResourcesPath + Constant.unitDataJsonName;
-
-            var json = Resources.Load<TextAsset>(UnitResourcePath);
-            var obj = JsonConvert.DeserializeObject<UnitData[]>(json.text);
-
-            foreach (var unitData in obj)
-            {
-                unitDataDic.Add(unitData.ID, new Unit(unitData));
-            }
-
-            return true;
         }
     }
 }

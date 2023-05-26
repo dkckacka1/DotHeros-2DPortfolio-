@@ -1,4 +1,4 @@
-using Portfolio.Condition;
+using Portfolio.condition;
 using Portfolio.skill;
 using System;
 using System.Collections;
@@ -33,9 +33,9 @@ namespace Portfolio
     {
         public int count;
         public int overlapingCount = 1;
-        public AbnormalCondition condition;
+        public Condition condition;
         public UnitConditionUI conditionUI;
-        public AbnormalConditionSystem(int count, AbnormalCondition condition, UnitConditionUI conditionUI)
+        public AbnormalConditionSystem(int count, Condition condition, UnitConditionUI conditionUI)
         {
             this.count = count;
             this.condition = condition;
@@ -63,7 +63,7 @@ namespace Portfolio
         [SerializeField] private float effectHit = 0f;
         [SerializeField] private float effectResistance = 0f;
 
-        private Dictionary<string, AbnormalConditionSystem> conditionDic = new Dictionary<string, AbnormalConditionSystem>();
+        private Dictionary<int, AbnormalConditionSystem> conditionDic = new Dictionary<int, AbnormalConditionSystem>();
 
         private UnitUI unitUI;
         // TODO
@@ -177,9 +177,9 @@ namespace Portfolio
         //===========================================================
         public void BasicAttack(BattleUnit targetUnit)
         {
-            OnAttackEvent.Invoke(this, EventArgs.Empty);
+            OnAttackEvent?.Invoke(this, EventArgs.Empty);
             targetUnit.TakeDamage(attackPoint);
-            targetUnit.OnTakeAttackEvent.Invoke(this, EventArgs.Empty);
+            targetUnit.OnTakeAttackEvent?.Invoke(this, EventArgs.Empty);
         }
 
         public void TakeDamage(float DamagePoint)
@@ -202,6 +202,8 @@ namespace Portfolio
             {
                 return;
             }
+
+            //Debug.Log(skill.GetData == null);
 
             if (!skill.GetData.isAllPlayer && !skill.GetData.isAllEnemy)
             {
@@ -243,7 +245,7 @@ namespace Portfolio
         // AbnormalConditionSystem
         //===========================================================
 
-        public void AddCondition(string conditionID, AbnormalCondition condition, int count)
+        public void AddCondition(int conditionID, Condition condition, int count)
         {
             if (conditionDic.ContainsKey(conditionID))
                 // 이미 적용된 상태이상 일때
@@ -271,7 +273,6 @@ namespace Portfolio
             {
                 (condition as TickCondition).ApplyCondition(this);
             }
-
         }
     }
 }
