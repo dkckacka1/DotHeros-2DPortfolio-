@@ -29,17 +29,79 @@ namespace Portfolio
         }
     }
 
-    public class AbnormalConditionSystem
+    public class ConditionSystem
     {
-        public int count;
-        public int overlapingCount = 1;
-        public Condition condition;
-        public UnitConditionUI conditionUI;
-        public AbnormalConditionSystem(int count, Condition condition, UnitConditionUI conditionUI)
+        private int count;
+        private int resetCountValue;
+        private int overlapingCount = 1;
+        private Condition condition;
+        private UnitConditionUI conditionUI;
+        public int Count 
+        { 
+            get
+            {
+                return count;
+            }
+
+            private set 
+            {
+                count = value;
+                conditionUI.SetCount(count);
+            }
+        }
+        public int OverlapingCount 
+        { 
+            get
+            {
+                return overlapingCount;
+            } 
+            private set
+            {
+                overlapingCount = value;
+                conditionUI.SetOverlapCount(overlapingCount);
+            }
+        }
+        public Condition Condition { get => condition;  }
+        public UnitConditionUI ConditionUI { get => conditionUI; }
+
+        public bool isBuff { get => condition.ConditionData.isBuff; }
+        public bool isOverlap { get => condition.ConditionData.isOverlaping; }
+        public bool isResetCount { get => condition.ConditionData.isResetCount; }
+
+        public ConditionSystem(int count, Condition condition, UnitConditionUI conditionUI)
         {
             this.count = count;
+            this.resetCountValue = count;
             this.condition = condition;
             this.conditionUI = conditionUI;
+
+            conditionUI.SetCount(this.count);
+            conditionUI.SetOverlapCount(this.overlapingCount);
+        }
+
+        public void ResetCount()
+        {
+            Count = resetCountValue;
+        }
+
+        public void CountDown()
+        {
+            Count--;
+        }
+
+        public void EndCondition()
+        {
+            UnityEngine.Object.Destroy(conditionUI.gameObject);
+        }
+
+        public bool isCountEnd()
+        {
+            return count == 0;
+        }
+
+        public void AddOverlap()
+        {
+            OverlapingCount++;
         }
     }
 
@@ -63,11 +125,9 @@ namespace Portfolio
         [SerializeField] private float effectHit = 0f;
         [SerializeField] private float effectResistance = 0f;
 
-        private Dictionary<int, AbnormalConditionSystem> conditionDic = new Dictionary<int, AbnormalConditionSystem>();
+        private Dictionary<int, ConditionSystem> conditionDic = new Dictionary<int, ConditionSystem>();
 
         private UnitUI unitUI;
-        // TODO
-        //private List<SkillStack> skillStackList = new List<SkillStack>();
 
         //===========================================================
         // Event
@@ -150,7 +210,10 @@ namespace Portfolio
         {
             unitUI.SetCurrentTurnUI(true);
 
-            TicConditionCycle();
+            // 틱형 상태이상을 순회
+            TickConditionCycle();
+            // 틱형 상태이상만 카운트 다운
+            ProceedTickCondition();
 
             OnStartCurrentTurnEvent?.Invoke(this, EventArgs.Empty);
         }
@@ -158,6 +221,9 @@ namespace Portfolio
         public virtual void UnitTurnBase_OnTurnEndEvent(object sender, EventArgs e)
         {
             unitUI.SetCurrentTurnUI(false);
+
+            // 지속형 상태이상만 카운트 다운
+            ProceedContinuationCondition();
 
             OnEndCurrentTurnEvent?.Invoke(this, EventArgs.Empty);
         }
@@ -250,29 +316,95 @@ namespace Portfolio
             if (conditionDic.ContainsKey(conditionID))
                 // 이미 적용된 상태이상 일때
             {
+                ConditionSystem conditionSystem = conditionDic[conditionID];
 
+                if (conditionSystem.isOverlap)
+                    // 중첩이 가능한가?
+                {
+                    conditionSystem.AddOverlap();
+                    if (conditionSystem.Condition is ContinuationCondition)
+                        // 지속형 상태이상이 중첩 가능할 때
+                    {
+                        conditionSystem.Condition.ApplyCondition(this);
+                    }
+                }
+                
+                if (conditionSystem.isResetCount)
+                    // 카운트 리셋이 가능한가?
+                {
+                    conditionSystem.ResetCount();
+                }
             }
             else
                 // 적용안된 상태이상 일때
             {
-                conditionDic.Add(conditionID, new AbnormalConditionSystem(count, condition, this.unitUI.CreateConditionUI(count)));
-                if (conditionDic[conditionID].condition is ContinuationCondition)
+                conditionDic.Add(conditionID, new ConditionSystem(count, condition, this.unitUI.CreateConditionUI(count)));
+                if (conditionDic[conditionID].Condition is ContinuationCondition)
                     // 지속형 상태이상일때
                 {
-                    (conditionDic[conditionID].condition as ContinuationCondition).ApplyCondition(this);
+                    conditionDic[conditionID].Condition.ApplyCondition(this);
                 }
             }
         }
 
-        private void TicConditionCycle()
+        private void ProceedTickCondition()
         {
-            var conditions = conditionDic.Values.Select((conditionSystem) => conditionSystem.condition).Where((condition) => condition is TickCondition);
-            // 상태이상 효과중 틱 상태이상만 가져와서 순회
-
-            foreach (var condition in conditions)
+            foreach (var conditionSystem in GetConditionSystems<TickCondition>())
             {
-                (condition as TickCondition).ApplyCondition(this);
+                conditionSystem.CountDown();
+                // 카운트 종료
+                if (conditionSystem.isCountEnd())
+                {
+                    conditionSystem.EndCondition();
+                }
             }
+
+            RemoveCondition();
+        }
+
+        private void ProceedContinuationCondition()
+        {
+            foreach (var conditionSystem in GetConditionSystems<ContinuationCondition>())
+            {
+                conditionSystem.CountDown();
+                // 카운트 종료
+                if (conditionSystem.isCountEnd())
+                {
+                    for (int i = 0; i < conditionSystem.OverlapingCount; i++)
+                    {
+                        (conditionSystem.Condition as ContinuationCondition).UnApplyCondition(this);
+                    }
+                    conditionSystem.EndCondition();
+                }
+            }
+
+            RemoveCondition();
+        }
+
+        private void TickConditionCycle()
+        {
+            // 상태이상 효과중 틱 상태이상만 가져와서 순회
+            foreach (var conditionSystem in GetConditionSystems<TickCondition>())
+            {
+                for (int i = 0; i < conditionSystem.OverlapingCount; i++)
+                {
+                    conditionSystem.Condition.ApplyCondition(this);
+                }
+            }
+        }
+
+        private void RemoveCondition()
+        {
+            var removeIDList = conditionDic.Values.Where(conditionSystem => conditionSystem.isCountEnd()).Select(conditionSystem => conditionSystem.Condition.ConditionData.ID).ToList();
+            foreach (var id in removeIDList)
+            {
+                conditionDic.Remove(id);
+            }
+        }
+
+        private IEnumerable<ConditionSystem> GetConditionSystems<T>() where T : Condition
+        {
+            return conditionDic.Values.Where(conditionSystem => conditionSystem.Condition is T);
         }
     }
 }

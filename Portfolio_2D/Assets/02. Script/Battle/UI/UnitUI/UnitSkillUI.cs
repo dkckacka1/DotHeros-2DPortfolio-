@@ -83,7 +83,6 @@ namespace Portfolio
         {
             BattleManager.TurnBaseSystem.TurnEnd();
         }
-        // TODO
 
         public void BasicAttack()
         {

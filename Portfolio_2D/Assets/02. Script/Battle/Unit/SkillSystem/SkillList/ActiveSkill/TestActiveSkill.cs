@@ -21,7 +21,7 @@ namespace Portfolio.skill
 
             if (GameManager.Instance.TryGetCondition(GetData.conditinID_1, out Condition condition))
             {
-                args.targetUnit.AddCondition(GetData.conditinID_1, condition, 3);
+                args.targetUnit.AddCondition(GetData.conditinID_1, condition, 1);
             }
         }
     }

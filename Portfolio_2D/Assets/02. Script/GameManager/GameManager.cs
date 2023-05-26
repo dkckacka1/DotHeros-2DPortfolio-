@@ -73,9 +73,9 @@ namespace Portfolio
             return true;
         }
 
-        public List<Data> GetDatas<T>() where T : Data
+        public List<T> GetDatas<T>() where T : Data
         {
-            var list = dataDictionary.Values.Where((data) => data is T).ToList();
+            var list = dataDictionary.Values.Where((data) => data is T).Select(kv => kv as T).ToList();
 
             return list;
         }

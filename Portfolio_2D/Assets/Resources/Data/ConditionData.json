@@ -7,7 +7,7 @@
     "conditionType": 0,
     "isBuff": true,
     "isOverlaping": false,
-    "isSumCount": true
+    "isResetCount": true
   },
   {
     "ID": 1001,
@@ -17,6 +17,6 @@
     "conditionType": 1,
     "isBuff": false,
     "isOverlaping": true,
-    "isSumCount": true
+    "isResetCount": true
   }
 ]

@@ -27,7 +27,7 @@ namespace Portfolio
 
         public override void UnitTurnBase_OnTurnStartEvent(object sender, EventArgs e)
         {
-            base.UnitTurnBase_OnTurnStartEvent(sender, e);
+            base.UnitTurnBase_OnTurnStartEvent(sender, e);  
 
             isTurn = true;
         }

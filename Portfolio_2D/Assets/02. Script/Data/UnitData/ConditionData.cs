@@ -14,7 +14,7 @@ namespace Portfolio.condition
 
         public bool isBuff;
         public bool isOverlaping;
-        public bool isSumCount;
+        public bool isResetCount;
 
     }
 }
