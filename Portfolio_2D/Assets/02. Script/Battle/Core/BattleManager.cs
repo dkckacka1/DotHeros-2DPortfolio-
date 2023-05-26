@@ -8,14 +8,11 @@ namespace Portfolio
 {
     public class BattleManager : MonoBehaviour
     {
-
-        [SerializeField] private static BattleUIManager battleUI;
-
-        [SerializeField] private static BattleFactory battleFactory;
-
-        [SerializeField] private static TurnBaseSystem turnBaseSystem;
-
-        [SerializeField] private static ActionSystem actionSystem;
+        private static BattleUIManager battleUI;
+        private static BattleFactory battleFactory;
+        private static TurnBaseSystem turnBaseSystem;
+        private static ActionSystem actionSystem;
+        private static ManaSystem manaSystem;
          
         private List<UnitTurnBase> unitList;
 
@@ -32,6 +29,7 @@ namespace Portfolio
         public static BattleFactory BattleFactory { get => battleFactory; }
         public static TurnBaseSystem TurnBaseSystem { get => turnBaseSystem;}
         public static ActionSystem ActionSystem { get => actionSystem;}
+        public static ManaSystem ManaSystem { get => manaSystem; }
 
         private void Awake()
         {
@@ -47,6 +45,7 @@ namespace Portfolio
             battleFactory = GetComponentInChildren<BattleFactory>();
             turnBaseSystem = GetComponentInChildren<TurnBaseSystem>();
             actionSystem = GetComponentInChildren<ActionSystem>();
+            manaSystem = GetComponentInChildren<ManaSystem>();
 
             unitList = new List<UnitTurnBase>();
         }

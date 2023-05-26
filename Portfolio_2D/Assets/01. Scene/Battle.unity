@@ -1468,6 +1468,7 @@ MonoBehaviour:
   unitSequenceUIParent: {fileID: 861734185}
   playerUnitSkillUIPrefab: {fileID: 6562929814234236488, guid: 1ee5d7ba55db37241bcc79e7bc9636ad, type: 3}
   unitSkillUIParent: {fileID: 192843952}
+  battleManaUI: {fileID: 1839128703}
 --- !u!1 &933482366
 GameObject:
   m_ObjectHideFlags: 0
@@ -1581,6 +1582,50 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   turnCount: 100
+--- !u!1 &969326517
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 969326518}
+  - component: {fileID: 969326519}
+  m_Layer: 0
+  m_Name: ManaSystem
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &969326518
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 969326517}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1077764693}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &969326519
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 969326517}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5602e38a968e49f44b4036c6bf15b526, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1045786147
 GameObject:
   m_ObjectHideFlags: 0
@@ -1764,6 +1809,7 @@ Transform:
   - {fileID: 929602036}
   - {fileID: 938468469}
   - {fileID: 270694701}
+  - {fileID: 969326518}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2674,7 +2720,7 @@ GameObject:
   - component: {fileID: 1552641159}
   - component: {fileID: 1552641158}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: ManaTxt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2828,6 +2874,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1839128702}
+  - component: {fileID: 1839128703}
   m_Layer: 5
   m_Name: ManaUI
   m_TagString: Untagged
@@ -2853,9 +2900,29 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 202.37, y: 20}
-  m_SizeDelta: {x: 404.7419, y: 169.4078}
+  m_AnchoredPosition: {x: 396, y: 20}
+  m_SizeDelta: {x: 404.7419, y: 127.0127}
   m_Pivot: {x: 0.5, y: 0}
+--- !u!114 &1839128703
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1839128701}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 756b9e4c984bb184c963fd9673d5ced8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  manaImage: {fileID: 2042377084}
+  manaText: {fileID: 1552641158}
+  manaSprites:
+  - {fileID: 369187635, guid: 68a06039cae2b444cab4e8885fb67081, type: 3}
+  - {fileID: -457088769, guid: 68a06039cae2b444cab4e8885fb67081, type: 3}
+  - {fileID: 372501457, guid: 68a06039cae2b444cab4e8885fb67081, type: 3}
+  - {fileID: 456713680, guid: 68a06039cae2b444cab4e8885fb67081, type: 3}
+  - {fileID: -671318360, guid: 68a06039cae2b444cab4e8885fb67081, type: 3}
 --- !u!1 &1863758226
 GameObject:
   m_ObjectHideFlags: 0
@@ -3241,7 +3308,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
   m_AnchoredPosition: {x: 0, y: 10}
-  m_SizeDelta: {x: 373.9941, y: 100}
+  m_SizeDelta: {x: 307.653, y: 51.2755}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!114 &2042377084
 MonoBehaviour:
@@ -3263,7 +3330,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: -671318360, guid: 68a06039cae2b444cab4e8885fb67081, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

@@ -18,12 +18,16 @@ namespace Portfolio
         [SerializeField] private UnitSkillUI playerUnitSkillUIPrefab;
         [SerializeField] private RectTransform unitSkillUIParent;
 
+        [Header("ManaUI")]
+        [SerializeField] private BattleManaUI battleManaUI;
+
         //===========================================================
         // Property
         //===========================================================
         public Canvas PlayableCanvas { get => playableCanvas; }
         public BattleSequenceUI SequenceUI { get => sequenceUI;}
         public UnitSkillUI PlayerUnitSkillUIPrefab { get => playerUnitSkillUIPrefab; }
+        public BattleManaUI BattleManaUI { get => battleManaUI; }
 
         public UnitSequenceUI CreateUnitSequenceUI()
         {
