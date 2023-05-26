@@ -14,7 +14,7 @@ namespace Portfolio.skill
 
         public override string ShowDesc(int skillLevel)
         {
-            Debug.Log("TestPassiveModule");
+            //Debug.Log("TestPassiveModule");
             return "";
         }
     }

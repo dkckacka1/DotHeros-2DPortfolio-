@@ -25,6 +25,7 @@ namespace Portfolio.skill
 
         public override void Action(BattleUnit unit)
         {
+
         }
 
         public void TikAction(BattleUnit targetUnit)
@@ -33,7 +34,7 @@ namespace Portfolio.skill
 
         public override string ShowDesc(int skillLevel)
         {
-            Debug.Log($"{moduleName}은 레벨{skillLevel} 입니다.");
+            //Debug.Log($"{moduleName}은 레벨{skillLevel} 입니다.");
             return $"{moduleName}은 레벨{skillLevel} 입니다.";
         }
     }

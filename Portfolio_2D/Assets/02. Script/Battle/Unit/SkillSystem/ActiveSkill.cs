@@ -13,21 +13,16 @@ namespace Portfolio.skill
         {
         }
 
-        public override void Action(int skillLevel)
+        public override void Action(object sender, int skillLevel)
         {
-            base.Action(skillLevel);
-            Debug.Log("액티브 스킬 액션!");
+            base.Action(sender, skillLevel);
+            //Debug.Log("액티브 스킬 액션!");
         }
 
         public override void ShowDesc(int skillLevel)
         {
             base.ShowDesc(skillLevel);
-            Debug.Log("나는 액티브 스킬입니다.");
-        }
-
-        protected override void SetModule()
-        {
-
+            //Debug.Log("나는 액티브 스킬입니다.");
         }
     }
 }

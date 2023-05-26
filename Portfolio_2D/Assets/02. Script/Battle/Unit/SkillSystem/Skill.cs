@@ -33,14 +33,14 @@ namespace Portfolio.skill
             }
         }
 
-        public virtual void Action(int skillLevel)
+        public virtual void Action(object sender, int skillLevel)
         {
-            Debug.Log("skillLevel = " + skillLevel);
+            //Debug.Log("skillLevel = " + skillLevel);
         }
 
         public virtual void ShowDesc(int skillLevel)
         {
-            Debug.Log($"{this.skillData.skillDesc} + {skillLevel}");
+            //Debug.Log($"{this.skillData.skillDesc} + {skillLevel}");
             skillModule_1?.ShowDesc(skillLevel);
             skillModule_2?.ShowDesc(skillLevel);
             skillModule_3?.ShowDesc(skillLevel);
@@ -48,11 +48,9 @@ namespace Portfolio.skill
 
         private Module CreateModule(string moduleName)
         {
-            Debug.Log(moduleName);
+            //Debug.Log(moduleName);
             var obj = Activator.CreateInstance(Type.GetType("Portfolio.skill." + moduleName));
             return obj as Module;
         }
-
-        protected abstract void SetModule();
     } 
 }

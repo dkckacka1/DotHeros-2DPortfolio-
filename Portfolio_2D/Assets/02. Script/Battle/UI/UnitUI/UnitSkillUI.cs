@@ -9,14 +9,8 @@ namespace Portfolio
 {
     public class SkillActionEventArgs : EventArgs
     {
-        public BattleUnit targetUnit;
         public int skillLevel;
-
-        public SkillActionEventArgs(BattleUnit targetUnit, int skillLevel = 1)
-        {
-            this.targetUnit = targetUnit;
-            this.skillLevel = skillLevel;
-        }
+        public BattleUnit targetUnit;
     }
 
     public class UnitSkillUI : MonoBehaviour
@@ -35,7 +29,8 @@ namespace Portfolio
         private int activeSkill_1_Level = 1;
         private int activeSkill_2_Level = 1;
 
-        private event EventHandler<SkillActionEventArgs> OnActionBtnEvent;
+        private int actionLevel = 1;
+        private event EventHandler<int> OnActionBtnEvent;
 
         public void SetUnit(BattleUnit battleUnit)
         {
@@ -96,36 +91,34 @@ namespace Portfolio
 
         public void BasicAttack()
         {
-            BattleManager.ActionSystem.IsSkillAction = true;
-            BattleManager.ActionSystem.ClearSelectedUnits();
-            BattleManager.ActionSystem.SetHowToTarget(basicAttackSkill);
-            //OnActionBtnEvent = basicAttackSkill.TakeAction;
+            BattleManager.ActionSystem.SetActiveSkill(basicAttackSkill);
             actionBtn.interactable = true;
+            actionLevel = 1;
+            OnActionBtnEvent = basicAttackSkill.Action;
+
         }
 
         public void ActiveSkill_1_Action()
         {
-            BattleManager.ActionSystem.IsSkillAction = true;
-            BattleManager.ActionSystem.ClearSelectedUnits();
-            BattleManager.ActionSystem.SetHowToTarget(activeSkill_1);
-            //OnActionBtnEvent = activeSkill_1.TakeAction;
+            BattleManager.ActionSystem.SetActiveSkill(activeSkill_1);
             actionBtn.interactable = true;
+            actionLevel = activeSkill_1_Level;
+            OnActionBtnEvent = activeSkill_1.Action;
         }
 
         public void ActiveSkill_2_Action()
         {
-            BattleManager.ActionSystem.IsSkillAction = true;
-            BattleManager.ActionSystem.ClearSelectedUnits();
-            BattleManager.ActionSystem.SetHowToTarget(activeSkill_2);
-            //OnActionBtnEvent = activeSkill_2.TakeAction;
+            BattleManager.ActionSystem.SetActiveSkill(activeSkill_2);
             actionBtn.interactable = true;
+            actionLevel = activeSkill_2_Level;
+            OnActionBtnEvent = activeSkill_2.Action;
         }
 
         public void Action()
         {
             foreach (var unit in BattleManager.ActionSystem.SelectedUnits)
             {
-                OnActionBtnEvent.Invoke(this, new SkillActionEventArgs(unit, 1));
+                OnActionBtnEvent.Invoke(this, actionLevel);
             }
             TurnEnd();
         }

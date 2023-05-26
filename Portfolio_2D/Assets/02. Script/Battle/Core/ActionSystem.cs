@@ -140,11 +140,11 @@ namespace Portfolio
                 OrderByDescending((grid) => Convert.ToInt32((int)grid.GetUnitType == (int)autoPeer) + Convert.ToInt32((int)grid.lineType == (int)autoProcession));
 
             int count = 0;
-            Debug.Log(list.Count());
-            foreach (var unit in list)
-            {
-                Debug.Log(unit.name);
-            }
+            //Debug.Log(list.Count());
+            //foreach (var unit in list)
+            //{
+            //    Debug.Log(unit.name);
+            //}
 
             foreach (var unit in list)
             {
@@ -170,5 +170,12 @@ namespace Portfolio
         }
         private bool IsTargetLineTypeAtGrid(GridPosition grid) => (isFrontTarget && grid.lineType == LineType.FrontLine) || (isRearTarget && grid.lineType == LineType.RearLine);
 
+
+        public void SetActiveSkill(ActiveSkill skill)
+        {
+            isSkillAction = true;
+            ClearSelectedUnits();
+            SetHowToTarget(skill);
+        }
     }
 }
