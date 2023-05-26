@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Portfolio.skill
+namespace Portfolio.skill.module
 {
     public class TestModule : Module, IStackable, IStatChangeable
     {
@@ -23,9 +23,9 @@ namespace Portfolio.skill
 
         public float changeValue => throw new System.NotImplementedException();
 
-        public override void Action(BattleUnit unit)
+        public override void Action(SkillActionEventArgs args)
         {
-
+            args.targetUnit.TakeDamage(args.actionUnit.AttackPoint * args.skillLevel);
         }
 
         public void TikAction(BattleUnit targetUnit)

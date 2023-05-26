@@ -13,10 +13,9 @@ namespace Portfolio.skill
         {
         }
 
-        public override void Action(object sender, int skillLevel)
+        public override void Action(object sender, EventArgs e)
         {
-            base.Action(sender, skillLevel);
-            //Debug.Log("액티브 스킬 액션!");
+            base.Action(sender, e);
         }
 
         public override void ShowDesc(int skillLevel)

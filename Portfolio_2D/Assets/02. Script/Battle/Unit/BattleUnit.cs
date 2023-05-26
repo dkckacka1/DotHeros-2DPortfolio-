@@ -1,3 +1,5 @@
+using Portfolio.Condition;
+using Portfolio.skill;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -12,8 +14,36 @@ namespace Portfolio
         public ChangeCurrnetHPEventArgs(float currentHP) => this.currentHP = currentHP;
     }
 
+    public class SkillActionEventArgs : EventArgs
+    {
+        public readonly int skillLevel;
+        public BattleUnit actionUnit;
+        public BattleUnit targetUnit;
+
+        public SkillActionEventArgs(int skillLevel, BattleUnit actionUnit, BattleUnit targetUnit)
+        {
+            this.skillLevel = skillLevel;
+            this.actionUnit = actionUnit;
+            this.targetUnit = targetUnit;
+        }
+    }
+
+    public class AbnormalConditionSystem
+    {
+        public int count;
+        public AbnormalCondition condition;
+
+        public AbnormalConditionSystem(int count, AbnormalCondition condition)
+        {
+            this.count = count;
+            this.condition = condition;
+        }
+    }
+
     public abstract class BattleUnit : MonoBehaviour
     {
+        Unit unit;
+
         [SerializeField] UnitType unitType;
 
         [Header("UnitTurnSystem")]
@@ -29,6 +59,8 @@ namespace Portfolio
         [SerializeField] private float criticalDamage = 0f;
         [SerializeField] private float effectHit = 0f;
         [SerializeField] private float effectResistance = 0f;
+
+        private Dictionary<string, AbnormalConditionSystem> conditionDic = new Dictionary<string, AbnormalConditionSystem>();
 
         private UnitUI unitUI;
         // TODO
@@ -91,21 +123,19 @@ namespace Portfolio
 
         public virtual void SetUnit(Unit unit, UnitSkillUI skillUI)
         {
-            this.maxHP = unit.Data.maxHP;
-            this.currentHP = unit.Data.maxHP;
-            this.attackPoint = unit.Data.attackPoint;
-            this.speed = unit.Data.speed;
-            this.defencePoint = unit.Data.defencePoint;
-            this.criticalPoint = unit.Data.criticalPoint;
-            this.criticalDamage = unit.Data.criticalDamage;
-            this.effectHit = unit.Data.effectHit;
-            this.effectResistance = unit.Data.effectResistance;
+            this.unit = unit;
+            maxHP = this.unit.Data.maxHP;
+            currentHP = this.unit.Data.maxHP;
+            attackPoint = this.unit.Data.attackPoint;
+            speed = this.unit.Data.speed;
+            defencePoint = this.unit.Data.defencePoint;
+            criticalPoint = this.unit.Data.criticalPoint;
+            criticalDamage = this.unit.Data.criticalDamage;
+            effectHit = this.unit.Data.effectHit;
+            effectResistance = this.unit.Data.effectResistance;
 
-            //unit.passiveSkill_1?.SetCurrentTurnUnit(this);
-            //unit.passiveSkill_2?.SetCurrentTurnUnit(this);
-
-            //unit.passiveSkill_1?.TakeAction(this, new SkillActionEventArgs(this, unit.passiveSkillLevel_1));
-            //unit.passiveSkill_2?.TakeAction(this, new SkillActionEventArgs(this, unit.passiveSkillLevel_2));
+            SetPassiveSkill(this.unit.passiveSkill_1, this.unit.passiveSkillLevel_1);
+            SetPassiveSkill(this.unit.passiveSkill_2, this.unit.passiveSkillLevel_2);
 
             skillUI.SetSkill(unit);
         }
@@ -116,7 +146,6 @@ namespace Portfolio
         public virtual void UnitTurnBase_OnTurnStartEvent(object sender, EventArgs e)
         {
             unitUI.SetCurrentTurnUI(true);
-            ProcessStackSkill();
 
             OnStartCurrentTurnEvent?.Invoke(this, EventArgs.Empty);
         }
@@ -143,7 +172,9 @@ namespace Portfolio
         //===========================================================
         public void BasicAttack(BattleUnit targetUnit)
         {
+            OnAttackEvent.Invoke(this, EventArgs.Empty);
             targetUnit.TakeDamage(attackPoint);
+            targetUnit.OnTakeAttackEvent.Invoke(this, EventArgs.Empty);
         }
 
         public void TakeDamage(float DamagePoint)
@@ -153,34 +184,54 @@ namespace Portfolio
 
         private void Dead()
         {
+            OnDeadEvent.Invoke(this, EventArgs.Empty);
         }
 
-        private void ProcessStackSkill()
+        //===========================================================
+        // SkillSystem
+        //===========================================================
+
+        private void SetPassiveSkill(PassiveSkill skill, int skillLevel)
         {
-            //foreach (var skillStack in skillStackList)
-            //{
-            //    skillStack.ProcessStack();
-            //}
+            if (skill == null)
+            {
+                return;
+            }
+
+            if (!skill.GetData.isAllPlayer && !skill.GetData.isAllEnemy)
+            {
+                SetPassiveSkillEvent(skill, skillLevel,this);
+            }
+            else
+            {
+                foreach (var unit in BattleManager.ActionSystem.GetPassiveTargetUnit(skill))
+                {
+                    SetPassiveSkillEvent(skill, skillLevel, unit);
+                }
+            }
         }
 
-        public void TakeStackSkill(int skillID, int stackCount, EventHandler OnSkillAction)
+        private void SetPassiveSkillEvent(PassiveSkill skill, int skillLevel, BattleUnit targetUnit)
         {
-            //SkillStack skill = skillStackList.Find((skill) => skill.SkillID == skillID);
+            if (skill.GetData.isOnStartBattle)
+            {
+                targetUnit.OnAttackEvent += ((sender, e) => skill.Action(this, new SkillActionEventArgs(skillLevel, this, targetUnit)));
+            }
 
-            //if (skill == null)
-            //{
-            //    skill = new SkillStack(skillID, stackCount, OnSkillAction, OnStackEndAction);
-            //}
-            //else
-            //{
-            //    skill.StackCount = stackCount;
-            //}
-        }
+            if (skill.GetData.isOnStartTurn)
+            {
+                targetUnit.OnStartCurrentTurnEvent += ((sender, e) => skill.Action(this, new SkillActionEventArgs(skillLevel, this, targetUnit)));
+            }
 
-        private void OnStackEndAction(object sender, EventArgs e)
-        {
+            if (skill.GetData.isOnAttack)
+            {
+                targetUnit.OnAttackEvent += ((sender, e) => skill.Action(this, new SkillActionEventArgs(skillLevel, this, targetUnit)));
+            }
 
+            if (skill.GetData.isOnTakeDamage)
+            {
+                targetUnit.OnTakeAttackEvent += ((sender, e) => skill.Action(this, new SkillActionEventArgs(skillLevel, this, targetUnit)));
+            }
         }
     }
-
 }

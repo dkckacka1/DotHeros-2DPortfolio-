@@ -158,7 +158,10 @@ namespace Portfolio
             }
         }
 
-        private bool isUnitAtGrid(GridPosition grid) => grid.isUnit;
+        private bool isUnitAtGrid(GridPosition grid)
+        {
+            return grid.isUnit;
+        }
         private bool IsTargetUnitTypeAtGrid(GridPosition grid)
         {
             //Debug.Log($"grid = {grid.unit.name}\n" +
@@ -168,7 +171,10 @@ namespace Portfolio
                 //$"(isPlayerTarget && grid.GetUnitType == UnitType.Player) || (isEnemyTarget && grid.GetUnitType == UnitType.Enemy) = {(isPlayerTarget && grid.GetUnitType == UnitType.Player) || (isEnemyTarget && grid.GetUnitType == UnitType.Enemy)}");
             return (isPlayerTarget && grid.GetUnitType == UnitType.Player) || (isEnemyTarget && grid.GetUnitType == UnitType.Enemy);
         }
-        private bool IsTargetLineTypeAtGrid(GridPosition grid) => (isFrontTarget && grid.lineType == LineType.FrontLine) || (isRearTarget && grid.lineType == LineType.RearLine);
+        private bool IsTargetLineTypeAtGrid(GridPosition grid)
+        {
+            return (isFrontTarget && grid.lineType == LineType.FrontLine) || (isRearTarget && grid.lineType == LineType.RearLine);
+        }
 
 
         public void SetActiveSkill(ActiveSkill skill)
@@ -176,6 +182,21 @@ namespace Portfolio
             isSkillAction = true;
             ClearSelectedUnits();
             SetHowToTarget(skill);
+        }
+
+        public List<BattleUnit> GetPassiveTargetUnit(PassiveSkill passiveSkill)
+        {
+            var list = unitGrids.
+                Where((grid) =>
+                    isUnitAtGrid(grid) &&
+                        ((grid.GetUnitType == UnitType.Player && passiveSkill.GetData.isAllPlayer) ||
+                        (grid.GetUnitType == UnitType.Enemy && passiveSkill.GetData.isAllEnemy))).Select((grid) => grid.unit).ToList();
+
+            foreach (var unit in list)
+            {
+                Debug.Log(unit.name);
+            }
+            return list;
         }
     }
 }

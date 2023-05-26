@@ -7,11 +7,7 @@ using UnityEngine.UI;
 
 namespace Portfolio
 {
-    public class SkillActionEventArgs : EventArgs
-    {
-        public int skillLevel;
-        public BattleUnit targetUnit;
-    }
+
 
     public class UnitSkillUI : MonoBehaviour
     {
@@ -30,7 +26,7 @@ namespace Portfolio
         private int activeSkill_2_Level = 1;
 
         private int actionLevel = 1;
-        private event EventHandler<int> OnActionBtnEvent;
+        private event EventHandler<SkillActionEventArgs> OnActionBtnEvent;
 
         public void SetUnit(BattleUnit battleUnit)
         {
@@ -118,7 +114,7 @@ namespace Portfolio
         {
             foreach (var unit in BattleManager.ActionSystem.SelectedUnits)
             {
-                OnActionBtnEvent.Invoke(this, actionLevel);
+                OnActionBtnEvent.Invoke(this, new SkillActionEventArgs(actionLevel, this.unit, unit));
             }
             TurnEnd();
         }

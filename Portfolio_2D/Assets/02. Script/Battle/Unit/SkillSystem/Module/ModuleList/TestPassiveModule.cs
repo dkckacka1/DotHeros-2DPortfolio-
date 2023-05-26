@@ -3,18 +3,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Portfolio.skill
+namespace Portfolio.skill.module
 {
     public class TestPassiveModule : Module
     {
-        public override void Action(BattleUnit unit)
+        public override void Action(SkillActionEventArgs args)
         {
-            throw new System.NotImplementedException();
+            args.targetUnit.TakeDamage(args.skillLevel * 10);
         }
 
         public override string ShowDesc(int skillLevel)
         {
-            //Debug.Log("TestPassiveModule");
             return "";
         }
     }

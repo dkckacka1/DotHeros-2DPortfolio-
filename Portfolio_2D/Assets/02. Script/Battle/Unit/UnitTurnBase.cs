@@ -38,7 +38,6 @@ namespace Portfolio
 
         public void TurnStart()
         {
-
             OnTurnStartEvent.Invoke(this, EventArgs.Empty);
         }
 
