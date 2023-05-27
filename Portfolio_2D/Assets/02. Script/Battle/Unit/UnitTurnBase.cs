@@ -32,7 +32,6 @@ namespace Portfolio
                 unitSkillUI.SetUnit(this.unit);
 
                 OnTurnStartEvent += unitSkillUI.UnitTurnBase_OnTurnStartEvent;
-                OnTurnEndEvent += unitSkillUI.UnitTurnBase_OnTurnEndEvent;
             }
 
             currentTurnCount = 0f;

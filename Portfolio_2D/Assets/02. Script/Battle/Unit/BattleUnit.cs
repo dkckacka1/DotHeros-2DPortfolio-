@@ -125,6 +125,10 @@ namespace Portfolio
         [SerializeField] private float effectHit = 0f;
         [SerializeField] private float effectResistance = 0f;
 
+        [Header("Skill")]
+        [SerializeField] private int activeSkill_1_CoolTime = 0;
+        [SerializeField] private int activeSkill_2_CoolTime = 0;
+
         private Dictionary<int, ConditionSystem> conditionDic = new Dictionary<int, ConditionSystem>();
 
         private UnitUI unitUI;
@@ -183,8 +187,7 @@ namespace Portfolio
         //===========================================================
         // CreateUnit
         //===========================================================
-
-        public virtual void SetUnit(Unit unit, UnitSkillUI skillUI)
+        public virtual void SetUnit(Unit unit, UnitSkillUI skillUI = null)
         {
             this.unit = unit;
             maxHP = this.unit.Data.maxHP;
@@ -199,8 +202,6 @@ namespace Portfolio
 
             SetPassiveSkill(this.unit.passiveSkill_1, this.unit.passiveSkillLevel_1);
             SetPassiveSkill(this.unit.passiveSkill_2, this.unit.passiveSkillLevel_2);
-
-            skillUI.SetSkill(unit);
         }
 
         //===========================================================

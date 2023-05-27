@@ -17,6 +17,7 @@ namespace Portfolio
         [Header("SkillUI")]
         [SerializeField] private UnitSkillUI playerUnitSkillUIPrefab;
         [SerializeField] private RectTransform unitSkillUIParent;
+        [SerializeField] private BattleSkillDescUI battleSkillDescUI;
 
         [Header("ManaUI")]
         [SerializeField] private BattleManaUI battleManaUI;
@@ -28,6 +29,7 @@ namespace Portfolio
         public BattleSequenceUI SequenceUI { get => sequenceUI;}
         public UnitSkillUI PlayerUnitSkillUIPrefab { get => playerUnitSkillUIPrefab; }
         public BattleManaUI BattleManaUI { get => battleManaUI; }
+        public BattleSkillDescUI BattleSkillDescUI { get => battleSkillDescUI; }
 
         public UnitSequenceUI CreateUnitSequenceUI()
         {
@@ -36,7 +38,9 @@ namespace Portfolio
 
         public UnitSkillUI CreateUnitSkillUI()
         {
-            return Instantiate(PlayerUnitSkillUIPrefab, unitSkillUIParent);
+            var skillUI = Instantiate(PlayerUnitSkillUIPrefab, unitSkillUIParent);
+            skillUI.SetBattleSkillDescUI(battleSkillDescUI);
+            return skillUI;
         }
     }
 }

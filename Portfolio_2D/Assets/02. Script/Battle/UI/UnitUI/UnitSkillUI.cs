@@ -13,6 +13,7 @@ namespace Portfolio
     public class UnitSkillUI : MonoBehaviour
     {
         private BattleUnit unit;
+        private BattleSkillDescUI battleSkillDescUI;
 
         [SerializeField] Button turnEndBtn;
         [SerializeField] Button BasicAttackBtn;
@@ -63,6 +64,11 @@ namespace Portfolio
             this.unit = battleUnit;
         }
 
+        public void SetBattleSkillDescUI(BattleSkillDescUI battleSkillDescUI)
+        {
+            this.battleSkillDescUI = battleSkillDescUI;
+        }
+
         public void SetSkill(Unit unit)
         {
             basicAttackSkill = unit.basicAttackSkill;
@@ -90,19 +96,21 @@ namespace Portfolio
         // ButtonPlugin
         //===========================================================
 
-        public void UnitTurnBase_OnTurnStartEvent(object sender, EventArgs e)
+        private void Start()
         {
-            //OnActionBtnEvent = null;
-            selectActiveSkill = null;
-            actionBtn.interactable = false;
-            ShowSkillUI();
-            SetActiveBtn(activeSkill_1_ActionBtn, activeSkill_1, ActiveSkillCoolTime_1);
-            SetActiveBtn(activeSkill_2_ActionBtn, activeSkill_2, ActiveSkillCoolTime_2);
+            ResetSkillUI();
         }
 
-        public void UnitTurnBase_OnTurnEndEvent(object sender, EventArgs e)
+        public void ResetSkillUI()
         {
-            HideSkillUI();
+            selectActiveSkill = null;
+            actionBtn.interactable = false;
+        }
+
+        public void UnitTurnBase_OnTurnStartEvent(object sender, EventArgs e)
+        {
+            SetActiveBtn(activeSkill_1_ActionBtn, activeSkill_1, ActiveSkillCoolTime_1);
+            SetActiveBtn(activeSkill_2_ActionBtn, activeSkill_2, ActiveSkillCoolTime_2);
         }
 
         public void TurnEnd()
@@ -173,6 +181,16 @@ namespace Portfolio
             if (skill == null) return;
 
             activeBtn.interactable = BattleManager.ManaSystem.canUseMana(skill.GetData.consumeManaValue) || skillCoolTime == 0;
+        }
+
+        public void ShowSkillDesc()
+        {
+            this.battleSkillDescUI.gameObject.SetActive(true);
+        }
+
+        public void HideSkillDesc()
+        {
+            this.battleSkillDescUI.gameObject.SetActive(false);
         }
     }
 }

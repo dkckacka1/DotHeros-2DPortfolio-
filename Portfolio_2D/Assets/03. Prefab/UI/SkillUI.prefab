@@ -147,6 +147,7 @@ GameObject:
   - component: {fileID: 1107960567245317478}
   - component: {fileID: 1107960567245317473}
   - component: {fileID: 1107960567245317472}
+  - component: {fileID: 3033829126664549246}
   m_Layer: 5
   m_Name: Skill1Btn
   m_TagString: Untagged
@@ -270,6 +271,51 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &3033829126664549246
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1107960567245317474}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 6562929814234236488}
+          m_TargetAssemblyTypeName: Portfolio.UnitSkillUI, Assembly-CSharp
+          m_MethodName: ShowSkillDesc
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: 1
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 6562929814234236488}
+          m_TargetAssemblyTypeName: Portfolio.UnitSkillUI, Assembly-CSharp
+          m_MethodName: HideSkillDesc
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &1107960567912493634
 GameObject:
   m_ObjectHideFlags: 0
@@ -1290,7 +1336,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2470401304361723460
 RectTransform:
   m_ObjectHideFlags: 0
