@@ -13,9 +13,9 @@ namespace Portfolio.skill
         {
         }
 
-        public override void ShowDesc(int skillLevel)
+        public override string GetDesc(int skillLevel)
         {
-            base.ShowDesc(skillLevel);
+            return base.GetDesc(skillLevel);
             //Debug.Log("나는 패시브 스킬입니다.");
         }
     }

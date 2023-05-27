@@ -16,9 +16,10 @@ namespace Portfolio.skill
 
         public abstract void Action(object sender, EventArgs e);
 
-        public virtual void ShowDesc(int skillLevel)
+        public virtual string GetDesc(int skillLevel)
         {
             //Debug.Log($"{this.skillData.skillDesc} + {skillLevel}");
+            return "";
         }
 
         protected bool TryGetSkillActionArgs(EventArgs args, out SkillActionEventArgs skillargs)

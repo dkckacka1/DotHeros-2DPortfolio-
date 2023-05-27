@@ -144,8 +144,21 @@ namespace Portfolio
             BattleManager.TurnBaseSystem.TurnEnd();
         }
 
-        public void ShowSkillDesc()
+        public void ShowBasicAttackSkill()
         {
+            battleSkillDescUI.ShowSkillDesc(battleUnit.Unit.basicAttackSkill);
+            this.battleSkillDescUI.gameObject.SetActive(true);
+        }
+
+        public void ShowDescActiveSkill_1()
+        {
+            battleSkillDescUI.ShowSkillDesc(battleUnit.Unit.activeSkill_1, battleUnit.Unit.activeSkillLevel_1);
+            this.battleSkillDescUI.gameObject.SetActive(true);
+        }
+
+        public void ShowDescActiveSkill_2()
+        {
+            battleSkillDescUI.ShowSkillDesc(battleUnit.Unit.activeSkill_2, battleUnit.Unit.activeSkillLevel_2);
             this.battleSkillDescUI.gameObject.SetActive(true);
         }
 
