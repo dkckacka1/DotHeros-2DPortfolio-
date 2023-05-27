@@ -12,7 +12,7 @@ namespace Portfolio
 
     public class UnitSkillUI : MonoBehaviour
     {
-        private BattleUnit unit;
+        private BattleUnit battleUnit;
         private BattleSkillDescUI battleSkillDescUI;
 
         [SerializeField] Button turnEndBtn;
@@ -23,70 +23,31 @@ namespace Portfolio
         [SerializeField] TextMeshProUGUI skillCoolTime_1_Text;
         [SerializeField] TextMeshProUGUI skillCoolTime_2_Text;
 
-        private ActiveSkill basicAttackSkill;
-        private ActiveSkill activeSkill_1;
-        private ActiveSkill activeSkill_2;
-        private int activeSkill_1_Level = 1;
-        private int activeSkill_2_Level = 1;
+        int actionLevel = 0;
 
-        private int activeSkillCoolTime_1 = 0;
-        private int activeSkillCoolTime_2 = 0;
-
-        private int actionLevel = 1;
         private ActiveSkill selectActiveSkill;
-
-        public int ActiveSkillCoolTime_1 
-        { 
-            get => activeSkillCoolTime_1;
-            set
-            {
-                activeSkillCoolTime_1 = value;
-                skillCoolTime_1_Text.gameObject.SetActive(activeSkillCoolTime_1 != 0);
-                skillCoolTime_1_Text.text = activeSkillCoolTime_1.ToString();
-            }
-        }
-
-        public int ActiveSkillCoolTime_2 
-        { 
-            get => activeSkillCoolTime_2;
-            set 
-            { 
-                activeSkillCoolTime_2 = value;
-                skillCoolTime_2_Text.gameObject.SetActive(activeSkillCoolTime_2 != 0);
-                skillCoolTime_2_Text.text = activeSkillCoolTime_2.ToString();
-            }
-        }
 
         //private event EventHandler<SkillActionEventArgs> OnActionBtnEvent;
 
         public void SetUnit(BattleUnit battleUnit)
         {
-            this.unit = battleUnit;
-        }
+            this.battleUnit = battleUnit;
 
-        public void SetBattleSkillDescUI(BattleSkillDescUI battleSkillDescUI)
-        {
-            this.battleSkillDescUI = battleSkillDescUI;
-        }
-
-        public void SetSkill(Unit unit)
-        {
-            basicAttackSkill = unit.basicAttackSkill;
-            activeSkill_1 = unit.activeSkill_1;
-            activeSkill_2 = unit.activeSkill_2;
-            activeSkill_1_Level = unit.activeSkillLevel_1;
-            activeSkill_2_Level = unit.activeSkillLevel_2;
-
-            if (activeSkill_1 == null)
+            if (battleUnit.Unit.activeSkill_1 == null)
             {
                 activeSkill_1_ActionBtn.gameObject.SetActive(false);
             }
 
 
-            if (activeSkill_2 == null)
+            if (battleUnit.Unit.activeSkill_2 == null)
             {
                 activeSkill_2_ActionBtn.gameObject.SetActive(false);
             }
+        }
+
+        public void SetBattleSkillDescUI(BattleSkillDescUI battleSkillDescUI)
+        {
+            this.battleSkillDescUI = battleSkillDescUI;
         }
 
         public void ShowSkillUI() => this.gameObject.SetActive(true);
@@ -98,89 +59,89 @@ namespace Portfolio
 
         private void Start()
         {
-            ResetSkillUI();
+            InitSkillUI();
+
         }
 
-        public void ResetSkillUI()
+        public void InitSkillUI()
         {
             selectActiveSkill = null;
             actionBtn.interactable = false;
         }
 
-        public void UnitTurnBase_OnTurnStartEvent(object sender, EventArgs e)
+        public void ResetSkillUI(BattleUnit unit)
         {
-            SetActiveBtn(activeSkill_1_ActionBtn, activeSkill_1, ActiveSkillCoolTime_1);
-            SetActiveBtn(activeSkill_2_ActionBtn, activeSkill_2, ActiveSkillCoolTime_2);
+            InitSkillUI();
+            if (battleUnit.Unit.activeSkill_1 != null)
+            {
+                Debug.Log($"{battleUnit.name}의 {battleUnit.Unit.activeSkill_1.GetData.skillName}의 스킬 쿨타임은 {battleUnit.activeSkill_1_CoolTime} 입니다.");
+                Debug.Log(battleUnit.CanActiveSkill(battleUnit.Unit.activeSkill_1, battleUnit.activeSkill_1_CoolTime));
+                activeSkill_1_ActionBtn.interactable = battleUnit.CanActiveSkill(battleUnit.Unit.activeSkill_1, battleUnit.activeSkill_1_CoolTime);
+                skillCoolTime_1_Text.gameObject.SetActive(battleUnit.activeSkill_1_CoolTime != 0);
+                skillCoolTime_1_Text.text = battleUnit.activeSkill_1_CoolTime.ToString();
+            }
+
+            if (battleUnit.Unit.activeSkill_2 != null)
+            {
+                activeSkill_2_ActionBtn.interactable = battleUnit.CanActiveSkill(battleUnit.Unit.activeSkill_2, battleUnit.activeSkill_2_CoolTime);
+                skillCoolTime_2_Text.gameObject.SetActive(battleUnit.activeSkill_2_CoolTime != 0);
+                skillCoolTime_2_Text.text = battleUnit.activeSkill_2_CoolTime.ToString();
+            }
         }
 
         public void TurnEnd()
         {
-            ActiveSkillCoolTime_1 = (ActiveSkillCoolTime_1 > 0) ? ActiveSkillCoolTime_1-- : ActiveSkillCoolTime_1;
-            ActiveSkillCoolTime_2 = (ActiveSkillCoolTime_2 > 0) ? ActiveSkillCoolTime_2-- : ActiveSkillCoolTime_2;
+            BattleManager.ManaSystem.AddMana(1);
             BattleManager.TurnBaseSystem.TurnEnd();
         }
 
         public void BasicAttack()
         {
-            BattleManager.ActionSystem.SetActiveSkill(basicAttackSkill);
+            BattleManager.ActionSystem.SetActiveSkill(battleUnit.Unit.basicAttackSkill);
             actionBtn.interactable = true;
             actionLevel = 1;
-            selectActiveSkill = basicAttackSkill;
+            selectActiveSkill = battleUnit.Unit.basicAttackSkill;
 
         }
 
         public void ActiveSkill_1_Action()
         {
-            BattleManager.ActionSystem.SetActiveSkill(activeSkill_1);
+            BattleManager.ActionSystem.SetActiveSkill(battleUnit.Unit.activeSkill_1);
             actionBtn.interactable = true;
-            actionLevel = activeSkill_1_Level;
-            selectActiveSkill = activeSkill_1;
+            actionLevel = battleUnit.Unit.activeSkillLevel_1;
+            selectActiveSkill = battleUnit.Unit.activeSkill_1;
         }
 
         public void ActiveSkill_2_Action()
         {
-            BattleManager.ActionSystem.SetActiveSkill(activeSkill_2);
+            BattleManager.ActionSystem.SetActiveSkill(battleUnit.Unit.activeSkill_2);
             actionBtn.interactable = true;
-            actionLevel = activeSkill_2_Level;
-            selectActiveSkill = activeSkill_2;
+            actionLevel = battleUnit.Unit.activeSkillLevel_2;
+            selectActiveSkill = battleUnit.Unit.activeSkill_2;
         }
 
         public void Action()
         {
-            if (selectActiveSkill == basicAttackSkill)
+            if (selectActiveSkill == battleUnit.Unit.basicAttackSkill)
             {
+                battleUnit.BasicAttack();
                 BattleManager.ManaSystem.AddMana(1);
-                ActiveSkillCoolTime_1 = (ActiveSkillCoolTime_1 > 0) ? ActiveSkillCoolTime_1-- : ActiveSkillCoolTime_1;
-                ActiveSkillCoolTime_2 = (ActiveSkillCoolTime_2 > 0) ? ActiveSkillCoolTime_2-- : ActiveSkillCoolTime_2;
             }
             else
             {
                 BattleManager.ManaSystem.UseMana(selectActiveSkill.GetData.consumeManaValue);
-                if (selectActiveSkill == activeSkill_1)
+                if (selectActiveSkill == battleUnit.Unit.activeSkill_1)
                 {
-                    ActiveSkillCoolTime_1 = selectActiveSkill.GetData.skillCoolTime;
-                    ActiveSkillCoolTime_2 = (ActiveSkillCoolTime_2 > 0) ? ActiveSkillCoolTime_2-- : ActiveSkillCoolTime_2;
+                    battleUnit.UseActiveSkill(battleUnit.Unit.activeSkill_1, battleUnit.Unit.activeSkillLevel_1, ref battleUnit.activeSkill_1_CoolTime);
+
                 }
-                else if(selectActiveSkill == activeSkill_2)
+                else if(selectActiveSkill == battleUnit.Unit.activeSkill_2)
                 {
-                    ActiveSkillCoolTime_2 = selectActiveSkill.GetData.skillCoolTime;
-                    ActiveSkillCoolTime_1 = (ActiveSkillCoolTime_1 > 0) ? ActiveSkillCoolTime_1-- : ActiveSkillCoolTime_1;
+                    battleUnit.UseActiveSkill(battleUnit.Unit.activeSkill_2, battleUnit.Unit.activeSkillLevel_2, ref battleUnit.activeSkill_2_CoolTime);
                 }
             }
 
-            foreach (var unit in BattleManager.ActionSystem.SelectedUnits)
-            {
-                selectActiveSkill.Action(this, new SkillActionEventArgs(actionLevel, this.unit, unit));
-            }
-
-            TurnEnd();
-        }
-
-        private void SetActiveBtn(Button activeBtn, ActiveSkill skill, int skillCoolTime)
-        {
-            if (skill == null) return;
-
-            activeBtn.interactable = BattleManager.ManaSystem.canUseMana(skill.GetData.consumeManaValue) || skillCoolTime == 0;
+            BattleManager.TurnBaseSystem.TurnEnd();
         }
 
         public void ShowSkillDesc()

@@ -107,7 +107,7 @@ namespace Portfolio
 
     public abstract class BattleUnit : MonoBehaviour
     {
-        Unit unit;
+        private Unit unit;
 
         [SerializeField] UnitType unitType;
 
@@ -126,8 +126,8 @@ namespace Portfolio
         [SerializeField] private float effectResistance = 0f;
 
         [Header("Skill")]
-        [SerializeField] private int activeSkill_1_CoolTime = 0;
-        [SerializeField] private int activeSkill_2_CoolTime = 0;
+        public int activeSkill_1_CoolTime = 0;
+        public int activeSkill_2_CoolTime = 0;
 
         private Dictionary<int, ConditionSystem> conditionDic = new Dictionary<int, ConditionSystem>();
 
@@ -147,6 +147,7 @@ namespace Portfolio
         //===========================================================
         // Property
         //===========================================================
+        public Unit Unit { get => this.unit; }
         public UnitType UnitType { get => unitType; set => unitType = value; }
         public float MaxHP { get => maxHP; set => maxHP = value; }
         public float AttackPoint { get => attackPoint; set => attackPoint = value; }
@@ -187,7 +188,7 @@ namespace Portfolio
         //===========================================================
         // CreateUnit
         //===========================================================
-        public virtual void SetUnit(Unit unit, UnitSkillUI skillUI = null)
+        public virtual void SetUnit(Unit unit)
         {
             this.unit = unit;
             maxHP = this.unit.Data.maxHP;
@@ -226,6 +227,9 @@ namespace Portfolio
             // 지속형 상태이상만 카운트 다운
             ProceedContinuationCondition();
 
+            if (activeSkill_1_CoolTime > 0) activeSkill_1_CoolTime--;
+            if (activeSkill_2_CoolTime > 0) activeSkill_2_CoolTime--;
+
             OnEndCurrentTurnEvent?.Invoke(this, EventArgs.Empty);
         }
 
@@ -242,11 +246,14 @@ namespace Portfolio
         //===========================================================
         // BattleMethod
         //===========================================================
-        public void BasicAttack(BattleUnit targetUnit)
+        public void BasicAttack()
         {
             OnAttackEvent?.Invoke(this, EventArgs.Empty);
-            targetUnit.TakeDamage(attackPoint);
-            targetUnit.OnTakeAttackEvent?.Invoke(this, EventArgs.Empty);
+            foreach (var targetUnit in BattleManager.ActionSystem.SelectedUnits)
+            {
+                Unit.basicAttackSkill.Action(this, new SkillActionEventArgs(1, this, targetUnit));
+                targetUnit.OnTakeAttackEvent?.Invoke(this, EventArgs.Empty);
+            }
         }
 
         public void TakeDamage(float DamagePoint)
@@ -262,6 +269,21 @@ namespace Portfolio
         //===========================================================
         // SkillSystem
         //===========================================================
+
+        public void UseActiveSkill(ActiveSkill skill, int skillLevel, ref int skillCoolTime)
+        {
+            foreach (var unit in BattleManager.ActionSystem.SelectedUnits)
+            {
+                skill.Action(this, new SkillActionEventArgs(skillLevel, this, unit));
+            }
+
+            skillCoolTime = skill.GetData.skillCoolTime + 1; // 턴종료시에 바로 쿨타임하나가 줄기에 +1 만큼 더해줌
+        }
+
+        public bool CanActiveSkill(ActiveSkill activeSkill, int skillCoolTime)
+        {
+            return (BattleManager.ManaSystem.canUseMana(activeSkill.GetData.consumeManaValue)) && (skillCoolTime == 0);
+        }
 
         private void SetPassiveSkill(PassiveSkill skill, int skillLevel)
         {

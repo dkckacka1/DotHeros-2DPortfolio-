@@ -34,6 +34,27 @@ namespace Portfolio
             return unitBase;
         }
 
+        public UnitTurnBase CreatePlayableUnitBase(Unit unit)
+        {
+            UnitTurnBase unitBase = null;
+
+            foreach (var gridPosition in playerGrids)
+            {
+                if (gridPosition.unit != null)
+                {
+                    continue;
+                }
+
+                var newBattleUnit = Instantiate(playerUnit, gridPosition.transform);
+                gridPosition.unit = newBattleUnit;
+                newBattleUnit.SetUnit(unit);
+                unitBase = new UnitTurnBase(newBattleUnit, gridPosition, BattleManager.BattleUIManager.CreateUnitSequenceUI(), BattleManager.BattleUIManager.CreateUnitSkillUI());
+                break;
+            }
+
+            return unitBase;
+        }
+
         public UnitTurnBase CreateEnemyUnitBase()
         {
             UnitTurnBase unitBase = null;

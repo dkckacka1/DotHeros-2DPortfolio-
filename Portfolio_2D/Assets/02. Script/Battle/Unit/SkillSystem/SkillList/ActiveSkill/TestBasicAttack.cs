@@ -19,7 +19,7 @@ namespace Portfolio.skill
                 return;
             }
 
-            args.actionUnit.BasicAttack(args.targetUnit);
+            args.targetUnit.TakeDamage(args.actionUnit.AttackPoint);
         }
     }
 

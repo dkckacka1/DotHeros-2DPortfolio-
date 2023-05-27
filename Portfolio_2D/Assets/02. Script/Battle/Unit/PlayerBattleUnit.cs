@@ -9,13 +9,14 @@ namespace Portfolio
     {
         private UnitSkillUI skillUI;
 
-        public override void SetUnit(Unit unit, UnitSkillUI skillUI)
+        public override void SetUnit(Unit unit)
         {
             base.SetUnit(unit);
+        }
 
+        public void SetUI(UnitSkillUI skillUI)
+        {
             this.skillUI = skillUI;
-
-            skillUI.SetSkill(unit);
         }
 
         public override void UnitTurnBase_OnTurnStartEvent(object sender, EventArgs e)
@@ -23,6 +24,7 @@ namespace Portfolio
             base.UnitTurnBase_OnTurnStartEvent(sender, e);
 
             skillUI.ShowSkillUI();
+            skillUI.ResetSkillUI(this);
         }
 
         public override void UnitTurnBase_OnTurnEndEvent(object sender, EventArgs e)
@@ -30,7 +32,6 @@ namespace Portfolio
             base.UnitTurnBase_OnTurnEndEvent(sender, e);
 
             skillUI.HideSkillUI();
-            skillUI.ResetSkillUI();
         }
     }
 }

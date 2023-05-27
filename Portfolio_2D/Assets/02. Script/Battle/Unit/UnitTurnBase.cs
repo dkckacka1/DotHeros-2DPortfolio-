@@ -15,7 +15,31 @@ namespace Portfolio
         public event EventHandler OnTurnStartEvent;
         public event EventHandler OnTurnEndEvent;
 
-        public UnitTurnBase(BattleUnit unit, GridPosition gridPosition, UnitSequenceUI unitSequenceUI, UnitSkillUI unitSkillUI = null)
+        public UnitTurnBase(PlayerBattleUnit unit, GridPosition gridPosition, UnitSequenceUI unitSequenceUI, UnitSkillUI unitSkillUI)
+        {
+            SetDefaultBattleUnit(unit, gridPosition, unitSequenceUI);
+
+            if (unit is PlayerBattleUnit)
+            {
+                if (unitSkillUI != null)
+                {
+                    (unit as PlayerBattleUnit).SetUI(unitSkillUI);
+                    this.unitSkillUI = unitSkillUI;
+                    unitSkillUI.SetUnit(this.unit);
+                }
+            }
+        }
+
+
+
+        public UnitTurnBase(EnemyBattleUnit unit, GridPosition gridPosition, UnitSequenceUI unitSequenceUI, UnitSkillUI unitSkillUI = null)
+        {
+            SetDefaultBattleUnit(unit, gridPosition, unitSequenceUI);
+
+            currentTurnCount = 0f;
+        }
+
+        private void SetDefaultBattleUnit(BattleUnit unit, GridPosition gridPosition, UnitSequenceUI unitSequenceUI)
         {
             this.unit = unit;
             this.unitGridPosition = gridPosition;
@@ -25,16 +49,6 @@ namespace Portfolio
 
             OnTurnStartEvent += unit.UnitTurnBase_OnTurnStartEvent;
             OnTurnEndEvent += unit.UnitTurnBase_OnTurnEndEvent;
-
-            if (unitSkillUI != null)
-            {
-                this.unitSkillUI = unitSkillUI;
-                unitSkillUI.SetUnit(this.unit);
-
-                OnTurnStartEvent += unitSkillUI.UnitTurnBase_OnTurnStartEvent;
-            }
-
-            currentTurnCount = 0f;
         }
 
         public void TurnStart()
