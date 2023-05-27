@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -107,6 +108,15 @@ namespace Portfolio
             if (StateEventHandlerDic.ContainsKey(state))
             {
                 StateEventHandlerDic[state]?.Invoke();
+            }
+        }
+
+        public void SetAutomaticBattle()
+        {
+            var list = this.unitList.Where(turnBase => turnBase.unit is PlayerBattleUnit).Select(turnBase => turnBase.unit as PlayerBattleUnit);
+            foreach (var unit in list)
+            {
+                unit.AISystem.isAI = !unit.AISystem.isAI;
             }
         }
     }

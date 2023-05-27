@@ -9,11 +9,6 @@ namespace Portfolio
     {
         private UnitSkillUI skillUI;
 
-        public override void SetUnit(Unit unit)
-        {
-            base.SetUnit(unit);
-        }
-
         public void SetUI(UnitSkillUI skillUI)
         {
             this.skillUI = skillUI;
@@ -23,8 +18,11 @@ namespace Portfolio
         {
             base.UnitTurnBase_OnTurnStartEvent(sender, e);
 
-            skillUI.ShowSkillUI();
-            skillUI.ResetSkillUI(this);
+            if (!AISystem.isAI)
+            {
+                skillUI.ShowSkillUI();
+                skillUI.ResetSkillUI(this);
+            }
         }
 
         public override void UnitTurnBase_OnTurnEndEvent(object sender, EventArgs e)

@@ -29,90 +29,16 @@ namespace Portfolio
         }
     }
 
-    public class ConditionSystem
-    {
-        private int count;
-        private int resetCountValue;
-        private int overlapingCount = 1;
-        private Condition condition;
-        private UnitConditionUI conditionUI;
-        public int Count 
-        { 
-            get
-            {
-                return count;
-            }
-
-            private set 
-            {
-                count = value;
-                conditionUI.SetCount(count);
-            }
-        }
-        public int OverlapingCount 
-        { 
-            get
-            {
-                return overlapingCount;
-            } 
-            private set
-            {
-                overlapingCount = value;
-                conditionUI.SetOverlapCount(overlapingCount);
-            }
-        }
-        public Condition Condition { get => condition;  }
-        public UnitConditionUI ConditionUI { get => conditionUI; }
-
-        public bool isBuff { get => condition.ConditionData.isBuff; }
-        public bool isOverlap { get => condition.ConditionData.isOverlaping; }
-        public bool isResetCount { get => condition.ConditionData.isResetCount; }
-
-        public ConditionSystem(int count, Condition condition, UnitConditionUI conditionUI)
-        {
-            this.count = count;
-            this.resetCountValue = count;
-            this.condition = condition;
-            this.conditionUI = conditionUI;
-
-            conditionUI.SetCount(this.count);
-            conditionUI.SetOverlapCount(this.overlapingCount);
-        }
-
-        public void ResetCount()
-        {
-            Count = resetCountValue;
-        }
-
-        public void CountDown()
-        {
-            Count--;
-        }
-
-        public void EndCondition()
-        {
-            UnityEngine.Object.Destroy(conditionUI.gameObject);
-        }
-
-        public bool isCountEnd()
-        {
-            return count == 0;
-        }
-
-        public void AddOverlap()
-        {
-            OverlapingCount++;
-        }
-    }
 
     public abstract class BattleUnit : MonoBehaviour
     {
         private Unit unit;
+        private AISystem aiSystem;
 
         [SerializeField] UnitType unitType;
 
         [Header("UnitTurnSystem")]
-        private bool isTrun;
+        protected bool isTurn;
 
         [Header("UnitAttribute")]
         [SerializeField] private float maxHP = 100;
@@ -148,6 +74,8 @@ namespace Portfolio
         // Property
         //===========================================================
         public Unit Unit { get => this.unit; }
+        public AISystem AISystem { get => aiSystem; }
+        public bool IsTurn { get => isTurn; }
         public UnitType UnitType { get => unitType; set => unitType = value; }
         public float MaxHP { get => maxHP; set => maxHP = value; }
         public float AttackPoint { get => attackPoint; set => attackPoint = value; }
@@ -174,12 +102,16 @@ namespace Portfolio
             }
         }
 
+
+
         //===========================================================
         // UnityEvent
         //===========================================================
         private void Awake()
         {
             unitUI = GetComponent<UnitUI>();
+            aiSystem = GetComponent<AISystem>();
+
             unitUI.SetUnit(this);
 
             OnChangedCurrentHPEvent += unitUI.BattleUnit_OnCurrentHPChangedEvent;
@@ -217,6 +149,8 @@ namespace Portfolio
             // 틱형 상태이상만 카운트 다운
             ProceedTickCondition();
 
+            isTurn = true;
+
             OnStartCurrentTurnEvent?.Invoke(this, EventArgs.Empty);
         }
 
@@ -226,6 +160,8 @@ namespace Portfolio
 
             // 지속형 상태이상만 카운트 다운
             ProceedContinuationCondition();
+
+            isTurn = false;
 
             if (activeSkill_1_CoolTime > 0) activeSkill_1_CoolTime--;
             if (activeSkill_2_CoolTime > 0) activeSkill_2_CoolTime--;

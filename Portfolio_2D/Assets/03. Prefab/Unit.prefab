@@ -984,6 +984,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7066011998833549734}
   - component: {fileID: 7998194954082249218}
+  - component: {fileID: 5508705306554680237}
   m_Layer: 6
   m_Name: Unit
   m_TagString: Untagged
@@ -1026,3 +1027,15 @@ MonoBehaviour:
   unitHPUI: {fileID: 3733868280926391611}
   conditionLayout: {fileID: 7286817382653164475}
   conditionUIPrefab: {fileID: 8375094920632498939, guid: 3b2028c472465a04288e984f5c251d57, type: 3}
+--- !u!114 &5508705306554680237
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7066011998833549732}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4998b4d077edf94f93b58fb8721c301, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

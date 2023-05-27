@@ -7,6 +7,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5508705306554680237, guid: 8898834aca0794a409e1e82f006c6540, type: 3}
+      propertyPath: isAI
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7066011998833549732, guid: 8898834aca0794a409e1e82f006c6540, type: 3}
       propertyPath: m_Name
       value: EnemyUnit
@@ -84,3 +88,5 @@ MonoBehaviour:
   criticalDamage: 0
   effectHit: 0
   effectResistance: 0
+  activeSkill_1_CoolTime: 0
+  activeSkill_2_CoolTime: 0
