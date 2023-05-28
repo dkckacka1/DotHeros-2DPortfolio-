@@ -1,12 +1,10 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 namespace Portfolio
 {
-    public class EnemyBattleUnit : BattleUnit
+    public class PlayerUnitUI : BattleUnitUI
     {
-
     }
 }

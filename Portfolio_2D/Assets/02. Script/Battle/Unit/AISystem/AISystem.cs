@@ -20,7 +20,7 @@ namespace Portfolio
 
         private void Update()
         {
-            if (battleUnit.IsTurn && isAI)
+            if (BattleManager.Instance.BattleState == BattleState.PLAY && battleUnit.IsTurn && isAI)
             {
                 timer += Time.deltaTime;
                 if (timer >= turnEndTime)

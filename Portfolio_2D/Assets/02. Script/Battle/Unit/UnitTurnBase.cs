@@ -4,63 +4,48 @@ using UnityEngine.Events;
 
 namespace Portfolio
 {
-    public class UnitTurnBase
+    public class UnitTurnBase : MonoBehaviour
     {
-        public BattleUnit unit;
+        private BattleUnit battleUnit;
+        private BattleUnitUI battleUnitUI;
+
         public float currentTurnCount;
-        public GridPosition unitGridPosition;
-        public UnitSequenceUI unitSequenceUI;
-        public UnitSkillUI unitSkillUI;
 
         public event EventHandler OnTurnStartEvent;
         public event EventHandler OnTurnEndEvent;
 
-        public UnitTurnBase(PlayerBattleUnit unit, GridPosition gridPosition, UnitSequenceUI unitSequenceUI, UnitSkillUI unitSkillUI)
-        {
-            SetDefaultBattleUnit(unit, gridPosition, unitSequenceUI);
+        public BattleUnit BattleUnit { get => battleUnit; }
+        public BattleUnitUI BattleUnitUI { get => battleUnitUI; }
+        public UnitSequenceUI UnitSequenceUI { get => battleUnitUI.UnitSequenceUI; }
 
-            if (unit is PlayerBattleUnit)
-            {
-                if (unitSkillUI != null)
-                {
-                    (unit as PlayerBattleUnit).SetUI(unitSkillUI);
-                    this.unitSkillUI = unitSkillUI;
-                    unitSkillUI.SetUnit(this.unit);
-                }
-            }
+        private void Awake()
+        {
+            battleUnit = GetComponent<BattleUnit>();
+            battleUnitUI = GetComponent<BattleUnitUI>();
         }
 
-
-
-        public UnitTurnBase(EnemyBattleUnit unit, GridPosition gridPosition, UnitSequenceUI unitSequenceUI, UnitSkillUI unitSkillUI = null)
+        private void Start()
         {
-            SetDefaultBattleUnit(unit, gridPosition, unitSequenceUI);
-
+            BattleManager.TurnBaseSystem.UnitTurnBaseList.Add(this);
             currentTurnCount = 0f;
         }
 
-        private void SetDefaultBattleUnit(BattleUnit unit, GridPosition gridPosition, UnitSequenceUI unitSequenceUI)
+        private void SetDefaultBattleUnit(BattleUnit unit)
         {
-            this.unit = unit;
-            this.unitGridPosition = gridPosition;
-            this.unitSequenceUI = unitSequenceUI;
-
-            unitSequenceUI.SetNameText(unit.name);
-
             OnTurnStartEvent += unit.UnitTurnBase_OnTurnStartEvent;
             OnTurnEndEvent += unit.UnitTurnBase_OnTurnEndEvent;
         }
 
         public void TurnStart()
         {
-            OnTurnStartEvent.Invoke(this, EventArgs.Empty);
+            OnTurnStartEvent?.Invoke(this, EventArgs.Empty);
         }
 
         public void TurnEnd()
         {
             ResetUnitTurnCount();
 
-            OnTurnEndEvent.Invoke(this, EventArgs.Empty);
+            OnTurnEndEvent?.Invoke(this, EventArgs.Empty);
         }
 
         public void AddUnitTurnCount(float count) => currentTurnCount += count;

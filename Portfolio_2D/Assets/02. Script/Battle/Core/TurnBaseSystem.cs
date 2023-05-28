@@ -7,16 +7,18 @@ namespace Portfolio
     public class TurnBaseSystem : MonoBehaviour
     {
         [SerializeField] private float turnCount = 100f;
-
         [SerializeField] private UnitTurnBase currentTurnUnit = null;
 
+        private List<UnitTurnBase> unitTurnBaseList = new List<UnitTurnBase>();
         private TurnType currentTurnType;
+
+        public List<UnitTurnBase> UnitTurnBaseList { get => unitTurnBaseList; }
 
         private void Update()
         {
             if (BattleManager.Instance.BattleState == BattleState.PLAY && currentTurnType == TurnType.WAITTING)
             {
-                foreach (UnitTurnBase unitTurnBase in BattleManager.Instance.GetUnitList())
+                foreach (UnitTurnBase unitTurnBase in unitTurnBaseList)
                 {
                     if (unitTurnBase.currentTurnCount >= turnCount)
                     {
@@ -32,15 +34,15 @@ namespace Portfolio
 
         private void ProceedTurn(UnitTurnBase unitTurnBase)
         {
-            unitTurnBase.AddUnitTurnCount(unitTurnBase.unit.Speed * Time.deltaTime);
+            unitTurnBase.AddUnitTurnCount(unitTurnBase.BattleUnit.Speed * Time.deltaTime);
             float SequenceUIYNormalizedPos = unitTurnBase.GetCurrentTurnCount() / turnCount;
-            BattleManager.BattleUIManager.SequenceUI.SetSequenceUnitUIYPosition(unitTurnBase.unitSequenceUI, SequenceUIYNormalizedPos);
+            BattleManager.BattleUIManager.SequenceUI.SetSequenceUnitUIYPosition(unitTurnBase.UnitSequenceUI, SequenceUIYNormalizedPos);
         }
 
         public void StartTurn(UnitTurnBase unitbase)
         {
             currentTurnUnit = unitbase;
-            switch (unitbase.unit.UnitType)
+            switch (unitbase.BattleUnit.UnitType)
             {
                 case UnitType.Player:
                     BattleManager.ActionSystem.IsPlayerActionTime = true;
@@ -59,7 +61,7 @@ namespace Portfolio
             if (currentTurnUnit == null) return;
 
             currentTurnUnit.TurnEnd();
-            BattleManager.BattleUIManager.SequenceUI.SetSequenceUnitUIYPosition(currentTurnUnit.unitSequenceUI, 0);
+            BattleManager.BattleUIManager.SequenceUI.SetSequenceUnitUIYPosition(currentTurnUnit.UnitSequenceUI, 0);
             BattleManager.ActionSystem.ClearSelectedUnits();
             currentTurnUnit = null;
             currentTurnType = TurnType.WAITTING;

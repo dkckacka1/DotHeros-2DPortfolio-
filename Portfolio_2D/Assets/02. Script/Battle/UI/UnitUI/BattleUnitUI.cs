@@ -5,13 +5,14 @@ using UnityEngine;
 
 namespace Portfolio
 {
-    public class UnitUI : MonoBehaviour
+    public class BattleUnitUI : MonoBehaviour
     {
         [SerializeField] private Canvas unitUICanvas;
 
         [Header("턴 UI")]
         [SerializeField] private GameObject currentTurnUIObject;
         [SerializeField] private GameObject targetedUIObject;
+        private UnitSequenceUI unitSequenceUI;
 
         [Header("HP바 UI")]
         [SerializeField] private UnitHPUI unitHPUI;
@@ -20,7 +21,11 @@ namespace Portfolio
         [SerializeField] private RectTransform conditionLayout;
         [SerializeField] private UnitConditionUI conditionUIPrefab;
 
+        [Header("스킬 UI")]
+        private UnitSkillUI skillUI;
 
+
+        public UnitSequenceUI UnitSequenceUI { get => unitSequenceUI; }
 
         private void Awake()
         {
@@ -28,9 +33,7 @@ namespace Portfolio
         }
             
         public void SetCurrentTurnUI(bool isTurn) => currentTurnUIObject.SetActive(isTurn);
-
         public void SetTargetedUI(bool isTarget) => targetedUIObject.SetActive(isTarget);
-
         public void SetUnit(BattleUnit unit)
         {
             unitHPUI.SetHP(unit.MaxHP);
@@ -48,6 +51,33 @@ namespace Portfolio
             var ui = Instantiate(conditionUIPrefab, conditionLayout);
             ui.SetCount(count);
             return ui;
+        }
+
+        public void CreateSequenceUI(BattleUnit battleUnit)
+        {
+            unitSequenceUI = BattleManager.BattleUIManager.CreateUnitSequenceUI();
+            unitSequenceUI.SetNameText(battleUnit.Unit.Data.unitName);
+        }
+
+        public void CreateSkillUI(BattleUnit battleUnit)
+        {
+            this.skillUI = BattleManager.BattleUIManager.CreateUnitSkillUI();
+            this.skillUI.SetUnit(battleUnit);
+        }
+
+        public void ShowSkillUI()
+        {
+            skillUI.ShowSkillUI();
+        }
+
+        public void HideSkillUI()
+        {
+            skillUI.HideSkillUI();
+        }
+
+        public void ResetSkillUI(BattleUnit unit)
+        {
+            skillUI.ResetSkillUI(unit);
         }
     }
 

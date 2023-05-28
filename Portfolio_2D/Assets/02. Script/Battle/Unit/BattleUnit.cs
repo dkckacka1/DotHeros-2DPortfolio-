@@ -30,7 +30,7 @@ namespace Portfolio
     }
 
 
-    public abstract class BattleUnit : MonoBehaviour
+    public class BattleUnit : MonoBehaviour
     {
         private Unit unit;
         private AISystem aiSystem;
@@ -57,7 +57,7 @@ namespace Portfolio
 
         private Dictionary<int, ConditionSystem> conditionDic = new Dictionary<int, ConditionSystem>();
 
-        private UnitUI unitUI;
+        private BattleUnitUI unitUI;
 
         //===========================================================
         // Event
@@ -109,7 +109,7 @@ namespace Portfolio
         //===========================================================
         private void Awake()
         {
-            unitUI = GetComponent<UnitUI>();
+            unitUI = GetComponent<BattleUnitUI>();
             aiSystem = GetComponent<AISystem>();
 
             unitUI.SetUnit(this);
@@ -135,6 +135,13 @@ namespace Portfolio
 
             SetPassiveSkill(this.unit.passiveSkill_1, this.unit.passiveSkillLevel_1);
             SetPassiveSkill(this.unit.passiveSkill_2, this.unit.passiveSkillLevel_2);
+
+            unitUI.CreateSequenceUI(this);
+
+            if (unitType == UnitType.Player)
+            {
+                unitUI.CreateSkillUI(this);
+            }
         }
 
         //===========================================================
@@ -151,6 +158,12 @@ namespace Portfolio
 
             isTurn = true;
 
+            if (unitType == UnitType.Player && !AISystem.isAI)
+            {
+                unitUI.ShowSkillUI();
+                unitUI.ResetSkillUI(this);
+            }
+
             OnStartCurrentTurnEvent?.Invoke(this, EventArgs.Empty);
         }
 
@@ -165,6 +178,11 @@ namespace Portfolio
 
             if (activeSkill_1_CoolTime > 0) activeSkill_1_CoolTime--;
             if (activeSkill_2_CoolTime > 0) activeSkill_2_CoolTime--;
+
+            if (unitType == UnitType.Player && !AISystem.isAI)
+            {
+                unitUI.HideSkillUI();
+            }
 
             OnEndCurrentTurnEvent?.Invoke(this, EventArgs.Empty);
         }
@@ -228,8 +246,6 @@ namespace Portfolio
                 return;
             }
 
-            //Debug.Log(skill.GetData == null);
-
             if (!skill.GetData.isAllPlayer && !skill.GetData.isAllEnemy)
             {
                 SetPassiveSkillEvent(skill, skillLevel,this);
@@ -247,7 +263,7 @@ namespace Portfolio
         {
             if (skill.GetData.isOnStartBattle)
             {
-                targetUnit.OnAttackEvent += ((sender, e) => skill.Action(this, new SkillActionEventArgs(skillLevel, this, targetUnit)));
+                targetUnit.OnStartBattleEvent += ((sender, e) => skill.Action(this, new SkillActionEventArgs(skillLevel, this, targetUnit)));
             }
 
             if (skill.GetData.isOnStartTurn)

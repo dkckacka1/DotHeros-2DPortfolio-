@@ -8,8 +8,6 @@ using TMPro;
 
 namespace Portfolio
 {
-
-
     public class UnitSkillUI : MonoBehaviour
     {
         private BattleUnit battleUnit;

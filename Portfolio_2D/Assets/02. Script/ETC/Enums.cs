@@ -5,7 +5,10 @@
         NONE = -1,
         PLAY,
         PAUSE,
-        SETTING,
+        SETSTAGE,
+        BATTLESTART,
+        WIN,
+        DEFEAT,
         COUNT
     }
 

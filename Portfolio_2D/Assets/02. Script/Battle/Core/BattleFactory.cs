@@ -7,8 +7,8 @@ namespace Portfolio
     public class BattleFactory : MonoBehaviour
     {
         [Header("Unit")]
-        [SerializeField] private PlayerBattleUnit playerUnit;
-        [SerializeField] private EnemyBattleUnit enemyUnit;
+        [SerializeField] private BattleUnit playerBattleUnitPrefab;
+        [SerializeField] private BattleUnit enemyBattleUnitPrefab;
 
         [Header("Grid")]
         [SerializeField] List<GridPosition> playerGrids;
@@ -25,9 +25,8 @@ namespace Portfolio
                     continue;
                 }
 
-                var newUnit = Instantiate(playerUnit, gridPosition.transform);
+                var newUnit = Instantiate(playerBattleUnitPrefab, gridPosition.transform);
                 gridPosition.unit = newUnit;
-                unitBase = new UnitTurnBase(newUnit, gridPosition, BattleManager.BattleUIManager.CreateUnitSequenceUI(), BattleManager.BattleUIManager.CreateUnitSkillUI());
                 break;
             }
 
@@ -45,10 +44,9 @@ namespace Portfolio
                     continue;
                 }
 
-                var newBattleUnit = Instantiate(playerUnit, gridPosition.transform);
+                var newBattleUnit = Instantiate(playerBattleUnitPrefab, gridPosition.transform);
                 gridPosition.unit = newBattleUnit;
                 newBattleUnit.SetUnit(unit);
-                unitBase = new UnitTurnBase(newBattleUnit, gridPosition, BattleManager.BattleUIManager.CreateUnitSequenceUI(), BattleManager.BattleUIManager.CreateUnitSkillUI());
                 break;
             }
 
@@ -66,9 +64,8 @@ namespace Portfolio
                     continue;
                 }
 
-                var newUnit = Instantiate(enemyUnit, gridPosition.transform);
+                var newUnit = Instantiate(enemyBattleUnitPrefab, gridPosition.transform);
                 gridPosition.unit = newUnit;
-                unitBase = new UnitTurnBase(newUnit, gridPosition, BattleManager.BattleUIManager.CreateUnitSequenceUI());
                 break;
             }
 

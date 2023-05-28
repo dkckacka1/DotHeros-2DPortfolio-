@@ -983,6 +983,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7066011998833549734}
+  - component: {fileID: -4679151723633414215}
+  - component: {fileID: -2571103185468094933}
   - component: {fileID: 7998194954082249218}
   - component: {fileID: 5508705306554680237}
   m_Layer: 6
@@ -1009,6 +1011,47 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &-4679151723633414215
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7066011998833549732}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 599faaa0ad81d9a4880296502d31ae5b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  unitType: 0
+  maxHP: 100
+  currentHP: 100
+  attackPoint: 10
+  speed: 100
+  defencePoint: 0
+  criticalPoint: 0
+  criticalDamage: 0
+  effectHit: 0
+  effectResistance: 0
+  activeSkill_1_CoolTime: 0
+  activeSkill_2_CoolTime: 0
+--- !u!114 &-2571103185468094933
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7066011998833549732}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3b3b969d09b545419dd822b5774f18d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  unit: {fileID: 0}
+  currentTurnCount: 0
+  unitGridPosition: {fileID: 0}
+  unitSequenceUI: {fileID: 0}
+  unitSkillUI: {fileID: 0}
 --- !u!114 &7998194954082249218
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1039,3 +1082,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4998b4d077edf94f93b58fb8721c301, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isAI: 0

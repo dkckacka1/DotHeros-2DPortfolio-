@@ -14,10 +14,10 @@ namespace Portfolio
         private static TurnBaseSystem turnBaseSystem;
         private static ActionSystem actionSystem;
         private static ManaSystem manaSystem;
-         
-        private List<UnitTurnBase> unitList;
 
-        private BattleState battleState = BattleState.SETTING;
+        private List<BattleUnit> unitList = new List<BattleUnit>();
+
+        private BattleState battleState = BattleState.NONE;
 
 
 
@@ -47,8 +47,6 @@ namespace Portfolio
             turnBaseSystem = GetComponentInChildren<TurnBaseSystem>();
             actionSystem = GetComponentInChildren<ActionSystem>();
             manaSystem = GetComponentInChildren<ManaSystem>();
-
-            unitList = new List<UnitTurnBase>();
         }
 
         private void Start()
@@ -56,32 +54,54 @@ namespace Portfolio
             battleState = BattleState.PLAY;
         }
 
-        public void AddUnitinUnitList(UnitTurnBase unit) => unitList.Add(unit);
-        public void RemoveUnitinUnitList(BattleUnit unit)
+        public void AddUnitinUnitList(BattleUnit unit) => unitList.Add(unit);
+        public void RemoveUnit(BattleUnit unit)
         {
-            unitList.Remove(unitList.Find((findunit) => findunit.unit == unit));
+            unitList.Remove(unit);
         }
         public void ClearUnitinUnitList()
         {
             unitList.Clear();
         }
-        public UnitTurnBase FindUnitinUnitList(BattleUnit unit) => unitList.Find((findunit) => findunit.unit == unit);
-        public List<UnitTurnBase> GetUnitList() => unitList;
+        public List<BattleUnit> GetUnitList() => unitList;
 
-        public void UnitListCycleMethod(UnityAction<BattleUnit> action)
-        {
-            foreach (var unitBase in unitList)
-            {
-                action?.Invoke(unitBase.unit);
-            }
-        }
-
+        //===========================================================
+        // SetState
+        //===========================================================
         public void SwitchBattleState(BattleState state)
         {
             battleState = state;
             InvokeStateEvent(state);
         }
 
+        public void Play()
+        {
+            SwitchBattleState(BattleState.PLAY);
+        }
+
+        public void SetStage(int stageID)
+        {
+            SwitchBattleState(BattleState.SETSTAGE);
+        }
+
+        public void Pause()
+        {
+            SwitchBattleState(BattleState.PAUSE);
+        }
+
+        public void Win()
+        {
+            SwitchBattleState(BattleState.WIN);
+        }
+
+        public void Defeat()
+        {
+            SwitchBattleState(BattleState.DEFEAT);
+        }
+
+        //===========================================================
+        // StateEvent
+        //===========================================================
         public void PublishEvent(BattleState state, UnityAction action)
         {
             if (StateEventHandlerDic.ContainsKey(state))
@@ -113,7 +133,7 @@ namespace Portfolio
 
         public void SetAutomaticBattle()
         {
-            var list = this.unitList.Where(turnBase => turnBase.unit is PlayerBattleUnit).Select(turnBase => turnBase.unit as PlayerBattleUnit);
+            var list = this.unitList.Where(battleUnit => battleUnit.UnitType == UnitType.Player);
             foreach (var unit in list)
             {
                 unit.AISystem.isAI = !unit.AISystem.isAI;
