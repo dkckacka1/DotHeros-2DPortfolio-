@@ -9,6 +9,9 @@ namespace Portfolio
 {
     public class AISystem : MonoBehaviour
     {
+        private BattleUnit battleUnit;
+        private UnitTurnBase unitTurnBase;
+
         public bool isAI;
 
         private float timer = 0f;
@@ -17,11 +20,11 @@ namespace Portfolio
         private ActiveSkill activeSkill_1;
         private ActiveSkill activeSkill_2;
 
-        private BattleUnit battleUnit;
 
         private void Awake()
         {
             battleUnit = GetComponent<BattleUnit>();
+            unitTurnBase = GetComponent<UnitTurnBase>();
         }
 
         private void Update()
@@ -45,6 +48,7 @@ namespace Portfolio
                 if (TryActiveSkill(ActiveSkillType.Firstpriority))
                 {
                     BattleManager.TurnBaseSystem.TurnEnd();
+                    return;
                 }
 
                 IEnumerable<BattleUnit> allyList = BattleManager.Instance.GetUnitList(battleUnit => battleUnit.IsAlly(this.battleUnit));
@@ -52,17 +56,20 @@ namespace Portfolio
                 
                 if (allyList.Where(isUnitDamaged).Count() >= 1)
                 {
-
+                    Debug.Log($"데미지를 입은 아군은 {allyList.Where(isUnitDamaged).Count()}명입니다.");
                 }
 
 
 
 
-                BattleManager.ActionSystem.SetActiveSkill(battleUnit.Unit.basicAttackSkill);
+                BattleManager.ActionSystem.SetActiveSkill(battleUnit.Unit.basicAttackSkill, GetLowHealthUnit);
                 battleUnit.BasicAttack();
                 BattleManager.TurnBaseSystem.TurnEnd();
             }
         }
+
+
+
         public void SetActiveSkill(Unit unit)
         {
             activeSkill_1 = unit.activeSkill_1;
@@ -73,7 +80,7 @@ namespace Portfolio
         {
             if (activeSkill_2.GetData.activeSkillType == type)
             {
-                if (this.battleUnit.CanActiveSkillCool(activeSkill_2))
+                if (this.battleUnit.CanActiveSkill(activeSkill_2))
                 {
                     BattleManager.ActionSystem.SetActiveSkill(activeSkill_2);
                     battleUnit.UseActiveSkill(activeSkill_2);
@@ -83,7 +90,7 @@ namespace Portfolio
 
             if (activeSkill_1.GetData.activeSkillType == type)
             {
-                if (this.battleUnit.CanActiveSkillCool(activeSkill_1))
+                if (this.battleUnit.CanActiveSkill(activeSkill_1))
                 {
                     BattleManager.ActionSystem.SetActiveSkill(activeSkill_1);
                     battleUnit.UseActiveSkill(activeSkill_1);
@@ -101,6 +108,14 @@ namespace Portfolio
         private bool isUnitDamaged(BattleUnit unit)
         {
             return (unit.CurrentHP / unit.MaxHP) <= 0.8f;
+        }
+
+        //===========================================================
+        // PriorityCheck
+        //===========================================================
+        private int GetLowHealthUnit(BattleUnit arg)
+        {
+            return (int)arg.CurrentHP;
         }
     }
 }

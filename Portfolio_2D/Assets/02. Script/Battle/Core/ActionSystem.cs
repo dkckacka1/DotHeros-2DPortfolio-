@@ -121,6 +121,35 @@ namespace Portfolio
 
             SelectedUnits.Clear();
         }
+
+        public void SetActiveSkill(ActiveSkill skill)
+        {
+            isSkillAction = true;
+            ClearSelectedUnits();
+            SetHowToTarget(skill);
+            if (isAutoTarget)
+            {
+                SelectAutoTarget();
+            }
+        }
+
+        public void SetActiveSkill(ActiveSkill skill, Func<BattleUnit, int> orderby)
+        {
+            isSkillAction = true;
+            ClearSelectedUnits();
+            SetHowToTarget(skill);
+            if (isAutoTarget)
+            {
+                SelectAutoTarget();
+            }
+            else
+            {
+                SelectAITarget(orderby);
+            }
+        }
+
+
+
         public void SetHowToTarget(ActiveSkill skill)
         {
             if (skill == null)
@@ -136,11 +165,6 @@ namespace Portfolio
             targetNum = skill.GetData.targetNum;
             autoPeer = skill.GetData.autoPeerTargetType;
             autoProcession = skill.GetData.autoProcessionTargetType;
-
-            if (isAutoTarget)
-            {
-                SelectAutoTarget();
-            }
         }
 
         public void SelectAutoTarget()
@@ -168,6 +192,32 @@ namespace Portfolio
             }
         }
 
+        private void SelectAITarget(Func<BattleUnit, int> orderby)
+        {
+            var list = unitGrids.
+            Where((grid) => isUnitAtGrid(grid) && !grid.isDead && IsTargetUnitTypeAtGrid(grid) && IsTargetLineTypeAtGrid(grid)).
+            Select(grid => grid.unit).
+            OrderBy(orderby);
+
+            int count = 0;
+            Debug.Log(list.Count());
+            foreach (var unit in list)
+            {
+                Debug.Log(unit.name);
+            }
+
+            foreach (var unit in list)
+            {
+                if (count >= targetNum)
+                {
+                    break;
+                }
+
+                ++count;
+                SelectedUnit(unit);
+            }
+        }
+
         private bool isUnitAtGrid(GridPosition grid)
         {
             return grid.IsUnit;
@@ -175,10 +225,10 @@ namespace Portfolio
         private bool IsTargetUnitTypeAtGrid(GridPosition grid)
         {
             //Debug.Log($"grid = {grid.unit.name}\n" +
-                //$"isPlayerTarget = {isPlayerTarget}\n" +
-                //$"isEnemyTarget = {isEnemyTarget}\n" +
-                //$"grid.GetUnitType = {grid.GetUnitType}\n" +
-                //$"(isPlayerTarget && grid.GetUnitType == UnitType.Player) || (isEnemyTarget && grid.GetUnitType == UnitType.Enemy) = {(isPlayerTarget && grid.GetUnitType == UnitType.Player) || (isEnemyTarget && grid.GetUnitType == UnitType.Enemy)}");
+            //$"isPlayerTarget = {isPlayerTarget}\n" +
+            //$"isEnemyTarget = {isEnemyTarget}\n" +
+            //$"grid.GetUnitType = {grid.GetUnitType}\n" +
+            //$"(isPlayerTarget && grid.GetUnitType == UnitType.Player) || (isEnemyTarget && grid.GetUnitType == UnitType.Enemy) = {(isPlayerTarget && grid.GetUnitType == UnitType.Player) || (isEnemyTarget && grid.GetUnitType == UnitType.Enemy)}");
             return (isEnemyTarget == !BattleManager.TurnBaseSystem.CurrentTurnUnit.BattleUnit.IsAlly(grid.unit)) 
                 || (isAllyTarget == BattleManager.TurnBaseSystem.CurrentTurnUnit.BattleUnit.IsAlly(grid.unit));
         }
@@ -187,13 +237,6 @@ namespace Portfolio
             return (isFrontTarget && grid.lineType == LineType.FrontLine) || (isRearTarget && grid.lineType == LineType.RearLine);
         }
 
-
-        public void SetActiveSkill(ActiveSkill skill)
-        {
-            isSkillAction = true;
-            ClearSelectedUnits();
-            SetHowToTarget(skill);
-        }
 
         public List<BattleUnit> GetPassiveTargetUnit(PassiveSkill passiveSkill)
         {
