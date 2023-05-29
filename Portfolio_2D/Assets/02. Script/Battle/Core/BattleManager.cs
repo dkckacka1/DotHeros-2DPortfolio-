@@ -69,7 +69,17 @@ namespace Portfolio
         }
         public List<BattleUnit> GetUnitList() => unitList;
 
-        public IEnumerable<BattleUnit> GetUnitList(bool isEnemy)
+        public IEnumerable<BattleUnit> GetUnitList(Func<BattleUnit, bool> predicate)
+        {
+            return unitList.Where(predicate);
+        }
+
+        public int GetUnitListCount(IEnumerable<BattleUnit> list)
+        {
+            return list.Count();
+        }
+
+        private IEnumerable<BattleUnit> GetUnitList(bool isEnemy)
         {
             return unitList.Where(battleUnit => (battleUnit.IsEnemy == isEnemy) && !battleUnit.IsDead);
         }

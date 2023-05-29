@@ -1,6 +1,8 @@
 using Portfolio.skill;
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace Portfolio
@@ -11,6 +13,9 @@ namespace Portfolio
 
         private float timer = 0f;
         private float turnEndTime = 1f;
+
+        private ActiveSkill activeSkill_1;
+        private ActiveSkill activeSkill_2;
 
         private BattleUnit battleUnit;
 
@@ -37,29 +42,65 @@ namespace Portfolio
                     return;
                 }
 
-                if (battleUnit.Unit.activeSkill_2.GetData.activeSkillType == ActiveSkillType.Firstpriority)
+                if (TryActiveSkill(ActiveSkillType.Firstpriority))
                 {
-                    if (battleUnit.canActiveSkillCool(battleUnit.Unit.activeSkill_2))
-                    {
-                        BattleManager.ActionSystem.SetActiveSkill(battleUnit.Unit.activeSkill_2);
-                        battleUnit.UseActiveSkill(battleUnit.Unit.activeSkill_2, battleUnit.Unit.activeSkillLevel_2, ref battleUnit.activeSkill_2_CoolTime);
-                        BattleManager.TurnBaseSystem.TurnEnd();
-                        return;
-                    }
+                    BattleManager.TurnBaseSystem.TurnEnd();
                 }
 
-                if (battleUnit.Unit.activeSkill_1.GetData.activeSkillType == ActiveSkillType.Firstpriority)
+                IEnumerable<BattleUnit> allyList = BattleManager.Instance.GetUnitList(battleUnit => battleUnit.IsAlly(this.battleUnit));
+                IEnumerable<BattleUnit> enemyList = BattleManager.Instance.GetUnitList(battleUnit => !battleUnit.IsAlly(this.battleUnit));
+                
+                if (allyList.Where(isUnitDamaged).Count() >= 1)
                 {
-                    if (battleUnit.canActiveSkillCool(battleUnit.Unit.activeSkill_1))
-                    {
 
-                    }
                 }
+
+
+
 
                 BattleManager.ActionSystem.SetActiveSkill(battleUnit.Unit.basicAttackSkill);
                 battleUnit.BasicAttack();
                 BattleManager.TurnBaseSystem.TurnEnd();
             }
+        }
+        public void SetActiveSkill(Unit unit)
+        {
+            activeSkill_1 = unit.activeSkill_1;
+            activeSkill_2 = unit.activeSkill_2;
+        }
+
+        private bool TryActiveSkill(ActiveSkillType type)
+        {
+            if (activeSkill_2.GetData.activeSkillType == type)
+            {
+                if (this.battleUnit.CanActiveSkillCool(activeSkill_2))
+                {
+                    BattleManager.ActionSystem.SetActiveSkill(activeSkill_2);
+                    battleUnit.UseActiveSkill(activeSkill_2);
+                    return true;
+                }
+            }
+
+            if (activeSkill_1.GetData.activeSkillType == type)
+            {
+                if (this.battleUnit.CanActiveSkillCool(activeSkill_1))
+                {
+                    BattleManager.ActionSystem.SetActiveSkill(activeSkill_1);
+                    battleUnit.UseActiveSkill(activeSkill_1);
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        //===========================================================
+        // ConditionCheck
+        //===========================================================
+
+        private bool isUnitDamaged(BattleUnit unit)
+        {
+            return (unit.CurrentHP / unit.MaxHP) <= 0.8f;
         }
     }
 }

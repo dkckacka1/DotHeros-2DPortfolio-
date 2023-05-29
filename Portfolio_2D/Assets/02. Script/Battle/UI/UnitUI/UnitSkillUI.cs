@@ -74,14 +74,14 @@ namespace Portfolio
             {
                 //Debug.Log($"{battleUnit.name}의 {battleUnit.Unit.activeSkill_1.GetData.skillName}의 스킬 쿨타임은 {battleUnit.activeSkill_1_CoolTime} 입니다.");
                 //Debug.Log(battleUnit.CanActiveSkill(battleUnit.Unit.activeSkill_1, battleUnit.activeSkill_1_CoolTime));
-                activeSkill_1_ActionBtn.interactable = battleUnit.CanActiveSkill(battleUnit.Unit.activeSkill_1, battleUnit.activeSkill_1_CoolTime);
+                activeSkill_1_ActionBtn.interactable = battleUnit.CanActiveSkill(battleUnit.Unit.activeSkill_1);
                 skillCoolTime_1_Text.gameObject.SetActive(battleUnit.activeSkill_1_CoolTime != 0);
                 skillCoolTime_1_Text.text = battleUnit.activeSkill_1_CoolTime.ToString();
             }
 
             if (battleUnit.Unit.activeSkill_2 != null)
             {
-                activeSkill_2_ActionBtn.interactable = battleUnit.CanActiveSkill(battleUnit.Unit.activeSkill_2, battleUnit.activeSkill_2_CoolTime);
+                activeSkill_2_ActionBtn.interactable = battleUnit.CanActiveSkill(battleUnit.Unit.activeSkill_2);
                 skillCoolTime_2_Text.gameObject.SetActive(battleUnit.activeSkill_2_CoolTime != 0);
                 skillCoolTime_2_Text.text = battleUnit.activeSkill_2_CoolTime.ToString();
             }
@@ -128,12 +128,12 @@ namespace Portfolio
             {
                 if (selectActiveSkill == battleUnit.Unit.activeSkill_1)
                 {
-                    battleUnit.UseActiveSkill(battleUnit.Unit.activeSkill_1, battleUnit.Unit.activeSkillLevel_1, ref battleUnit.activeSkill_1_CoolTime);
+                    battleUnit.UseActiveSkill(battleUnit.Unit.activeSkill_1);
 
                 }
                 else if(selectActiveSkill == battleUnit.Unit.activeSkill_2)
                 {
-                    battleUnit.UseActiveSkill(battleUnit.Unit.activeSkill_2, battleUnit.Unit.activeSkillLevel_2, ref battleUnit.activeSkill_2_CoolTime);
+                    battleUnit.UseActiveSkill(battleUnit.Unit.activeSkill_2);
                 }
             }
 

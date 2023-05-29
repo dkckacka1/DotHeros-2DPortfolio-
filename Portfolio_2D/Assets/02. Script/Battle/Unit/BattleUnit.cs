@@ -146,6 +146,8 @@ namespace Portfolio
             {
                 unitUI.CreateSkillUI(this);
             }
+
+            aiSystem.SetActiveSkill(unit);
         }
 
         //===========================================================
@@ -240,7 +242,6 @@ namespace Portfolio
             BattleManager.Instance.CheckUnitList();
         }
 
-
         public bool IsAlly(BattleUnit targetUnit)
             // true면 나의 아군, false면 나의 적군
         {
@@ -250,14 +251,18 @@ namespace Portfolio
         //===========================================================
         // SkillSystem
         //===========================================================
-        public void UseActiveSkill(ActiveSkill skill, int skillLevel, ref int skillCoolTime)
+        public void UseActiveSkill(ActiveSkill skill)
         {
+            int skillLevel = 1;
+
             if (skill == unit.activeSkill_1)
             {
+                skillLevel = unit.activeSkill_1.GetData.skillCoolTime;
                 activeSkill_1_CoolTime = skill.GetData.skillCoolTime + 1; // 턴종료시에 바로 쿨타임하나가 줄기에 +1 만큼 더해줌
             }
             else if (skill == unit.activeSkill_2)
             {
+                skillLevel = unit.activeSkill_2.GetData.skillCoolTime;
                 activeSkill_2_CoolTime = skill.GetData.skillCoolTime + 1; // 턴종료시에 바로 쿨타임하나가 줄기에 +1 만큼 더해줌
             }
             else
@@ -276,12 +281,26 @@ namespace Portfolio
             }
         }
 
-        public bool CanActiveSkill(ActiveSkill activeSkill, int skillCoolTime)
+        public bool CanActiveSkill(ActiveSkill activeSkill)
         {
-            return (BattleManager.ManaSystem.canUseMana(activeSkill.GetData.consumeManaValue)) && (skillCoolTime == 0);
+            if (!isEnemy)
+                // 플레이어면 쿨타임체크, 마나값 체크
+            {
+                return CanActiveSkillCool(activeSkill) && CanActiveSkillAbleMana(activeSkill);
+            }
+            else
+                // 플레이어면 쿨타임체크
+            {
+                return CanActiveSkillCool(activeSkill);
+            }
         }
 
-        public bool canActiveSkillCool(ActiveSkill activeSkill)
+        public bool CanActiveSkillAbleMana(ActiveSkill activeSkill)
+        {
+            return BattleManager.ManaSystem.canUseMana(activeSkill.GetData.consumeManaValue);
+        }
+
+        public bool CanActiveSkillCool(ActiveSkill activeSkill)
         {
             if (activeSkill == unit.activeSkill_1)
             {
