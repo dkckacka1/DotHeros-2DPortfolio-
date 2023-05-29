@@ -2,6 +2,7 @@
 {
     public class ActiveSkillData : SkillData
     {
+        public ActiveSkillType activeSkillType;
         public bool isAutoTarget;
 
         public int skillCoolTime;

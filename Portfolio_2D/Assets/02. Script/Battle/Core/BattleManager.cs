@@ -54,6 +54,10 @@ namespace Portfolio
             battleState = BattleState.PLAY;
         }
 
+        //===========================================================
+        // UnitList
+        //===========================================================
+
         public void AddUnitinUnitList(BattleUnit unit) => unitList.Add(unit);
         public void RemoveUnit(BattleUnit unit)
         {
@@ -64,6 +68,26 @@ namespace Portfolio
             unitList.Clear();
         }
         public List<BattleUnit> GetUnitList() => unitList;
+
+        public IEnumerable GetUnitList(bool isEnemy)
+        {
+            return unitList.Where(battleUnit => (battleUnit.IsEnemy == isEnemy) && !battleUnit.IsDead);
+        }
+
+        public void CheckUnitList()
+        {
+            if (unitList.Where(battleUnit => (!battleUnit.IsEnemy) && !battleUnit.IsDead).Count() == 0)
+                // 살아있는 플레이어 유닛이 0명일 경우
+            {
+                SwitchBattleState(BattleState.WIN);
+            }
+            
+            if (unitList.Where(battleUnit => (battleUnit.IsEnemy) && !battleUnit.IsDead).Count() == 0)
+                // 살아있는 적 유닛이 0명일 경우
+            {
+                SwitchBattleState(BattleState.DEFEAT);
+            }
+        }
 
         //===========================================================
         // SetState
@@ -133,7 +157,7 @@ namespace Portfolio
 
         public void SetAutomaticBattle()
         {
-            var list = this.unitList.Where(battleUnit => battleUnit.UnitType == UnitType.Player);
+            var list = this.unitList.Where(battleUnit => !battleUnit.IsEnemy);
             foreach (var unit in list)
             {
                 unit.AISystem.isAI = !unit.AISystem.isAI;

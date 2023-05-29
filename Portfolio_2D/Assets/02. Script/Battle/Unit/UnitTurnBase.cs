@@ -11,9 +11,6 @@ namespace Portfolio
 
         public float currentTurnCount;
 
-        public event EventHandler OnTurnStartEvent;
-        public event EventHandler OnTurnEndEvent;
-
         public BattleUnit BattleUnit { get => battleUnit; }
         public BattleUnitUI BattleUnitUI { get => battleUnitUI; }
         public UnitSequenceUI UnitSequenceUI { get => battleUnitUI.UnitSequenceUI; }
@@ -30,22 +27,21 @@ namespace Portfolio
             currentTurnCount = 0f;
         }
 
-        private void SetDefaultBattleUnit(BattleUnit unit)
+        private void OnDisable()
         {
-            OnTurnStartEvent += unit.UnitTurnBase_OnTurnStartEvent;
-            OnTurnEndEvent += unit.UnitTurnBase_OnTurnEndEvent;
+            BattleManager.TurnBaseSystem.UnitTurnBaseList.Remove(this);
         }
 
         public void TurnStart()
         {
-            OnTurnStartEvent?.Invoke(this, EventArgs.Empty);
+            battleUnit.StartUnitTurn();
         }
 
         public void TurnEnd()
         {
-            ResetUnitTurnCount();
+            battleUnit.EndUnitTurn();
 
-            OnTurnEndEvent?.Invoke(this, EventArgs.Empty);
+            ResetUnitTurnCount();
         }
 
         public void AddUnitTurnCount(float count) => currentTurnCount += count;

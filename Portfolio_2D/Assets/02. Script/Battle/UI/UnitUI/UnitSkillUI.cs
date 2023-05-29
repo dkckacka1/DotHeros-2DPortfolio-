@@ -72,8 +72,8 @@ namespace Portfolio
             InitSkillUI();
             if (battleUnit.Unit.activeSkill_1 != null)
             {
-                Debug.Log($"{battleUnit.name}의 {battleUnit.Unit.activeSkill_1.GetData.skillName}의 스킬 쿨타임은 {battleUnit.activeSkill_1_CoolTime} 입니다.");
-                Debug.Log(battleUnit.CanActiveSkill(battleUnit.Unit.activeSkill_1, battleUnit.activeSkill_1_CoolTime));
+                //Debug.Log($"{battleUnit.name}의 {battleUnit.Unit.activeSkill_1.GetData.skillName}의 스킬 쿨타임은 {battleUnit.activeSkill_1_CoolTime} 입니다.");
+                //Debug.Log(battleUnit.CanActiveSkill(battleUnit.Unit.activeSkill_1, battleUnit.activeSkill_1_CoolTime));
                 activeSkill_1_ActionBtn.interactable = battleUnit.CanActiveSkill(battleUnit.Unit.activeSkill_1, battleUnit.activeSkill_1_CoolTime);
                 skillCoolTime_1_Text.gameObject.SetActive(battleUnit.activeSkill_1_CoolTime != 0);
                 skillCoolTime_1_Text.text = battleUnit.activeSkill_1_CoolTime.ToString();

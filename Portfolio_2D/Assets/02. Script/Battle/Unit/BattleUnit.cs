@@ -35,7 +35,7 @@ namespace Portfolio
         private Unit unit;
         private AISystem aiSystem;
 
-        [SerializeField] UnitType unitType;
+        [SerializeField] bool isEnemy;
 
         [Header("UnitTurnSystem")]
         protected bool isTurn;
@@ -50,6 +50,9 @@ namespace Portfolio
         [SerializeField] private float criticalDamage = 0f;
         [SerializeField] private float effectHit = 0f;
         [SerializeField] private float effectResistance = 0f;
+
+        [Header("UnitState)")]
+        [SerializeField] private bool isDead = false;
 
         [Header("Skill")]
         public int activeSkill_1_CoolTime = 0;
@@ -76,7 +79,7 @@ namespace Portfolio
         public Unit Unit { get => this.unit; }
         public AISystem AISystem { get => aiSystem; }
         public bool IsTurn { get => isTurn; }
-        public UnitType UnitType { get => unitType; set => unitType = value; }
+        public bool IsEnemy { get => isEnemy; set => isEnemy = value; }
         public float MaxHP { get => maxHP; set => maxHP = value; }
         public float AttackPoint { get => attackPoint; set => attackPoint = value; }
         public float Speed { get => speed; set => speed = value; }
@@ -101,6 +104,8 @@ namespace Portfolio
                 }
             }
         }
+
+        public bool IsDead { get => isDead; }
 
 
 
@@ -138,7 +143,7 @@ namespace Portfolio
 
             unitUI.CreateSequenceUI(this);
 
-            if (unitType == UnitType.Player)
+            if (!IsEnemy)
             {
                 unitUI.CreateSkillUI(this);
             }
@@ -147,8 +152,10 @@ namespace Portfolio
         //===========================================================
         // TurnSystem & ActionSystem
         //===========================================================
-        public virtual void UnitTurnBase_OnTurnStartEvent(object sender, EventArgs e)
+        public virtual void StartUnitTurn()
         {
+            Debug.Log(this.gameObject.name + "의 턴");
+
             unitUI.SetCurrentTurnUI(true);
 
             // 틱형 상태이상을 순회
@@ -158,7 +165,7 @@ namespace Portfolio
 
             isTurn = true;
 
-            if (unitType == UnitType.Player && !AISystem.isAI)
+            if (!IsEnemy && !AISystem.isAI)
             {
                 unitUI.ShowSkillUI();
                 unitUI.ResetSkillUI(this);
@@ -167,7 +174,7 @@ namespace Portfolio
             OnStartCurrentTurnEvent?.Invoke(this, EventArgs.Empty);
         }
 
-        public virtual void UnitTurnBase_OnTurnEndEvent(object sender, EventArgs e)
+        public virtual void EndUnitTurn()
         {
             unitUI.SetCurrentTurnUI(false);
 
@@ -179,7 +186,7 @@ namespace Portfolio
             if (activeSkill_1_CoolTime > 0) activeSkill_1_CoolTime--;
             if (activeSkill_2_CoolTime > 0) activeSkill_2_CoolTime--;
 
-            if (unitType == UnitType.Player && !AISystem.isAI)
+            if (!IsEnemy && !AISystem.isAI)
             {
                 unitUI.HideSkillUI();
             }
@@ -217,7 +224,11 @@ namespace Portfolio
 
         private void Dead()
         {
-            OnDeadEvent.Invoke(this, EventArgs.Empty);
+            isDead = true;
+            this.gameObject.SetActive(false);
+            OnDeadEvent?.Invoke(this, EventArgs.Empty);
+
+            BattleManager.Instance.CheckUnitList();
         }
 
         //===========================================================

@@ -14,6 +14,45 @@ namespace Portfolio
         [SerializeField] List<GridPosition> playerGrids;
         [SerializeField] List<GridPosition> enemyGrids;
 
+        public bool TryCreateBattleUnit(Unit unit, bool isEnemy, out BattleUnit battleUnit)
+        {
+            List<GridPosition> gridList = null;
+            BattleUnit battleUnitPrefab = null;
+
+            if (!isEnemy)
+            {
+                gridList = playerGrids;
+                battleUnitPrefab = playerBattleUnitPrefab;
+            }
+            else
+            {
+                gridList = enemyGrids;
+                battleUnitPrefab = enemyBattleUnitPrefab;
+            }
+
+            if (gridList == null || battleUnitPrefab == null)
+            {
+                battleUnit = null;
+                return false;
+            }
+
+            foreach (var grid in gridList)
+            {
+                if (grid.unit != null)
+                {
+                    continue;
+                }
+
+                battleUnit = Instantiate(battleUnitPrefab, grid.transform);
+                battleUnit.SetUnit(unit);
+                grid.unit = battleUnit;
+                return true;
+            }
+
+            battleUnit = null;
+            return false;
+        }
+
         public UnitTurnBase CreatePlayableUnitBase()
         {
             UnitTurnBase unitBase = null;

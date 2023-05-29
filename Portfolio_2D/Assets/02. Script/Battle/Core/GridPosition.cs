@@ -14,7 +14,9 @@ namespace Portfolio
 
         public bool isUnit { get => (unit != null); }
 
-        public UnitType GetUnitType { get => (isUnit) ? unit.UnitType : UnitType.NONE;  }
+        public bool isDead { get => (unit.IsDead); }
+
+        public bool IsEnemy { get => unit.IsEnemy; }
     }
 
 }

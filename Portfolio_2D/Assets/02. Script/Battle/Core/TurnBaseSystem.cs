@@ -36,21 +36,21 @@ namespace Portfolio
         {
             unitTurnBase.AddUnitTurnCount(unitTurnBase.BattleUnit.Speed * Time.deltaTime);
             float SequenceUIYNormalizedPos = unitTurnBase.GetCurrentTurnCount() / turnCount;
+
             BattleManager.BattleUIManager.SequenceUI.SetSequenceUnitUIYPosition(unitTurnBase.UnitSequenceUI, SequenceUIYNormalizedPos);
         }
 
         public void StartTurn(UnitTurnBase unitbase)
         {
             currentTurnUnit = unitbase;
-            switch (unitbase.BattleUnit.UnitType)
+            if (!unitbase.BattleUnit.IsEnemy)
             {
-                case UnitType.Player:
-                    BattleManager.ActionSystem.IsPlayerActionTime = true;
-                    currentTurnType = TurnType.PLAYER;
-                    break;
-                case UnitType.Enemy:
-                    currentTurnType = TurnType.ENEMY;
-                    break;
+                BattleManager.ActionSystem.IsPlayerActionTime = true;
+                currentTurnType = TurnType.PLAYER;
+            }
+            else
+            {
+                currentTurnType = TurnType.ENEMY;
             }
 
             currentTurnUnit.TurnStart();

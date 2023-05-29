@@ -81,8 +81,8 @@ namespace Portfolio
             if (unit == null) return false;
 
             if (targetNum <= 0) return false;
-            if (!isPlayerTarget && unit.UnitType == UnitType.Player) return false;
-            if (!isEnemyTarget && unit.UnitType == UnitType.Enemy) return false;
+            if (!isPlayerTarget && !unit.IsEnemy ) return false;
+            if (!isEnemyTarget && unit.IsEnemy) return false;
             if (!isFrontTarget && grid.lineType == LineType.FrontLine) return false;
             if (!isRearTarget && grid.lineType == LineType.RearLine) return false;
 
@@ -136,8 +136,8 @@ namespace Portfolio
         public void SelectAutoTarget()
         {
             var list = unitGrids.
-                Where((grid) => isUnitAtGrid(grid) && IsTargetUnitTypeAtGrid(grid) && IsTargetLineTypeAtGrid(grid)).
-                OrderByDescending((grid) => Convert.ToInt32((int)grid.GetUnitType == (int)autoPeer) + Convert.ToInt32((int)grid.lineType == (int)autoProcession));
+                Where((grid) => isUnitAtGrid(grid) && !grid.isDead && IsTargetUnitTypeAtGrid(grid) && IsTargetLineTypeAtGrid(grid)).
+                OrderByDescending((grid) => Convert.ToInt32(Convert.ToInt32(grid.IsEnemy) == (int)autoPeer) + Convert.ToInt32((int)grid.lineType == (int)autoProcession));
 
             int count = 0;
             //Debug.Log(list.Count());
@@ -169,7 +169,7 @@ namespace Portfolio
                 //$"isEnemyTarget = {isEnemyTarget}\n" +
                 //$"grid.GetUnitType = {grid.GetUnitType}\n" +
                 //$"(isPlayerTarget && grid.GetUnitType == UnitType.Player) || (isEnemyTarget && grid.GetUnitType == UnitType.Enemy) = {(isPlayerTarget && grid.GetUnitType == UnitType.Player) || (isEnemyTarget && grid.GetUnitType == UnitType.Enemy)}");
-            return (isPlayerTarget && grid.GetUnitType == UnitType.Player) || (isEnemyTarget && grid.GetUnitType == UnitType.Enemy);
+            return (isPlayerTarget && !grid.IsEnemy) || (isEnemyTarget && grid.IsEnemy);
         }
         private bool IsTargetLineTypeAtGrid(GridPosition grid)
         {
@@ -188,9 +188,9 @@ namespace Portfolio
         {
             var list = unitGrids.
                 Where((grid) =>
-                    isUnitAtGrid(grid) &&
-                        ((grid.GetUnitType == UnitType.Player && passiveSkill.GetData.isAllPlayer) ||
-                        (grid.GetUnitType == UnitType.Enemy && passiveSkill.GetData.isAllEnemy))).Select((grid) => grid.unit).ToList();
+                    isUnitAtGrid(grid) && !grid.isDead &&
+                        ((!grid.IsEnemy && passiveSkill.GetData.isAllPlayer) ||
+                        (grid.IsEnemy && passiveSkill.GetData.isAllEnemy))).Select((grid) => grid.unit).ToList();
 
             //foreach (var unit in list)
             //{
