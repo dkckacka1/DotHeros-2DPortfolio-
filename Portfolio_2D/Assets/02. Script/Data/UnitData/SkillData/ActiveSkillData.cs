@@ -8,7 +8,7 @@
         public int skillCoolTime;
         public int consumeManaValue;
 
-        public bool isPlayerTarget;
+        public bool isAllyTarget;
         public bool isEnemyTarget;
         public bool isFrontTarget;
         public bool isRearTarget;

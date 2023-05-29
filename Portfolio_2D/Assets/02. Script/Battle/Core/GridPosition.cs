@@ -12,7 +12,7 @@ namespace Portfolio
 
         public BattleUnit unit;
 
-        public bool isUnit { get => (unit != null); }
+        public bool IsUnit { get => (unit != null); }
 
         public bool isDead { get => (unit.IsDead); }
 

@@ -13,6 +13,8 @@ namespace Portfolio
         private TurnType currentTurnType;
 
         public List<UnitTurnBase> UnitTurnBaseList { get => unitTurnBaseList; }
+        public TurnType CurrentTurnType { get => currentTurnType; }
+        public UnitTurnBase CurrentTurnUnit { get => currentTurnUnit; }
 
         private void Update()
         {

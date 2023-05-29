@@ -76,7 +76,7 @@
     public enum AutoPeerTargetType
     {
         NONE = -1,
-        PlayerFirst,
+        AllyFirst,
         EnemyFirst,
     }
 
@@ -96,12 +96,12 @@
     public enum ActiveSkillType
     {
         NONE = -1,
-        BasicAttack, // 기본 공격
-        Firstpriority, // 최우선
-        Singleattack, // 단일 공격
+        BasicAttack,    // 기본 공격
+        Firstpriority,  // 최우선
+        Singleattack,   // 단일 공격
         MultipleAttack, // 광역 공격
-        SingleHeal, // 단일 힐
-        MultipleHeal // 광역 힐
+        SingleHeal,     // 단일 힐
+        MultipleHeal    // 광역 힐
     }
 
     public enum ConditionType

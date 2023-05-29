@@ -23,7 +23,7 @@
   {
     "ID": 10001,
     "skillClassName": "TestActiveSkill",
-    "activeSkillType": "Firstpriority",
+    "activeSkillType": "MultipleAttack",
     "skillName": "테스트용 스킬1",
     "skillDesc": "기본 공격 설명",
     "skillType": 0,
@@ -38,6 +38,27 @@
     "autoPeerTargetType": 1,
     "autoProcessionTargetType": 1,
     "conditinID_1": 1001,
+    "conditinID_2": -1,
+    "conditinID_3": -1
+  },
+  {
+    "ID": 10002,
+    "skillClassName": "TestActiveSkillFirst",
+    "activeSkillType": "Firstpriority",
+    "skillName": "테스트용 스킬2",
+    "skillDesc": "적 전체에게 자신의 공격력만큼의 피해를 입힌다.",
+    "skillType": 0,
+    "isAutoTarget": true,
+    "skillCoolTime": 4,
+    "consumeManaValue": 2,
+    "isPlayerTarget": false,
+    "isEnemyTarget": true,
+    "isFrontTarget": true,
+    "isRearTarget": true,
+    "targetNum": 5,
+    "autoPeerTargetType": 1,
+    "autoProcessionTargetType": 1,
+    "conditinID_1": -1,
     "conditinID_2": -1,
     "conditinID_3": -1
   }

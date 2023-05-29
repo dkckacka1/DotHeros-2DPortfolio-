@@ -77,7 +77,6 @@ namespace Portfolio
         // Property
         //===========================================================
         public Unit Unit { get => this.unit; }
-        public AISystem AISystem { get => aiSystem; }
         public bool IsTurn { get => isTurn; }
         public bool IsEnemy { get => isEnemy; set => isEnemy = value; }
         public float MaxHP { get => maxHP; set => maxHP = value; }
@@ -154,7 +153,7 @@ namespace Portfolio
         //===========================================================
         public virtual void StartUnitTurn()
         {
-            Debug.Log(this.gameObject.name + "의 턴");
+            //Debug.Log(this.gameObject.name + "의 턴");
 
             unitUI.SetCurrentTurnUI(true);
 
@@ -165,7 +164,7 @@ namespace Portfolio
 
             isTurn = true;
 
-            if (!IsEnemy && !AISystem.isAI)
+            if (!IsEnemy && !aiSystem.isAI)
             {
                 unitUI.ShowSkillUI();
                 unitUI.ResetSkillUI(this);
@@ -186,7 +185,7 @@ namespace Portfolio
             if (activeSkill_1_CoolTime > 0) activeSkill_1_CoolTime--;
             if (activeSkill_2_CoolTime > 0) activeSkill_2_CoolTime--;
 
-            if (!IsEnemy && !AISystem.isAI)
+            if (!IsEnemy && !aiSystem.isAI)
             {
                 unitUI.HideSkillUI();
             }
@@ -207,6 +206,11 @@ namespace Portfolio
         //===========================================================
         // BattleMethod
         //===========================================================
+        public void BattleStart()
+        {
+            OnStartBattleEvent?.Invoke(this, EventArgs.Empty);
+        }
+
         public void BasicAttack()
         {
             OnAttackEvent?.Invoke(this, EventArgs.Empty);
@@ -214,6 +218,11 @@ namespace Portfolio
             {
                 Unit.basicAttackSkill.Action(this, new SkillActionEventArgs(1, this, targetUnit));
                 targetUnit.OnTakeAttackEvent?.Invoke(this, EventArgs.Empty);
+            }
+
+            if (!IsEnemy)
+            {
+                BattleManager.ManaSystem.AddMana(1);
             }
         }
 
@@ -231,23 +240,61 @@ namespace Portfolio
             BattleManager.Instance.CheckUnitList();
         }
 
+
+        public bool IsAlly(BattleUnit targetUnit)
+            // true면 나의 아군, false면 나의 적군
+        {
+            return targetUnit.IsEnemy == IsEnemy;
+        }
+
         //===========================================================
         // SkillSystem
         //===========================================================
-
         public void UseActiveSkill(ActiveSkill skill, int skillLevel, ref int skillCoolTime)
         {
+            if (skill == unit.activeSkill_1)
+            {
+                activeSkill_1_CoolTime = skill.GetData.skillCoolTime + 1; // 턴종료시에 바로 쿨타임하나가 줄기에 +1 만큼 더해줌
+            }
+            else if (skill == unit.activeSkill_2)
+            {
+                activeSkill_2_CoolTime = skill.GetData.skillCoolTime + 1; // 턴종료시에 바로 쿨타임하나가 줄기에 +1 만큼 더해줌
+            }
+            else
+            {
+                return;
+            }
+
             foreach (var unit in BattleManager.ActionSystem.SelectedUnits)
             {
                 skill.Action(this, new SkillActionEventArgs(skillLevel, this, unit));
             }
 
-            skillCoolTime = skill.GetData.skillCoolTime + 1; // 턴종료시에 바로 쿨타임하나가 줄기에 +1 만큼 더해줌
+            if (!IsEnemy)
+            {
+                BattleManager.ManaSystem.UseMana(skill.GetData.consumeManaValue);
+            }
         }
 
         public bool CanActiveSkill(ActiveSkill activeSkill, int skillCoolTime)
         {
             return (BattleManager.ManaSystem.canUseMana(activeSkill.GetData.consumeManaValue)) && (skillCoolTime == 0);
+        }
+
+        public bool canActiveSkillCool(ActiveSkill activeSkill)
+        {
+            if (activeSkill == unit.activeSkill_1)
+            {
+                return activeSkill_1_CoolTime == 0;
+            }
+            else if(activeSkill == unit.activeSkill_2)
+            {
+                return activeSkill_2_CoolTime == 0;
+            }
+            else
+            {
+                return true;
+            }
         }
 
         private void SetPassiveSkill(PassiveSkill skill, int skillLevel)
@@ -391,6 +438,26 @@ namespace Portfolio
         private IEnumerable<ConditionSystem> GetConditionSystems<T>() where T : Condition
         {
             return conditionDic.Values.Where(conditionSystem => conditionSystem.Condition is T);
+        }
+
+        //===========================================================
+        // AISystem
+        //===========================================================
+        public void CheckAutoBattle()
+        {
+            if (aiSystem.isAI)
+            {
+                aiSystem.isAI = false;
+                if (BattleManager.TurnBaseSystem.CurrentTurnUnit == GetComponent<UnitTurnBase>())
+                {
+                    unitUI.ShowSkillUI();
+                }
+            }
+            else
+            {
+                aiSystem.isAI = true;
+                unitUI.HideSkillUI();
+            }
         }
     }
 }

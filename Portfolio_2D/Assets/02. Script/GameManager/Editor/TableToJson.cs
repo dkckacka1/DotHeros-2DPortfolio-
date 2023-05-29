@@ -243,8 +243,6 @@ namespace Portfolio.Editor
                 writer.WriteEndArray();
                 return true;
             }
-
-            return false;
         }
     }
 }

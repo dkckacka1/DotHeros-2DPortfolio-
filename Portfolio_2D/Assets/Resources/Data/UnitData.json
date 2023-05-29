@@ -13,7 +13,7 @@
     "effectResistance": 0,
     "basicAttackSKillID": 10000,
     "activeSkillID_1": 10001,
-    "activeSkillID_2": -1,
+    "activeSkillID_2": 10002,
     "passiveSkillID_1": 20000,
     "passiveSkillID_2": -1
   }

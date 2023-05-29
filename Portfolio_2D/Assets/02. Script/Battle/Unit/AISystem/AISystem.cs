@@ -1,3 +1,4 @@
+using Portfolio.skill;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -22,12 +23,42 @@ namespace Portfolio
         {
             if (BattleManager.Instance.BattleState == BattleState.PLAY && battleUnit.IsTurn && isAI)
             {
-                timer += Time.deltaTime;
-                if (timer >= turnEndTime)
+                if (timer <= turnEndTime)
                 {
-                    BattleManager.TurnBaseSystem.TurnEnd();
-                    timer = 0;
+                    timer += Time.deltaTime;
+                    return;
                 }
+
+                timer = 0;
+
+                if (battleUnit.Unit == null)
+                {
+                    Debug.Log(battleUnit.Unit);
+                    return;
+                }
+
+                if (battleUnit.Unit.activeSkill_2.GetData.activeSkillType == ActiveSkillType.Firstpriority)
+                {
+                    if (battleUnit.canActiveSkillCool(battleUnit.Unit.activeSkill_2))
+                    {
+                        BattleManager.ActionSystem.SetActiveSkill(battleUnit.Unit.activeSkill_2);
+                        battleUnit.UseActiveSkill(battleUnit.Unit.activeSkill_2, battleUnit.Unit.activeSkillLevel_2, ref battleUnit.activeSkill_2_CoolTime);
+                        BattleManager.TurnBaseSystem.TurnEnd();
+                        return;
+                    }
+                }
+
+                if (battleUnit.Unit.activeSkill_1.GetData.activeSkillType == ActiveSkillType.Firstpriority)
+                {
+                    if (battleUnit.canActiveSkillCool(battleUnit.Unit.activeSkill_1))
+                    {
+
+                    }
+                }
+
+                BattleManager.ActionSystem.SetActiveSkill(battleUnit.Unit.basicAttackSkill);
+                battleUnit.BasicAttack();
+                BattleManager.TurnBaseSystem.TurnEnd();
             }
         }
     }

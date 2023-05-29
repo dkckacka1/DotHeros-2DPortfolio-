@@ -69,23 +69,23 @@ namespace Portfolio
         }
         public List<BattleUnit> GetUnitList() => unitList;
 
-        public IEnumerable GetUnitList(bool isEnemy)
+        public IEnumerable<BattleUnit> GetUnitList(bool isEnemy)
         {
             return unitList.Where(battleUnit => (battleUnit.IsEnemy == isEnemy) && !battleUnit.IsDead);
         }
 
         public void CheckUnitList()
         {
-            if (unitList.Where(battleUnit => (!battleUnit.IsEnemy) && !battleUnit.IsDead).Count() == 0)
+            if (GetUnitList(false).Count() == 0)
                 // 살아있는 플레이어 유닛이 0명일 경우
             {
-                SwitchBattleState(BattleState.WIN);
+                Win();
             }
             
-            if (unitList.Where(battleUnit => (battleUnit.IsEnemy) && !battleUnit.IsDead).Count() == 0)
+            if (GetUnitList(true).Count() == 0)
                 // 살아있는 적 유닛이 0명일 경우
             {
-                SwitchBattleState(BattleState.DEFEAT);
+                Defeat();
             }
         }
 
@@ -106,6 +106,15 @@ namespace Portfolio
         public void SetStage(int stageID)
         {
             SwitchBattleState(BattleState.SETSTAGE);
+        }
+
+        public void BattleStart()
+        {
+            SwitchBattleState(BattleState.BATTLESTART);
+            foreach (var unit in unitList.Where(unit => !unit.IsDead))
+            {
+                unit.BattleStart();
+            }
         }
 
         public void Pause()
@@ -160,7 +169,7 @@ namespace Portfolio
             var list = this.unitList.Where(battleUnit => !battleUnit.IsEnemy);
             foreach (var unit in list)
             {
-                unit.AISystem.isAI = !unit.AISystem.isAI;
+                unit.CheckAutoBattle();
             }
         }
     }

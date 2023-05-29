@@ -67,17 +67,17 @@ namespace Portfolio
 
         public void ShowSkillUI()
         {
-            skillUI.ShowSkillUI();
+            skillUI?.ShowSkillUI();
         }
 
         public void HideSkillUI()
         {
-            skillUI.HideSkillUI();
+            skillUI?.HideSkillUI();
         }
 
         public void ResetSkillUI(BattleUnit unit)
         {
-            skillUI.ResetSkillUI(unit);
+            skillUI?.ResetSkillUI(unit);
         }
     }
 

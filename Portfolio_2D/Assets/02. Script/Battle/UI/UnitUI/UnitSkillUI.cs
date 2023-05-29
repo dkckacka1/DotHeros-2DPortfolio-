@@ -123,11 +123,9 @@ namespace Portfolio
             if (selectActiveSkill == battleUnit.Unit.basicAttackSkill)
             {
                 battleUnit.BasicAttack();
-                BattleManager.ManaSystem.AddMana(1);
             }
             else
             {
-                BattleManager.ManaSystem.UseMana(selectActiveSkill.GetData.consumeManaValue);
                 if (selectActiveSkill == battleUnit.Unit.activeSkill_1)
                 {
                     battleUnit.UseActiveSkill(battleUnit.Unit.activeSkill_1, battleUnit.Unit.activeSkillLevel_1, ref battleUnit.activeSkill_1_CoolTime);

@@ -17,7 +17,7 @@ namespace Portfolio
 
         [Header("HowTargeted")]
         public bool isAutoTarget = true;
-        public bool isPlayerTarget = true;
+        public bool isAllyTarget = true;
         public bool isEnemyTarget = true;
         public bool isFrontTarget = true;
         public bool isRearTarget = true;
@@ -81,7 +81,17 @@ namespace Portfolio
             if (unit == null) return false;
 
             if (targetNum <= 0) return false;
-            if (!isPlayerTarget && !unit.IsEnemy ) return false;
+
+            if (BattleManager.TurnBaseSystem.CurrentTurnType == TurnType.PLAYER)
+                // 플레이어 턴일때
+            {
+                if (isEnemyTarget != unit.IsEnemy) return false;
+            }
+            else if (BattleManager.TurnBaseSystem.CurrentTurnType == TurnType.ENEMY)
+            {
+                if (!isEnemyTarget != unit.IsEnemy) return false;
+            }
+
             if (!isEnemyTarget && unit.IsEnemy) return false;
             if (!isFrontTarget && grid.lineType == LineType.FrontLine) return false;
             if (!isRearTarget && grid.lineType == LineType.RearLine) return false;
@@ -119,7 +129,7 @@ namespace Portfolio
             }
 
             isAutoTarget = skill.GetData.isAutoTarget;
-            isPlayerTarget = skill.GetData.isPlayerTarget;
+            isAllyTarget = skill.GetData.isAllyTarget;
             isEnemyTarget = skill.GetData.isEnemyTarget;
             isFrontTarget = skill.GetData.isFrontTarget;
             isRearTarget = skill.GetData.isRearTarget;
@@ -137,7 +147,7 @@ namespace Portfolio
         {
             var list = unitGrids.
                 Where((grid) => isUnitAtGrid(grid) && !grid.isDead && IsTargetUnitTypeAtGrid(grid) && IsTargetLineTypeAtGrid(grid)).
-                OrderByDescending((grid) => Convert.ToInt32(Convert.ToInt32(grid.IsEnemy) == (int)autoPeer) + Convert.ToInt32((int)grid.lineType == (int)autoProcession));
+                OrderByDescending((grid) => Convert.ToInt32(Convert.ToInt32(BattleManager.TurnBaseSystem.CurrentTurnUnit.BattleUnit.IsAlly(grid.unit)) == (int)autoPeer) + Convert.ToInt32((int)grid.lineType == (int)autoProcession));
 
             int count = 0;
             //Debug.Log(list.Count());
@@ -160,7 +170,7 @@ namespace Portfolio
 
         private bool isUnitAtGrid(GridPosition grid)
         {
-            return grid.isUnit;
+            return grid.IsUnit;
         }
         private bool IsTargetUnitTypeAtGrid(GridPosition grid)
         {
@@ -169,7 +179,8 @@ namespace Portfolio
                 //$"isEnemyTarget = {isEnemyTarget}\n" +
                 //$"grid.GetUnitType = {grid.GetUnitType}\n" +
                 //$"(isPlayerTarget && grid.GetUnitType == UnitType.Player) || (isEnemyTarget && grid.GetUnitType == UnitType.Enemy) = {(isPlayerTarget && grid.GetUnitType == UnitType.Player) || (isEnemyTarget && grid.GetUnitType == UnitType.Enemy)}");
-            return (isPlayerTarget && !grid.IsEnemy) || (isEnemyTarget && grid.IsEnemy);
+            return (isEnemyTarget == !BattleManager.TurnBaseSystem.CurrentTurnUnit.BattleUnit.IsAlly(grid.unit)) 
+                || (isAllyTarget == BattleManager.TurnBaseSystem.CurrentTurnUnit.BattleUnit.IsAlly(grid.unit));
         }
         private bool IsTargetLineTypeAtGrid(GridPosition grid)
         {
