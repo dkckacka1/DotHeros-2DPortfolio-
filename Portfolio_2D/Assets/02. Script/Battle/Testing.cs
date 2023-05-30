@@ -37,12 +37,17 @@ namespace Portfolio
 
             if (Input.GetKeyDown(KeyCode.A))
             {
-                //foreach (var unit in BattleManager.ActionSystem.SelectedUnits)
-                //{
-                //    unit.TakeDamage(10);
-                //}
+                {
+                    GameManager.Instance.TryGetUnit(101, out Unit unit);
+
+                    if (BattleManager.BattleFactory.TryCreateBattleUnit(unit, false, out BattleUnit battleUnit))
+                    {
+                        battleUnit.name = unit.Data.unitName + "_" + playerNum++;
+                        battleUnit.Speed = Random.Range(50, 101);
+                        BattleManager.Instance.AddUnitinUnitList(battleUnit);
+                    }
+                }
             }
         }
     }
-
 }

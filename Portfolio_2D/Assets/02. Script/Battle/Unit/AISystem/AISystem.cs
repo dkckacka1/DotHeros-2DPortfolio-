@@ -45,7 +45,7 @@ namespace Portfolio
                     return;
                 }
 
-                if (TryActiveSkill(ActiveSkillType.Firstpriority))
+                if (TryUseActiveSkill(ActiveSkillType.Firstpriority))
                 {
                     BattleManager.TurnBaseSystem.TurnEnd();
                     return;
@@ -53,12 +53,45 @@ namespace Portfolio
 
                 IEnumerable<BattleUnit> allyList = BattleManager.Instance.GetUnitList(battleUnit => battleUnit.IsAlly(this.battleUnit));
                 IEnumerable<BattleUnit> enemyList = BattleManager.Instance.GetUnitList(battleUnit => !battleUnit.IsAlly(this.battleUnit));
-                
-                if (allyList.Where(isUnitDamaged).Count() >= 1)
+
+                //Debug.Log($"{this.gameObject.name} 의 아군은 {allyList.Count()}명");
+                //Debug.Log($"{this.gameObject.name} 의 적군은 {enemyList.Count()}명");
+
+                if (CheckConditionCount(allyList, 1, isUnitDamaged))
+                    // 1명 이상의 아군이 체력이 감소된 상태
                 {
-                    Debug.Log($"데미지를 입은 아군은 {allyList.Where(isUnitDamaged).Count()}명입니다.");
+                    if (TryUseActiveSkill(ActiveSkillType.MultipleHeal))
+                        // 광역힐을 사용할 수 있다면 사용
+                    {
+                        BattleManager.TurnBaseSystem.TurnEnd();
+                        return;
+                    }
+
+                    if (TryUseActiveSkill(ActiveSkillType.SingleHeal, GetLowHealthUnit))
+                        // 단일힐을 사용할 수 있다면 사용
+                    {
+                        BattleManager.TurnBaseSystem.TurnEnd();
+                        return;
+                    }
                 }
 
+                if (CheckConditionCount(enemyList, 3))
+                    // 적군이 3명이상일 경우
+                {
+                    if (TryUseActiveSkill(ActiveSkillType.MultipleAttack))
+                    // 광역 공격을 사용할 수 있다면 사용
+                    {
+                        BattleManager.TurnBaseSystem.TurnEnd();
+                        return;
+                    }
+                }
+                
+                if (TryUseActiveSkill(ActiveSkillType.Singleattack, GetLowHealthUnit))
+                    // 단일 공격을 사용할 수 있다면 사용
+                {
+                    BattleManager.TurnBaseSystem.TurnEnd();
+                    return;
+                }
 
 
 
@@ -76,13 +109,20 @@ namespace Portfolio
             activeSkill_2 = unit.activeSkill_2;
         }
 
-        private bool TryActiveSkill(ActiveSkillType type)
+        private bool TryUseActiveSkill(ActiveSkillType type, Func<BattleUnit, int> orderby = null)
         {
             if (activeSkill_2.GetData.activeSkillType == type)
             {
                 if (this.battleUnit.CanActiveSkill(activeSkill_2))
                 {
-                    BattleManager.ActionSystem.SetActiveSkill(activeSkill_2);
+                    if (activeSkill_2.GetData.isAutoTarget || orderby == null)
+                    {
+                        BattleManager.ActionSystem.SetActiveSkill(activeSkill_2);
+                    }
+                    else
+                    {
+                        BattleManager.ActionSystem.SetActiveSkill(activeSkill_2, orderby);
+                    }
                     battleUnit.UseActiveSkill(activeSkill_2);
                     return true;
                 }
@@ -92,7 +132,14 @@ namespace Portfolio
             {
                 if (this.battleUnit.CanActiveSkill(activeSkill_1))
                 {
-                    BattleManager.ActionSystem.SetActiveSkill(activeSkill_1);
+                    if (activeSkill_1.GetData.isAutoTarget || orderby == null)
+                    {
+                        BattleManager.ActionSystem.SetActiveSkill(activeSkill_1);
+                    }
+                    else
+                    {
+                        BattleManager.ActionSystem.SetActiveSkill(activeSkill_1, orderby);
+                    }
                     battleUnit.UseActiveSkill(activeSkill_1);
                     return true;
                 }
@@ -105,9 +152,25 @@ namespace Portfolio
         // ConditionCheck
         //===========================================================
 
+        private bool CheckConditionCount(IEnumerable<BattleUnit> battleUnits, int count, Func<BattleUnit, bool> WhereFunc = null)
+            // Where절을 통한 Count()가 count와 같거나 크면 true
+        {
+            int whereCount = 0;
+            if (WhereFunc != null)
+            {
+                whereCount = battleUnits.Where(WhereFunc).Count();
+            }
+            else
+            {
+                whereCount = battleUnits.Count();
+            }
+
+            return whereCount >= count;
+        }
+
         private bool isUnitDamaged(BattleUnit unit)
         {
-            return (unit.CurrentHP / unit.MaxHP) <= 0.8f;
+            return unit.CurrentHP != unit.MaxHP;
         }
 
         //===========================================================
@@ -115,7 +178,7 @@ namespace Portfolio
         //===========================================================
         private int GetLowHealthUnit(BattleUnit arg)
         {
-            return (int)arg.CurrentHP;
+            return (int)(arg.CurrentHP / arg.MaxHP * 100); // 소수점을 int형으로 맞추기 위해 * 100을 함
         }
     }
 }

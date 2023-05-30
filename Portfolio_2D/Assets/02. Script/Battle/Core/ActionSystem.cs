@@ -200,11 +200,11 @@ namespace Portfolio
             OrderBy(orderby);
 
             int count = 0;
-            Debug.Log(list.Count());
-            foreach (var unit in list)
-            {
-                Debug.Log(unit.name);
-            }
+            //Debug.Log(list.Count());
+            //foreach (var unit in list)
+            //{
+                //Debug.Log(unit.name);
+            //}
 
             foreach (var unit in list)
             {

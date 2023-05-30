@@ -233,11 +233,21 @@ namespace Portfolio
             CurrentHP -= DamagePoint;
         }
 
+        public void Heal(float healPoint)
+        {
+            CurrentHP += healPoint;
+        }
+
         private void Dead()
         {
             isDead = true;
             this.gameObject.SetActive(false);
             OnDeadEvent?.Invoke(this, EventArgs.Empty);
+
+            if (BattleManager.TurnBaseSystem.CurrentTurnUnit == GetComponent<UnitTurnBase>())
+            {
+                BattleManager.TurnBaseSystem.TurnEnd();
+            }
 
             BattleManager.Instance.CheckUnitList();
         }
