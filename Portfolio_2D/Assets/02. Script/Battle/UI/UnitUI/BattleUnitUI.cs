@@ -12,20 +12,20 @@ namespace Portfolio
         [Header("턴 UI")]
         [SerializeField] private GameObject currentTurnUIObject;
         [SerializeField] private GameObject targetedUIObject;
-        private UnitSequenceUI unitSequenceUI;
+        private BattleUnitSequenceUI unitSequenceUI;
 
         [Header("HP바 UI")]
-        [SerializeField] private UnitHPUI unitHPUI;
+        [SerializeField] private BattleUnitHPUI unitHPUI;
 
         [Header("상태이상 UI")]
         [SerializeField] private RectTransform conditionLayout;
-        [SerializeField] private UnitConditionUI conditionUIPrefab;
+        [SerializeField] private BattleUnitConditionUI conditionUIPrefab;
 
         [Header("스킬 UI")]
-        private UnitSkillUI skillUI;
+        private BattleUnitSkillUI skillUI;
 
 
-        public UnitSequenceUI UnitSequenceUI { get => unitSequenceUI; }
+        public BattleUnitSequenceUI UnitSequenceUI { get => unitSequenceUI; }
 
         private void Awake()
         {
@@ -46,7 +46,7 @@ namespace Portfolio
             unitHPUI.ChangeHP(args.currentHP);
         }
 
-        public UnitConditionUI CreateConditionUI(int count)
+        public BattleUnitConditionUI CreateConditionUI(int count)
         {
             var ui = Instantiate(conditionUIPrefab, conditionLayout);
             ui.SetCount(count);

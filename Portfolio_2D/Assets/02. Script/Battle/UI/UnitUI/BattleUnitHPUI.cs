@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 namespace Portfolio
 {
-    public class UnitHPUI : MonoBehaviour
+    public class BattleUnitHPUI : MonoBehaviour
     {
         [SerializeField] Slider hpSlider;
         [SerializeField] TextMeshProUGUI hpText;

@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace Portfolio
 {
-    public class UnitSequenceUI : MonoBehaviour
+    public class BattleUnitSequenceUI : MonoBehaviour
     {
         [SerializeField] TextMeshProUGUI nameText;
 

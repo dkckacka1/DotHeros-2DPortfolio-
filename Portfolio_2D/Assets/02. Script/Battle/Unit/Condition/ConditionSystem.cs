@@ -10,7 +10,7 @@ namespace Portfolio.condition
         private int resetCountValue;
         private int overlapingCount = 1;
         private Condition condition;
-        private UnitConditionUI conditionUI;
+        private BattleUnitConditionUI conditionUI;
         public int Count
         {
             get
@@ -37,13 +37,13 @@ namespace Portfolio.condition
             }
         }
         public Condition Condition { get => condition; }
-        public UnitConditionUI ConditionUI { get => conditionUI; }
+        public BattleUnitConditionUI ConditionUI { get => conditionUI; }
 
         public bool isBuff { get => condition.ConditionData.isBuff; }
         public bool isOverlap { get => condition.ConditionData.isOverlaping; }
         public bool isResetCount { get => condition.ConditionData.isResetCount; }
 
-        public ConditionSystem(int count, Condition condition, UnitConditionUI conditionUI)
+        public ConditionSystem(int count, Condition condition, BattleUnitConditionUI conditionUI)
         {
             this.count = count;
             this.resetCountValue = count;

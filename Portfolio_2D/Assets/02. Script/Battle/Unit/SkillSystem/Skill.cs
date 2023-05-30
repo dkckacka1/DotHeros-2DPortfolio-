@@ -14,7 +14,10 @@ namespace Portfolio.skill
             this.skillData = skillData;
         }
 
-        public abstract void Action(object sender, EventArgs e);
+        public virtual void Action(object sender, EventArgs e)
+        {
+            BattleManager.BattleUIManager.BattleLogUI.AddLog($"{skillData.skillName}을 사용했습니다.");
+        }
 
         public virtual string GetDesc(int skillLevel)
         {

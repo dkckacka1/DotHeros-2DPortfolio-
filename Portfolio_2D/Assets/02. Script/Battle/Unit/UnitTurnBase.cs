@@ -13,7 +13,7 @@ namespace Portfolio
 
         public BattleUnit BattleUnit { get => battleUnit; }
         public BattleUnitUI BattleUnitUI { get => battleUnitUI; }
-        public UnitSequenceUI UnitSequenceUI { get => battleUnitUI.UnitSequenceUI; }
+        public BattleUnitSequenceUI UnitSequenceUI { get => battleUnitUI.UnitSequenceUI; }
 
         private void Awake()
         {

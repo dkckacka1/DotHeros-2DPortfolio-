@@ -14,6 +14,7 @@ namespace Portfolio.skill
 
         public override void Action(object sender, EventArgs e)
         {
+            base.Action(sender, e);
             if (!TryGetSkillActionArgs(e, out SkillActionEventArgs args))
             {
                 return;

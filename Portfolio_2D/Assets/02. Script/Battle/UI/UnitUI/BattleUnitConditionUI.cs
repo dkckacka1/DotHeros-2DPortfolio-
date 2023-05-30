@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace Portfolio
 {
-    public class UnitConditionUI : MonoBehaviour
+    public class BattleUnitConditionUI : MonoBehaviour
     {
         [SerializeField] TextMeshProUGUI conditionCountText;
         [SerializeField] TextMeshProUGUI overlapCountText;

@@ -8,7 +8,7 @@ namespace Portfolio
     public class BattleSequenceUI : MonoBehaviour
     {
         [SerializeField] Image sequenceUI;
-        [SerializeField] UnitSequenceUI sequenceUIObject;
+        [SerializeField] BattleUnitSequenceUI sequenceUIObject;
 
         private float sequenceUIHeight;
         private float unitSequenceUIHeight;
@@ -21,7 +21,7 @@ namespace Portfolio
             sequenceDefaultYPos = sequenceUIHeight - unitSequenceUIHeight;
         }
 
-        public void SetSequenceUnitUIYPosition(UnitSequenceUI targetSequenceUI, float normalizedYPos)
+        public void SetSequenceUnitUIYPosition(BattleUnitSequenceUI targetSequenceUI, float normalizedYPos)
         {
             float yPos = ((1 - normalizedYPos) * sequenceDefaultYPos) * -1;
             (targetSequenceUI.transform as RectTransform).anchoredPosition = new Vector2(0, yPos);

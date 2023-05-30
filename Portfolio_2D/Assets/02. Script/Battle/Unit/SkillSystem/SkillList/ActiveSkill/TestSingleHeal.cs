@@ -13,7 +13,7 @@ namespace Portfolio.skill
 
         public override void Action(object sender, EventArgs e)
         {
-            Debug.Log("단일힐");
+            base.Action(sender, e);
             if (!TryGetSkillActionArgs(e, out SkillActionEventArgs args))
             {
                 return;

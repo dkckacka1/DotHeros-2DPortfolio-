@@ -13,7 +13,7 @@ namespace Portfolio.skill
 
         public override void Action(object sender, EventArgs e)
         {
-            Debug.Log("기본공격!");
+            base.Action(sender, e);
             if (!TryGetSkillActionArgs(e, out SkillActionEventArgs args))
             {
                 return;
