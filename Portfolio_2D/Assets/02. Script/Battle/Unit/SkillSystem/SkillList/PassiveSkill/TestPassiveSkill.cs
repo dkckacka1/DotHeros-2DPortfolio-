@@ -12,16 +12,20 @@ namespace Portfolio.skill
         {
         }
 
-        public override void Action(object sender, EventArgs e)
+        public override void Action(object sender, SkillActionEventArgs e)
         {
             if (!TryGetSkillActionArgs(e, out SkillActionEventArgs args))
             {
                 return;
             }
 
+
             if (GameManager.Instance.TryGetCondition(GetData.conditinID_1, out Condition condition))
             {
-                args.targetUnit.AddCondition(GetData.conditinID_1, condition, 4);
+                foreach (var targetUnit in args.targetUnits)
+                {
+                    targetUnit.AddCondition(GetData.conditinID_1, condition, 4);
+                }
             }
         }
     }

@@ -19,13 +19,20 @@ namespace Portfolio
     {
         public readonly int skillLevel;
         public BattleUnit actionUnit;
-        public BattleUnit targetUnit;
+        public IEnumerable<BattleUnit> targetUnits;
 
-        public SkillActionEventArgs(int skillLevel, BattleUnit actionUnit, BattleUnit targetUnit)
+        public SkillActionEventArgs(int skillLevel, BattleUnit actionUnit, BattleUnit targetUnits)
         {
             this.skillLevel = skillLevel;
             this.actionUnit = actionUnit;
-            this.targetUnit = targetUnit;
+            this.targetUnits = new List<BattleUnit>() { targetUnits };
+        }
+
+        public SkillActionEventArgs(int skillLevel, BattleUnit actionUnit, IEnumerable<BattleUnit> targetUnits)
+        {
+            this.skillLevel = skillLevel;
+            this.actionUnit = actionUnit;
+            this.targetUnits = targetUnits;
         }
     }
 
@@ -216,9 +223,9 @@ namespace Portfolio
         public void BasicAttack()
         {
             OnAttackEvent?.Invoke(this, EventArgs.Empty);
+            Unit.basicAttackSkill.Action(this, new SkillActionEventArgs(1, this, BattleManager.ActionSystem.SelectedUnits));
             foreach (var targetUnit in BattleManager.ActionSystem.SelectedUnits)
             {
-                Unit.basicAttackSkill.Action(this, new SkillActionEventArgs(1, this, targetUnit));
                 targetUnit.OnTakeAttackEvent?.Invoke(this, EventArgs.Empty);
             }
 
@@ -253,7 +260,7 @@ namespace Portfolio
         }
 
         public bool IsAlly(BattleUnit targetUnit)
-            // true면 나의 아군, false면 나의 적군
+        // true면 나의 아군, false면 나의 적군
         {
             return targetUnit.IsEnemy == IsEnemy;
         }
@@ -280,10 +287,7 @@ namespace Portfolio
                 return;
             }
 
-            foreach (var unit in BattleManager.ActionSystem.SelectedUnits)
-            {
-                skill.Action(this, new SkillActionEventArgs(skillLevel, this, unit));
-            }
+            skill.Action(this, new SkillActionEventArgs(skillLevel, this, BattleManager.ActionSystem.SelectedUnits));
 
             if (!IsEnemy)
             {
@@ -294,12 +298,12 @@ namespace Portfolio
         public bool CanActiveSkill(ActiveSkill activeSkill)
         {
             if (!isEnemy)
-                // 플레이어면 쿨타임체크, 마나값 체크
+            // 플레이어면 쿨타임체크, 마나값 체크
             {
                 return CanActiveSkillCool(activeSkill) && CanActiveSkillAbleMana(activeSkill);
             }
             else
-                // 플레이어면 쿨타임체크
+            // 플레이어면 쿨타임체크
             {
                 return CanActiveSkillCool(activeSkill);
             }
@@ -316,7 +320,7 @@ namespace Portfolio
             {
                 return activeSkill_1_CoolTime == 0;
             }
-            else if(activeSkill == unit.activeSkill_2)
+            else if (activeSkill == unit.activeSkill_2)
             {
                 return activeSkill_2_CoolTime == 0;
             }
@@ -335,37 +339,47 @@ namespace Portfolio
 
             if (!skill.GetData.isAllPlayer && !skill.GetData.isAllEnemy)
             {
-                SetPassiveSkillEvent(skill, skillLevel,this);
+                SetPassiveSkillEvent(skill, skillLevel, new List<BattleUnit>() { this });
             }
             else
             {
-                foreach (var unit in BattleManager.ActionSystem.GetPassiveTargetUnit(skill))
-                {
-                    SetPassiveSkillEvent(skill, skillLevel, unit);
-                }
+                SetPassiveSkillEvent(skill, skillLevel, BattleManager.ActionSystem.GetPassiveTargetUnit(skill));
+
             }
         }
 
-        private void SetPassiveSkillEvent(PassiveSkill skill, int skillLevel, BattleUnit targetUnit)
+        private void SetPassiveSkillEvent(PassiveSkill skill, int skillLevel, IEnumerable<BattleUnit> targetUnits)
         {
             if (skill.GetData.isOnStartBattle)
             {
-                targetUnit.OnStartBattleEvent += ((sender, e) => skill.Action(this, new SkillActionEventArgs(skillLevel, this, targetUnit)));
+                foreach (var targetUnit in targetUnits)
+                {
+                    targetUnit.OnStartBattleEvent += ((sender, e) => skill.Action(this, new SkillActionEventArgs(skillLevel, this, targetUnits)));
+                }
             }
 
             if (skill.GetData.isOnStartTurn)
             {
-                targetUnit.OnStartCurrentTurnEvent += ((sender, e) => skill.Action(this, new SkillActionEventArgs(skillLevel, this, targetUnit)));
+                foreach (var targetUnit in targetUnits)
+                {
+                    targetUnit.OnStartCurrentTurnEvent += ((sender, e) => skill.Action(this, new SkillActionEventArgs(skillLevel, this, targetUnits)));
+                }
             }
 
             if (skill.GetData.isOnAttack)
             {
-                targetUnit.OnAttackEvent += ((sender, e) => skill.Action(this, new SkillActionEventArgs(skillLevel, this, targetUnit)));
+                foreach (var targetUnit in targetUnits)
+                {
+                    targetUnit.OnAttackEvent += ((sender, e) => skill.Action(this, new SkillActionEventArgs(skillLevel, this, targetUnits)));
+                }
             }
 
             if (skill.GetData.isOnTakeDamage)
             {
-                targetUnit.OnTakeAttackEvent += ((sender, e) => skill.Action(this, new SkillActionEventArgs(skillLevel, this, targetUnit)));
+                foreach (var targetUnit in targetUnits)
+                {
+                    targetUnit.OnTakeAttackEvent += ((sender, e) => skill.Action(this, new SkillActionEventArgs(skillLevel, this, targetUnits)));
+                }
             }
         }
 
@@ -376,33 +390,33 @@ namespace Portfolio
         public void AddCondition(int conditionID, Condition condition, int count)
         {
             if (conditionDic.ContainsKey(conditionID))
-                // 이미 적용된 상태이상 일때
+            // 이미 적용된 상태이상 일때
             {
                 ConditionSystem conditionSystem = conditionDic[conditionID];
 
                 if (conditionSystem.isOverlap)
-                    // 중첩이 가능한가?
+                // 중첩이 가능한가?
                 {
                     conditionSystem.AddOverlap();
                     if (conditionSystem.Condition is ContinuationCondition)
-                        // 지속형 상태이상이 중첩 가능할 때
+                    // 지속형 상태이상이 중첩 가능할 때
                     {
                         conditionSystem.Condition.ApplyCondition(this);
                     }
                 }
-                
+
                 if (conditionSystem.isResetCount)
-                    // 카운트 리셋이 가능한가?
+                // 카운트 리셋이 가능한가?
                 {
                     conditionSystem.ResetCount();
                 }
             }
             else
-                // 적용안된 상태이상 일때
+            // 적용안된 상태이상 일때
             {
                 conditionDic.Add(conditionID, new ConditionSystem(count, condition, this.unitUI.CreateConditionUI(count)));
                 if (conditionDic[conditionID].Condition is ContinuationCondition)
-                    // 지속형 상태이상일때
+                // 지속형 상태이상일때
                 {
                     conditionDic[conditionID].Condition.ApplyCondition(this);
                 }

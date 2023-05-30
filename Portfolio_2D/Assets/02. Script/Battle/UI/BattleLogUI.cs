@@ -25,7 +25,8 @@ namespace Portfolio
 
             foreach (string log in logQueue)
             {
-                string.Join("\n", log);
+                //Debug.Log($"{logtxt} + {log}");
+                logtxt += ("\n" + log);
             }
             logText.text = logtxt;
         }
@@ -33,6 +34,7 @@ namespace Portfolio
         public void AddLog(string str)
         {
             logQueue.Enqueue(str);
+            Debug.Log(logQueue.Count);
             if (logQueue.Count > logCount)
             {
                 logQueue.Dequeue();

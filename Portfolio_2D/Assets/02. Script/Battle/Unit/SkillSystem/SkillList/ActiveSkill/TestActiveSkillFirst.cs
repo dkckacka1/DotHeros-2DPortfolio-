@@ -12,14 +12,18 @@ namespace Portfolio.skill
         {
         }
 
-        public override void Action(object sender, EventArgs e)
+        public override void Action(object sender, SkillActionEventArgs e)
         {
+            base.Action(sender, e);
             if (!TryGetSkillActionArgs(e, out SkillActionEventArgs args))
             {
                 return;
             }
 
-            args.targetUnit.TakeDamage(args.actionUnit.AttackPoint * 0.5f);
+            foreach (var targetUnit in args.targetUnits)
+            {
+                targetUnit.TakeDamage(args.actionUnit.AttackPoint * 0.5f);
+            }
         }
     }
 }

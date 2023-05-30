@@ -33,7 +33,6 @@ namespace Portfolio
         public BattleUnitSkillUI PlayerUnitSkillUIPrefab { get => playerUnitSkillUIPrefab; }
         public BattleManaUI BattleManaUI { get => battleManaUI; }
         public BattleSkillDescUI BattleSkillDescUI { get => battleSkillDescUI; }
-        public BattleLogUI BattleLogUI { get => battleLogUI; }
 
         public BattleUnitSequenceUI CreateUnitSequenceUI()
         {
@@ -45,6 +44,11 @@ namespace Portfolio
             var skillUI = Instantiate(PlayerUnitSkillUIPrefab, unitSkillUIParent);
             skillUI.SetBattleSkillDescUI(battleSkillDescUI);
             return skillUI;
+        }
+
+        public void AddLog(string str)
+        {
+            battleLogUI.AddLog(str);
         }
     }
 }
