@@ -78,7 +78,7 @@ namespace Portfolio.skill
                 }
             }
 
-            string log = $"{playerUnit}이(가) {targetUnit}에게 {skillData.skillName}을 사용!";
+            string log = $"{playerUnit}이(가) {targetUnit}에게 [{skillData.skillName}]을(를) 사용!";
 
             return log;
         }

@@ -13,7 +13,7 @@ namespace Portfolio.condition
 
         public override void ApplyCondition(BattleUnit unit)
         {
-            Debug.Log("독 테스트" + unit.MaxHP * 0.1f);
+            //Debug.Log("독 테스트" + unit.MaxHP * 0.1f);
             unit.TakeDamage(unit.MaxHP * 0.1f);
         }
     }

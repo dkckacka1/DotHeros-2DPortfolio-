@@ -66,7 +66,7 @@ namespace Portfolio.condition
 
         public void EndCondition()
         {
-            UnityEngine.Object.Destroy(conditionUI.gameObject);
+            Object.Destroy(conditionUI.gameObject);
         }
 
         public bool isCountEnd()

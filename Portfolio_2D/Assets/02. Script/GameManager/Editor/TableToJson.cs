@@ -38,7 +38,7 @@ namespace Portfolio.Editor
             string passiveSkillJson = Application.dataPath + Constant.jsonFolderPath + Constant.passiveSkillJsonName+ ".json";
             if (File.Exists(passiveSkillJson))
             {
-                var text = File.OpenText(activeSkillJson);
+                var text = File.OpenText(passiveSkillJson);
                 string json = text.ReadToEnd();
                 //Debug.Log(json);
                 var skillDatas = JsonConvert.DeserializeObject<PassiveSkillData[]>(json);
@@ -54,7 +54,7 @@ namespace Portfolio.Editor
             }
 
             string unitJsonPath = Application.dataPath + Constant.jsonFolderPath + Constant.unitDataJsonName + ".json";
-            if (File.Exists(activeSkillJson))
+            if (File.Exists(unitJsonPath))
             {
                 var text = File.OpenText(unitJsonPath);
                 string json = text.ReadToEnd();
@@ -72,7 +72,7 @@ namespace Portfolio.Editor
             }
 
             string conditionJsonPath = Application.dataPath + Constant.jsonFolderPath + Constant.conditionDataJsonName + ".json";
-            if (File.Exists(activeSkillJson))
+            if (File.Exists(conditionJsonPath))
             {
                 var text = File.OpenText(conditionJsonPath);
                 string json = text.ReadToEnd();
@@ -86,6 +86,43 @@ namespace Portfolio.Editor
             else
             {
                 Debug.LogWarning("conditionJson이 존재하지 않습니다.");
+                return false;
+            }
+
+            string mapJsonPath = Application.dataPath + Constant.jsonFolderPath + Constant.mapDataJsonName + ".json";
+            if (File.Exists(mapJsonPath))
+            {
+                var text = File.OpenText(mapJsonPath);
+                string json = text.ReadToEnd();
+                //Debug.Log(json);
+                var conditionDatas = JsonConvert.DeserializeObject<MapData[]>(json);
+                //foreach (var unit in conditionDatas)
+                //{
+                //    Debug.Log(unit);
+                //}
+            }
+            else
+            {
+                Debug.LogWarning("mapJson이 존재하지 않습니다.");
+                return false;
+            }
+
+
+            string stageJsonPath = Application.dataPath + Constant.jsonFolderPath + Constant.stageDataJsonName + ".json";
+            if (File.Exists(stageJsonPath))
+            {
+                var text = File.OpenText(stageJsonPath);
+                string json = text.ReadToEnd();
+                //Debug.Log(json);
+                var conditionDatas = JsonConvert.DeserializeObject<StageData[]>(json);
+                //foreach (var unit in conditionDatas)
+                //{
+                //    Debug.Log(unit);
+                //}
+            }
+            else
+            {
+                Debug.LogWarning("stageJson이 존재하지 않습니다.");
                 return false;
             }
 
@@ -159,7 +196,6 @@ namespace Portfolio.Editor
             return false;
         }
         #endregion
-
         #region 유닛데이터 로드
 
         public static bool GetUnitTable()
@@ -185,6 +221,45 @@ namespace Portfolio.Editor
                 return true;
             }
 
+            return false;
+        }
+        #endregion
+        #region 맵, 스테이지 데이터 로드
+        public static bool GetMapTable()
+        {
+            string xlsxPath = Application.dataPath + Constant.dataTablePath + Constant.mapDataTableName + ".xlsx";
+            string mapJsonPath = Application.dataPath + Constant.jsonFolderPath + Constant.mapDataJsonName + ".json";
+            string stageJsonPath = Application.dataPath + Constant.jsonFolderPath + Constant.stageDataJsonName + ".json";
+
+            if (File.Exists(xlsxPath))
+            {
+                // 파일 확인
+                using (var stream = File.Open(xlsxPath, FileMode.Open, FileAccess.Read))
+                {
+                    //Debug.Log("stream 생성");
+                    using (var reader = ExcelReaderFactory.CreateReader(stream))
+                    {
+                        var tables = reader.AsDataSet().Tables; // 엑셀 시트의 개수
+                        for (int i = 0; i < tables.Count; i++)
+                        {
+                            var sheet = tables[i];
+                            var tableReader = sheet.CreateDataReader();
+                            if (i == 0)
+                            {
+                                WriteJson(tableReader, sheet.Columns.Count, mapJsonPath);
+                            }
+                            else if (i == 1)
+                            {
+                                WriteJson(tableReader, sheet.Columns.Count, stageJsonPath);
+                            }
+                        }
+                    }
+                }
+
+                return true;
+            }
+
+            Debug.LogError("엑셀 파일이 확인되지 않습니다.");
             return false;
         }
         #endregion

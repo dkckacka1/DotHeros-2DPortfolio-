@@ -998,8 +998,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 367016667}
+  - component: {fileID: 367016668}
   m_Layer: 5
-  m_Name: CurrentMapInfoUI
+  m_Name: MapInfoUI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1027,6 +1028,20 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 390.3348, y: 89.8383}
   m_Pivot: {x: 0, y: 1}
+--- !u!114 &367016668
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 367016666}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff58631e3789f444cac48f5e80942784, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mapNameTxt: {fileID: 493297339}
+  mapStageProceedTxt: {fileID: 2027441754}
 --- !u!1 &493297337
 GameObject:
   m_ObjectHideFlags: 0
@@ -1869,6 +1884,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playableCanvas: {fileID: 662502208}
+  mapInfoUI: {fileID: 367016668}
   sequenceUI: {fileID: 1186397701}
   unitSequenceUIPrefab: {fileID: 2416663524681561345, guid: 4841eb6c336c404458197c3258daa373, type: 3}
   unitSequenceUIParent: {fileID: 861734185}
@@ -2202,6 +2218,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ee79c47f79b536428225e2136cc3cc4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isTest: 1
 --- !u!4 &1077764693
 Transform:
   m_ObjectHideFlags: 0

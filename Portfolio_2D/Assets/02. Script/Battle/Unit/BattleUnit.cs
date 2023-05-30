@@ -144,9 +144,6 @@ namespace Portfolio
             effectHit = this.unit.Data.effectHit;
             effectResistance = this.unit.Data.effectResistance;
 
-            SetPassiveSkill(this.unit.passiveSkill_1, this.unit.passiveSkillLevel_1);
-            SetPassiveSkill(this.unit.passiveSkill_2, this.unit.passiveSkillLevel_2);
-
             unitUI.CreateSequenceUI(this);
 
             if (!IsEnemy)
@@ -155,6 +152,8 @@ namespace Portfolio
             }
 
             aiSystem.SetActiveSkill(unit);
+
+            BattleManager.Instance.PublishEvent(BattleState.BATTLESTART, BattleStart);
         }
 
         //===========================================================
@@ -217,6 +216,9 @@ namespace Portfolio
         //===========================================================
         public void BattleStart()
         {
+            SetPassiveSkill(unit.passiveSkill_1, unit.passiveSkillLevel_1);
+            SetPassiveSkill(unit.passiveSkill_2, unit.passiveSkillLevel_2);
+
             OnStartBattleEvent?.Invoke(this, EventArgs.Empty);
         }
 
@@ -435,7 +437,7 @@ namespace Portfolio
                 }
             }
 
-            RemoveCondition();
+            RemoveZeroCountCondition();
         }
 
         private void ProceedContinuationCondition()
@@ -454,7 +456,7 @@ namespace Portfolio
                 }
             }
 
-            RemoveCondition();
+            RemoveZeroCountCondition();
         }
 
         private void TickConditionCycle()
@@ -469,7 +471,7 @@ namespace Portfolio
             }
         }
 
-        private void RemoveCondition()
+        private void RemoveZeroCountCondition()
         {
             var removeIDList = conditionDic.Values.Where(conditionSystem => conditionSystem.isCountEnd()).Select(conditionSystem => conditionSystem.Condition.ConditionData.ID).ToList();
             foreach (var id in removeIDList)

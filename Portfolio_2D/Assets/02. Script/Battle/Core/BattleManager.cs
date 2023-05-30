@@ -16,21 +16,24 @@ namespace Portfolio
         private static ManaSystem manaSystem;
 
         private List<BattleUnit> unitList = new List<BattleUnit>();
-
-        private BattleState battleState = BattleState.NONE;
-
-
-
         private Dictionary<BattleState, UnityEvent> StateEventHandlerDic = new Dictionary<BattleState, UnityEvent>();
 
-        public static BattleManager Instance { get; private set; }
+        [SerializeField] private BattleState battleState = BattleState.NONE;
+        public MapData currentMapData;
+        public Queue<StageData> stageDatas = new Queue<StageData>();
+        public StageData currentStageData;
+        public bool isTest = false;
 
-        public BattleState BattleState { get => battleState; }
+        //===========================================================
+        // Property & Singleton
+        //===========================================================
+        public static BattleManager Instance { get; private set; }
         public static BattleUIManager BattleUIManager { get => battleUI; }
         public static BattleFactory BattleFactory { get => battleFactory; }
         public static TurnBaseSystem TurnBaseSystem { get => turnBaseSystem;}
         public static ActionSystem ActionSystem { get => actionSystem;}
         public static ManaSystem ManaSystem { get => manaSystem; }
+        public BattleState BattleState { get => battleState; }
 
         private void Awake()
         {
@@ -51,7 +54,69 @@ namespace Portfolio
 
         private void Start()
         {
-            battleState = BattleState.PLAY;
+            if (isTest)
+            {
+                GameManager.Instance.TryGetData(500, out currentMapData);
+                Debug.Log(currentMapData.mapName);
+                if (currentMapData.stage_1_ID != -1)
+                {
+                    GameManager.Instance.TryGetData(currentMapData.stage_1_ID, out StageData stageData);
+                    Debug.Log(stageData == null);
+                    stageDatas.Enqueue(stageData);
+                }
+                if (currentMapData.stage_2_ID != -1)
+                {
+                    GameManager.Instance.TryGetData(currentMapData.stage_2_ID, out StageData stageData);
+                    stageDatas.Enqueue(stageData);
+                }
+                if (currentMapData.stage_3_ID != -1)
+                {
+                    GameManager.Instance.TryGetData(currentMapData.stage_3_ID, out StageData stageData);
+                    stageDatas.Enqueue(stageData);
+                }
+                if (currentMapData.stage_4_ID != -1)
+                {
+                    GameManager.Instance.TryGetData(currentMapData.stage_4_ID, out StageData stageData);
+                    stageDatas.Enqueue(stageData);
+                }
+                if (currentMapData.stage_5_ID != -1)
+                {
+                    GameManager.Instance.TryGetData(currentMapData.stage_5_ID, out StageData stageData);
+                    stageDatas.Enqueue(stageData);
+                }
+                currentStageData = stageDatas.Dequeue();
+
+                GameManager.Instance.TryGetUnit(100, out Unit attackUnit);
+                GameManager.Instance.TryGetUnit(101, out Unit HealUnit);
+
+                if (BattleManager.BattleFactory.TryCreateBattleUnit(HealUnit, false, out BattleUnit battleUnit1))
+                {
+                    BattleManager.Instance.AddUnitinUnitList(battleUnit1);
+                }
+
+                if (BattleManager.BattleFactory.TryCreateBattleUnit(HealUnit, false, out BattleUnit battleUnit2))
+                {
+                    BattleManager.Instance.AddUnitinUnitList(battleUnit2);
+                }
+
+                if (BattleManager.BattleFactory.TryCreateBattleUnit(attackUnit, false, out BattleUnit battleUnit3))
+                {
+                    BattleManager.Instance.AddUnitinUnitList(battleUnit3);
+                }
+
+                if (BattleManager.BattleFactory.TryCreateBattleUnit(attackUnit, false, out BattleUnit battleUnit4))
+                {
+                    BattleManager.Instance.AddUnitinUnitList(battleUnit4);
+                }
+
+                if (BattleManager.BattleFactory.TryCreateBattleUnit(attackUnit, false, out BattleUnit battleUnit5))
+                {
+                    BattleManager.Instance.AddUnitinUnitList(battleUnit5);
+                }
+            }
+
+            battleUI.Initialize(currentMapData);
+            SetStage();
         }
 
         //===========================================================
@@ -86,14 +151,14 @@ namespace Portfolio
 
         public void CheckUnitList()
         {
-            if (GetUnitList(false).Count() == 0)
-                // 살아있는 플레이어 유닛이 0명일 경우
+            if (GetUnitList(true).Count() == 0)
+                // 살아있는 적 유닛이 0명일 경우
             {
                 Win();
             }
             
-            if (GetUnitList(true).Count() == 0)
-                // 살아있는 적 유닛이 0명일 경우
+            if (GetUnitList(false).Count() == 0)
+                // 살아있는 플레이어 유닛이 0명일 경우
             {
                 Defeat();
             }
@@ -113,18 +178,18 @@ namespace Portfolio
             SwitchBattleState(BattleState.PLAY);
         }
 
-        public void SetStage(int stageID)
+        public void SetStage()
         {
             SwitchBattleState(BattleState.SETSTAGE);
+            Debug.Log(currentStageData.ID);
+            BattleFactory.CreateStage(currentStageData);
+            BattleStart();
         }
 
         public void BattleStart()
         {
             SwitchBattleState(BattleState.BATTLESTART);
-            foreach (var unit in unitList.Where(unit => !unit.IsDead))
-            {
-                unit.BattleStart();
-            }
+            Play();
         }
 
         public void Pause()
@@ -135,6 +200,11 @@ namespace Portfolio
         public void Win()
         {
             SwitchBattleState(BattleState.WIN);
+            if (this.stageDatas.Count() >= 1)
+            {
+                currentStageData = stageDatas.Dequeue();
+                SetStage();
+            }
         }
 
         public void Defeat()

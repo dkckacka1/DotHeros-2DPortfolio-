@@ -34,7 +34,7 @@ namespace Portfolio
         public void AddLog(string str)
         {
             logQueue.Enqueue(str);
-            Debug.Log(logQueue.Count);
+            //Debug.Log(logQueue.Count);
             if (logQueue.Count > logCount)
             {
                 logQueue.Dequeue();

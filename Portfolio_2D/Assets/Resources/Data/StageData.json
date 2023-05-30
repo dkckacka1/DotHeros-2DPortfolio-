@@ -1,0 +1,42 @@
+[
+  {
+    "ID": 5000,
+    "EnemyUnit_1_ID": 100,
+    "EnemyUnit_2_ID": -1,
+    "EnemyUnit_3_ID": -1,
+    "EnemyUnit_4_ID": -1,
+    "EnemyUnit_5_ID": -1
+  },
+  {
+    "ID": 5001,
+    "EnemyUnit_1_ID": 100,
+    "EnemyUnit_2_ID": 100,
+    "EnemyUnit_3_ID": -1,
+    "EnemyUnit_4_ID": -1,
+    "EnemyUnit_5_ID": -1
+  },
+  {
+    "ID": 5002,
+    "EnemyUnit_1_ID": 100,
+    "EnemyUnit_2_ID": 100,
+    "EnemyUnit_3_ID": 100,
+    "EnemyUnit_4_ID": -1,
+    "EnemyUnit_5_ID": -1
+  },
+  {
+    "ID": 5003,
+    "EnemyUnit_1_ID": 100,
+    "EnemyUnit_2_ID": 100,
+    "EnemyUnit_3_ID": 100,
+    "EnemyUnit_4_ID": 100,
+    "EnemyUnit_5_ID": -1
+  },
+  {
+    "ID": 5004,
+    "EnemyUnit_1_ID": 100,
+    "EnemyUnit_2_ID": 100,
+    "EnemyUnit_3_ID": 100,
+    "EnemyUnit_4_ID": 100,
+    "EnemyUnit_5_ID": 100
+  }
+]

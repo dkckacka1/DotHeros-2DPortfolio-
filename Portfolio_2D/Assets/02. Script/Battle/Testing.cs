@@ -17,7 +17,6 @@ namespace Portfolio
 
                 if (BattleManager.BattleFactory.TryCreateBattleUnit(unit, false, out BattleUnit battleUnit))
                 {
-                    battleUnit.name = unit.Data.unitName + "_" + playerNum++;
                     battleUnit.Speed = Random.Range(50, 101);
                     BattleManager.Instance.AddUnitinUnitList(battleUnit);
                 }
@@ -29,7 +28,6 @@ namespace Portfolio
 
                 if (BattleManager.BattleFactory.TryCreateBattleUnit(unit, true, out BattleUnit battleUnit))
                 {
-                    battleUnit.name = unit.Data.unitName + "_" + enemyNum++;
                     battleUnit.Speed = Random.Range(50, 101);
                     BattleManager.Instance.AddUnitinUnitList(battleUnit);
                 }
@@ -42,11 +40,18 @@ namespace Portfolio
 
                     if (BattleManager.BattleFactory.TryCreateBattleUnit(unit, false, out BattleUnit battleUnit))
                     {
-                        battleUnit.name = unit.Data.unitName + "_" + playerNum++;
                         battleUnit.Speed = Random.Range(50, 101);
                         BattleManager.Instance.AddUnitinUnitList(battleUnit);
                     }
                 }
+            }
+        }
+
+        private void OnGUI()
+        {
+            if (GUI.Button(new Rect(10, 10, 100, 100), "전투 시작"))
+            {
+                BattleManager.Instance.BattleStart();
             }
         }
     }

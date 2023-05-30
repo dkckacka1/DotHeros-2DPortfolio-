@@ -24,5 +24,9 @@
         public const string unitDataJsonName = @"UnitData";
         public const string conditionDataTableName = @"ConditionDataTable";
         public const string conditionDataJsonName = @"ConditionData";
+        public const string mapDataTableName = @"MapDataTable";
+        public const string mapDataJsonName = @"MapData";
+        public const string stageDataJsonName = @"StageData";
+        
     }
 }

@@ -9,6 +9,9 @@ namespace Portfolio
         [Header("Canvas")]
         [SerializeField] private Canvas playableCanvas;
 
+        [Header("MapInfoUI")]
+        [SerializeField] private BattleMapInfoUI mapInfoUI;
+
         [Header("SequenceUI")]
         [SerializeField] private BattleSequenceUI sequenceUI;
         [SerializeField] private BattleUnitSequenceUI unitSequenceUIPrefab;
@@ -44,6 +47,16 @@ namespace Portfolio
             var skillUI = Instantiate(PlayerUnitSkillUIPrefab, unitSkillUIParent);
             skillUI.SetBattleSkillDescUI(battleSkillDescUI);
             return skillUI;
+        }
+
+        public void Initialize(MapData currentMapData)
+        {
+            mapInfoUI.SetMapInfo(currentMapData);
+        }
+
+        public void ShowNextStageUI()
+        {
+            mapInfoUI.NextStage();
         }
 
         public void AddLog(string str)

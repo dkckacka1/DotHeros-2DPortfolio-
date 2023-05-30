@@ -20,6 +20,8 @@ namespace Portfolio
             LoadData<ActiveSkillData>(dataDic, dataResourcesPath + Constant.activeSkillJsonName);
             LoadData<PassiveSkillData>(dataDic, dataResourcesPath + Constant.passiveSkillJsonName);
             LoadData<ConditionData>(dataDic, dataResourcesPath + Constant.conditionDataJsonName);
+            LoadData<MapData>(dataDic, dataResourcesPath + Constant.mapDataJsonName);
+            LoadData<StageData>(dataDic, dataResourcesPath + Constant.stageDataJsonName);
         }
 
         private static void LoadData<T>(Dictionary<int, Data> dataDic, string jsonPath) where T : Data

@@ -1,0 +1,11 @@
+[
+  {
+    "ID": 500,
+    "mapName": "신성한 숲",
+    "stage_1_ID": 5000,
+    "stage_2_ID": 5001,
+    "stage_3_ID": 5002,
+    "stage_4_ID": 5003,
+    "stage_5_ID": -1
+  }
+]
