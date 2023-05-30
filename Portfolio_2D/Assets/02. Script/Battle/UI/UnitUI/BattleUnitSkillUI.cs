@@ -120,6 +120,12 @@ namespace Portfolio
 
         public void Action()
         {
+            if (BattleManager.ActionSystem.SelectedUnits.Count == 0)
+                // 선택한 유닛이 없으면 리턴
+            {
+                return;
+            }
+
             if (selectActiveSkill == battleUnit.Unit.basicAttackSkill)
             {
                 battleUnit.BasicAttack();

@@ -34,6 +34,11 @@ namespace Portfolio
             }
         }
 
+        public bool IsUnitTurn(UnitTurnBase unitTurn)
+        {
+            return currentTurnUnit == unitTurn;
+        }
+
         private void ProceedTurn(UnitTurnBase unitTurnBase)
         {
             unitTurnBase.AddUnitTurnCount(unitTurnBase.BattleUnit.Speed * Time.deltaTime);

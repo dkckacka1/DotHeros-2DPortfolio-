@@ -2,7 +2,7 @@
 {
     public class PassiveSkillData : SkillData
     {
-        public bool isAllPlayer;
+        public bool isAllAlly;
         public bool isAllEnemy;
 
         public bool isOnStartBattle;

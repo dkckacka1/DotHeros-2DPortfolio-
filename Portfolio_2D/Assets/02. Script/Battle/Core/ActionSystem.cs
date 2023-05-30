@@ -238,13 +238,14 @@ namespace Portfolio
         }
 
 
-        public List<BattleUnit> GetPassiveTargetUnit(PassiveSkill passiveSkill)
+        public List<BattleUnit> GetPassiveTargetUnit(PassiveSkill passiveSkill, BattleUnit actionUnit)
         {
             var list = unitGrids.
-                Where((grid) =>
-                    isUnitAtGrid(grid) && !grid.isDead &&
-                        ((!grid.IsEnemy && passiveSkill.GetData.isAllPlayer) ||
-                        (grid.IsEnemy && passiveSkill.GetData.isAllEnemy))).Select((grid) => grid.unit).ToList();
+                Where(grid =>
+                    isUnitAtGrid(grid) 
+                    && !grid.isDead 
+                    && ((actionUnit.IsAlly(grid.unit) && passiveSkill.GetData.isAllAlly) || ((actionUnit.IsAlly(grid.unit) && passiveSkill.GetData.isAllEnemy)))).
+                        Select(grid => grid.unit).ToList();
 
             //foreach (var unit in list)
             //{

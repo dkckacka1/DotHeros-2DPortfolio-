@@ -40,7 +40,9 @@ namespace Portfolio
     public class BattleUnit : MonoBehaviour
     {
         private Unit unit;
+        private BattleUnitUI unitUI;
         private AISystem aiSystem;
+        private UnitTurnBase unitTurnBase;
 
         [SerializeField] bool isEnemy;
 
@@ -66,8 +68,6 @@ namespace Portfolio
         public int activeSkill_2_CoolTime = 0;
 
         private Dictionary<int, ConditionSystem> conditionDic = new Dictionary<int, ConditionSystem>();
-
-        private BattleUnitUI unitUI;
 
         //===========================================================
         // Event
@@ -122,6 +122,7 @@ namespace Portfolio
         {
             unitUI = GetComponent<BattleUnitUI>();
             aiSystem = GetComponent<AISystem>();
+            unitTurnBase = GetComponent<UnitTurnBase>();
 
             unitUI.SetUnit(this);
 
@@ -154,6 +155,8 @@ namespace Portfolio
             aiSystem.SetActiveSkill(unit);
 
             BattleManager.Instance.PublishEvent(BattleState.BATTLESTART, BattleStart);
+            BattleManager.Instance.PublishEvent(BattleState.WIN, Win);
+            BattleManager.Instance.PublishEvent(BattleState.DEFEAT, Defeat);
         }
 
         //===========================================================
@@ -222,6 +225,18 @@ namespace Portfolio
             OnStartBattleEvent?.Invoke(this, EventArgs.Empty);
         }
 
+        public void Win()
+        {
+            unitTurnBase.ResetUnitTurnCount();
+            ResetCondition();
+        }
+
+        public void Defeat()
+        {
+            unitTurnBase.ResetUnitTurnCount();
+            ResetCondition();
+        }
+
         public void BasicAttack()
         {
             OnAttackEvent?.Invoke(this, EventArgs.Empty);
@@ -250,14 +265,18 @@ namespace Portfolio
         private void Dead()
         {
             isDead = true;
+            unitUI.Dead();
             this.gameObject.SetActive(false);
             OnDeadEvent?.Invoke(this, EventArgs.Empty);
 
-            if (BattleManager.TurnBaseSystem.CurrentTurnUnit == GetComponent<UnitTurnBase>())
+            if (BattleManager.TurnBaseSystem.IsUnitTurn(this.unitTurnBase))
             {
                 BattleManager.TurnBaseSystem.TurnEnd();
             }
 
+            BattleManager.Instance.UnPublishEvent(BattleState.BATTLESTART, BattleStart);
+            BattleManager.Instance.UnPublishEvent(BattleState.WIN, Win);
+            BattleManager.Instance.UnPublishEvent(BattleState.DEFEAT, Defeat);
             BattleManager.Instance.CheckUnitList();
         }
 
@@ -339,14 +358,13 @@ namespace Portfolio
                 return;
             }
 
-            if (!skill.GetData.isAllPlayer && !skill.GetData.isAllEnemy)
+            if (!skill.GetData.isAllAlly && !skill.GetData.isAllEnemy)
             {
                 SetPassiveSkillEvent(skill, skillLevel, new List<BattleUnit>() { this });
             }
             else
             {
-                SetPassiveSkillEvent(skill, skillLevel, BattleManager.ActionSystem.GetPassiveTargetUnit(skill));
-
+                SetPassiveSkillEvent(skill, skillLevel, BattleManager.ActionSystem.GetPassiveTargetUnit(skill, this));
             }
         }
 
@@ -480,6 +498,15 @@ namespace Portfolio
             }
         }
 
+        private void ResetCondition()
+        {
+            foreach (var condition in conditionDic.Values)
+            {
+                condition.EndCondition();
+            }
+            conditionDic.Clear();
+        }
+
         private IEnumerable<ConditionSystem> GetConditionSystems<T>() where T : Condition
         {
             return conditionDic.Values.Where(conditionSystem => conditionSystem.Condition is T);
@@ -493,7 +520,7 @@ namespace Portfolio
             if (aiSystem.isAI)
             {
                 aiSystem.isAI = false;
-                if (BattleManager.TurnBaseSystem.CurrentTurnUnit == GetComponent<UnitTurnBase>())
+                if (BattleManager.TurnBaseSystem.IsUnitTurn(this.unitTurnBase))
                 {
                     unitUI.ShowSkillUI();
                 }

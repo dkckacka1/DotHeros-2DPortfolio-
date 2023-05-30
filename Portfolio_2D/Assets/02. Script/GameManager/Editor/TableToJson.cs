@@ -35,7 +35,7 @@ namespace Portfolio.Editor
                 return false;
             }
 
-            string passiveSkillJson = Application.dataPath + Constant.jsonFolderPath + Constant.passiveSkillJsonName+ ".json";
+            string passiveSkillJson = Application.dataPath + Constant.jsonFolderPath + Constant.passiveSkillJsonName + ".json";
             if (File.Exists(passiveSkillJson))
             {
                 var text = File.OpenText(passiveSkillJson);
@@ -149,14 +149,7 @@ namespace Portfolio.Editor
                         {
                             var sheet = tables[i];
                             var tableReader = sheet.CreateDataReader();
-                            if (i == 0)
-                            {
-                                WriteJson(tableReader, sheet.Columns.Count, activeSkilljsonPath);
-                            }
-                            else if (i == 1)
-                            {
-                                WriteJson(tableReader, sheet.Columns.Count, passiveSkilljsonPath);
-                            }
+                            WriteJson(tableReader, sheet.Columns.Count, sheet.TableName);
                         }
                     }
                 }
@@ -186,7 +179,7 @@ namespace Portfolio.Editor
                         var tables = reader.AsDataSet().Tables; // ¿¢¼¿ ½ÃÆ®ÀÇ °³¼ö
                         var sheet = tables[0];
                         var tableReader = sheet.CreateDataReader();
-                        WriteJson(tableReader, sheet.Columns.Count, jsonPath);
+                        WriteJson(tableReader, sheet.Columns.Count, sheet.TableName);
                     }
                 }
 
@@ -201,7 +194,6 @@ namespace Portfolio.Editor
         public static bool GetUnitTable()
         {
             string xlsxPath = Application.dataPath + Constant.dataTablePath + Constant.unitDataTableName + ".xlsx";
-            string jsonPath = Application.dataPath + Constant.jsonFolderPath + Constant.unitDataJsonName + ".json";
 
             if (File.Exists(xlsxPath))
             {
@@ -214,7 +206,7 @@ namespace Portfolio.Editor
                         var tables = reader.AsDataSet().Tables; // ¿¢¼¿ ½ÃÆ®ÀÇ °³¼ö
                         var sheet = tables[0];
                         var tableReader = sheet.CreateDataReader();
-                        WriteJson(tableReader, sheet.Columns.Count, jsonPath);
+                        WriteJson(tableReader, sheet.Columns.Count, sheet.TableName);
                     }
                 }
 
@@ -228,8 +220,6 @@ namespace Portfolio.Editor
         public static bool GetMapTable()
         {
             string xlsxPath = Application.dataPath + Constant.dataTablePath + Constant.mapDataTableName + ".xlsx";
-            string mapJsonPath = Application.dataPath + Constant.jsonFolderPath + Constant.mapDataJsonName + ".json";
-            string stageJsonPath = Application.dataPath + Constant.jsonFolderPath + Constant.stageDataJsonName + ".json";
 
             if (File.Exists(xlsxPath))
             {
@@ -244,14 +234,7 @@ namespace Portfolio.Editor
                         {
                             var sheet = tables[i];
                             var tableReader = sheet.CreateDataReader();
-                            if (i == 0)
-                            {
-                                WriteJson(tableReader, sheet.Columns.Count, mapJsonPath);
-                            }
-                            else if (i == 1)
-                            {
-                                WriteJson(tableReader, sheet.Columns.Count, stageJsonPath);
-                            }
+                            WriteJson(tableReader, sheet.Columns.Count, sheet.TableName);
                         }
                     }
                 }
@@ -266,7 +249,7 @@ namespace Portfolio.Editor
 
         private static bool WriteJson(DataTableReader reader, int rowCount, string excelPath)
         {
-            using (var writer = new JsonTextWriter(File.CreateText(excelPath)))
+            using (var writer = new JsonTextWriter(File.CreateText(Application.dataPath + Constant.jsonFolderPath + excelPath + ".json")))
             {
                 List<string> propertyList = new List<string>();
 

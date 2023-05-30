@@ -30,8 +30,8 @@ namespace Portfolio
         public static BattleManager Instance { get; private set; }
         public static BattleUIManager BattleUIManager { get => battleUI; }
         public static BattleFactory BattleFactory { get => battleFactory; }
-        public static TurnBaseSystem TurnBaseSystem { get => turnBaseSystem;}
-        public static ActionSystem ActionSystem { get => actionSystem;}
+        public static TurnBaseSystem TurnBaseSystem { get => turnBaseSystem; }
+        public static ActionSystem ActionSystem { get => actionSystem; }
         public static ManaSystem ManaSystem { get => manaSystem; }
         public BattleState BattleState { get => battleState; }
 
@@ -152,13 +152,13 @@ namespace Portfolio
         public void CheckUnitList()
         {
             if (GetUnitList(true).Count() == 0)
-                // 살아있는 적 유닛이 0명일 경우
+            // 살아있는 적 유닛이 0명일 경우
             {
                 Win();
             }
-            
+
             if (GetUnitList(false).Count() == 0)
-                // 살아있는 플레이어 유닛이 0명일 경우
+            // 살아있는 플레이어 유닛이 0명일 경우
             {
                 Defeat();
             }
@@ -202,6 +202,7 @@ namespace Portfolio
             SwitchBattleState(BattleState.WIN);
             if (this.stageDatas.Count() >= 1)
             {
+                BattleUIManager.ShowNextStageUI();
                 currentStageData = stageDatas.Dequeue();
                 SetStage();
             }

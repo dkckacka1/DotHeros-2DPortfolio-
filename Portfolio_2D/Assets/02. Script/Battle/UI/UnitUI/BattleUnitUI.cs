@@ -31,9 +31,30 @@ namespace Portfolio
         {
             unitUICanvas.worldCamera = Camera.main;
         }
+
+        public void Win()
+        {
             
-        public void SetCurrentTurnUI(bool isTurn) => currentTurnUIObject.SetActive(isTurn);
-        public void SetTargetedUI(bool isTarget) => targetedUIObject.SetActive(isTarget);
+        }
+
+        public void Defeat()
+        {
+
+        }
+
+        public void Dead()
+        {
+            unitSequenceUI.gameObject.SetActive(false);
+        }
+
+        public void SetCurrentTurnUI(bool isTurn)
+        {
+            currentTurnUIObject.SetActive(isTurn);
+        }
+        public void SetTargetedUI(bool isTarget)
+        {
+            targetedUIObject.SetActive(isTarget);
+        }
         public void SetUnit(BattleUnit unit)
         {
             unitHPUI.SetHP(unit.MaxHP);
