@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-namespace Portfolio
+namespace Portfolio.Battle
 {
     public class BattleSkillDescUI : MonoBehaviour
     {

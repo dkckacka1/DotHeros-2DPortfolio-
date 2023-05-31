@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEngine.Events;
 
-namespace Portfolio
+namespace Portfolio.Battle
 {
     public class UnitTurnBase : MonoBehaviour
     {

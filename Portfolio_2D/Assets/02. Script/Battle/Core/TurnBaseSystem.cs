@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Portfolio
+namespace Portfolio.Battle
 {
     public class TurnBaseSystem : MonoBehaviour
     {

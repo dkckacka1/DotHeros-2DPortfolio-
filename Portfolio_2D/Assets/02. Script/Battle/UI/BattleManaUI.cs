@@ -4,7 +4,7 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 
-namespace Portfolio
+namespace Portfolio.Battle
 {
     public class BattleManaUI : MonoBehaviour
     {

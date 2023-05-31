@@ -6,7 +6,7 @@ using UnityEngine.Events;
 using System;
 using Portfolio.skill;
 
-namespace Portfolio
+namespace Portfolio.Battle
 {
     public class ActionSystem : MonoBehaviour
     {
