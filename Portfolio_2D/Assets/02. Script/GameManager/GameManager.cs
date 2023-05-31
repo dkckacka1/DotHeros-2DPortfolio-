@@ -27,6 +27,11 @@ namespace Portfolio
 
         public bool isTest;
 
+        //===========================================================
+        // UserData
+        //===========================================================
+        public static UserData CurrentUser;
+
         private void Awake()
         {
             if (instance == null)
@@ -40,9 +45,12 @@ namespace Portfolio
             }
 
             ResourcesLoader.LoadAllData(dataDictionary);
-            LoadSkill();
-            LoadUnit();
-            LoadCondition();
+            CreateGameSource();
+
+            if (!SaveManager.LoadUserData(out CurrentUser))
+            {
+                CurrentUser = SaveManager.CreateNewUser();
+            }
         }
 
         private void Start()
@@ -127,6 +135,13 @@ namespace Portfolio
         }
 
         #region 데이터를 형식으로 변환
+
+        private void CreateGameSource()
+        {
+            LoadSkill();
+            LoadUnit();
+            LoadCondition();
+        }
 
         private void LoadUnit()
         {

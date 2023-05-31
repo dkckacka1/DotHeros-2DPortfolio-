@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Portfolio
 {
-    public class VariableUnitData : Data
+    public class UserUnitData
     {
         public int unitID = 0;
         public int unitLevel = 1;
@@ -14,7 +14,6 @@ namespace Portfolio
         public int activeSkillLevel_2 = 1;
         public int passiveSkillLevel_1 = 1;
         public int passiveSkillLevel_2 = 1;
-
         // Item
     }
 }

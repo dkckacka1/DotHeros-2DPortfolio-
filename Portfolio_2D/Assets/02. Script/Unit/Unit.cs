@@ -35,12 +35,25 @@ namespace Portfolio
             GameManager.Instance.TryGetSkill(unitData.activeSkillID_2, out activeSkill_2);
             GameManager.Instance.TryGetSkill(unitData.passiveSkillID_1, out passiveSkill_1);
             GameManager.Instance.TryGetSkill(unitData.passiveSkillID_2, out passiveSkill_2);
+        }
 
-            basicAttackSkill?.GetDesc(1);
-            activeSkill_1?.GetDesc(activeSkillLevel_1);
-            activeSkill_2?.GetDesc(activeSkillLevel_2);
-            passiveSkill_1?.GetDesc(passiveSkillLevel_1);
-            passiveSkill_2?.GetDesc(passiveSkillLevel_2);
+        public Unit(UnitData unitData, UserUnitData userUnitData)
+        {
+            this.data = unitData;
+
+            unitLevel = userUnitData.unitLevel;
+            unitGrade = userUnitData.unitGrade;
+
+            activeSkillLevel_1 = userUnitData.activeSkillLevel_1;
+            activeSkillLevel_2 = userUnitData.activeSkillLevel_2;
+            passiveSkillLevel_1 = userUnitData.passiveSkillLevel_1;
+            passiveSkillLevel_2 = userUnitData.passiveSkillLevel_2;
+
+            GameManager.Instance.TryGetSkill(unitData.basicAttackSKillID, out basicAttackSkill);
+            GameManager.Instance.TryGetSkill(unitData.activeSkillID_1, out activeSkill_1);
+            GameManager.Instance.TryGetSkill(unitData.activeSkillID_2, out activeSkill_2);
+            GameManager.Instance.TryGetSkill(unitData.passiveSkillID_1, out passiveSkill_1);
+            GameManager.Instance.TryGetSkill(unitData.passiveSkillID_2, out passiveSkill_2);
         }
     }
 }

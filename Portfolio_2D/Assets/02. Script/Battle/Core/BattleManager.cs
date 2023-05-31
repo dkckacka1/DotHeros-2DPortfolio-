@@ -19,10 +19,15 @@ namespace Portfolio.Battle
         private Dictionary<BattleState, UnityEvent> StateEventHandlerDic = new Dictionary<BattleState, UnityEvent>();
 
         [SerializeField] private BattleState battleState = BattleState.NONE;
-        public MapData currentMapData;
         public Queue<StageData> stageDatas = new Queue<StageData>();
         public StageData currentStageData;
         public bool isTest = false;
+
+        //===========================================================
+        // SceneLoaderData
+        //===========================================================
+        public List<Unit> userChoiceUnits;   // 유저가 설정한 유닛
+        public MapData currentMapData;  // 유적가 선택한 맵
 
         //===========================================================
         // Property & Singleton
@@ -54,69 +59,57 @@ namespace Portfolio.Battle
 
         private void Start()
         {
-            if (isTest)
-            {
-                GameManager.Instance.TryGetData(500, out currentMapData);
-                Debug.Log(currentMapData.mapName);
-                if (currentMapData.stage_1_ID != -1)
-                {
-                    GameManager.Instance.TryGetData(currentMapData.stage_1_ID, out StageData stageData);
-                    Debug.Log(stageData == null);
-                    stageDatas.Enqueue(stageData);
-                }
-                if (currentMapData.stage_2_ID != -1)
-                {
-                    GameManager.Instance.TryGetData(currentMapData.stage_2_ID, out StageData stageData);
-                    stageDatas.Enqueue(stageData);
-                }
-                if (currentMapData.stage_3_ID != -1)
-                {
-                    GameManager.Instance.TryGetData(currentMapData.stage_3_ID, out StageData stageData);
-                    stageDatas.Enqueue(stageData);
-                }
-                if (currentMapData.stage_4_ID != -1)
-                {
-                    GameManager.Instance.TryGetData(currentMapData.stage_4_ID, out StageData stageData);
-                    stageDatas.Enqueue(stageData);
-                }
-                if (currentMapData.stage_5_ID != -1)
-                {
-                    GameManager.Instance.TryGetData(currentMapData.stage_5_ID, out StageData stageData);
-                    stageDatas.Enqueue(stageData);
-                }
-                currentStageData = stageDatas.Dequeue();
-
-                GameManager.Instance.TryGetUnit(100, out Unit attackUnit);
-                GameManager.Instance.TryGetUnit(101, out Unit HealUnit);
-
-                if (BattleManager.BattleFactory.TryCreateBattleUnit(HealUnit, false, out BattleUnit battleUnit1))
-                {
-                    BattleManager.Instance.AddUnitinUnitList(battleUnit1);
-                }
-
-                if (BattleManager.BattleFactory.TryCreateBattleUnit(HealUnit, false, out BattleUnit battleUnit2))
-                {
-                    BattleManager.Instance.AddUnitinUnitList(battleUnit2);
-                }
-
-                if (BattleManager.BattleFactory.TryCreateBattleUnit(attackUnit, false, out BattleUnit battleUnit3))
-                {
-                    BattleManager.Instance.AddUnitinUnitList(battleUnit3);
-                }
-
-                if (BattleManager.BattleFactory.TryCreateBattleUnit(attackUnit, false, out BattleUnit battleUnit4))
-                {
-                    BattleManager.Instance.AddUnitinUnitList(battleUnit4);
-                }
-
-                if (BattleManager.BattleFactory.TryCreateBattleUnit(attackUnit, false, out BattleUnit battleUnit5))
-                {
-                    BattleManager.Instance.AddUnitinUnitList(battleUnit5);
-                }
-            }
+            SetMapData();
+            SetUserUnit();
+            currentStageData = stageDatas.Dequeue();
 
             battleUI.Initialize(currentMapData);
             SetStage();
+        }
+
+        //===========================================================
+        // BattleInit
+        //===========================================================
+        private void SetMapData()
+        {
+            currentMapData = SceneLoader.userChocieMapData;
+            if (currentMapData.stage_1_ID != -1)
+            {
+                GameManager.Instance.TryGetData(currentMapData.stage_1_ID, out StageData stageData);
+                stageDatas.Enqueue(stageData);
+            }
+            if (currentMapData.stage_2_ID != -1)
+            {
+                GameManager.Instance.TryGetData(currentMapData.stage_2_ID, out StageData stageData);
+                stageDatas.Enqueue(stageData);
+            }
+            if (currentMapData.stage_3_ID != -1)
+            {
+                GameManager.Instance.TryGetData(currentMapData.stage_3_ID, out StageData stageData);
+                stageDatas.Enqueue(stageData);
+            }
+            if (currentMapData.stage_4_ID != -1)
+            {
+                GameManager.Instance.TryGetData(currentMapData.stage_4_ID, out StageData stageData);
+                stageDatas.Enqueue(stageData);
+            }
+            if (currentMapData.stage_5_ID != -1)
+            {
+                GameManager.Instance.TryGetData(currentMapData.stage_5_ID, out StageData stageData);
+                stageDatas.Enqueue(stageData);
+            }
+        }
+
+        private void SetUserUnit()
+        {
+            userChoiceUnits = SceneLoader.userChoiceUnits;
+            foreach (Unit userUnit in userChoiceUnits)
+            {
+                if (battleFactory.TryCreateBattleUnit(userUnit, false, out BattleUnit battleUnit))
+                {
+                    AddUnitinUnitList(battleUnit);
+                }
+            }
         }
 
         //===========================================================

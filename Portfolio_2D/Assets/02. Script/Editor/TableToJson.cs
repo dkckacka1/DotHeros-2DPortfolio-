@@ -17,7 +17,7 @@ namespace Portfolio.Editor
     {
         public static bool CheckValidJson()
         {
-            string activeSkillJson = Application.dataPath + Constant.jsonFolderPath + Constant.activeSkillJsonName + ".json";
+            string activeSkillJson = Application.dataPath + Constant.ResorucesDataPath + Constant.activeSkillJsonName + ".json";
             if (File.Exists(activeSkillJson))
             {
                 var text = File.OpenText(activeSkillJson);
@@ -35,7 +35,7 @@ namespace Portfolio.Editor
                 return false;
             }
 
-            string passiveSkillJson = Application.dataPath + Constant.jsonFolderPath + Constant.passiveSkillJsonName + ".json";
+            string passiveSkillJson = Application.dataPath + Constant.ResorucesDataPath + Constant.passiveSkillJsonName + ".json";
             if (File.Exists(passiveSkillJson))
             {
                 var text = File.OpenText(passiveSkillJson);
@@ -53,7 +53,7 @@ namespace Portfolio.Editor
                 return false;
             }
 
-            string unitJsonPath = Application.dataPath + Constant.jsonFolderPath + Constant.unitDataJsonName + ".json";
+            string unitJsonPath = Application.dataPath + Constant.ResorucesDataPath + Constant.unitDataJsonName + ".json";
             if (File.Exists(unitJsonPath))
             {
                 var text = File.OpenText(unitJsonPath);
@@ -71,7 +71,7 @@ namespace Portfolio.Editor
                 return false;
             }
 
-            string conditionJsonPath = Application.dataPath + Constant.jsonFolderPath + Constant.conditionDataJsonName + ".json";
+            string conditionJsonPath = Application.dataPath + Constant.ResorucesDataPath + Constant.conditionDataJsonName + ".json";
             if (File.Exists(conditionJsonPath))
             {
                 var text = File.OpenText(conditionJsonPath);
@@ -89,7 +89,7 @@ namespace Portfolio.Editor
                 return false;
             }
 
-            string mapJsonPath = Application.dataPath + Constant.jsonFolderPath + Constant.mapDataJsonName + ".json";
+            string mapJsonPath = Application.dataPath + Constant.ResorucesDataPath + Constant.mapDataJsonName + ".json";
             if (File.Exists(mapJsonPath))
             {
                 var text = File.OpenText(mapJsonPath);
@@ -108,7 +108,7 @@ namespace Portfolio.Editor
             }
 
 
-            string stageJsonPath = Application.dataPath + Constant.jsonFolderPath + Constant.stageDataJsonName + ".json";
+            string stageJsonPath = Application.dataPath + Constant.ResorucesDataPath + Constant.stageDataJsonName + ".json";
             if (File.Exists(stageJsonPath))
             {
                 var text = File.OpenText(stageJsonPath);
@@ -133,8 +133,8 @@ namespace Portfolio.Editor
         public static bool GetSkillTable()
         {
             string xlsxPath = Application.dataPath + Constant.dataTablePath + Constant.skillDataTableName + ".xlsx";
-            string passiveSkilljsonPath = Application.dataPath + Constant.jsonFolderPath + Constant.passiveSkillJsonName + ".json";
-            string activeSkilljsonPath = Application.dataPath + Constant.jsonFolderPath + Constant.activeSkillJsonName + ".json";
+            string passiveSkilljsonPath = Application.dataPath + Constant.ResorucesDataPath + Constant.passiveSkillJsonName + ".json";
+            string activeSkilljsonPath = Application.dataPath + Constant.ResorucesDataPath + Constant.activeSkillJsonName + ".json";
 
             if (File.Exists(xlsxPath))
             {
@@ -166,7 +166,7 @@ namespace Portfolio.Editor
         public static bool GetConditionTable()
         {
             string xlsxPath = Application.dataPath + Constant.dataTablePath + Constant.conditionDataTableName + ".xlsx";
-            string jsonPath = Application.dataPath + Constant.jsonFolderPath + Constant.conditionDataJsonName + ".json";
+            string jsonPath = Application.dataPath + Constant.ResorucesDataPath + Constant.conditionDataJsonName + ".json";
 
             if (File.Exists(xlsxPath))
             {
@@ -249,7 +249,7 @@ namespace Portfolio.Editor
 
         private static bool WriteJson(DataTableReader reader, int rowCount, string excelPath)
         {
-            using (var writer = new JsonTextWriter(File.CreateText(Application.dataPath + Constant.jsonFolderPath + excelPath + ".json")))
+            using (var writer = new JsonTextWriter(File.CreateText(Application.dataPath + Constant.ResorucesDataPath + excelPath + ".json")))
             {
                 List<string> propertyList = new List<string>();
 

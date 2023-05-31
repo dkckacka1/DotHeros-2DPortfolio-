@@ -16,6 +16,7 @@ namespace Portfolio
 
         public static void LoadAllData(Dictionary<int, Data> dataDic)
         {
+            //Debug.Log(dataResourcesPath + Constant.unitDataJsonName);
             LoadData<UnitData>(dataDic, dataResourcesPath + Constant.unitDataJsonName);
             LoadData<ActiveSkillData>(dataDic, dataResourcesPath + Constant.activeSkillJsonName);
             LoadData<PassiveSkillData>(dataDic, dataResourcesPath + Constant.passiveSkillJsonName);
