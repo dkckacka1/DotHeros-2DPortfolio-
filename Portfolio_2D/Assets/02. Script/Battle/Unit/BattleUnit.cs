@@ -137,7 +137,7 @@ namespace Portfolio.Battle
             this.unit = unit;
             maxHP = this.unit.Data.maxHP;
             currentHP = this.unit.Data.maxHP;
-            attackPoint = this.unit.Data.attackPoint;
+            attackPoint = this.unit.AttackPoint;
             speed = this.unit.Data.speed;
             defencePoint = this.unit.Data.defencePoint;
             criticalPoint = this.unit.Data.criticalPoint;

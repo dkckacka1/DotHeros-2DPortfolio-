@@ -18,6 +18,8 @@ namespace Portfolio
         public float criticalDamage = 0f;
         public float effectHit = 0f;
         public float effectResistance = 0f;
+        public float levelValue = 0.2f;
+        public float gradeValue = 0.5f;
 
         // Skill
         public int basicAttackSKillID = 10000;

@@ -4,14 +4,17 @@ using UnityEngine;
 
 namespace Portfolio
 {
-    public class PlayerEquipmentItemData
+    public class EquipmentItemData : ItemData
     {
-        public EquipmentItemData data;
-        public int reinforceLevel = 0;
+        public int equipmentItemLevel = 1;
+        public ElementalType equipmentElementType;
+        public EquipmentItemType equipmentType;
+        public SetType setType;
 
+        public int reinforceLevel = 0;
         public EquipmentOptionStat optionStat_1_Type = EquipmentOptionStat.NONE;
         public float optionStat_1_value = 0;
-        public EquipmentOptionStat optionStat_21_Type = EquipmentOptionStat.NONE;
+        public EquipmentOptionStat optionStat_2_Type = EquipmentOptionStat.NONE;
         public float optionStat_2_value = 0;
         public EquipmentOptionStat optionStat_3_Type = EquipmentOptionStat.NONE;
         public float optionStat_3_value = 0;

@@ -14,6 +14,12 @@ namespace Portfolio
         public int activeSkillLevel_2 = 1;
         public int passiveSkillLevel_1 = 1;
         public int passiveSkillLevel_2 = 1;
-        // Item
+
+        public WeaponData weaponData;
+        public HelmetData helmetData;
+        public ArmorData armorData;
+        public AmuletData amuletData;
+        public RingData RingData;
+        public ShoeData shoeData;
     }
 }

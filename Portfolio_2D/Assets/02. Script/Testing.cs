@@ -83,6 +83,9 @@ namespace Portfolio
                 userUnitData.passiveSkillLevel_2 = 5;
                 userdata.unitDataList.Add(userUnitData);
 
+                ArmorData armorData = new ArmorData();
+                userUnitData.armorData = armorData;
+
                 SaveManager.SaveUserData(userdata);
             }
 
@@ -100,6 +103,8 @@ namespace Portfolio
                 userUnitData.passiveSkillLevel_2 = 5;
                 userdata.unitDataList.Add(userUnitData);
 
+                WeaponData weaponData = new WeaponData();
+                userUnitData.weaponData = weaponData;
                 SaveManager.SaveUserData(userdata);
             }
 

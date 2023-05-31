@@ -9,10 +9,12 @@ namespace Portfolio
         public int userName;
 
         public List<UserUnitData> unitDataList;
+        public List<EquipmentItemData> equipmentItemDataList;
 
         public UserData()
         {
             unitDataList = new List<UserUnitData>();
+            equipmentItemDataList = new List<EquipmentItemData>();
         }
     }
 }

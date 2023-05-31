@@ -287,6 +287,10 @@ namespace Portfolio.Editor
                                 //Debug.Log($"{propertyList[i]}의 타입은 {typeof(bool)} 입니다.{boolValue}");
                                 writer.WriteValue(boolValue);
                             }
+                            else if (float.TryParse(reader.GetValue(i).ToString(), out float floatValue))
+                            {
+                                writer.WriteValue(floatValue);
+                            }
                             else
                             {
                                 //Debug.Log($"{propertyList[i]}의 타입은 {typeof(string)} 입니다.{reader.GetString(i)}");

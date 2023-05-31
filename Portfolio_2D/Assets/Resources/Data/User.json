@@ -10,7 +10,62 @@
       "activeSkillLevel_1": 5,
       "activeSkillLevel_2": 5,
       "passiveSkillLevel_1": 5,
-      "passiveSkillLevel_2": 5
+      "passiveSkillLevel_2": 5,
+      "weaponData": null,
+      "helmetData": null,
+      "armorData": {
+        "defencePoint": 0.0,
+        "equipmentItemLevel": 1,
+        "equipmentElementType": 0,
+        "equipmentType": 0,
+        "setType": 0,
+        "reinforceLevel": 0,
+        "optionStat_1_Type": -1,
+        "optionStat_1_value": 0.0,
+        "optionStat_2_Type": -1,
+        "optionStat_2_value": 0.0,
+        "optionStat_3_Type": -1,
+        "optionStat_3_value": 0.0,
+        "optionStat_4_Type": -1,
+        "optionStat_4_value": 0.0,
+        "itemName": null,
+        "ID": 0
+      },
+      "amuletData": null,
+      "RingData": null,
+      "shoeData": null
+    },
+    {
+      "unitID": 101,
+      "unitLevel": 100,
+      "unitGrade": 5,
+      "activeSkillLevel_1": 5,
+      "activeSkillLevel_2": 5,
+      "passiveSkillLevel_1": 5,
+      "passiveSkillLevel_2": 5,
+      "weaponData": {
+        "attackPoint": 0.0,
+        "equipmentItemLevel": 1,
+        "equipmentElementType": 0,
+        "equipmentType": 0,
+        "setType": 0,
+        "reinforceLevel": 0,
+        "optionStat_1_Type": -1,
+        "optionStat_1_value": 0.0,
+        "optionStat_2_Type": -1,
+        "optionStat_2_value": 0.0,
+        "optionStat_3_Type": -1,
+        "optionStat_3_value": 0.0,
+        "optionStat_4_Type": -1,
+        "optionStat_4_value": 0.0,
+        "itemName": null,
+        "ID": 0
+      },
+      "helmetData": null,
+      "armorData": null,
+      "amuletData": null,
+      "RingData": null,
+      "shoeData": null
     },
     {
       "unitID": 100,
@@ -19,7 +74,30 @@
       "activeSkillLevel_1": 5,
       "activeSkillLevel_2": 5,
       "passiveSkillLevel_1": 5,
-      "passiveSkillLevel_2": 5
+      "passiveSkillLevel_2": 5,
+      "weaponData": null,
+      "helmetData": null,
+      "armorData": {
+        "defencePoint": 0.0,
+        "equipmentItemLevel": 1,
+        "equipmentElementType": 0,
+        "equipmentType": 0,
+        "setType": 0,
+        "reinforceLevel": 0,
+        "optionStat_1_Type": -1,
+        "optionStat_1_value": 0.0,
+        "optionStat_2_Type": -1,
+        "optionStat_2_value": 0.0,
+        "optionStat_3_Type": -1,
+        "optionStat_3_value": 0.0,
+        "optionStat_4_Type": -1,
+        "optionStat_4_value": 0.0,
+        "itemName": null,
+        "ID": 0
+      },
+      "amuletData": null,
+      "RingData": null,
+      "shoeData": null
     },
     {
       "unitID": 101,
@@ -28,25 +106,31 @@
       "activeSkillLevel_1": 5,
       "activeSkillLevel_2": 5,
       "passiveSkillLevel_1": 5,
-      "passiveSkillLevel_2": 5
-    },
-    {
-      "unitID": 101,
-      "unitLevel": 100,
-      "unitGrade": 5,
-      "activeSkillLevel_1": 5,
-      "activeSkillLevel_2": 5,
-      "passiveSkillLevel_1": 5,
-      "passiveSkillLevel_2": 5
-    },
-    {
-      "unitID": 101,
-      "unitLevel": 100,
-      "unitGrade": 5,
-      "activeSkillLevel_1": 5,
-      "activeSkillLevel_2": 5,
-      "passiveSkillLevel_1": 5,
-      "passiveSkillLevel_2": 5
+      "passiveSkillLevel_2": 5,
+      "weaponData": {
+        "attackPoint": 0.0,
+        "equipmentItemLevel": 1,
+        "equipmentElementType": 0,
+        "equipmentType": 0,
+        "setType": 0,
+        "reinforceLevel": 0,
+        "optionStat_1_Type": 1,
+        "optionStat_1_value": 500.0,
+        "optionStat_2_Type": -1,
+        "optionStat_2_value": 0.0,
+        "optionStat_3_Type": -1,
+        "optionStat_3_value": 0.0,
+        "optionStat_4_Type": -1,
+        "optionStat_4_value": 0.0,
+        "itemName": null,
+        "ID": 0
+      },
+      "helmetData": null,
+      "armorData": null,
+      "amuletData": null,
+      "RingData": null,
+      "shoeData": null
     }
-  ]
+  ],
+  "equipmentItemDataList": []
 }
