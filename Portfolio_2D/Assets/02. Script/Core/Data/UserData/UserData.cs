@@ -7,6 +7,9 @@ namespace Portfolio
     {
         public int userID;
         public int userName;
+        public int gold;
+        public int diamond;
+        public int energy;
 
         public List<UserUnitData> unitDataList;
         public List<EquipmentItemData> equipmentItemDataList;
