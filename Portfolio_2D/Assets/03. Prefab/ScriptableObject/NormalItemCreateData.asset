@@ -1,0 +1,53 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d7a4236c3c854c438eb03b44aaf4ce6, type: 3}
+  m_Name: NormalItemCreateData
+  m_EditorClassIdentifier: 
+  createGrade: 0
+  minWeaponAttackPoint: 5
+  maxWeaponAttackPoint: 10
+  minHelmetHealthPoint: 50
+  maxHelmetHealthPoint: 100
+  minArmorDefencePoint: 1
+  maxArmorDefencePoint: 5
+  minAmuletCriticalPercent: 0.01
+  maxAmuletCriticalPercent: 0.1
+  minAmuletCriticalDamage: 0.01
+  maxAmuletCriticalDamage: 0.1
+  minRingEffectHit: 0.01
+  maxRingEffectHit: 0.1
+  minRingEffectRes: 0.01
+  maxRingEffectRes: 0.1
+  minShoeSpeed: 10
+  maxShoeSpeed: 20
+  minOptionAttackPoint: 0
+  maxOptionAttackPoint: 0
+  minOptionAttackPercent: 0
+  maxOptionAttackPercent: 0
+  minOptionHealthPoint: 0
+  maxOptionHealthPoint: 0
+  minOptionHealthPercent: 0
+  maxOptionHealthPercent: 0
+  minOptionDefencePoint: 0
+  maxOptionDefencePoint: 0
+  minOptionDefencePercent: 0
+  maxOptionDefencePercent: 0
+  minOptionCriticalPercent: 0
+  maxOptionCriticalPercent: 0
+  minOptionCriticalDamage: 0
+  maxOptionCiritcalDamage: 0
+  minOptionSpeed: 0
+  maxOptionSpeed: 0
+  minOptionEffectHit: 0
+  maxOptionEffectHit: 0
+  minOptionEffectRes: 0
+  maxOptionEffectRes: 0

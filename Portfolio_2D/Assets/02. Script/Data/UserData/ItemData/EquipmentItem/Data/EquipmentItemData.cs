@@ -6,12 +6,12 @@ namespace Portfolio
 {
     public class EquipmentItemData : ItemData
     {
-        public int equipmentItemLevel = 1;
+        public ItemGrade equipmentGrade = ItemGrade.Normal;
         public ElementalType equipmentElementType;
         public EquipmentItemType equipmentType;
         public SetType setType;
 
-        public int reinforceLevel = 0;
+        public int reinforceCount = 0;
         public EquipmentOptionStat optionStat_1_Type = EquipmentOptionStat.NONE;
         public float optionStat_1_value = 0;
         public EquipmentOptionStat optionStat_2_Type = EquipmentOptionStat.NONE;

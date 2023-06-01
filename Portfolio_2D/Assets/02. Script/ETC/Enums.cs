@@ -57,20 +57,28 @@
         Destruction
     }
 
+    public enum ItemGrade
+    {
+        Normal,
+        Rare,
+        Unique,
+        Legendary
+    }
+
     public enum EquipmentOptionStat
     {
         NONE = -1,
-        AttackPercent,
         AttackPoint,
-        DefencePercent,
+        AttackPercent,
+        HealthPoint,
+        HealthPercent,
         DefencePoint,
+        DefencePercent,
         CriticalPercent,
         CriticalDamagePercent,
         Speed,
         EffectHitPercent,
         EffectResistancePercent,
-        HealthPercent,
-        HealthPoint,
     }
 
     public enum AutoPeerTargetType

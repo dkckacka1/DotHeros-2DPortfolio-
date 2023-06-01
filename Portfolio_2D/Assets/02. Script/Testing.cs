@@ -75,16 +75,22 @@ namespace Portfolio
 
                 UserUnitData userUnitData = new UserUnitData();
                 userUnitData.unitID = 100;
-                userUnitData.unitLevel = 100;
-                userUnitData.unitGrade = 5;
+                userUnitData.unitLevel = 1;
+                userUnitData.unitGrade = 1;
                 userUnitData.activeSkillLevel_1 = 5;
                 userUnitData.activeSkillLevel_2 = 5;
                 userUnitData.passiveSkillLevel_1 = 5;
                 userUnitData.passiveSkillLevel_2 = 5;
                 userdata.unitDataList.Add(userUnitData);
 
-                ArmorData armorData = new ArmorData();
-                userUnitData.armorData = armorData;
+                Debug.Log(GameManager.ItemCreator.CreateEquipmentItemData<WeaponData>(ItemGrade.Normal).attackPoint);
+
+                userUnitData.weaponData = GameManager.ItemCreator.CreateEquipmentItemData<WeaponData>(ItemGrade.Normal);
+                userUnitData.helmetData = GameManager.ItemCreator.CreateEquipmentItemData<HelmetData>(ItemGrade.Normal);
+                userUnitData.armorData = GameManager.ItemCreator.CreateEquipmentItemData<ArmorData>(ItemGrade.Normal);
+                userUnitData.shoeData = GameManager.ItemCreator.CreateEquipmentItemData<ShoeData>(ItemGrade.Normal);
+                userUnitData.amuletData = GameManager.ItemCreator.CreateEquipmentItemData<AmuletData>(ItemGrade.Normal);
+                userUnitData.RingData = GameManager.ItemCreator.CreateEquipmentItemData<RingData>(ItemGrade.Normal);
 
                 SaveManager.SaveUserData(userdata);
             }
@@ -95,16 +101,21 @@ namespace Portfolio
 
                 UserUnitData userUnitData = new UserUnitData();
                 userUnitData.unitID = 101;
-                userUnitData.unitLevel = 100;
-                userUnitData.unitGrade = 5;
+                userUnitData.unitLevel = 1;
+                userUnitData.unitGrade = 1;
                 userUnitData.activeSkillLevel_1 = 5;
                 userUnitData.activeSkillLevel_2 = 5;
                 userUnitData.passiveSkillLevel_1 = 5;
                 userUnitData.passiveSkillLevel_2 = 5;
                 userdata.unitDataList.Add(userUnitData);
 
-                WeaponData weaponData = new WeaponData();
-                userUnitData.weaponData = weaponData;
+                userUnitData.weaponData = GameManager.ItemCreator.CreateEquipmentItemData<WeaponData>(ItemGrade.Normal);
+                userUnitData.helmetData = GameManager.ItemCreator.CreateEquipmentItemData<HelmetData>(ItemGrade.Normal);
+                userUnitData.armorData = GameManager.ItemCreator.CreateEquipmentItemData<ArmorData>(ItemGrade.Normal);
+                userUnitData.shoeData = GameManager.ItemCreator.CreateEquipmentItemData<ShoeData>(ItemGrade.Normal);
+                userUnitData.amuletData = GameManager.ItemCreator.CreateEquipmentItemData<AmuletData>(ItemGrade.Normal);
+                userUnitData.RingData = GameManager.ItemCreator.CreateEquipmentItemData<RingData>(ItemGrade.Normal);
+
                 SaveManager.SaveUserData(userdata);
             }
 
