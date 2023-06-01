@@ -106,7 +106,7 @@ namespace Portfolio.Battle
         {
             BattleManager.ActionSystem.SetActiveSkill(battleUnit.Unit.activeSkill_1);
             actionBtn.interactable = true;
-            actionLevel = battleUnit.Unit.activeSkillLevel_1;
+            actionLevel = battleUnit.Unit.ActiveSkillLevel_1;
             selectActiveSkill = battleUnit.Unit.activeSkill_1;
         }
 
@@ -114,7 +114,7 @@ namespace Portfolio.Battle
         {
             BattleManager.ActionSystem.SetActiveSkill(battleUnit.Unit.activeSkill_2);
             actionBtn.interactable = true;
-            actionLevel = battleUnit.Unit.activeSkillLevel_2;
+            actionLevel = battleUnit.Unit.ActiveSkillLevel_2;
             selectActiveSkill = battleUnit.Unit.activeSkill_2;
         }
 
@@ -154,13 +154,13 @@ namespace Portfolio.Battle
 
         public void ShowDescActiveSkill_1()
         {
-            battleSkillDescUI.ShowSkillDesc(battleUnit.Unit.activeSkill_1, battleUnit.Unit.activeSkillLevel_1);
+            battleSkillDescUI.ShowSkillDesc(battleUnit.Unit.activeSkill_1, battleUnit.Unit.ActiveSkillLevel_1);
             this.battleSkillDescUI.gameObject.SetActive(true);
         }
 
         public void ShowDescActiveSkill_2()
         {
-            battleSkillDescUI.ShowSkillDesc(battleUnit.Unit.activeSkill_2, battleUnit.Unit.activeSkillLevel_2);
+            battleSkillDescUI.ShowSkillDesc(battleUnit.Unit.activeSkill_2, battleUnit.Unit.ActiveSkillLevel_2);
             this.battleSkillDescUI.gameObject.SetActive(true);
         }
 

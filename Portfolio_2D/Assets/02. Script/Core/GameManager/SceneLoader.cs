@@ -11,6 +11,11 @@ namespace Portfolio
         public static List<Unit> userChoiceUnits;
         public static MapData userChocieMapData;
 
+        public static void LoadLobbyScene()
+        {
+            SceneManager.LoadScene("Lobby");
+        }
+
         public static void LoadBattleScene(List<Unit> userChoiceUnits, MapData userChocieMapData)
         {
             SceneLoader.userChoiceUnits = userChoiceUnits;
@@ -25,7 +30,6 @@ namespace Portfolio
             while (!oper.isDone)
             {
                 yield return null;
-                Debug.Log(oper.progress);
                 if (oper.progress >= 0.9f)
                 {
                     oper.allowSceneActivation = true;

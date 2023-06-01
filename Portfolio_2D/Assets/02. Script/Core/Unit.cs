@@ -11,14 +11,7 @@ namespace Portfolio
     public class Unit
     {
         private UnitData data;
-
-        public int unitLevel = 1;
-        public int unitGrade = 1;
-
-        public int activeSkillLevel_1 = 1;
-        public int activeSkillLevel_2 = 1;
-        public int passiveSkillLevel_1 = 1;
-        public int passiveSkillLevel_2 = 1;
+        private UserUnitData userUnitData;
 
         public ActiveSkill basicAttackSkill;
         public ActiveSkill activeSkill_1;
@@ -27,8 +20,97 @@ namespace Portfolio
         public PassiveSkill passiveSkill_2;
 
         //===========================================================
+        // Equipment
+        //===========================================================
+        public WeaponData weaponData;
+        public HelmetData helmetData;
+        public ArmorData armorData;
+        public AmuletData amuletData;
+        public RingData ringData;
+        public ShoeData shoeData;
+
+        //===========================================================
         // Property
         //===========================================================
+        public UnitData Data { get => data; }
+        public int UnitLevel
+        {
+            get
+            {
+                if (userUnitData != null)
+                {
+                    return userUnitData.unitLevel;
+                }
+                else
+                {
+                    return 1;
+                }
+            }
+            set
+            {
+                if (userUnitData != null)
+                {
+                    userUnitData.unitLevel = value;
+                }
+                else
+                {
+                    Debug.LogWarning("userUnitData = null");
+                    return;
+                }
+            }
+        }
+        public int UnitGrade
+        {
+            get
+            {
+                if (userUnitData != null)
+                {
+                    return userUnitData.unitGrade;
+                }
+                else
+                {
+                    return 1;
+                }
+            }
+            set
+            {
+                if (userUnitData != null)
+                {
+                    userUnitData.unitGrade = value;
+                }
+                else
+                {
+                    Debug.LogWarning("userUnitData = null");
+                    return;
+                }
+            }
+        }
+        public float UnitExperience
+        {
+            get
+            {
+                if (userUnitData != null)
+                {
+                    return userUnitData.unitExperience;
+                }
+                else
+                {
+                    return 0;
+                }
+            }
+            set
+            {
+                if (userUnitData != null)
+                {
+                    userUnitData.unitExperience = value;
+                }
+                else
+                {
+                    Debug.LogWarning("userUnitData = null");
+                    return;
+                }
+            }
+        }
         public float AttackPoint
         {
             get
@@ -146,18 +228,115 @@ namespace Portfolio
                 return Mathf.Clamp(returnValue, 0, 1f);
             }
         }
+        public int ActiveSkillLevel_1
+        {
+            get
+            {
+                if (userUnitData != null)
+                {
+                    return userUnitData.activeSkillLevel_1;
+                }
+                else
+                {
+                    return 1;
+                }
+            }
+            set
+            {
+                if (userUnitData != null)
+                {
+                    userUnitData.activeSkillLevel_1 = value;
+                }
+                else
+                {
+                    Debug.LogWarning("userUnitData = null");
+                    return;
+                }
+            }
+        }
+        public int ActiveSkillLevel_2
+        {
+            get
+            {
+                if (userUnitData != null)
+                {
+                    return userUnitData.activeSkillLevel_2;
+                }
+                else
+                {
+                    return 1;
+                }
+            }
+            set
+            {
+                if (userUnitData != null)
+                {
+                    userUnitData.activeSkillLevel_2 = value;
+                }
+                else
+                {
+                    Debug.LogWarning("userUnitData = null");
+                    return;
+                }
+            }
+        }
+        public int PassiveSkillLevel_1
+        {
+            get
+            {
+                if (userUnitData != null)
+                {
+                    return userUnitData.passiveSkillLevel_1;
+                }
+                else
+                {
+                    return 1;
+                }
+            }
+            set
+            {
+                if (userUnitData != null)
+                {
+                    userUnitData.passiveSkillLevel_1 = value;
+                }
+                else
+                {
+                    Debug.LogWarning("userUnitData = null");
+                    return;
+                }
+            }
+        }
+        public int PassiveSkillLevel_2
+        {
+            get
+            {
+                if (userUnitData != null)
+                {
+                    return userUnitData.passiveSkillLevel_2;
+                }
+                else
+                {
+                    return 1;
+                }
+            }
+            set
+            {
+                if (userUnitData != null)
+                {
+                    userUnitData.passiveSkillLevel_2 = value;
+                }
+                else
+                {
+                    Debug.LogWarning("userUnitData = null");
+                    return;
+                }
+            }
+        }
 
         //===========================================================
-        // Equipment
+        // SetUnit
         //===========================================================
-        public WeaponData weaponData;
-        public HelmetData helmetData;
-        public ArmorData armorData;
-        public AmuletData amuletData;
-        public RingData ringData;
-        public ShoeData shoeData;
 
-        public UnitData Data { get => data; }
 
         public Unit(UnitData unitData)
         {
@@ -172,9 +351,7 @@ namespace Portfolio
         public Unit(UnitData unitData, UserUnitData userUnitData)
         {
             this.data = unitData;
-
-            unitLevel = userUnitData.unitLevel;
-            unitGrade = userUnitData.unitGrade;
+            this.userUnitData = userUnitData;
 
             weaponData = userUnitData.weaponData;
             helmetData = userUnitData.helmetData;
@@ -182,11 +359,6 @@ namespace Portfolio
             amuletData = userUnitData.amuletData;
             ringData = userUnitData.RingData;
             shoeData = userUnitData.shoeData;
-
-            activeSkillLevel_1 = userUnitData.activeSkillLevel_1;
-            activeSkillLevel_2 = userUnitData.activeSkillLevel_2;
-            passiveSkillLevel_1 = userUnitData.passiveSkillLevel_1;
-            passiveSkillLevel_2 = userUnitData.passiveSkillLevel_2;
 
             GameManager.Instance.TryGetSkill(unitData.basicAttackSKillID, out basicAttackSkill);
             GameManager.Instance.TryGetSkill(unitData.activeSkillID_1, out activeSkill_1);
@@ -197,7 +369,14 @@ namespace Portfolio
 
         public float GetProperty(float DefaultValue)
         {
-            return DefaultValue * (1 + ((unitLevel - 1) * data.levelValue)) * (1 + ((unitGrade - 1) * data.gradeValue));
+            if (userUnitData != null)
+            {
+                return DefaultValue * (1 + ((userUnitData.unitLevel - 1) * data.levelValue)) * (1 + ((userUnitData.unitGrade - 1) * data.gradeValue));
+            }
+            else
+            {
+                return DefaultValue;
+            }
         }
 
         public float GetItemOptionValue(EquipmentOptionStat optionStatType)

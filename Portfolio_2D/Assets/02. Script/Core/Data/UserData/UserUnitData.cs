@@ -9,6 +9,7 @@ namespace Portfolio
         public int unitID = 0;
         public int unitLevel = 1;
         public int unitGrade = 1;
+        public float unitExperience = 0f;
 
         public int activeSkillLevel_1 = 1;
         public int activeSkillLevel_2 = 1;

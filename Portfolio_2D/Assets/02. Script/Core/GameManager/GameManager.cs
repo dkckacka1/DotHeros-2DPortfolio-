@@ -32,7 +32,7 @@ namespace Portfolio
         //===========================================================
         // UserData
         //===========================================================
-        public static UserData CurrentUser;
+        public static User CurrentUser;
 
         private void Awake()
         {
@@ -50,9 +50,13 @@ namespace Portfolio
             ResourcesLoader.LoadAllData(dataDictionary);
             CreateGameSource();
 
-            if (!SaveManager.LoadUserData(out CurrentUser))
+            if (SaveManager.LoadUserData(out UserData CurrentUserData))
             {
-                CurrentUser = SaveManager.CreateNewUser();
+                CurrentUser = new User(CurrentUserData);
+            }
+            else
+            {
+                CurrentUser = new User(SaveManager.CreateNewUser());
             }
         }
 
@@ -61,6 +65,7 @@ namespace Portfolio
             if (!isTest)
             {
                 Debug.LogWarning("GameManager Test");
+                SceneLoader.LoadLobbyScene();
             }
         }
 

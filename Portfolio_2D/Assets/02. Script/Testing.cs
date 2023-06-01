@@ -1,6 +1,7 @@
 using Portfolio.Battle;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace Portfolio
@@ -49,20 +50,7 @@ namespace Portfolio
         {
             if (GUI.Button(new Rect(10, 10, 100, 100), "전투 시작"))
             {
-                List<Unit> units = new List<Unit>();
-                foreach (var userUnitData in GameManager.CurrentUser.unitDataList)
-                {
-                    if (GameManager.Instance.TryGetData<UnitData>(userUnitData.unitID, out UnitData unitData))
-                    {
-                        Unit unit = new Unit(unitData, userUnitData);
-                        units.Add(unit);
-                    }
-                }
-
-                foreach (var unit in units)
-                {
-                    Debug.Log(unit.Data.unitName);
-                }
+                List<Unit> units = GameManager.CurrentUser.userUnitDic.Values.ToList();
 
                 GameManager.Instance.TryGetData<MapData>(500, out MapData mapData);
 
@@ -71,7 +59,7 @@ namespace Portfolio
 
             if (GUI.Button(new Rect(10, 120, 100, 100), "테스트용 유닛 넣기(1)"))
             {
-                UserData userdata = GameManager.CurrentUser;
+                UserData userdata = GameManager.CurrentUser.userData;
 
                 UserUnitData userUnitData = new UserUnitData();
                 userUnitData.unitID = 100;
@@ -97,7 +85,7 @@ namespace Portfolio
 
             if (GUI.Button(new Rect(120, 120, 100, 100), "테스트용 유닛 넣기(2)"))
             {
-                UserData userdata = GameManager.CurrentUser;
+                UserData userdata = GameManager.CurrentUser.userData;
 
                 UserUnitData userUnitData = new UserUnitData();
                 userUnitData.unitID = 101;
@@ -121,7 +109,7 @@ namespace Portfolio
 
             if (GUI.Button(new Rect(10, 230, 100, 100), "유저 로드 데이터 테스트"))
             {
-                UserData userdata = GameManager.CurrentUser;
+                UserData userdata = GameManager.CurrentUser.userData;
                 Debug.Log($"" +
                     $"userID = {userdata.userID}\n" +
                     $"userName = {userdata.userName}\n");

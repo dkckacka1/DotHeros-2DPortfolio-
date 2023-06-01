@@ -215,8 +215,8 @@ namespace Portfolio.Battle
         //===========================================================
         public void BattleStart()
         {
-            SetPassiveSkill(unit.passiveSkill_1, unit.passiveSkillLevel_1);
-            SetPassiveSkill(unit.passiveSkill_2, unit.passiveSkillLevel_2);
+            SetPassiveSkill(unit.passiveSkill_1, unit.PassiveSkillLevel_1);
+            SetPassiveSkill(unit.passiveSkill_2, unit.PassiveSkillLevel_2);
 
             OnStartBattleEvent?.Invoke(this, EventArgs.Empty);
         }
