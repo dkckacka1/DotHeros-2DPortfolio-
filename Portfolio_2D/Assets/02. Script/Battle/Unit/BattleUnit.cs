@@ -55,7 +55,7 @@ namespace Portfolio.Battle
         [SerializeField] private float attackPoint = 10f;
         [SerializeField] private float speed = 100f;
         [SerializeField] private float defencePoint = 0f;
-        [SerializeField] private float criticalPoint = 0f;
+        [SerializeField] private float criticalPercent = 0f;
         [SerializeField] private float criticalDamage = 0f;
         [SerializeField] private float effectHit = 0f;
         [SerializeField] private float effectResistance = 0f;
@@ -64,8 +64,8 @@ namespace Portfolio.Battle
         [SerializeField] private bool isDead = false;
 
         [Header("Skill")]
-        public int activeSkill_1_CoolTime = 0;
-        public int activeSkill_2_CoolTime = 0;
+        private int activeSkill_1_CoolTime = 0;
+        private int activeSkill_2_CoolTime = 0;
 
         private Dictionary<int, ConditionSystem> conditionDic = new Dictionary<int, ConditionSystem>();
 
@@ -90,7 +90,7 @@ namespace Portfolio.Battle
         public float AttackPoint { get => attackPoint; set => attackPoint = value; }
         public float Speed { get => speed; set => speed = value; }
         public float DefencePoint { get => defencePoint; set => defencePoint = value; }
-        public float CriticalPoint { get => criticalPoint; set => criticalPoint = value; }
+        public float CriticalPoint { get => criticalPercent; set => criticalPercent = value; }
         public float CriticalDamage { get => criticalDamage; set => criticalDamage = value; }
         public float EffectTarget { get => effectHit; set => effectHit = value; }
         public float EffectResistance { get => effectResistance; set => effectResistance = value; }
@@ -110,8 +110,9 @@ namespace Portfolio.Battle
                 }
             }
         }
-
         public bool IsDead { get => isDead; }
+        public int ActiveSkill_1_CoolTime { get => activeSkill_1_CoolTime; set => activeSkill_1_CoolTime = value; }
+        public int ActiveSkill_2_CoolTime { get => activeSkill_2_CoolTime; set => activeSkill_2_CoolTime = value; }
 
 
 
@@ -124,7 +125,6 @@ namespace Portfolio.Battle
             aiSystem = GetComponent<AISystem>();
             unitTurnBase = GetComponent<UnitTurnBase>();
 
-            unitUI.SetUnit(this);
 
             OnChangedCurrentHPEvent += unitUI.BattleUnit_OnCurrentHPChangedEvent;
         }
@@ -135,22 +135,18 @@ namespace Portfolio.Battle
         public virtual void SetUnit(Unit unit)
         {
             this.unit = unit;
-            maxHP = this.unit.Data.maxHP;
-            currentHP = this.unit.Data.maxHP;
+            maxHP = this.unit.HealthPoint;
+            currentHP = maxHP;
+
             attackPoint = this.unit.AttackPoint;
-            speed = this.unit.Data.speed;
-            defencePoint = this.unit.Data.defencePoint;
-            criticalPoint = this.unit.Data.criticalPoint;
-            criticalDamage = this.unit.Data.criticalDamage;
-            effectHit = this.unit.Data.effectHit;
-            effectResistance = this.unit.Data.effectResistance;
+            speed = this.unit.Speed;
+            defencePoint = this.unit.DefencePoint;
+            criticalPercent = this.unit.CriticalPercent;
+            criticalDamage = this.unit.CriticalDamage;
+            effectHit = this.unit.EffectHit;
+            effectResistance = this.unit.EffectResistance;
 
-            unitUI.CreateSequenceUI(this);
-
-            if (!IsEnemy)
-            {
-                unitUI.CreateSkillUI(this);
-            }
+            unitUI.SetBattleUnit(this);
 
             aiSystem.SetActiveSkill(unit);
 

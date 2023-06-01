@@ -101,8 +101,6 @@ namespace Portfolio.Battle
             }
         }
 
-
-
         public void SetActiveSkill(Unit unit)
         {
             activeSkill_1 = unit.activeSkill_1;

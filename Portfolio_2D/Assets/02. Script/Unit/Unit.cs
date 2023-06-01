@@ -8,7 +8,7 @@ using System.Linq;
 
 namespace Portfolio
 {
-    public class Unit 
+    public class Unit
     {
         private UnitData data;
 
@@ -34,7 +34,6 @@ namespace Portfolio
             get
             {
                 float returnValue = GetProperty(data.attackPoint);
-                Debug.Log(returnValue);
                 if (weaponData != null)
                 {
                     returnValue += weaponData.attackPoint;
@@ -43,11 +42,110 @@ namespace Portfolio
                 returnValue += GetItemOptionValue(EquipmentOptionStat.AttackPoint);
                 returnValue *= (1 + GetItemOptionValue(EquipmentOptionStat.AttackPercent));
 
-                return returnValue;
+                return Mathf.Round(returnValue);
             }
         }
+        public float HealthPoint
+        {
+            get
+            {
+                float returnValue = GetProperty(data.maxHP);
+                if (helmetData != null)
+                {
+                    returnValue += helmetData.healthPoint;
+                }
 
-        // 프로퍼티노가다 해야함
+                returnValue += GetItemOptionValue(EquipmentOptionStat.HealthPoint);
+                returnValue *= 1 + GetItemOptionValue(EquipmentOptionStat.HealthPercent);
+                return Mathf.Round(returnValue); ;
+            }
+        }
+        public float DefencePoint
+        {
+            get
+            {
+                float returnValue = GetProperty(data.defencePoint);
+                if (armorData != null)
+                {
+                    returnValue += armorData.defencePoint;
+                }
+
+                returnValue += GetItemOptionValue(EquipmentOptionStat.DefencePoint);
+                returnValue *= 1 + GetItemOptionValue(EquipmentOptionStat.DefencePercent);
+                return Mathf.Round(returnValue);
+            }
+        }
+        public float Speed
+        {
+            get
+            {
+                float returnValue = data.speed;
+                if (shoeData != null)
+                {
+                    returnValue += shoeData.speed;
+                }
+
+                returnValue += GetItemOptionValue(EquipmentOptionStat.Speed);
+                return Mathf.Round(returnValue);
+            }
+        }
+        public float CriticalPercent
+        {
+            get
+            {
+                float returnValue = data.criticalPercent;
+                if (amuletData != null)
+                {
+                    returnValue += amuletData.criticalPercent;
+                }
+
+                returnValue += GetItemOptionValue(EquipmentOptionStat.CriticalPercent);
+                return Mathf.Clamp(returnValue, 0, 0.8f);
+            }
+        }
+        public float CriticalDamage
+        {
+            get
+            {
+                float returnValue = data.criticalDamage;
+
+                if (amuletData != null)
+                {
+                    returnValue += amuletData.criticalPercent;
+                }
+
+                returnValue += GetItemOptionValue(EquipmentOptionStat.CriticalDamagePercent);
+                return Mathf.Clamp(returnValue, 0, 0.8f);
+            }
+        }
+        public float EffectHit
+        {
+            get
+            {
+                float returnValue = data.effectHit;
+                if (ringData != null)
+                {
+                    returnValue += ringData.effectHit;
+                }
+
+                returnValue += GetItemOptionValue(EquipmentOptionStat.EffectHitPercent);
+                return Mathf.Clamp(returnValue, 0, 0.8f);
+            }
+        }
+        public float EffectResistance
+        {
+            get
+            {
+                float returnValue = data.effectResistance;
+                if (ringData != null)
+                {
+                    returnValue += ringData.effectResistance;
+                }
+
+                returnValue += GetItemOptionValue(EquipmentOptionStat.EffectResistancePercent);
+                return Mathf.Clamp(returnValue, 0, 1f);
+            }
+        }
 
         //===========================================================
         // Equipment
@@ -57,7 +155,7 @@ namespace Portfolio
         public ArmorData armorData;
         public AmuletData amuletData;
         public RingData ringData;
-        public ShoeData ShoeData;
+        public ShoeData shoeData;
 
         public UnitData Data { get => data; }
 
@@ -83,7 +181,7 @@ namespace Portfolio
             armorData = userUnitData.armorData;
             amuletData = userUnitData.amuletData;
             ringData = userUnitData.RingData;
-            ShoeData = userUnitData.shoeData;
+            shoeData = userUnitData.shoeData;
 
             activeSkillLevel_1 = userUnitData.activeSkillLevel_1;
             activeSkillLevel_2 = userUnitData.activeSkillLevel_2;
@@ -134,7 +232,7 @@ namespace Portfolio
 
         public IEnumerable<EquipmentItemData> GetEuqipmentList()
         {
-            List<EquipmentItemData> list = new List<EquipmentItemData>() { weaponData , helmetData, armorData, amuletData, ringData, ShoeData};
+            List<EquipmentItemData> list = new List<EquipmentItemData>() { weaponData, helmetData, armorData, amuletData, ringData, shoeData };
             return list.Where(item => item != null);
         }
     }

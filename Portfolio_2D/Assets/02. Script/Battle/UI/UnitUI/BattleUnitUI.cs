@@ -55,9 +55,14 @@ namespace Portfolio.Battle
         {
             targetedUIObject.SetActive(isTarget);
         }
-        public void SetUnit(BattleUnit unit)
+        public void SetBattleUnit(BattleUnit unit)
         {
             unitHPUI.SetHP(unit.MaxHP);
+            CreateSequenceUI(unit);
+            if (!unit.IsEnemy)
+            {
+                CreateSkillUI(unit);
+            }
         }
 
         public void BattleUnit_OnCurrentHPChangedEvent(object sender, EventArgs e)

@@ -6,7 +6,7 @@ namespace Portfolio
 {
     public class AmuletData : EquipmentItemData
     {
-        public float criticalPoint;
+        public float criticalPercent;
         public float criticalDamage;
     }
 }

@@ -14,7 +14,7 @@ namespace Portfolio
         public float attackPoint = 10f;
         public float defencePoint = 0f;
         public float speed = 100f;
-        public float criticalPoint = 0f;
+        public float criticalPercent = 0f;
         public float criticalDamage = 0f;
         public float effectHit = 0f;
         public float effectResistance = 0f;
