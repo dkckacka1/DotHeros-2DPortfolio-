@@ -18,11 +18,17 @@ namespace Portfolio.Lobby
         {
             // TODO 유닛 이미지 변경 해주어야 함
             this.currentUnit = unit;
-            unitLevelText.text = unit.UnitLevel.ToString();
+            unitLevelText.text = unit.UnitCurrentLevel.ToString();
             for (int i = 0; i < unit.UnitGrade; i++)
             {
                 starImages[i].gameObject.SetActive(true);
             }
+        }
+
+        public void ShowUnit(UnitStatusUI statusUI)
+        {
+            Debug.Log(this.gameObject.name);
+            statusUI.ShowUnit(currentUnit);
         }
     } 
 }

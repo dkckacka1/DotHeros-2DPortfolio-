@@ -33,7 +33,7 @@ namespace Portfolio
         // Property
         //===========================================================
         public UnitData Data { get => data; }
-        public int UnitLevel
+        public int UnitCurrentLevel
         {
             get
             {
@@ -50,7 +50,14 @@ namespace Portfolio
             {
                 if (userUnitData != null)
                 {
-                    userUnitData.unitLevel = value;
+                    if (value >= UnitMaxLevel)
+                    {
+                        userUnitData.unitLevel = UnitMaxLevel;
+                    }
+                    else
+                    {
+                        userUnitData.unitLevel = value;
+                    }
                 }
                 else
                 {
@@ -85,7 +92,28 @@ namespace Portfolio
                 }
             }
         }
-        public float UnitExperience
+        public int UnitMaxLevel
+        {
+            get
+            {
+                if (userUnitData != null)
+                {
+                    return userUnitData.unitGrade * 10;
+                }
+                else
+                {
+                    return 1;
+                }
+            }
+        }
+        public bool IsMaxLevel
+        {
+            get
+            {
+                return UnitCurrentLevel == UnitMaxLevel;
+            }
+        }
+        public float CurrentExperience
         {
             get
             {
@@ -102,7 +130,14 @@ namespace Portfolio
             {
                 if (userUnitData != null)
                 {
-                    userUnitData.unitExperience = value;
+                    if (value >= MaxExperience)
+                    {
+                        CurrentExperience = LevelUP();
+                    }
+                    else
+                    {
+                        userUnitData.unitExperience = value;
+                    }
                 }
                 else
                 {
@@ -111,6 +146,17 @@ namespace Portfolio
                 }
             }
         }
+
+
+        public float MaxExperience
+        {
+            get
+            {
+                Debug.Log("최대 경험치 : " + Mathf.Log(10, UnitCurrentLevel));
+                return Mathf.Log(CurrentExperience);
+            }
+        }
+
         public float AttackPoint
         {
             get
@@ -414,5 +460,13 @@ namespace Portfolio
             List<EquipmentItemData> list = new List<EquipmentItemData>() { weaponData, helmetData, armorData, amuletData, ringData, shoeData };
             return list.Where(item => item != null);
         }
+
+        private float LevelUP()
+        {
+            // TODO 레벨업 함수 구현해야함
+            // return 값은 레벨업하고 남은 경험치
+            return 0;
+        }
+
     }
 }
