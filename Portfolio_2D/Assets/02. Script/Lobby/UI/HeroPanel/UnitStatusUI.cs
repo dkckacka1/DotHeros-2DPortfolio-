@@ -45,8 +45,12 @@ namespace Portfolio.Lobby
             unitCriticalDamageText.text = (unit.CriticalDamage * 100f).ToString() + " %";
             unitEffectHitText.text = (unit.EffectHit * 100f).ToString() + " %";
             unitEffectResText.text = (unit.EffectResistance * 100f).ToString() + " %";
+        }
 
-
+        public void ShowEquipment(UnitEquipmentUI equipmentUI)
+        {
+            equipmentUI.Init(this.unit);
+            equipmentUI.gameObject.SetActive(true);
         }
     }
 
