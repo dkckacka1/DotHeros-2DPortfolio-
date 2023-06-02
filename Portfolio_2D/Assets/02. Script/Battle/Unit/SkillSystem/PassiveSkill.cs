@@ -7,7 +7,7 @@ namespace Portfolio.skill
 {
     public abstract class PassiveSkill : Skill
     {
-        public PassiveSkillData GetData { get => (this.skillData as PassiveSkillData); }
+        public new PassiveSkillData GetData { get => (this.skillData as PassiveSkillData); }
 
         public PassiveSkill(SkillData skillData) : base(skillData)
         {

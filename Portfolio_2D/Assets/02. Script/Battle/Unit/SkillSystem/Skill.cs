@@ -11,6 +11,8 @@ namespace Portfolio.skill
     {
         protected SkillData skillData;
 
+        public SkillData GetData => skillData;
+
         public Skill(SkillData skillData)
         {
             this.skillData = skillData;

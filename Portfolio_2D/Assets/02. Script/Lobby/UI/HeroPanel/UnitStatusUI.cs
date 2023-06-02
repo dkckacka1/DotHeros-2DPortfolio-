@@ -27,7 +27,7 @@ namespace Portfolio.Lobby
         [SerializeField] TextMeshProUGUI unitEffectHitText;
         [SerializeField] TextMeshProUGUI unitEffectResText;
 
-        public void ShowUnit(Unit unit)
+        public void Init(Unit unit)
         {
             this.unit = unit;
             unitNameText.text = unit.Data.unitName;
@@ -49,8 +49,22 @@ namespace Portfolio.Lobby
 
         public void ShowEquipment(UnitEquipmentUI equipmentUI)
         {
+            if (LobbyManager.UIManager.UndoCount() >= 2)
+            {
+                LobbyManager.UIManager.Undo();
+            }
             equipmentUI.Init(this.unit);
             equipmentUI.gameObject.SetActive(true);
+        }
+
+        public void ShowSkill(UnitSkillPanelUI unitSkillPanelUI)
+        {
+            if (LobbyManager.UIManager.UndoCount() >= 2)
+            {
+                LobbyManager.UIManager.Undo();
+            }
+            unitSkillPanelUI.Init(this.unit);
+            unitSkillPanelUI.gameObject.SetActive(true);
         }
     }
 

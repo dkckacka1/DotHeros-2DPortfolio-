@@ -24,5 +24,21 @@ namespace Portfolio
 
             Debug.Log(userUnitDic.Count);
         }
+
+        public int MaxEnergy
+        {
+            get
+            {
+                return 30 + (userData.userLevel * 5);
+            }
+        }
+
+        public float MaxExperience
+        {
+            get
+            {
+                return (userData.userLevel * 100f);
+            }
+        }
     } 
 }

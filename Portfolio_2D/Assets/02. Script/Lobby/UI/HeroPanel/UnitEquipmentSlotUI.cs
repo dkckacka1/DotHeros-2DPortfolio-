@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -12,6 +13,7 @@ namespace Portfolio.Lobby
 
         [SerializeField] Button popupButton;
         [SerializeField] Image equipmentImage;
+        [SerializeField] TextMeshProUGUI reinforceCountText;
 
         public void Init(EquipmentItemData equipmentData)
         {
@@ -26,6 +28,8 @@ namespace Portfolio.Lobby
                 equipmentImage.gameObject.SetActive(true);
                 this.equipmentData = equipmentData;
                 this.equipmentItemType = equipmentData.equipmentType;
+                reinforceCountText.gameObject.SetActive(equipmentData.reinforceCount != 0);
+                reinforceCountText.text = $"+{equipmentData.reinforceCount}";
             }
         }
     }
