@@ -152,7 +152,7 @@ namespace Portfolio
         {
             get
             {
-                Debug.Log("최대 경험치 : " + Mathf.Log(10, UnitCurrentLevel));
+                //Debug.Log("최대 경험치 : " + Mathf.Log(10, UnitCurrentLevel));
                 return Mathf.Log(CurrentExperience);
             }
         }

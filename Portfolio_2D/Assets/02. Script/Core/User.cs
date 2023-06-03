@@ -22,7 +22,7 @@ namespace Portfolio
                 }
             }
 
-            Debug.Log(userUnitDic.Count);
+            //Debug.Log(userUnitDic.Count);
         }
 
         public int MaxEnergy

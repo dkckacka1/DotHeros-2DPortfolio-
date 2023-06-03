@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Portfolio.Lobby
 {
-    public class HeroPanelUI : MonoBehaviour, UndoAble
+    public class HeroPanelUI : PanelUI
     {
         [SerializeField] UnitListUI unitListUI;
         [SerializeField] UnitStatusUI unitStatusUI;
@@ -21,14 +21,9 @@ namespace Portfolio.Lobby
             unitSkillPanelUI.Init(unit);
         }
 
-        public void Undo()
+        protected override void OnEnable()
         {
-            this.transform.parent.gameObject.SetActive(false);
-        }
-
-        private void OnEnable()
-        {
-            LobbyManager.UIManager.AddUndo(this);
+            base.OnEnable();
             unitEquipmentUI.gameObject.SetActive(false);
         }
     } 

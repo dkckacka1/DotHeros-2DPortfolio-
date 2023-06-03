@@ -27,6 +27,7 @@ namespace Portfolio.Lobby
 
         public void AddUndo(UndoAble undoInterface)
         {
+            Debug.Log(undoInterface.GetType().Name + " : AddUndo");
             undoStack.Push(undoInterface);
         }
 
@@ -34,6 +35,7 @@ namespace Portfolio.Lobby
         {
             if (undoStack.Count < 1) return;
 
+            Debug.Log(undoStack.Count + " : " + undoStack.Peek().GetType().Name + " Undo");
             undoStack.Pop().Undo();
         }
     }
