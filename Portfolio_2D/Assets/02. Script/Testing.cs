@@ -71,14 +71,14 @@ namespace Portfolio
                 userUnitData.passiveSkillLevel_2 = 5;
                 userdata.unitDataList.Add(userUnitData);
 
-                Debug.Log(GameManager.ItemCreator.CreateEquipmentItemData<WeaponData>(ItemGrade.Normal).attackPoint);
+                Debug.Log(GameManager.ItemCreator.CreateEquipmentItemData<WeaponData>(GradeType.Normal).attackPoint);
 
-                userUnitData.weaponData = GameManager.ItemCreator.CreateEquipmentItemData<WeaponData>(ItemGrade.Normal);
-                userUnitData.helmetData = GameManager.ItemCreator.CreateEquipmentItemData<HelmetData>(ItemGrade.Normal);
-                userUnitData.armorData = GameManager.ItemCreator.CreateEquipmentItemData<ArmorData>(ItemGrade.Normal);
-                userUnitData.shoeData = GameManager.ItemCreator.CreateEquipmentItemData<ShoeData>(ItemGrade.Normal);
-                userUnitData.amuletData = GameManager.ItemCreator.CreateEquipmentItemData<AmuletData>(ItemGrade.Normal);
-                userUnitData.RingData = GameManager.ItemCreator.CreateEquipmentItemData<RingData>(ItemGrade.Normal);
+                userUnitData.weaponData = GameManager.ItemCreator.CreateEquipmentItemData<WeaponData>(GradeType.Normal);
+                userUnitData.helmetData = GameManager.ItemCreator.CreateEquipmentItemData<HelmetData>(GradeType.Normal);
+                userUnitData.armorData = GameManager.ItemCreator.CreateEquipmentItemData<ArmorData>(GradeType.Normal);
+                userUnitData.shoeData = GameManager.ItemCreator.CreateEquipmentItemData<ShoeData>(GradeType.Normal);
+                userUnitData.amuletData = GameManager.ItemCreator.CreateEquipmentItemData<AmuletData>(GradeType.Normal);
+                userUnitData.RingData = GameManager.ItemCreator.CreateEquipmentItemData<RingData>(GradeType.Normal);
 
                 SaveManager.SaveUserData(userdata);
             }
@@ -97,12 +97,12 @@ namespace Portfolio
                 userUnitData.passiveSkillLevel_2 = 5;
                 userdata.unitDataList.Add(userUnitData);
 
-                userUnitData.weaponData = GameManager.ItemCreator.CreateEquipmentItemData<WeaponData>(ItemGrade.Normal);
-                userUnitData.helmetData = GameManager.ItemCreator.CreateEquipmentItemData<HelmetData>(ItemGrade.Normal);
-                userUnitData.armorData = GameManager.ItemCreator.CreateEquipmentItemData<ArmorData>(ItemGrade.Normal);
-                userUnitData.shoeData = GameManager.ItemCreator.CreateEquipmentItemData<ShoeData>(ItemGrade.Normal);
-                userUnitData.amuletData = GameManager.ItemCreator.CreateEquipmentItemData<AmuletData>(ItemGrade.Normal);
-                userUnitData.RingData = GameManager.ItemCreator.CreateEquipmentItemData<RingData>(ItemGrade.Normal);
+                userUnitData.weaponData = GameManager.ItemCreator.CreateEquipmentItemData<WeaponData>(GradeType.Normal);
+                userUnitData.helmetData = GameManager.ItemCreator.CreateEquipmentItemData<HelmetData>(GradeType.Normal);
+                userUnitData.armorData = GameManager.ItemCreator.CreateEquipmentItemData<ArmorData>(GradeType.Normal);
+                userUnitData.shoeData = GameManager.ItemCreator.CreateEquipmentItemData<ShoeData>(GradeType.Normal);
+                userUnitData.amuletData = GameManager.ItemCreator.CreateEquipmentItemData<AmuletData>(GradeType.Normal);
+                userUnitData.RingData = GameManager.ItemCreator.CreateEquipmentItemData<RingData>(GradeType.Normal);
 
                 SaveManager.SaveUserData(userdata);
             }

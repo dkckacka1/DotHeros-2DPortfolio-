@@ -11,7 +11,7 @@ namespace Portfolio
         [SerializeField] EquipmentCreateData uniqueCreateData;
         [SerializeField] EquipmentCreateData legendaryCreateData;
 
-        public T CreateEquipmentItemData<T>(ItemGrade itemGrade) where T : EquipmentItemData, new()
+        public T CreateEquipmentItemData<T>(GradeType itemGrade) where T : EquipmentItemData, new()
         {
             T newData = new T();
             EquipmentCreateData creator = null;
@@ -20,16 +20,16 @@ namespace Portfolio
 
             switch (itemGrade)
             {
-                case ItemGrade.Normal:
+                case GradeType.Normal:
                     creator = this.normalCreateData;
                     break;
-                case ItemGrade.Rare:
+                case GradeType.Rare:
                     creator = this.rareCreateData;
                     break;
-                case ItemGrade.Unique:
+                case GradeType.Unique:
                     creator = this.uniqueCreateData;
                     break;
-                case ItemGrade.Legendary:
+                case GradeType.Legendary:
                     creator = this.legendaryCreateData;
                     break;
                 default:

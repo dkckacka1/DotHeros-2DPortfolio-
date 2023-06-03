@@ -14,6 +14,8 @@ namespace Portfolio.Lobby
         private void Start()
         {
             Unit unit = GameManager.CurrentUser.userUnitDic[0];
+            unitEquipmentUI.gameObject.SetActive(false);
+            unitSkillPanelUI.gameObject.SetActive(false);
             unitStatusUI.Init(unit);
             unitEquipmentUI.Init(unit);
             unitSkillPanelUI.Init(unit);

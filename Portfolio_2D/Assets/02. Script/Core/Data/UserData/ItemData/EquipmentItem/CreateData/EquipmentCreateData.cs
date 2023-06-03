@@ -7,7 +7,7 @@ namespace Portfolio
     [CreateAssetMenu(fileName = "newCreateEquipmentItemData", menuName = "newScritableOBJ/EquipmentItemData", order =0)]
     public class EquipmentCreateData : ScriptableObject
     {
-        public ItemGrade createGrade;
+        public GradeType createGrade;
 
         [Header("WeapoonData")]
         public float minWeaponAttackPoint;

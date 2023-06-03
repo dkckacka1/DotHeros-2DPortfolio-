@@ -32,5 +32,13 @@ namespace Portfolio.Lobby
                 reinforceCountText.text = $"+{equipmentData.reinforceCount}";
             }
         }
+
+        public void ShowEquipmentPopup(EquipmentPopupUI popupUI)
+        {
+            if (equipmentData == null) return;
+
+            popupUI.Init(equipmentData);
+            popupUI.gameObject.SetActive(true);
+        }
     }
 }

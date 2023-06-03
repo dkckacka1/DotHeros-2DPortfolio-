@@ -57,7 +57,7 @@
         Destruction
     }
 
-    public enum ItemGrade
+    public enum GradeType
     {
         Normal,
         Rare,

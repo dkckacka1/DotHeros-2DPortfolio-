@@ -6,7 +6,7 @@ namespace Portfolio
 {
     public class EquipmentItemData : ItemData
     {
-        public ItemGrade equipmentGrade = ItemGrade.Normal;
+        public GradeType equipmentGrade = GradeType.Normal;
         public ElementalType equipmentElementType;
         public EquipmentItemType equipmentType;
         public SetType setType;
