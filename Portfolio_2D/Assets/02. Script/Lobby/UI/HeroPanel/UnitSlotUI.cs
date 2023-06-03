@@ -27,7 +27,7 @@ namespace Portfolio.Lobby
 
         public void ShowUnit(UnitStatusUI statusUI)
         {
-            Debug.Log(this.gameObject.name);
+            //Debug.Log(this.gameObject.name);
             statusUI.Init(currentUnit);
         }
     } 
