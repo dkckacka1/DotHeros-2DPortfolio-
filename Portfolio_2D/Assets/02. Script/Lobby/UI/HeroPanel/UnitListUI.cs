@@ -8,7 +8,7 @@ namespace Portfolio.Lobby
     {
         [SerializeField] List<UnitSlotUI> unitSlotList;
 
-        private void Start()
+        private void OnEnable()
         {
             for (int i = 0; i < GameManager.CurrentUser.userUnitDic.Count; i++)
             {

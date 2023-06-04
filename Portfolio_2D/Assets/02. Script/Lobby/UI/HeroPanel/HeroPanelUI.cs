@@ -11,11 +11,10 @@ namespace Portfolio.Lobby
         [SerializeField] UnitEquipmentUI unitEquipmentUI;
         [SerializeField] UnitSkillPanelUI unitSkillPanelUI;
 
+
         private void Start()
         {
             Unit unit = GameManager.CurrentUser.userUnitDic[0];
-            unitEquipmentUI.gameObject.SetActive(false);
-            unitSkillPanelUI.gameObject.SetActive(false);
             unitStatusUI.Init(unit);
             unitEquipmentUI.Init(unit);
             unitSkillPanelUI.Init(unit);
@@ -25,6 +24,7 @@ namespace Portfolio.Lobby
         {
             base.OnEnable();
             unitEquipmentUI.gameObject.SetActive(false);
+            unitSkillPanelUI.gameObject.SetActive(false);
         }
     } 
 }

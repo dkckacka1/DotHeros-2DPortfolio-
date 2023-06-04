@@ -8,7 +8,7 @@ namespace Portfolio
 {
     public static class SaveManager 
     {
-        private static string slpath = Application.dataPath + Constant.ResorucesDataPath + Constant.UserSLName + ".json";
+        private static string slpath = Application.dataPath + Constant.resorucesDataPath + Constant.UserSLName + ".json";
 
         public static UserData CreateNewUser()
         {

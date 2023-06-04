@@ -1,4 +1,6 @@
-﻿namespace Portfolio
+﻿using UnityEngine;
+
+namespace Portfolio
 {
     public static class GameLib
     {
@@ -94,6 +96,17 @@
             }
 
             return "없음";
+        }
+
+        /// <summary>
+        /// 확률 계산 true면 성공, false면 실패
+        /// </summary>
+        /// <param name="value">확률</param>
+        /// <param name="seed">들어온 값</param>
+        /// <returns></returns>
+        public static bool ProbabilityCalculation(float value)
+        {
+            return value < Random.Range(0,100);
         }
     }
 }

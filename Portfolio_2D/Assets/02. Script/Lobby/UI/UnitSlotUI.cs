@@ -19,9 +19,9 @@ namespace Portfolio.Lobby
             // TODO 유닛 이미지 변경 해주어야 함
             this.currentUnit = unit;
             unitLevelText.text = unit.UnitCurrentLevel.ToString();
-            for (int i = 0; i < unit.UnitGrade; i++)
+            for (int i = 0; i < 5; i++)
             {
-                starImages[i].gameObject.SetActive(true);
+                starImages[i].gameObject.SetActive(i < unit.UnitGrade);
             }
         }
 

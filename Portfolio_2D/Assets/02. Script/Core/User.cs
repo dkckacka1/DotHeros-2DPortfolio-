@@ -25,6 +25,23 @@ namespace Portfolio
             //Debug.Log(userUnitDic.Count);
         }
 
+        public void AddNewUnit(Unit unit)
+        {
+            userUnitDic.Add(userUnitDic.Count,unit);
+            userData.unitDataList.Add(new UserUnitData(unit));
+            SaveManager.SaveUserData(userData);
+        }
+
+        public void AddNewUnit(List<Unit> units)
+        {
+            foreach (var unit in units)
+            {
+                userUnitDic.Add(userUnitDic.Count, unit);
+                userData.unitDataList.Add(new UserUnitData(unit));
+            }
+
+            SaveManager.SaveUserData(userData);
+        }
         public int MaxEnergy
         {
             get

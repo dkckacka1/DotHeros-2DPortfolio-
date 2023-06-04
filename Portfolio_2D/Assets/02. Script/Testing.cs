@@ -61,14 +61,9 @@ namespace Portfolio
             {
                 UserData userdata = GameManager.CurrentUser.userData;
 
-                UserUnitData userUnitData = new UserUnitData();
-                userUnitData.unitID = 100;
-                userUnitData.unitLevel = 1;
-                userUnitData.unitGrade = 1;
-                userUnitData.activeSkillLevel_1 = 5;
-                userUnitData.activeSkillLevel_2 = 5;
-                userUnitData.passiveSkillLevel_1 = 5;
-                userUnitData.passiveSkillLevel_2 = 5;
+                GameManager.Instance.TryGetUnit(100, out Unit unit);
+
+                UserUnitData userUnitData = new UserUnitData(unit);
                 userdata.unitDataList.Add(userUnitData);
 
                 Debug.Log(GameManager.ItemCreator.CreateEquipmentItemData<WeaponData>(GradeType.Normal).attackPoint);
@@ -86,15 +81,9 @@ namespace Portfolio
             if (GUI.Button(new Rect(120, 120, 100, 100), "테스트용 유닛 넣기(2)"))
             {
                 UserData userdata = GameManager.CurrentUser.userData;
+                GameManager.Instance.TryGetUnit(101, out Unit unit);
 
-                UserUnitData userUnitData = new UserUnitData();
-                userUnitData.unitID = 101;
-                userUnitData.unitLevel = 1;
-                userUnitData.unitGrade = 1;
-                userUnitData.activeSkillLevel_1 = 5;
-                userUnitData.activeSkillLevel_2 = 5;
-                userUnitData.passiveSkillLevel_1 = 5;
-                userUnitData.passiveSkillLevel_2 = 5;
+                UserUnitData userUnitData = new UserUnitData(unit);
                 userdata.unitDataList.Add(userUnitData);
 
                 userUnitData.weaponData = GameManager.ItemCreator.CreateEquipmentItemData<WeaponData>(GradeType.Normal);

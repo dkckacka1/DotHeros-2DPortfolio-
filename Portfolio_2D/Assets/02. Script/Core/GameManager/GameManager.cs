@@ -57,6 +57,8 @@ namespace Portfolio
             else
             {
                 CurrentUser = new User(SaveManager.CreateNewUser());
+                TryGetUnit(100, out Unit unit);
+                CurrentUser.AddNewUnit(unit);
             }
         }
 

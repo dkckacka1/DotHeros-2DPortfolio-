@@ -352,6 +352,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 008f6586af382402781fcd8f1669bceb, type: 3}
   - {fileID: 21300000, guid: da899a86cfe3f4dec94baa64815cb312, type: 3}
   - {fileID: 21300000, guid: 62ccc79667caf4300ad03d3cf8f40523, type: 3}
+  - {fileID: 21300000, guid: 8ca268967a08f8c4d85965310f08f83e, type: 3}
   - {fileID: 21300000, guid: d6e0cba6701964323914835bec6760d8, type: 3}
   - {fileID: 21300000, guid: 8cb7cba6448c747ada910c3c72d64778, type: 3}
   - {fileID: 21300000, guid: 54ff9da60114841938dfe6aa658c8fcb, type: 3}
@@ -1087,6 +1088,7 @@ SpriteAtlas:
   - icon_itemicon_scroll2
   - icon_guild_flag_4
   - btn_icon_enemy
+  - btn_icon_amulet
   - btn_icon_chat_1
   - btn_icon_boot_fly
   - icon_guild_flag_1

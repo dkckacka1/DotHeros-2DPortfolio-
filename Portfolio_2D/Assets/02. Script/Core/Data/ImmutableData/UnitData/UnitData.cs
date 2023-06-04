@@ -6,8 +6,10 @@ namespace Portfolio
 {
     public class UnitData : Data
     {
+        // DefualtProperty
         public string unitName;
         public ElementalType elementalType;
+        public int defaultGrade = 1;
 
         // UnitAttribute
         public float maxHP = 100;

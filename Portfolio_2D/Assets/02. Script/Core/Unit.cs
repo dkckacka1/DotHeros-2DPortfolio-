@@ -76,7 +76,7 @@ namespace Portfolio
                 }
                 else
                 {
-                    return 1;
+                    return data.defaultGrade;
                 }
             }
             set
@@ -382,8 +382,6 @@ namespace Portfolio
         //===========================================================
         // SetUnit
         //===========================================================
-
-
         public Unit(UnitData unitData)
         {
             this.data = unitData;

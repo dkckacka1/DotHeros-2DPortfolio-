@@ -8,8 +8,6 @@ namespace Portfolio.Lobby
     {
         private Stack<UndoAble> undoStack = new Stack<UndoAble>();
 
-        [SerializeField] GameObject heroPanel;
-
         public void ShowCanvas(Canvas canvas)
         {
             canvas.gameObject.SetActive(true);
@@ -33,8 +31,11 @@ namespace Portfolio.Lobby
 
         public void Undo()
         {
-            if (undoStack.Count < 1) return;
-
+            if (undoStack.Count < 1)
+            {
+                Debug.LogWarning("undoStack.Count < 1");
+                return;
+            }
             Debug.Log(undoStack.Count + " : " + undoStack.Peek().GetType().Name + " Undo");
             undoStack.Pop().Undo();
         }
