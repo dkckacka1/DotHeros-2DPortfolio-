@@ -120,6 +120,9 @@ namespace Portfolio.Lobby
                 return;
             }
 
+            labelText.gameObject.SetActive(true);
+            valueText.gameObject.SetActive(true);
+
             labelText.text = GameLib.GetOptionStatusText(optionStat);
 
             switch (optionStat)

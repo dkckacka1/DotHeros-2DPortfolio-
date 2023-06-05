@@ -31,6 +31,12 @@ namespace Portfolio.Lobby
             ShowReinforce(this.equipmentItemData);
         }
 
+        public void Reinforce()
+        {
+            GameManager.ItemCreator.ReinforceEquipment(equipmentItemData);
+            heroPanelUI.ReShow();
+        }
+
         private void ShowReinforce(EquipmentItemData equipmentItemData)
         {
             Debug.Log(!IsMaxReinforceCount());
@@ -44,6 +50,8 @@ namespace Portfolio.Lobby
             else
             {
                 reinforceBtn.interactable = false;
+                reinforceSuccessPercentText.text = $"현재 최대 강화 상태입니다.";
+                reinforceConsumeGoldText.text = "[-]";
             }
         }
 

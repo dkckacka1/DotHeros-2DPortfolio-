@@ -10,6 +10,8 @@ namespace Portfolio.Lobby
         [SerializeField] UnitStatusUI unitStatusUI;
         [SerializeField] UnitEquipmentUI unitEquipmentUI;
         [SerializeField] UnitSkillPanelUI unitSkillPanelUI;
+        [SerializeField] EquipmentPopupUI equipmentPopupUI;
+        [SerializeField] EquipmentReinforcePopupUI reinforcePopupUI;
 
 
         private void Start()
@@ -30,6 +32,8 @@ namespace Portfolio.Lobby
             unitStatusUI.ReShow();
             unitEquipmentUI.ReShow();
             unitSkillPanelUI.ReShow();
+            equipmentPopupUI.ReShow();
+            reinforcePopupUI.ReShow();
         }
 
         protected override void OnEnable()

@@ -106,7 +106,9 @@ namespace Portfolio
         /// <returns></returns>
         public static bool ProbabilityCalculation(float value)
         {
-            return value < Random.Range(0,100);
+            return value < Random.Range(0, 100);
         }
+
+        
     }
 }

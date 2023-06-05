@@ -7,54 +7,42 @@ namespace Portfolio
     [CreateAssetMenu(fileName = "newCreateEquipmentItemData", menuName = "newScritableOBJ/EquipmentItemData", order =0)]
     public class EquipmentCreateData : ScriptableObject
     {
+        [System.Serializable]
+        public struct MINMAXValues
+        {
+            public float min;
+            public float max;
+        }
+
         public GradeType createGrade;
 
         [Header("WeapoonData")]
-        public float minWeaponAttackPoint;
-        public float maxWeaponAttackPoint;
+        public MINMAXValues attackPoint;
         [Header("HelmetData")]
-        public float minHelmetHealthPoint;
-        public float maxHelmetHealthPoint;
+        public MINMAXValues healthPoint;
         [Header("ArmorData")]
-        public float minArmorDefencePoint;
-        public float maxArmorDefencePoint;
+        public MINMAXValues defencePoint;
         [Header("AmuletData")]
-        [Range(0, 0.8f)] public float minAmuletCriticalPercent;
-        [Range(0, 0.8f)] public float maxAmuletCriticalPercent;
-        [Range(0, 0.8f)] public float minAmuletCriticalDamage;
-        [Range(0, 0.8f)] public float maxAmuletCriticalDamage;
+        public MINMAXValues criticalPercent;
+        public MINMAXValues criticalDamage;
         [Header("RingData")]
-        [Range(0, 0.8f)] public float minRingEffectHit;
-        [Range(0, 0.8f)] public float maxRingEffectHit;
-        [Range(0, 0.8f)] public float minRingEffectRes;
-        [Range(0, 0.8f)] public float maxRingEffectRes;
+        public MINMAXValues effectHit;
+        public MINMAXValues effectRes;
         [Header("ShoeData")]
-        [Range(0, 100f)] public float minShoeSpeed;
-        [Range(0, 100f)] public float maxShoeSpeed;
+        public MINMAXValues speed;
 
 
         [Header("OptionStat")]
-        public float minOptionAttackPoint;
-        public float maxOptionAttackPoint;
-        [Range(0, 0.8f)] public float minOptionAttackPercent;
-        [Range(0, 0.8f)] public float maxOptionAttackPercent;
-        public float minOptionHealthPoint;
-        public float maxOptionHealthPoint;
-        [Range(0, 0.8f)] public float minOptionHealthPercent;
-        [Range(0, 0.8f)] public float maxOptionHealthPercent;
-        public float minOptionDefencePoint;
-        public float maxOptionDefencePoint;
-        [Range(0, 0.8f)] public float minOptionDefencePercent;
-        [Range(0, 0.8f)] public float maxOptionDefencePercent;
-        [Range(0, 0.8f)] public float minOptionCriticalPercent;
-        [Range(0, 0.8f)] public float maxOptionCriticalPercent;
-        [Range(0, 0.8f)] public float minOptionCriticalDamage;
-        [Range(0, 0.8f)] public float maxOptionCiritcalDamage;
-        public float minOptionSpeed;
-        public float maxOptionSpeed;
-        [Range(0, 0.8f)] public float minOptionEffectHit;
-        [Range(0, 0.8f)] public float maxOptionEffectHit;
-        [Range(0, 0.8f)] public float minOptionEffectRes;
-        [Range(0, 0.8f)] public float maxOptionEffectRes;
+        public MINMAXValues optionAttackPoint;
+        public MINMAXValues optionAttackPercent;
+        public MINMAXValues optionHealthPoint;
+        public MINMAXValues optionHealthPercent;
+        public MINMAXValues optionDefencePoint;
+        public MINMAXValues optionDefencePercent;
+        public MINMAXValues optionCriticalPercent;
+        public MINMAXValues optionCriticalDamage;
+        public MINMAXValues optionSpeed;
+        public MINMAXValues optionEffectHit;
+        public MINMAXValues optionEffectRes;
     }
 }
