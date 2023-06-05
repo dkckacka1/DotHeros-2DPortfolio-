@@ -42,6 +42,13 @@ namespace Portfolio
 
             SaveManager.SaveUserData(userData);
         }
+        public bool IsMaxUnitCount
+        {
+            get
+            {
+                return userData.maxUnitListCount == userUnitDic.Count;
+            }
+        }
         public int MaxEnergy
         {
             get

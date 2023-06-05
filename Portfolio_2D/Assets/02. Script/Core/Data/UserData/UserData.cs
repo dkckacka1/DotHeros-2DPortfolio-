@@ -13,6 +13,8 @@ namespace Portfolio
         public int diamond;
         public int energy;
 
+        // 유닛 부문
+        public int maxUnitListCount = 30;
         public List<UserUnitData> unitDataList;
         public List<EquipmentItemData> equipmentItemDataList;
 

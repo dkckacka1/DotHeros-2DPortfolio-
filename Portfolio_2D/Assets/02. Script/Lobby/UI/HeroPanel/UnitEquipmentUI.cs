@@ -24,6 +24,19 @@ namespace Portfolio.Lobby
 
         public void Init(Unit unit)
         {
+            this.unit = unit;
+            ShowEquipment(unit);
+        }
+
+        public void ReShow()
+        {
+            if (this.unit == null) return;
+
+            ShowEquipment(this.unit);
+        }
+
+        private void ShowEquipment(Unit unit)
+        {
             weaponSlot.Init(unit.weaponData);
             helemtSlot.Init(unit.helmetData);
             armorSlot.Init(unit.armorData);

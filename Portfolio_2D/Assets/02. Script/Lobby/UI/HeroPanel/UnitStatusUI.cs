@@ -30,6 +30,18 @@ namespace Portfolio.Lobby
         public void Init(Unit unit)
         {
             this.unit = unit;
+            ShowStat(unit);
+        }
+
+        public void ReShow()
+        {
+            if (unit == null) return;
+
+            ShowStat(this.unit);
+        }
+
+        private void ShowStat(Unit unit)
+        {
             unitNameText.text = unit.Data.unitName;
             unitGradeText.text = unit.UnitGrade.ToString() + " ¼º";
             unitCurrentLevelText.text = unit.UnitCurrentLevel.ToString();

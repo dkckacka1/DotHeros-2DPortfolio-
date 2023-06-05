@@ -20,7 +20,18 @@ namespace Portfolio.Lobby
         public void Init(Unit unit)
         {
             this.unit = unit;
+            ShowSkill(unit);
+        }
 
+        public void ReShow()
+        {
+            if (unit == null) return;
+
+            ShowSkill(this.unit);
+        }
+
+        private void ShowSkill(Unit unit)
+        {
             activeSkilll_1_UI.Init(unit.activeSkill_1, unit.ActiveSkillLevel_1);
             activeSkilll_2_UI.Init(unit.activeSkill_2, unit.ActiveSkillLevel_2);
             passiveSkill_1_UI.Init(unit.passiveSkill_1, unit.PassiveSkillLevel_1);

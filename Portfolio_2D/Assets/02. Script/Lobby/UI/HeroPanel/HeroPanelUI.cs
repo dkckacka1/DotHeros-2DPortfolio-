@@ -15,9 +15,21 @@ namespace Portfolio.Lobby
         private void Start()
         {
             Unit unit = GameManager.CurrentUser.userUnitDic[0];
+            InitUnit(unit);
+        }
+
+        public void InitUnit(Unit unit)
+        {
             unitStatusUI.Init(unit);
             unitEquipmentUI.Init(unit);
             unitSkillPanelUI.Init(unit);
+        }
+
+        public void ReShow()
+        {
+            unitStatusUI.ReShow();
+            unitEquipmentUI.ReShow();
+            unitSkillPanelUI.ReShow();
         }
 
         protected override void OnEnable()
