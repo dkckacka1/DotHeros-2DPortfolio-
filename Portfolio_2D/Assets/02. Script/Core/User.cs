@@ -29,7 +29,7 @@ namespace Portfolio
         {
             userUnitDic.Add(userUnitDic.Count,unit);
             userData.unitDataList.Add(new UserUnitData(unit));
-            SaveManager.SaveUserData(userData);
+            GameManager.Instance.SaveUser();
         }
 
         public void AddNewUnit(List<Unit> units)
@@ -40,7 +40,7 @@ namespace Portfolio
                 userData.unitDataList.Add(new UserUnitData(unit));
             }
 
-            SaveManager.SaveUserData(userData);
+            GameManager.Instance.SaveUser();
         }
         public bool IsMaxUnitCount
         {

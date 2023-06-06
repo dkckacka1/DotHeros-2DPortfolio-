@@ -75,7 +75,7 @@ namespace Portfolio
                 userUnitData.amuletData = GameManager.ItemCreator.CreateEquipmentItemData<AmuletData>(GradeType.Normal);
                 userUnitData.RingData = GameManager.ItemCreator.CreateEquipmentItemData<RingData>(GradeType.Normal);
 
-                SaveManager.SaveUserData(userdata);
+                GameManager.Instance.SaveUser();
             }
 
             if (GUI.Button(new Rect(120, 120, 100, 100), "테스트용 유닛 넣기(2)"))
@@ -93,7 +93,7 @@ namespace Portfolio
                 userUnitData.amuletData = GameManager.ItemCreator.CreateEquipmentItemData<AmuletData>(GradeType.Normal);
                 userUnitData.RingData = GameManager.ItemCreator.CreateEquipmentItemData<RingData>(GradeType.Normal);
 
-                SaveManager.SaveUserData(userdata);
+                GameManager.Instance.SaveUser();
             }
 
             if (GUI.Button(new Rect(10, 230, 100, 100), "유저 로드 데이터 테스트"))
@@ -108,6 +108,38 @@ namespace Portfolio
                     Debug.Log($"" +
                         $"userUnitID = {userUnit.unitID}");
                 }
+            }
+
+            if (GUI.Button(new Rect(10, 340, 100, 100), "랜덤 아이템 추가하기"))
+            {
+                EquipmentItemData itemData = null;
+
+                EquipmentItemType type = (EquipmentItemType)Random.Range(0, 6);
+                switch (type)
+                {
+                    case EquipmentItemType.Weapon:
+                        itemData = GameManager.ItemCreator.CreateEquipmentItemData<WeaponData>(GradeType.Normal);
+                        break;
+                    case EquipmentItemType.Helmet:
+                        itemData = GameManager.ItemCreator.CreateEquipmentItemData<HelmetData>(GradeType.Normal);
+                        break;
+                    case EquipmentItemType.Armor:
+                        itemData = GameManager.ItemCreator.CreateEquipmentItemData<ArmorData>(GradeType.Normal);
+                        break;
+                    case EquipmentItemType.Amulet:
+                        itemData = GameManager.ItemCreator.CreateEquipmentItemData<AmuletData>(GradeType.Normal);
+                        break;
+                    case EquipmentItemType.Ring:
+                        itemData = GameManager.ItemCreator.CreateEquipmentItemData<RingData>(GradeType.Normal);
+                        break;
+                    case EquipmentItemType.Shoe:
+                        itemData = GameManager.ItemCreator.CreateEquipmentItemData<ShoeData>(GradeType.Normal);
+                        break;
+                }
+
+                if (itemData == null) return;
+
+                GameManager.CurrentUser.userData.equipmentItemDataList.Add(itemData);
             }
         }
     }

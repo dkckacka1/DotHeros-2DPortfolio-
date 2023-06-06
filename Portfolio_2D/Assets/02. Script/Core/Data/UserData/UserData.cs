@@ -5,9 +5,9 @@ namespace Portfolio
 {
     public class UserData
     {
-        public int userID;
+        public int userID = 00000001;
         public string userName;
-        public int userLevel;
+        public int userLevel = 1;
         public int userCurrentExperience;
         public int gold;
         public int diamond;

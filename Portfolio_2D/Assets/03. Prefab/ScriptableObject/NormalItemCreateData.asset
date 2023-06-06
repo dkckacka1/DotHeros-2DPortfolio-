@@ -13,76 +13,60 @@ MonoBehaviour:
   m_Name: NormalItemCreateData
   m_EditorClassIdentifier: 
   createGrade: 0
-  minWeaponAttackPoint: 5
-  maxWeaponAttackPoint: 10
   attackPoint:
     min: 5
     max: 10
-  minHelmetHealthPoint: 50
-  maxHelmetHealthPoint: 100
   healthPoint:
     min: 50
     max: 100
-  minArmorDefencePoint: 1
-  maxArmorDefencePoint: 5
   defencePoint:
     min: 1
     max: 5
-  minAmuletCriticalPercent: 0.01
-  maxAmuletCriticalPercent: 0.1
-  minAmuletCriticalDamage: 0.01
-  maxAmuletCriticalDamage: 0.1
   criticalPercent:
     min: 0.01
     max: 0.1
   criticalDamage:
     min: 0.01
     max: 0.1
-  minRingEffectHit: 0.01
-  maxRingEffectHit: 0.1
-  minRingEffectRes: 0.01
-  maxRingEffectRes: 0.1
   effectHit:
     min: 0.01
     max: 0.1
   effectRes:
     min: 0.01
     max: 0.1
-  minShoeSpeed: 10
-  maxShoeSpeed: 20
   speed:
     min: 10
     max: 20
   optionAttackPoint:
-    min: 0
-    max: 0
+    min: 5
+    max: 10
   optionAttackPercent:
-    min: 0
-    max: 0
+    min: 0.1
+    max: 0.2
   optionHealthPoint:
-    min: 0
-    max: 0
+    min: 50
+    max: 100
   optionHealthPercent:
-    min: 0
-    max: 0
+    min: 0.1
+    max: 0.2
   optionDefencePoint:
-    min: 0
-    max: 0
+    min: 1
+    max: 5
   optionDefencePercent:
-    min: 0
-    max: 0
+    min: 0.1
+    max: 0.2
   optionCriticalPercent:
-    min: 0
-    max: 0
+    min: 0.05
+    max: 0.1
   optionCriticalDamage:
-    min: 0
-    max: 0
+    min: 0.1
+    max: 0.2
   optionSpeed:
-    min: 0
-    max: 0
+    min: 5
+    max: 10
   optionEffectHit:
-    min: 0
-    max: 0
+    min: 0.1
+    max: 0.2
   optionEffectRes:
-    min: 0
-    max: 0
+    min: 0.1
+    max: 0.2

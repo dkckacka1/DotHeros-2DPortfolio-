@@ -49,14 +49,14 @@ namespace Portfolio.Lobby
             unitExperienceSlider.value = unit.CurrentExperience / unit.MaxExperience;
             unitExperienceText.text = (unit.CurrentExperience / unit.MaxExperience * 100f).ToString("N1") + " %";
 
-            unitAttackPointText.text = unit.AttackPoint.ToString();
-            unitHealthPointText.text = unit.HealthPoint.ToString();
-            unitDefencePointText.text = unit.DefencePoint.ToString();
-            unitSpeedText.text = unit.Speed.ToString();
-            unitCriticalPercentText.text = (unit.CriticalPercent * 100f).ToString() + " %";
-            unitCriticalDamageText.text = (unit.CriticalDamage * 100f).ToString() + " %";
-            unitEffectHitText.text = (unit.EffectHit * 100f).ToString() + " %";
-            unitEffectResText.text = (unit.EffectResistance * 100f).ToString() + " %";
+            unitAttackPointText.text = unit.AttackPoint.ToString("N0");
+            unitHealthPointText.text = unit.HealthPoint.ToString("N0");
+            unitDefencePointText.text = unit.DefencePoint.ToString("N0");
+            unitSpeedText.text = unit.Speed.ToString("N0");
+            unitCriticalPercentText.text = (unit.CriticalPercent * 100f).ToString("F1") + " %";
+            unitCriticalDamageText.text = (unit.CriticalDamage * 100f).ToString("F1") + " %";
+            unitEffectHitText.text = (unit.EffectHit * 100f).ToString("F1") + " %";
+            unitEffectResText.text = (unit.EffectResistance * 100f).ToString("F1") + " %";
         }
 
         public void ShowEquipment(UnitEquipmentUI equipmentUI)

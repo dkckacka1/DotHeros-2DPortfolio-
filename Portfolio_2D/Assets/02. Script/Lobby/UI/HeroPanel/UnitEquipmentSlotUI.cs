@@ -9,35 +9,31 @@ namespace Portfolio.Lobby
     public class UnitEquipmentSlotUI : MonoBehaviour
     {
         private EquipmentItemData equipmentData;
-        private EquipmentItemType equipmentItemType;
 
+        [SerializeField] EquipmentItemType equipmentItemType;
         [SerializeField] Button popupButton;
         [SerializeField] Image equipmentImage;
         [SerializeField] TextMeshProUGUI reinforceCountText;
 
         public void Init(EquipmentItemData equipmentData)
         {
-            if (equipmentData == null)
+            this.equipmentData = equipmentData;
+            if (equipmentData != null)
             {
-                popupButton.interactable = false;
-                equipmentImage.gameObject.SetActive(false);
+                equipmentImage.gameObject.SetActive(true);
+                reinforceCountText.gameObject.SetActive(equipmentData.reinforceCount != 0);
+                reinforceCountText.text = $"+{equipmentData.reinforceCount}";
             }
             else
             {
-                popupButton.interactable = true;
-                equipmentImage.gameObject.SetActive(true);
-                this.equipmentData = equipmentData;
-                this.equipmentItemType = equipmentData.equipmentType;
-                reinforceCountText.gameObject.SetActive(equipmentData.reinforceCount != 0);
-                reinforceCountText.text = $"+{equipmentData.reinforceCount}";
+                equipmentImage.gameObject.SetActive(false);
+                reinforceCountText.gameObject.SetActive(false);
             }
         }
 
         public void ShowEquipmentPopup(EquipmentPopupUI popupUI)
         {
-            if (equipmentData == null) return;
-
-            popupUI.Init(equipmentData);
+            popupUI.Init(equipmentData, equipmentItemType);
             popupUI.gameObject.SetActive(true);
         }
     }

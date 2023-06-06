@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Portfolio
 {
-    public class ItemCreator : MonoBehaviour
+    public class ItemGenerator : MonoBehaviour
     {
         [SerializeField] EquipmentCreateData normalCreateData;
         [SerializeField] EquipmentCreateData rareCreateData;
@@ -101,14 +101,14 @@ namespace Portfolio
             }
             else if (data is AmuletData)
             {
-                (data as AmuletData).criticalPercent = Mathf.Floor((data as AmuletData).criticalPercent + 0.01f);
-                (data as AmuletData).criticalDamage = Mathf.Floor((data as AmuletData).criticalDamage + 0.01f);
+                (data as AmuletData).criticalPercent = (data as AmuletData).criticalPercent + 0.01f;
+                (data as AmuletData).criticalDamage = (data as AmuletData).criticalDamage + 0.01f;
 
             }
             else if (data is RingData)
             {
-                (data as RingData).effectHit = Mathf.Floor((data as RingData).effectHit + 0.01f);
-                (data as RingData).effectResistance = Mathf.Floor((data as RingData).effectResistance + 0.01f);
+                (data as RingData).effectHit = (data as RingData).effectHit + 0.01f;
+                (data as RingData).effectResistance = (data as RingData).effectResistance + 0.01f;
             }
 
             if (data.reinforceCount == 3)
@@ -130,38 +130,112 @@ namespace Portfolio
         }
 
         // TODO 장비 강화하고 저장해야함
-        private int[] GetEquipmentOptionStat(EquipmentItemData data)
+        private EquipmentOptionStat[] GetEquipmentOptionStat(EquipmentItemData data)
         {
-            // TODO
-            List<int> optionStats = new List<int>() { 1,2,3,4,5,6,7};
-
+            List<EquipmentOptionStat> optionStats = new List<EquipmentOptionStat>();
             if (data is WeaponData)
             {
+                optionStats.AddRange(new EquipmentOptionStat[]
+                {
+                    EquipmentOptionStat.AttackPercent,
+                    EquipmentOptionStat.HealthPoint,
+                    EquipmentOptionStat.HealthPercent,
+                    EquipmentOptionStat.CriticalPercent,
+                    EquipmentOptionStat.CriticalDamagePercent,
+                    EquipmentOptionStat.Speed,
+                    EquipmentOptionStat.EffectHitPercent,
+                    EquipmentOptionStat.EffectResistancePercent,
+                });
             }
             else if (data is ArmorData)
             {
+                optionStats.AddRange(new EquipmentOptionStat[]
+{
+                    EquipmentOptionStat.HealthPoint,
+                    EquipmentOptionStat.HealthPercent,
+                    EquipmentOptionStat.DefencePercent,
+                    EquipmentOptionStat.CriticalPercent,
+                    EquipmentOptionStat.CriticalDamagePercent,
+                    EquipmentOptionStat.Speed,
+                    EquipmentOptionStat.EffectHitPercent,
+                    EquipmentOptionStat.EffectResistancePercent,
+});
             }
             else if (data is HelmetData)
             {
+                optionStats.AddRange(new EquipmentOptionStat[]
+{
+                    EquipmentOptionStat.AttackPoint,
+                    EquipmentOptionStat.AttackPercent,
+                    EquipmentOptionStat.HealthPercent,
+                    EquipmentOptionStat.DefencePoint,
+                    EquipmentOptionStat.DefencePercent,
+                    EquipmentOptionStat.CriticalPercent,
+                    EquipmentOptionStat.CriticalDamagePercent,
+                    EquipmentOptionStat.Speed,
+                    EquipmentOptionStat.EffectHitPercent,
+                    EquipmentOptionStat.EffectResistancePercent,
+});
             }
             else if (data is ShoeData)
             {
+                optionStats.AddRange(new EquipmentOptionStat[]
+{
+                    EquipmentOptionStat.AttackPoint,
+                    EquipmentOptionStat.AttackPercent,
+                    EquipmentOptionStat.HealthPoint,
+                    EquipmentOptionStat.HealthPercent,
+                    EquipmentOptionStat.DefencePoint,
+                    EquipmentOptionStat.DefencePercent,
+                    EquipmentOptionStat.CriticalPercent,
+                    EquipmentOptionStat.CriticalDamagePercent,
+                    EquipmentOptionStat.EffectHitPercent,
+                    EquipmentOptionStat.EffectResistancePercent,
+});
             }
             else if (data is AmuletData)
             {
+                optionStats.AddRange(new EquipmentOptionStat[]
+{
+                    EquipmentOptionStat.AttackPoint,
+                    EquipmentOptionStat.AttackPercent,
+                    EquipmentOptionStat.HealthPoint,
+                    EquipmentOptionStat.HealthPercent,
+                    EquipmentOptionStat.DefencePoint,
+                    EquipmentOptionStat.DefencePercent,
+                    EquipmentOptionStat.Speed,
+                    EquipmentOptionStat.EffectHitPercent,
+                    EquipmentOptionStat.EffectResistancePercent,
+});
             }
             else if (data is RingData)
             {
+                optionStats.AddRange(new EquipmentOptionStat[]
+{
+                    EquipmentOptionStat.AttackPoint,
+                    EquipmentOptionStat.AttackPercent,
+                    EquipmentOptionStat.HealthPoint,
+                    EquipmentOptionStat.HealthPercent,
+                    EquipmentOptionStat.DefencePoint,
+                    EquipmentOptionStat.DefencePercent,
+                    EquipmentOptionStat.CriticalPercent,
+                    EquipmentOptionStat.CriticalDamagePercent,
+                    EquipmentOptionStat.Speed,
+});
             }
+
+            optionStats.Remove(optionStats.Find(item => item == data.optionStat_1_Type));
+            optionStats.Remove(optionStats.Find(item => item == data.optionStat_2_Type));
+            optionStats.Remove(optionStats.Find(item => item == data.optionStat_3_Type));
 
             return optionStats.ToArray();
         }
 
 
 
-        private void AddOption(ref EquipmentOptionStat optionStat, ref float optionValue, int[] options, GradeType itemGrade)
+        private void AddOption(ref EquipmentOptionStat optionStat, ref float optionValue, EquipmentOptionStat[] options, GradeType itemGrade)
         {
-            optionStat = (EquipmentOptionStat)Random.Range(0, options.Length);
+            optionStat = options[Random.Range(0, options.Length)];
             EquipmentCreateData creator = null;
             switch (itemGrade)
             {
@@ -181,19 +255,19 @@ namespace Portfolio
             switch (optionStat)
             {
                 case EquipmentOptionStat.AttackPoint:
-                    optionValue = Random.Range(creator.optionAttackPoint.min, creator.optionAttackPoint.max);
+                    optionValue = Mathf.Floor(Random.Range(creator.optionAttackPoint.min, creator.optionAttackPoint.max));
                     break;
                 case EquipmentOptionStat.AttackPercent:
                     optionValue = Random.Range(creator.optionAttackPercent.min, creator.optionAttackPercent.max);
                     break;
                 case EquipmentOptionStat.HealthPoint:
-                    optionValue = Random.Range(creator.optionHealthPoint.min, creator.optionHealthPoint.max);
+                    optionValue = Mathf.Floor(Random.Range(creator.optionHealthPoint.min, creator.optionHealthPoint.max));
                     break;
                 case EquipmentOptionStat.HealthPercent:
                     optionValue = Random.Range(creator.optionHealthPercent.min, creator.optionHealthPercent.max);
                     break;
                 case EquipmentOptionStat.DefencePoint:
-                    optionValue = Random.Range(creator.optionDefencePoint.min, creator.optionDefencePoint.max);
+                    optionValue = Mathf.Floor(Random.Range(creator.optionDefencePoint.min, creator.optionDefencePoint.max));
                     break;
                 case EquipmentOptionStat.DefencePercent:
                     optionValue = Random.Range(creator.optionDefencePercent.min, creator.optionDefencePercent.max);
@@ -205,7 +279,7 @@ namespace Portfolio
                     optionValue = Random.Range(creator.optionCriticalDamage.min, creator.optionCriticalDamage.max);
                     break;
                 case EquipmentOptionStat.Speed:
-                    optionValue = Random.Range(creator.optionSpeed.min, creator.optionSpeed.max);
+                    optionValue = Mathf.Floor(Random.Range(creator.optionSpeed.min, creator.optionSpeed.max));
                     break;
                 case EquipmentOptionStat.EffectHitPercent:
                     optionValue = Random.Range(creator.optionEffectHit.min, creator.optionEffectHit.max);

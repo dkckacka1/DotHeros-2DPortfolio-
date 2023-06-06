@@ -8,6 +8,25 @@ namespace Portfolio.Lobby
     {
         private Stack<UndoAble> undoStack = new Stack<UndoAble>();
 
+        [SerializeField] Canvas heroCanvas;
+        [SerializeField] Canvas summonCanvas;
+
+        [SerializeField] UserInfoUI userInfoUI;
+
+        private void Start()
+        {
+            ShowUserResource();
+            while (undoStack.Count >= 1)
+            {
+                Undo();
+            }
+        }
+
+        public void ShowUserResource()
+        {
+            userInfoUI.Init(GameManager.CurrentUser);
+        }
+
         public void ShowCanvas(Canvas canvas)
         {
             canvas.gameObject.SetActive(true);
@@ -25,7 +44,7 @@ namespace Portfolio.Lobby
 
         public void AddUndo(UndoAble undoInterface)
         {
-            Debug.Log(undoInterface.GetType().Name + " : AddUndo");
+            //Debug.Log(undoInterface.GetType().Name + " : AddUndo");
             undoStack.Push(undoInterface);
         }
 
@@ -36,7 +55,7 @@ namespace Portfolio.Lobby
                 Debug.LogWarning("undoStack.Count < 1");
                 return;
             }
-            Debug.Log(undoStack.Count + " : " + undoStack.Peek().GetType().Name + " Undo");
+            //Debug.Log(undoStack.Count + " : " + undoStack.Peek().GetType().Name + " Undo");
             undoStack.Pop().Undo();
         }
     }

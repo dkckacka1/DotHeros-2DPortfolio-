@@ -17,11 +17,6 @@ namespace Portfolio.Lobby
         [SerializeField] TextMeshProUGUI userGoldText;
         [SerializeField] TextMeshProUGUI userDiaText;
 
-        private void Start()
-        {
-            Init(GameManager.CurrentUser);
-        }
-
         public void Init(User user)
         {
             userNickNameText.text = user.userData.userName + "(" + user.userData.userID + ")";

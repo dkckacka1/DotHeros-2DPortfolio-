@@ -33,19 +33,28 @@ namespace Portfolio.Lobby
 
         public void Reinforce()
         {
-            GameManager.ItemCreator.ReinforceEquipment(equipmentItemData);
-            heroPanelUI.ReShow();
+            GameManager.CurrentUser.userData.gold -= Constant.reinforceConsumeGoldValues[this.equipmentItemData.reinforceCount];
+
+            if (Random.Range(0f, 1f) <= Constant.reinforceProbabilitys[this.equipmentItemData.reinforceCount])
+            {
+                GameManager.ItemCreator.ReinforceEquipment(equipmentItemData);
+                heroPanelUI.ReShow();
+            }
+
+            LobbyManager.UIManager.ShowUserResource();
+            GameManager.Instance.SaveUser();
+            
         }
 
         private void ShowReinforce(EquipmentItemData equipmentItemData)
         {
-            Debug.Log(!IsMaxReinforceCount());
+            //Debug.Log(!IsMaxReinforceCount());
             if (!IsMaxReinforceCount())
             {
-                reinforceBtn.interactable = true;
+                reinforceBtn.interactable = GameManager.CurrentUser.userData.gold >= Constant.reinforceConsumeGoldValues[this.equipmentItemData.reinforceCount];
                 reinforceSuccessPercentText.text = $"현재 ( +{this.equipmentItemData.reinforceCount} )\n" +
                     $"강화 성공 확률 ({Constant.reinforceProbabilitys[this.equipmentItemData.reinforceCount] * 100}%)";
-                reinforceConsumeGoldText.text = Constant.reinforceConsumeGoldValues[this.equipmentItemData.reinforceCount].ToString();
+                reinforceConsumeGoldText.text = Constant.reinforceConsumeGoldValues[this.equipmentItemData.reinforceCount].ToString("N0");
             }
             else
             {

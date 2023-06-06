@@ -16,8 +16,8 @@ namespace Portfolio
         //===========================================================
         private static GameManager instance;
         public static GameManager Instance { get => instance; }
-        private static ItemCreator itemCreator;
-        public static ItemCreator ItemCreator { get => itemCreator; }
+        private static ItemGenerator itemCreator;
+        public static ItemGenerator ItemCreator { get => itemCreator; }
 
         //===========================================================
         // Dictionary
@@ -39,7 +39,7 @@ namespace Portfolio
             if (instance == null)
             {
                 instance = this;
-                itemCreator = GetComponentInChildren<ItemCreator>();
+                itemCreator = GetComponentInChildren<ItemGenerator>();
                 DontDestroyOnLoad(this.gameObject);
             }
             else
@@ -69,6 +69,11 @@ namespace Portfolio
                 Debug.LogWarning("GameManager Test");
                 SceneLoader.LoadLobbyScene();
             }
+        }
+
+        public void SaveUser()
+        {
+            SaveManager.SaveUserData(CurrentUser.userData);
         }
 
         public bool TryGetData<T>(int ID, out T data) where T : Data
