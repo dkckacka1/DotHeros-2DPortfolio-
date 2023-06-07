@@ -8,11 +8,6 @@ namespace Portfolio.Lobby
 {
     public class EquipmentPopupUI : MonoBehaviour
     {
-        EquipmentItemData equipmentData;
-        EquipmentItemType equipmentItemType;
-
-        [SerializeField] EquipmentReinforcePopupUI reinforcePopup;
-        [SerializeField] EquipmentListPopupUI equipmentListPopup;
         [Header("Buttons")]
         [SerializeField] Button reinforceBtn;
 
@@ -42,36 +37,11 @@ namespace Portfolio.Lobby
 
         private void Awake()
         {
-            reinforcePopup.gameObject.SetActive(false);
-            equipmentListPopup.gameObject.SetActive(false);
             this.gameObject.SetActive(false);
         }
-
-        private void OnEnable()
+        
+        public void ShowEquipment(EquipmentItemData equipmentData)
         {
-            reinforcePopup.gameObject.SetActive(false);
-            equipmentListPopup.gameObject.SetActive(false);
-        }
-
-        public void Init(EquipmentItemData data, EquipmentItemType equipmentItemType)
-        {
-            this.equipmentData = data;
-            this.equipmentItemType = equipmentItemType;
-            ShowEquipment(data);
-            reinforcePopup.gameObject.SetActive(false);
-        }
-
-        public void ReShow()
-        {
-            if (this.equipmentData == null) return;
-
-            ShowEquipment(this.equipmentData);
-        }
-
-        private void ShowEquipment(EquipmentItemData equipmentData)
-        {
-            if (equipmentData != null)
-            {
                 equipmentDefaultImage.gameObject.SetActive(false);
                 equipmentImage.gameObject.SetActive(true);
 
@@ -131,35 +101,34 @@ namespace Portfolio.Lobby
                 InitOptionStat(equipmentData.optionStat_4_Type, equipmentData.optionStat_4_value, optionStat_4_Lable, optionStat_4_Value);
 
                 reinforceBtn.interactable = true;
-            }
-            else
-            {
-                equipmentDefaultImage.gameObject.SetActive(true);
-                equipmentDefaultImage.sprite = defualtEquipmentSprits[(int)equipmentItemType];
-                equipmentImage.gameObject.SetActive(false);
+        }
 
-                equipmentImage.gameObject.SetActive(false);
-                equipmentNameText.text = $"장착한 장비가 없습니다.";
-                equipmentSetText.gameObject.SetActive(false);
+        public void ShowEquipment(EquipmentItemType equipmentItemType)
+        {
+            equipmentDefaultImage.gameObject.SetActive(true);
+            equipmentDefaultImage.sprite = defualtEquipmentSprits[(int)equipmentItemType];
+            equipmentImage.gameObject.SetActive(false);
 
-                defaultStat_1_Lable.gameObject.SetActive(false);
-                defaultStat_1_Value.gameObject.SetActive(false);
-                defaultStat_2_Lable.gameObject.SetActive(false);
-                defaultStat_2_Value.gameObject.SetActive(false);
+            equipmentImage.gameObject.SetActive(false);
+            equipmentNameText.text = $"장착한 장비가 없습니다.";
+            equipmentSetText.gameObject.SetActive(false);
 
-                optionExplanationText.gameObject.SetActive(false);
-                optionStat_1_Lable.gameObject.SetActive(false);
-                optionStat_1_Value.gameObject.SetActive(false);
-                optionStat_2_Lable.gameObject.SetActive(false);
-                optionStat_2_Value.gameObject.SetActive(false);
-                optionStat_3_Lable.gameObject.SetActive(false);
-                optionStat_3_Value.gameObject.SetActive(false);
-                optionStat_4_Lable.gameObject.SetActive(false);
-                optionStat_4_Value.gameObject.SetActive(false);
+            defaultStat_1_Lable.gameObject.SetActive(false);
+            defaultStat_1_Value.gameObject.SetActive(false);
+            defaultStat_2_Lable.gameObject.SetActive(false);
+            defaultStat_2_Value.gameObject.SetActive(false);
 
-                reinforceBtn.interactable = false;
-            }
+            optionExplanationText.gameObject.SetActive(false);
+            optionStat_1_Lable.gameObject.SetActive(false);
+            optionStat_1_Value.gameObject.SetActive(false);
+            optionStat_2_Lable.gameObject.SetActive(false);
+            optionStat_2_Value.gameObject.SetActive(false);
+            optionStat_3_Lable.gameObject.SetActive(false);
+            optionStat_3_Value.gameObject.SetActive(false);
+            optionStat_4_Lable.gameObject.SetActive(false);
+            optionStat_4_Value.gameObject.SetActive(false);
 
+            reinforceBtn.interactable = false;
         }
 
         private void InitOptionStat(EquipmentOptionStat optionStat, float value, TextMeshProUGUI labelText, TextMeshProUGUI valueText)
@@ -196,17 +165,7 @@ namespace Portfolio.Lobby
             }
         }
 
-        public void ShowReinforcePopup()
-        {
-            reinforcePopup.Init(this.equipmentData);
-            reinforcePopup.gameObject.SetActive(true);
-        }
 
-        public void ShowEquipmentListPopup()
-        {
-            equipmentListPopup.Init(equipmentData);
-            equipmentListPopup.gameObject.SetActive(true);
-        }
 
     }
 }

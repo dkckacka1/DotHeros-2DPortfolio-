@@ -9,36 +9,35 @@ namespace Portfolio.Lobby
     public class EquipmentTooltip : MonoBehaviour
     {
         [Header("Equipment Data")]
-        [SerializeField] TextMeshProUGUI equipmentNameText;
-        [SerializeField] TextMeshProUGUI equipmentSetText;
+        [SerializeField] private TextMeshProUGUI equipmentNameText;
+        [SerializeField] private TextMeshProUGUI equipmentSetText;
 
-        [Header("Defualt Status")]
-        [SerializeField] TextMeshProUGUI defaultStat_1_Lable;
-        [SerializeField] TextMeshProUGUI defaultStat_1_Value;
-        [SerializeField] TextMeshProUGUI defaultStat_2_Lable;
-        [SerializeField] TextMeshProUGUI defaultStat_2_Value;
+        [Header("Default Status")]
+        [SerializeField] private TextMeshProUGUI defaultStat_1_Lable;
+        [SerializeField] private TextMeshProUGUI defaultStat_1_Value;
+        [SerializeField] private TextMeshProUGUI defaultStat_2_Lable;
+        [SerializeField] private TextMeshProUGUI defaultStat_2_Value;
 
         [Header("Option Status")]
-        [SerializeField] TextMeshProUGUI optionStat_1_Lable;
-        [SerializeField] TextMeshProUGUI optionStat_1_Value;
-        [SerializeField] TextMeshProUGUI optionStat_2_Lable;
-        [SerializeField] TextMeshProUGUI optionStat_2_Value;
-        [SerializeField] TextMeshProUGUI optionStat_3_Lable;
-        [SerializeField] TextMeshProUGUI optionStat_3_Value;
-        [SerializeField] TextMeshProUGUI optionStat_4_Lable;
-        [SerializeField] TextMeshProUGUI optionStat_4_Value;
+        [SerializeField] private TextMeshProUGUI optionStat_1_Lable;
+        [SerializeField] private TextMeshProUGUI optionStat_1_Value;
+        [SerializeField] private TextMeshProUGUI optionStat_2_Lable;
+        [SerializeField] private TextMeshProUGUI optionStat_2_Value;
+        [SerializeField] private TextMeshProUGUI optionStat_3_Lable;
+        [SerializeField] private TextMeshProUGUI optionStat_3_Value;
+        [SerializeField] private TextMeshProUGUI optionStat_4_Lable;
+        [SerializeField] private TextMeshProUGUI optionStat_4_Value;
 
         public void ShowEquipmentTooltip(EquipmentItemData equipmentData)
         {
-
             string reinforceCountText = (equipmentData.reinforceCount > 0) ? " +" + equipmentData.reinforceCount : "";
             equipmentNameText.text = $"{GameLib.GetGradeTypeText(equipmentData.equipmentGrade)} {GameLib.GetEquipmentTypeText(equipmentData.equipmentType)}{reinforceCountText}";
             equipmentSetText.gameObject.SetActive(true);
             equipmentSetText.text = GameLib.GetSetTypeText(equipmentData.setType);
 
-            defaultStat_2_Lable.gameObject.SetActive(equipmentData is AmuletData || equipmentData is RingData);
-            defaultStat_2_Value.gameObject.SetActive(equipmentData is AmuletData || equipmentData is RingData);
-
+            bool isAmuletOrRing = equipmentData is AmuletData || equipmentData is RingData;
+            defaultStat_2_Lable.gameObject.SetActive(isAmuletOrRing);
+            defaultStat_2_Value.gameObject.SetActive(isAmuletOrRing);
 
             if (equipmentData is WeaponData)
             {
@@ -83,14 +82,12 @@ namespace Portfolio.Lobby
             else
             {
                 Debug.Log("notData");
-
-
             }
+
             InitOptionStat(equipmentData.optionStat_1_Type, equipmentData.optionStat_1_value, optionStat_1_Lable, optionStat_1_Value);
             InitOptionStat(equipmentData.optionStat_2_Type, equipmentData.optionStat_2_value, optionStat_2_Lable, optionStat_2_Value);
             InitOptionStat(equipmentData.optionStat_3_Type, equipmentData.optionStat_3_value, optionStat_3_Lable, optionStat_3_Value);
             InitOptionStat(equipmentData.optionStat_4_Type, equipmentData.optionStat_4_value, optionStat_4_Lable, optionStat_4_Value);
-
         }
 
         private void InitOptionStat(EquipmentOptionStat optionStat, float value, TextMeshProUGUI labelText, TextMeshProUGUI valueText)
@@ -126,9 +123,5 @@ namespace Portfolio.Lobby
                     break;
             }
         }
-
     }
-
-
-
 }

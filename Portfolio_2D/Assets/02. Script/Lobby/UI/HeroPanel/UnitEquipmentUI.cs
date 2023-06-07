@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -8,34 +5,20 @@ namespace Portfolio.Lobby
 {
     public class UnitEquipmentUI : MonoBehaviour, UndoAble
     {
-        private Unit unit;
-        [SerializeField] Image unitImage;
-        [SerializeField] UnitEquipmentSlotUI weaponSlot;
-        [SerializeField] UnitEquipmentSlotUI helemtSlot;
-        [SerializeField] UnitEquipmentSlotUI armorSlot;
-        [SerializeField] UnitEquipmentSlotUI shoeSlot;
-        [SerializeField] UnitEquipmentSlotUI amuletSlot;
-        [SerializeField] UnitEquipmentSlotUI ringSlot;
+        [SerializeField] private Image unitImage;
+        [SerializeField] private UnitEquipmentSlotUI weaponSlot;
+        [SerializeField] private UnitEquipmentSlotUI helemtSlot;
+        [SerializeField] private UnitEquipmentSlotUI armorSlot;
+        [SerializeField] private UnitEquipmentSlotUI shoeSlot;
+        [SerializeField] private UnitEquipmentSlotUI amuletSlot;
+        [SerializeField] private UnitEquipmentSlotUI ringSlot;
 
         private void OnEnable()
         {
             LobbyManager.UIManager.AddUndo(this);
         }
 
-        public void Init(Unit unit)
-        {
-            this.unit = unit;
-            ShowEquipment(unit);
-        }
-
-        public void ReShow()
-        {
-            if (this.unit == null) return;
-
-            ShowEquipment(this.unit);
-        }
-
-        private void ShowEquipment(Unit unit)
+        public void ShowEquipment(Unit unit)
         {
             weaponSlot.Init(unit.weaponData);
             helemtSlot.Init(unit.helmetData);
@@ -47,8 +30,7 @@ namespace Portfolio.Lobby
 
         public void Undo()
         {
-            this.gameObject.SetActive(false);
+            gameObject.SetActive(false);
         }
     }
-
 }

@@ -39,8 +39,9 @@ namespace Portfolio
             userUnitList = new List<Unit>();
             userEquipmentItemDataList = new List<EquipmentItemData>();
 
-            foreach(var userUnitData in userData.unitDataList)
+            foreach (var userUnitData in userData.unitDataList)
             {
+                Debug.Log(userUnitData.unitID);
                 if (GameManager.Instance.TryGetData<UnitData>(userUnitData.unitID, out UnitData unitData))
                 {
                     userUnitList.Add(new Unit(unitData, userUnitData));
@@ -72,10 +73,10 @@ namespace Portfolio
                 }
             }
 
-            foreach (var item in userEquipmentItemDataList)
-            {
-                Debug.Log(item == null);
-            }
+            //foreach (var item in userEquipmentItemDataList)
+            //{
+            //    Debug.Log(item == null);
+            //}
 
             //Debug.Log(userUnitDic.Count);
         }

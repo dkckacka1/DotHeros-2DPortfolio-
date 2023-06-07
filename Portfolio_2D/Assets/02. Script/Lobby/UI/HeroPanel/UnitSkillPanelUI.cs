@@ -6,8 +6,6 @@ namespace Portfolio.Lobby
 {
     public class UnitSkillPanelUI : MonoBehaviour, UndoAble
     {
-        private Unit unit;
-
         [SerializeField] UnitSkillUI activeSkilll_1_UI;
         [SerializeField] UnitSkillUI activeSkilll_2_UI;
         [SerializeField] UnitSkillUI passiveSkill_1_UI;
@@ -16,21 +14,7 @@ namespace Portfolio.Lobby
         {
             LobbyManager.UIManager.AddUndo(this);
         }
-
-        public void Init(Unit unit)
-        {
-            this.unit = unit;
-            ShowSkill(unit);
-        }
-
-        public void ReShow()
-        {
-            if (unit == null) return;
-
-            ShowSkill(this.unit);
-        }
-
-        private void ShowSkill(Unit unit)
+        public void ShowSkill(Unit unit)
         {
             activeSkilll_1_UI.Init(unit.activeSkill_1, unit.ActiveSkillLevel_1);
             activeSkilll_2_UI.Init(unit.activeSkill_2, unit.ActiveSkillLevel_2);

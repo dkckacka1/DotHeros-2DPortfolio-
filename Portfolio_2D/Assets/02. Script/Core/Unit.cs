@@ -468,5 +468,69 @@ namespace Portfolio
             return 0;
         }
 
+        //===========================================================
+        // EquipmentMethod
+        //===========================================================
+        public EquipmentItemData ChangeEquipment<T>(EquipmentItemType changeType, T changeData) where T : EquipmentItemData
+        {
+            EquipmentItemData existingEquipment = ReleaseEquipment(changeType);
+
+            switch (changeType)
+            {
+                case EquipmentItemType.Weapon:
+                    weaponData = changeData as WeaponData;
+                    break;
+                case EquipmentItemType.Helmet:
+                    helmetData = changeData as HelmetData;
+                    break;
+                case EquipmentItemType.Armor:
+                    armorData = changeData as ArmorData;
+                    break;
+                case EquipmentItemType.Amulet:
+                    amuletData = changeData as AmuletData;
+                    break;
+                case EquipmentItemType.Ring:
+                    ringData = changeData as RingData;
+                    break;
+                case EquipmentItemType.Shoe:
+                    shoeData = changeData as ShoeData;
+                    break;
+            }
+            return existingEquipment;
+        }
+
+        public EquipmentItemData ReleaseEquipment(EquipmentItemType releaseType)
+        {
+            EquipmentItemData existingEquipment = null;
+            switch (releaseType)
+            {
+                case EquipmentItemType.Weapon:
+                    existingEquipment = weaponData;
+                    weaponData = null;
+                    break;
+                case EquipmentItemType.Helmet:
+                    existingEquipment = helmetData;
+                    helmetData = null;
+                    break;
+                case EquipmentItemType.Armor:
+                    existingEquipment = armorData;
+                    armorData = null;
+                    break;
+                case EquipmentItemType.Amulet:
+                    existingEquipment = amuletData;
+                    amuletData = null;
+                    break;
+                case EquipmentItemType.Ring:
+                    existingEquipment = ringData;
+                    ringData = null;
+                    break;
+                case EquipmentItemType.Shoe:
+                    existingEquipment = shoeData;
+                    shoeData = null;
+                    break;
+            }
+
+            return existingEquipment;
+        }
     }
 }

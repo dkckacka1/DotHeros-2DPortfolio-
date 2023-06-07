@@ -8,7 +8,7 @@ namespace Portfolio.Lobby
     {
         private Stack<UndoAble> undoStack = new Stack<UndoAble>();
 
-        [SerializeField] Canvas heroCanvas;
+        [SerializeField] HeroPanelUI heroPanel;
         [SerializeField] Canvas summonCanvas;
 
         [SerializeField] UserInfoUI userInfoUI;
@@ -20,6 +20,11 @@ namespace Portfolio.Lobby
             {
                 Undo();
             }
+        }
+
+        public void ReShowPanel()
+        {
+            heroPanel.ReShow();
         }
 
         public void ShowUserResource()

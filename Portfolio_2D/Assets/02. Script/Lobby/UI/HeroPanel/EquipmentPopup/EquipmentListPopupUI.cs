@@ -10,9 +10,6 @@ namespace Portfolio.Lobby
 {
     public class EquipmentListPopupUI : MonoBehaviour
     {
-        EquipmentItemData selectedData;
-        EquipmentItemData listSelectedData;
-
         [SerializeField] List<UnitEquipmentSlotUI> equipmentSlotList;
         [SerializeField] ScrollRect equipmentListScrollView;
         [SerializeField] EquipmentTooltip equipmentTooltipUI;
@@ -29,22 +26,12 @@ namespace Portfolio.Lobby
             //Debug.Log(equipmentSlotList.Count);
         }
 
-        public void Init(EquipmentItemData equipmentData)
+        public void ShowEquipmentList(EquipmentItemData equipmentItemData)
         {
-            this.selectedData = equipmentData;
-            equipmentChangeBtn.interactable = false;
-            equipmentTooltipUI.gameObject.SetActive(false);
-            ShowEquipmentList();
-        }
-
-        public void ShowEquipmentList()
-        {
-            Debug.Log(GameManager.CurrentUser.userEquipmentItemDataList.Count);
-            Debug.Log(selectedData == null);
-            Debug.Log(selectedData.equipmentType);
+            if (equipmentItemData == null) return;
 
             var listOrdered = (from item in GameManager.CurrentUser.userEquipmentItemDataList
-                        orderby (item.equipmentType == selectedData.equipmentType) descending
+                        orderby (item.equipmentType == equipmentItemData.equipmentType) descending
                         select item)
                         .ToList();
 
@@ -67,7 +54,43 @@ namespace Portfolio.Lobby
                 var equipmentData = listOrdered[i];
                 equipmentSlotList[i].Init(equipmentData);
                 equipmentSlotList[i].gameObject.SetActive(true);
-                equipmentSlotList[i].GetComponent<EquipmentSelectUI>().Init(selectedData);
+                var selectedUI = equipmentSlotList[i].GetComponent<EquipmentSelectUI>();
+                selectedUI.Init(equipmentItemData);
+                //selectedUI.HideSelectedUI();
+            }
+
+            notingText.gameObject.SetActive(listOrdered.Count == 0);
+        }
+
+        public void ShowEquipmentList(EquipmentItemType itemType)
+        {
+            var listOrdered = (from item in GameManager.CurrentUser.userEquipmentItemDataList
+                               orderby (item.equipmentType == itemType) descending
+                               select item)
+                        .ToList();
+
+
+            foreach (var item in listOrdered)
+            {
+                Debug.Log(item.equipmentType);
+            }
+
+            //Debug.Log(equipmentSlotList.Count);
+
+            for (int i = 0; i < equipmentSlotList.Count; i++)
+            {
+                if (listOrdered.Count <= i)
+                {
+                    equipmentSlotList[i].gameObject.SetActive(false);
+                    continue;
+                }
+
+                var equipmentData = listOrdered[i];
+                equipmentSlotList[i].Init(equipmentData);
+                equipmentSlotList[i].gameObject.SetActive(true);
+                var selectedUI = equipmentSlotList[i].GetComponent<EquipmentSelectUI>();
+                selectedUI.Init(itemType);
+                //selectedUI.HideSelectedUI();
             }
 
             notingText.gameObject.SetActive(listOrdered.Count == 0);

@@ -8,8 +8,6 @@ namespace Portfolio.Lobby
 {
     public class UnitStatusUI : MonoBehaviour
     {
-        private Unit unit;
-
         [SerializeField] TextMeshProUGUI unitNameText;
         [SerializeField] TextMeshProUGUI unitGradeText;
         [SerializeField] TextMeshProUGUI unitCurrentLevelText;
@@ -27,20 +25,7 @@ namespace Portfolio.Lobby
         [SerializeField] TextMeshProUGUI unitEffectHitText;
         [SerializeField] TextMeshProUGUI unitEffectResText;
 
-        public void Init(Unit unit)
-        {
-            this.unit = unit;
-            ShowStat(unit);
-        }
-
-        public void ReShow()
-        {
-            if (unit == null) return;
-
-            ShowStat(this.unit);
-        }
-
-        private void ShowStat(Unit unit)
+        public void ShowStat(Unit unit)
         {
             unitNameText.text = unit.Data.unitName;
             unitGradeText.text = unit.UnitGrade.ToString() + " ¼º";
@@ -59,25 +44,7 @@ namespace Portfolio.Lobby
             unitEffectResText.text = (unit.EffectResistance * 100f).ToString("F1") + " %";
         }
 
-        public void ShowEquipment(UnitEquipmentUI equipmentUI)
-        {
-            if (LobbyManager.UIManager.UndoCount() >= 2)
-            {
-                LobbyManager.UIManager.Undo();
-            }
-            equipmentUI.Init(this.unit);
-            equipmentUI.gameObject.SetActive(true);
-        }
 
-        public void ShowSkill(UnitSkillPanelUI unitSkillPanelUI)
-        {
-            if (LobbyManager.UIManager.UndoCount() >= 2)
-            {
-                LobbyManager.UIManager.Undo();
-            }
-            unitSkillPanelUI.Init(this.unit);
-            unitSkillPanelUI.gameObject.SetActive(true);
-        }
     }
 
 }

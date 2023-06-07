@@ -25,10 +25,9 @@ namespace Portfolio.Lobby
             }
         }
 
-        public void ShowUnit(UnitStatusUI statusUI)
+        public void SelectUnit(HeroPanelUI heroPanelUI)
         {
-            //Debug.Log(this.gameObject.name);
-            statusUI.Init(currentUnit);
+            heroPanelUI.SelectUnit(currentUnit);
         }
     } 
 }

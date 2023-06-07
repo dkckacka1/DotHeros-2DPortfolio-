@@ -42,7 +42,9 @@ namespace Portfolio.Lobby
             }
             else
             {
-                Unit summonUnit = new Unit(dataList[Random.Range(0, dataList.Count)]);
+                var data = dataList[Random.Range(0, dataList.Count)];
+                UserUnitData unitData = new UserUnitData(data);
+                Unit summonUnit = new Unit(data, unitData);
                 return summonUnit;
             }
         }

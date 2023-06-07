@@ -14,6 +14,8 @@ namespace Portfolio.Lobby
         public static LobbyManager Instance { get => instance; }
         public static LobbyUIManager UIManager { get => uiManager; }
 
+        public Unit userSelectedUnit;
+
 
         private void Awake()
         {

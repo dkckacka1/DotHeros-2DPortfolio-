@@ -8,18 +8,18 @@ namespace Portfolio.Lobby
 {
     public class UnitEquipmentSlotUI : MonoBehaviour
     {
-        private EquipmentItemData equipmentData;
+        private EquipmentItemData currentEquipmentData;
 
         [SerializeField] EquipmentItemType equipmentItemType;
         [SerializeField] Button popupButton;
         [SerializeField] Image equipmentImage;
         [SerializeField] TextMeshProUGUI reinforceCountText;
 
-        public EquipmentItemData EquipmentData { get => equipmentData; }
+        public EquipmentItemData EquipmentData { get => currentEquipmentData; }
 
         public void Init(EquipmentItemData equipmentData)
         {
-            this.equipmentData = equipmentData;
+            this.currentEquipmentData = equipmentData;
             if (equipmentData != null)
             {
                 equipmentImage.gameObject.SetActive(true);
@@ -33,10 +33,9 @@ namespace Portfolio.Lobby
             }
         }
 
-        public void ShowEquipmentPopup(EquipmentPopupUI popupUI)
+        public void SelcetEquipmentItemData(HeroPanelUI heroPanelUI)
         {
-            popupUI.Init(EquipmentData, equipmentItemType);
-            popupUI.gameObject.SetActive(true);
+            heroPanelUI.SelectEquipmentItem(currentEquipmentData, equipmentItemType);
         }
     }
 }
