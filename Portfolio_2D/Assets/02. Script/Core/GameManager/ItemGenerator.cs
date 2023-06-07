@@ -75,6 +75,8 @@ namespace Portfolio
                 return null;
             }
 
+            newData.setType = (SetType)Random.Range(0, (int)SetType.Count);
+
             return newData;
         }
 

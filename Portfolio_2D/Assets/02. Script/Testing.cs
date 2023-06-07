@@ -61,12 +61,8 @@ namespace Portfolio
             {
                 UserData userdata = GameManager.CurrentUser.userData;
 
-                GameManager.Instance.TryGetUnit(100, out Unit unit);
-
-                UserUnitData userUnitData = new UserUnitData(unit);
-                userdata.unitDataList.Add(userUnitData);
-
-                Debug.Log(GameManager.ItemCreator.CreateEquipmentItemData<WeaponData>(GradeType.Normal).attackPoint);
+                GameManager.Instance.TryGetData(100, out UnitData unitdata);
+                UserUnitData userUnitData = new UserUnitData(unitdata);
 
                 userUnitData.weaponData = GameManager.ItemCreator.CreateEquipmentItemData<WeaponData>(GradeType.Normal);
                 userUnitData.helmetData = GameManager.ItemCreator.CreateEquipmentItemData<HelmetData>(GradeType.Normal);
@@ -74,6 +70,8 @@ namespace Portfolio
                 userUnitData.shoeData = GameManager.ItemCreator.CreateEquipmentItemData<ShoeData>(GradeType.Normal);
                 userUnitData.amuletData = GameManager.ItemCreator.CreateEquipmentItemData<AmuletData>(GradeType.Normal);
                 userUnitData.RingData = GameManager.ItemCreator.CreateEquipmentItemData<RingData>(GradeType.Normal);
+
+                GameManager.CurrentUser.AddNewUnit(new Unit(unitdata, userUnitData));
 
                 GameManager.Instance.SaveUser();
             }
@@ -81,10 +79,9 @@ namespace Portfolio
             if (GUI.Button(new Rect(120, 120, 100, 100), "테스트용 유닛 넣기(2)"))
             {
                 UserData userdata = GameManager.CurrentUser.userData;
-                GameManager.Instance.TryGetUnit(101, out Unit unit);
 
-                UserUnitData userUnitData = new UserUnitData(unit);
-                userdata.unitDataList.Add(userUnitData);
+                GameManager.Instance.TryGetData(101, out UnitData unitdata);
+                UserUnitData userUnitData = new UserUnitData(unitdata);
 
                 userUnitData.weaponData = GameManager.ItemCreator.CreateEquipmentItemData<WeaponData>(GradeType.Normal);
                 userUnitData.helmetData = GameManager.ItemCreator.CreateEquipmentItemData<HelmetData>(GradeType.Normal);
@@ -92,6 +89,8 @@ namespace Portfolio
                 userUnitData.shoeData = GameManager.ItemCreator.CreateEquipmentItemData<ShoeData>(GradeType.Normal);
                 userUnitData.amuletData = GameManager.ItemCreator.CreateEquipmentItemData<AmuletData>(GradeType.Normal);
                 userUnitData.RingData = GameManager.ItemCreator.CreateEquipmentItemData<RingData>(GradeType.Normal);
+
+                GameManager.CurrentUser.AddNewUnit(new Unit(unitdata, userUnitData));
 
                 GameManager.Instance.SaveUser();
             }

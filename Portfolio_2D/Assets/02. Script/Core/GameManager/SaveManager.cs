@@ -21,7 +21,10 @@ namespace Portfolio
         {
             //Debug.Log(slpath);
 
-            var json = JsonConvert.SerializeObject(userData);
+            var json = JsonConvert.SerializeObject(userData, Formatting.Indented, new JsonSerializerSettings
+            {
+                TypeNameHandling = TypeNameHandling.Auto
+            });
 
             File.WriteAllText(slpath, json);
         }
@@ -37,7 +40,10 @@ namespace Portfolio
                 return false;
             }
 
-            loadData = JsonConvert.DeserializeObject<UserData>(json.text);
+            loadData = JsonConvert.DeserializeObject<UserData>(json.text, new JsonSerializerSettings
+            {
+                TypeNameHandling = TypeNameHandling.Auto
+            });
             return true;
         }
     }

@@ -16,6 +16,8 @@ namespace Portfolio
         // 유닛 부문
         public int maxUnitListCount = 30;
         public List<UserUnitData> unitDataList;
+
+        // 인벤토리 부문
         public List<EquipmentItemData> equipmentItemDataList;
 
         public UserData()

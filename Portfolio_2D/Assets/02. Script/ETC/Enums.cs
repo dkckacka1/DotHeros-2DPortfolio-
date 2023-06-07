@@ -54,7 +54,8 @@
         Defence,
         Health,
         Resistance,
-        Destruction
+        Destruction,
+        Count
     }
 
     public enum GradeType

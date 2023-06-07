@@ -31,5 +31,12 @@ namespace Portfolio
             unitLevel = 1;
             unitGrade = unit.Data.defaultGrade;
         }
+
+        public UserUnitData(UnitData unitData)
+        {
+            unitID = unitData.ID;
+            unitLevel = 1;
+            unitGrade = unitData.defaultGrade;
+        }
     }
 }

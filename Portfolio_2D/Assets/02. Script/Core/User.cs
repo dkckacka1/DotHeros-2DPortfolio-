@@ -39,11 +39,11 @@ namespace Portfolio
             userUnitList = new List<Unit>();
             userEquipmentItemDataList = new List<EquipmentItemData>();
 
-            for (int i = 0; i < userData.unitDataList.Count; i++)
+            foreach(var userUnitData in userData.unitDataList)
             {
-                if (GameManager.Instance.TryGetData<UnitData>(userData.unitDataList[i].unitID, out UnitData unitData))
+                if (GameManager.Instance.TryGetData<UnitData>(userUnitData.unitID, out UnitData unitData))
                 {
-                    userUnitList.Add(new Unit(unitData, userData.unitDataList[i]));
+                    userUnitList.Add(new Unit(unitData, userUnitData));
                 }
             }
 
