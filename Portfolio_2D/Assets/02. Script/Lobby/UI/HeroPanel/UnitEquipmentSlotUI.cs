@@ -15,6 +15,8 @@ namespace Portfolio.Lobby
         [SerializeField] Image equipmentImage;
         [SerializeField] TextMeshProUGUI reinforceCountText;
 
+        public EquipmentItemData EquipmentData { get => equipmentData; }
+
         public void Init(EquipmentItemData equipmentData)
         {
             this.equipmentData = equipmentData;
@@ -33,7 +35,7 @@ namespace Portfolio.Lobby
 
         public void ShowEquipmentPopup(EquipmentPopupUI popupUI)
         {
-            popupUI.Init(equipmentData, equipmentItemType);
+            popupUI.Init(EquipmentData, equipmentItemType);
             popupUI.gameObject.SetActive(true);
         }
     }

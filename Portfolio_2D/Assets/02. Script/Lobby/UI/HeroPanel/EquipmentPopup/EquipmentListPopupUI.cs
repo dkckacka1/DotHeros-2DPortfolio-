@@ -11,12 +11,23 @@ namespace Portfolio.Lobby
         EquipmentItemData selectData;
 
         [SerializeField] List<UnitEquipmentSlotUI> equipmentSlotList;
+        [SerializeField] EquipmentTooltip equipmentTooltipUI;
         [SerializeField] Button equipmentChangeBtn;
         [SerializeField] TextMeshProUGUI notingText;
+
+        private void Awake()
+        {
+            equipmentSlotList = new List<UnitEquipmentSlotUI>();
+            foreach (var slot in GetComponentsInChildren<UnitEquipmentSlotUI>())
+            {
+                equipmentSlotList.Add(slot);
+            }
+        }
 
         public void Init()
         {
             equipmentChangeBtn.interactable = false;
+            equipmentTooltipUI.gameObject.SetActive(false);
             ShowEquipmentList();
         }
 

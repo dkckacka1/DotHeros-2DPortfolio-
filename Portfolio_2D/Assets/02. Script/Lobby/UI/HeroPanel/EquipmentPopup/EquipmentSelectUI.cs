@@ -15,5 +15,16 @@ namespace Portfolio.Lobby
         {
             equipmentSlot = GetComponent<UnitEquipmentSlotUI>();
         }
+
+        public void ShowTooltip(EquipmentTooltip equipmentTooltipUI)
+        {
+            equipmentTooltipUI.ShowEquipmentTooltip(equipmentSlot.EquipmentData);
+            equipmentTooltipUI.gameObject.SetActive(true);
+        }
+
+        public void HideTooltip(EquipmentTooltip equipmentTooltipUI)
+        {
+            equipmentTooltipUI.gameObject.SetActive(false);
+        }
     }
 }
