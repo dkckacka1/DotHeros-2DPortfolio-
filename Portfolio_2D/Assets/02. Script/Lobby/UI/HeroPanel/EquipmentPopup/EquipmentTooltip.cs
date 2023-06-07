@@ -36,36 +36,37 @@ namespace Portfolio.Lobby
             equipmentSetText.gameObject.SetActive(true);
             equipmentSetText.text = GameLib.GetSetTypeText(equipmentData.setType);
 
-
-
-            defaultStat_1_Lable.gameObject.SetActive(true);
-            defaultStat_1_Value.gameObject.SetActive(true);
             defaultStat_2_Lable.gameObject.SetActive(equipmentData is AmuletData || equipmentData is RingData);
             defaultStat_2_Value.gameObject.SetActive(equipmentData is AmuletData || equipmentData is RingData);
 
 
             if (equipmentData is WeaponData)
             {
+                Debug.Log("WeaponData");
                 defaultStat_1_Lable.text = "공격력";
                 defaultStat_1_Value.text = (equipmentData as WeaponData).attackPoint.ToString();
             }
             else if (equipmentData is HelmetData)
             {
+                Debug.Log("HelmetData");
                 defaultStat_1_Lable.text = "생명력";
                 defaultStat_1_Value.text = (equipmentData as HelmetData).healthPoint.ToString();
             }
             else if (equipmentData is ArmorData)
             {
+                Debug.Log("ArmorData");
                 defaultStat_1_Lable.text = "방어력";
                 defaultStat_1_Value.text = (equipmentData as ArmorData).defencePoint.ToString();
             }
             else if (equipmentData is ShoeData)
             {
+                Debug.Log("ShoeData");
                 defaultStat_1_Lable.text = "속도";
                 defaultStat_1_Value.text = (equipmentData as ShoeData).speed.ToString();
             }
             else if (equipmentData is AmuletData)
             {
+                Debug.Log("AmuletData");
                 defaultStat_1_Lable.text = "치명타 적중";
                 defaultStat_1_Value.text = ((equipmentData as AmuletData).criticalPercent * 100).ToString("F1") + "%";
                 defaultStat_2_Lable.text = "치명타 피해";
@@ -73,12 +74,18 @@ namespace Portfolio.Lobby
             }
             else if (equipmentData is RingData)
             {
+                Debug.Log("RingData");
                 defaultStat_1_Lable.text = "효과 적중";
                 defaultStat_1_Value.text = ((equipmentData as RingData).effectHit * 100).ToString("F1") + "%";
                 defaultStat_2_Lable.text = "효과 저항";
                 defaultStat_2_Value.text = ((equipmentData as RingData).effectResistance * 100).ToString("F1") + "%";
             }
+            else
+            {
+                Debug.Log("notData");
 
+
+            }
             InitOptionStat(equipmentData.optionStat_1_Type, equipmentData.optionStat_1_value, optionStat_1_Lable, optionStat_1_Value);
             InitOptionStat(equipmentData.optionStat_2_Type, equipmentData.optionStat_2_value, optionStat_2_Lable, optionStat_2_Value);
             InitOptionStat(equipmentData.optionStat_3_Type, equipmentData.optionStat_3_value, optionStat_3_Lable, optionStat_3_Value);

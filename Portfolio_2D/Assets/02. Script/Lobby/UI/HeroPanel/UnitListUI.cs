@@ -12,9 +12,9 @@ namespace Portfolio.Lobby
 
         private void OnEnable()
         {
-            for (int i = 0; i < GameManager.CurrentUser.userUnitDic.Count; i++)
+            for (int i = 0; i < GameManager.CurrentUser.userUnitList.Count; i++)
             {
-                unitSlotList[i].Init(GameManager.CurrentUser.userUnitDic[i]);
+                unitSlotList[i].Init(GameManager.CurrentUser.userUnitList[i]);
                 unitSlotList[i].gameObject.SetActive(true);
             }
 
@@ -23,7 +23,7 @@ namespace Portfolio.Lobby
 
         public void InitUnitLIstCountText()
         {
-            unitListCountText.text = $"{GameManager.CurrentUser.userUnitDic.Count} / {GameManager.CurrentUser.userData.maxUnitListCount}";
+            unitListCountText.text = $"{GameManager.CurrentUser.userUnitList.Count} / {GameManager.CurrentUser.userData.maxUnitListCount}";
         }
     }
 }

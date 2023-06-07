@@ -16,7 +16,7 @@ namespace Portfolio.Lobby
 
         private void Start()
         {
-            Unit unit = GameManager.CurrentUser.userUnitDic[0];
+            Unit unit = GameManager.CurrentUser.userUnitList[0];
             InitUnit(unit);
         }
 

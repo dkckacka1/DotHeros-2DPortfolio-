@@ -33,6 +33,7 @@ namespace Portfolio
         // Property
         //===========================================================
         public UnitData Data { get => data; }
+        public UserUnitData UserData { get => userUnitData; }
         public int UnitCurrentLevel
         {
             get

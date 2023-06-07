@@ -44,6 +44,7 @@ namespace Portfolio.Lobby
         {
             reinforcePopup.gameObject.SetActive(false);
             equipmentListPopup.gameObject.SetActive(false);
+            this.gameObject.SetActive(false);
         }
 
         private void OnEnable()
@@ -203,7 +204,7 @@ namespace Portfolio.Lobby
 
         public void ShowEquipmentListPopup()
         {
-            equipmentListPopup.Init();
+            equipmentListPopup.Init(equipmentData);
             equipmentListPopup.gameObject.SetActive(true);
         }
 

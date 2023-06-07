@@ -57,6 +57,7 @@ namespace Portfolio
             else
             {
                 CurrentUser = new User(SaveManager.CreateNewUser());
+                SaveUser();
                 TryGetUnit(100, out Unit unit);
                 CurrentUser.AddNewUnit(unit);
             }
@@ -73,7 +74,7 @@ namespace Portfolio
 
         public void SaveUser()
         {
-            SaveManager.SaveUserData(CurrentUser.userData);
+            SaveManager.SaveUserData(CurrentUser.GetSaveUserData());
         }
 
         public bool TryGetData<T>(int ID, out T data) where T : Data

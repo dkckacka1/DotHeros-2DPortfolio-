@@ -13,7 +13,6 @@ namespace Portfolio
         public static UserData CreateNewUser()
         {
             UserData newUser = new UserData();
-            GameManager.Instance.SaveUser();
 
             return newUser;
         }

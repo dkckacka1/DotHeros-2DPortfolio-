@@ -50,7 +50,7 @@ namespace Portfolio
         {
             if (GUI.Button(new Rect(10, 10, 100, 100), "전투 시작"))
             {
-                List<Unit> units = GameManager.CurrentUser.userUnitDic.Values.ToList();
+                List<Unit> units = GameManager.CurrentUser.userUnitList;
 
                 GameManager.Instance.TryGetData<MapData>(500, out MapData mapData);
 
@@ -139,7 +139,8 @@ namespace Portfolio
 
                 if (itemData == null) return;
 
-                GameManager.CurrentUser.userData.equipmentItemDataList.Add(itemData);
+                GameManager.CurrentUser.userEquipmentItemDataList.Add(itemData);
+                GameManager.Instance.SaveUser();
             }
         }
     }
