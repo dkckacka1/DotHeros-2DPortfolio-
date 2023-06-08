@@ -41,7 +41,7 @@ namespace Portfolio
 
             foreach (var userUnitData in userData.unitDataList)
             {
-                Debug.Log(userUnitData.unitID);
+                //Debug.Log(userUnitData.unitID);
                 if (GameManager.Instance.TryGetData<UnitData>(userUnitData.unitID, out UnitData unitData))
                 {
                     userUnitList.Add(new Unit(unitData, userUnitData));

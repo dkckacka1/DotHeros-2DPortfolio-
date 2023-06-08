@@ -3,7 +3,7 @@
   "userName": null,
   "userLevel": 1,
   "userCurrentExperience": 0,
-  "gold": 0,
+  "gold": -238600,
   "diamond": 0,
   "energy": 0,
   "maxUnitListCount": 30,
@@ -1026,25 +1026,6 @@
     }
   ],
   "equipmentItemDataList": [
-    {
-      "$type": "Portfolio.WeaponData, Assembly-CSharp",
-      "attackPoint": 9.0,
-      "equipmentGrade": 0,
-      "equipmentElementType": 0,
-      "equipmentType": 0,
-      "setType": 3,
-      "reinforceCount": 0,
-      "optionStat_1_Type": -1,
-      "optionStat_1_value": 0.0,
-      "optionStat_2_Type": -1,
-      "optionStat_2_value": 0.0,
-      "optionStat_3_Type": -1,
-      "optionStat_3_value": 0.0,
-      "optionStat_4_Type": -1,
-      "optionStat_4_value": 0.0,
-      "itemName": null,
-      "ID": 0
-    },
     {
       "$type": "Portfolio.WeaponData, Assembly-CSharp",
       "attackPoint": 6.0,

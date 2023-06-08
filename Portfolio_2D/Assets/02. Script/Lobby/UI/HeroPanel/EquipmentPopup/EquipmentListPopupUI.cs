@@ -14,32 +14,37 @@ namespace Portfolio.Lobby
         [SerializeField] ScrollRect equipmentListScrollView;
         [SerializeField] EquipmentTooltip equipmentTooltipUI;
         [SerializeField] Button equipmentChangeBtn;
+        [SerializeField] Button equipmentDiscardBtn;
         [SerializeField] TextMeshProUGUI notingText;
 
-        private void Awake()
+        public void Init()
         {
             equipmentSlotList = new List<UnitEquipmentSlotUI>();
             foreach (var slot in equipmentListScrollView.content.GetComponentsInChildren<UnitEquipmentSlotUI>())
             {
                 equipmentSlotList.Add(slot);
+                slot.GetComponent<EquipmentSelectUI>().Init();
             }
             //Debug.Log(equipmentSlotList.Count);
         }
 
+        private void OnEnable()
+        {
+            UnChoiceList();
+        }
+
         public void ShowEquipmentList(EquipmentItemData equipmentItemData)
         {
-            if (equipmentItemData == null) return;
-
             var listOrdered = (from item in GameManager.CurrentUser.userEquipmentItemDataList
-                        orderby (item.equipmentType == equipmentItemData.equipmentType) descending
-                        select item)
-                        .ToList();
+                                orderby (item.equipmentType == equipmentItemData.equipmentType) descending
+                                select item)
+                                .ToList();
 
 
-            foreach (var item in listOrdered)
-            {
-                Debug.Log(item.equipmentType);
-            }
+            //foreach (var item in listOrdered)
+            //{
+            //    Debug.Log(item.equipmentType);
+            //}
 
             //Debug.Log(equipmentSlotList.Count);
 
@@ -55,10 +60,19 @@ namespace Portfolio.Lobby
                 equipmentSlotList[i].Init(equipmentData);
                 equipmentSlotList[i].gameObject.SetActive(true);
                 var selectedUI = equipmentSlotList[i].GetComponent<EquipmentSelectUI>();
-                selectedUI.Init(equipmentItemData);
-                //selectedUI.HideSelectedUI();
+                if (selectedUI.isChoice)
+                {
+                    selectedUI.ShowSelectedUI();
+                    equipmentChangeBtn.interactable = true;
+                }
+                else
+                {
+                    selectedUI.HideSelectedUI();
+                }
+                selectedUI.ShowImpossibleSelectImage(equipmentItemData);
             }
 
+            equipmentDiscardBtn.interactable = true;
             notingText.gameObject.SetActive(listOrdered.Count == 0);
         }
 
@@ -89,11 +103,29 @@ namespace Portfolio.Lobby
                 equipmentSlotList[i].Init(equipmentData);
                 equipmentSlotList[i].gameObject.SetActive(true);
                 var selectedUI = equipmentSlotList[i].GetComponent<EquipmentSelectUI>();
-                selectedUI.Init(itemType);
-                //selectedUI.HideSelectedUI();
+                if (selectedUI.isChoice)
+                {
+                    selectedUI.ShowSelectedUI();
+                    equipmentChangeBtn.interactable = true;
+                }
+                else
+                {
+                    selectedUI.HideSelectedUI();
+                }
+                selectedUI.ShowImpossibleSelectImage(itemType);
             }
 
+            equipmentDiscardBtn.interactable = false;
             notingText.gameObject.SetActive(listOrdered.Count == 0);
+        }
+
+        public void UnChoiceList()
+        {
+            foreach (var slot in equipmentSlotList)
+            {
+                slot.GetComponent<EquipmentSelectUI>().isChoice = false;
+            }
+            equipmentChangeBtn.interactable = false;
         }
     }
 }

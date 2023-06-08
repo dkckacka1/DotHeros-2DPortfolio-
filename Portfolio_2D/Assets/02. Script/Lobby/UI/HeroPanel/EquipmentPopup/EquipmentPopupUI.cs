@@ -35,11 +35,6 @@ namespace Portfolio.Lobby
         [SerializeField] TextMeshProUGUI optionStat_4_Lable;
         [SerializeField] TextMeshProUGUI optionStat_4_Value;
 
-        private void Awake()
-        {
-            this.gameObject.SetActive(false);
-        }
-        
         public void ShowEquipment(EquipmentItemData equipmentData)
         {
                 equipmentDefaultImage.gameObject.SetActive(false);
@@ -54,8 +49,9 @@ namespace Portfolio.Lobby
 
                 defaultStat_1_Lable.gameObject.SetActive(true);
                 defaultStat_1_Value.gameObject.SetActive(true);
-                defaultStat_2_Lable.gameObject.SetActive(equipmentData is AmuletData || equipmentData is RingData);
-                defaultStat_2_Value.gameObject.SetActive(equipmentData is AmuletData || equipmentData is RingData);
+                bool isAmuletOrRing = equipmentData is AmuletData || equipmentData is RingData;
+                defaultStat_2_Lable.gameObject.SetActive(isAmuletOrRing);
+                defaultStat_2_Value.gameObject.SetActive(isAmuletOrRing);
 
 
                 if (equipmentData is WeaponData)

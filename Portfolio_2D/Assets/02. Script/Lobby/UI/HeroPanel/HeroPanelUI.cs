@@ -17,12 +17,18 @@ namespace Portfolio.Lobby
 
         Unit selectUnit;
         EquipmentItemData selectEquipmentItem;
-        EquipmentItemData selectedNewEquipmentItem;
+        EquipmentItemType selectEquipmentItemType;
+        EquipmentItemData choiceEquipmentItem;
+
+        private void Awake()
+        {
+            unitListUI.Init();
+            equipmentListPopupUI.Init();
+        }
 
         private void Start()
         {
             selectUnit = GameManager.CurrentUser.userUnitList[0];
-            LobbyManager.Instance.userSelectedUnit = selectUnit;
             ShowUnit(selectUnit);
         }
 
@@ -63,10 +69,17 @@ namespace Portfolio.Lobby
             unitStatusUI.ShowStat(selectUnit);
             unitEquipmentUI.ShowEquipment(selectUnit);
             unitSkillPanelUI.ShowSkill(selectUnit);
-            equipmentPopupUI.ShowEquipment(selectEquipmentItem);
-            reinforcePopupUI.ShowReinforce(selectEquipmentItem);
-            equipmentListPopupUI.ShowEquipmentList(selectEquipmentItem);
-
+            if (selectEquipmentItem != null)
+            {
+                equipmentPopupUI.ShowEquipment(selectEquipmentItem);
+                reinforcePopupUI.ShowReinforce(selectEquipmentItem);
+                equipmentListPopupUI.ShowEquipmentList(selectEquipmentItem);
+            }
+            else
+            {
+                equipmentPopupUI.ShowEquipment(selectEquipmentItemType);
+                equipmentListPopupUI.ShowEquipmentList(selectEquipmentItemType);
+            }
         }
 
         public void SelectUnit(Unit unit)
@@ -78,13 +91,16 @@ namespace Portfolio.Lobby
         public void SelectEquipmentItem(EquipmentItemData equipmentItemData, EquipmentItemType equipmentItemType)
         {
             selectEquipmentItem = equipmentItemData;
+            selectEquipmentItemType = equipmentItemType;
 
-            ShowEquipmentItem(selectEquipmentItem, equipmentItemType);
+            ShowEquipmentItem(selectEquipmentItem, selectEquipmentItemType);
 
         }
-        public void SelectListEquipmentItem(EquipmentItemData equipmentItemData)
+        public void ChoiceListEquipmentItem(EquipmentItemData equipmentItemData)
         {
-            selectedNewEquipmentItem = equipmentItemData;
+            choiceEquipmentItem = equipmentItemData;
+
+            ShowEquipmentItem(selectEquipmentItem, selectEquipmentItemType);
         }
 
         //===========================================================
@@ -143,14 +159,77 @@ namespace Portfolio.Lobby
             GameManager.Instance.SaveUser();
         }
 
-        public void ChoiceItem()
+        public void ChoiceItem(ref bool isChoice, EquipmentItemData choiceData)
         {
+            equipmentListPopupUI.UnChoiceList();
+            isChoice = true;
+            ChoiceListEquipmentItem(choiceData);
         }
 
-        //public void ReleaseEquipment()
-        //{
-        //    LobbyManager.Instance.userSelectedUnit.ReleaseEquipment(selectedType);
-        //    LobbyManager.UIManager.ReShowPanel();
-        //}
+        public void ReleaseEquipment()
+        {
+            GameManager.CurrentUser.userEquipmentItemDataList.Add(selectEquipmentItem);
+            selectEquipmentItem = null;
+
+            switch (selectEquipmentItemType)
+            {
+                case EquipmentItemType.Weapon:
+                    selectUnit.weaponData = null;
+                    break;
+                case EquipmentItemType.Helmet:
+                    selectUnit.helmetData = null;
+                    break;
+                case EquipmentItemType.Armor:
+                    selectUnit.armorData = null;
+                    break;
+                case EquipmentItemType.Amulet:
+                    selectUnit.amuletData = null;
+                    break;
+                case EquipmentItemType.Ring:
+                    selectUnit.ringData = null;
+                    break;
+                case EquipmentItemType.Shoe:
+                    selectUnit.shoeData = null;
+                    break;
+            }
+
+            ReShow();
+        }
+
+        public void ChangeEquipment()
+        {
+            GameManager.CurrentUser.userEquipmentItemDataList.Remove(choiceEquipmentItem);
+            switch (selectEquipmentItemType)
+            {
+                case EquipmentItemType.Weapon:
+                    selectUnit.weaponData = choiceEquipmentItem as WeaponData;
+                    break;
+                case EquipmentItemType.Helmet:
+                    selectUnit.helmetData = choiceEquipmentItem as HelmetData;
+                    break;
+                case EquipmentItemType.Armor:
+                    selectUnit.armorData = choiceEquipmentItem as ArmorData;
+                    break;
+                case EquipmentItemType.Amulet:
+                    selectUnit.amuletData = choiceEquipmentItem as AmuletData;
+                    break;
+                case EquipmentItemType.Ring:
+                    selectUnit.ringData = choiceEquipmentItem as RingData;
+                    break;
+                case EquipmentItemType.Shoe:
+                    selectUnit.shoeData = choiceEquipmentItem as ShoeData;
+                    break;
+            }
+
+            if (selectEquipmentItem != null)
+            {
+                GameManager.CurrentUser.userEquipmentItemDataList.Add(selectEquipmentItem);
+            }
+
+            selectEquipmentItem = choiceEquipmentItem;
+            choiceEquipmentItem = null;
+            equipmentListPopupUI.UnChoiceList();
+            ReShow();
+        }
     }
 }

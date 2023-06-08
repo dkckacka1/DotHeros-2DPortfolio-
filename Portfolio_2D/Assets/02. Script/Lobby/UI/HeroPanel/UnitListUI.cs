@@ -12,7 +12,7 @@ namespace Portfolio.Lobby
         [SerializeField] ScrollRect unitScrollView;
         [SerializeField] TextMeshProUGUI unitListCountText;
 
-        private void Awake()
+        public void Init()
         {
             unitSlotList = new List<UnitSlotUI>();
             foreach (var slot in unitScrollView.content.GetComponentsInChildren<UnitSlotUI>())

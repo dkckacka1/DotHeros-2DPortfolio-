@@ -12,9 +12,10 @@ namespace Portfolio.Lobby
         [SerializeField] Image selectedImage;
         [SerializeField] Image impossibleSelectImage;
 
+        public bool isChoice;
         private bool isSameEuqipmentType;
 
-        private void Awake()
+        public void Init()
         {
             equipmentSlot = GetComponent<UnitEquipmentSlotUI>();
         }
@@ -24,7 +25,7 @@ namespace Portfolio.Lobby
             selectedImage.gameObject.SetActive(false);
         }
 
-        public void Init(EquipmentItemData selectedData)
+        public void ShowImpossibleSelectImage(EquipmentItemData selectedData)
         {
             if (equipmentSlot.EquipmentData.equipmentType == selectedData.equipmentType)
                 // 기 선택한 아이템 데이타가 현재 슬롯의 아이템과 같을 경우
@@ -40,7 +41,7 @@ namespace Portfolio.Lobby
             }
         }
 
-        public void Init(EquipmentItemType itemType)
+        public void ShowImpossibleSelectImage(EquipmentItemType itemType)
         {
             if (equipmentSlot.EquipmentData.equipmentType == itemType)
             // 기 선택한 아이템 데이타가 현재 슬롯의 아이템과 같을 경우
@@ -75,21 +76,22 @@ namespace Portfolio.Lobby
             equipmentTooltipUI.gameObject.SetActive(false);
         }
 
-        //public void SelectItem(HeroPanelUI heroPanelUI)
-        //{
-        //    if (!isSameEuqipmentType) return;
+        public void ChoiceItem(HeroPanelUI heroPanelUI)
+        {
+            if (!isSameEuqipmentType) return;
 
-        //    heroPanelUI.ChoiceItem(this, equipmentSlot.EquipmentData);
-        //}
+            isChoice = true;
+            heroPanelUI.ChoiceItem(ref isChoice, equipmentSlot.EquipmentData);
+        }
 
-        //public void ShowSelectedUI()
-        //{
-        //    selectedImage.gameObject.SetActive(true);
-        //}
+        public void ShowSelectedUI()
+        {
+            selectedImage.gameObject.SetActive(true);
+        }
 
-        //public void HideSelectedUI()
-        //{
-        //    selectedImage.gameObject.SetActive(false);
-        //}
+        public void HideSelectedUI()
+        {
+            selectedImage.gameObject.SetActive(false);
+        }
     }
 }
