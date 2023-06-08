@@ -24,6 +24,7 @@ namespace Portfolio.Lobby
         [SerializeField] TextMeshProUGUI unitCriticalDamageText;
         [SerializeField] TextMeshProUGUI unitEffectHitText;
         [SerializeField] TextMeshProUGUI unitEffectResText;
+        [SerializeField] ItemSlotUI[] experiencePotionSlots;
 
         public void ShowStat(Unit unit)
         {
@@ -42,9 +43,12 @@ namespace Portfolio.Lobby
             unitCriticalDamageText.text = (unit.CriticalDamage * 100f).ToString("F1") + " %";
             unitEffectHitText.text = (unit.EffectHit * 100f).ToString("F1") + " %";
             unitEffectResText.text = (unit.EffectResistance * 100f).ToString("F1") + " %";
+
+            for (int i = 0; i < experiencePotionSlots.Length; i++)
+            {
+                experiencePotionSlots[i].ShowItem();
+            }
         }
-
-
     }
 
 }

@@ -133,7 +133,15 @@ namespace Portfolio
                 {
                     if (value >= MaxExperience)
                     {
-                        CurrentExperience = LevelUP();
+                        if (IsMaxLevel)
+                        {
+                            userUnitData.unitExperience = MaxExperience;
+                        }
+                        else
+                        {
+                            userUnitData.unitExperience = value - MaxExperience;
+                            LevelUP();
+                        }
                     }
                     else
                     {
@@ -154,7 +162,7 @@ namespace Portfolio
             get
             {
                 //Debug.Log("최대 경험치 : " + Mathf.Log(10, UnitCurrentLevel));
-                return Mathf.Log(CurrentExperience);
+                return UnitCurrentLevel * 1000;
             }
         }
 
@@ -460,12 +468,9 @@ namespace Portfolio
             return list.Where(item => item != null);
         }
 
-        private float LevelUP()
+        private void LevelUP()
         {
-            // TODO 레벨업 함수 구현해야함
-            // return 값은 레벨업하고 남은 경험치
-
-            return 0;
+            UnitCurrentLevel++;
         }
 
         //===========================================================

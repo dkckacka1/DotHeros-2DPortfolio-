@@ -126,6 +126,24 @@ namespace Portfolio.Editor
                 return false;
             }
 
+            string consumableItemJsonPath = Application.dataPath + Constant.resorucesDataPath + Constant.consumableItemDataJsonName + ".json";
+            if (File.Exists(stageJsonPath))
+            {
+                var text = File.OpenText(consumableItemJsonPath);
+                string json = text.ReadToEnd();
+                //Debug.Log(json);
+                var conditionDatas = JsonConvert.DeserializeObject<ItemData[]>(json);
+                //foreach (var unit in conditionDatas)
+                //{
+                //    Debug.Log(unit);
+                //}
+            }
+            else
+            {
+                Debug.LogWarning("stageJson이 존재하지 않습니다.");
+                return false;
+            }
+
             return true;
         }
         #region 스킬데이터 로드

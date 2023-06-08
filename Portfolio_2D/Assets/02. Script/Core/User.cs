@@ -10,8 +10,13 @@ namespace Portfolio
         public UserData userData;
         public List<Unit> userUnitList;
         public List<EquipmentItemData> userEquipmentItemDataList;
-        public Dictionary<ConsumableItemData, int> userConsumableItemDic;
-
+        public Dictionary<int, int> UserConsumableItemDic
+        {
+            get
+            {
+                return userData.consumalbeItemDic;
+            }
+        }
         public bool IsMaxUnitCount
         {
             get
@@ -39,7 +44,6 @@ namespace Portfolio
             this.userData = userData;
             userUnitList = new List<Unit>();
             userEquipmentItemDataList = new List<EquipmentItemData>();
-            userConsumableItemDic = new Dictionary<ConsumableItemData, int>();
 
             foreach (var userUnitData in userData.unitDataList)
             {
@@ -101,11 +105,67 @@ namespace Portfolio
             GameManager.Instance.SaveUser();
         }
 
+        public void AddConsumableItem(int ID, int count = 1)
+        {
+            if (GameManager.Instance.IsData<ConsumableItemData>(ID))
+            {
+                if (UserConsumableItemDic.ContainsKey(ID))
+                {
+                    UserConsumableItemDic[ID] += count;
+                }
+                else
+                {
+                    UserConsumableItemDic.Add(ID, count);
+                }
+            }
+            else
+            {
+                Debug.LogWarning("ConsumalbeData ID is null");
+            }
+        }
+
+        public void ConsumItem(int ID, int count = 1)
+        {
+            if (IsHaveComsumableItem(ID, count))
+            {
+                if (UserConsumableItemDic[ID] == count)
+                {
+                    UserConsumableItemDic.Remove(ID);
+                }
+                else
+                {
+                    UserConsumableItemDic[ID] -= count;
+                }
+            }
+            else
+            {
+                return;
+            }
+        }
+
+        public bool IsHaveComsumableItem(int ID, int count = 1)
+        {
+            if (GameManager.Instance.IsData<ConsumableItemData>(ID))
+            {
+                if (UserConsumableItemDic.ContainsKey(ID))
+                {
+                    return UserConsumableItemDic[ID] >= count;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            else
+            {
+                return false;
+            }
+        }
+
         public UserData GetSaveUserData()
         {
             userData.unitDataList = this.userUnitList.Select(item => item.UserData).ToList();
             userData.equipmentItemDataList = this.userEquipmentItemDataList;
-            userData.consumalbeItemDic = this.userConsumableItemDic.ToDictionary(item => item.Key.ID, item => item.Value);
 
             return userData;
         }

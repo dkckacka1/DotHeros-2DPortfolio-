@@ -14,6 +14,7 @@ namespace Portfolio.Lobby
         [SerializeField] EquipmentReinforcePopupUI reinforcePopupUI;
         [SerializeField] EquipmentListPopupUI equipmentListPopupUI;
         [SerializeField] EquipmentTooltip equipmentTooltipUI;
+        [SerializeField] RectTransform potionSlotPanel;
 
         Unit selectUnit;
         EquipmentItemData selectEquipmentItem;
@@ -41,12 +42,14 @@ namespace Portfolio.Lobby
             reinforcePopupUI.gameObject.SetActive(false);
             equipmentListPopupUI.gameObject.SetActive(false);
             equipmentTooltipUI.gameObject.SetActive(false);
+            potionSlotPanel.gameObject.SetActive(false);
         }
         public void ShowUnit(Unit unit)
         {
             unitStatusUI.ShowStat(unit);
             unitEquipmentUI.ShowEquipment(unit);
             unitSkillPanelUI.ShowSkill(unit);
+            potionSlotPanel.gameObject.SetActive(false);
         }
 
         public void ShowEquipmentItem(EquipmentItemData itemData, EquipmentItemType equipmentItemType)
@@ -170,6 +173,7 @@ namespace Portfolio.Lobby
         {
             GameManager.CurrentUser.userEquipmentItemDataList.Add(selectEquipmentItem);
             selectEquipmentItem = null;
+            choiceEquipmentItem = null;
 
             switch (selectEquipmentItemType)
             {
@@ -193,6 +197,7 @@ namespace Portfolio.Lobby
                     break;
             }
 
+            equipmentListPopupUI.UnChoiceList();
             ReShow();
             GameManager.Instance.SaveUser();
         }
@@ -232,6 +237,17 @@ namespace Portfolio.Lobby
             equipmentListPopupUI.UnChoiceList();
             ReShow();
             GameManager.Instance.SaveUser();
+        }
+
+        public void GetExperience(float getValue)
+        {
+            selectUnit.CurrentExperience += getValue;
+            ReShow();
+        }
+
+        public void ShowExperiencePotionSlot()
+        {
+            potionSlotPanel.gameObject.SetActive(!potionSlotPanel.gameObject.activeInHierarchy);
         }
     }
 }

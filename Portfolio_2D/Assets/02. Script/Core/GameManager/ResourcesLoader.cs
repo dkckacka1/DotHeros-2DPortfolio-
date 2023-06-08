@@ -23,6 +23,7 @@ namespace Portfolio
             LoadData<ConditionData>(dataDic, dataResourcesPath + Constant.conditionDataJsonName);
             LoadData<MapData>(dataDic, dataResourcesPath + Constant.mapDataJsonName);
             LoadData<StageData>(dataDic, dataResourcesPath + Constant.stageDataJsonName);
+            LoadData<ConsumableItemData>(dataDic, dataResourcesPath +Constant.consumableItemDataJsonName);
         }
 
         private static void LoadData<T>(Dictionary<int, Data> dataDic, string jsonPath) where T : Data

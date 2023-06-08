@@ -62,7 +62,9 @@ namespace Portfolio
                 UserUnitData defaultUserUnitData = new UserUnitData(defaultUnitData);
                 Unit defaultUnit = new Unit(defaultUnitData, defaultUserUnitData);
                 CurrentUser.AddNewUnit(defaultUnit);
-                CurrentUser.userConsumableItemDic.Add(new ConsumableItemData(), 10);
+                CurrentUser.AddConsumableItem(2000, 10);
+                CurrentUser.AddConsumableItem(2001, 10);
+                CurrentUser.AddConsumableItem(2002, 10);
                 SaveUser();
             }
         }
@@ -79,6 +81,23 @@ namespace Portfolio
         public void SaveUser()
         {
             SaveManager.SaveUserData(CurrentUser.GetSaveUserData());
+        }
+
+        public bool IsData<T>(int ID) where T : Data
+        {
+            if (!dataDictionary.ContainsKey(ID))
+            {
+                Debug.LogWarning("KeyValue is not Contains");
+                return false;
+            }
+
+            if (!(dataDictionary[ID] is T))
+            {
+                Debug.LogWarning("Value is not " + typeof(T).Name);
+                return false;
+            }
+
+            return true;
         }
 
         public bool TryGetData<T>(int ID, out T data) where T : Data
