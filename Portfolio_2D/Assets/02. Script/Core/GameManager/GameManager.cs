@@ -23,6 +23,7 @@ namespace Portfolio
         // Dictionary
         //===========================================================
         private Dictionary<int, Data> dataDictionary = new Dictionary<int, Data>();
+        private Dictionary<string, Sprite> spriteDictionary = new Dictionary<string, Sprite>();
         private Dictionary<int, Unit> unitDictionary = new Dictionary<int, Unit>();
         private Dictionary<int, Skill> skillDictionary = new Dictionary<int, Skill>();
         private Dictionary<int, Condition> conditionDictionary = new Dictionary<int, Condition>();
@@ -48,6 +49,8 @@ namespace Portfolio
             }
 
             ResourcesLoader.LoadAllData(dataDictionary);
+            ResourcesLoader.LoadAllResource(spriteDictionary);
+            //Debug.Log(spriteDictionary.Count);
             CreateGameSource();
 
             if (SaveManager.LoadUserData(out UserData CurrentUserData))
@@ -224,6 +227,19 @@ namespace Portfolio
                 var type = Type.GetType("Portfolio.condition." + (data as ConditionData).conditionClassName);
                 object obj = Activator.CreateInstance(type, data as ConditionData);
                 conditionDictionary.Add(data.ID, obj as Condition);
+            }
+        }
+
+        public Sprite GetSprite(string spriteName)
+        {
+            if (spriteDictionary.ContainsKey(spriteName))
+            {
+                return spriteDictionary[spriteName];
+            }
+            else
+            {
+                Debug.LogWarning(spriteName + " Sprite is null");
+                return null;
             }
         }
         #endregion

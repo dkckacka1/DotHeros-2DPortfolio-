@@ -30,11 +30,8 @@ namespace Portfolio
         public int passiveSkillID_1 = -1;
         public int passiveSkillID_2 = -1;
 
-
-
-
         // Apparence
-
+        public string portraitImageName;
     }
 
 }

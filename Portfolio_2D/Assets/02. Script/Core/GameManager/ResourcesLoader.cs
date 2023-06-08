@@ -13,6 +13,7 @@ namespace Portfolio
     public static class ResourcesLoader
     {
         private const string dataResourcesPath = @"Data/";
+        private const string spriteResourcesPath = @"Sprite/";
 
         public static void LoadAllData(Dictionary<int, Data> dataDic)
         {
@@ -24,6 +25,15 @@ namespace Portfolio
             LoadData<MapData>(dataDic, dataResourcesPath + Constant.mapDataJsonName);
             LoadData<StageData>(dataDic, dataResourcesPath + Constant.stageDataJsonName);
             LoadData<ConsumableItemData>(dataDic, dataResourcesPath +Constant.consumableItemDataJsonName);
+        }
+
+        public static void LoadAllResource(Dictionary<string, Sprite> spriteDic)
+        {
+            var sprites = Resources.LoadAll<Sprite>(spriteResourcesPath);
+            foreach (var sprite in sprites)
+            {
+                spriteDic.Add(sprite.name, sprite);
+            }
         }
 
         private static void LoadData<T>(Dictionary<int, Data> dataDic, string jsonPath) where T : Data

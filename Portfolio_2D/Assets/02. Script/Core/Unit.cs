@@ -30,6 +30,11 @@ namespace Portfolio
         public ShoeData shoeData;
 
         //===========================================================
+        // Apparence
+        //===========================================================
+        public Sprite portraitImage;
+
+        //===========================================================
         // Property
         //===========================================================
         public UnitData Data { get => data; }
@@ -394,11 +399,7 @@ namespace Portfolio
         public Unit(UnitData unitData)
         {
             this.data = unitData;
-            GameManager.Instance.TryGetSkill(unitData.basicAttackSKillID, out basicAttackSkill);
-            GameManager.Instance.TryGetSkill(unitData.activeSkillID_1, out activeSkill_1);
-            GameManager.Instance.TryGetSkill(unitData.activeSkillID_2, out activeSkill_2);
-            GameManager.Instance.TryGetSkill(unitData.passiveSkillID_1, out passiveSkill_1);
-            GameManager.Instance.TryGetSkill(unitData.passiveSkillID_2, out passiveSkill_2);
+            SetUnitData(unitData);
         }
 
         public Unit(UnitData unitData, UserUnitData userUnitData)
@@ -413,6 +414,12 @@ namespace Portfolio
             ringData = userUnitData.RingData;
             shoeData = userUnitData.shoeData;
 
+            SetUnitData(unitData);
+        }
+
+        private void SetUnitData(UnitData unitData)
+        {
+            portraitImage = GameManager.Instance.GetSprite(this.data.portraitImageName);
             GameManager.Instance.TryGetSkill(unitData.basicAttackSKillID, out basicAttackSkill);
             GameManager.Instance.TryGetSkill(unitData.activeSkillID_1, out activeSkill_1);
             GameManager.Instance.TryGetSkill(unitData.activeSkillID_2, out activeSkill_2);

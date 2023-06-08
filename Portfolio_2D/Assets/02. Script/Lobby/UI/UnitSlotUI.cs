@@ -10,14 +10,14 @@ namespace Portfolio.Lobby
     {
         private Unit currentUnit;
 
-        [SerializeField] Image unitImage;
+        [SerializeField] Image unitPortraitImage;
         [SerializeField] TextMeshProUGUI unitLevelText;
         [SerializeField] List<Image> starImages = new List<Image>();
 
         public void Init(Unit unit)
         {
-            // TODO 유닛 이미지 변경 해주어야 함
             this.currentUnit = unit;
+            unitPortraitImage.sprite = unit.portraitImage;
             unitLevelText.text = unit.UnitCurrentLevel.ToString();
             for (int i = 0; i < 5; i++)
             {

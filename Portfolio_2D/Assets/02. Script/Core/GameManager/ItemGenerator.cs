@@ -131,7 +131,6 @@ namespace Portfolio
             }
         }
 
-        // TODO 장비 강화하고 저장해야함
         private EquipmentOptionStat[] GetEquipmentOptionStat(EquipmentItemData data)
         {
             List<EquipmentOptionStat> optionStats = new List<EquipmentOptionStat>();
