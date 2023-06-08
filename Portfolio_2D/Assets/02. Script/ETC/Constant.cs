@@ -43,6 +43,9 @@
         public const string mapDataTableName = @"MapDataTable";
         public const string mapDataJsonName = @"MapData";
         public const string stageDataJsonName = @"StageData";
-        
+        public const string itemDataTableName = @"ItemDataTable";
+        public const string consumableItemDataJsonName = @"ConsumableItemData";
+
+
     }
 }

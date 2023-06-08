@@ -5,6 +5,7 @@ namespace Portfolio
 {
     public class UserData
     {
+
         public int userID = 00000001;
         public string userName;
         public int userLevel = 1;
@@ -19,11 +20,13 @@ namespace Portfolio
 
         // 인벤토리 부문
         public List<EquipmentItemData> equipmentItemDataList;
+        public Dictionary<int, int> consumalbeItemDic;  // Key : ID, Value : itemCount
 
         public UserData()
         {
             unitDataList = new List<UserUnitData>();
             equipmentItemDataList = new List<EquipmentItemData>();
+            consumalbeItemDic = new Dictionary<int, int>();
         }
     }
 }

@@ -194,6 +194,7 @@ namespace Portfolio.Lobby
             }
 
             ReShow();
+            GameManager.Instance.SaveUser();
         }
 
         public void ChangeEquipment()
@@ -230,6 +231,7 @@ namespace Portfolio.Lobby
             choiceEquipmentItem = null;
             equipmentListPopupUI.UnChoiceList();
             ReShow();
+            GameManager.Instance.SaveUser();
         }
     }
 }

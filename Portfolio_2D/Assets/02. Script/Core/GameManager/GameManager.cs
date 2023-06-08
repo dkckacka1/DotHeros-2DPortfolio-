@@ -62,7 +62,7 @@ namespace Portfolio
                 UserUnitData defaultUserUnitData = new UserUnitData(defaultUnitData);
                 Unit defaultUnit = new Unit(defaultUnitData, defaultUserUnitData);
                 CurrentUser.AddNewUnit(defaultUnit);
-
+                CurrentUser.userConsumableItemDic.Add(new ConsumableItemData(), 10);
                 SaveUser();
             }
         }

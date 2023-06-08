@@ -10,6 +10,7 @@ namespace Portfolio
         public UserData userData;
         public List<Unit> userUnitList;
         public List<EquipmentItemData> userEquipmentItemDataList;
+        public Dictionary<ConsumableItemData, int> userConsumableItemDic;
 
         public bool IsMaxUnitCount
         {
@@ -38,6 +39,7 @@ namespace Portfolio
             this.userData = userData;
             userUnitList = new List<Unit>();
             userEquipmentItemDataList = new List<EquipmentItemData>();
+            userConsumableItemDic = new Dictionary<ConsumableItemData, int>();
 
             foreach (var userUnitData in userData.unitDataList)
             {
@@ -103,6 +105,7 @@ namespace Portfolio
         {
             userData.unitDataList = this.userUnitList.Select(item => item.UserData).ToList();
             userData.equipmentItemDataList = this.userEquipmentItemDataList;
+            userData.consumalbeItemDic = this.userConsumableItemDic.ToDictionary(item => item.Key.ID, item => item.Value);
 
             return userData;
         }

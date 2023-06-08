@@ -247,6 +247,37 @@ namespace Portfolio.Editor
         }
         #endregion
 
+        #region 아이템 데이터 로드
+        public static bool GetItemTable()
+        {
+            string xlsxPath = Application.dataPath + Constant.dataTablePath + Constant.itemDataTableName + ".xlsx";
+
+            if (File.Exists(xlsxPath))
+            {
+                // 파일 확인
+                using (var stream = File.Open(xlsxPath, FileMode.Open, FileAccess.Read))
+                {
+                    //Debug.Log("stream 생성");
+                    using (var reader = ExcelReaderFactory.CreateReader(stream))
+                    {
+                        var tables = reader.AsDataSet().Tables; // 엑셀 시트의 개수
+                        for (int i = 0; i < tables.Count; i++)
+                        {
+                            var sheet = tables[i];
+                            var tableReader = sheet.CreateDataReader();
+                            WriteJson(tableReader, sheet.Columns.Count, sheet.TableName);
+                        }
+                    }
+                }
+
+                return true;
+            }
+
+            Debug.LogError("엑셀 파일이 확인되지 않습니다.");
+            return false;
+        }
+        #endregion
+
         private static bool WriteJson(DataTableReader reader, int rowCount, string excelPath)
         {
             using (var writer = new JsonTextWriter(File.CreateText(Application.dataPath + Constant.resorucesDataPath + excelPath + ".json")))
