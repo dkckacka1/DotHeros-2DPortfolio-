@@ -9,6 +9,8 @@ namespace Portfolio.Lobby.Inventory
     {
         [SerializeField] EquipmentInventory equipmentInventory;
         [SerializeField] ConsumableItemInventory consumableItemInventory;
+        [SerializeField] Toggle equipmentInventoryToggle;
+        [SerializeField] Toggle consumableItemInventoryToggle;
 
         private void Awake()
         {
@@ -19,7 +21,10 @@ namespace Portfolio.Lobby.Inventory
         protected override void OnEnable()
         {
             base.OnEnable();
+            equipmentInventoryToggle.isOn = true;
+            equipmentInventoryToggle.Select();
             equipmentInventory.gameObject.SetActive(true);
+            consumableItemInventoryToggle.isOn = false;
             consumableItemInventory.gameObject.SetActive(false);
         }
 

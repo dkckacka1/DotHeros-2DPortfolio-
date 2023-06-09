@@ -69,6 +69,7 @@ namespace Portfolio.Lobby.Hero
 
         public void ReShow()
         {
+            unitListUI.ShowUnitList();
             unitStatusUI.ShowStat(selectUnit);
             unitEquipmentUI.ShowEquipment(selectUnit);
             unitSkillPanelUI.ShowSkill(selectUnit);

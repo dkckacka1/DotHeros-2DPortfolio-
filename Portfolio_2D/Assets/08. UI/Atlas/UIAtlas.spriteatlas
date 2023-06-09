@@ -44,12 +44,8 @@ SpriteAtlas:
     secondaryTextureSettings: {}
     variantMultiplier: 1
     packables:
-    - {fileID: 102900000, guid: 0251f9b7c663a45bc83ed0ba70007b83, type: 3}
-    - {fileID: 102900000, guid: 01cf104b0ae4e4cd8be240c06c1edee3, type: 3}
-    - {fileID: 102900000, guid: d51ca5e15fa5a4840ae09316a0f1bfd2, type: 3}
-    - {fileID: 102900000, guid: ed63059053c594e5ebb38ffc5972db0a, type: 3}
-    - {fileID: 102900000, guid: c59179ca57b64471d8c11888e46f927b, type: 3}
-    - {fileID: 102900000, guid: 791d637ee593d432b9493475b29ea83f, type: 3}
+    - {fileID: 102900000, guid: f9de39217ae3e4a1296b5023fffd8a96, type: 3}
+    - {fileID: 2800000, guid: 8127b59313b143849a548256be678f31, type: 3}
     bindAsDefault: 1
     isAtlasV2: 0
     cachedData: {fileID: 0}
@@ -109,6 +105,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: dea6e4236dd304760920e31bdb611802, type: 3}
   - {fileID: 21300000, guid: 88646043dbe294d8c8dc286f827b98b3, type: 3}
   - {fileID: 21300000, guid: bf7f329389c954f15afe7271e98b6c88, type: 3}
+  - {fileID: 21300000, guid: 8127b59313b143849a548256be678f31, type: 3}
   - {fileID: -3320296975419565563, guid: 6073f4b34f7c04e8e9e6aea5fae7c14f, type: 3}
   - {fileID: 21300000, guid: d1aa8ab397b774300b97051d392a96ba, type: 3}
   - {fileID: 21300000, guid: d7c1b1c30e61d4bdd8d525c2335c6801, type: 3}
@@ -364,6 +361,7 @@ SpriteAtlas:
   - frame_stageframe_01_d
   - frame_cardframe_00_d_front3
   - slider_icontype_02_icon1
+  - defaultSprite
   - powersave_line_0
   - slider_basictype_02_Frame
   - slider_edgetype_03_fill_area

@@ -24,6 +24,12 @@ namespace Portfolio.Lobby.Hero
 
         private void OnEnable()
         {
+            ShowUnitList();
+            ShowUnitListCountText();
+        }
+
+        public void ShowUnitList()
+        {
             for (int i = 0; i < unitSlotList.Count; i++)
             {
                 if (GameManager.CurrentUser.userUnitList.Count <= i)
@@ -36,10 +42,9 @@ namespace Portfolio.Lobby.Hero
                 unitSlotList[i].gameObject.SetActive(true);
             }
 
-            InitUnitLIstCountText();
         }
 
-        public void InitUnitLIstCountText()
+        public void ShowUnitListCountText()
         {
             unitListCountText.text = $"{GameManager.CurrentUser.userUnitList.Count} / {GameManager.CurrentUser.userData.maxUnitListCount}";
         }

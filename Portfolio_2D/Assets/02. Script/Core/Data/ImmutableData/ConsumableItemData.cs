@@ -9,5 +9,6 @@ namespace Portfolio
     public class ConsumableItemData : ItemData
     {
         public string itemDesc;
+        public string itemIconSpriteName;
     }
 }

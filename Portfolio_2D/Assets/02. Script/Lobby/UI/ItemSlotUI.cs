@@ -16,6 +16,7 @@ namespace Portfolio.UI
 
         public void ShowItem()
         {
+            itemImage.sprite = GetItemIconSprite(defaultItemID);
             if (GameManager.CurrentUser.IsHaveComsumableItem(defaultItemID))
             {
                 slotBtn.interactable = true;
@@ -33,9 +34,17 @@ namespace Portfolio.UI
         public void ShowItem(int ID, int count, bool btnInteractable = false)
         {
             defaultItemID = ID;
+            itemImage.sprite = GetItemIconSprite(defaultItemID);
             slotBtn.interactable = btnInteractable;
             itemCountText.text = count.ToString();
             unSelcetImage.gameObject.SetActive(false);
+        }
+
+        private Sprite GetItemIconSprite(int ID)
+        {
+            ConsumableItemData data;
+            GameManager.Instance.TryGetData(ID, out data);
+            return GameManager.Instance.GetSprite(data.itemIconSpriteName);
         }
 
         public void ConsumeItem(int count = 1)

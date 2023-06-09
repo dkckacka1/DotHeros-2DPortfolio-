@@ -9,6 +9,7 @@ namespace Portfolio.Lobby.Hero
 {
     public class UnitStatusUI : MonoBehaviour
     {
+        [SerializeField] Image unitPortraitImage;
         [SerializeField] TextMeshProUGUI unitNameText;
         [SerializeField] TextMeshProUGUI unitGradeText;
         [SerializeField] TextMeshProUGUI unitCurrentLevelText;
@@ -29,6 +30,7 @@ namespace Portfolio.Lobby.Hero
 
         public void ShowStat(Unit unit)
         {
+            unitPortraitImage.sprite = unit.portraitImage;
             unitNameText.text = unit.Data.unitName;
             unitGradeText.text = unit.UnitGrade.ToString() + " ¼º";
             unitCurrentLevelText.text = unit.UnitCurrentLevel.ToString();
