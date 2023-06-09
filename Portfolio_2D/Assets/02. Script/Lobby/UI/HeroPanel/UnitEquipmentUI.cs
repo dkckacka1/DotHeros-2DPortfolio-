@@ -1,7 +1,8 @@
+using Portfolio.UI;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Portfolio.Lobby
+namespace Portfolio.Lobby.Hero
 {
     public class UnitEquipmentUI : MonoBehaviour, UndoAble
     {
@@ -20,12 +21,12 @@ namespace Portfolio.Lobby
 
         public void ShowEquipment(Unit unit)
         {
-            weaponSlot.Init(unit.weaponData);
-            helemtSlot.Init(unit.helmetData);
-            armorSlot.Init(unit.armorData);
-            shoeSlot.Init(unit.shoeData);
-            amuletSlot.Init(unit.amuletData);
-            ringSlot.Init(unit.ringData);
+            weaponSlot.ShowEquipment(unit.weaponData);
+            helemtSlot.ShowEquipment(unit.helmetData);
+            armorSlot.ShowEquipment(unit.armorData);
+            shoeSlot.ShowEquipment(unit.shoeData);
+            amuletSlot.ShowEquipment(unit.amuletData);
+            ringSlot.ShowEquipment(unit.ringData);
         }
 
         public void Undo()

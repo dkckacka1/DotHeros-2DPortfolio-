@@ -1,10 +1,12 @@
+using Portfolio.Lobby;
+using Portfolio.Lobby.Hero;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Portfolio.Lobby
+namespace Portfolio.UI
 {
     public class UnitSlotUI : MonoBehaviour
     {

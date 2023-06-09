@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using Portfolio.UI;
 
-namespace Portfolio.Lobby
+namespace Portfolio.Lobby.Hero
 {
     public class EquipmentPopupUI : MonoBehaviour
     {
@@ -12,8 +13,7 @@ namespace Portfolio.Lobby
         [SerializeField] Button reinforceBtn;
 
         [Header("Equipment Data")]
-        [SerializeField] Image equipmentImage;
-        [SerializeField] Image equipmentDefaultImage;
+        [SerializeField] UnitEquipmentSlotUI equipmentSlotUI;
         [SerializeField] TextMeshProUGUI equipmentNameText;
         [SerializeField] TextMeshProUGUI equipmentSetText;
         [SerializeField] Sprite[] defualtEquipmentSprits;
@@ -37,9 +37,7 @@ namespace Portfolio.Lobby
 
         public void ShowEquipment(EquipmentItemData equipmentData)
         {
-                equipmentDefaultImage.gameObject.SetActive(false);
-                equipmentImage.gameObject.SetActive(true);
-
+                equipmentSlotUI.ShowEquipment(equipmentData);
                 string reinforceCountText = (equipmentData.reinforceCount > 0) ? " +" + equipmentData.reinforceCount : "";
                 equipmentNameText.text = $"{GameLib.GetGradeTypeText(equipmentData.equipmentGrade)} {GameLib.GetEquipmentTypeText(equipmentData.equipmentType)}{reinforceCountText}";
                 equipmentSetText.gameObject.SetActive(true);
@@ -101,11 +99,8 @@ namespace Portfolio.Lobby
 
         public void ShowEquipment(EquipmentItemType equipmentItemType)
         {
-            equipmentDefaultImage.gameObject.SetActive(true);
-            equipmentDefaultImage.sprite = defualtEquipmentSprits[(int)equipmentItemType];
-            equipmentImage.gameObject.SetActive(false);
+            equipmentSlotUI.ShoeEquipment(equipmentItemType);
 
-            equipmentImage.gameObject.SetActive(false);
             equipmentNameText.text = $"장착한 장비가 없습니다.";
             equipmentSetText.gameObject.SetActive(false);
 

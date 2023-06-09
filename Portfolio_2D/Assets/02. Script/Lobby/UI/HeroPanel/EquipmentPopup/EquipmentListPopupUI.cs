@@ -5,8 +5,9 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using System.Linq;
+using Portfolio.UI;
 
-namespace Portfolio.Lobby
+namespace Portfolio.Lobby.Hero
 {
     public class EquipmentListPopupUI : MonoBehaviour
     {
@@ -57,7 +58,7 @@ namespace Portfolio.Lobby
                 }
 
                 var equipmentData = listOrdered[i];
-                equipmentSlotList[i].Init(equipmentData);
+                equipmentSlotList[i].ShowEquipment(equipmentData);
                 equipmentSlotList[i].gameObject.SetActive(true);
                 var selectedUI = equipmentSlotList[i].GetComponent<EquipmentSelectUI>();
                 if (selectedUI.isChoice)
@@ -84,10 +85,10 @@ namespace Portfolio.Lobby
                         .ToList();
 
 
-            foreach (var item in listOrdered)
-            {
-                Debug.Log(item.equipmentType);
-            }
+            //foreach (var item in listOrdered)
+            //{
+            //    Debug.Log(item.equipmentType);
+            //}
 
             //Debug.Log(equipmentSlotList.Count);
 
@@ -100,7 +101,7 @@ namespace Portfolio.Lobby
                 }
 
                 var equipmentData = listOrdered[i];
-                equipmentSlotList[i].Init(equipmentData);
+                equipmentSlotList[i].ShowEquipment(equipmentData);
                 equipmentSlotList[i].gameObject.SetActive(true);
                 var selectedUI = equipmentSlotList[i].GetComponent<EquipmentSelectUI>();
                 if (selectedUI.isChoice)

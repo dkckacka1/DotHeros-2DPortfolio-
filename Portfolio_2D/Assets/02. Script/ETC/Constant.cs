@@ -1,4 +1,6 @@
-﻿namespace Portfolio
+﻿using UnityEngine;
+
+namespace Portfolio
 {
     public static class Constant
     {
@@ -7,6 +9,10 @@
         //===========================================================
         public const float MAX_REINFORCE_COUNT = 15;
         public static readonly int[] reinforceConsumeGoldValues = { 100, 500, 1000, 2000, 4000, 10000, 15000, 30000,75000,100000,150000,300000,750000,1500000,2000000 };
+        public static readonly Color normalColor = new Color(1, 1, 1, 1);
+        public static readonly Color rareColor = new Color(0.3f, 0.3f, 1, 1);
+        public static readonly Color uniqueColor = new Color(1, 1, 0, 1);
+        public static readonly Color legendaryColor = new Color(1, 0.5f, 0, 1);
 
         //===========================================================
         // RandomValue

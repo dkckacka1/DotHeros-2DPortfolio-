@@ -4,7 +4,7 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 
-namespace Portfolio.Lobby
+namespace Portfolio.Lobby.Hero
 {
     public class EquipmentReinforcePopupUI : MonoBehaviour
     {

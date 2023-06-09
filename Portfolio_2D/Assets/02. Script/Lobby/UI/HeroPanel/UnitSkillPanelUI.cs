@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Portfolio.Lobby
+namespace Portfolio.Lobby.Hero
 {
     public class UnitSkillPanelUI : MonoBehaviour, UndoAble
     {

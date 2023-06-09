@@ -4,7 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Portfolio.Lobby
+namespace Portfolio.UI
 {
     public class ItemSlotUI : MonoBehaviour
     {
