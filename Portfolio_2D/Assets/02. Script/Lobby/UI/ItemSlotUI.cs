@@ -1,3 +1,4 @@
+using Portfolio.Lobby.Inventory;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -51,6 +52,20 @@ namespace Portfolio.UI
         {
             GameManager.CurrentUser.ConsumItem(defaultItemID, count);
             ShowItem();
+        }
+
+        public void ShowTooltip(InventoryPanel inventoryPanel)
+        {
+            ConsumableItemData data;
+            if (GameManager.Instance.TryGetData(defaultItemID, out data))
+            {
+                inventoryPanel.ShowTooltip(data, this.transform as RectTransform);
+            }
+        }
+
+        public void HideTooltip(InventoryPanel inventoryPanel)
+        {
+            inventoryPanel.HideTooltip();
         }
     }
 }

@@ -4,7 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Portfolio.Lobby.Hero
+namespace Portfolio.Lobby
 {
     public class EquipmentTooltip : MonoBehaviour
     {

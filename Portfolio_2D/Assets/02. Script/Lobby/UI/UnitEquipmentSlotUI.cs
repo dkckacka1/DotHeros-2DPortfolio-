@@ -1,5 +1,6 @@
 using Portfolio.Lobby;
 using Portfolio.Lobby.Hero;
+using Portfolio.Lobby.Inventory;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -132,6 +133,16 @@ namespace Portfolio.UI
         public void SelcetEquipmentItemData(HeroPanelUI heroPanelUI)
         {
             heroPanelUI.SelectEquipmentItem(currentEquipmentData, equipmentItemType);
+        }
+
+        public void ShowTooltip(InventoryPanel inventoryPanel)
+        {
+            inventoryPanel.ShowTooltip(this.currentEquipmentData, this.transform as RectTransform);
+        }
+
+        public void HideTooltip(InventoryPanel inventoryPanel)
+        {
+            inventoryPanel.HideTooltip();
         }
     }
 }

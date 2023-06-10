@@ -11,7 +11,7 @@ namespace Portfolio.Lobby.Inventory
         [SerializeField] ConsumableItemInventory consumableItemInventory;
         [SerializeField] Toggle equipmentInventoryToggle;
         [SerializeField] Toggle consumableItemInventoryToggle;
-
+        [SerializeField] InventoryTooltip tooltip;
         private void Awake()
         {
             equipmentInventory.Init();
@@ -26,6 +26,7 @@ namespace Portfolio.Lobby.Inventory
             equipmentInventory.gameObject.SetActive(true);
             consumableItemInventoryToggle.isOn = false;
             consumableItemInventory.gameObject.SetActive(false);
+            tooltip.gameObject.SetActive(false);
         }
 
         public void ToggleShowEquipmentInventory(bool isActive)
@@ -36,6 +37,18 @@ namespace Portfolio.Lobby.Inventory
         public void ToggleShowConsumableItemInventory(bool isActive)
         {
             consumableItemInventory.gameObject.SetActive(isActive);
+        }
+
+        public void ShowTooltip(ItemData data, RectTransform slotTransform)
+        {
+            tooltip.gameObject.SetActive(true);
+            tooltip.ShowTooltip(data);
+            Debug.Log((tooltip.transform as RectTransform).anchoredPosition);
+        }
+
+        public void HideTooltip()
+        {
+            tooltip.gameObject.SetActive(false);
         }
     }
 }
