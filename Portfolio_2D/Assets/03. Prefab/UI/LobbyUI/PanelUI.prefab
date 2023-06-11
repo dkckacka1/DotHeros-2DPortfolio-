@@ -432,9 +432,10 @@ Animation:
   m_GameObject: {fileID: 1128467407101192276}
   m_Enabled: 1
   serializedVersion: 3
-  m_Animation: {fileID: 7400000, guid: 506044c80d6f8654ebab4ecef13def32, type: 2}
+  m_Animation: {fileID: 7400000, guid: 3dc92e12e5006d741b8f4262edf23075, type: 2}
   m_Animations:
   - {fileID: 7400000, guid: 506044c80d6f8654ebab4ecef13def32, type: 2}
+  - {fileID: 7400000, guid: 3dc92e12e5006d741b8f4262edf23075, type: 2}
   m_WrapMode: 0
   m_PlayAutomatically: 1
   m_AnimatePhysics: 0
@@ -815,15 +816,15 @@ MonoBehaviour:
       m_Calls: []
   m_text: "\uCC3D \uC774\uB984"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 67bb0bf61d6b32b4782df84165167d8b, type: 2}
-  m_sharedMaterial: {fileID: -7532721555816311743, guid: 67bb0bf61d6b32b4782df84165167d8b, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 077cdc849e86b484eb7c440c039ab199, type: 2}
+  m_sharedMaterial: {fileID: 2100000, guid: c0b65a69010256b48977dbb93bff2f36, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4281019179
-  m_fontColor: {r: 0.16981131, g: 0.16981131, b: 0.16981131, a: 1}
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:

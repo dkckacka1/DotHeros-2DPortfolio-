@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-namespace Portfolio.Lobby
+namespace Portfolio.Lobby.Summon
 {
     public class SummonPanel : PanelUI
     {

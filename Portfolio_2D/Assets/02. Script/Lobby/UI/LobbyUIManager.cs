@@ -1,4 +1,6 @@
 using Portfolio.Lobby.Hero;
+using Portfolio.Lobby.Inventory;
+using Portfolio.Lobby.Summon;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,12 +9,19 @@ namespace Portfolio.Lobby
 {
     public class LobbyUIManager : MonoBehaviour
     {
-        private Stack<UndoAble> undoStack = new Stack<UndoAble>();
+        private Stack<UndoAble> undoStack;
 
         [SerializeField] HeroPanelUI heroPanel;
-        [SerializeField] Canvas summonCanvas;
+        [SerializeField] SummonPanel summonPanel;
+        [SerializeField] InventoryPanel inventoryPanel;
+        [SerializeField] ShopPanel shopPanel;
 
         [SerializeField] UserInfoUI userInfoUI;
+
+        private void Awake()
+        {
+            undoStack = new Stack<UndoAble>();
+        }
 
         private void Start()
         {

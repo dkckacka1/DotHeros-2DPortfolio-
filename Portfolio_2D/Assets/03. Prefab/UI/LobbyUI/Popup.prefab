@@ -270,6 +270,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: UIPanel
       objectReference: {fileID: 0}
+    - target: {fileID: 4703220055454188594, guid: 5d9c864c6fc424e4a810e9a245c324f2, type: 3}
+      propertyPath: m_Animation
+      value: 
+      objectReference: {fileID: 7400000, guid: 948d41bd8ee3aab40a685622daabd9b2, type: 2}
+    - target: {fileID: 4703220055454188594, guid: 5d9c864c6fc424e4a810e9a245c324f2, type: 3}
+      propertyPath: m_Animations.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4703220055454188594, guid: 5d9c864c6fc424e4a810e9a245c324f2, type: 3}
+      propertyPath: m_Animations.Array.data[1]
+      value: 
+      objectReference: {fileID: 7400000, guid: 948d41bd8ee3aab40a685622daabd9b2, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5d9c864c6fc424e4a810e9a245c324f2, type: 3}
 --- !u!224 &1206018258 stripped

@@ -36,6 +36,11 @@ namespace Portfolio.Lobby.Inventory
                 equipmentSlotUIList[i].gameObject.SetActive(true);
             }
         }
+
+        public Vector2 GetScrollViewMiddlePoint()
+        {
+            return (slotScrollView.transform as RectTransform).position;
+        }
     }
 
 }
