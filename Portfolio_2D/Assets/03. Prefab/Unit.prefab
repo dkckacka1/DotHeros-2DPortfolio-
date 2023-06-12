@@ -320,6 +320,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2916139430305408994}
   - component: {fileID: 8087565255811772947}
+  - component: {fileID: 3419272698024072879}
   m_Layer: 6
   m_Name: UnitImage
   m_TagString: Untagged
@@ -383,7 +384,7 @@ SpriteRenderer:
   m_SortingLayerID: 263923263
   m_SortingLayer: 3
   m_SortingOrder: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 75f5f34dc1b5347e0b8351032682f224, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 9fd2fad1162b0334c829ec935b9af87a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -394,6 +395,27 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &3419272698024072879
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2872074015936431120}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 22100000, guid: e3dc4d9ef4516d0499ee0a9036e15bf0, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &3364620830549755392
 GameObject:
   m_ObjectHideFlags: 0
@@ -557,7 +579,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0.053}
   m_SizeDelta: {x: 0, y: 0.000061035156}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2090895806150753867
@@ -590,8 +612,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: (100 / 100)
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 24ee614c87e80a34c8742ecb9d7ab13b, type: 2}
+  m_sharedMaterial: {fileID: -1346878977467203693, guid: 24ee614c87e80a34c8742ecb9d7ab13b, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1023,18 +1045,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 599faaa0ad81d9a4880296502d31ae5b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  unitType: 0
+  isEnemy: 0
   maxHP: 100
   currentHP: 100
   attackPoint: 10
   speed: 100
   defencePoint: 0
-  criticalPoint: 0
+  criticalPercent: 0
   criticalDamage: 0
   effectHit: 0
   effectResistance: 0
-  activeSkill_1_CoolTime: 0
-  activeSkill_2_CoolTime: 0
+  isDead: 0
 --- !u!114 &-2571103185468094933
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1047,11 +1068,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3b3b969d09b545419dd822b5774f18d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  unit: {fileID: 0}
   currentTurnCount: 0
-  unitGridPosition: {fileID: 0}
-  unitSequenceUI: {fileID: 0}
-  unitSkillUI: {fileID: 0}
 --- !u!114 &7998194954082249218
 MonoBehaviour:
   m_ObjectHideFlags: 0

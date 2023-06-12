@@ -32,6 +32,7 @@ namespace Portfolio
 
         // Apparence
         public string portraitImageName;
+        public string animationName;
     }
 
 }

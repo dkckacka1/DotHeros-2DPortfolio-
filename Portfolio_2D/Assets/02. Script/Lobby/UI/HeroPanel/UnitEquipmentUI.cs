@@ -6,7 +6,7 @@ namespace Portfolio.Lobby.Hero
 {
     public class UnitEquipmentUI : MonoBehaviour, UndoAble
     {
-        [SerializeField] private Image unitImage;
+        [SerializeField] private Animator unitAnim;
         [SerializeField] private UnitEquipmentSlotUI weaponSlot;
         [SerializeField] private UnitEquipmentSlotUI helemtSlot;
         [SerializeField] private UnitEquipmentSlotUI armorSlot;
@@ -21,6 +21,8 @@ namespace Portfolio.Lobby.Hero
 
         public void ShowEquipment(Unit unit)
         {
+            unitAnim.runtimeAnimatorController = unit.animController;
+            unitAnim.Play("IDLE");
             weaponSlot.ShowEquipment(unit.weaponData);
             helemtSlot.ShowEquipment(unit.helmetData);
             armorSlot.ShowEquipment(unit.armorData);

@@ -1,0 +1,13 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!221 &22100000
+AnimatorOverrideController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: FireKnightAnimCT
+  m_Controller: {fileID: 9100000, guid: 4074d23b1af299f45a6dc12368f55eae, type: 2}
+  m_Clips:
+  - m_OriginalClip: {fileID: 7400000, guid: 718a729f82fdcaf4fa6ef7f69af2b818, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 8b9f03ccb0cdf1c4b838f664ff815bd8, type: 2}

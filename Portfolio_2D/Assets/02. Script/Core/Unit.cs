@@ -33,6 +33,7 @@ namespace Portfolio
         // Apparence
         //===========================================================
         public Sprite portraitImage;
+        public RuntimeAnimatorController animController;
 
         //===========================================================
         // Property
@@ -420,6 +421,7 @@ namespace Portfolio
         private void SetUnitData(UnitData unitData)
         {
             portraitImage = GameManager.Instance.GetSprite(this.data.portraitImageName);
+            animController = GameManager.Instance.GetAnimController(this.data.animationName);
             GameManager.Instance.TryGetSkill(unitData.basicAttackSKillID, out basicAttackSkill);
             GameManager.Instance.TryGetSkill(unitData.activeSkillID_1, out activeSkill_1);
             GameManager.Instance.TryGetSkill(unitData.activeSkillID_2, out activeSkill_2);

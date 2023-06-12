@@ -27,6 +27,7 @@ namespace Portfolio
         private Dictionary<int, Unit> unitDictionary = new Dictionary<int, Unit>();
         private Dictionary<int, Skill> skillDictionary = new Dictionary<int, Skill>();
         private Dictionary<int, Condition> conditionDictionary = new Dictionary<int, Condition>();
+        private Dictionary<string, RuntimeAnimatorController> animationDictionary = new Dictionary<string, RuntimeAnimatorController>();
 
         public bool isTest;
 
@@ -49,7 +50,7 @@ namespace Portfolio
             }
 
             ResourcesLoader.LoadAllData(dataDictionary);
-            ResourcesLoader.LoadAllResource(spriteDictionary);
+            ResourcesLoader.LoadAllResource(spriteDictionary, animationDictionary);
             //Debug.Log(spriteDictionary.Count);
             CreateGameSource();
 
@@ -160,14 +161,14 @@ namespace Portfolio
         {
             if (!skillDictionary.ContainsKey(ID))
             {
-                Debug.LogWarning(ID + " is not Contains");
+                //Debug.LogWarning(ID + " is not Contains");
                 skill = null;
                 return false;
             }
 
             if (!(skillDictionary[ID] is T))
             {
-                Debug.LogWarning("Value is not " + typeof(T).Name);
+                //Debug.LogWarning("Value is not " + typeof(T).Name);
                 skill = null;
                 return false;
             }
@@ -239,6 +240,19 @@ namespace Portfolio
             else
             {
                 Debug.LogWarning(spriteName + " Sprite is null");
+                return null;
+            }
+        }
+
+        public RuntimeAnimatorController GetAnimController(string animName)
+        {
+            if (animationDictionary.ContainsKey(animName))
+            {
+                return animationDictionary[animName];
+            }
+            else
+            {
+                Debug.LogWarning(animName + " Anim is null");
                 return null;
             }
         }

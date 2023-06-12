@@ -14,6 +14,7 @@ namespace Portfolio
     {
         private const string dataResourcesPath = @"Data/";
         private const string spriteResourcesPath = @"Sprite/";
+        private const string AnimationResourcesPath = @"Animation/";
 
         public static void LoadAllData(Dictionary<int, Data> dataDic)
         {
@@ -27,14 +28,21 @@ namespace Portfolio
             LoadData<ConsumableItemData>(dataDic, dataResourcesPath +Constant.consumableItemDataJsonName);
         }
 
-        public static void LoadAllResource(Dictionary<string, Sprite> spriteDic)
+        public static void LoadAllResource(Dictionary<string, Sprite> spriteDic, Dictionary<string, RuntimeAnimatorController> animDic)
         {
             var sprites = Resources.LoadAll<Sprite>(spriteResourcesPath);
             foreach (var sprite in sprites)
             {
                 spriteDic.Add(sprite.name, sprite);
             }
+
+            var animations = Resources.LoadAll<RuntimeAnimatorController>(AnimationResourcesPath);
+            foreach (var anim in animations)
+            {
+                animDic.Add(anim.name, anim);
+            }
         }
+
 
         private static void LoadData<T>(Dictionary<int, Data> dataDic, string jsonPath) where T : Data
         {
