@@ -1055,6 +1055,7 @@ MonoBehaviour:
   criticalDamage: 0
   effectHit: 0
   effectResistance: 0
+  animator: {fileID: 3419272698024072879}
   isDead: 0
 --- !u!114 &-2571103185468094933
 MonoBehaviour:

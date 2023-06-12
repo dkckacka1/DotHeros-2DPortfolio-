@@ -17,40 +17,16 @@ namespace Portfolio.Battle
         int playerNum = 1;
         int enemyNum = 1;
 
-        public void CreateStage(StageData stageData)
+        public void CreateStage(Stage stage)
         {
             foreach (var grid in enemyGrids)
             {
                 grid.unit = null;
             }
 
-            if (TryGetUnitinStageUnitID(stageData.EnemyUnit_1_ID, out Unit unit1))
+            for (int i = 0; i < stage.EnemyList.Count; i++)
             {
-                TryCreateBattleUnit(unit1, true, out BattleUnit battleUnit);
-                BattleManager.Instance.AddUnitinUnitList(battleUnit);
-            }
-
-            if (TryGetUnitinStageUnitID(stageData.EnemyUnit_2_ID, out Unit unit2))
-            {
-                TryCreateBattleUnit(unit2, true, out BattleUnit battleUnit);
-                BattleManager.Instance.AddUnitinUnitList(battleUnit);
-            }
-
-            if (TryGetUnitinStageUnitID(stageData.EnemyUnit_3_ID, out Unit unit3))
-            {
-                TryCreateBattleUnit(unit3, true, out BattleUnit battleUnit);
-                BattleManager.Instance.AddUnitinUnitList(battleUnit);
-            }
-
-            if (TryGetUnitinStageUnitID(stageData.EnemyUnit_4_ID, out Unit unit4))
-            {
-                TryCreateBattleUnit(unit4, true, out BattleUnit battleUnit);
-                BattleManager.Instance.AddUnitinUnitList(battleUnit);
-            }
-
-            if (TryGetUnitinStageUnitID(stageData.EnemyUnit_5_ID, out Unit unit5))
-            {
-                TryCreateBattleUnit(unit5, true, out BattleUnit battleUnit);
+                TryCreateBattleUnit(stage.EnemyList[i], true, out BattleUnit battleUnit);
                 BattleManager.Instance.AddUnitinUnitList(battleUnit);
             }
         }

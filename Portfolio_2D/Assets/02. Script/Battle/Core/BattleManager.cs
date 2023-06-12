@@ -19,15 +19,15 @@ namespace Portfolio.Battle
         private Dictionary<BattleState, UnityEvent> StateEventHandlerDic = new Dictionary<BattleState, UnityEvent>();
 
         [SerializeField] private BattleState battleState = BattleState.NONE;
-        public Queue<StageData> stageDatas = new Queue<StageData>();
-        public StageData currentStageData;
+        public Queue<Stage> stageDatas = new Queue<Stage>();
+        public Stage currentStage;
         public bool isTest = false;
 
         //===========================================================
         // SceneLoaderData
         //===========================================================
         public List<Unit> userChoiceUnits;   // 유저가 설정한 유닛
-        public MapData currentMapData;  // 유적가 선택한 맵
+        public Map currentMap;  // 유적가 선택한 맵
 
         //===========================================================
         // Property & Singleton
@@ -59,44 +59,23 @@ namespace Portfolio.Battle
 
         private void Start()
         {
-            SetMapData();
+            SetMap();
             SetUserUnit();
-            currentStageData = stageDatas.Dequeue();
-
-            battleUI.Initialize(currentMapData);
+            currentStage = stageDatas.Dequeue();
+            battleUI.Initialize(currentMap);
             SetStage();
         }
 
         //===========================================================
         // BattleInit
         //===========================================================
-        private void SetMapData()
+
+        private void SetMap()
         {
-            currentMapData = SceneLoader.userChocieMapData;
-            if (currentMapData.stage_1_ID != -1)
+            this.currentMap = SceneLoader.userChocieMap;
+            for (int i = 0; i < currentMap.StageList.Count; i++)
             {
-                GameManager.Instance.TryGetData(currentMapData.stage_1_ID, out StageData stageData);
-                stageDatas.Enqueue(stageData);
-            }
-            if (currentMapData.stage_2_ID != -1)
-            {
-                GameManager.Instance.TryGetData(currentMapData.stage_2_ID, out StageData stageData);
-                stageDatas.Enqueue(stageData);
-            }
-            if (currentMapData.stage_3_ID != -1)
-            {
-                GameManager.Instance.TryGetData(currentMapData.stage_3_ID, out StageData stageData);
-                stageDatas.Enqueue(stageData);
-            }
-            if (currentMapData.stage_4_ID != -1)
-            {
-                GameManager.Instance.TryGetData(currentMapData.stage_4_ID, out StageData stageData);
-                stageDatas.Enqueue(stageData);
-            }
-            if (currentMapData.stage_5_ID != -1)
-            {
-                GameManager.Instance.TryGetData(currentMapData.stage_5_ID, out StageData stageData);
-                stageDatas.Enqueue(stageData);
+                stageDatas.Enqueue(currentMap.StageList[i]);
             }
         }
 
@@ -174,8 +153,7 @@ namespace Portfolio.Battle
         public void SetStage()
         {
             SwitchBattleState(BattleState.SETSTAGE);
-            Debug.Log(currentStageData.ID);
-            BattleFactory.CreateStage(currentStageData);
+            BattleFactory.CreateStage(currentStage);
             BattleStart();
         }
 
@@ -196,7 +174,7 @@ namespace Portfolio.Battle
             if (this.stageDatas.Count() >= 1)
             {
                 BattleUIManager.ShowNextStageUI();
-                currentStageData = stageDatas.Dequeue();
+                currentStage = stageDatas.Dequeue();
                 SetStage();
             }
         }

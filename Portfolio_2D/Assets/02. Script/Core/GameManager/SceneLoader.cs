@@ -9,17 +9,17 @@ namespace Portfolio
     public static class SceneLoader 
     {
         public static List<Unit> userChoiceUnits;
-        public static MapData userChocieMapData;
+        public static Map userChocieMap;
 
         public static void LoadLobbyScene()
         {
             SceneManager.LoadScene("Lobby");
         }
 
-        public static void LoadBattleScene(List<Unit> userChoiceUnits, MapData userChocieMapData)
+        public static void LoadBattleScene(List<Unit> userChoiceUnits, Map choiceMap)
         {
             SceneLoader.userChoiceUnits = userChoiceUnits;
-            SceneLoader.userChocieMapData = userChocieMapData;
+            SceneLoader.userChocieMap = choiceMap;
             GameManager.Instance.StartCoroutine(LoadBattleSceneAsync());
         }
 

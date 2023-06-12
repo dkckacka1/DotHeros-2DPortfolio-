@@ -12,6 +12,8 @@ namespace Portfolio
     {
         private UnitData data;
         private UserUnitData userUnitData;
+        private int? designatedLevel;
+        private int? DesignatedGrade;
 
         public ActiveSkill basicAttackSkill;
         public ActiveSkill activeSkill_1;
@@ -50,7 +52,14 @@ namespace Portfolio
                 }
                 else
                 {
-                    return 1;
+                    if (designatedLevel != null)
+                    {
+                        return (int)designatedLevel;
+                    }
+                    else
+                    {
+                        return 1;
+                    }
                 }
             }
             set
@@ -68,7 +77,7 @@ namespace Portfolio
                 }
                 else
                 {
-                    Debug.LogWarning("userUnitData = null");
+                    designatedLevel = value;
                     return;
                 }
             }
@@ -83,7 +92,14 @@ namespace Portfolio
                 }
                 else
                 {
-                    return data.defaultGrade;
+                    if (DesignatedGrade != null)
+                    {
+                        return (int)DesignatedGrade;
+                    }
+                    else
+                    {
+                        return data.defaultGrade;
+                    }
                 }
             }
             set
@@ -94,7 +110,7 @@ namespace Portfolio
                 }
                 else
                 {
-                    Debug.LogWarning("userUnitData = null");
+                    DesignatedGrade = value;
                     return;
                 }
             }
@@ -400,6 +416,14 @@ namespace Portfolio
         public Unit(UnitData unitData)
         {
             this.data = unitData;
+            SetUnitData(unitData);
+        }
+
+        public Unit(UnitData unitData, int grade, int level)
+        {
+            this.data = unitData;
+            this.DesignatedGrade = grade;
+            this.designatedLevel = level;
             SetUnitData(unitData);
         }
 

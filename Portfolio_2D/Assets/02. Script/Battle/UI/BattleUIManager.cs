@@ -49,9 +49,9 @@ namespace Portfolio.Battle
             return skillUI;
         }
 
-        public void Initialize(MapData currentMapData)
+        public void Initialize(Map currentMap)
         {
-            mapInfoUI.SetMapInfo(currentMapData);
+            mapInfoUI.SetMapInfo(currentMap.MapData);
         }
 
         public void ShowNextStageUI()

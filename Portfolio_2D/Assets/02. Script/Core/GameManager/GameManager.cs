@@ -31,6 +31,7 @@ namespace Portfolio
         private Dictionary<int, Unit> unitDictionary = new Dictionary<int, Unit>();
         private Dictionary<int, Skill> skillDictionary = new Dictionary<int, Skill>();
         private Dictionary<int, Condition> conditionDictionary = new Dictionary<int, Condition>();
+        private Dictionary<int, Map> mapDictionary = new Dictionary<int, Map>();
         private Dictionary<string, RuntimeAnimatorController> animationDictionary = new Dictionary<string, RuntimeAnimatorController>();
 
         public bool isTest;
@@ -182,6 +183,18 @@ namespace Portfolio
             return true;
         }
 
+        public bool TryGetMap(int ID, out Map map)
+        {
+            if (!mapDictionary.ContainsKey(ID))
+            {
+                map = null;
+                return false;
+            }
+
+            map = mapDictionary[ID];
+            return true;
+        }
+
         #region 데이터를 형식으로 변환
 
         private void CreateGameSource()
@@ -189,7 +202,9 @@ namespace Portfolio
             LoadSkill();
             LoadUnit();
             LoadCondition();
+            LoadMap();
         }
+
 
         private void LoadUnit()
         {
@@ -235,6 +250,15 @@ namespace Portfolio
                 conditionDictionary.Add(data.ID, obj as Condition);
             }
         }
+
+        private void LoadMap()
+        {
+            foreach (var data in GetDatas<MapData>())
+            {
+                mapDictionary.Add(data.ID, new Map(data));
+            }
+        }
+
 
         public Sprite GetSprite(string spriteName)
         {

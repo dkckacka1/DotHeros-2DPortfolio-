@@ -60,6 +60,9 @@ namespace Portfolio.Battle
         [SerializeField] private float effectHit = 0f;
         [SerializeField] private float effectResistance = 0f;
 
+        [Header("UnitApprence")]
+        [SerializeField] Animator animator;
+
         [Header("UnitState)")]
         [SerializeField] private bool isDead = false;
 
@@ -145,6 +148,9 @@ namespace Portfolio.Battle
             criticalDamage = this.unit.CriticalDamage;
             effectHit = this.unit.EffectHit;
             effectResistance = this.unit.EffectResistance;
+
+            animator.runtimeAnimatorController = unit.animController;
+            animator.Play("IDLE");
 
             unitUI.SetBattleUnit(this);
 

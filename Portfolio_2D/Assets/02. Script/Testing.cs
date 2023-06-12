@@ -50,11 +50,11 @@ namespace Portfolio
         {
             if (GUI.Button(new Rect(10, 10, 100, 100), "전투 시작"))
             {
-                List<Unit> units = GameManager.CurrentUser.userUnitList;
+                List<Unit> units = GameManager.CurrentUser.userUnitList.OrderByDescending(unit => unit.UnitCurrentLevel).ThenByDescending(unit => unit.UnitGrade).Take(5).ToList();
 
-                GameManager.Instance.TryGetData<MapData>(500, out MapData mapData);
+                GameManager.Instance.TryGetMap(500, out Map map);
 
-                SceneLoader.LoadBattleScene(units, mapData);
+                SceneLoader.LoadBattleScene(units, map);
             }
 
             if (GUI.Button(new Rect(10, 120, 100, 100), "테스트용 유닛 넣기(1)"))

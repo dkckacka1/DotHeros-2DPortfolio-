@@ -6,6 +6,7 @@
     "stage_2_ID": 5001,
     "stage_3_ID": 5002,
     "stage_4_ID": 5003,
-    "stage_5_ID": -1
+    "stage_5_ID": -1,
+    "consumEnergy": 5
   }
 ]
