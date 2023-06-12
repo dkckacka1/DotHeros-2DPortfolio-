@@ -4,6 +4,7 @@ using Portfolio.Lobby.Summon;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 namespace Portfolio.Lobby
 {
@@ -15,8 +16,9 @@ namespace Portfolio.Lobby
         [SerializeField] SummonPanel summonPanel;
         [SerializeField] InventoryPanel inventoryPanel;
         [SerializeField] ShopPanel shopPanel;
-
         [SerializeField] UserInfoUI userInfoUI;
+
+        [SerializeField] LobbyHeroView[] mainHeros;
 
         private void Awake()
         {
@@ -29,6 +31,22 @@ namespace Portfolio.Lobby
             while (undoStack.Count >= 1)
             {
                 Undo();
+            }
+
+            ShowMainUnits();
+        }
+
+        public void ShowMainUnits()
+        {
+            var mainUnits = GameManager.CurrentUser.userUnitList.OrderByDescending(unit => unit.UnitCurrentLevel).ThenByDescending(unit => unit.UnitGrade).ToList();
+            for (int i = 0; i < mainHeros.Length; i++)
+            {
+                if (mainUnits.Count <= i)
+                {
+                    mainHeros[i].gameObject.SetActive(false);
+                }
+                mainHeros[i].gameObject.SetActive(true);
+                mainHeros[i].ShowUnit(mainUnits[i]);
             }
         }
 

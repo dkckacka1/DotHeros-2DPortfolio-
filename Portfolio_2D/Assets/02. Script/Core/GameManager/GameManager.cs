@@ -16,8 +16,12 @@ namespace Portfolio
         //===========================================================
         private static GameManager instance;
         public static GameManager Instance { get => instance; }
+
         private static ItemGenerator itemCreator;
         public static ItemGenerator ItemCreator { get => itemCreator; }
+
+        private static TimeChecker timeChecker;
+        public static TimeChecker TimeChecker { get => timeChecker; }
 
         //===========================================================
         // Dictionary
@@ -42,6 +46,7 @@ namespace Portfolio
             {
                 instance = this;
                 itemCreator = GetComponentInChildren<ItemGenerator>();
+                timeChecker = GetComponentInChildren<TimeChecker>();
                 DontDestroyOnLoad(this.gameObject);
             }
             else
