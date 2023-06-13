@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -13,24 +14,30 @@ namespace Portfolio.WorldMap
         public List<MapNode> nextNodeList = new List<MapNode>();
         [Header("NodeUI")]
         [SerializeField] Button nodeBtn;
+        [SerializeField] TextMeshProUGUI mapNameText;
         [SerializeField] RectTransform nodeLineParent;
         [SerializeField] GameObject NodeLinePrefab;
 
-        private Map nodeMap;
+        private Map map;
+        public Map Map { get => map; }
+        public bool HasNextMap => nextNodeList.Count != 0;
+        public bool HasPrevMap => prevNode != null;
+        public MapNode GetNextMapNode => HasNextMap ? nextNodeList[0] : null;
+        public MapNode GetPrevMapNode => HasPrevMap ? prevNode : null;
 
         private void Awake()
         {
-            //if (!GameManager.Instance.TryGetMap(nodeMapID, out nodeMap))
-            //{
-            //    Debug.Log("Map ID is Unvaild");
-            //}
+            if (GameManager.Instance.TryGetMap(nodeMapID, out map))
+            {
+                mapNameText.text = map.MapData.mapName;
+            }
         }
 
         private void Start()
         {
             foreach (var nextNode in nextNodeList)
             {
-                var nodeLine = Instantiate(NodeLinePrefab,this.transform.position,Quaternion.identity,nodeLineParent);
+                var nodeLine = Instantiate(NodeLinePrefab, this.transform.position, Quaternion.identity, nodeLineParent);
                 (nodeLine.transform as RectTransform).sizeDelta = new Vector2(Vector2.Distance(this.transform.position, nextNode.transform.position), (nodeLine.transform as RectTransform).sizeDelta.y);
                 nodeLine.transform.rotation = Quaternion.Euler(0, 0, Vector2.Angle(Vector2.right, nextNode.transform.position - this.transform.position));
                 nextNode.SetPrevNode(this);
@@ -46,20 +53,7 @@ namespace Portfolio.WorldMap
         {
             List<Unit> units = GameManager.CurrentUser.userUnitList.OrderByDescending(unit => unit.UnitCurrentLevel).ThenByDescending(unit => unit.UnitGrade).Take(5).ToList();
 
-            SceneLoader.LoadBattleScene(units, nodeMap);
-        }
-
-        public Vector2 GetContentNormalizePosition()
-        {
-            Vector2 normalizePos = new Vector2();
-
-            //Debug.Log((this.transform.parent.transform as RectTransform).rect);
-            Debug.Log(this.transform.position);
-            Debug.Log(this.transform.localPosition);
-            normalizePos.x = this.transform.localPosition.x / (this.transform.parent.transform as RectTransform).rect.width;
-            normalizePos.y = this.transform.localPosition.y / (this.transform.parent.transform as RectTransform).rect.height;
-
-            return normalizePos;
+            SceneLoader.LoadBattleScene(units, map);
         }
 
     }

@@ -10,7 +10,6 @@ namespace Portfolio.WorldMap
     public class WorldMapUIManager : MonoBehaviour
     {
         [SerializeField] ScrollRect worldMapScrollView;
-        [SerializeField] MapNode currentNode;
         [SerializeField] RectTransform currentPosArrow;
 
         [SerializeField] float scrollViewMoveTime = 5f;
@@ -24,54 +23,40 @@ namespace Portfolio.WorldMap
             }
         }
 
-        private void Start()
+        public void MoveMapNode(MapNode choiceMapNode)
         {
-            worldMapScrollView.verticalNormalizedPosition = 0;
-            worldMapScrollView.horizontalNormalizedPosition = 0;
+            StartCoroutine(ScrollViewContentMoveCoroutine(scrollViewMoveTime, choiceMapNode));
+            currentPosArrow.position = new Vector2((choiceMapNode.transform as RectTransform).position.x, (choiceMapNode.transform as RectTransform).position.y + (choiceMapNode.transform as RectTransform).sizeDelta.y * 0.5f);
         }
 
-        private IEnumerator ScrollViewContentMoveCoroutine(float time, float horizontalPoint, float verticalPoint)
+        private IEnumerator ScrollViewContentMoveCoroutine(float time, MapNode nextMapNode)
         {
             float timer = 0f;
-            float currentVertical = worldMapScrollView.verticalNormalizedPosition;
-            float currentHorizontal = worldMapScrollView.horizontalNormalizedPosition;
-            Debug.Log(currentHorizontal + " : " + currentVertical);
-            Debug.Log(horizontalPoint + " : " + verticalPoint);
+            var contentAnchoredPosition = worldMapScrollView.content.anchoredPosition;
+            var mapNodeAnchoredPosition = new Vector2(Mathf.Clamp((nextMapNode.transform as RectTransform).anchoredPosition.x * -1, worldMapScrollView.viewport.rect.width / 2 * -1, worldMapScrollView.viewport.rect.width / 2),
+                Mathf.Clamp((nextMapNode.transform as RectTransform).anchoredPosition.y * -1, worldMapScrollView.viewport.rect.height / 2 * -1, worldMapScrollView.viewport.rect.height / 2));
+            Vector2 contentMovePos = contentAnchoredPosition;
+
             while (timer <= 1f)
             {
                 timer += Time.deltaTime / time;
-                worldMapScrollView.horizontalNormalizedPosition = Mathf.Lerp(currentHorizontal, horizontalPoint, timer);
-                worldMapScrollView.verticalNormalizedPosition = Mathf.Lerp(currentVertical, verticalPoint, timer);
+                contentMovePos.x = Mathf.Lerp(contentAnchoredPosition.x, mapNodeAnchoredPosition.x, Mathf.Sin(timer * Mathf.PI * 0.5f));
+                contentMovePos.y = Mathf.Lerp(contentAnchoredPosition.y, mapNodeAnchoredPosition.y, Mathf.Sin(timer * Mathf.PI * 0.5f));
+                worldMapScrollView.content.anchoredPosition = contentMovePos;
                 yield return null;
             }
         }
         private void OnGUI()
         {
-            if (GUI.Button(new Rect(10, 10, 100, 100), "다음 노드 위치로 이동"))
+            if (GUI.Button(new Rect(10, 10, 100, 100), "현재 맵모드"))
             {
-                currentNode = currentNode.nextNodeList.First();
-                if (currentNode != null)
-                {
-                    var point = currentNode.GetContentNormalizePosition();
-                    StartCoroutine(ScrollViewContentMoveCoroutine(scrollViewMoveTime, point.x, point.y));
-                }
+                //Debug.Log(CurrentChoiceNode.GetContentNormalizePosition());
             }
 
-            if (GUI.Button(new Rect(110, 10, 100, 100), "이전 노드 위치로 이동"))
+            if (GUI.Button(new Rect(10, 110, 100, 100), "현재 컨텐츠 좌표"))
             {
-                currentNode = currentNode.prevNode;
-                if (currentNode != null)
-                {
-                    var point = currentNode.GetContentNormalizePosition();
-                    StartCoroutine(ScrollViewContentMoveCoroutine(scrollViewMoveTime, point.x, point.y));
-                }
-            }
-
-            if (GUI.Button(new Rect(10, 110, 100, 100), "현재 좌표 확인"))
-            {
-                float currentVertical = worldMapScrollView.verticalNormalizedPosition;
-                float currentHorizontal = worldMapScrollView.horizontalNormalizedPosition;
-                Debug.Log(currentHorizontal + " : " + currentVertical);
+                var pos = new Vector2(worldMapScrollView.horizontalNormalizedPosition, worldMapScrollView.verticalNormalizedPosition);
+                Debug.Log(pos);
             }
         }
     }

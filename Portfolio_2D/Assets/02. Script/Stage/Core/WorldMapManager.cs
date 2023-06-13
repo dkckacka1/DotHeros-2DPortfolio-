@@ -16,7 +16,18 @@ namespace Portfolio.WorldMap
 
         List<MapNode> worldNodeList = new List<MapNode>();
         MapNode currentUserChoiceNode;
-        public MapNode CurrentUserChoiceNode { get => currentUserChoiceNode; set => currentUserChoiceNode = value; }
+        public MapNode CurrentUserChoiceNode 
+        {
+            get
+            {
+                return currentUserChoiceNode;
+            }
+            set
+            {
+                worldMapUIManager.MoveMapNode(value);
+                currentUserChoiceNode = value;
+            }
+        }
         // TODO : 현재 노드맵을 통한 UI 변경 작업중
 
 
@@ -40,7 +51,34 @@ namespace Portfolio.WorldMap
 
         private void Start()
         {
-            currentUserChoiceNode = worldNodeList[0];
+            CurrentUserChoiceNode = worldNodeList[0];
+        }
+
+        private void OnGUI()
+        {
+            //if (GUI.Button(new Rect(110, 10, 100, 100), "현재 맵모드"))
+            //{
+            //    if (currentUserChoiceNode.HasNextMap)
+            //    {
+            //        CurrentUserChoiceNode = currentUserChoiceNode;
+            //    }
+            //}
+
+            if (GUI.Button(new Rect(110, 10, 100, 100), "다음 맵모드"))
+            {
+                if (currentUserChoiceNode.HasNextMap)
+                {
+                    CurrentUserChoiceNode = currentUserChoiceNode.GetNextMapNode;
+                }
+            }
+
+            if (GUI.Button(new Rect(110, 110, 100, 100), "이전 맵모드"))
+            {
+                if (currentUserChoiceNode.HasPrevMap)
+                {
+                    CurrentUserChoiceNode = currentUserChoiceNode.GetPrevMapNode;
+                }
+            }
         }
     }
 }
