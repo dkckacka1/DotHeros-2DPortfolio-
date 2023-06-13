@@ -49,11 +49,10 @@ namespace Portfolio.WorldMap
             this.prevNode = node;
         }
 
-        public void LoadNodeMap()
+        public void BTN_ONCLICK_ShowMapInfoUI(MapInfoUI mapInfoUI)
         {
-            List<Unit> units = GameManager.CurrentUser.userUnitList.OrderByDescending(unit => unit.UnitCurrentLevel).ThenByDescending(unit => unit.UnitGrade).Take(5).ToList();
-
-            SceneLoader.LoadBattleScene(units, map);
+            mapInfoUI.gameObject.SetActive(true);
+            mapInfoUI.ShowMapInfo(map);
         }
 
     }

@@ -55,7 +55,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c922286936c519d4fbba68ffed4f9aec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  unitPortraitImage: {fileID: 0}
+  unitPortraitImage: {fileID: 1093770797278287995}
   unitLevelText: {fileID: 1093770797795645959}
   starImages:
   - {fileID: 1093770798342522658}
