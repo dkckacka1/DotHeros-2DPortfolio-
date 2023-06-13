@@ -5,6 +5,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+using Portfolio.Lobby.Shop;
 
 namespace Portfolio.Lobby
 {
@@ -64,6 +65,11 @@ namespace Portfolio.Lobby
         public void ShowCanvas(Canvas canvas)
         {
             canvas.gameObject.SetActive(true);
+        }
+
+        public void LoadWorldMapScene()
+        {
+            SceneLoader.LoadWorldMapScene();
         }
 
         public void HideCanvas(Canvas canvas)

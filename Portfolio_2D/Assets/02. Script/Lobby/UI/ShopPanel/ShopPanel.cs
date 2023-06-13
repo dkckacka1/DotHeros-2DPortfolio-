@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Portfolio.Lobby
+namespace Portfolio.Lobby.Shop
 {
     public class ShopPanel : PanelUI
     {

@@ -109,6 +109,6 @@ namespace Portfolio
             return value < Random.Range(0, 100);
         }
 
-        
+
     }
 }

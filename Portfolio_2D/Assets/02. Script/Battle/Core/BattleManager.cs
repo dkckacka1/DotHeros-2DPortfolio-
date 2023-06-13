@@ -73,6 +73,7 @@ namespace Portfolio.Battle
         private void SetMap()
         {
             this.currentMap = SceneLoader.userChocieMap;
+            Debug.Log(currentMap);
             for (int i = 0; i < currentMap.StageList.Count; i++)
             {
                 stageDatas.Enqueue(currentMap.StageList[i]);

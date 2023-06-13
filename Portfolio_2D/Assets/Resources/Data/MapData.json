@@ -8,5 +8,15 @@
     "stage_4_ID": 5003,
     "stage_5_ID": -1,
     "consumEnergy": 5
+  },
+  {
+    "ID": 501,
+    "mapName": "막장 숲",
+    "stage_1_ID": 5004,
+    "stage_2_ID": 5005,
+    "stage_3_ID": 5006,
+    "stage_4_ID": 5007,
+    "stage_5_ID": -1,
+    "consumEnergy": 5
   }
 ]

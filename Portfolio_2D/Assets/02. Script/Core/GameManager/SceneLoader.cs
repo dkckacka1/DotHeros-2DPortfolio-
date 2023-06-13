@@ -16,6 +16,11 @@ namespace Portfolio
             SceneManager.LoadScene("Lobby");
         }
 
+        public static void LoadWorldMapScene()
+        {
+            SceneManager.LoadScene("WorldMap");
+        }
+
         public static void LoadBattleScene(List<Unit> userChoiceUnits, Map choiceMap)
         {
             SceneLoader.userChoiceUnits = userChoiceUnits;
