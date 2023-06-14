@@ -410,6 +410,13 @@ namespace Portfolio
             }
         }
 
+        public int battlePower
+        {
+            get
+            {
+                return (int)(AttackPoint + DefencePoint);
+            }
+        }
         //===========================================================
         // SetUnit
         //===========================================================

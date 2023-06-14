@@ -16,14 +16,17 @@ namespace Portfolio.UI
         [SerializeField] TextMeshProUGUI unitLevelText;
         [SerializeField] List<Image> starImages = new List<Image>();
 
-        public void Init(Unit unit)
+        public Unit CurrentUnit { get => currentUnit; }
+
+        public void Init(Unit unit, bool isShowLevelText = true, bool isShowGradeImage = true)
         {
             this.currentUnit = unit;
             unitPortraitImage.sprite = unit.portraitImage;
             unitLevelText.text = unit.UnitCurrentLevel.ToString();
+            unitLevelText.gameObject.SetActive(isShowLevelText);
             for (int i = 0; i < 5; i++)
             {
-                starImages[i].gameObject.SetActive(i < unit.UnitGrade);
+                starImages[i].gameObject.SetActive(i < unit.UnitGrade && isShowGradeImage);
             }
         }
 

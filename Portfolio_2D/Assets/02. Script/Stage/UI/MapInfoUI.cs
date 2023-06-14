@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using Portfolio.UI;
+using System.Linq;
 
 namespace Portfolio.WorldMap
 {
@@ -31,7 +32,19 @@ namespace Portfolio.WorldMap
         public void ShowMapInfo(Map map)
         {
             mapNameText.text = map.MapData.mapName;
-            // TODO : 맵 인포의 몬스터 종류 불러오기
+            var monsterUnitList = map.GetMapUnitList();
+            for (int i = 0; i < unitSlotList.Count; i++)
+            {
+                if (monsterUnitList.Count <= i)
+                {
+                    unitSlotList[i].gameObject.SetActive(false);
+                    continue;
+                }
+
+                unitSlotList[i].Init(monsterUnitList[i], false, false);
+                unitSlotList[i].gameObject.SetActive(true);
+            }
+
             consumEnergyText.text = $"X {map.MapData.consumEnergy}";
         }
 

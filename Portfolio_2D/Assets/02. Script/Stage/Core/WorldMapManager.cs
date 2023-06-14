@@ -56,14 +56,6 @@ namespace Portfolio.WorldMap
 
         private void OnGUI()
         {
-            //if (GUI.Button(new Rect(110, 10, 100, 100), "ÇöÀç ¸Ê¸ðµå"))
-            //{
-            //    if (currentUserChoiceNode.HasNextMap)
-            //    {
-            //        CurrentUserChoiceNode = currentUserChoiceNode;
-            //    }
-            //}
-
             if (GUI.Button(new Rect(110, 10, 100, 100), "´ÙÀ½ ¸Ê¸ðµå"))
             {
                 if (currentUserChoiceNode.HasNextMap)
@@ -79,6 +71,11 @@ namespace Portfolio.WorldMap
                     CurrentUserChoiceNode = currentUserChoiceNode.GetPrevMapNode;
                 }
             }
+        }
+
+        public void ReturnToLobby()
+        {
+            SceneLoader.LoadLobbyScene();
         }
     }
 }

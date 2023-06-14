@@ -46,18 +46,5 @@ namespace Portfolio.WorldMap
                 yield return null;
             }
         }
-        private void OnGUI()
-        {
-            if (GUI.Button(new Rect(10, 10, 100, 100), "ÇöÀç ¸Ê¸ðµå"))
-            {
-                //Debug.Log(CurrentChoiceNode.GetContentNormalizePosition());
-            }
-
-            if (GUI.Button(new Rect(10, 110, 100, 100), "ÇöÀç ÄÁÅÙÃ÷ ÁÂÇ¥"))
-            {
-                var pos = new Vector2(worldMapScrollView.horizontalNormalizedPosition, worldMapScrollView.verticalNormalizedPosition);
-                Debug.Log(pos);
-            }
-        }
     }
 }

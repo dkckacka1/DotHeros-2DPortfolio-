@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
+using System;
 
 namespace Portfolio
 {
@@ -41,6 +43,38 @@ namespace Portfolio
             {
                 stageList.Add(new Stage(stageData5));
             }
+        }
+
+        public List<Unit> GetMapUnitList()
+        {
+            List<Unit> mapEnemyList = new List<Unit>();
+
+            foreach (var stage in stageList)
+            {
+                mapEnemyList.AddRange(stage.EnemyList);
+            }
+
+            List<int> unitIDList = new List<int>();
+            var enemyListDis = mapEnemyList.Where((unit) => 
+            {
+
+                if (unitIDList.Contains(unit.Data.ID))
+                {
+                    return false;
+                }
+                else
+                {
+                    unitIDList.Add(unit.Data.ID);
+                    return true;
+                }
+            }).ToList();
+
+            return enemyListDis;
+        }
+
+        private bool test(Unit arg)
+        {
+            throw new NotImplementedException();
         }
     }
 }
