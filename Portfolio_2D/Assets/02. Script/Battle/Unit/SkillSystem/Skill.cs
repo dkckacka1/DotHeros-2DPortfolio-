@@ -12,10 +12,12 @@ namespace Portfolio.skill
         protected SkillData skillData;
 
         public SkillData GetData => skillData;
+        public Sprite skillSprite;
 
         public Skill(SkillData skillData)
         {
             this.skillData = skillData;
+            this.skillSprite = GameManager.Instance.GetSprite(skillData.skillIconSpriteName);
         }
 
         public virtual void Action(object sender, SkillActionEventArgs e)

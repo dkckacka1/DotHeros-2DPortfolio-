@@ -25,10 +25,6 @@ namespace Portfolio.Battle
         {
             float yPos = ((1 - normalizedYPos) * sequenceDefaultYPos) * -1;
             (targetSequenceUI.transform as RectTransform).anchoredPosition = new Vector2(0, yPos);
-            ////targetSequenceUI.transform.position = new Vector3(xPos, yPos);
-            ////Debug.Log(targetSequenceUI.transform.position);
-            //targetSequenceUI.transform.localPosition = new Vector3(0, yPos);
-            //Debug.Log(targetSequenceUI.transform.position);
         }
     }
 

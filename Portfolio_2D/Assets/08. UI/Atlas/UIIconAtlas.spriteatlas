@@ -6,7 +6,7 @@ SpriteAtlas:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: IconAtlas
+  m_Name: UIIconAtlas
   m_EditorData:
     serializedVersion: 2
     textureSettings:
@@ -1408,5 +1408,5 @@ SpriteAtlas:
   - icon_color_ad_00
   - equip_stone
   m_RenderDataMap: {}
-  m_Tag: IconAtlas
+  m_Tag: UIIconAtlas
   m_IsVariant: 0

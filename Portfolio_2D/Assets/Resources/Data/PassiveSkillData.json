@@ -4,6 +4,7 @@
     "skillClassName": "TestPassiveSkill",
     "skillName": "테스트용 패시브 스킬1",
     "skillDesc": "테스트용 패시브 스킬1",
+    "skillIconSpriteName": "emerald (6)",
     "skillType": 1,
     "isAllAlly": false,
     "isAllEnemy": false,

@@ -5,6 +5,7 @@ namespace Portfolio.skill
         public string skillClassName;
         public string skillName;
         public string skillDesc;
+        public string skillIconSpriteName;
 
         public SkillType skillType;
 

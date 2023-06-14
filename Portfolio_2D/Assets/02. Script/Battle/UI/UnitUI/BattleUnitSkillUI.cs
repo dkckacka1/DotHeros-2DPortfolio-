@@ -18,6 +18,9 @@ namespace Portfolio.Battle
         [SerializeField] Button activeSkill_1_ActionBtn;
         [SerializeField] Button activeSkill_2_ActionBtn;
         [SerializeField] Button actionBtn;
+        [SerializeField] Image basicAttackSkillImage;
+        [SerializeField] Image activeSkill_1_Image;
+        [SerializeField] Image activeSkill_2_Image;
         [SerializeField] TextMeshProUGUI skillCoolTime_1_Text;
         [SerializeField] TextMeshProUGUI skillCoolTime_2_Text;
 
@@ -31,15 +34,25 @@ namespace Portfolio.Battle
         {
             this.battleUnit = battleUnit;
 
+            basicAttackSkillImage.sprite = battleUnit.Unit.basicAttackSkill.skillSprite;
+
             if (battleUnit.Unit.activeSkill_1 == null)
             {
                 activeSkill_1_ActionBtn.gameObject.SetActive(false);
+            }
+            else
+            {
+                activeSkill_1_Image.sprite = battleUnit.Unit.activeSkill_1.skillSprite;
             }
 
 
             if (battleUnit.Unit.activeSkill_2 == null)
             {
                 activeSkill_2_ActionBtn.gameObject.SetActive(false);
+            }
+            else
+            {
+                activeSkill_2_Image.sprite = battleUnit.Unit.activeSkill_2.skillSprite;
             }
         }
 

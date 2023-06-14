@@ -24,6 +24,7 @@ namespace Portfolio.Lobby.Hero
             }
 
             this.gameObject.SetActive(true);
+            skillImage.sprite = skill.skillSprite;
             skillTypeText.text = (skill.GetData.skillType == SkillType.ActiveSkill) ? "액티브 스킬" : "패시브 스킬";
             skillLevelText.text = "레벨 " + skillLevel.ToString();
             skillNameText.text = skill.GetData.skillName;

@@ -6,6 +6,7 @@
   "gold": 0,
   "diamond": 0,
   "energy": 0,
+  "ClearHighestMapID": 500,
   "maxUnitListCount": 30,
   "unitDataList": [
     {
@@ -2036,12 +2037,11 @@
       "ID": 0
     },
     {
-      "$type": "Portfolio.AmuletData, Assembly-CSharp",
-      "criticalPercent": 0.09,
-      "criticalDamage": 0.09,
+      "$type": "Portfolio.ArmorData, Assembly-CSharp",
+      "defencePoint": 2.0,
       "equipmentGrade": 0,
       "equipmentElementType": 0,
-      "equipmentType": 3,
+      "equipmentType": 2,
       "setType": 2,
       "reinforceCount": 0,
       "optionStat_1_Type": -1,
@@ -2056,12 +2056,13 @@
       "ID": 0
     },
     {
-      "$type": "Portfolio.ArmorData, Assembly-CSharp",
-      "defencePoint": 2.0,
+      "$type": "Portfolio.AmuletData, Assembly-CSharp",
+      "criticalPercent": 0.04,
+      "criticalDamage": 0.06,
       "equipmentGrade": 0,
       "equipmentElementType": 0,
-      "equipmentType": 2,
-      "setType": 2,
+      "equipmentType": 3,
+      "setType": 1,
       "reinforceCount": 0,
       "optionStat_1_Type": -1,
       "optionStat_1_value": 0.0,
