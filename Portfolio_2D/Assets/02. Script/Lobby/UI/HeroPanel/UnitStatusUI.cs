@@ -30,7 +30,7 @@ namespace Portfolio.Lobby.Hero
 
         public void ShowStat(Unit unit)
         {
-            unitPortraitImage.sprite = unit.portraitImage;
+            unitPortraitImage.sprite = unit.portraitSprite;
             unitNameText.text = unit.Data.unitName;
             unitGradeText.text = unit.UnitGrade.ToString() + " ¼º";
             unitCurrentLevelText.text = unit.UnitCurrentLevel.ToString();

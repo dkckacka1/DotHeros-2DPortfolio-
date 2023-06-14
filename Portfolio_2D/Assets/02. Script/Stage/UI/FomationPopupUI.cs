@@ -15,6 +15,9 @@ namespace Portfolio.WorldMap
 
         [SerializeField] List<FomationGrid> fomationGrids;
 
+        [SerializeField] TextMeshProUGUI mapNameText;
+        [SerializeField] TextMeshProUGUI consumEnergyText;
+
         Map choiceMap;
 
         private void Awake()
@@ -34,6 +37,12 @@ namespace Portfolio.WorldMap
         {
             choiceMap = map;
             ShowUnitList();
+            mapNameText.text = map.MapData.mapName;
+            consumEnergyText.text = "X "  + map.MapData.consumEnergy.ToString();
+            foreach (var grid in fomationGrids)
+            {
+                grid.ReShow();
+            }
             this.gameObject.SetActive(true);
         }
 
@@ -60,6 +69,11 @@ namespace Portfolio.WorldMap
             foreach (var grid in fomationGrids)
             {
                 userChoiceList.Add(grid.GetCurrentUnit);
+            }
+
+            if (userChoiceList.Count == 0)
+            {
+                return;
             }
 
             SceneLoader.LoadBattleScene(userChoiceList, choiceMap);

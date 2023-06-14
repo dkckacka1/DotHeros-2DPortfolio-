@@ -49,6 +49,7 @@ SpriteAtlas:
     - {fileID: 2800000, guid: b9806960dee797445acf51345f6eca84, type: 3}
     - {fileID: 2800000, guid: 68a06039cae2b444cab4e8885fb67081, type: 3}
     - {fileID: 2800000, guid: ae980586f52ed994baf53e9a23090841, type: 3}
+    - {fileID: 2800000, guid: c59873c04ab09de4fa40eb1256b5d9cd, type: 3}
     bindAsDefault: 1
     isAtlasV2: 0
     cachedData: {fileID: 0}
@@ -65,6 +66,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: c45f4e805a75b4de4a1c5bf3471587dc, type: 3}
   - {fileID: 21300000, guid: 5626189079a3f462d85f1eee37371bbe, type: 3}
   - {fileID: 21300000, guid: 4c8a4bb0ec309477db5dbd0bd58666ea, type: 3}
+  - {fileID: 21300000, guid: c59873c04ab09de4fa40eb1256b5d9cd, type: 3}
   - {fileID: 21300000, guid: 03a507e0a3ea6477fb265eab8b0aa093, type: 3}
   - {fileID: 21300000, guid: 9ad0c7e01f6b8448e887bdf16932ba60, type: 3}
   - {fileID: 21300000, guid: e6f468f0f2317498fa03405a1517b00b, type: 3}
@@ -346,6 +348,7 @@ SpriteAtlas:
   - btn_circle_01_purple
   - frame_cardframe_02_back_blue
   - slider_icontype_02_frame
+  - defaultCircle
   - slider_icontype_03_fill_area
   - slider_edgetype_03_frame
   - frame_stageframe_00_s1

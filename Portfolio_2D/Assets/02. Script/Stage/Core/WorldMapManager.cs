@@ -53,24 +53,24 @@ namespace Portfolio.WorldMap
             CurrentUserChoiceNode = worldNodeList[0];
         }
 
-        private void OnGUI()
-        {
-            if (GUI.Button(new Rect(110, 10, 100, 100), "다음 맵모드"))
-            {
-                if (currentUserChoiceNode.HasNextMap)
-                {
-                    CurrentUserChoiceNode = currentUserChoiceNode.GetNextMapNode;
-                }
-            }
+        //private void OnGUI()
+        //{
+        //    if (GUI.Button(new Rect(110, 10, 100, 100), "다음 맵모드"))
+        //    {
+        //        if (currentUserChoiceNode.HasNextMap)
+        //        {
+        //            CurrentUserChoiceNode = currentUserChoiceNode.GetNextMapNode;
+        //        }
+        //    }
 
-            if (GUI.Button(new Rect(110, 110, 100, 100), "이전 맵모드"))
-            {
-                if (currentUserChoiceNode.HasPrevMap)
-                {
-                    CurrentUserChoiceNode = currentUserChoiceNode.GetPrevMapNode;
-                }
-            }
-        }
+        //    if (GUI.Button(new Rect(110, 110, 100, 100), "이전 맵모드"))
+        //    {
+        //        if (currentUserChoiceNode.HasPrevMap)
+        //        {
+        //            CurrentUserChoiceNode = currentUserChoiceNode.GetPrevMapNode;
+        //        }
+        //    }
+        //}
 
         public void ReturnToLobby()
         {

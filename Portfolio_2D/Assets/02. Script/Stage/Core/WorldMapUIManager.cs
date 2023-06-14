@@ -11,8 +11,13 @@ namespace Portfolio.WorldMap
     {
         [SerializeField] ScrollRect worldMapScrollView;
         [SerializeField] RectTransform currentPosArrow;
-
         [SerializeField] float scrollViewMoveTime = 5f;
+
+        [Header("Node")]
+        [SerializeField] RectTransform nodeLineParent;
+        public RectTransform NodeLineParent => nodeLineParent;
+        [SerializeField] RectTransform nodeLinePrefab;
+        public RectTransform NodeLinePrefab => nodeLinePrefab;
 
         public ScrollRect WorldMapScrollView { get => worldMapScrollView; }
         public MapNode CurrentChoiceNode

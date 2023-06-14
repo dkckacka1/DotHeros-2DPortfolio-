@@ -47,6 +47,46 @@ namespace Portfolio.Battle
             return false;
         }
 
+        public void CreateUserUnit(List<Unit> unitList)
+        {
+            for (int i = 0; i < 5; i++)
+            {
+                if (unitList[i] == null)
+                {
+                    continue;
+                }
+
+                var battleUnit = CreateBattleUnit(unitList[i], playerGrids[i], false);
+
+                if (battleUnit != null)
+                {
+                    BattleManager.Instance.AddUnitinUnitList(battleUnit);
+                }
+            }
+        }
+
+        private BattleUnit CreateBattleUnit(Unit unit, GridPosition grid, bool isEnemy)
+        {
+            BattleUnit battleUnitPrefab;
+
+            if (!isEnemy)
+            {
+                battleUnitPrefab = playerBattleUnitPrefab;
+            }
+            else
+            {
+                battleUnitPrefab = enemyBattleUnitPrefab;
+            }
+
+
+            BattleUnit battleUnit;
+            battleUnit = Instantiate(battleUnitPrefab, grid.transform);
+            battleUnit.SetUnit(unit);
+            grid.unit = battleUnit;
+
+            return battleUnit;
+        }
+
         public bool TryCreateBattleUnit(Unit unit, bool isEnemy, out BattleUnit battleUnit)
         {
             List<GridPosition> gridList = null;

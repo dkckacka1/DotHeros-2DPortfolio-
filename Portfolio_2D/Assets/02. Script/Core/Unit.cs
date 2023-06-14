@@ -34,7 +34,7 @@ namespace Portfolio
         //===========================================================
         // Apparence
         //===========================================================
-        public Sprite portraitImage;
+        public Sprite portraitSprite;
         public RuntimeAnimatorController animController;
 
         //===========================================================
@@ -451,7 +451,7 @@ namespace Portfolio
 
         private void SetUnitData(UnitData unitData)
         {
-            portraitImage = GameManager.Instance.GetSprite(this.data.portraitImageName);
+            portraitSprite = GameManager.Instance.GetSprite(this.data.portraitImageName);
             animController = GameManager.Instance.GetAnimController(this.data.animationName);
             GameManager.Instance.TryGetSkill(unitData.basicAttackSKillID, out basicAttackSkill);
             GameManager.Instance.TryGetSkill(unitData.activeSkillID_1, out activeSkill_1);

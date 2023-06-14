@@ -16,6 +16,7 @@ namespace Portfolio.WorldMap
         public Unit CurrentUnit => mineSlot.CurrentUnit;
 
         private bool isSelect = false;
+        public bool IsSelect => isSelect;
 
         private void Awake()
         {

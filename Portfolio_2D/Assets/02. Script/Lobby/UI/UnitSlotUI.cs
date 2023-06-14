@@ -20,8 +20,14 @@ namespace Portfolio.UI
 
         public void Init(Unit unit, bool isShowLevelText = true, bool isShowGradeImage = true)
         {
+            if (unit == null)
+            {
+                currentUnit = null;
+                return;
+            }
+
             this.currentUnit = unit;
-            unitPortraitImage.sprite = unit.portraitImage;
+            unitPortraitImage.sprite = unit.portraitSprite;
             unitLevelText.text = unit.UnitCurrentLevel.ToString();
             unitLevelText.gameObject.SetActive(isShowLevelText);
             for (int i = 0; i < 5; i++)

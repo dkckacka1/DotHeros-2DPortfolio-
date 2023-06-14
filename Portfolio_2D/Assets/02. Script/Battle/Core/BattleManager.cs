@@ -83,13 +83,7 @@ namespace Portfolio.Battle
         private void SetUserUnit()
         {
             userChoiceUnits = SceneLoader.userChoiceUnits;
-            foreach (Unit userUnit in userChoiceUnits)
-            {
-                if (battleFactory.TryCreateBattleUnit(userUnit, false, out BattleUnit battleUnit))
-                {
-                    AddUnitinUnitList(battleUnit);
-                }
-            }
+            battleFactory.CreateUserUnit(userChoiceUnits);
         }
 
         //===========================================================

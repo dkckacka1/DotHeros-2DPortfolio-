@@ -82,7 +82,7 @@ namespace Portfolio.Battle
         public void CreateSequenceUI(BattleUnit battleUnit)
         {
             unitSequenceUI = BattleManager.BattleUIManager.CreateUnitSequenceUI();
-            unitSequenceUI.SetNameText(battleUnit.Unit.Data.unitName);
+            unitSequenceUI.ShowUnit(battleUnit);
         }
 
         public void CreateSkillUI(BattleUnit battleUnit)

@@ -15,8 +15,7 @@ namespace Portfolio.WorldMap
         [Header("NodeUI")]
         [SerializeField] Button nodeBtn;
         [SerializeField] TextMeshProUGUI mapNameText;
-        [SerializeField] RectTransform nodeLineParent;
-        [SerializeField] GameObject NodeLinePrefab;
+        [SerializeField] Image RockImage;
 
         private Map map;
         public Map Map { get => map; }
@@ -35,9 +34,15 @@ namespace Portfolio.WorldMap
 
         private void Start()
         {
+            bool isClear = GameManager.CurrentUser.userData.ClearHighestMapID >= nodeMapID;
+            nodeBtn.interactable = isClear;
+            RockImage.gameObject.SetActive(!isClear);
+
             foreach (var nextNode in nextNodeList)
             {
-                var nodeLine = Instantiate(NodeLinePrefab, this.transform.position, Quaternion.identity, nodeLineParent);
+                RectTransform nodeLinePrefab = WorldMapManager.WorldMapUIManager.NodeLinePrefab;
+                RectTransform nodeLineParent = WorldMapManager.WorldMapUIManager.NodeLineParent;
+                RectTransform nodeLine = Instantiate(nodeLinePrefab, this.transform.position, Quaternion.identity, nodeLineParent);
                 (nodeLine.transform as RectTransform).sizeDelta = new Vector2(Vector2.Distance(this.transform.position, nextNode.transform.position), (nodeLine.transform as RectTransform).sizeDelta.y);
                 nodeLine.transform.rotation = Quaternion.Euler(0, 0, Vector2.Angle(Vector2.right, nextNode.transform.position - this.transform.position));
                 nextNode.SetPrevNode(this);
@@ -47,6 +52,11 @@ namespace Portfolio.WorldMap
         public void SetPrevNode(MapNode node)
         {
             this.prevNode = node;
+        }
+
+        public void BTN_ONCLICK_SetMapNode()
+        {
+            WorldMapManager.Instance.CurrentUserChoiceNode = this;
         }
 
         public void BTN_ONCLICK_ShowMapInfoUI(MapInfoUI mapInfoUI)

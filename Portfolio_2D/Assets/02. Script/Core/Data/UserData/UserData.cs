@@ -13,6 +13,7 @@ namespace Portfolio
         public int gold;
         public int diamond;
         public int energy;
+        public int ClearHighestMapID = 500;
 
         // 유닛 부문
         public int maxUnitListCount = 30;

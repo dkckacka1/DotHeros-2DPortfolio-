@@ -4328,7 +4328,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 746ddb27729505e45a986432430ba99f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  logCount: 5
+  logCount: 3
   logText: {fileID: 1045786149}
 --- !u!1 &2065650677
 GameObject:

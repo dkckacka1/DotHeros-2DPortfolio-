@@ -1,6 +1,7 @@
 using Portfolio.UI;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -10,10 +11,32 @@ namespace Portfolio.WorldMap
     {
         [SerializeField] UnitSlotUI unitSlotUI;
         [SerializeField] FomationTargetUnitUI fomationTargetSlotUI;
+        [SerializeField] TextMeshProUGUI unitNameText;
+        [SerializeField] TextMeshProUGUI emptyLabel;
+        [SerializeField] GameObject btnLayout;
 
         FomationSlotUI currentFomationSlotUI;
 
         public Unit GetCurrentUnit => unitSlotUI.CurrentUnit;
+
+        public void ReShow()
+        {
+            ShowUnit(GetCurrentUnit);
+        }
+
+        public void ShowUnit(Unit unit)
+        {
+            bool isUnit = unit != null;
+            emptyLabel.gameObject.SetActive(!isUnit);
+            unitNameText.gameObject.SetActive(isUnit);
+            unitSlotUI.gameObject.SetActive(isUnit);
+
+            if (isUnit)
+            {
+                unitSlotUI.Init(unit);
+                unitNameText.text = unit.Data.unitName;
+            }
+        }
 
         public void OnDrop(PointerEventData eventData)
         {
@@ -31,9 +54,29 @@ namespace Portfolio.WorldMap
                     currentFomationSlotUI.Select();
                 }
 
-                unitSlotUI.Init(fomationTargetSlotUI.SelectUnit);
-                unitSlotUI.gameObject.SetActive(true);
+                Unit selectUnit = fomationTargetSlotUI.SelectUnit;
+
+                ShowUnit(selectUnit);
             }
+        }
+
+        public void BTN_ONCLICK_SetBtn()
+        {
+            if (GetCurrentUnit == null) return;
+
+            btnLayout.gameObject.SetActive(!btnLayout.gameObject.activeInHierarchy);
+        }
+
+        public void BTN_ONCLICK_DisableUnit()
+        {
+            if (GetCurrentUnit == null) return;
+
+            currentFomationSlotUI.UnSelect();
+            currentFomationSlotUI = null;
+            unitSlotUI.Init(null);
+            ReShow();
+
+            btnLayout.gameObject.SetActive(false);
         }
     }
 

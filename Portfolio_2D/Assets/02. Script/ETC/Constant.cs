@@ -13,6 +13,8 @@ namespace Portfolio
         public static readonly Color rareColor = new Color(0.3f, 0.3f, 1, 1);
         public static readonly Color uniqueColor = new Color(1, 1, 0, 1);
         public static readonly Color legendaryColor = new Color(1, 0.5f, 0, 1);
+        public static readonly Color playerColor = new Color(0, 1, 0, 1);
+        public static readonly Color enemyColor = new Color(1, 0, 0, 1);
 
         //===========================================================
         // RandomValue
