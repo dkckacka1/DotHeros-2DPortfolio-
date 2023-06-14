@@ -15,6 +15,7 @@ namespace Portfolio.WorldMap
         [SerializeField] TextMeshProUGUI consumEnergyText;
 
         List<UnitSlotUI> unitSlotList = new List<UnitSlotUI>();
+        Map choiceMap;
 
         private void Awake()
         {
@@ -31,6 +32,7 @@ namespace Portfolio.WorldMap
 
         public void ShowMapInfo(Map map)
         {
+            choiceMap = map;
             mapNameText.text = map.MapData.mapName;
             var monsterUnitList = map.GetMapUnitList();
             for (int i = 0; i < unitSlotList.Count; i++)
@@ -48,9 +50,9 @@ namespace Portfolio.WorldMap
             consumEnergyText.text = $"X {map.MapData.consumEnergy}";
         }
 
-        public void LoadBattleScene()
+        public void BTN_ONCLICK_ReadyBattle(FomationPopupUI fomationPopupUI)
         {
-            // TODO : 전투 시작 만들기(포메이션 UI 만들기)
+            fomationPopupUI.ShowPopup(choiceMap);
         }
     }
 }

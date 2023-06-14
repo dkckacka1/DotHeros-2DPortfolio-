@@ -14,8 +14,8 @@ namespace Portfolio.Battle
         [SerializeField] List<GridPosition> playerGrids;
         [SerializeField] List<GridPosition> enemyGrids;
 
-        int playerNum = 1;
-        int enemyNum = 1;
+        int playerNum = -1;
+        int enemyNum = -1;
 
         public void CreateStage(Stage stage)
         {
@@ -66,11 +66,13 @@ namespace Portfolio.Battle
                 num = enemyNum++;
             }
 
-            if (gridList == null || battleUnitPrefab == null)
+            if (gridList == null || battleUnitPrefab == null || unit == null)
             {
                 battleUnit = null;
                 return false;
             }
+
+            // 유저에게서 받은 포메이션으로 유닛 생성 바꿔야함
 
             foreach (var grid in gridList)
             {

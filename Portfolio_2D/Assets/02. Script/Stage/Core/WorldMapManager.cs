@@ -28,7 +28,6 @@ namespace Portfolio.WorldMap
                 currentUserChoiceNode = value;
             }
         }
-        // TODO : 현재 노드맵을 통한 UI 변경 작업중
 
 
         private void Awake()

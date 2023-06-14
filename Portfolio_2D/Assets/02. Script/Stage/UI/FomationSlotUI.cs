@@ -9,7 +9,13 @@ namespace Portfolio.WorldMap
     public class FomationSlotUI : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
     {
         UnitSlotUI mineSlot;
-        [SerializeField] UnitSlotUI targetSlot;
+        [SerializeField] FomationTargetUnitUI targetUnitUI;
+
+        [SerializeField] GameObject SelectedUI;
+
+        public Unit CurrentUnit => mineSlot.CurrentUnit;
+
+        private bool isSelect = false;
 
         private void Awake()
         {
@@ -22,19 +28,39 @@ namespace Portfolio.WorldMap
 
         public void OnBeginDrag(PointerEventData eventData)
         {
-            targetSlot.Init(mineSlot.CurrentUnit, false, false);
-            targetSlot.gameObject.SetActive(true);
-            targetSlot.transform.position = eventData.position;
+            if (!isSelect)
+            {
+                targetUnitUI.UnitSlotUI.Init(mineSlot.CurrentUnit, false, false);
+                targetUnitUI.selectFomationSlotUI = this;
+                targetUnitUI.gameObject.SetActive(true);
+                targetUnitUI.transform.position = eventData.position;
+            }
         }
 
         public void OnDrag(PointerEventData eventData)
         {
-            targetSlot.transform.position = eventData.position;
+            if (!isSelect)
+            {
+                targetUnitUI.transform.position = eventData.position;
+            }
         }
 
         public void OnEndDrag(PointerEventData eventData)
         {
-            targetSlot.gameObject.SetActive(false);
+            targetUnitUI.selectFomationSlotUI = null;
+            targetUnitUI.gameObject.SetActive(false);
+        }
+
+        public void Select()
+        {
+            isSelect = true;
+            SelectedUI.gameObject.SetActive(true);
+        }
+
+        public void UnSelect()
+        {
+            isSelect = false;
+            SelectedUI.gameObject.SetActive(false);
         }
     }
 

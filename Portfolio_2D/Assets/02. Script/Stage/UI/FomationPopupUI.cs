@@ -13,6 +13,10 @@ namespace Portfolio.WorldMap
 
         List<UnitSlotUI> unitSlotList = new List<UnitSlotUI>();
 
+        [SerializeField] List<FomationGrid> fomationGrids;
+
+        Map choiceMap;
+
         private void Awake()
         {
             foreach (var unitSlotUI in unitScrollView.content.GetComponentsInChildren<UnitSlotUI>())
@@ -26,8 +30,9 @@ namespace Portfolio.WorldMap
             this.gameObject.SetActive(false);
         }
 
-        public void ShowPopup()
+        public void ShowPopup(Map map)
         {
+            choiceMap = map;
             ShowUnitList();
             this.gameObject.SetActive(true);
         }
@@ -46,7 +51,18 @@ namespace Portfolio.WorldMap
                 unitSlotList[i].Init(userUnitList[i]);
                 unitSlotList[i].gameObject.SetActive(true);
             }
+        }
 
+        public void BTN_ONCLICK_GotoBattle()
+        {
+            List<Unit> userChoiceList = new List<Unit>();
+
+            foreach (var grid in fomationGrids)
+            {
+                userChoiceList.Add(grid.GetCurrentUnit);
+            }
+
+            SceneLoader.LoadBattleScene(userChoiceList, choiceMap);
         }
     }
 }
