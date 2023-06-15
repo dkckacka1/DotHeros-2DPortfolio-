@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 7960068135157993825}
   - component: {fileID: 2648879711716426105}
   m_Layer: 5
-  m_Name: BtnType_2
+  m_Name: BtnType_Square_Icon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

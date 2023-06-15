@@ -250,7 +250,6 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 335d8384c73174cff85bbe6ea068d95f, type: 3}
   - {fileID: 21300000, guid: c5616c84b14514750bd5bf1954c6a065, type: 3}
   - {fileID: 21300000, guid: dac5cf845653a4f689dbe9d871259451, type: 3}
-  - {fileID: 21300000, guid: 7d6941948494f46b6ab536505c248e91, type: 3}
   - {fileID: 21300000, guid: b0d6ce94f940b4df294c6906e02a50f3, type: 3}
   - {fileID: 21300000, guid: 71634da4af3bf40fa8fde62868ae36a2, type: 3}
   - {fileID: 21300000, guid: dccb42b4691c341c3a63ad5d35a58e4e, type: 3}
@@ -929,7 +928,6 @@ SpriteAtlas:
   - btn_icon_coupon
   - icon_itemicon_coin
   - btn_icon_blast
-  - icon_itemicon_potionpurple
   - icon_language_flag_chn
   - icon_white_arrow_skip
   - set_icon_equip_globe

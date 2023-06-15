@@ -14,8 +14,9 @@ namespace Portfolio.Lobby.Hero
         [SerializeField] TextMeshProUGUI skillLevelText;
         [SerializeField] TextMeshProUGUI skillNameText;
         [SerializeField] TextMeshProUGUI skillDescText;
+        [SerializeField] Button skillLevelUpBtn;
 
-        public void Init(Skill skill, int skillLevel)
+        public void Init(Skill skill, int skillLevel, bool showSkillLevelUpBtn = true)
         {
             if (skill == null)
             {
@@ -29,6 +30,14 @@ namespace Portfolio.Lobby.Hero
             skillLevelText.text = "·¹º§ " + skillLevel.ToString();
             skillNameText.text = skill.GetData.skillName;
             skillDescText.text = skill.GetData.skillDesc;
+            if (showSkillLevelUpBtn && skillLevel < 5)
+            {
+                skillLevelUpBtn.gameObject.SetActive(true);
+            }
+            else
+            {
+                skillLevelUpBtn.gameObject.SetActive(false);
+            }
         }
     }
 }

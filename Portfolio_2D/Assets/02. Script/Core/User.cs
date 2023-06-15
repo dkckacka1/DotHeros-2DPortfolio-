@@ -143,6 +143,18 @@ namespace Portfolio
             }
         }
 
+        public int GetConsumItemCount(int ID)
+        {
+            if(IsHaveComsumableItem(ID))
+            {
+                return UserConsumableItemDic[ID];
+            }
+            else
+            {
+                return 0;
+            }
+        }
+
         public bool IsHaveComsumableItem(int ID, int count = 1)
         {
             if (GameManager.Instance.IsData<ConsumableItemData>(ID))

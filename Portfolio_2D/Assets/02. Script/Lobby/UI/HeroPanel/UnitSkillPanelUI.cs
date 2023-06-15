@@ -10,6 +10,7 @@ namespace Portfolio.Lobby.Hero
         [SerializeField] UnitSkillUI activeSkilll_2_UI;
         [SerializeField] UnitSkillUI passiveSkill_1_UI;
         [SerializeField] UnitSkillUI passiveSkill_2_UI;
+        // TODO : 스킬 레벨업 팝업창 작업중
         private void OnEnable()
         {
             LobbyManager.UIManager.AddUndo(this);

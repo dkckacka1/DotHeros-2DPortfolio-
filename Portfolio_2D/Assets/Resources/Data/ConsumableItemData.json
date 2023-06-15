@@ -3,18 +3,24 @@
     "ID": 2000,
     "itemName": "경험치 포션(소)",
     "itemDesc": "선택 유닛이 경험치를 100 만큼 얻습니다.",
-    "itemIconSpriteName": "equip_potion_green_1"
+    "itemIconSpriteName": "Experience_potion_green_1"
   },
   {
     "ID": 2001,
     "itemName": "경험치 포션(중)",
     "itemDesc": "선택 유닛이 경험치를 500 만큼 얻습니다.",
-    "itemIconSpriteName": "equip_potion_green_2"
+    "itemIconSpriteName": "Experience_potion_green_2"
   },
   {
     "ID": 2002,
     "itemName": "경험치 포션(대)",
     "itemDesc": "선택 유닛이 경험치를 1,000 만큼 얻습니다.",
-    "itemIconSpriteName": "equip_potion_green_3"
+    "itemIconSpriteName": "Experience_potion_green_3"
+  },
+  {
+    "ID": 2003,
+    "itemName": "스킬 레벨업 포션",
+    "itemDesc": "무작위 스킬의 레벨이 1 오릅니다.(MAX 5레벨)",
+    "itemIconSpriteName": "SkillLevelUP_potion"
   }
 ]
