@@ -9,15 +9,23 @@ namespace Portfolio.WorldMap
 {
     public class WorldMapUIManager : MonoBehaviour
     {
+
+        [Header("User")]
+        [SerializeField] UserInfoUI userInfoUI;
+
+        [Header("WorldMap")]
         [SerializeField] ScrollRect worldMapScrollView;
         [SerializeField] RectTransform currentPosArrow;
         [SerializeField] float scrollViewMoveTime = 5f;
+        IEnumerator worldMapScrolling;
 
         [Header("Node")]
         [SerializeField] RectTransform nodeLineParent;
         public RectTransform NodeLineParent => nodeLineParent;
         [SerializeField] RectTransform nodeLinePrefab;
         public RectTransform NodeLinePrefab => nodeLinePrefab;
+        [SerializeField] RectTransform nodeArrowPrefab;
+        public RectTransform NodeArrowPrefab => nodeArrowPrefab;
 
         public ScrollRect WorldMapScrollView { get => worldMapScrollView; }
         public MapNode CurrentChoiceNode
@@ -28,9 +36,26 @@ namespace Portfolio.WorldMap
             }
         }
 
+        private void Start()
+        {
+            ShowUserResource();
+        }
+
+        public void ShowUserResource()
+        {
+            userInfoUI.Init(GameManager.CurrentUser);
+        }
+
         public void MoveMapNode(MapNode choiceMapNode)
         {
-            StartCoroutine(ScrollViewContentMoveCoroutine(scrollViewMoveTime, choiceMapNode));
+            if (worldMapScrolling != null)
+            {
+                StopCoroutine(worldMapScrolling);
+            }
+
+            worldMapScrolling = ScrollViewContentMoveCoroutine(scrollViewMoveTime, choiceMapNode);
+            StartCoroutine(worldMapScrolling);
+
             currentPosArrow.position = new Vector2((choiceMapNode.transform as RectTransform).position.x, (choiceMapNode.transform as RectTransform).position.y + (choiceMapNode.transform as RectTransform).sizeDelta.y * 0.5f);
         }
 
