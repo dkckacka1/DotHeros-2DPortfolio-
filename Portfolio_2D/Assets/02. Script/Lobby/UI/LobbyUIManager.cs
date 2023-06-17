@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 using Portfolio.Lobby.Shop;
+using System;
 
 namespace Portfolio.Lobby
 {
@@ -76,7 +77,18 @@ namespace Portfolio.Lobby
         {
             canvas.gameObject.SetActive(false);
         }
+        //===========================================================
+        // DataChangedEvent
+        //===========================================================
+        public event EventHandler unitChangedEvent;
+        public event EventHandler equipmentItemDataChangeEvent;
 
+        public void OnUnitChanged() => unitChangedEvent?.Invoke(this, EventArgs.Empty);
+        public void OnEquipmentItemChanged() => equipmentItemDataChangeEvent?.Invoke(this, EventArgs.Empty);
+
+        //===========================================================
+        // UndoSystem
+        //===========================================================
         public int UndoCount()
         {
             return undoStack.Count;

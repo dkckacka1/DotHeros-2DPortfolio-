@@ -36,9 +36,9 @@ namespace Portfolio.UI
             }
         }
 
-        public void SelectUnit(HeroPanelUI heroPanelUI)
+        public void HeroPanelSelectUnit()
         {
-            heroPanelUI.SelectUnit(currentUnit);
+            HeroPanelUI.SelectUnit = currentUnit;
         }
     } 
 }

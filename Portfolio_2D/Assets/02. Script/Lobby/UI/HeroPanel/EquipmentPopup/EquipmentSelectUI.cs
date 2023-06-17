@@ -29,13 +29,13 @@ namespace Portfolio.Lobby.Hero
         public void ShowImpossibleSelectImage(EquipmentItemData selectedData)
         {
             if (equipmentSlot.EquipmentData.equipmentType == selectedData.equipmentType)
-                // 기 선택한 아이템 데이타가 현재 슬롯의 아이템과 같을 경우
+            // 기 선택한 아이템 데이타가 현재 슬롯의 아이템과 같을 경우
             {
                 isSameEuqipmentType = true;
                 impossibleSelectImage.gameObject.SetActive(false);
             }
             else
-                // 기 선택한 아이템 데이타가 현재 슬롯의 아이템과 다를 경우
+            // 기 선택한 아이템 데이타가 현재 슬롯의 아이템과 다를 경우
             {
                 isSameEuqipmentType = false;
                 impossibleSelectImage.gameObject.SetActive(true);
@@ -64,8 +64,10 @@ namespace Portfolio.Lobby.Hero
 
             equipmentTooltipUI.ShowEquipmentTooltip(equipmentSlot.EquipmentData);
 
-            Vector2 tooltipPosition = new Vector2((this.transform as RectTransform).position.x - (this.transform as RectTransform).sizeDelta.x / 2, (this.transform as RectTransform).position.y + (this.transform as RectTransform).sizeDelta.y / 2);
+            Vector2 tooltipPosition = new Vector2((this.transform as RectTransform).position.x, (this.transform as RectTransform).position.y);
             (equipmentTooltipUI.transform as RectTransform).position = tooltipPosition;
+            Vector2 slotAnchoredPosition = new Vector2(-(this.transform as RectTransform).sizeDelta.x / 2, (this.transform as RectTransform).sizeDelta.y / 2);
+            (equipmentTooltipUI.transform as RectTransform).anchoredPosition += slotAnchoredPosition;
             //Debug.Log(this.transform.position + " : " + this.transform.localPosition);
             equipmentTooltipUI.gameObject.SetActive(true);
         }
@@ -77,12 +79,13 @@ namespace Portfolio.Lobby.Hero
             equipmentTooltipUI.gameObject.SetActive(false);
         }
 
-        public void ChoiceItem(HeroPanelUI heroPanelUI)
+        public void ChoiceItem(EquipmentListPopupUI equipmentListPopupUI)
         {
             if (!isSameEuqipmentType) return;
 
+            equipmentListPopupUI.UnChoiceList();
             isChoice = true;
-            heroPanelUI.ChoiceItem(ref isChoice, equipmentSlot.EquipmentData);
+            HeroPanelUI.ChoiceEquipmentItem = equipmentSlot.EquipmentData;
         }
 
         public void ShowSelectedUI()

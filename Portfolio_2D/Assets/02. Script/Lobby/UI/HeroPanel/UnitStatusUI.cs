@@ -1,4 +1,5 @@
 using Portfolio.UI;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -16,6 +17,7 @@ namespace Portfolio.Lobby.Hero
         [SerializeField] TextMeshProUGUI unitMaxLevelText;
         [SerializeField] Slider unitExperienceSlider;
         [SerializeField] TextMeshProUGUI unitExperienceText;
+        [SerializeField] RectTransform potionSlot;
 
         [Header("유닛 프로퍼티")]
         [SerializeField] TextMeshProUGUI unitAttackPointText;
@@ -28,8 +30,21 @@ namespace Portfolio.Lobby.Hero
         [SerializeField] TextMeshProUGUI unitEffectResText;
         [SerializeField] ItemSlotUI[] experiencePotionSlots;
 
-        public void ShowStat(Unit unit)
+        public void Init()
         {
+            LobbyManager.UIManager.unitChangedEvent += ShowStat;
+        }
+
+        private void OnDisable()
+        {
+            potionSlot.gameObject.SetActive(false);
+        }
+
+        public void ShowStat(object sender, EventArgs eventArgs)
+        {
+            Unit unit = HeroPanelUI.SelectUnit;
+            if (unit == null) return;
+
             unitPortraitImage.sprite = unit.portraitSprite;
             unitNameText.text = unit.Data.unitName;
             unitGradeText.text = unit.UnitGrade.ToString() + " 성";
@@ -53,5 +68,4 @@ namespace Portfolio.Lobby.Hero
             }
         }
     }
-
 }

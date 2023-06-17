@@ -1,3 +1,4 @@
+using Portfolio.skill;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -14,120 +15,149 @@ namespace Portfolio.Lobby.Hero
         [SerializeField] EquipmentReinforcePopupUI reinforcePopupUI;
         [SerializeField] EquipmentListPopupUI equipmentListPopupUI;
         [SerializeField] EquipmentTooltip equipmentTooltipUI;
-        [SerializeField] RectTransform potionSlotPanel;
+        [SerializeField] SkillLevelUpPopupUI skillLevelUpPopupUI;
 
-        Unit selectUnit;
-        EquipmentItemData selectEquipmentItem;
-        EquipmentItemType selectEquipmentItemType;
-        EquipmentItemData choiceEquipmentItem;
-
+        private static Unit selectUnit;
+        public static Unit SelectUnit
+        {
+            get
+            {
+                return selectUnit;
+            }
+            set
+            {
+                selectUnit = value;
+                LobbyManager.UIManager.OnUnitChanged();
+            }
+        }
+        private static EquipmentItemData selectEquipmentItem;
+        public static EquipmentItemData SelectEquipmentItem
+        {
+            get
+            {
+                return selectEquipmentItem;
+            }
+            set
+            {
+                selectEquipmentItem = value;
+                LobbyManager.UIManager.OnEquipmentItemChanged();
+            }
+        }
+        private static EquipmentItemType selectEquipmentItemType = EquipmentItemType.Weapon;
+        public static EquipmentItemType SelectEquipmentItemType
+        {
+            get
+            {
+                return selectEquipmentItemType;
+            }
+            set
+            {
+                selectEquipmentItemType = value;
+            }
+        }
+        private static EquipmentItemData choiceEquipmentItem;
+        public static EquipmentItemData ChoiceEquipmentItem
+        {
+            get
+            {
+                return choiceEquipmentItem;
+            }
+            set
+            {
+                choiceEquipmentItem = value;
+                LobbyManager.UIManager.OnEquipmentItemChanged();
+            }
+        }
+        private static Skill selectSkill;
+        public static Skill SelectSkill
+        {
+            get
+            {
+                return selectSkill;
+            }
+            set
+            {
+                selectSkill = value;
+            }
+        }
+        private static UnitSkillType selectSkillType;
+        public static UnitSkillType SelectSkillType
+        {
+            get
+            {
+                return selectSkillType;
+            }
+            set
+            {
+                selectSkillType = value;
+            }
+        }
         private void Awake()
         {
             unitListUI.Init();
+            unitStatusUI.Init();
+            unitEquipmentUI.Init();
+            unitSkillPanelUI.Init();
+            equipmentPopupUI.Init();
+            reinforcePopupUI.Init();
             equipmentListPopupUI.Init();
         }
 
         private void Start()
         {
-            selectUnit = GameManager.CurrentUser.userUnitList[0];
-            ShowUnit(selectUnit);
+            SelectUnit = GameManager.CurrentUser.userUnitList[0];
         }
 
         protected override void OnEnable()
         {
             base.OnEnable();
-            unitEquipmentUI.gameObject.SetActive(false);
-            unitSkillPanelUI.gameObject.SetActive(false);
+        }
+
+        private void OnDisable()
+        {
+            // 초기 상태로 되돌리기
             equipmentPopupUI.gameObject.SetActive(false);
             reinforcePopupUI.gameObject.SetActive(false);
             equipmentListPopupUI.gameObject.SetActive(false);
             equipmentTooltipUI.gameObject.SetActive(false);
-            potionSlotPanel.gameObject.SetActive(false);
-        }
-        public void ShowUnit(Unit unit)
-        {
-            unitStatusUI.ShowStat(unit);
-            unitEquipmentUI.ShowEquipment(unit);
-            unitSkillPanelUI.ShowSkill(unit);
-            potionSlotPanel.gameObject.SetActive(false);
-        }
-
-        public void ShowEquipmentItem(EquipmentItemData itemData, EquipmentItemType equipmentItemType)
-        {
-            if (itemData != null)
-            {
-                equipmentPopupUI.ShowEquipment(itemData);
-                reinforcePopupUI.ShowReinforce(itemData);
-                equipmentListPopupUI.ShowEquipmentList(itemData);
-            }
-            else
-            {
-                equipmentPopupUI.ShowEquipment(equipmentItemType);
-                equipmentListPopupUI.ShowEquipmentList(equipmentItemType);
-            }
         }
 
         public void ReShow()
         {
             unitListUI.ShowUnitList();
-            unitStatusUI.ShowStat(selectUnit);
-            unitEquipmentUI.ShowEquipment(selectUnit);
-            unitSkillPanelUI.ShowSkill(selectUnit);
-            if (selectEquipmentItem != null)
-            {
-                equipmentPopupUI.ShowEquipment(selectEquipmentItem);
-                reinforcePopupUI.ShowReinforce(selectEquipmentItem);
-                equipmentListPopupUI.ShowEquipmentList(selectEquipmentItem);
-            }
-            else
-            {
-                equipmentPopupUI.ShowEquipment(selectEquipmentItemType);
-                equipmentListPopupUI.ShowEquipmentList(selectEquipmentItemType);
-            }
-        }
-
-        public void SelectUnit(Unit unit)
-        {
-            selectUnit = unit;
-            ShowUnit(selectUnit);
-        }
-
-        public void SelectEquipmentItem(EquipmentItemData equipmentItemData, EquipmentItemType equipmentItemType)
-        {
-            selectEquipmentItem = equipmentItemData;
-            selectEquipmentItemType = equipmentItemType;
-
-            ShowEquipmentItem(selectEquipmentItem, selectEquipmentItemType);
-
-        }
-        public void ChoiceListEquipmentItem(EquipmentItemData equipmentItemData)
-        {
-            choiceEquipmentItem = equipmentItemData;
-
-            ShowEquipmentItem(selectEquipmentItem, selectEquipmentItemType);
+            LobbyManager.UIManager.OnUnitChanged();
+            LobbyManager.UIManager.OnEquipmentItemChanged();
         }
 
         //===========================================================
-        // ButtonPlugin
+        // ShowUI
         //===========================================================
         public void ShowEquipmentUI()
         {
-            if (LobbyManager.UIManager.UndoCount() >= 2)
+            if (!unitEquipmentUI.gameObject.activeInHierarchy)
             {
-                LobbyManager.UIManager.Undo();
-            }
+                if (LobbyManager.UIManager.UndoCount() >= 2)
+                {
+                    LobbyManager.UIManager.Undo();
+                }
 
-            unitEquipmentUI.gameObject.SetActive(true);
+                unitEquipmentUI.gameObject.SetActive(true);
+                LobbyManager.UIManager.AddUndo(unitEquipmentUI);
+            }
         }
 
         public void ShowSkillUI()
         {
-            if (LobbyManager.UIManager.UndoCount() >= 2)
+            if (!unitSkillPanelUI.gameObject.activeInHierarchy)
             {
-                LobbyManager.UIManager.Undo();
-            }
+                if (LobbyManager.UIManager.UndoCount() >= 2)
+                {
+                    LobbyManager.UIManager.Undo();
+                }
 
-            unitSkillPanelUI.gameObject.SetActive(true);
+                unitSkillPanelUI.gameObject.SetActive(true);
+                LobbyManager.UIManager.AddUndo(unitSkillPanelUI);
+            }
         }
 
         public void ShowEquipmentPopupUI()
@@ -149,6 +179,9 @@ namespace Portfolio.Lobby.Hero
             reinforcePopupUI.gameObject.SetActive(false);
         }
 
+        //===========================================================
+        // BtnPlugin
+        //===========================================================
         public void Reinforce()
         {
             GameManager.CurrentUser.userData.gold -= Constant.reinforceConsumeGoldValues[selectEquipmentItem.reinforceCount];
@@ -163,40 +196,12 @@ namespace Portfolio.Lobby.Hero
             GameManager.Instance.SaveUser();
         }
 
-        public void ChoiceItem(ref bool isChoice, EquipmentItemData choiceData)
-        {
-            equipmentListPopupUI.UnChoiceList();
-            isChoice = true;
-            ChoiceListEquipmentItem(choiceData);
-        }
-
         public void ReleaseEquipment()
         {
-            GameManager.CurrentUser.userEquipmentItemDataList.Add(selectEquipmentItem);
+            var releaseItem = selectUnit.ReleaseEquipment(selectEquipmentItemType);
+            GameManager.CurrentUser.userEquipmentItemDataList.Add(releaseItem);
             selectEquipmentItem = null;
             choiceEquipmentItem = null;
-
-            switch (selectEquipmentItemType)
-            {
-                case EquipmentItemType.Weapon:
-                    selectUnit.weaponData = null;
-                    break;
-                case EquipmentItemType.Helmet:
-                    selectUnit.helmetData = null;
-                    break;
-                case EquipmentItemType.Armor:
-                    selectUnit.armorData = null;
-                    break;
-                case EquipmentItemType.Amulet:
-                    selectUnit.amuletData = null;
-                    break;
-                case EquipmentItemType.Ring:
-                    selectUnit.ringData = null;
-                    break;
-                case EquipmentItemType.Shoe:
-                    selectUnit.shoeData = null;
-                    break;
-            }
 
             equipmentListPopupUI.UnChoiceList();
             ReShow();
@@ -206,29 +211,8 @@ namespace Portfolio.Lobby.Hero
         public void ChangeEquipment()
         {
             GameManager.CurrentUser.userEquipmentItemDataList.Remove(choiceEquipmentItem);
-            switch (selectEquipmentItemType)
-            {
-                case EquipmentItemType.Weapon:
-                    selectUnit.weaponData = choiceEquipmentItem as WeaponData;
-                    break;
-                case EquipmentItemType.Helmet:
-                    selectUnit.helmetData = choiceEquipmentItem as HelmetData;
-                    break;
-                case EquipmentItemType.Armor:
-                    selectUnit.armorData = choiceEquipmentItem as ArmorData;
-                    break;
-                case EquipmentItemType.Amulet:
-                    selectUnit.amuletData = choiceEquipmentItem as AmuletData;
-                    break;
-                case EquipmentItemType.Ring:
-                    selectUnit.ringData = choiceEquipmentItem as RingData;
-                    break;
-                case EquipmentItemType.Shoe:
-                    selectUnit.shoeData = choiceEquipmentItem as ShoeData;
-                    break;
-            }
-
-            if (selectEquipmentItem != null)
+            var releaseItem = selectUnit.ChangeEquipment(selectEquipmentItemType, choiceEquipmentItem);
+            if (releaseItem != null)
             {
                 GameManager.CurrentUser.userEquipmentItemDataList.Add(selectEquipmentItem);
             }
@@ -246,9 +230,9 @@ namespace Portfolio.Lobby.Hero
             ReShow();
         }
 
-        public void ShowExperiencePotionSlot()
+        public void SkillLevelUp(UnitSkillType type, int levelUPCount)
         {
-            potionSlotPanel.gameObject.SetActive(!potionSlotPanel.gameObject.activeInHierarchy);
+            selectUnit.SkillLevelUp(type, levelUPCount);
         }
     }
 }

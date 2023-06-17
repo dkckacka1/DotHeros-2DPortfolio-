@@ -26,7 +26,19 @@ namespace Portfolio.Lobby.Hero
                 equipmentSlotList.Add(slot);
                 slot.GetComponent<EquipmentSelectUI>().Init();
             }
-            //Debug.Log(equipmentSlotList.Count);
+            LobbyManager.UIManager.equipmentItemDataChangeEvent += ShowList;
+        }
+
+        public void ShowList(object sender, EventArgs eventArgs)
+        {
+            if (HeroPanelUI.SelectEquipmentItem != null)
+            {
+                ShowEquipmentList(HeroPanelUI.SelectEquipmentItem);
+            }
+            else
+            {
+                ShowEquipmentList(HeroPanelUI.SelectEquipmentItemType);
+            }
         }
 
         private void OnEnable()
@@ -40,14 +52,6 @@ namespace Portfolio.Lobby.Hero
                                 orderby (item.equipmentType == equipmentItemData.equipmentType) descending
                                 select item)
                                 .ToList();
-
-
-            //foreach (var item in listOrdered)
-            //{
-            //    Debug.Log(item.equipmentType);
-            //}
-
-            //Debug.Log(equipmentSlotList.Count);
 
             for (int i = 0; i < equipmentSlotList.Count; i++)
             {
@@ -83,14 +87,6 @@ namespace Portfolio.Lobby.Hero
                                orderby (item.equipmentType == itemType) descending
                                select item)
                         .ToList();
-
-
-            //foreach (var item in listOrdered)
-            //{
-            //    Debug.Log(item.equipmentType);
-            //}
-
-            //Debug.Log(equipmentSlotList.Count);
 
             for (int i = 0; i < equipmentSlotList.Count; i++)
             {

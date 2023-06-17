@@ -102,6 +102,14 @@
         PassiveSkill
     }
 
+    public enum UnitSkillType
+    {
+        ActiveSkill_1,
+        ActiveSkill_2,
+        PassiveSkill_1,
+        PassiveSkill_2,
+    }
+
     public enum ActiveSkillType
     {
         NONE = -1,

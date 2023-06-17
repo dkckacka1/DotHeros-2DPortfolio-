@@ -1,4 +1,5 @@
 using Portfolio.UI;
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -14,13 +15,21 @@ namespace Portfolio.Lobby.Hero
         [SerializeField] private UnitEquipmentSlotUI amuletSlot;
         [SerializeField] private UnitEquipmentSlotUI ringSlot;
 
-        private void OnEnable()
+        internal void Init()
         {
-            LobbyManager.UIManager.AddUndo(this);
+            LobbyManager.UIManager.unitChangedEvent += ShowEquipment;
         }
 
-        public void ShowEquipment(Unit unit)
+        private void Start()
         {
+            this.gameObject.SetActive(false);
+        }
+
+        public void ShowEquipment(object sender, EventArgs eventArgs)
+        {
+            Unit unit = HeroPanelUI.SelectUnit;
+            if (unit == null) return;
+
             unitAnim.runtimeAnimatorController = unit.animController;
             unitAnim.Play("IDLE");
             weaponSlot.ShowEquipment(unit.weaponData);

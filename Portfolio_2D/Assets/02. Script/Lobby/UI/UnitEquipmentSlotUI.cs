@@ -98,7 +98,7 @@ namespace Portfolio.UI
             }
         }
 
-        public void ShoeEquipment(EquipmentItemType type)
+        public void ShowEquipment(EquipmentItemType type)
         {
             equipmentImage.gameObject.SetActive(false);
             reinforceCountText.gameObject.SetActive(false);
@@ -130,9 +130,10 @@ namespace Portfolio.UI
             defaultImage.rectTransform.anchoredPosition = Vector2.zero;
         }
 
-        public void SelcetEquipmentItemData(HeroPanelUI heroPanelUI)
+        public void HeroPanelSelectEquipmentItem()
         {
-            heroPanelUI.SelectEquipmentItem(currentEquipmentData, equipmentItemType);
+            HeroPanelUI.SelectEquipmentItem = currentEquipmentData;
+            HeroPanelUI.SelectEquipmentItemType = equipmentItemType;
         }
 
         public void ShowTooltip(InventoryPanel inventoryPanel)

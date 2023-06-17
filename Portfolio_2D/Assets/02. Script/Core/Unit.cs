@@ -177,8 +177,6 @@ namespace Portfolio
                 }
             }
         }
-
-
         public float MaxExperience
         {
             get
@@ -187,7 +185,6 @@ namespace Portfolio
                 return UnitCurrentLevel * 1000;
             }
         }
-
         public float AttackPoint
         {
             get
@@ -409,7 +406,6 @@ namespace Portfolio
                 }
             }
         }
-
         public int battlePower
         {
             get
@@ -514,9 +510,70 @@ namespace Portfolio
         }
 
         //===========================================================
+        // SkillMethod
+        //===========================================================
+        public void SkillLevelUp(UnitSkillType skillType, int levelCount = 1)
+        {
+            switch (skillType)
+            {
+                case UnitSkillType.ActiveSkill_1:
+                    userUnitData.activeSkillLevel_1 += levelCount;
+                    break;
+                case UnitSkillType.ActiveSkill_2:
+                    userUnitData.activeSkillLevel_2 += levelCount;
+                    break;
+                case UnitSkillType.PassiveSkill_1:
+                    userUnitData.passiveSkillLevel_1 += levelCount;
+                    break;
+                case UnitSkillType.PassiveSkill_2:
+                    userUnitData.passiveSkillLevel_2 += levelCount;
+                    break;
+            }
+        }
+
+        public int GetSkillLevel(UnitSkillType skillType)
+        {
+            switch (skillType)
+            {
+                case UnitSkillType.ActiveSkill_1:
+                    return userUnitData.activeSkillLevel_1;
+                case UnitSkillType.ActiveSkill_2:
+                    return userUnitData.activeSkillLevel_2;
+                case UnitSkillType.PassiveSkill_1:
+                    return userUnitData.passiveSkillLevel_1;
+                case UnitSkillType.PassiveSkill_2:
+                    return userUnitData.passiveSkillLevel_2;
+            }
+
+            return 1;
+        }
+
+
+        //===========================================================
         // EquipmentMethod
         //===========================================================
-        public EquipmentItemData ChangeEquipment<T>(EquipmentItemType changeType, T changeData) where T : EquipmentItemData
+        public bool IsItemEquipment(EquipmentItemType equipmentType)
+        {
+            switch (equipmentType)
+            {
+                case EquipmentItemType.Weapon:
+                    return weaponData != null;
+                case EquipmentItemType.Helmet:
+                    return helmetData != null; 
+                case EquipmentItemType.Armor:
+                    return armorData != null;
+                case EquipmentItemType.Amulet:
+                    return amuletData != null;
+                case EquipmentItemType.Ring:
+                    return ringData != null;
+                case EquipmentItemType.Shoe:
+                    return shoeData != null;
+            }
+
+            return false;
+        }
+
+        public EquipmentItemData ChangeEquipment(EquipmentItemType changeType, EquipmentItemData changeData)
         {
             EquipmentItemData existingEquipment = ReleaseEquipment(changeType);
 
