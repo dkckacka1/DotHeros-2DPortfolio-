@@ -38,7 +38,7 @@ namespace Portfolio.Lobby.Hero
             skillTypeText.text = (skill.GetData.skillType == Portfolio.SkillType.ActiveSkill) ? "액티브 스킬" : "패시브 스킬";
             skillLevelText.text = "레벨 " + skillLevel.ToString();
             skillNameText.text = skill.GetData.skillName;
-            skillDescText.text = skill.GetData.skillDesc;
+            skillDescText.text = skill.GetDesc(skillLevel);
             if (showSkillLevelUpBtn && skillLevel < 5)
             {
                 skillLevelUpBtn.gameObject.SetActive(true);

@@ -10,21 +10,26 @@ namespace Portfolio.Lobby.Hero
         [SerializeField] SkillLevelUpUI skillLevelUpUI;
         [SerializeField] SkillLevelUpResultUI skillLevelUpResultUI;
 
-        private void Start()
-        {
-            this.gameObject.SetActive(false);
-        }
 
-        private void OnEnable()
+        private void OnDisable()
         {
             skillLevelUpUI.gameObject.SetActive(true);
             skillLevelUpResultUI.gameObject.SetActive(false);
         }
 
-        public void ShowPopup(Skill skill, int currentSkillLevel)
+        public void ShowPopup()
         {
-            int potionCount = GameManager.CurrentUser.GetConsumItemCount(2003);
-            skillLevelUpUI.Show(skill, currentSkillLevel, potionCount);
+            skillLevelUpUI.Show();
+        }
+
+        public void SkillLevelUP()
+        {
+            int prevLevel = HeroPanelUI.SelectSkillLevel;
+            GameManager.CurrentUser.ConsumItem(2003, skillLevelUpUI.potionCount);
+            HeroPanelUI.SelectUnit.SkillLevelUp(HeroPanelUI.SelectSkillType, skillLevelUpUI.potionCount);
+            skillLevelUpUI.gameObject.SetActive(false);
+            skillLevelUpResultUI.gameObject.SetActive(true);
+            skillLevelUpResultUI.Show(prevLevel);
         }
     }
 }

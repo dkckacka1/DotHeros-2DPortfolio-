@@ -18,50 +18,56 @@ namespace Portfolio.Lobby.Hero
         [SerializeField] Button minusPotionBtn;
         [SerializeField] TextMeshProUGUI potionCountText;
 
-        public int potionCount = 0;
-        public int defaultPotionCount;
+        [HideInInspector] public int potionCount;
+        [HideInInspector] public int defalutSkillLevel;
 
-        private void OnEnable()
+        private void OnDisable()
         {
             potionCount = 0;
             foreach (var slot in potionSlots)
             {
                 slot.Minus();
             }
-            plusPotionBtn.interactable = true;
-            minusPotionBtn.interactable = false;
-            skillLevelUpBtn.interactable = false;
         }
 
-        public void Show(Skill skill,int currentSkillLevel ,int userPotionCount)
+        public void Show()
         {
-            defaultPotionCount = userPotionCount;
-            plusPotionBtn.interactable = defaultPotionCount != 0;
-            prevSkillUI.Init(skill, currentSkillLevel);
-            afterSkillUI.Init(skill, currentSkillLevel);
-            potionCountText.text = defaultPotionCount.ToString();
+            Skill selectSkill = HeroPanelUI.SelectSkill;
+            if (selectSkill == null) return;
+            
+            plusPotionBtn.interactable = GameManager.CurrentUser.GetConsumItemCount(2003) != 0;
+            prevSkillUI.Init(selectSkill, HeroPanelUI.SelectSkillLevel, false);
+            ShowAfterSkill(selectSkill);
+            potionCountText.text = (GameManager.CurrentUser.GetConsumItemCount(2003) - potionCount).ToString();
+            BtnSet();
+        }
+
+        private void ShowAfterSkill(Skill skill)
+        {
+            afterSkillUI.Init(skill, HeroPanelUI.SelectSkillLevel + potionCount, false);
         }
 
         public void BTN_ONCLICK_AddPotion()
         {
             potionSlots[potionCount].Add();
             potionCount++;
-            potionCountText.text = (defaultPotionCount - potionCount).ToString();
-            BtnSet();
+            potionCountText.text = (GameManager.CurrentUser.GetConsumItemCount(2003) - potionCount).ToString();
+            Show();
         }
 
         public void BTN_ONCLICK_MinusPotion()
         {
             potionCount--;
             potionSlots[potionCount].Minus();
-            potionCountText.text = (defaultPotionCount - potionCount).ToString();
-            BtnSet();
+            potionCountText.text = (GameManager.CurrentUser.GetConsumItemCount(2003) - potionCount).ToString();
+            Show();
         }
 
         private void BtnSet()
         {
-            skillLevelUpBtn.interactable = !(potionCount == potionSlots.Length) || !(potionCount == 0);
-            plusPotionBtn.interactable = !(potionCount == potionSlots.Length);
+            int remainPotionCount = GameManager.CurrentUser.GetConsumItemCount(2003) - potionCount;
+            skillLevelUpBtn.interactable = potionCount > 0;
+            plusPotionBtn.interactable = !(potionCount == potionSlots.Length) && !((HeroPanelUI.SelectSkillLevel + potionCount) >= 5) && remainPotionCount > 0;
             minusPotionBtn.interactable = !(potionCount == 0);
         }
     }

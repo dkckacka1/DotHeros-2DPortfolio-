@@ -25,12 +25,6 @@ namespace Portfolio.skill
             BattleManager.BattleUIManager.AddLog(GetLogString(e));
         }
 
-        public virtual string GetDesc(int skillLevel)
-        {
-            //Debug.Log($"{this.skillData.skillDesc} + {skillLevel}");
-            return "";
-        }
-
         protected bool TryGetSkillActionArgs(EventArgs args, out SkillActionEventArgs skillargs)
         {
 
@@ -86,6 +80,45 @@ namespace Portfolio.skill
             string log = $"{playerUnit}이(가) {targetUnit}에게 [{skillData.skillName}]을(를) 사용!";
 
             return log;
+        }
+
+        public virtual string GetDesc(int skillLevel)
+        {
+            string desc = string.Empty;
+            object[] values = GetLevelValue();
+
+            if (values.Length == 0)
+            {
+                desc = GetData.skillDesc;
+            }
+            else
+            {
+                var SetSkillLevelValues = values.Select(value => (float)value * skillLevel).ToArray();
+                desc = string.Format(GetData.skillDesc, SetSkillLevelValues.Cast<object>().ToArray());
+            }
+
+            return desc;
+        }
+
+        public object[] GetLevelValue()
+        {
+            List<object> levelValues = new List<object>();
+            if (GetData.skillLevelValue_1 != 0)
+            {
+                levelValues.Add(GetData.skillLevelValue_1);
+            }
+
+            if (GetData.skillLevelValue_2 != 0)
+            {
+                levelValues.Add(GetData.skillLevelValue_2);
+            }
+
+            if (GetData.skillLevelValue_3 != 0)
+            {
+                levelValues.Add(GetData.skillLevelValue_3);
+            }
+
+            return levelValues.ToArray();
         }
     } 
 }

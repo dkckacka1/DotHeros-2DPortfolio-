@@ -23,7 +23,7 @@ namespace Portfolio.skill
 
             foreach (var targetUnit in args.targetUnits)
             {
-                targetUnit.Heal(args.actionUnit.AttackPoint);
+                targetUnit.Heal(args.actionUnit.AttackPoint * (e.skillLevel * 0.4f));
             }
         }
     }

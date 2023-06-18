@@ -92,6 +92,13 @@ namespace Portfolio.Lobby.Hero
                 selectSkillType = value;
             }
         }
+        public static int SelectSkillLevel
+        {
+            get
+            {
+                return SelectUnit.GetSkillLevel(SelectSkillType);
+            }
+        }
         private void Awake()
         {
             unitListUI.Init();
@@ -120,6 +127,8 @@ namespace Portfolio.Lobby.Hero
             reinforcePopupUI.gameObject.SetActive(false);
             equipmentListPopupUI.gameObject.SetActive(false);
             equipmentTooltipUI.gameObject.SetActive(false);
+            skillLevelUpPopupUI.gameObject.SetActive(false);
+            GameManager.Instance.SaveUser();
         }
 
         public void ReShow()
@@ -179,6 +188,12 @@ namespace Portfolio.Lobby.Hero
             reinforcePopupUI.gameObject.SetActive(false);
         }
 
+        public void ShowSkillLevelUPPopup()
+        {
+            skillLevelUpPopupUI.gameObject.SetActive(true);
+            skillLevelUpPopupUI.ShowPopup();
+        }
+
         //===========================================================
         // BtnPlugin
         //===========================================================
@@ -189,10 +204,10 @@ namespace Portfolio.Lobby.Hero
             if (Random.Range(0f, 1f) <= Constant.reinforceProbabilitys[selectEquipmentItem.reinforceCount])
             {
                 GameManager.ItemCreator.ReinforceEquipment(selectEquipmentItem);
-                ReShow();
             }
 
             LobbyManager.UIManager.ShowUserResource();
+            ReShow();
             GameManager.Instance.SaveUser();
         }
 
@@ -230,9 +245,10 @@ namespace Portfolio.Lobby.Hero
             ReShow();
         }
 
-        public void SkillLevelUp(UnitSkillType type, int levelUPCount)
+        public void SkillLevelUp()
         {
-            selectUnit.SkillLevelUp(type, levelUPCount);
+            skillLevelUpPopupUI.SkillLevelUP();
+            ReShow();
         }
     }
 }
