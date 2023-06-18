@@ -13,7 +13,7 @@ namespace Portfolio
         // 타이머 필요
         private void Update()
         {
-            //Debug.Log(Time.realtimeSinceStartup);
+            Debug.Log(Time.realtimeSinceStartup);
         }
     }
 }

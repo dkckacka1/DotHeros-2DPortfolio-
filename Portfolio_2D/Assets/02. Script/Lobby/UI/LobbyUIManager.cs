@@ -29,7 +29,6 @@ namespace Portfolio.Lobby
 
         private void Start()
         {
-            ShowUserResource();
             while (undoStack.Count >= 1)
             {
                 Undo();
@@ -56,11 +55,6 @@ namespace Portfolio.Lobby
         public void ReShowPanel()
         {
             heroPanel.ReShow();
-        }
-
-        public void ShowUserResource()
-        {
-            userInfoUI.Init(GameManager.CurrentUser);
         }
 
         public void ShowCanvas(Canvas canvas)

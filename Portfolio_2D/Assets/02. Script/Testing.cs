@@ -59,8 +59,6 @@ namespace Portfolio
 
             if (GUI.Button(new Rect(10, 120, 100, 100), "테스트용 유닛 넣기(1)"))
             {
-                UserData userdata = GameManager.CurrentUser.userData;
-
                 GameManager.Instance.TryGetData(100, out UnitData unitdata);
                 UserUnitData userUnitData = new UserUnitData(unitdata);
 
@@ -78,8 +76,6 @@ namespace Portfolio
 
             if (GUI.Button(new Rect(120, 120, 100, 100), "테스트용 유닛 넣기(2)"))
             {
-                UserData userdata = GameManager.CurrentUser.userData;
-
                 GameManager.Instance.TryGetData(101, out UnitData unitdata);
                 UserUnitData userUnitData = new UserUnitData(unitdata);
 
@@ -93,20 +89,6 @@ namespace Portfolio
                 GameManager.CurrentUser.AddNewUnit(new Unit(unitdata, userUnitData));
 
                 GameManager.Instance.SaveUser();
-            }
-
-            if (GUI.Button(new Rect(10, 230, 100, 100), "유저 로드 데이터 테스트"))
-            {
-                UserData userdata = GameManager.CurrentUser.userData;
-                Debug.Log($"" +
-                    $"userID = {userdata.userID}\n" +
-                    $"userName = {userdata.userName}\n");
-
-                foreach (var userUnit in userdata.unitDataList)
-                {
-                    Debug.Log($"" +
-                        $"userUnitID = {userUnit.unitID}");
-                }
             }
 
             if (GUI.Button(new Rect(10, 340, 100, 100), "랜덤 아이템 추가하기"))

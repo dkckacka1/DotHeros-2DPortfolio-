@@ -199,14 +199,13 @@ namespace Portfolio.Lobby.Hero
         //===========================================================
         public void Reinforce()
         {
-            GameManager.CurrentUser.userData.gold -= Constant.reinforceConsumeGoldValues[selectEquipmentItem.reinforceCount];
+            GameManager.CurrentUser.Gold-= Constant.reinforceConsumeGoldValues[selectEquipmentItem.reinforceCount];
 
             if (Random.Range(0f, 1f) <= Constant.reinforceProbabilitys[selectEquipmentItem.reinforceCount])
             {
                 GameManager.ItemCreator.ReinforceEquipment(selectEquipmentItem);
             }
 
-            LobbyManager.UIManager.ShowUserResource();
             ReShow();
             GameManager.Instance.SaveUser();
         }

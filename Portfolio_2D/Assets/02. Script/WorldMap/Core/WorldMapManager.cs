@@ -86,10 +86,10 @@ namespace Portfolio.WorldMap
                 nodeArrow.GetComponentInChildren<Button>().onClick.AddListener(() => { CurrentUserChoiceNode = currentMapNode.prevNode; });
             }
 
-            bool isClear = currentMapNode.Map.MapData.ID <= GameManager.CurrentUser.userData.ClearHighestMapID;
+            bool isClear = currentMapNode.Map.MapData.ID <= GameManager.CurrentUser.ClearHighestMapID;
             bool isExternalMap = currentMapNode.Map.MapData.isExternalMap;
 
-            if (isClear || (isExternalMap && currentMapNode.prevNode != null && currentMapNode.prevNode.Map.MapData.ID <= GameManager.CurrentUser.userData.ClearHighestMapID))
+            if (isClear || (isExternalMap && currentMapNode.prevNode != null && currentMapNode.prevNode.Map.MapData.ID <= GameManager.CurrentUser.ClearHighestMapID))
             {
                 currentMapNode.SetNodeBtnInteractable(true);
                 currentMapNode.ShowLockImage(false);

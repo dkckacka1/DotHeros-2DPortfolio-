@@ -23,6 +23,9 @@ namespace Portfolio
         private static TimeChecker timeChecker;
         public static TimeChecker TimeChecker { get => timeChecker; }
 
+        private static UIManager uiManager;
+        public static UIManager UIManager { get => uiManager; }
+
         //===========================================================
         // Dictionary
         //===========================================================
@@ -48,6 +51,7 @@ namespace Portfolio
                 instance = this;
                 itemCreator = GetComponentInChildren<ItemGenerator>();
                 timeChecker = GetComponentInChildren<TimeChecker>();
+                uiManager = GetComponentInChildren<UIManager>();
                 DontDestroyOnLoad(this.gameObject);
             }
             else
@@ -81,6 +85,7 @@ namespace Portfolio
 
         private void Start()
         {
+            uiManager.ShowUserInfo();
             if (!isTest)
             {
                 Debug.LogWarning("GameManager Test");

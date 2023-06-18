@@ -14,17 +14,20 @@ namespace Portfolio
         public static void LoadLobbyScene()
         {
             SceneManager.LoadScene("Lobby");
+            GameManager.UIManager.ShowUserInfoCanvas();
         }
 
         public static void LoadWorldMapScene()
         {
             SceneManager.LoadScene("WorldMap");
+            GameManager.UIManager.ShowUserInfoCanvas();
         }
 
         public static void LoadBattleScene(List<Unit> userChoiceUnits, Map choiceMap)
         {
             SceneLoader.userChoiceUnits = userChoiceUnits;
             SceneLoader.userChocieMap = choiceMap;
+            GameManager.UIManager.HideUserInfoCanvas();
             GameManager.Instance.StartCoroutine(LoadBattleSceneAsync());
         }
 

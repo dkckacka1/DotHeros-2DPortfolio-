@@ -46,7 +46,7 @@ namespace Portfolio.Lobby.Hero
 
         public void ShowUnitListCountText()
         {
-            unitListCountText.text = $"{GameManager.CurrentUser.userUnitList.Count} / {GameManager.CurrentUser.userData.maxUnitListCount}";
+            unitListCountText.text = $"{GameManager.CurrentUser.userUnitList.Count} / {GameManager.CurrentUser.MaxUnitListCount}";
         }
     }
 }

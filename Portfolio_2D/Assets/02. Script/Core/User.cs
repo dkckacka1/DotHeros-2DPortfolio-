@@ -7,21 +7,18 @@ namespace Portfolio
 {
     public class User
     {
-        public UserData userData;
+        private UserData userData;
         public List<Unit> userUnitList;
         public List<EquipmentItemData> userEquipmentItemDataList;
+
+        //===========================================================
+        // Property
+        //===========================================================
         public Dictionary<int, int> UserConsumableItemDic
         {
             get
             {
                 return userData.consumalbeItemDic;
-            }
-        }
-        public bool IsMaxUnitCount
-        {
-            get
-            {
-                return userData.maxUnitListCount == userUnitList.Count;
             }
         }
         public int MaxEnergy
@@ -31,14 +28,102 @@ namespace Portfolio
                 return 30 + (userData.userLevel * 5);
             }
         }
-        public float MaxExperience
+        public int CurrentEnergy
+        {
+            get => userData.energy;
+            set
+            {
+                if (value > MaxEnergy)
+                {
+                    userData.energy = MaxEnergy;
+                }
+                else
+                {
+                    userData.energy = value;
+                    GameManager.UIManager.UserInfoUI.ShowEnergy(userData.energy, MaxEnergy);
+                }
+            }
+        }
+        public int MaxExperience
         {
             get
             {
-                return (userData.userLevel * 100f);
+                return (userData.userLevel * 100);
             }
         }
+        public string UserNickName 
+        { 
+            get => userData.userName; 
+            set => userData.userName = value; 
+        }
+        public int UserID
+        {
+            get => userData.userID;
+        }
+        public int UserLevel
+        {
+            get => userData.userLevel;
+            set => userData.userLevel = value;
+        }      
+        public int UserCurrentExperience
+        {
+            get => userData.userCurrentExperience;
+            set
+            {
+                if (value >= MaxExperience)
+                {
+                    userData.userCurrentExperience = value - MaxExperience;
+                    UserLevel++;
+                }
+                else
+                {
+                    userData.userCurrentExperience = value;
+                }
+            }
+        }
+        public int Gold
+        {
+            get => userData.gold;
+            set 
+            {
+                userData.gold = value;
+                GameManager.UIManager.UserInfoUI.ShowGold(userData.gold);
+            }
+        }
+        public int Diamond
+        {
+            get => userData.diamond;
+            set
+            {
+                userData.diamond = value;
+                GameManager.UIManager.UserInfoUI.ShowGold(userData.diamond);
+            }
+        }
+        public int MaxUnitListCount
+        {
+            get => userData.maxUnitListCount;
+            set => userData.maxUnitListCount = value;
+        }
+        public bool IsMaxUnitCount
+        {
+            get
+            {
+                return userData.maxUnitListCount == userUnitList.Count;
+            }
+        }
+        public int ClearHighestMapID
+        {
+            get => userData.ClearHighestMapID;
+            set => userData.ClearHighestMapID = value;
+        }
 
+
+
+
+
+        //===========================================================
+        // SetUserData
+        //===========================================================
         public User(UserData userData)
         {
             this.userData = userData;
@@ -78,15 +163,17 @@ namespace Portfolio
                         break;
                 }
             }
-
-            //foreach (var item in userEquipmentItemDataList)
-            //{
-            //    Debug.Log(item == null);
-            //}
-
-            //Debug.Log(userUnitDic.Count);
         }
+        public UserData GetSaveUserData()
+        {
+            userData.unitDataList = this.userUnitList.Select(item => item.UserData).ToList();
+            userData.equipmentItemDataList = this.userEquipmentItemDataList;
 
+            return userData;
+        }
+        //===========================================================
+        // Unit
+        //===========================================================
         public void AddNewUnit(Unit unit)
         {
             userUnitList.Add(unit);
@@ -105,6 +192,9 @@ namespace Portfolio
             GameManager.Instance.SaveUser();
         }
 
+        //===========================================================
+        // ConsumableItem
+        //===========================================================
         public void AddConsumableItem(int ID, int count = 1)
         {
             if (GameManager.Instance.IsData<ConsumableItemData>(ID))
@@ -174,12 +264,6 @@ namespace Portfolio
             }
         }
 
-        public UserData GetSaveUserData()
-        {
-            userData.unitDataList = this.userUnitList.Select(item => item.UserData).ToList();
-            userData.equipmentItemDataList = this.userEquipmentItemDataList;
 
-            return userData;
-        }
     }
 }

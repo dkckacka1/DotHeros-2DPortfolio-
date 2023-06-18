@@ -9,10 +9,6 @@ namespace Portfolio.WorldMap
 {
     public class WorldMapUIManager : MonoBehaviour
     {
-
-        [Header("User")]
-        [SerializeField] UserInfoUI userInfoUI;
-
         [Header("WorldMap")]
         [SerializeField] ScrollRect worldMapScrollView;
         [SerializeField] RectTransform currentPosArrow;
@@ -34,16 +30,6 @@ namespace Portfolio.WorldMap
             {
                 return WorldMapManager.Instance.CurrentUserChoiceNode;
             }
-        }
-
-        private void Start()
-        {
-            ShowUserResource();
-        }
-
-        public void ShowUserResource()
-        {
-            userInfoUI.Init(GameManager.CurrentUser);
         }
 
         public void MoveMapNode(MapNode choiceMapNode)

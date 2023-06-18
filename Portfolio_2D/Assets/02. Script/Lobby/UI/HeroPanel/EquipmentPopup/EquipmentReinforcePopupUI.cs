@@ -25,7 +25,7 @@ namespace Portfolio.Lobby.Hero
 
             if (!IsMaxReinforceCount(equipmentItemData))
             {
-                reinforceBtn.interactable = GameManager.CurrentUser.userData.gold >= Constant.reinforceConsumeGoldValues[equipmentItemData.reinforceCount];
+                reinforceBtn.interactable = GameManager.CurrentUser.Gold >= Constant.reinforceConsumeGoldValues[equipmentItemData.reinforceCount];
                 reinforceSuccessPercentText.text = $"현재 ( +{equipmentItemData.reinforceCount} )\n" +
                     $"강화 성공 확률 ({Constant.reinforceProbabilitys[equipmentItemData.reinforceCount] * 100}%)";
                 reinforceConsumeGoldText.text = Constant.reinforceConsumeGoldValues[equipmentItemData.reinforceCount].ToString("N0");
