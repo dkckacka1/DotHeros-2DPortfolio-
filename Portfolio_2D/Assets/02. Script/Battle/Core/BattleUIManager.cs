@@ -55,12 +55,12 @@ namespace Portfolio.Battle
 
         public void Initialize(Map currentMap)
         {
-            mapInfoUI.SetMapInfo(currentMap.MapData);
+            mapInfoUI.SetMapInfo(currentMap);
         }
 
-        public void ShowNextStageUI()
+        public void ShowNextStageUI(Map currentMap)
         {
-            mapInfoUI.NextStage();
+            mapInfoUI.NextStage(currentMap);
         }
 
         public void AddLog(string str)
@@ -70,8 +70,9 @@ namespace Portfolio.Battle
 
         public void Win()
         {
-            winResultPopup.Show();
+            winResultPopup.transform.parent.gameObject.SetActive(true);
             winResultPopup.gameObject.SetActive(true);
+            winResultPopup.Show();
         }
     }
 }

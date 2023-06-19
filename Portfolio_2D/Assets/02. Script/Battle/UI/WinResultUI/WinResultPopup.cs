@@ -17,6 +17,11 @@ namespace Portfolio.Battle
         List<WinResultUnitSlot> unitSlotList = new List<WinResultUnitSlot>();
         List<ItemSlotUI> getItemSlotList = new List<ItemSlotUI>();
 
+        [SerializeField] Button ReplayMapBtn;
+        [SerializeField] TextMeshProUGUI currentMapConsumEnergyValueText;
+        [SerializeField] Button GotoNextMapBtn;
+        [SerializeField] TextMeshProUGUI nextMapConsumEnergyValueText;
+
         private void Awake()
         {
             foreach (var unitSlot in unitScrollView.content.GetComponentsInChildren<WinResultUnitSlot>())
@@ -32,11 +37,11 @@ namespace Portfolio.Battle
 
         public void Show()
         {
+            var currentMap = BattleManager.Instance.CurrentMap;
             var userUnitList = BattleManager.Instance.userChoiceUnits;
-            Debug.Log(BattleManager.Instance == null);
-            Debug.Log(BattleManager.Instance.currentMap == null);
-            Debug.Log(BattleManager.Instance.currentMap.MapData == null);
-            var getExperience = BattleManager.Instance.currentMap.MapData.experienceValue;
+            var getExperience = BattleManager.Instance.CurrentMap.MapExperience;
+
+            mapNameText.text = currentMap.MapName;
             for (int i = 0; i < unitSlotList.Count; i++)
             {
                 if (userUnitList.Count <= i)
@@ -45,12 +50,13 @@ namespace Portfolio.Battle
                     continue;
                 }
 
+                Debug.Log("유닛 설정");
                 unitSlotList[i].InitSlot(userUnitList[i], getExperience);
                 unitSlotList[i].gameObject.SetActive(true);
             }
 
             var getItemList = BattleManager.Instance.GetItemDic.ToList();
-            for (int i = 0; i < getItemList.Count; i++)
+            for (int i = 0; i < getItemSlotList.Count; i++)
             {
                 if (getItemList.Count <= i)
                 {
@@ -58,11 +64,14 @@ namespace Portfolio.Battle
                     continue;
                 }
 
+                Debug.Log("아이템 설정");
                 getItemSlotList[i].ShowItem(getItemList[i].Key, getItemList[i].Value, false);
                 getItemSlotList[i].gameObject.SetActive(true);
             }
 
-            transform.parent.gameObject.SetActive(true);
+            bool isCurrentMapExternMap = currentMap.IsExternMap;
+            bool isNextMapValid = currentMap.IsNextMapVaild;
+            // TODO 승리창 버튼 작업중
         }
     }
 }

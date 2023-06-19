@@ -216,6 +216,11 @@ namespace Portfolio
             return true;
         }
 
+        public bool IsContainsMap(int ID)
+        {
+            return mapDictionary.ContainsKey(ID);
+        }
+
         #region 데이터를 형식으로 변환
 
         private void CreateGameSource()

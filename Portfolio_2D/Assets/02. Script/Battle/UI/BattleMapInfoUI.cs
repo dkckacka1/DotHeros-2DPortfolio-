@@ -10,34 +10,17 @@ namespace Portfolio.Battle
         [SerializeField] TextMeshProUGUI mapNameTxt;
         [SerializeField] TextMeshProUGUI mapStageProceedTxt;
 
-        int stageCount = 1;
         int currentStageCount = 1;
 
-        public void SetMapInfo(MapData data)
+        public void SetMapInfo(Map map)
         {
-            mapNameTxt.text = data.mapName;
-            if (data.stage_2_ID != -1)
-            {
-                stageCount++;
-            }
-            if (data.stage_3_ID != -1)
-            {
-                stageCount++;
-            }
-            if (data.stage_4_ID != -1)
-            {
-                stageCount++;
-            }
-            if (data.stage_5_ID != -1)
-            {
-                stageCount++;
-            }
-            mapStageProceedTxt.text = $"({currentStageCount++} / {stageCount})";
+            mapNameTxt.text = map.MapName;
+            mapStageProceedTxt.text = $"({currentStageCount++} / {map.StageList.Count})";
         }
 
-        public void NextStage()
+        public void NextStage(Map map)
         {
-            mapStageProceedTxt.text = $"({currentStageCount++} / {stageCount})";
+            mapStageProceedTxt.text = $"({currentStageCount++} / {map.StageList.Count})";
         }
     }
 }

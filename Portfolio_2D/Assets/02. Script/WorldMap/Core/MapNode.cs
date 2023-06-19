@@ -17,6 +17,7 @@ namespace Portfolio.WorldMap
         [SerializeField] TextMeshProUGUI mapNameText;
         [SerializeField] Image RockImage;
         [SerializeField] GameObject nodeArrowParent;
+        [SerializeField] bool isDefaultMap = false;
 
         private Map map;
         public Map Map { get => map; }
@@ -27,47 +28,16 @@ namespace Portfolio.WorldMap
 
         public GameObject NodeArrowParent { get => nodeArrowParent;}
 
-        public void SetNodeBtnInteractable(bool isActive) => nodeBtn.interactable = isActive;
-        public void ShowLockImage(bool isActive) => RockImage.gameObject.SetActive(isActive);
-        public void ShowNodeArrow(bool isActive) => nodeArrowParent.SetActive(isActive);
+        public void SetNodeBtnInteractable(bool isActive) => nodeBtn.interactable = isActive || isDefaultMap;
+        public void ShowLockImage(bool isActive) => RockImage.gameObject.SetActive(isActive && !isDefaultMap);
+        public void ShowNodeArrow(bool isActive) => nodeArrowParent.SetActive(isActive && !isDefaultMap);
 
         private void Awake()
         {
             if (GameManager.Instance.TryGetMap(nodeMapID, out map))
             {
-                mapNameText.text = map.MapData.mapName;
+                mapNameText.text = map.MapName;
             }
-        }
-
-        private void Start()
-        {
-            //foreach (var nextNode in nextNodeList)
-            //{
-            //    // NodeLine 持失
-            //    RectTransform nodeLinePrefab = WorldMapManager.WorldMapUIManager.NodeLinePrefab;
-            //    RectTransform nodeLineParent = WorldMapManager.WorldMapUIManager.NodeLineParent;
-            //    RectTransform nodeLine = Instantiate(nodeLinePrefab, this.transform.position, Quaternion.identity, nodeLineParent);
-            //    (nodeLine.transform as RectTransform).sizeDelta = new Vector2(Vector2.Distance(this.transform.position, nextNode.transform.position), (nodeLine.transform as RectTransform).sizeDelta.y);
-            //    nodeLine.transform.rotation = Quaternion.Euler(0, 0, Vector2.Angle(Vector2.right, nextNode.transform.position - this.transform.position));
-
-            //    // NodeArrow 持失
-            //    RectTransform nodeArrowPrefab = WorldMapManager.WorldMapUIManager.NodeArrowPrefab;
-            //    RectTransform nodeArrow = Instantiate(nodeArrowPrefab, this.transform.position, Quaternion.identity, nodeArrowParent.transform);
-            //    var arrowAngle = Mathf.Atan2(nextNode.transform.position.y - transform.position.y, nextNode.transform.position.x - transform.position.x) * Mathf.Rad2Deg;
-            //    nodeArrow.transform.rotation = Quaternion.Euler(0, 0, arrowAngle - 90);
-            //    nodeArrow.GetComponentInChildren<Button>().onClick.AddListener(() => { WorldMapManager.Instance.CurrentUserChoiceNode = nextNode; });
-
-            //    nextNode.SetPrevNode(this);
-            //}
-
-            //if (prevNode != null)
-            //{
-            //    RectTransform nodeArrowPrefab = WorldMapManager.WorldMapUIManager.NodeArrowPrefab;
-            //    RectTransform nodeArrow = Instantiate(nodeArrowPrefab, this.transform.position, Quaternion.identity, nodeArrowParent.transform);
-            //    var arrowAngle = Mathf.Atan2(prevNode.transform.position.y - transform.position.y, prevNode.transform.position.x - transform.position.x) * Mathf.Rad2Deg;
-            //    nodeArrow.transform.rotation = Quaternion.Euler(0, 0, arrowAngle - 90);
-            //    nodeArrow.GetComponentInChildren<Button>().onClick.AddListener(() => { WorldMapManager.Instance.CurrentUserChoiceNode = prevNode; });
-            //}
         }
 
         public void SetPrevNode(MapNode node)

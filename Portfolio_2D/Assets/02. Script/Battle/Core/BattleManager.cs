@@ -27,7 +27,7 @@ namespace Portfolio.Battle
         // SceneLoaderData
         //===========================================================
         public List<Unit> userChoiceUnits;   // 유저가 설정한 유닛
-        public Map currentMap;  // 유적가 선택한 맵
+        private Map currentMap;  // 유적가 선택한 맵
 
         //===========================================================
         // TestValue
@@ -46,6 +46,11 @@ namespace Portfolio.Battle
         public static ActionSystem ActionSystem { get => actionSystem; }
         public static ManaSystem ManaSystem { get => manaSystem; }
         public BattleState BattleState { get => battleState; }
+        public Map CurrentMap
+        {
+            get => currentMap; 
+            set => currentMap = value; 
+        }
 
         private void Awake()
         {
@@ -71,12 +76,12 @@ namespace Portfolio.Battle
                 SetMap();
                 SetUserUnit();
                 currentStage = stageDatas.Dequeue();
-                battleUI.Initialize(currentMap);
+                battleUI.Initialize(CurrentMap);
                 SetStage();
             }
             else
             {
-                GameManager.Instance.TryGetMap(CallMapID, out Map currentMap);
+                GameManager.Instance.TryGetMap(CallMapID, out currentMap);
                 for (int i = 0; i < currentMap.StageList.Count; i++)
                 {
                     stageDatas.Enqueue(currentMap.StageList[i]);
@@ -97,10 +102,10 @@ namespace Portfolio.Battle
 
         private void SetMap()
         {
-            this.currentMap = SceneLoader.userChocieMap;
-            for (int i = 0; i < currentMap.StageList.Count; i++)
+            this.CurrentMap = SceneLoader.userChocieMap;
+            for (int i = 0; i < CurrentMap.StageList.Count; i++)
             {
-                stageDatas.Enqueue(currentMap.StageList[i]);
+                stageDatas.Enqueue(CurrentMap.StageList[i]);
             }
         }
 
@@ -204,7 +209,7 @@ namespace Portfolio.Battle
             SwitchBattleState(BattleState.WIN);
             if (stageDatas.Count() >= 1)
             {
-                BattleUIManager.ShowNextStageUI();
+                BattleUIManager.ShowNextStageUI(CurrentMap);
                 currentStage = stageDatas.Dequeue();
                 SetStage();
             }

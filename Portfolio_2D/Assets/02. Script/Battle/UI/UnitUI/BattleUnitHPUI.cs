@@ -21,7 +21,7 @@ namespace Portfolio.Battle
         public void ChangeHP(float currentHP)
         {
             hpSlider.value = currentHP;
-            hpText.text = $"( {hpSlider.maxValue} / {currentHP} )";
+            hpText.text = $"( {hpSlider.maxValue.ToString("N0")} / {currentHP.ToString("N0")} )";
         }
     }
 

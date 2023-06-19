@@ -4,58 +4,12 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-namespace Portfolio
+namespace Portfolio.Lobby
 {
-    public class Testing : MonoBehaviour
+    public class LobbyTester : MonoBehaviour
     {
-        private void Update()
-        {
-            //if (Input.GetKeyDown(KeyCode.T))
-            //{
-            //    GameManager.Instance.TryGetUnit(100, out Unit unit);
-
-            //    if (BattleManager.BattleFactory.TryCreateBattleUnit(unit, false, out BattleUnit battleUnit))
-            //    {
-            //        battleUnit.Speed = Random.Range(50, 101);
-            //        BattleManager.Instance.AddUnitinUnitList(battleUnit);
-            //    }
-            //}
-
-            //if (Input.GetKeyDown(KeyCode.Y))
-            //{
-            //    GameManager.Instance.TryGetUnit(100, out Unit unit);
-
-            //    if (BattleManager.BattleFactory.TryCreateBattleUnit(unit, true, out BattleUnit battleUnit))
-            //    {
-            //        battleUnit.Speed = Random.Range(50, 101);
-            //        BattleManager.Instance.AddUnitinUnitList(battleUnit);
-            //    }
-            //}
-
-            //if (Input.GetKeyDown(KeyCode.A))
-            //{
-            //    {
-            //        GameManager.Instance.TryGetUnit(101, out Unit unit);
-
-            //        if (BattleManager.BattleFactory.TryCreateBattleUnit(unit, false, out BattleUnit battleUnit))
-            //        {
-            //            battleUnit.Speed = Random.Range(50, 101);
-            //            BattleManager.Instance.AddUnitinUnitList(battleUnit);
-            //        }
-            //    }
-            //}
-        }
-
         private void OnGUI()
         {
-            if (GUI.Button(new Rect(10, 10, 100, 100), "전투 시작"))
-            {
-                List<Unit> units = GameManager.CurrentUser.userUnitList.OrderByDescending(unit => unit.UnitCurrentLevel).ThenByDescending(unit => unit.UnitGrade).Take(5).ToList();
-
-                GameManager.Instance.TryGetMap(500, out Map map);
-
-                SceneLoader.LoadBattleScene(units, map);
-            }
 
             if (GUI.Button(new Rect(10, 120, 100, 100), "테스트용 유닛 넣기(1)"))
             {
@@ -122,6 +76,11 @@ namespace Portfolio
 
                 GameManager.CurrentUser.userEquipmentItemDataList.Add(itemData);
                 GameManager.Instance.SaveUser();
+            }
+
+            if (GUI.Button(new Rect(10, 450, 100, 100), "골드 추가하기"))
+            {
+                GameManager.CurrentUser.Gold += 100000;
             }
         }
     }

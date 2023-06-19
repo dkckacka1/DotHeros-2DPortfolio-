@@ -13,7 +13,6 @@ namespace Portfolio
         public int gold;
         public int diamond;
         public int energy;
-        public int ClearHighestMapID = 500; // 가장 높이 깬 맵의 ID
 
         // 유닛 부문
         public int maxUnitListCount = 30;
@@ -23,11 +22,15 @@ namespace Portfolio
         public List<EquipmentItemData> equipmentItemDataList;
         public Dictionary<int, int> consumalbeItemDic;  // Key : ID, Value : itemCount
 
+        // 진행도 부문
+        public List<int> clearMapList;
+
         public UserData()
         {
             unitDataList = new List<UserUnitData>();
             equipmentItemDataList = new List<EquipmentItemData>();
             consumalbeItemDic = new Dictionary<int, int>();
+            clearMapList = new List<int>();
         }
     }
 }

@@ -10,11 +10,28 @@ namespace Portfolio
     {
         private MapData mapData;
 
-        public MapData MapData => mapData;
-
         private List<Stage> stageList = new List<Stage>();
         public List<Stage> StageList => stageList;
-
+        public int MapID => mapData.ID;
+        public string MapName => mapData.mapName;
+        public float MapExperience => mapData.experienceValue;
+        public int ConsumEnergy => mapData.consumEnergy;
+        public bool IsExternMap => mapData.isExternalMap;
+        public bool IsHeigestMapID => !IsExternMap && GameManager.CurrentUser.ClearHighestMapID == mapData.ID;
+        public bool IsNextMapVaild
+        {
+            get
+            {
+                if (IsExternMap)
+                {
+                    return false;
+                }
+                else
+                {
+                    return GameManager.Instance.IsContainsMap(mapData.ID + 1);
+                }
+            }
+        }
         public Map(MapData mapData)
         {
             this.mapData = mapData;

@@ -113,12 +113,18 @@ namespace Portfolio
         }
         public int ClearHighestMapID
         {
-            get => userData.ClearHighestMapID;
-            set => userData.ClearHighestMapID = value;
+            get
+            {
+                if (userData.clearMapList.Count == 0)
+                {
+                    return 500;
+                }
+                else
+                {
+                    return userData.clearMapList.Where(mapID => mapID < 600).OrderByDescending(mapID => mapID).First();
+                }
+            }
         }
-
-
-
 
 
         //===========================================================
@@ -264,6 +270,17 @@ namespace Portfolio
             }
         }
 
+        //===========================================================
+        // Map
+        //===========================================================
+        public bool isClearMap(int mapID) => userData.clearMapList.Contains(mapID);
 
+        public void ClearMap(int mapID)
+        {
+            if (!isClearMap(mapID))
+            {
+                userData.clearMapList.Add(mapID);
+            }
+        }
     }
 }

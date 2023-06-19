@@ -38,8 +38,8 @@ namespace Portfolio.WorldMap
         {
             choiceMap = map;
             ShowUnitList();
-            mapNameText.text = map.MapData.mapName;
-            consumEnergyText.text = "X "  + map.MapData.consumEnergy.ToString();
+            mapNameText.text = map.MapName;
+            consumEnergyText.text = "X "  + map.ConsumEnergy.ToString();
             foreach (var grid in fomationGrids)
             {
                 grid.ReShow();

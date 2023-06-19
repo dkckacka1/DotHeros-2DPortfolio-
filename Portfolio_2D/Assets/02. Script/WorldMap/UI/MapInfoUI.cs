@@ -33,7 +33,7 @@ namespace Portfolio.WorldMap
         public void ShowMapInfo(Map map)
         {
             choiceMap = map;
-            mapNameText.text = map.MapData.mapName;
+            mapNameText.text = map.MapName;
             var monsterUnitList = map.GetMapUnitList();
             for (int i = 0; i < unitSlotList.Count; i++)
             {
@@ -47,7 +47,7 @@ namespace Portfolio.WorldMap
                 unitSlotList[i].gameObject.SetActive(true);
             }
 
-            consumEnergyText.text = $"X {map.MapData.consumEnergy}";
+            consumEnergyText.text = $"X {map.ConsumEnergy}";
         }
 
         public void BTN_ONCLICK_ReadyBattle(FomationPopupUI fomationPopupUI)

@@ -103,6 +103,7 @@ namespace Portfolio.Battle
 
             set
             {
+                value = Mathf.RoundToInt(value);
                 value = Mathf.Clamp(value, 0, MaxHP);
                 currentHP = value;
                 OnChangedCurrentHPEvent?.Invoke(this, new ChangeCurrnetHPEventArgs(currentHP));
