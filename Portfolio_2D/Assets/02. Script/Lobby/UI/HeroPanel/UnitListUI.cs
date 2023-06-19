@@ -4,6 +4,8 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 using Portfolio.UI;
+using System.Linq;
+using System;
 
 namespace Portfolio.Lobby.Hero
 {
@@ -30,19 +32,21 @@ namespace Portfolio.Lobby.Hero
 
         public void ShowUnitList()
         {
+            var userUnitSortingList = GameManager.CurrentUser.userUnitList.OrderByDescending(GameLib.SortMethod).ToList();
             for (int i = 0; i < unitSlotList.Count; i++)
             {
-                if (GameManager.CurrentUser.userUnitList.Count <= i)
+                if (userUnitSortingList.Count <= i)
                 {
                     unitSlotList[i].gameObject.SetActive(false);
                     continue;
                 }
 
-                unitSlotList[i].Init(GameManager.CurrentUser.userUnitList[i]);
+                unitSlotList[i].Init(userUnitSortingList[i]);
                 unitSlotList[i].gameObject.SetActive(true);
             }
 
         }
+
 
         public void ShowUnitListCountText()
         {

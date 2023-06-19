@@ -21,13 +21,20 @@ namespace Portfolio.Battle
         [SerializeField] private BattleState battleState = BattleState.NONE;
         public Queue<Stage> stageDatas = new Queue<Stage>();
         public Stage currentStage;
-        public bool isTest = false;
+        public Dictionary<int, int> GetItemDic = new Dictionary<int, int>();
 
         //===========================================================
         // SceneLoaderData
         //===========================================================
         public List<Unit> userChoiceUnits;   // 유저가 설정한 유닛
         public Map currentMap;  // 유적가 선택한 맵
+
+        //===========================================================
+        // TestValue
+        //===========================================================
+        [Header("TestValue")]
+        public bool isTest = false;
+        public int CallMapID = 500;
 
         //===========================================================
         // Property & Singleton
@@ -59,11 +66,29 @@ namespace Portfolio.Battle
 
         private void Start()
         {
-            SetMap();
-            SetUserUnit();
-            currentStage = stageDatas.Dequeue();
-            battleUI.Initialize(currentMap);
-            SetStage();
+            if (!isTest)
+            {
+                SetMap();
+                SetUserUnit();
+                currentStage = stageDatas.Dequeue();
+                battleUI.Initialize(currentMap);
+                SetStage();
+            }
+            else
+            {
+                GameManager.Instance.TryGetMap(CallMapID, out Map currentMap);
+                for (int i = 0; i < currentMap.StageList.Count; i++)
+                {
+                    stageDatas.Enqueue(currentMap.StageList[i]);
+                }
+
+                userChoiceUnits = GameManager.CurrentUser.userUnitList.OrderByDescending(GameLib.SortMethod).Take(5).ToList();
+                battleFactory.CreateUserUnit(userChoiceUnits);
+
+                currentStage = stageDatas.Dequeue();
+                battleUI.Initialize(currentMap);
+                SetStage();
+            }
         }
 
         //===========================================================
@@ -73,7 +98,6 @@ namespace Portfolio.Battle
         private void SetMap()
         {
             this.currentMap = SceneLoader.userChocieMap;
-            Debug.Log(currentMap);
             for (int i = 0; i < currentMap.StageList.Count; i++)
             {
                 stageDatas.Enqueue(currentMap.StageList[i]);
@@ -131,6 +155,18 @@ namespace Portfolio.Battle
             }
         }
 
+        public void GetItem(int id, int count)
+        {
+            if (GetItemDic.ContainsKey(id))
+            {
+                GetItemDic[id] += count;
+            }
+            else
+            {
+                GetItemDic.Add(id, count);
+            }
+        }
+
         //===========================================================
         // SetState
         //===========================================================
@@ -166,11 +202,15 @@ namespace Portfolio.Battle
         public void Win()
         {
             SwitchBattleState(BattleState.WIN);
-            if (this.stageDatas.Count() >= 1)
+            if (stageDatas.Count() >= 1)
             {
                 BattleUIManager.ShowNextStageUI();
                 currentStage = stageDatas.Dequeue();
                 SetStage();
+            }
+            else
+            {
+                BattleUIManager.Win();
             }
         }
 
@@ -211,9 +251,12 @@ namespace Portfolio.Battle
             }
         }
 
+        //===========================================================
+        // BtnPlugin
+        //===========================================================
         public void SetAutomaticBattle()
         {
-            var list = this.unitList.Where(battleUnit => !battleUnit.IsEnemy);
+            var list = unitList.Where(battleUnit => !battleUnit.IsEnemy);
             foreach (var unit in list)
             {
                 unit.CheckAutoBattle();

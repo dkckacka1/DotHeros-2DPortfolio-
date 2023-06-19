@@ -37,7 +37,12 @@ namespace Portfolio
         private Dictionary<int, Map> mapDictionary = new Dictionary<int, Map>();
         private Dictionary<string, RuntimeAnimatorController> animationDictionary = new Dictionary<string, RuntimeAnimatorController>();
 
+        //===========================================================
+        // TestValue
+        //===========================================================
+        [Header("TestValue")]
         public bool isTest;
+        public bool ShowUserUI;
 
         //===========================================================
         // UserData
@@ -90,6 +95,17 @@ namespace Portfolio
             {
                 Debug.LogWarning("GameManager Test");
                 SceneLoader.LoadLobbyScene();
+            }
+            else
+            {
+                if (ShowUserUI)
+                {
+                    uiManager.ShowUserInfoCanvas();
+                }
+                else
+                {
+                    uiManager.HideUserInfoCanvas();
+                }
             }
         }
 

@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using Portfolio.UI;
+using System.Linq;
 
 namespace Portfolio.WorldMap
 {
@@ -48,7 +49,7 @@ namespace Portfolio.WorldMap
 
         public void ShowUnitList()
         {
-            var userUnitList = GameManager.CurrentUser.userUnitList;
+            var userUnitList = GameManager.CurrentUser.userUnitList.OrderByDescending(GameLib.SortMethod).ToList();
             for (int i = 0; i < unitSlotList.Count; i++)
             {
                 if (userUnitList.Count <= i)

@@ -28,14 +28,18 @@ namespace Portfolio.Battle
         [Header("LogUI")]
         [SerializeField] private BattleLogUI battleLogUI;
 
+        [Header("ResultUI")]
+        [SerializeField] private WinResultPopup winResultPopup;
+
         //===========================================================
         // Property
         //===========================================================
-        public Canvas PlayableCanvas { get => playableCanvas; }
-        public BattleSequenceUI SequenceUI { get => sequenceUI;}
-        public BattleUnitSkillUI PlayerUnitSkillUIPrefab { get => playerUnitSkillUIPrefab; }
-        public BattleManaUI BattleManaUI { get => battleManaUI; }
-        public BattleSkillDescUI BattleSkillDescUI { get => battleSkillDescUI; }
+        public Canvas PlayableCanvas => playableCanvas;
+        public BattleSequenceUI SequenceUI => sequenceUI;
+        public BattleUnitSkillUI PlayerUnitSkillUIPrefab => playerUnitSkillUIPrefab;
+        public BattleManaUI BattleManaUI => battleManaUI;
+        public BattleSkillDescUI BattleSkillDescUI => battleSkillDescUI;
+        public WinResultPopup WinResultPopup => winResultPopup;
 
         public BattleUnitSequenceUI CreateUnitSequenceUI()
         {
@@ -62,6 +66,12 @@ namespace Portfolio.Battle
         public void AddLog(string str)
         {
             battleLogUI.AddLog(str);
+        }
+
+        public void Win()
+        {
+            winResultPopup.Show();
+            winResultPopup.gameObject.SetActive(true);
         }
     }
 }

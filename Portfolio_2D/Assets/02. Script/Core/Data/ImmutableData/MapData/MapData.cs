@@ -11,5 +11,6 @@ namespace Portfolio
         public int stage_4_ID = -1;
         public int stage_5_ID = -1;
         public int consumEnergy = 5;
+        public int experienceValue = 10;
     }
 }

@@ -4,11 +4,12 @@
     "isExternalMap": false,
     "mapName": "신성한 숲 (1)",
     "stage_1_ID": 5000,
-    "stage_2_ID": 5001,
-    "stage_3_ID": 5002,
-    "stage_4_ID": 5003,
+    "stage_2_ID": -1,
+    "stage_3_ID": -1,
+    "stage_4_ID": -1,
     "stage_5_ID": -1,
-    "consumEnergy": 5
+    "consumEnergy": 5,
+    "experienceValue": 10
   },
   {
     "ID": 501,
@@ -19,7 +20,8 @@
     "stage_3_ID": 5006,
     "stage_4_ID": 5007,
     "stage_5_ID": -1,
-    "consumEnergy": 5
+    "consumEnergy": 5,
+    "experienceValue": 10
   },
   {
     "ID": 502,
@@ -30,7 +32,8 @@
     "stage_3_ID": 5006,
     "stage_4_ID": 5007,
     "stage_5_ID": -1,
-    "consumEnergy": 5
+    "consumEnergy": 5,
+    "experienceValue": 10
   },
   {
     "ID": 503,
@@ -41,7 +44,8 @@
     "stage_3_ID": 5006,
     "stage_4_ID": 5007,
     "stage_5_ID": -1,
-    "consumEnergy": 5
+    "consumEnergy": 5,
+    "experienceValue": 10
   },
   {
     "ID": 600,
@@ -52,7 +56,8 @@
     "stage_3_ID": 5006,
     "stage_4_ID": 5007,
     "stage_5_ID": -1,
-    "consumEnergy": 5
+    "consumEnergy": 5,
+    "experienceValue": 10
   },
   {
     "ID": 601,
@@ -63,7 +68,8 @@
     "stage_3_ID": 5006,
     "stage_4_ID": 5007,
     "stage_5_ID": -1,
-    "consumEnergy": 5
+    "consumEnergy": 5,
+    "experienceValue": 10
   },
   {
     "ID": 602,
@@ -74,6 +80,7 @@
     "stage_3_ID": 5006,
     "stage_4_ID": 5007,
     "stage_5_ID": -1,
-    "consumEnergy": 5
+    "consumEnergy": 5,
+    "experienceValue": 10
   }
 ]

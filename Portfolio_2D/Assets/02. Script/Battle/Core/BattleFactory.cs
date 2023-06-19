@@ -27,6 +27,13 @@ namespace Portfolio.Battle
             for (int i = 0; i < stage.EnemyList.Count; i++)
             {
                 TryCreateBattleUnit(stage.EnemyList[i], true, out BattleUnit battleUnit);
+                if (stage.EnemyLootItemList[i].canLoot)
+                {
+                    int itemLootCount = Random.Range(stage.EnemyLootItemList[i].lootItemMinCount, stage.EnemyLootItemList[i].lootItemMaxCount + 1);
+                    int itemID = stage.EnemyLootItemList[i].lootItemID;
+                    battleUnit.OnDeadEvent += (sender, e) => { BattleManager.Instance.GetItem(itemID, itemLootCount); };
+                }
+
                 BattleManager.Instance.AddUnitinUnitList(battleUnit);
             }
         }
