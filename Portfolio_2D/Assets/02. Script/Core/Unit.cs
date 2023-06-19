@@ -24,12 +24,72 @@ namespace Portfolio
         //===========================================================
         // Equipment
         //===========================================================
-        public WeaponData weaponData;
-        public HelmetData helmetData;
-        public ArmorData armorData;
-        public AmuletData amuletData;
-        public RingData ringData;
-        public ShoeData shoeData;
+        public WeaponData WeaponData
+        {
+            get
+            {
+                return userUnitData != null ? userUnitData.weaponData : null;
+            }
+            set
+            {
+                userUnitData.weaponData = value;
+            }
+        }
+        public HelmetData HelmetData
+        {
+            get
+            {
+                return userUnitData != null ? userUnitData.helmetData : null;
+            }
+            set
+            {
+                userUnitData.helmetData = value;
+            }
+        }
+        public ArmorData ArmorData
+        {
+            get
+            {
+                return userUnitData != null ? userUnitData.armorData : null;
+            }
+            set
+            {
+                userUnitData.armorData = value;
+            }
+        }
+        public AmuletData AmuletData
+        {
+            get
+            {
+                return userUnitData != null ? userUnitData.amuletData : null;
+            }
+            set
+            {
+                userUnitData.amuletData = value;
+            }
+        }
+        public RingData RingData
+        {
+            get
+            {
+                return userUnitData != null ? userUnitData.ringData : null;
+            }
+            set
+            {
+                userUnitData.ringData = value;
+            }
+        }
+        public ShoeData ShoeData
+        {
+            get
+            {
+                return userUnitData != null ? userUnitData.shoeData : null;
+            }
+            set
+            {
+                userUnitData.shoeData = value;
+            }
+        }
 
         //===========================================================
         // Apparence
@@ -190,9 +250,9 @@ namespace Portfolio
             get
             {
                 float returnValue = GetProperty(data.attackPoint);
-                if (weaponData != null)
+                if (WeaponData != null)
                 {
-                    returnValue += weaponData.attackPoint;
+                    returnValue += WeaponData.attackPoint;
                 }
 
                 returnValue += GetItemOptionValue(EquipmentOptionStat.AttackPoint);
@@ -206,9 +266,9 @@ namespace Portfolio
             get
             {
                 float returnValue = GetProperty(data.maxHP);
-                if (helmetData != null)
+                if (HelmetData != null)
                 {
-                    returnValue += helmetData.healthPoint;
+                    returnValue += HelmetData.healthPoint;
                 }
 
                 returnValue += GetItemOptionValue(EquipmentOptionStat.HealthPoint);
@@ -221,9 +281,9 @@ namespace Portfolio
             get
             {
                 float returnValue = GetProperty(data.defencePoint);
-                if (armorData != null)
+                if (ArmorData != null)
                 {
-                    returnValue += armorData.defencePoint;
+                    returnValue += ArmorData.defencePoint;
                 }
 
                 returnValue += GetItemOptionValue(EquipmentOptionStat.DefencePoint);
@@ -236,9 +296,9 @@ namespace Portfolio
             get
             {
                 float returnValue = data.speed;
-                if (shoeData != null)
+                if (ShoeData != null)
                 {
-                    returnValue += shoeData.speed;
+                    returnValue += ShoeData.speed;
                 }
 
                 returnValue += GetItemOptionValue(EquipmentOptionStat.Speed);
@@ -250,9 +310,9 @@ namespace Portfolio
             get
             {
                 float returnValue = data.criticalPercent;
-                if (amuletData != null)
+                if (AmuletData != null)
                 {
-                    returnValue += amuletData.criticalPercent;
+                    returnValue += AmuletData.criticalPercent;
                 }
 
                 returnValue += GetItemOptionValue(EquipmentOptionStat.CriticalPercent);
@@ -265,9 +325,9 @@ namespace Portfolio
             {
                 float returnValue = data.criticalDamage;
 
-                if (amuletData != null)
+                if (AmuletData != null)
                 {
-                    returnValue += amuletData.criticalPercent;
+                    returnValue += AmuletData.criticalPercent;
                 }
 
                 returnValue += GetItemOptionValue(EquipmentOptionStat.CriticalDamagePercent);
@@ -279,9 +339,9 @@ namespace Portfolio
             get
             {
                 float returnValue = data.effectHit;
-                if (ringData != null)
+                if (RingData != null)
                 {
-                    returnValue += ringData.effectHit;
+                    returnValue += RingData.effectHit;
                 }
 
                 returnValue += GetItemOptionValue(EquipmentOptionStat.EffectHitPercent);
@@ -293,9 +353,9 @@ namespace Portfolio
             get
             {
                 float returnValue = data.effectResistance;
-                if (ringData != null)
+                if (RingData != null)
                 {
-                    returnValue += ringData.effectResistance;
+                    returnValue += RingData.effectResistance;
                 }
 
                 returnValue += GetItemOptionValue(EquipmentOptionStat.EffectResistancePercent);
@@ -435,12 +495,12 @@ namespace Portfolio
             this.data = unitData;
             this.userUnitData = userUnitData;
 
-            weaponData = userUnitData.weaponData;
-            helmetData = userUnitData.helmetData;
-            armorData = userUnitData.armorData;
-            amuletData = userUnitData.amuletData;
-            ringData = userUnitData.RingData;
-            shoeData = userUnitData.shoeData;
+            WeaponData = userUnitData.weaponData;
+            HelmetData = userUnitData.helmetData;
+            ArmorData = userUnitData.armorData;
+            AmuletData = userUnitData.amuletData;
+            RingData = userUnitData.ringData;
+            ShoeData = userUnitData.shoeData;
 
             SetUnitData(unitData);
         }
@@ -500,7 +560,7 @@ namespace Portfolio
 
         public IEnumerable<EquipmentItemData> GetEuqipmentList()
         {
-            List<EquipmentItemData> list = new List<EquipmentItemData>() { weaponData, helmetData, armorData, amuletData, ringData, shoeData };
+            List<EquipmentItemData> list = new List<EquipmentItemData>() { WeaponData, HelmetData, ArmorData, AmuletData, RingData, ShoeData };
             return list.Where(item => item != null);
         }
 
@@ -557,17 +617,17 @@ namespace Portfolio
             switch (equipmentType)
             {
                 case EquipmentItemType.Weapon:
-                    return weaponData != null;
+                    return WeaponData != null;
                 case EquipmentItemType.Helmet:
-                    return helmetData != null; 
+                    return HelmetData != null; 
                 case EquipmentItemType.Armor:
-                    return armorData != null;
+                    return ArmorData != null;
                 case EquipmentItemType.Amulet:
-                    return amuletData != null;
+                    return AmuletData != null;
                 case EquipmentItemType.Ring:
-                    return ringData != null;
+                    return RingData != null;
                 case EquipmentItemType.Shoe:
-                    return shoeData != null;
+                    return ShoeData != null;
             }
 
             return false;
@@ -580,22 +640,22 @@ namespace Portfolio
             switch (changeType)
             {
                 case EquipmentItemType.Weapon:
-                    weaponData = changeData as WeaponData;
+                    WeaponData = changeData as WeaponData;
                     break;
                 case EquipmentItemType.Helmet:
-                    helmetData = changeData as HelmetData;
+                    HelmetData = changeData as HelmetData;
                     break;
                 case EquipmentItemType.Armor:
-                    armorData = changeData as ArmorData;
+                    ArmorData = changeData as ArmorData;
                     break;
                 case EquipmentItemType.Amulet:
-                    amuletData = changeData as AmuletData;
+                    AmuletData = changeData as AmuletData;
                     break;
                 case EquipmentItemType.Ring:
-                    ringData = changeData as RingData;
+                    RingData = changeData as RingData;
                     break;
                 case EquipmentItemType.Shoe:
-                    shoeData = changeData as ShoeData;
+                    ShoeData = changeData as ShoeData;
                     break;
             }
             return existingEquipment;
@@ -607,28 +667,28 @@ namespace Portfolio
             switch (releaseType)
             {
                 case EquipmentItemType.Weapon:
-                    existingEquipment = weaponData;
-                    weaponData = null;
+                    existingEquipment = WeaponData;
+                    WeaponData = null;
                     break;
                 case EquipmentItemType.Helmet:
-                    existingEquipment = helmetData;
-                    helmetData = null;
+                    existingEquipment = HelmetData;
+                    HelmetData = null;
                     break;
                 case EquipmentItemType.Armor:
-                    existingEquipment = armorData;
-                    armorData = null;
+                    existingEquipment = ArmorData;
+                    ArmorData = null;
                     break;
                 case EquipmentItemType.Amulet:
-                    existingEquipment = amuletData;
-                    amuletData = null;
+                    existingEquipment = AmuletData;
+                    AmuletData = null;
                     break;
                 case EquipmentItemType.Ring:
-                    existingEquipment = ringData;
-                    ringData = null;
+                    existingEquipment = RingData;
+                    RingData = null;
                     break;
                 case EquipmentItemType.Shoe:
-                    existingEquipment = shoeData;
-                    shoeData = null;
+                    existingEquipment = ShoeData;
+                    ShoeData = null;
                     break;
             }
 

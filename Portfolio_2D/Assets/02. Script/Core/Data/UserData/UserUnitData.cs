@@ -4,6 +4,7 @@ using UnityEngine;
 
 namespace Portfolio
 {
+    [System.Serializable]
     public class UserUnitData
     {
         public int unitID;
@@ -20,7 +21,7 @@ namespace Portfolio
         public HelmetData helmetData;
         public ArmorData armorData;
         public AmuletData amuletData;
-        public RingData RingData;
+        public RingData ringData;
         public ShoeData shoeData;
 
         public UserUnitData() { }

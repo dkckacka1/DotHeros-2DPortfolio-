@@ -36,7 +36,7 @@ namespace Portfolio.Lobby.Hero
         [SerializeField] TextMeshProUGUI optionStat_4_Lable;
         [SerializeField] TextMeshProUGUI optionStat_4_Value;
 
-        internal void Init()
+        public void Init()
         {
             LobbyManager.UIManager.equipmentItemDataChangeEvent += ShowEquipment;
         }

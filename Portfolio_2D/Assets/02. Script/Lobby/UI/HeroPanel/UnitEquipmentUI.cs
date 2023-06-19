@@ -32,12 +32,12 @@ namespace Portfolio.Lobby.Hero
 
             unitAnim.runtimeAnimatorController = unit.animController;
             unitAnim.Play("IDLE");
-            weaponSlot.ShowEquipment(unit.weaponData);
-            helemtSlot.ShowEquipment(unit.helmetData);
-            armorSlot.ShowEquipment(unit.armorData);
-            shoeSlot.ShowEquipment(unit.shoeData);
-            amuletSlot.ShowEquipment(unit.amuletData);
-            ringSlot.ShowEquipment(unit.ringData);
+            weaponSlot.ShowEquipment(unit.WeaponData);
+            helemtSlot.ShowEquipment(unit.HelmetData);
+            armorSlot.ShowEquipment(unit.ArmorData);
+            shoeSlot.ShowEquipment(unit.ShoeData);
+            amuletSlot.ShowEquipment(unit.AmuletData);
+            ringSlot.ShowEquipment(unit.RingData);
         }
 
         public void Undo()

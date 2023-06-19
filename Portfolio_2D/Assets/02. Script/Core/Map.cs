@@ -32,6 +32,8 @@ namespace Portfolio
                 }
             }
         }
+
+        public int GetGoldValue => mapData.getGoldValue;
         public Map(MapData mapData)
         {
             this.mapData = mapData;

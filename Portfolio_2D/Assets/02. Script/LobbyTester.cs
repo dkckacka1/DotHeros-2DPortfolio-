@@ -21,7 +21,7 @@ namespace Portfolio.Lobby
                 userUnitData.armorData = GameManager.ItemCreator.CreateEquipmentItemData<ArmorData>(GradeType.Normal);
                 userUnitData.shoeData = GameManager.ItemCreator.CreateEquipmentItemData<ShoeData>(GradeType.Normal);
                 userUnitData.amuletData = GameManager.ItemCreator.CreateEquipmentItemData<AmuletData>(GradeType.Normal);
-                userUnitData.RingData = GameManager.ItemCreator.CreateEquipmentItemData<RingData>(GradeType.Normal);
+                userUnitData.ringData = GameManager.ItemCreator.CreateEquipmentItemData<RingData>(GradeType.Normal);
 
                 GameManager.CurrentUser.AddNewUnit(new Unit(unitdata, userUnitData));
 
@@ -38,7 +38,7 @@ namespace Portfolio.Lobby
                 userUnitData.armorData = GameManager.ItemCreator.CreateEquipmentItemData<ArmorData>(GradeType.Normal);
                 userUnitData.shoeData = GameManager.ItemCreator.CreateEquipmentItemData<ShoeData>(GradeType.Normal);
                 userUnitData.amuletData = GameManager.ItemCreator.CreateEquipmentItemData<AmuletData>(GradeType.Normal);
-                userUnitData.RingData = GameManager.ItemCreator.CreateEquipmentItemData<RingData>(GradeType.Normal);
+                userUnitData.ringData = GameManager.ItemCreator.CreateEquipmentItemData<RingData>(GradeType.Normal);
 
                 GameManager.CurrentUser.AddNewUnit(new Unit(unitdata, userUnitData));
 
@@ -80,7 +80,7 @@ namespace Portfolio.Lobby
 
             if (GUI.Button(new Rect(10, 450, 100, 100), "골드 추가하기"))
             {
-                GameManager.CurrentUser.Gold += 100000;
+                GameManager.CurrentUser.Gold += 10000000;
             }
         }
     }

@@ -61,7 +61,7 @@ namespace Portfolio.Battle
         {
             for (int i = 0; i < 5; i++)
             {
-                if (unitList[i] == null)
+                if (unitList.Count <= i)
                 {
                     continue;
                 }

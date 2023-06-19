@@ -9,7 +9,8 @@
     "stage_4_ID": -1,
     "stage_5_ID": -1,
     "consumEnergy": 5,
-    "experienceValue": 10
+    "experienceValue": 10,
+    "getGoldValue": 1000
   },
   {
     "ID": 501,
@@ -21,7 +22,8 @@
     "stage_4_ID": 5007,
     "stage_5_ID": -1,
     "consumEnergy": 5,
-    "experienceValue": 10
+    "experienceValue": 10,
+    "getGoldValue": 2000
   },
   {
     "ID": 502,
@@ -33,7 +35,8 @@
     "stage_4_ID": 5007,
     "stage_5_ID": -1,
     "consumEnergy": 5,
-    "experienceValue": 10
+    "experienceValue": 10,
+    "getGoldValue": 1000
   },
   {
     "ID": 503,
@@ -45,7 +48,8 @@
     "stage_4_ID": 5007,
     "stage_5_ID": -1,
     "consumEnergy": 5,
-    "experienceValue": 10
+    "experienceValue": 10,
+    "getGoldValue": 2000
   },
   {
     "ID": 600,
@@ -57,7 +61,8 @@
     "stage_4_ID": 5007,
     "stage_5_ID": -1,
     "consumEnergy": 5,
-    "experienceValue": 10
+    "experienceValue": 10,
+    "getGoldValue": 1000
   },
   {
     "ID": 601,
@@ -69,7 +74,8 @@
     "stage_4_ID": 5007,
     "stage_5_ID": -1,
     "consumEnergy": 5,
-    "experienceValue": 10
+    "experienceValue": 10,
+    "getGoldValue": 2000
   },
   {
     "ID": 602,
@@ -81,6 +87,7 @@
     "stage_4_ID": 5007,
     "stage_5_ID": -1,
     "consumEnergy": 5,
-    "experienceValue": 10
+    "experienceValue": 10,
+    "getGoldValue": 1000
   }
 ]

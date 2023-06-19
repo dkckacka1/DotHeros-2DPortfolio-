@@ -174,6 +174,7 @@ namespace Portfolio.Lobby.Hero
             equipmentPopupUI.gameObject.SetActive(true);
             reinforcePopupUI.gameObject.SetActive(false);
             equipmentListPopupUI.gameObject.SetActive(false);
+            LobbyManager.UIManager.OnEquipmentItemChanged();
         }
 
         public void ShowReinforcePopup()

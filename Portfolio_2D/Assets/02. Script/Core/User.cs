@@ -282,5 +282,10 @@ namespace Portfolio
                 userData.clearMapList.Add(mapID);
             }
         }
+
+        public bool IsLeftEnergy(int consumeEnergy)
+        {
+            return CurrentEnergy >= consumeEnergy;
+        }
     }
 }

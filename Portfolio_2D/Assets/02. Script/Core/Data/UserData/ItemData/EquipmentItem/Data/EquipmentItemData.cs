@@ -4,6 +4,7 @@ using UnityEngine;
 
 namespace Portfolio
 {
+    [System.Serializable]
     public class EquipmentItemData : ItemData
     {
         public GradeType equipmentGrade = GradeType.Normal;

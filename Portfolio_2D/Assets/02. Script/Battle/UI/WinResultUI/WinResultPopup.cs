@@ -11,7 +11,7 @@ namespace Portfolio.Battle
     public class WinResultPopup : MonoBehaviour
     {
         [SerializeField] TextMeshProUGUI mapNameText;
-        [SerializeField] ScrollRect unitScrollView;
+        [SerializeField] RectTransform unitListLayout ;
         [SerializeField] ScrollRect itemScrollView;
 
         List<WinResultUnitSlot> unitSlotList = new List<WinResultUnitSlot>();
@@ -21,10 +21,11 @@ namespace Portfolio.Battle
         [SerializeField] TextMeshProUGUI currentMapConsumEnergyValueText;
         [SerializeField] Button GotoNextMapBtn;
         [SerializeField] TextMeshProUGUI nextMapConsumEnergyValueText;
+        [SerializeField] TextMeshProUGUI goldText;
 
         private void Awake()
         {
-            foreach (var unitSlot in unitScrollView.content.GetComponentsInChildren<WinResultUnitSlot>())
+            foreach (var unitSlot in unitListLayout.GetComponentsInChildren<WinResultUnitSlot>())
             {
                 unitSlotList.Add(unitSlot);
             }
@@ -69,9 +70,48 @@ namespace Portfolio.Battle
                 getItemSlotList[i].gameObject.SetActive(true);
             }
 
-            bool isCurrentMapExternMap = currentMap.IsExternMap;
             bool isNextMapValid = currentMap.IsNextMapVaild;
-            // TODO 승리창 버튼 작업중
+
+            if (isNextMapValid)
+            {
+                GameManager.Instance.TryGetMap(currentMap.MapID + 1, out Map nextMap);
+                if (GameManager.CurrentUser.IsLeftEnergy(nextMap.ConsumEnergy))
+                {
+                    GotoNextMapBtn.interactable = true;
+                }
+                else
+                {
+                    GotoNextMapBtn.interactable = false;
+                }
+                nextMapConsumEnergyValueText.text = nextMap.ConsumEnergy.ToString();
+            }
+            else
+            {
+                GotoNextMapBtn.interactable = false;
+                nextMapConsumEnergyValueText.text = "-";
+            }
+
+            ReplayMapBtn.interactable = GameManager.CurrentUser.IsLeftEnergy(currentMap.ConsumEnergy);
+            currentMapConsumEnergyValueText.text = currentMap.ConsumEnergy.ToString();
+            goldText.text = currentMap.GetGoldValue.ToString();
+        }
+
+        public void RePlayMapBtn()
+        {
+            SceneLoader.LoadBattleScene(BattleManager.Instance.userChoiceUnits, BattleManager.Instance.CurrentMap);
+        }
+
+        public void PlayNextMap()
+        {
+            if (GameManager.Instance.TryGetMap(BattleManager.Instance.CurrentMap.MapID + 1, out Map nextMap))
+            {
+                SceneLoader.LoadBattleScene(BattleManager.Instance.userChoiceUnits, nextMap);
+            }
+        }
+
+        public void ReturnToLobby()
+        {
+            SceneLoader.LoadLobbyScene();
         }
     }
 }

@@ -19,8 +19,6 @@ namespace Portfolio
 
         public static void SaveUserData(UserData userData)
         {
-            //Debug.Log(slpath);
-
             var json = JsonConvert.SerializeObject(userData, Formatting.Indented, new JsonSerializerSettings
             {
                 TypeNameHandling = TypeNameHandling.Auto

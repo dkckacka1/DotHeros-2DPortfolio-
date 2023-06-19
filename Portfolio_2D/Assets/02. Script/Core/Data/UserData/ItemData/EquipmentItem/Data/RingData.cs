@@ -4,6 +4,7 @@ using UnityEngine;
 
 namespace Portfolio
 {
+    [System.Serializable]
     public class RingData : EquipmentItemData
     {
         public float effectHit;

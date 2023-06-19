@@ -12,5 +12,6 @@ namespace Portfolio
         public int stage_5_ID = -1;
         public int consumEnergy = 5;
         public int experienceValue = 10;
+        public int getGoldValue = 100;
     }
 }
