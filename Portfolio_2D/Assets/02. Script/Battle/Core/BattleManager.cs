@@ -87,7 +87,7 @@ namespace Portfolio.Battle
                     stageDatas.Enqueue(currentMap.StageList[i]);
                 }
 
-                userChoiceUnits = GameManager.CurrentUser.userUnitList.OrderByDescending(GameLib.SortMethod).Take(5).ToList();
+                userChoiceUnits = GameManager.CurrentUser.userUnitList.OrderByDescending(GameLib.SortMethod).Take(1).ToList();
                 battleFactory.CreateUserUnit(userChoiceUnits);
 
                 currentStage = stageDatas.Dequeue();
@@ -216,12 +216,32 @@ namespace Portfolio.Battle
             else
             {
                 BattleUIManager.Win();
+                UesrGetItem();
+                UnitGetExperience();
             }
         }
 
         public void Defeat()
         {
             SwitchBattleState(BattleState.DEFEAT);
+            BattleUIManager.Defeat();
+        }
+
+        private void UesrGetItem()
+        {
+            foreach (var itemKV in GetItemDic.ToList())
+            {
+                GameManager.CurrentUser.AddConsumableItem(itemKV.Key, itemKV.Value);
+            }
+        }
+
+        private void UnitGetExperience()
+        {
+            var experienceValue = currentMap.MapExperience;
+            foreach (var unit in userChoiceUnits)
+            {
+                unit.CurrentExperience += experienceValue;
+            }
         }
 
         //===========================================================

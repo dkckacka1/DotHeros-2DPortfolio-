@@ -13,7 +13,7 @@ namespace Portfolio
         private UnitData data;
         private UserUnitData userUnitData;
         private int? designatedLevel;
-        private int? DesignatedGrade;
+        private int? designatedGrade;
 
         public ActiveSkill basicAttackSkill;
         public ActiveSkill activeSkill_1;
@@ -152,9 +152,9 @@ namespace Portfolio
                 }
                 else
                 {
-                    if (DesignatedGrade != null)
+                    if (designatedGrade != null)
                     {
-                        return (int)DesignatedGrade;
+                        return (int)designatedGrade;
                     }
                     else
                     {
@@ -170,7 +170,7 @@ namespace Portfolio
                 }
                 else
                 {
-                    DesignatedGrade = value;
+                    designatedGrade = value;
                     return;
                 }
             }
@@ -242,7 +242,7 @@ namespace Portfolio
             get
             {
                 //Debug.Log("최대 경험치 : " + Mathf.Log(10, UnitCurrentLevel));
-                return UnitCurrentLevel * 1000;
+                return UnitCurrentLevel * Constant.unitLevelUpExperienceVluae;
             }
         }
         public float AttackPoint
@@ -485,7 +485,7 @@ namespace Portfolio
         public Unit(UnitData unitData, int grade, int level)
         {
             this.data = unitData;
-            this.DesignatedGrade = grade;
+            this.designatedGrade = grade;
             this.designatedLevel = level;
             SetUnitData(unitData);
         }

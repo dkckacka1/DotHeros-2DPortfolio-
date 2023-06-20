@@ -31,7 +31,6 @@ namespace Portfolio
         }
 
         private StageData data;
-        public StageData Data => data;
 
         private List<Unit> enemyUnitList = new List<Unit>();
         private List<LootingItem> enemyLootItemList = new List<LootingItem>();

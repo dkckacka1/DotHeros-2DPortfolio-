@@ -10,7 +10,7 @@
   "unitDataList": [
     {
       "unitID": 100,
-      "unitLevel": 1,
+      "unitLevel": 3,
       "unitGrade": 1,
       "unitExperience": 0.0,
       "activeSkillLevel_1": 1,
@@ -18,7 +18,7 @@
       "passiveSkillLevel_1": 1,
       "passiveSkillLevel_2": 1,
       "weaponData": {
-        "attackPoint": 31.0,
+        "attackPoint": 200.0,
         "equipmentGrade": 0,
         "equipmentElementType": 0,
         "equipmentType": 0,
@@ -43,9 +43,9 @@
     },
     {
       "unitID": 102,
-      "unitLevel": 1,
+      "unitLevel": 2,
       "unitGrade": 1,
-      "unitExperience": 0.0,
+      "unitExperience": 500.0,
       "activeSkillLevel_1": 1,
       "activeSkillLevel_2": 1,
       "passiveSkillLevel_1": 1,
@@ -59,9 +59,9 @@
     },
     {
       "unitID": 103,
-      "unitLevel": 1,
+      "unitLevel": 2,
       "unitGrade": 2,
-      "unitExperience": 0.0,
+      "unitExperience": 500.0,
       "activeSkillLevel_1": 1,
       "activeSkillLevel_2": 1,
       "passiveSkillLevel_1": 1,
@@ -124,9 +124,9 @@
     },
     {
       "unitID": 103,
-      "unitLevel": 1,
+      "unitLevel": 2,
       "unitGrade": 2,
-      "unitExperience": 0.0,
+      "unitExperience": 500.0,
       "activeSkillLevel_1": 1,
       "activeSkillLevel_2": 1,
       "passiveSkillLevel_1": 1,
@@ -238,9 +238,9 @@
     },
     {
       "unitID": 103,
-      "unitLevel": 1,
+      "unitLevel": 2,
       "unitGrade": 2,
-      "unitExperience": 0.0,
+      "unitExperience": 500.0,
       "activeSkillLevel_1": 1,
       "activeSkillLevel_2": 1,
       "passiveSkillLevel_1": 1,
@@ -548,7 +548,7 @@
     }
   ],
   "consumalbeItemDic": {
-    "2000": 10,
+    "2000": 15,
     "2001": 10,
     "2002": 10
   },

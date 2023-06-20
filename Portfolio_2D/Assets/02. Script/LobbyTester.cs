@@ -8,6 +8,8 @@ namespace Portfolio.Lobby
 {
     public class LobbyTester : MonoBehaviour
     {
+        [SerializeField] string alertText;
+     
         private void OnGUI()
         {
 
@@ -81,6 +83,11 @@ namespace Portfolio.Lobby
             if (GUI.Button(new Rect(10, 450, 100, 100), "골드 추가하기"))
             {
                 GameManager.CurrentUser.Gold += 10000000;
+            }
+
+            if (GUI.Button(new Rect(10, 560, 100, 100), "경고 표시하기"))
+            {
+                GameManager.UIManager.ShowAlert(alertText);
             }
         }
     }

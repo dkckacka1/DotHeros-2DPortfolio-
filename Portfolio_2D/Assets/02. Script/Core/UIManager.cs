@@ -8,6 +8,10 @@ namespace Portfolio
     {
 
         [SerializeField] UserInfoUI userInfoUI;
+
+        [Header("AlertPoup")]
+        [SerializeField] AlertPoupUI alertPopup;
+
         public UserInfoUI UserInfoUI => userInfoUI;
 
         public void ShowUserInfo()
@@ -23,6 +27,12 @@ namespace Portfolio
         public void HideUserInfoCanvas()
         {
             userInfoUI.transform.parent.gameObject.SetActive(false);
+        }
+
+        public void ShowAlert(string text)
+        {
+            alertPopup.Show(text);
+
         }
     }
 }

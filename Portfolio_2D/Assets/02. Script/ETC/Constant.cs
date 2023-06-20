@@ -15,6 +15,7 @@ namespace Portfolio
         public static readonly Color legendaryColor = new Color(1, 0.5f, 0, 1);
         public static readonly Color playerColor = new Color(0, 1, 0, 1);
         public static readonly Color enemyColor = new Color(1, 0, 0, 1);
+        public const float unitLevelUpExperienceVluae = 1000f;
 
         //===========================================================
         // RandomValue

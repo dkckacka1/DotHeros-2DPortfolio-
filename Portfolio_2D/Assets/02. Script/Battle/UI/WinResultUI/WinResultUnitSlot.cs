@@ -13,9 +13,14 @@ namespace Portfolio.Battle
         [SerializeField] Slider unitExperienceSlider;
         [SerializeField] TextMeshProUGUI getExperienceText;
 
+        int unitLevel;
+        int unitGrade;
+
         public void InitSlot(Unit unit,float getExperience)
         {
             unitSlotUI.Init(unit);
+            unitLevel = unit.UnitCurrentLevel;
+            unitGrade = unit.UnitGrade;
             unitExperienceSlider.maxValue = unit.MaxExperience;
             unitExperienceSlider.value = unit.CurrentExperience;
             getExperienceText.text = getExperience.ToString("N0");

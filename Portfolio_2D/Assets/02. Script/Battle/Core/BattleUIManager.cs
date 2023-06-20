@@ -30,6 +30,7 @@ namespace Portfolio.Battle
 
         [Header("ResultUI")]
         [SerializeField] private WinResultPopup winResultPopup;
+        [SerializeField] private DefeatResultPopup defeatResultPopup;
 
         //===========================================================
         // Property
@@ -73,6 +74,13 @@ namespace Portfolio.Battle
             winResultPopup.transform.parent.gameObject.SetActive(true);
             winResultPopup.gameObject.SetActive(true);
             winResultPopup.Show();
+        }
+
+        public void Defeat()
+        {
+            defeatResultPopup.transform.parent.gameObject.SetActive(true);
+            defeatResultPopup.gameObject.SetActive(true);
+            defeatResultPopup.Show();
         }
     }
 }
