@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -14,6 +15,7 @@ namespace Portfolio
         [SerializeField] Slider userExperienceSlider;
         [SerializeField] TextMeshProUGUI userExperienceText;
         [SerializeField] TextMeshProUGUI userEnergyText;
+        [SerializeField] TextMeshProUGUI userEnergyChargeRemainText;
         [SerializeField] TextMeshProUGUI userGoldText;
         [SerializeField] TextMeshProUGUI userDiaText;
 
@@ -41,6 +43,11 @@ namespace Portfolio
         public void ShowDiamond(int diamond)
         {
             userDiaText.text = string.Format("{0:#,0}", diamond);
+        }
+
+        public void ShowRemainTime(int time)
+        {
+            userEnergyChargeRemainText.text = $"{(time / 60).ToString("00")} : {(time % 60).ToString("00")}";
         }
     }
 }

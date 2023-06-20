@@ -1,4 +1,5 @@
 ﻿
+using System;
 using System.Collections.Generic;
 
 namespace Portfolio
@@ -24,6 +25,8 @@ namespace Portfolio
 
         // 진행도 부문
         public List<int> clearMapList;
+
+        public DateTime LastAccessTime;
 
         public UserData()
         {

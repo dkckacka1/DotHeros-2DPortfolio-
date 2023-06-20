@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,14 +7,26 @@ namespace Portfolio
 {
     public class TimeChecker : MonoBehaviour
     {
-        private void Awake()
+        public int energyChargeCount = (int)Constant.energyChargeTime;
+
+        private void Start()
         {
+            StartCoroutine(energyCheck());
         }
 
-        // 타이머 필요
-        private void Update()
+        IEnumerator energyCheck()
         {
-            //Debug.Log(Time.realtimeSinceStartup);
+            while (true)
+            {
+                yield return new WaitForSecondsRealtime(1f);
+                energyChargeCount--;
+                if (energyChargeCount <= 0)
+                {
+                    GameManager.CurrentUser.CurrentEnergy++;
+                    energyChargeCount = (int)Constant.energyChargeTime;
+                }
+                GameManager.UIManager.ShowRemainTime(energyChargeCount);
+            }
         }
     }
 }

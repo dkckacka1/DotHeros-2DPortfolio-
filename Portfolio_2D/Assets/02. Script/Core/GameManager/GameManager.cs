@@ -72,6 +72,10 @@ namespace Portfolio
             if (SaveManager.LoadUserData(out UserData CurrentUserData))
             {
                 CurrentUser = new User(CurrentUserData);
+                int timeCheck = (CurrentUser.LastAccessTime - DateTime.Now).Seconds * -1;
+                CurrentUser.CurrentEnergy += (int)(timeCheck / Constant.energyChargeTime);
+                Debug.Log((int)(timeCheck % Constant.energyChargeTime));
+                timeChecker.energyChargeCount = (int)(timeCheck % Constant.energyChargeTime);
             }
             else
             {
@@ -107,6 +111,12 @@ namespace Portfolio
                     uiManager.HideUserInfoCanvas();
                 }
             }
+        }
+
+        private void OnApplicationQuit()
+        {
+            CurrentUser.LastAccessTime = DateTime.Now;
+            SaveUser();
         }
 
         public void SaveUser()

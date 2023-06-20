@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+using System;
 
 namespace Portfolio
 {
@@ -126,7 +127,12 @@ namespace Portfolio
             }
         }
 
-
+        public DateTime LastAccessTime
+        {
+            get => userData.LastAccessTime;
+            set => userData.LastAccessTime = value;
+        }   
+        
         //===========================================================
         // SetUserData
         //===========================================================
