@@ -2,19 +2,31 @@ using Portfolio.skill;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Portfolio.Lobby.Hero
 {
     public class HeroPanelUI : PanelUI
     {
+        [Header("Toggle")]
+        [SerializeField] ToggleGroup PanelToggleGroup;
+        [SerializeField] Toggle unitStatusToggle;
+        [SerializeField] Toggle unitCompositionToggle;
+
+        [Header("Panel")]
         [SerializeField] UnitListUI unitListUI;
         [SerializeField] UnitStatusUI unitStatusUI;
         [SerializeField] UnitEquipmentUI unitEquipmentUI;
         [SerializeField] UnitSkillPanelUI unitSkillPanelUI;
+        [SerializeField] UnitCompositionPanelUI unitCompositionPanelUI;
+
+        [Header("UnitEquipmentPopup")]
         [SerializeField] EquipmentPopupUI equipmentPopupUI;
         [SerializeField] EquipmentReinforcePopupUI reinforcePopupUI;
         [SerializeField] EquipmentListPopupUI equipmentListPopupUI;
         [SerializeField] EquipmentTooltip equipmentTooltipUI;
+
+        [Header("UnitSkillLevelUPPopup")]
         [SerializeField] SkillLevelUpPopupUI skillLevelUpPopupUI;
 
         private static Unit selectUnit;
@@ -128,7 +140,9 @@ namespace Portfolio.Lobby.Hero
             equipmentListPopupUI.gameObject.SetActive(false);
             equipmentTooltipUI.gameObject.SetActive(false);
             skillLevelUpPopupUI.gameObject.SetActive(false);
+            unitStatusToggle.isOn = true;
             GameManager.Instance.SaveUser();
+            
         }
 
         public void ReShow()
@@ -136,6 +150,20 @@ namespace Portfolio.Lobby.Hero
             unitListUI.ShowUnitList();
             LobbyManager.UIManager.OnUnitChanged();
             LobbyManager.UIManager.OnEquipmentItemChanged();
+        }
+
+        //===========================================================
+        // TogglePlugin
+        //===========================================================
+        public void ResetPanel()
+        {
+            if (!unitEquipmentUI.gameObject.activeInHierarchy || !unitSkillPanelUI.gameObject.activeInHierarchy)
+            {
+                if (LobbyManager.UIManager.UndoCount() >= 2)
+                {
+                    LobbyManager.UIManager.Undo();
+                }
+            }
         }
 
         //===========================================================

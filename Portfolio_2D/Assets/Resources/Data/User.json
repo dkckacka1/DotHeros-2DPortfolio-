@@ -5,7 +5,7 @@
   "userCurrentExperience": 0,
   "gold": 63981500,
   "diamond": 0,
-  "energy": 6,
+  "energy": 35,
   "maxUnitListCount": 30,
   "unitDataList": [
     {
@@ -553,5 +553,5 @@
     "2002": 10
   },
   "clearMapList": [],
-  "LastAccessTime": "2023-06-20T13:41:42.0349439+09:00"
+  "LastAccessTime": "2023-06-20T19:50:59.5162792+09:00"
 }

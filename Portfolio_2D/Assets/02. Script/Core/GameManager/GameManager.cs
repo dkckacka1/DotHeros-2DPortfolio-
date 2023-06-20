@@ -72,9 +72,9 @@ namespace Portfolio
             if (SaveManager.LoadUserData(out UserData CurrentUserData))
             {
                 CurrentUser = new User(CurrentUserData);
-                int timeCheck = (CurrentUser.LastAccessTime - DateTime.Now).Seconds * -1;
+                int timeCheck = (int)((CurrentUser.LastAccessTime - DateTime.Now).TotalSeconds * -1);
+                Debug.Log(timeCheck);
                 CurrentUser.CurrentEnergy += (int)(timeCheck / Constant.energyChargeTime);
-                Debug.Log((int)(timeCheck % Constant.energyChargeTime));
                 timeChecker.energyChargeCount = (int)(timeCheck % Constant.energyChargeTime);
             }
             else
