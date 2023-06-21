@@ -28,9 +28,9 @@ namespace Portfolio
 
         public UserUnitData(Unit unit)
         {
-            unitID = unit.Data.ID;
+            unitID = unit.UnitID;
             unitLevel = 1;
-            unitGrade = unit.Data.defaultGrade;
+            unitGrade = unit.UnitGrade;
         }
 
         public UserUnitData(UnitData unitData)

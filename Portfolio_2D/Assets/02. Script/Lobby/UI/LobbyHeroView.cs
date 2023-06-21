@@ -16,7 +16,7 @@ namespace Portfolio.Lobby
         public void ShowUnit(Unit unit)
         {
             unitAnim.runtimeAnimatorController = unit.animController;
-            unitNameText.text = unit.Data.unitName;
+            unitNameText.text = unit.UnitName;
             unitLevelText.text = $"LV {unit.UnitCurrentLevel}";
             for (int i = 0; i < gradeStarImages.Length; i++)
             {

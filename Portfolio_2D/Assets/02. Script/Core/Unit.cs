@@ -10,7 +10,7 @@ namespace Portfolio
 {
     public class Unit
     {
-        private UnitData data;
+        private UnitData unitData;
         private UserUnitData userUnitData;
         private int? designatedLevel;
         private int? designatedGrade;
@@ -100,8 +100,19 @@ namespace Portfolio
         //===========================================================
         // Property
         //===========================================================
-        public UnitData Data { get => data; }
-        public UserUnitData UserData { get => userUnitData; }
+        public UserUnitData UserData
+        {
+            get => userUnitData;
+        }
+        public int UnitID
+        {
+            get => unitData.ID;
+        }
+        public string UnitName
+        {
+            get => unitData.unitName;
+        }
+
         public int UnitCurrentLevel
         {
             get
@@ -158,7 +169,7 @@ namespace Portfolio
                     }
                     else
                     {
-                        return data.defaultGrade;
+                        return unitData.defaultGrade;
                     }
                 }
             }
@@ -249,7 +260,7 @@ namespace Portfolio
         {
             get
             {
-                float returnValue = GetProperty(data.attackPoint);
+                float returnValue = GetProperty(unitData.attackPoint);
                 if (WeaponData != null)
                 {
                     returnValue += WeaponData.attackPoint;
@@ -265,7 +276,7 @@ namespace Portfolio
         {
             get
             {
-                float returnValue = GetProperty(data.maxHP);
+                float returnValue = GetProperty(unitData.maxHP);
                 if (HelmetData != null)
                 {
                     returnValue += HelmetData.healthPoint;
@@ -280,7 +291,7 @@ namespace Portfolio
         {
             get
             {
-                float returnValue = GetProperty(data.defencePoint);
+                float returnValue = GetProperty(unitData.defencePoint);
                 if (ArmorData != null)
                 {
                     returnValue += ArmorData.defencePoint;
@@ -295,7 +306,7 @@ namespace Portfolio
         {
             get
             {
-                float returnValue = data.speed;
+                float returnValue = unitData.speed;
                 if (ShoeData != null)
                 {
                     returnValue += ShoeData.speed;
@@ -309,7 +320,7 @@ namespace Portfolio
         {
             get
             {
-                float returnValue = data.criticalPercent;
+                float returnValue = unitData.criticalPercent;
                 if (AmuletData != null)
                 {
                     returnValue += AmuletData.criticalPercent;
@@ -323,7 +334,7 @@ namespace Portfolio
         {
             get
             {
-                float returnValue = data.criticalDamage;
+                float returnValue = unitData.criticalDamage;
 
                 if (AmuletData != null)
                 {
@@ -338,7 +349,7 @@ namespace Portfolio
         {
             get
             {
-                float returnValue = data.effectHit;
+                float returnValue = unitData.effectHit;
                 if (RingData != null)
                 {
                     returnValue += RingData.effectHit;
@@ -352,7 +363,7 @@ namespace Portfolio
         {
             get
             {
-                float returnValue = data.effectResistance;
+                float returnValue = unitData.effectResistance;
                 if (RingData != null)
                 {
                     returnValue += RingData.effectResistance;
@@ -478,13 +489,13 @@ namespace Portfolio
         //===========================================================
         public Unit(UnitData unitData)
         {
-            this.data = unitData;
+            this.unitData = unitData;
             SetUnitData(unitData);
         }
 
         public Unit(UnitData unitData, int grade, int level)
         {
-            this.data = unitData;
+            this.unitData = unitData;
             this.designatedGrade = grade;
             this.designatedLevel = level;
             SetUnitData(unitData);
@@ -492,7 +503,7 @@ namespace Portfolio
 
         public Unit(UnitData unitData, UserUnitData userUnitData)
         {
-            this.data = unitData;
+            this.unitData = unitData;
             this.userUnitData = userUnitData;
 
             WeaponData = userUnitData.weaponData;
@@ -507,8 +518,8 @@ namespace Portfolio
 
         private void SetUnitData(UnitData unitData)
         {
-            portraitSprite = GameManager.Instance.GetSprite(this.data.portraitImageName);
-            animController = GameManager.Instance.GetAnimController(this.data.animationName);
+            portraitSprite = GameManager.Instance.GetSprite(this.unitData.portraitImageName);
+            animController = GameManager.Instance.GetAnimController(this.unitData.animationName);
             GameManager.Instance.TryGetSkill(unitData.basicAttackSKillID, out basicAttackSkill);
             GameManager.Instance.TryGetSkill(unitData.activeSkillID_1, out activeSkill_1);
             GameManager.Instance.TryGetSkill(unitData.activeSkillID_2, out activeSkill_2);
@@ -520,7 +531,7 @@ namespace Portfolio
         {
             if (userUnitData != null)
             {
-                return DefaultValue * (1 + ((userUnitData.unitLevel - 1) * data.levelValue)) * (1 + ((userUnitData.unitGrade - 1) * data.gradeValue));
+                return DefaultValue * (1 + ((userUnitData.unitLevel - 1) * unitData.levelValue)) * (1 + ((userUnitData.unitGrade - 1) * unitData.gradeValue));
             }
             else
             {

@@ -46,7 +46,7 @@ namespace Portfolio.Lobby.Hero
             if (unit == null) return;
 
             unitPortraitImage.sprite = unit.portraitSprite;
-            unitNameText.text = unit.Data.unitName;
+            unitNameText.text = unit.UnitName;
             unitGradeText.text = unit.UnitGrade.ToString() + " ¼º";
             unitCurrentLevelText.text = unit.UnitCurrentLevel.ToString();
             unitMaxLevelText.text = "/ " + unit.UnitMaxLevel.ToString();

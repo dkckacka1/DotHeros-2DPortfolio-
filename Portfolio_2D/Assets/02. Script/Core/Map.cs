@@ -77,13 +77,13 @@ namespace Portfolio
             var enemyListDis = mapEnemyList.Where((unit) => 
             {
 
-                if (unitIDList.Contains(unit.Data.ID))
+                if (unitIDList.Contains(unit.UnitID))
                 {
                     return false;
                 }
                 else
                 {
-                    unitIDList.Add(unit.Data.ID);
+                    unitIDList.Add(unit.UnitID);
                     return true;
                 }
             }).ToList();

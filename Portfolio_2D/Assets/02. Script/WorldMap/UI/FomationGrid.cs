@@ -34,7 +34,7 @@ namespace Portfolio.WorldMap
             if (isUnit)
             {
                 unitSlotUI.Init(unit);
-                unitNameText.text = unit.Data.unitName;
+                unitNameText.text = unit.UnitName;
             }
         }
 

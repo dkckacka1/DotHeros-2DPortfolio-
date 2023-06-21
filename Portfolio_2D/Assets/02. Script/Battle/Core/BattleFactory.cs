@@ -134,7 +134,7 @@ namespace Portfolio.Battle
                 battleUnit = Instantiate(battleUnitPrefab, grid.transform);
                 battleUnit.SetUnit(unit);
                 grid.unit = battleUnit;
-                battleUnit.name = unit.Data.unitName + "_" + num;
+                battleUnit.name = unit.UnitName + "_" + num;
                 return true;
             }
 
