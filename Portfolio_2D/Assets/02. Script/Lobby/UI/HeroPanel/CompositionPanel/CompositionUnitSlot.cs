@@ -13,12 +13,14 @@ namespace Portfolio.Lobby.Hero
         [SerializeField] Image unitPortraitImage;
         [SerializeField] TextMeshProUGUI unitNameText;
         [SerializeField] GridLayoutGroup gradeLayout;
-        [SerializeField] Toggle toggle;
         [SerializeField] Sprite defaultSprite;
+        [SerializeField] Image selectImage;
 
+        [HideInInspector] public UnitSlotHeroCompositionSelector selector;
+        private bool isSelect;
         Unit unit;
 
-        public Unit Unit
+        public Unit CurrentUnit
         {
             get => unit;
         }
@@ -27,23 +29,35 @@ namespace Portfolio.Lobby.Hero
         {
             get => unit != null;
         }
+        public bool IsSelect 
+        {
+            get => isSelect; 
+            set
+            {
+                isSelect = value;
+                selectImage.gameObject.SetActive(isSelect);
+            }
+        }
 
         public void Reset()
         {
             unit = null;
-            toggle.onValueChanged.Invoke(false);
+            if (selector != null)
+            {
+                selector.ResetSelect();
+                selector = null;
+            }
+            IsSelect = false;
             unitPortraitImage.sprite = defaultSprite;
             lockMask.gameObject.SetActive(false);
             unitPortraitMask.gameObject.SetActive(true);
             unitNameText.gameObject.SetActive(false);
             gradeLayout.gameObject.SetActive(false);
-            toggle.interactable = true;
         }
 
         public void ShowLock()
         {
             unit = null;
-            toggle.interactable = false;
             lockMask.gameObject.SetActive(true);
             unitPortraitMask.gameObject.SetActive(false);
             unitNameText.gameObject.SetActive(false);
@@ -62,15 +76,6 @@ namespace Portfolio.Lobby.Hero
             unitNameText.gameObject.SetActive(true);
             gradeLayout.gameObject.SetActive(true);
         }
-
-        public void SelectCompositionSlot(UnitCompositionPanelUI unitCompositionPanelUI)
-        {
-            if (toggle.isOn)
-            {
-                unitCompositionPanelUI.SelectedCompositionUnitSlot = this;
-            }
-        }
-
 
         private void SetGrade(int grade)
         {

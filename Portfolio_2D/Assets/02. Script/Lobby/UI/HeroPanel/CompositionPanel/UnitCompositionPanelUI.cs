@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -8,78 +10,144 @@ namespace Portfolio.Lobby.Hero
 {
     public class UnitCompositionPanelUI : MonoBehaviour
     {
-        [SerializeField] CompositionUnitSlot mainUnitSlot;
-        [SerializeField] List<CompositionUnitSlot> subUnitSlotList;
         [SerializeField] Button heroCompositionBtn;
+        [SerializeField] Button releaseCompositionBtn;
         [SerializeField] TextMeshProUGUI explainText;
         [SerializeField] UnitListUI unitListUI;
 
-        private UnitSlotHeroCompositionSelector mainSelector;
-        private List<UnitSlotHeroCompositionSelector> subSelectors = new List<UnitSlotHeroCompositionSelector>(4) { null, null, null, null };
+        [Header("CompositionSlot")]
+        [SerializeField] CompositionUnitSlot mainUnitSlot;
+        [SerializeField] List<CompositionUnitSlot> subUnitSlotList;
+        [HideInInspector] public CompositionUnitSlot selectedCompositionUnitSlot;
+        private Stack<CompositionUnitSlot> insertUnitSlotStack = new Stack<CompositionUnitSlot>();
 
-        [HideInInspector] public CompositionUnitSlot SelectedCompositionUnitSlot;
+        private int putInUnitCount;
 
 
         private void OnDisable()
+        {
+            Reset();
+        }
+
+        private void OnEnable()
+        {
+            SelectSlot(mainUnitSlot);
+        }
+
+        private void Reset()
         {
             mainUnitSlot.Reset();
             foreach (var slot in subUnitSlotList)
             {
                 slot.Reset();
             }
+
+            selectedCompositionUnitSlot = null;
+            putInUnitCount = 0;
+            heroCompositionBtn.interactable = false;
+            releaseCompositionBtn.interactable = false;
+            insertUnitSlotStack.Clear();
         }
 
-        private void OnEnable()
+        private void SelectSlot(CompositionUnitSlot slot)
         {
-            foreach (var slot in subUnitSlotList)
+            if (selectedCompositionUnitSlot != null)
             {
-                slot.ShowLock();
+                selectedCompositionUnitSlot.IsSelect = false;
             }
 
-            mainUnitSlot.GetComponent<Toggle>().isOn = true;
+            selectedCompositionUnitSlot = slot;
+
+            if (selectedCompositionUnitSlot != null)
+            {
+                selectedCompositionUnitSlot.IsSelect = true;
+            }
         }
 
-        public void SelectUnit(UnitSlotHeroCompositionSelector selector)
+        public void InsertUnit(UnitSlotHeroCompositionSelector selector)
         {
-            if (SelectedCompositionUnitSlot == null) return;
+            if (selectedCompositionUnitSlot == null) return;
+            if (selector.IsSelected) return;
 
-            SelectedCompositionUnitSlot.ShowUnit(selector.CurrentUnit);
+            insertUnitSlotStack.Push(selectedCompositionUnitSlot);
+            selectedCompositionUnitSlot.ShowUnit(selector.CurrentUnit);
+            selectedCompositionUnitSlot.selector = selector;
 
-            if (SelectedCompositionUnitSlot == mainUnitSlot)
+            if (selectedCompositionUnitSlot == mainUnitSlot)
             {
-                if (mainSelector != null)
-                {
-                    mainSelector.ResetSelect();
-                }
-
-                mainSelector = selector;
-                mainSelector.IsMainSelect = true;
-                SetMainUnit(mainSelector);
-                unitListUI.SetCompositionList(mainSelector);
+                SetMainUnit(selector);
+                selector.IsMainSelect = true;
             }
             else
             {
-                if (selector == mainSelector) return;
+                selector.IsSubSelect = true;
+            }
 
+            releaseCompositionBtn.interactable = true;
+            heroCompositionBtn.interactable = putInUnitCount == insertUnitSlotStack.Count;
+
+            if (putInUnitCount > insertUnitSlotStack.Count)
+            {
+                SelectSlot(GetNextSlot(selectedCompositionUnitSlot));
+            }
+            else
+            {
+                Debug.Log("다음에 들어갈 슬롯이 없습니다.");
+                SelectSlot(null);
+            }
+        }
+
+        public void ReleaseUnit()
+        {
+            SelectSlot(insertUnitSlotStack.Pop());
+
+            selectedCompositionUnitSlot.selector.ResetSelect();
+            selectedCompositionUnitSlot.Reset();
+            selectedCompositionUnitSlot.IsSelect = true;
+
+            if (insertUnitSlotStack.Count == 0)
+            {
+                unitListUI.ResetCompositionList();
+            }
+
+            releaseCompositionBtn.interactable = insertUnitSlotStack.Count != 0;
+            heroCompositionBtn.interactable = putInUnitCount == insertUnitSlotStack.Count;
+        }
+
+        private CompositionUnitSlot GetNextSlot(CompositionUnitSlot currentSlot)
+        {
+            if (currentSlot == mainUnitSlot)
+            {
+                Debug.Log("메인슬롯의 다음것 리턴");
+                return subUnitSlotList[0];
+            }
+            else
+            {
                 for (int i = 0; i < subUnitSlotList.Count; i++)
                 {
-                    if (SelectedCompositionUnitSlot == subUnitSlotList[i])
+                    if (currentSlot == subUnitSlotList[i])
                     {
-                        Debug.Log($"선택된 슬롯은 서브 유닛 {i}번 슬롯입니다.");
-                        if (subSelectors[i] != null)
+                        if (i == subUnitSlotList.Count - 1)
                         {
-                            subSelectors[i].ResetSelect();
+                            break;
                         }
-
-                        subSelectors[i] = selector;
-                        subSelectors[i].IsSubSelect = true;
+                        else
+                        {
+                            Debug.Log($"서브슬롯{i}번 의 다음것 리턴");
+                            return subUnitSlotList[i + 1];
+                        }
                     }
                 }
+
+                Debug.Log($"서브슬롯4번 의 다음은 없다");
+                return null;
             }
+
         }
 
         private void SetMainUnit(UnitSlotHeroCompositionSelector mainSelector)
         {
+            putInUnitCount = mainSelector.CurrentUnit.UnitGrade + 1;
             foreach (var slot in subUnitSlotList)
             {
                 slot.Reset();
@@ -87,17 +155,34 @@ namespace Portfolio.Lobby.Hero
 
             for (int i = 0; i < subUnitSlotList.Count; i++)
             {
-                if (mainSelector.CurrentUnit.UnitGrade < i + 1)
+                if (putInUnitCount - 1 <= i)
                 {
                     subUnitSlotList[i].ShowLock();
                 }
+            }
 
-                if (subSelectors[i] != null)
+            unitListUI.SetCompositionList(mainSelector);
+        }
+
+        public void CompositionUnit()
+        {
+            int setUnitLevel = Mathf.Max(mainUnitSlot.CurrentUnit.UnitCurrentLevel, subUnitSlotList.Where(slot => slot.CurrentUnit != null).Select(slot => slot.CurrentUnit.UnitCurrentLevel).Max());
+            mainUnitSlot.CurrentUnit.UnitCurrentLevel = setUnitLevel;
+            mainUnitSlot.CurrentUnit.UnitGrade += 1;
+            //Debug.Log(GameManager.CurrentUser.userUnitList.Contains(mainUnitSlot.CurrentUnit));
+            foreach (var slot in subUnitSlotList)
+            {
+                if (slot.CurrentUnit != null)
                 {
-                    subSelectors[i].ResetSelect();
-                    subSelectors[i] = null;
+                    //Debug.Log(GameManager.CurrentUser.userUnitList.Contains(slot.CurrentUnit));
+                    GameManager.CurrentUser.GetUnitEquipment(slot.CurrentUnit);
+                    GameManager.CurrentUser.userUnitList.Remove(slot.CurrentUnit);
                 }
             }
+            Reset();
+            unitListUI.ResetCompositionList();
+            unitListUI.ShowUnitList();
+            SelectSlot(mainUnitSlot);
         }
     }
 

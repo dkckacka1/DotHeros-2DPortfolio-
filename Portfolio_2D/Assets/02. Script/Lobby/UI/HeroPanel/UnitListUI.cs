@@ -33,7 +33,6 @@ namespace Portfolio.Lobby.Hero
         private void OnEnable()
         {
             ShowUnitList();
-            ShowUnitListCountText();
         }
 
         public void ShowUnitList()
@@ -50,19 +49,21 @@ namespace Portfolio.Lobby.Hero
                 unitSlotList[i].Init(userUnitSortingList[i]);
                 unitSlotList[i].gameObject.SetActive(true);
             }
+            ShowUnitListCountText();
         }
 
         public void SetStatus()
         {
             SetSelector(unitSlotHeroStatusSelectors, true);
             SetSelector(unitSlotHeroCompositionSelectors, false);
+            ResetDefaultList();
         }
 
         public void SetComposition()
         {
             SetSelector(unitSlotHeroStatusSelectors, false);
             SetSelector(unitSlotHeroCompositionSelectors, true);
-            SetCompositionList();
+            ResetCompositionList();
         }
 
         public void ShowUnitListCountText()
@@ -78,11 +79,11 @@ namespace Portfolio.Lobby.Hero
             }
         }
 
-        private void SetCompositionList()
+        public void ResetCompositionList()
         {
             foreach (var selector in unitSlotHeroCompositionSelectors)
             {
-                if (selector.CurrentUnit == null && selector.CurrentUnit.UnitGrade == 5)
+                if (selector.CurrentUnit != null && selector.CurrentUnit.UnitGrade == 5)
                 {
                     selector.CanSelect = false;
                     continue;
@@ -94,18 +95,31 @@ namespace Portfolio.Lobby.Hero
 
         public void SetCompositionList(UnitSlotHeroCompositionSelector mainSelector)
         {
-            // TODO 유닛 선택 가능 작업중
-            var userUnitSortingList = GameManager.CurrentUser.userUnitList.OrderByDescending(unit => unit.UnitID == mainSelector.CurrentUnit.UnitID).ThenByDescending(GameLib.UnitBattlePowerSort).ToList();
+            var siblingList = unitSlotList.Where(slot => slot.gameObject.activeInHierarchy && slot.CurrentUnit.UnitID == mainSelector.CurrentUnit.UnitID).
+                OrderByDescending(slot => slot.CurrentUnit == mainSelector.CurrentUnit).                // 메인 합성 유닛부터 표시
+                ThenByDescending(slot => slot.CurrentUnit.UnitGrade == mainSelector.CurrentUnit.UnitGrade). // 같은 등급을 가진 유닛 표시
+                ToList();
+            for (int i = 0; i < siblingList.Count; i++)
+            {
+                siblingList[i].transform.SetSiblingIndex(i);
+            }
+
+            var list = unitSlotList.Where(slot => slot.gameObject.activeInHierarchy).
+                Where(slot => slot.CurrentUnit.UnitID != mainSelector.CurrentUnit.UnitID || slot.CurrentUnit.UnitGrade != mainSelector.CurrentUnit.UnitGrade);
+                //Select(slot => slot.GetComponent<UnitSlotHeroCompositionSelector>().CanSelect = false) ;
+                
+            foreach (var item in list)
+            {
+                Debug.Log(item.GetComponent<UnitSlotHeroCompositionSelector>() == null);
+                item.GetComponent<UnitSlotHeroCompositionSelector>().CanSelect = false;
+            }
+        }
+
+        public void ResetDefaultList()
+        {
             for (int i = 0; i < unitSlotList.Count; i++)
             {
-                if (userUnitSortingList.Count <= i)
-                {
-                    unitSlotList[i].gameObject.SetActive(false);
-                    continue;
-                }
-
-                unitSlotList[i].Init(userUnitSortingList[i]);
-                unitSlotList[i].gameObject.SetActive(true);
+                unitSlotList[i].transform.SetSiblingIndex(i);
             }
         }
     }

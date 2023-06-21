@@ -140,6 +140,8 @@ namespace Portfolio.Lobby.Hero
             equipmentListPopupUI.gameObject.SetActive(false);
             equipmentTooltipUI.gameObject.SetActive(false);
             skillLevelUpPopupUI.gameObject.SetActive(false);
+            unitStatusToggle.isOn = true;
+            unitStatusToggle.onValueChanged.Invoke(true);
             GameManager.Instance.SaveUser();
             
         }

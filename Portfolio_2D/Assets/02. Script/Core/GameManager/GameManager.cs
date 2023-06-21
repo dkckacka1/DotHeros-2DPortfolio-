@@ -73,7 +73,7 @@ namespace Portfolio
             {
                 CurrentUser = new User(CurrentUserData);
                 int timeCheck = (int)((CurrentUser.LastAccessTime - DateTime.Now).TotalSeconds * -1);
-                Debug.Log(timeCheck);
+                //Debug.Log(timeCheck);
                 CurrentUser.CurrentEnergy += (int)(timeCheck / Constant.energyChargeTime);
                 timeChecker.energyChargeCount = (int)(timeCheck % Constant.energyChargeTime);
             }

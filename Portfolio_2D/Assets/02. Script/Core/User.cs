@@ -204,6 +204,46 @@ namespace Portfolio
             GameManager.Instance.SaveUser();
         }
 
+        public void GetUnitEquipment(Unit unit)
+        {
+            if (unit.WeaponData != null)
+            {
+                userEquipmentItemDataList.Add(unit.WeaponData);
+                unit.WeaponData = null;
+            }
+
+            if (unit.ArmorData != null)
+            {
+                userEquipmentItemDataList.Add(unit.ArmorData);
+                unit.ArmorData = null;
+            }
+
+            if (unit.HelmetData != null)
+            {
+                userEquipmentItemDataList.Add(unit.HelmetData);
+                unit.HelmetData = null;
+            }
+
+            if (unit.ShoeData != null)
+            {
+                userEquipmentItemDataList.Add(unit.ShoeData);
+                unit.ShoeData = null;
+            }
+
+            if (unit.AmuletData != null)
+            {
+                userEquipmentItemDataList.Add(unit.AmuletData);
+                unit.AmuletData = null;
+            }
+
+            if (unit.RingData != null)
+            {
+                userEquipmentItemDataList.Add(unit.RingData);
+                unit.RingData = null;
+            }
+
+        }
+
         //===========================================================
         // ConsumableItem
         //===========================================================

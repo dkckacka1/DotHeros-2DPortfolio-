@@ -19,6 +19,11 @@ namespace Portfolio.Lobby.Hero
         private bool isMainSelect;
         private bool isSubSelect;
 
+        public bool IsSelected
+        {
+            get => isMainSelect || isSubSelect;
+        }
+
         public Unit CurrentUnit
         {
             get => unitSlotUI.CurrentUnit;
@@ -56,7 +61,7 @@ namespace Portfolio.Lobby.Hero
             set
             {
                 canSelect = value;
-                Debug.Log(canSelect);
+                //Debug.Log(canSelect);
                 cantSelectImage.gameObject.SetActive(!canSelect);
             }
         }
@@ -76,7 +81,7 @@ namespace Portfolio.Lobby.Hero
         {
             if (canSelect)
             {
-                unitCompositionPanelUI.SelectUnit(this);
+                unitCompositionPanelUI.InsertUnit(this);
             }
         }
 
