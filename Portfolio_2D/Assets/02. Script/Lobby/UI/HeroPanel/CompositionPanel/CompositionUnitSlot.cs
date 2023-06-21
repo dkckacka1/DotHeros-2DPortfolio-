@@ -31,11 +31,13 @@ namespace Portfolio.Lobby.Hero
         public void Reset()
         {
             unit = null;
+            toggle.onValueChanged.Invoke(false);
             unitPortraitImage.sprite = defaultSprite;
             lockMask.gameObject.SetActive(false);
             unitPortraitMask.gameObject.SetActive(true);
             unitNameText.gameObject.SetActive(false);
             gradeLayout.gameObject.SetActive(false);
+            toggle.interactable = true;
         }
 
         public void ShowLock()
@@ -55,12 +57,20 @@ namespace Portfolio.Lobby.Hero
             unitPortraitImage.sprite = unit.portraitSprite;
             SetGrade(unit.UnitGrade);
 
-            toggle.interactable = true;
             lockMask.gameObject.SetActive(false);
             unitPortraitMask.gameObject.SetActive(true);
             unitNameText.gameObject.SetActive(true);
             gradeLayout.gameObject.SetActive(true);
         }
+
+        public void SelectCompositionSlot(UnitCompositionPanelUI unitCompositionPanelUI)
+        {
+            if (toggle.isOn)
+            {
+                unitCompositionPanelUI.SelectedCompositionUnitSlot = this;
+            }
+        }
+
 
         private void SetGrade(int grade)
         {

@@ -35,10 +35,5 @@ namespace Portfolio.UI
                 starImages[i].gameObject.SetActive(i < unit.UnitGrade && isShowGradeImage);
             }
         }
-
-        public void HeroPanelSelectUnit()
-        {
-            HeroPanelUI.SelectUnit = currentUnit;
-        }
     } 
 }

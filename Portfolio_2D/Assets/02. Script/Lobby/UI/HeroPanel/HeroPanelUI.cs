@@ -140,7 +140,6 @@ namespace Portfolio.Lobby.Hero
             equipmentListPopupUI.gameObject.SetActive(false);
             equipmentTooltipUI.gameObject.SetActive(false);
             skillLevelUpPopupUI.gameObject.SetActive(false);
-            unitStatusToggle.isOn = true;
             GameManager.Instance.SaveUser();
             
         }
@@ -169,6 +168,18 @@ namespace Portfolio.Lobby.Hero
         //===========================================================
         // ShowUI
         //===========================================================
+        public void ShowStatus()
+        {
+            unitListUI.SetStatus();
+            SelectUnit = GameManager.CurrentUser.userUnitList[0];
+        }
+
+        public void ShowComposition()
+        {
+            unitListUI.SetComposition();
+        }
+
+
         public void ShowEquipmentUI()
         {
             if (!unitEquipmentUI.gameObject.activeInHierarchy)

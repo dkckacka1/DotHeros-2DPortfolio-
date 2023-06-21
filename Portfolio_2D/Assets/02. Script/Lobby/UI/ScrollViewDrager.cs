@@ -14,7 +14,7 @@ namespace Portfolio.Lobby
         {
             if (scrollView == null)
             {
-                this.enabled = false;
+                Destroy(this);
             }
         }
 

@@ -49,7 +49,7 @@ namespace Portfolio.WorldMap
 
         public void ShowUnitList()
         {
-            var userUnitList = GameManager.CurrentUser.userUnitList.OrderByDescending(GameLib.SortMethod).ToList();
+            var userUnitList = GameManager.CurrentUser.userUnitList.OrderByDescending(GameLib.UnitBattlePowerSort).ToList();
             for (int i = 0; i < unitSlotList.Count; i++)
             {
                 if (userUnitList.Count <= i)

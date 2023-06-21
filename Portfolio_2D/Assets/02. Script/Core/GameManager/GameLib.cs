@@ -111,7 +111,7 @@ namespace Portfolio
 
 
         // TODO : 정렬 함수 만들어 줘야함
-        public static int SortMethod(Unit arg)
+        public static int UnitBattlePowerSort(Unit arg)
         {
             return arg.battlePower;
         }

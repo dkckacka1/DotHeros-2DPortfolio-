@@ -87,7 +87,7 @@ namespace Portfolio.Battle
                     stageDatas.Enqueue(currentMap.StageList[i]);
                 }
 
-                userChoiceUnits = GameManager.CurrentUser.userUnitList.OrderByDescending(GameLib.SortMethod).Take(1).ToList();
+                userChoiceUnits = GameManager.CurrentUser.userUnitList.OrderByDescending(GameLib.UnitBattlePowerSort).Take(1).ToList();
                 battleFactory.CreateUserUnit(userChoiceUnits);
 
                 currentStage = stageDatas.Dequeue();
