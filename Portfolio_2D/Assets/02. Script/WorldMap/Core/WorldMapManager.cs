@@ -89,18 +89,22 @@ namespace Portfolio.WorldMap
             bool isClear = GameManager.CurrentUser.isClearMap(currentMapNode.Map.MapID);
             bool isExternalMap = currentMapNode.Map.IsExternMap;
 
-            if (isClear || (isExternalMap && currentMapNode.prevNode != null && currentMapNode.prevNode.Map.MapID <= GameManager.CurrentUser.ClearHighestMapID))
-            {
-                currentMapNode.SetNodeBtnInteractable(true);
-                currentMapNode.ShowLockImage(false);
-                currentMapNode.ShowNodeArrow(true);
-            }
-            else
-            {
-                currentMapNode.SetNodeBtnInteractable(false);
-                currentMapNode.ShowLockImage(true);
-                currentMapNode.ShowNodeArrow(false);
-            }
+            // TODO
+            //if (isClear || (isExternalMap && currentMapNode.prevNode != null && currentMapNode.prevNode.Map.MapID <= GameManager.CurrentUser.ClearHighestMapID))
+            //{
+            //    currentMapNode.SetNodeBtnInteractable(true);
+            //    currentMapNode.ShowLockImage(false);
+            //    currentMapNode.ShowNodeArrow(true);
+            //}
+            //else
+            //{
+            //    currentMapNode.SetNodeBtnInteractable(false);
+            //    currentMapNode.ShowLockImage(true);
+            //    currentMapNode.ShowNodeArrow(false);
+            //}
+            currentMapNode.SetNodeBtnInteractable(true);
+            currentMapNode.ShowLockImage(false);
+            currentMapNode.ShowNodeArrow(true);
         }
 
 

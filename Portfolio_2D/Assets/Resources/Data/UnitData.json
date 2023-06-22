@@ -5,7 +5,7 @@
     "elementalType": "Fire",
     "defaultGrade": 1,
     "maxHP": 100,
-    "attackPoint": 10,
+    "attackPoint": 15,
     "defencePoint": 0,
     "speed": 100,
     "criticalPercent": 0,
@@ -27,10 +27,10 @@
     "unitName": "힐 테스트 유닛",
     "elementalType": "Fire",
     "defaultGrade": 1,
-    "maxHP": 100,
+    "maxHP": 80,
     "attackPoint": 10,
     "defencePoint": 0,
-    "speed": 100,
+    "speed": 80,
     "criticalPercent": 0,
     "criticalDamage": 0,
     "effectHit": 0,
@@ -43,7 +43,7 @@
     "passiveSkillID_1": -1,
     "passiveSkillID_2": -1,
     "portraitImageName": "Human_9",
-    "animationName": "Ragner_AnimCT"
+    "animationName": "WaterPriestess_AnimCT"
   },
   {
     "ID": 102,
@@ -53,7 +53,7 @@
     "maxHP": 100,
     "attackPoint": 10,
     "defencePoint": 0,
-    "speed": 100,
+    "speed": 90,
     "criticalPercent": 0,
     "criticalDamage": 0,
     "effectHit": 0,
@@ -66,7 +66,7 @@
     "passiveSkillID_1": -1,
     "passiveSkillID_2": -1,
     "portraitImageName": "Elf_6",
-    "animationName": "FireKnight_AnimCT"
+    "animationName": "Ragner_AnimCT"
   },
   {
     "ID": 103,
@@ -89,29 +89,29 @@
     "passiveSkillID_1": -1,
     "passiveSkillID_2": -1,
     "portraitImageName": "Dwarf_12",
-    "animationName": "Ragner_AnimCT"
+    "animationName": "GroundMonkAnim_AnimCT"
   },
   {
     "ID": 104,
     "unitName": "등급 테스트 유닛(고유)",
     "elementalType": "Fire",
     "defaultGrade": 3,
-    "maxHP": 100,
-    "attackPoint": 10,
+    "maxHP": 150,
+    "attackPoint": 25,
     "defencePoint": 0,
-    "speed": 100,
+    "speed": 110,
     "criticalPercent": 0,
     "criticalDamage": 0,
     "effectHit": 0,
     "effectResistance": 0,
-    "levelValue": 0.2,
-    "gradeValue": 0.5,
+    "levelValue": 0.25,
+    "gradeValue": 0.6,
     "basicAttackSKillID": 10000,
     "activeSkillID_1": 10003,
     "activeSkillID_2": 10004,
     "passiveSkillID_1": -1,
     "passiveSkillID_2": -1,
     "portraitImageName": "Dwarf_15",
-    "animationName": "Ragner_AnimCT"
+    "animationName": "MetalBladekeeper_AnimCT"
   }
 ]

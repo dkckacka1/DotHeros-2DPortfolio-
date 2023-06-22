@@ -218,6 +218,7 @@ namespace Portfolio.Battle
                 BattleUIManager.Win();
                 UesrGetItem();
                 UnitGetExperience();
+                GameManager.CurrentUser.ClearMap(currentMap.MapID);
             }
         }
 

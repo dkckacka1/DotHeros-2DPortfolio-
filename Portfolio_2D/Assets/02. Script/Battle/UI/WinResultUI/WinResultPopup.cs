@@ -45,7 +45,7 @@ namespace Portfolio.Battle
             mapNameText.text = currentMap.MapName;
             for (int i = 0; i < unitSlotList.Count; i++)
             {
-                if (userUnitList.Count <= i)
+                if (userUnitList.Count <= i || userUnitList[i] == null)
                 {
                     unitSlotList[i].gameObject.SetActive(false);
                     continue;

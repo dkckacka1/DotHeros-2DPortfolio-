@@ -77,6 +77,11 @@ namespace Portfolio.Battle
 
         private BattleUnit CreateBattleUnit(Unit unit, GridPosition grid, bool isEnemy)
         {
+            if (unit == null)
+            {
+                return null;
+            }
+
             BattleUnit battleUnitPrefab;
 
             if (!isEnemy)
