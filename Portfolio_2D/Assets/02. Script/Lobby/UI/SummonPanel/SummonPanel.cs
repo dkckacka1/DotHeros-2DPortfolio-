@@ -51,26 +51,50 @@ namespace Portfolio.Lobby.Summon
 
         public void SummonUnitBtn()
         {
-            summonResultUI.ClearSummonResult();
+            if (!GameManager.CurrentUser.CanDIamondConsume(Constant.summon_1_unitConsumeDiaValue))
+            {
+                GameManager.UIManager.ShowAlert("다이아몬드가 부족합니다!");
+            }
+            else if (GameManager.CurrentUser.userUnitList.Count + 1 > GameManager.CurrentUser.MaxUnitListCount)
+            {
+                GameManager.UIManager.ShowAlert("최대 유닛 개수를 초과힙니다!");
+            }
+            else
+            {
+                GameManager.CurrentUser.Diamond -= Constant.summon_1_unitConsumeDiaValue;
+                summonResultUI.ClearSummonResult();
 
-            Unit newUnit = SummonUnit();
-            GameManager.CurrentUser.AddNewUnit(newUnit);
+                Unit newUnit = SummonUnit();
+                GameManager.CurrentUser.AddNewUnit(newUnit);
 
-            summonResultUI.ShowSummonResult(new List<Unit>() { newUnit });
+                summonResultUI.ShowSummonResult(new List<Unit>() { newUnit });
+            }
         }
 
         public void SummonUnit_10_Btn()
         {
-            summonResultUI.ClearSummonResult();
-
-            List<Unit> summonList = new List<Unit>();
-            for (int i = 0; i < 10; i++)
+            if (!GameManager.CurrentUser.CanDIamondConsume(Constant.summon_10_unitConsumeDiaValue))
             {
-                summonList.Add(SummonUnit());
+                GameManager.UIManager.ShowAlert("다이아몬드가 부족합니다!");
             }
-            GameManager.CurrentUser.AddNewUnit(summonList);
+            else if (GameManager.CurrentUser.userUnitList.Count + 10 > GameManager.CurrentUser.MaxUnitListCount)
+            {
+                GameManager.UIManager.ShowAlert("최대 유닛 개수를 초과힙니다!");
+            }
+            else
+            {
+                GameManager.CurrentUser.Diamond -= Constant.summon_10_unitConsumeDiaValue;
+                summonResultUI.ClearSummonResult();
 
-            summonResultUI.ShowSummonResult(summonList);
+                List<Unit> summonList = new List<Unit>();
+                for (int i = 0; i < 10; i++)
+                {
+                    summonList.Add(SummonUnit());
+                }
+                GameManager.CurrentUser.AddNewUnit(summonList);
+
+                summonResultUI.ShowSummonResult(summonList);
+            }
         }
     }
 }

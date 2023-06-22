@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 namespace Portfolio.Battle
@@ -8,6 +9,7 @@ namespace Portfolio.Battle
     {
         [SerializeField] private float turnCount = 100f;
         [SerializeField] private UnitTurnBase currentTurnUnit = null;
+        [SerializeField] TextMeshProUGUI currentTurnUnitNameText;
 
         private List<UnitTurnBase> unitTurnBaseList = new List<UnitTurnBase>();
         private TurnType currentTurnType;
@@ -60,6 +62,8 @@ namespace Portfolio.Battle
                 currentTurnType = TurnType.ENEMY;
             }
 
+            currentTurnUnitNameText.text = unitbase.BattleUnit.Unit.UnitName;
+            currentTurnUnitNameText.gameObject.SetActive(true);
             currentTurnUnit.TurnStart();
         }
 
@@ -73,6 +77,7 @@ namespace Portfolio.Battle
             currentTurnUnit = null;
             currentTurnType = TurnType.WAITTING;
             BattleManager.ActionSystem.IsPlayerActionTime = false;
+            currentTurnUnitNameText.gameObject.SetActive(false);
         }
     }
 

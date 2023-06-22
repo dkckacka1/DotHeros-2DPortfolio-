@@ -97,7 +97,7 @@ namespace Portfolio
             set
             {
                 userData.diamond = value;
-                GameManager.UIManager.UserInfoUI.ShowGold(userData.diamond);
+                GameManager.UIManager.UserInfoUI.ShowDiamond(userData.diamond);
             }
         }
         public int MaxUnitListCount
@@ -243,6 +243,11 @@ namespace Portfolio
             }
 
         }
+
+        //===========================================================
+        // Resources
+        //===========================================================
+        public bool CanDIamondConsume(int consumeValue) => userData.diamond >= consumeValue;
 
         //===========================================================
         // ConsumableItem

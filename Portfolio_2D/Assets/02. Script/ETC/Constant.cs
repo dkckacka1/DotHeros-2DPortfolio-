@@ -17,6 +17,11 @@ namespace Portfolio
         public static readonly Color enemyColor = new Color(1, 0, 0, 1);
         public const float unitLevelUpExperienceVluae = 1000f;
         public const float energyChargeTime = 10f;
+        public const int unitListSizeUPDiaConsumeValue = 50;
+        public const int unitListSizeUpCount = 5;
+        public const int unitListMaxSizeCount = 100;
+        public const int summon_1_unitConsumeDiaValue = 30;
+        public const int summon_10_unitConsumeDiaValue = 270;
 
         //===========================================================
         // RandomValue

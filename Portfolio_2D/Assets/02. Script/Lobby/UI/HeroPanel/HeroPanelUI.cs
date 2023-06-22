@@ -291,5 +291,35 @@ namespace Portfolio.Lobby.Hero
             skillLevelUpPopupUI.SkillLevelUP();
             ReShow();
         }
+
+        public void SizeUPUintList()
+        {
+            Debug.Log("사이즈업 버튼 누름");
+            if (GameManager.CurrentUser.MaxUnitListCount >= Constant.unitListMaxSizeCount)
+            {
+                GameManager.UIManager.ShowAlert("이미 최대 사이즈에 도달했습니다!");
+            }
+            else
+            {
+                int consumeDia = Constant.unitListSizeUPDiaConsumeValue;
+                GameManager.UIManager.ShowConfirmation("최대 유닛 개수 증가", $"최대 유닛 개수를 증가 시키겠습니까?\n{consumeDia} 다이아가 소비되며\n{Constant.unitListSizeUpCount}칸이 늘어납니다.\n(최대 100칸)", SizeUp);
+                Debug.Log("사이즈업 버튼 확인 누름");
+            }
+        }
+
+        private void SizeUp()
+        {
+            if (GameManager.CurrentUser.CanDIamondConsume(Constant.unitListSizeUPDiaConsumeValue))
+            {
+                GameManager.CurrentUser.Diamond -= Constant.unitListSizeUPDiaConsumeValue;
+                GameManager.CurrentUser.MaxUnitListCount += Constant.unitListSizeUpCount;
+                unitListUI.ShowUnitListCountText();
+                Debug.Log("증가됨");
+            }
+            else
+            {
+                GameManager.UIManager.ShowAlert("다이아몬드가 부족합니다!");
+            }
+        }
     }
 }

@@ -85,6 +85,11 @@ namespace Portfolio.Lobby
                 GameManager.CurrentUser.Gold += 10000000;
             }
 
+            if (GUI.Button(new Rect(110, 450, 100, 100), "다이아 추가하기"))
+            {
+                GameManager.CurrentUser.Diamond += 1000;
+            }
+
             if (GUI.Button(new Rect(10, 560, 100, 100), "경고 표시하기"))
             {
                 GameManager.UIManager.ShowAlert(alertText);

@@ -18,8 +18,10 @@ public class ConfirmationPopupUI : MonoBehaviour
         alertTitleText.text = titleText;
         this.alertText.text = alertText;
         confirmaitionBtn.onClick.RemoveAllListeners();
-        confirmaitionBtn.onClick.AddListener(confirmEvent);
-        confirmaitionBtn.onClick.AddListener(ReleasePopup);
+        confirmaitionBtn.onClick.AddListener(() => { confirmEvent.Invoke(); ReleasePopup(); });
+        Debug.Log(confirmaitionBtn == null);
+        Debug.Log(confirmEvent == null);
+
 
         transform.parent.gameObject.SetActive(true);
         gameObject.SetActive(true);
@@ -30,7 +32,6 @@ public class ConfirmationPopupUI : MonoBehaviour
 
     public void ReleasePopup()
     {
-        transform.parent.gameObject.SetActive(false);
         gameObject.SetActive(false);
     }
 }
