@@ -47,7 +47,7 @@ namespace Portfolio.Battle
 
                 if (TryUseActiveSkill(ActiveSkillType.Firstpriority))
                 {
-                    BattleManager.TurnBaseSystem.TurnEnd();
+                    //BattleManager.TurnBaseSystem.TurnEnd();
                     return;
                 }
 
@@ -63,14 +63,14 @@ namespace Portfolio.Battle
                     if (TryUseActiveSkill(ActiveSkillType.MultipleHeal))
                         // 광역힐을 사용할 수 있다면 사용
                     {
-                        BattleManager.TurnBaseSystem.TurnEnd();
+                        //BattleManager.TurnBaseSystem.TurnEnd();
                         return;
                     }
 
                     if (TryUseActiveSkill(ActiveSkillType.SingleHeal, GetLowHealthUnit))
                         // 단일힐을 사용할 수 있다면 사용
                     {
-                        BattleManager.TurnBaseSystem.TurnEnd();
+                        //BattleManager.TurnBaseSystem.TurnEnd();
                         return;
                     }
                 }
@@ -81,7 +81,7 @@ namespace Portfolio.Battle
                     if (TryUseActiveSkill(ActiveSkillType.MultipleAttack))
                     // 광역 공격을 사용할 수 있다면 사용
                     {
-                        BattleManager.TurnBaseSystem.TurnEnd();
+                        //BattleManager.TurnBaseSystem.TurnEnd();
                         return;
                     }
                 }
@@ -89,15 +89,15 @@ namespace Portfolio.Battle
                 if (TryUseActiveSkill(ActiveSkillType.Singleattack, GetLowHealthUnit))
                     // 단일 공격을 사용할 수 있다면 사용
                 {
-                    BattleManager.TurnBaseSystem.TurnEnd();
+                    //BattleManager.TurnBaseSystem.TurnEnd();
                     return;
                 }
 
 
 
                 BattleManager.ActionSystem.SetActiveSkill(battleUnit.Unit.basicAttackSkill, GetLowHealthUnit);
-                battleUnit.BasicAttack();
-                BattleManager.TurnBaseSystem.TurnEnd();
+                battleUnit.UseSkill(UnitSkillType.BaseAttack);
+                //BattleManager.TurnBaseSystem.TurnEnd();
             }
         }
 
@@ -121,7 +121,8 @@ namespace Portfolio.Battle
                     {
                         BattleManager.ActionSystem.SetActiveSkill(activeSkill_2, orderby);
                     }
-                    battleUnit.UseActiveSkill(activeSkill_2);
+
+                    battleUnit.UseSkill(UnitSkillType.ActiveSkill_2);
                     return true;
                 }
             }
@@ -138,7 +139,7 @@ namespace Portfolio.Battle
                     {
                         BattleManager.ActionSystem.SetActiveSkill(activeSkill_1, orderby);
                     }
-                    battleUnit.UseActiveSkill(activeSkill_1);
+                    battleUnit.UseSkill(UnitSkillType.ActiveSkill_1);
                     return true;
                 }
             }

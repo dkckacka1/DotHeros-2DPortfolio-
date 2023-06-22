@@ -141,22 +141,21 @@ namespace Portfolio.Battle
 
             if (selectActiveSkill == battleUnit.Unit.basicAttackSkill)
             {
-                battleUnit.BasicAttack();
+                battleUnit.UseSkill(UnitSkillType.BaseAttack);
             }
             else
             {
                 if (selectActiveSkill == battleUnit.Unit.activeSkill_1)
                 {
-                    battleUnit.UseActiveSkill(battleUnit.Unit.activeSkill_1);
+                    battleUnit.UseSkill(UnitSkillType.ActiveSkill_1);
 
                 }
                 else if(selectActiveSkill == battleUnit.Unit.activeSkill_2)
                 {
-                    battleUnit.UseActiveSkill(battleUnit.Unit.activeSkill_2);
+                    battleUnit.UseSkill(UnitSkillType.ActiveSkill_2);
                 }
             }
-
-            BattleManager.TurnBaseSystem.TurnEnd();
+            //BattleManager.TurnBaseSystem.TurnEnd();
         }
 
         public void ShowBasicAttackSkill()

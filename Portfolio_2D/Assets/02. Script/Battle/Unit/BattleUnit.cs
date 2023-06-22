@@ -240,21 +240,6 @@ namespace Portfolio.Battle
             ResetCondition();
         }
 
-        public void BasicAttack()
-        {
-            OnAttackEvent?.Invoke(this, EventArgs.Empty);
-            Unit.basicAttackSkill.Action(this, new SkillActionEventArgs(1, this, BattleManager.ActionSystem.SelectedUnits));
-            foreach (var targetUnit in BattleManager.ActionSystem.SelectedUnits)
-            {
-                targetUnit.OnTakeAttackEvent?.Invoke(this, EventArgs.Empty);
-            }
-
-            if (!IsEnemy)
-            {
-                BattleManager.ManaSystem.AddMana(1);
-            }
-        }
-
         public void TakeDamage(float DamagePoint)
         {
             CurrentHP -= DamagePoint;
@@ -292,31 +277,54 @@ namespace Portfolio.Battle
         //===========================================================
         // SkillSystem
         //===========================================================
-        public void UseActiveSkill(ActiveSkill skill)
+        public void UseSkill(UnitSkillType skillType)
         {
             int skillLevel = 1;
+            Skill useSkill = null;
+            switch (skillType)
+            {
+                case UnitSkillType.BaseAttack:
+                    {
+                        useSkill = unit.basicAttackSkill;
+                        OnAttackEvent?.Invoke(this, EventArgs.Empty);
+                        useSkill.Action(this, new SkillActionEventArgs(skillLevel, this, BattleManager.ActionSystem.SelectedUnits));
+                        foreach (var targetUnit in BattleManager.ActionSystem.SelectedUnits)
+                        {
+                            targetUnit.OnTakeAttackEvent?.Invoke(this, EventArgs.Empty);
+                        }
+                        if (!IsEnemy)
+                        {
+                            BattleManager.ManaSystem.AddMana(1);
+                        }
+                    }
+                    break;
+                case UnitSkillType.ActiveSkill_1:
+                    {
+                        useSkill = unit.activeSkill_1;
+                        skillLevel = unit.activeSkill_1.GetData.skillCoolTime;
+                        activeSkill_1_CoolTime = (useSkill as ActiveSkill).GetData.skillCoolTime + 1; // 턴종료시에 바로 쿨타임하나가 줄기에 +1 만큼 더해줌
+                        useSkill.Action(this, new SkillActionEventArgs(skillLevel, this, BattleManager.ActionSystem.SelectedUnits));
+                        if (!IsEnemy)
+                        {
+                            BattleManager.ManaSystem.UseMana((useSkill as ActiveSkill).GetData.consumeManaValue);
+                        }
+                    }
+                    break;
+                case UnitSkillType.ActiveSkill_2:
+                    {
+                        useSkill = unit.activeSkill_2;
+                        skillLevel = unit.activeSkill_2.GetData.skillCoolTime;
+                        activeSkill_2_CoolTime = (useSkill as ActiveSkill).GetData.skillCoolTime + 1; // 턴종료시에 바로 쿨타임하나가 줄기에 +1 만큼 더해줌
+                        useSkill.Action(this, new SkillActionEventArgs(skillLevel, this, BattleManager.ActionSystem.SelectedUnits));
+                        if (!IsEnemy)
+                        {
+                            BattleManager.ManaSystem.UseMana((useSkill as ActiveSkill).GetData.consumeManaValue);
+                        }
+                    }
+                    break;
+            }
 
-            if (skill == unit.activeSkill_1)
-            {
-                skillLevel = unit.activeSkill_1.GetData.skillCoolTime;
-                activeSkill_1_CoolTime = skill.GetData.skillCoolTime + 1; // 턴종료시에 바로 쿨타임하나가 줄기에 +1 만큼 더해줌
-            }
-            else if (skill == unit.activeSkill_2)
-            {
-                skillLevel = unit.activeSkill_2.GetData.skillCoolTime;
-                activeSkill_2_CoolTime = skill.GetData.skillCoolTime + 1; // 턴종료시에 바로 쿨타임하나가 줄기에 +1 만큼 더해줌
-            }
-            else
-            {
-                return;
-            }
-
-            skill.Action(this, new SkillActionEventArgs(skillLevel, this, BattleManager.ActionSystem.SelectedUnits));
-
-            if (!IsEnemy)
-            {
-                BattleManager.ManaSystem.UseMana(skill.GetData.consumeManaValue);
-            }
+            StartCoroutine(UseSkillAnim(skillType));
         }
 
         public bool CanActiveSkill(ActiveSkill activeSkill)
@@ -533,6 +541,55 @@ namespace Portfolio.Battle
                 aiSystem.isAI = true;
                 unitUI.HideSkillUI();
             }
+        }
+
+        //===========================================================
+        // Animation
+        //===========================================================
+        private IEnumerator UseSkillAnim(UnitSkillType skillType)
+        {
+            string animationStateName = string.Empty;
+            switch (skillType)
+            {
+                case UnitSkillType.BaseAttack:
+                    animationStateName = "BaseAttack";
+                    break;
+                case UnitSkillType.ActiveSkill_1:
+                    animationStateName = "ActiveSkill1";
+                    break;
+                case UnitSkillType.ActiveSkill_2:
+                    animationStateName = "ActiveSkill2";
+                    break;
+            }
+            animator.Play(animationStateName);
+            while (animator.IsInTransition(0))
+            {
+                Debug.Log("애니메이션 전환중");
+                yield return null;
+            }
+
+            AnimatorStateInfo stateInfo = animator.GetCurrentAnimatorStateInfo(0);
+            Debug.Log(stateInfo.IsName(animationStateName));
+
+            while (stateInfo.IsName(animationStateName) && stateInfo.normalizedTime < 1.0f)
+            {
+                Debug.Log(stateInfo.normalizedTime);
+                yield return null;
+            }
+
+            BattleManager.TurnBaseSystem.TurnEnd();
+        }
+
+        private void Update()
+        {
+            //if (!isEnemy)
+            //{
+            //    var clip = animator.GetCurrentAnimatorClipInfo(0);
+            //    foreach (var item in clip)
+            //    {
+            //        Debug.Log(item.clip.name);
+            //    }
+            //}
         }
     }
 }

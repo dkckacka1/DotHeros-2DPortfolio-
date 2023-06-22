@@ -104,6 +104,7 @@
 
     public enum UnitSkillType
     {
+        BaseAttack,
         ActiveSkill_1,
         ActiveSkill_2,
         PassiveSkill_1,

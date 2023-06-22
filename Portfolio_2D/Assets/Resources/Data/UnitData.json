@@ -20,7 +20,7 @@
     "passiveSkillID_1": 20000,
     "passiveSkillID_2": -1,
     "portraitImageName": "Knight_1",
-    "animationName": "FireKnightAnimCT"
+    "animationName": "FireKnight_AnimCT 1"
   },
   {
     "ID": 101,
@@ -43,7 +43,7 @@
     "passiveSkillID_1": -1,
     "passiveSkillID_2": -1,
     "portraitImageName": "Human_9",
-    "animationName": "RangerAnimCT"
+    "animationName": "Ragner_AnimCT"
   },
   {
     "ID": 102,
@@ -66,7 +66,7 @@
     "passiveSkillID_1": -1,
     "passiveSkillID_2": -1,
     "portraitImageName": "Elf_6",
-    "animationName": "FireKnightAnimCT"
+    "animationName": "FireKnight_AnimCT 1"
   },
   {
     "ID": 103,
@@ -89,7 +89,7 @@
     "passiveSkillID_1": -1,
     "passiveSkillID_2": -1,
     "portraitImageName": "Dwarf_12",
-    "animationName": "RangerAnimCT"
+    "animationName": "Ragner_AnimCT"
   },
   {
     "ID": 104,
@@ -112,6 +112,6 @@
     "passiveSkillID_1": -1,
     "passiveSkillID_2": -1,
     "portraitImageName": "Dwarf_15",
-    "animationName": "RangerAnimCT"
+    "animationName": "Ragner_AnimCT"
   }
 ]

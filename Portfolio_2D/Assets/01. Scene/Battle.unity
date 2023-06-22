@@ -4099,7 +4099,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6044713625128713372, guid: 09980b618f778b04284b6a8dc97bb185, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 0
+      value: 169.57
       objectReference: {fileID: 0}
     - target: {fileID: 6044713625128713372, guid: 09980b618f778b04284b6a8dc97bb185, type: 3}
       propertyPath: m_SizeDelta.y
@@ -4161,6 +4161,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: CurrentTurnUnitNameText
       objectReference: {fileID: 0}
+    - target: {fileID: 6044713625128713375, guid: 09980b618f778b04284b6a8dc97bb185, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 09980b618f778b04284b6a8dc97bb185, type: 3}
 --- !u!224 &775837967 stripped
@@ -4187,6 +4191,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_HorizontalFit: 2
   m_VerticalFit: 0
+--- !u!114 &775837970 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6044713625128713373, guid: 09980b618f778b04284b6a8dc97bb185, type: 3}
+  m_PrefabInstance: {fileID: 775837966}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 775837968}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &780499433
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4785,6 +4800,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   turnCount: 100
   currentTurnUnit: {fileID: 0}
+  currentTurnUnitNameText: {fileID: 775837970}
 --- !u!1001 &945235155
 PrefabInstance:
   m_ObjectHideFlags: 0
