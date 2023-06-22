@@ -5,7 +5,7 @@
   "userCurrentExperience": 0,
   "gold": 4087400,
   "diamond": 700,
-  "energy": 25,
+  "energy": 35,
   "maxUnitListCount": 30,
   "unitDataList": [
     {
@@ -28,7 +28,7 @@
       "unitID": 103,
       "unitLevel": 3,
       "unitGrade": 3,
-      "unitExperience": 1320.0,
+      "unitExperience": 1330.0,
       "activeSkillLevel_1": 1,
       "activeSkillLevel_2": 1,
       "passiveSkillLevel_1": 1,
@@ -285,7 +285,7 @@
     }
   ],
   "consumalbeItemDic": {
-    "2000": 8,
+    "2000": 11,
     "2001": 5,
     "2002": 9
   },
@@ -293,5 +293,5 @@
     500,
     501
   ],
-  "LastAccessTime": "2023-06-22T17:27:48.1989042+09:00"
+  "LastAccessTime": "2023-06-22T21:30:07.6047716+09:00"
 }

@@ -36,7 +36,6 @@ namespace Portfolio.Battle
         }
     }
 
-
     public class BattleUnit : MonoBehaviour
     {
         private Unit unit;
@@ -548,48 +547,47 @@ namespace Portfolio.Battle
         //===========================================================
         private IEnumerator UseSkillAnim(UnitSkillType skillType)
         {
-            string animationStateName = string.Empty;
+            animator.ResetTrigger("Idle");
+            string animatorTriggerName = string.Empty;
             switch (skillType)
             {
                 case UnitSkillType.BaseAttack:
-                    animationStateName = "BaseAttack";
+                    animatorTriggerName = "BaseAttack";
+                    animator.SetTrigger(animatorTriggerName);
                     break;
                 case UnitSkillType.ActiveSkill_1:
-                    animationStateName = "ActiveSkill1";
+                    animatorTriggerName = "ActiveSkill1";
+                    animator.SetTrigger(animatorTriggerName);
                     break;
                 case UnitSkillType.ActiveSkill_2:
-                    animationStateName = "ActiveSkill2";
+                    animatorTriggerName = "ActiveSkill2";
+                    animator.SetTrigger(animatorTriggerName);
                     break;
             }
-            animator.Play(animationStateName);
-            while (animator.IsInTransition(0))
+
+            var clip = animator.GetCurrentAnimatorClipInfo(0)[0].clip;
+            float length = clip.length;
+            if (!IsEnemy && !aiSystem.isAI)
             {
-                Debug.Log("애니메이션 전환중");
-                yield return null;
+                unitUI.HideSkillUI();
             }
 
-            AnimatorStateInfo stateInfo = animator.GetCurrentAnimatorStateInfo(0);
-            Debug.Log(stateInfo.IsName(animationStateName));
+            yield return new WaitForSeconds(length);
 
-            while (stateInfo.IsName(animationStateName) && stateInfo.normalizedTime < 1.0f)
-            {
-                Debug.Log(stateInfo.normalizedTime);
-                yield return null;
-            }
-
+            animator.ResetTrigger(animatorTriggerName);
+            animator.SetTrigger("Idle");
             BattleManager.TurnBaseSystem.TurnEnd();
         }
 
         private void Update()
         {
-            //if (!isEnemy)
-            //{
-            //    var clip = animator.GetCurrentAnimatorClipInfo(0);
-            //    foreach (var item in clip)
-            //    {
-            //        Debug.Log(item.clip.name);
-            //    }
-            //}
+            if (!isEnemy)
+            {
+                if (animator.IsInTransition(0))
+                {
+                    Debug.Log("전환중");
+                }
+            }
         }
     }
 }
