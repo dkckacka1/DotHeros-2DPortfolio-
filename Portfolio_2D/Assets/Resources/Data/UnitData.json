@@ -20,7 +20,7 @@
     "passiveSkillID_1": 20000,
     "passiveSkillID_2": -1,
     "portraitImageName": "Knight_1",
-    "animationName": "FireKnight_AnimCT 1"
+    "animationName": "FireKnight_AnimCT"
   },
   {
     "ID": 101,
@@ -66,7 +66,7 @@
     "passiveSkillID_1": -1,
     "passiveSkillID_2": -1,
     "portraitImageName": "Elf_6",
-    "animationName": "FireKnight_AnimCT 1"
+    "animationName": "FireKnight_AnimCT"
   },
   {
     "ID": 103,

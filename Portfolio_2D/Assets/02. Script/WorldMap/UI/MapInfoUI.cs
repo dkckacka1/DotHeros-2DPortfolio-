@@ -52,7 +52,14 @@ namespace Portfolio.WorldMap
 
         public void BTN_ONCLICK_ReadyBattle(FomationPopupUI fomationPopupUI)
         {
-            fomationPopupUI.ShowPopup(choiceMap);
+            if (GameManager.CurrentUser.IsLeftEnergy(choiceMap.ConsumEnergy))
+            {
+                fomationPopupUI.ShowPopup(choiceMap);
+            }
+            else
+            {
+                GameManager.UIManager.ShowAlert("에너지가 부족합니다!");
+            }
         }
     }
 }

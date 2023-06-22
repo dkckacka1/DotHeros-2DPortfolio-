@@ -77,7 +77,16 @@ namespace Portfolio.WorldMap
                 return;
             }
 
-            SceneLoader.LoadBattleScene(userChoiceList, choiceMap);
+            if (GameManager.CurrentUser.IsLeftEnergy(choiceMap.ConsumEnergy))
+            {
+
+                GameManager.CurrentUser.CurrentEnergy -= choiceMap.ConsumEnergy;
+                SceneLoader.LoadBattleScene(userChoiceList, choiceMap);
+            }
+            else
+            {
+                GameManager.UIManager.ShowAlert("에너지가 부족합니다!");
+            }
         }
     }
 }
