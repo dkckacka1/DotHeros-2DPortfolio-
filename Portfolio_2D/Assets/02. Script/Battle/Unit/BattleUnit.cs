@@ -68,6 +68,7 @@ namespace Portfolio.Battle
         [Header("Skill")]
         private int activeSkill_1_CoolTime = 0;
         private int activeSkill_2_CoolTime = 0;
+        [HideInInspector] public bool isUseSkill = false;
 
         private Dictionary<int, ConditionSystem> conditionDic = new Dictionary<int, ConditionSystem>();
 
@@ -242,15 +243,18 @@ namespace Portfolio.Battle
         public void TakeDamage(float DamagePoint)
         {
             CurrentHP -= DamagePoint;
+            BattleManager.BattleUIManager.GetDamageText(this, (int)DamagePoint);
         }
 
         public void Heal(float healPoint)
         {
             CurrentHP += healPoint;
+            BattleManager.BattleUIManager.GetHealText(this, (int)healPoint);
         }
 
         private void Dead()
         {
+            // TODO : 죽음 애니메이션 출력해주기
             isDead = true;
             unitUI.Dead();
             this.gameObject.SetActive(false);
@@ -572,7 +576,9 @@ namespace Portfolio.Battle
                 unitUI.HideSkillUI();
             }
 
+            isUseSkill = true;
             yield return new WaitForSeconds(length);
+            isUseSkill = false;
 
             animator.ResetTrigger(animatorTriggerName);
             animator.SetTrigger("Idle");

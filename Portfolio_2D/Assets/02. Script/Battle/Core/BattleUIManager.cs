@@ -32,6 +32,9 @@ namespace Portfolio.Battle
         [SerializeField] private WinResultPopup winResultPopup;
         [SerializeField] private DefeatResultPopup defeatResultPopup;
 
+        [Header("ResultUI")]
+        [SerializeField] Vector2 battleUICreatePosOffset;
+
         //===========================================================
         // Property
         //===========================================================
@@ -41,6 +44,7 @@ namespace Portfolio.Battle
         public BattleManaUI BattleManaUI => battleManaUI;
         public BattleSkillDescUI BattleSkillDescUI => battleSkillDescUI;
         public WinResultPopup WinResultPopup => winResultPopup;
+        private ObjectPool objectPool => BattleManager.ObjectPool;
 
         public BattleUnitSequenceUI CreateUnitSequenceUI()
         {
@@ -82,5 +86,25 @@ namespace Portfolio.Battle
             defeatResultPopup.gameObject.SetActive(true);
             defeatResultPopup.Show();
         }
+
+        public void GetDamageText(BattleUnit takeDamagedUnit, int damageValue)
+        {
+            var battleText = objectPool.SpawnBattleText(false);
+
+            battleText.SetDamage(damageValue);
+            battleText.transform.position = Camera.main.WorldToScreenPoint(takeDamagedUnit.transform.position);
+            (battleText.transform as RectTransform).anchoredPosition += battleUICreatePosOffset;
+            battleText.gameObject.SetActive(true);
+        }
+        public void GetHealText(BattleUnit takeHealUnit, int healValue)
+        {
+            var battleText = objectPool.SpawnBattleText(false);
+
+            battleText.SetHeal(healValue);
+            battleText.transform.position = Camera.main.WorldToScreenPoint(takeHealUnit.transform.position);
+            (battleText.transform as RectTransform).anchoredPosition += battleUICreatePosOffset;
+            battleText.gameObject.SetActive(true);
+        }
+
     }
 }

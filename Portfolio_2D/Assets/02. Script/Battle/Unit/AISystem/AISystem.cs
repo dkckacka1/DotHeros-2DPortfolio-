@@ -29,6 +29,8 @@ namespace Portfolio.Battle
 
         private void Update()
         {
+            if (battleUnit.isUseSkill) return;
+
             if (BattleManager.Instance.BattleState == BattleState.PLAY && battleUnit.IsTurn && isAI)
             {
                 if (timer <= turnEndTime)

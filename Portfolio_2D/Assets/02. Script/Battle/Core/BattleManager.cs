@@ -14,6 +14,7 @@ namespace Portfolio.Battle
         private static TurnBaseSystem turnBaseSystem;
         private static ActionSystem actionSystem;
         private static ManaSystem manaSystem;
+        private static ObjectPool objectPool;
 
         private List<BattleUnit> unitList = new List<BattleUnit>();
         private Dictionary<BattleState, UnityEvent> StateEventHandlerDic = new Dictionary<BattleState, UnityEvent>();
@@ -35,6 +36,7 @@ namespace Portfolio.Battle
         [Header("TestValue")]
         public bool isTest = false;
         public int CallMapID = 500;
+        public int userUnitTakeCount = 5;
 
         //===========================================================
         // Property & Singleton
@@ -45,6 +47,7 @@ namespace Portfolio.Battle
         public static TurnBaseSystem TurnBaseSystem { get => turnBaseSystem; }
         public static ActionSystem ActionSystem { get => actionSystem; }
         public static ManaSystem ManaSystem { get => manaSystem; }
+        public static ObjectPool ObjectPool { get => objectPool; }
         public BattleState BattleState { get => battleState; }
         public Map CurrentMap
         {
@@ -57,6 +60,7 @@ namespace Portfolio.Battle
             if (Instance != null)
             {
                 Debug.LogError("BattleManager is already created");
+                Destroy(this.gameObject);
                 return;
             }
 
@@ -67,6 +71,7 @@ namespace Portfolio.Battle
             turnBaseSystem = GetComponentInChildren<TurnBaseSystem>();
             actionSystem = GetComponentInChildren<ActionSystem>();
             manaSystem = GetComponentInChildren<ManaSystem>();
+            objectPool = GetComponentInChildren<ObjectPool>();
         }
 
         private void Start()
@@ -87,7 +92,7 @@ namespace Portfolio.Battle
                     stageDatas.Enqueue(currentMap.StageList[i]);
                 }
 
-                userChoiceUnits = GameManager.CurrentUser.userUnitList.OrderByDescending(GameLib.UnitBattlePowerSort).Take(1).ToList();
+                userChoiceUnits = GameManager.CurrentUser.userUnitList.OrderByDescending(GameLib.UnitBattlePowerSort).Take(userUnitTakeCount).ToList();
                 battleFactory.CreateUserUnit(userChoiceUnits);
 
                 currentStage = stageDatas.Dequeue();

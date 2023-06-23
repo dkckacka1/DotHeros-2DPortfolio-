@@ -1528,6 +1528,42 @@ MonoBehaviour:
   - {fileID: 1974123067}
   - {fileID: 1678396119}
   - {fileID: 199923369}
+--- !u!1 &309904329
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 309904330}
+  m_Layer: 5
+  m_Name: BattleTextParent
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &309904330
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 309904329}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1886566988}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1001 &325033102
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4446,7 +4482,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -51, y: 0}
+  m_AnchoredPosition: {x: -51.000244, y: 0}
   m_SizeDelta: {x: -1156.6509, y: 126.6391}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!1 &820770921
@@ -4686,6 +4722,7 @@ MonoBehaviour:
   battleLogUI: {fileID: 2064251383}
   winResultPopup: {fileID: 1310182466}
   defeatResultPopup: {fileID: 2047839134}
+  battleUICreatePosOffset: {x: 0, y: 145}
 --- !u!1 &933482366
 GameObject:
   m_ObjectHideFlags: 0
@@ -5584,7 +5621,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   battleState: -1
   isTest: 1
-  CallMapID: 500
+  CallMapID: 501
+  userUnitTakeCount: 5
 --- !u!4 &1077764693
 Transform:
   m_ObjectHideFlags: 0
@@ -5602,6 +5640,7 @@ Transform:
   - {fileID: 938468469}
   - {fileID: 270694701}
   - {fileID: 969326518}
+  - {fileID: 1801179926}
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -8833,6 +8872,53 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 1500911137782318270, guid: fde55dd8817772147b1a2e2e6eb6f534, type: 3}
   m_PrefabInstance: {fileID: 1688686367}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1801179925
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1801179926}
+  - component: {fileID: 1801179927}
+  m_Layer: 0
+  m_Name: ObjectPool
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1801179926
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1801179925}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1077764693}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1801179927
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1801179925}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 930633feb623fce42882e0f3238522db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  battleTextPrefab: {fileID: 3873239597844396245, guid: 4065b884173d5224580f405102e74ce0, type: 3}
+  battleTextParents: {fileID: 309904329}
+  battleTextDefualtCreateNum: 5
 --- !u!1 &1808051115
 GameObject:
   m_ObjectHideFlags: 0
@@ -9281,6 +9367,7 @@ RectTransform:
   - {fileID: 1186397700}
   - {fileID: 1839128702}
   - {fileID: 803662044}
+  - {fileID: 309904330}
   m_Father: {fileID: 523086154}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
