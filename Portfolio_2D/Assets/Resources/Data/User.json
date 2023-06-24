@@ -12,7 +12,7 @@
       "unitID": 100,
       "unitLevel": 1,
       "unitGrade": 1,
-      "unitExperience": 70.0,
+      "unitExperience": 110.0,
       "activeSkillLevel_1": 1,
       "activeSkillLevel_2": 1,
       "passiveSkillLevel_1": 1,
@@ -28,7 +28,7 @@
       "unitID": 103,
       "unitLevel": 3,
       "unitGrade": 3,
-      "unitExperience": 1390.0,
+      "unitExperience": 1430.0,
       "activeSkillLevel_1": 1,
       "activeSkillLevel_2": 1,
       "passiveSkillLevel_1": 1,
@@ -94,7 +94,7 @@
       "unitID": 102,
       "unitLevel": 1,
       "unitGrade": 2,
-      "unitExperience": 70.0,
+      "unitExperience": 110.0,
       "activeSkillLevel_1": 1,
       "activeSkillLevel_2": 1,
       "passiveSkillLevel_1": 1,
@@ -110,7 +110,7 @@
       "unitID": 100,
       "unitLevel": 1,
       "unitGrade": 1,
-      "unitExperience": 50.0,
+      "unitExperience": 90.0,
       "activeSkillLevel_1": 1,
       "activeSkillLevel_2": 1,
       "passiveSkillLevel_1": 1,
@@ -126,7 +126,7 @@
       "unitID": 100,
       "unitLevel": 1,
       "unitGrade": 1,
-      "unitExperience": 50.0,
+      "unitExperience": 90.0,
       "activeSkillLevel_1": 1,
       "activeSkillLevel_2": 1,
       "passiveSkillLevel_1": 1,
@@ -285,7 +285,7 @@
     }
   ],
   "consumalbeItemDic": {
-    "2000": 33,
+    "2000": 42,
     "2001": 5,
     "2002": 9
   },
@@ -293,5 +293,5 @@
     500,
     501
   ],
-  "LastAccessTime": "2023-06-23T13:47:52.6975308+09:00"
+  "LastAccessTime": "2023-06-24T14:56:59.754317+09:00"
 }

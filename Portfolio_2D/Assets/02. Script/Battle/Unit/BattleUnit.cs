@@ -61,6 +61,7 @@ namespace Portfolio.Battle
 
         [Header("UnitApprence")]
         [SerializeField] Animator animator;
+        [SerializeField] float deadDestoryTime = 1f;
 
         [Header("UnitState)")]
         [SerializeField] private bool isDead = false;
@@ -254,21 +255,26 @@ namespace Portfolio.Battle
 
         private void Dead()
         {
-            // TODO : 죽음 애니메이션 출력해주기
             isDead = true;
             unitUI.Dead();
-            this.gameObject.SetActive(false);
             OnDeadEvent?.Invoke(this, EventArgs.Empty);
+            StartCoroutine(DeadProcedure());
+        }
 
+        private IEnumerator DeadProcedure()
+        {
+            yield return OutputDeadAnim();
             if (BattleManager.TurnBaseSystem.IsUnitTurn(this.unitTurnBase))
             {
                 BattleManager.TurnBaseSystem.TurnEnd();
             }
 
+
             BattleManager.Instance.UnPublishEvent(BattleState.BATTLESTART, BattleStart);
             BattleManager.Instance.UnPublishEvent(BattleState.WIN, Win);
             BattleManager.Instance.UnPublishEvent(BattleState.DEFEAT, Defeat);
             BattleManager.Instance.CheckUnitList();
+            Destroy(this.gameObject, deadDestoryTime);
         }
 
         public bool IsAlly(BattleUnit targetUnit)
@@ -328,6 +334,10 @@ namespace Portfolio.Battle
             }
 
             StartCoroutine(UseSkillAnim(skillType));
+            if (!IsEnemy && !aiSystem.isAI)
+            {
+                unitUI.HideSkillUI();
+            }
         }
 
         public bool CanActiveSkill(ActiveSkill activeSkill)
@@ -448,7 +458,7 @@ namespace Portfolio.Battle
             else
             // 적용안된 상태이상 일때
             {
-                conditionDic.Add(conditionID, new ConditionSystem(count, condition, this.unitUI.CreateConditionUI(count)));
+                conditionDic.Add(conditionID, new ConditionSystem(count, condition, this.unitUI.CreateConditionUI(count, condition)));
                 if (conditionDic[conditionID].Condition is ContinuationCondition)
                 // 지속형 상태이상일때
                 {
@@ -505,7 +515,7 @@ namespace Portfolio.Battle
 
         private void RemoveZeroCountCondition()
         {
-            var removeIDList = conditionDic.Values.Where(conditionSystem => conditionSystem.isCountEnd()).Select(conditionSystem => conditionSystem.Condition.ConditionData.ID).ToList();
+            var removeIDList = conditionDic.Values.Where(conditionSystem => conditionSystem.isCountEnd()).Select(conditionSystem => conditionSystem.Condition.conditionID).ToList();
             foreach (var id in removeIDList)
             {
                 conditionDic.Remove(id);
@@ -571,10 +581,6 @@ namespace Portfolio.Battle
 
             var clip = animator.GetCurrentAnimatorClipInfo(0)[0].clip;
             float length = clip.length;
-            if (!IsEnemy && !aiSystem.isAI)
-            {
-                unitUI.HideSkillUI();
-            }
 
             isUseSkill = true;
             yield return new WaitForSeconds(length);
@@ -585,15 +591,14 @@ namespace Portfolio.Battle
             BattleManager.TurnBaseSystem.TurnEnd();
         }
 
-        private void Update()
+        private IEnumerator OutputDeadAnim()
         {
-            if (!isEnemy)
-            {
-                if (animator.IsInTransition(0))
-                {
-                    Debug.Log("전환중");
-                }
-            }
+            animator.ResetTrigger("Idle");
+            animator.SetTrigger("Dead");
+            var clip = animator.GetCurrentAnimatorClipInfo(0)[0].clip;
+            float length = clip.length;
+            Debug.Log(length);
+            yield return new WaitForSeconds(length);
         }
     }
 }

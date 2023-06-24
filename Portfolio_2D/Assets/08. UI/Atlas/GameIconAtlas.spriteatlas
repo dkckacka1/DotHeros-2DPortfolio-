@@ -113,6 +113,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 7d6941948494f46b6ab536505c248e91, type: 3}
   - {fileID: 21300000, guid: e2be8ea438737924e83e648bfed0b755, type: 3}
   - {fileID: 21300000, guid: 37b524d4ae6fd8c458d2711f6d9f4c3c, type: 3}
+  - {fileID: 21300000, guid: 957a6b25476884745bcea7b8580f8bc2, type: 3}
   - {fileID: 21300000, guid: 6766d93548e4b2447931de4ba228bcb6, type: 3}
   - {fileID: 21300000, guid: 80704c35270ad3a4d90cfc2c0fd298f9, type: 3}
   - {fileID: 21300000, guid: e55c3365f3bdcfc4a95f0aa9765a4cea, type: 3}
@@ -150,6 +151,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 6bc0b0d7003f601469908f4d78a784ff, type: 3}
   - {fileID: 21300000, guid: 329da6f77e4b957408013c6228f9dec7, type: 3}
   - {fileID: 21300000, guid: 1a10d408f114534448049c9a19626576, type: 3}
+  - {fileID: 21300000, guid: e36a47283bb580149b697e0305b0a170, type: 3}
   - {fileID: 21300000, guid: c1180e38a1d410b4f87882b63358b8ed, type: 3}
   - {fileID: 21300000, guid: d19101482a11dbd42a3e712c5d7c77ba, type: 3}
   - {fileID: 21300000, guid: 7892fe48700710944a8601a1e043f3af, type: 3}
@@ -310,6 +312,7 @@ SpriteAtlas:
   - SkillLevelUP_potion
   - yellow (37)
   - yellow (33)
+  - Sprite_Condition_IncreaseAttackDamage
   - green (29)
   - red (19)
   - violet (23)
@@ -347,6 +350,7 @@ SpriteAtlas:
   - blue (32)
   - yellow (30)
   - violet (6)
+  - Sprite_Condition_Posion
   - violet (5)
   - violet (10)
   - red (29)

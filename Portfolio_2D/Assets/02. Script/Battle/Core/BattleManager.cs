@@ -23,6 +23,7 @@ namespace Portfolio.Battle
         public Queue<Stage> stageDatas = new Queue<Stage>();
         public Stage currentStage;
         public Dictionary<int, int> GetItemDic = new Dictionary<int, int>();
+        public float stageOutputTime = 2f;
 
         //===========================================================
         // SceneLoaderData
@@ -80,7 +81,6 @@ namespace Portfolio.Battle
             {
                 SetMap();
                 SetUserUnit();
-                currentStage = stageDatas.Dequeue();
                 battleUI.Initialize(CurrentMap);
                 SetStage();
             }
@@ -95,7 +95,6 @@ namespace Portfolio.Battle
                 userChoiceUnits = GameManager.CurrentUser.userUnitList.OrderByDescending(GameLib.UnitBattlePowerSort).Take(userUnitTakeCount).ToList();
                 battleFactory.CreateUserUnit(userChoiceUnits);
 
-                currentStage = stageDatas.Dequeue();
                 battleUI.Initialize(currentMap);
                 SetStage();
             }
@@ -194,8 +193,7 @@ namespace Portfolio.Battle
         public void SetStage()
         {
             SwitchBattleState(BattleState.SETSTAGE);
-            BattleFactory.CreateStage(currentStage);
-            BattleStart();
+            StartCoroutine(SetStageProcedure());
         }
 
         public void BattleStart()
@@ -214,8 +212,6 @@ namespace Portfolio.Battle
             SwitchBattleState(BattleState.WIN);
             if (stageDatas.Count() >= 1)
             {
-                BattleUIManager.ShowNextStageUI(CurrentMap);
-                currentStage = stageDatas.Dequeue();
                 SetStage();
             }
             else
@@ -248,6 +244,15 @@ namespace Portfolio.Battle
             {
                 unit.CurrentExperience += experienceValue;
             }
+        }
+
+        private IEnumerator SetStageProcedure()
+        {
+            yield return new WaitForSeconds(stageOutputTime);
+            BattleUIManager.ShowNextStageUI(CurrentMap);
+            currentStage = stageDatas.Dequeue();
+            BattleFactory.CreateStage(currentStage);
+            BattleStart();
         }
 
         //===========================================================

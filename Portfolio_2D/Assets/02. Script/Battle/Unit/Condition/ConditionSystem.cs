@@ -40,9 +40,9 @@ namespace Portfolio.condition
         public Condition Condition { get => condition; }
         public BattleUnitConditionUI ConditionUI { get => conditionUI; }
 
-        public bool isBuff { get => condition.ConditionData.isBuff; }
-        public bool isOverlap { get => condition.ConditionData.isOverlaping; }
-        public bool isResetCount { get => condition.ConditionData.isResetCount; }
+        public bool isBuff { get => condition.IsBuff; }
+        public bool isOverlap { get => condition.IsOverlap; }
+        public bool isResetCount { get => condition.IsReset; }
 
         public ConditionSystem(int count, Condition condition, BattleUnitConditionUI conditionUI)
         {
@@ -67,7 +67,8 @@ namespace Portfolio.condition
 
         public void EndCondition()
         {
-            Object.Destroy(conditionUI.gameObject);
+            conditionUI.isActive = false;
+            conditionUI.gameObject.SetActive(false);
         }
 
         public bool isCountEnd()

@@ -5620,6 +5620,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   battleState: -1
+  stageOutputTime: 2
   isTest: 1
   CallMapID: 501
   userUnitTakeCount: 5

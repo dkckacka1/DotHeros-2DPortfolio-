@@ -9,6 +9,7 @@ namespace Portfolio.condition
         public string conditionName;
         public string conditionDesc;
         public string conditionClassName;
+        public string conditionIconSpriteName;
 
         public ConditionType conditionType;
 

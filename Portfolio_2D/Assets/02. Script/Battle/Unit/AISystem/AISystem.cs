@@ -15,7 +15,7 @@ namespace Portfolio.Battle
         public bool isAI;
 
         private float timer = 0f;
-        private float turnEndTime = 1f;
+        [SerializeField] private float turnEndTime = 1f;
 
         private ActiveSkill activeSkill_1;
         private ActiveSkill activeSkill_2;

@@ -9,11 +9,16 @@ namespace Portfolio.condition
     public abstract class Condition
     {
         private ConditionData conditionData;
-        public ConditionData ConditionData { get => conditionData; }
+        public int conditionID => conditionData.ID;
+        public bool IsBuff => conditionData.isBuff;
+        public bool IsOverlap => conditionData.isOverlaping;
+        public bool IsReset => conditionData.isResetCount;
+        public Sprite conditionIcon;
 
         public Condition(ConditionData conditionData)
         {
             this.conditionData = conditionData;
+            conditionIcon = GameManager.Instance.GetSprite(conditionData.conditionIconSpriteName);
         }
 
 

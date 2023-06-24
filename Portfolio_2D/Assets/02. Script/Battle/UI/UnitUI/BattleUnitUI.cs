@@ -1,6 +1,8 @@
+using Portfolio.condition;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace Portfolio.Battle
@@ -19,7 +21,7 @@ namespace Portfolio.Battle
 
         [Header("상태이상 UI")]
         [SerializeField] private RectTransform conditionLayout;
-        [SerializeField] private BattleUnitConditionUI conditionUIPrefab;
+        [SerializeField] private List<BattleUnitConditionUI> conditionUIList = new List<BattleUnitConditionUI>();
 
         [Header("스킬 UI")]
         private BattleUnitSkillUI skillUI;
@@ -44,7 +46,9 @@ namespace Portfolio.Battle
 
         public void Dead()
         {
+            conditionLayout.gameObject.SetActive(false);
             unitSequenceUI.gameObject.SetActive(false);
+            unitHPUI.gameObject.SetActive(false);
         }
 
         public void SetCurrentTurnUI(bool isTurn)
@@ -72,11 +76,15 @@ namespace Portfolio.Battle
             unitHPUI.ChangeHP(args.currentHP);
         }
 
-        public BattleUnitConditionUI CreateConditionUI(int count)
+        public BattleUnitConditionUI CreateConditionUI(int count, Condition condition)
         {
-            var ui = Instantiate(conditionUIPrefab, conditionLayout);
-            ui.SetCount(count);
-            return ui;
+            // TODO
+            var conditionUI = conditionUIList.Where(ui => !ui.gameObject.activeInHierarchy).First();
+            conditionUI.ShowCondition(condition);
+            conditionUI.isActive = true;
+            conditionUI.SetCount(count);
+            conditionUI.gameObject.SetActive(true);
+            return conditionUI;
         }
 
         public void CreateSequenceUI(BattleUnit battleUnit)
