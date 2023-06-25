@@ -24,6 +24,7 @@ namespace Portfolio.skill
             {
                 targetUnit.Heal(args.actionUnit.AttackPoint * 1.5f);
             }
+            e.actionUnit.isSkillUsing = false;
         }
     }
 }

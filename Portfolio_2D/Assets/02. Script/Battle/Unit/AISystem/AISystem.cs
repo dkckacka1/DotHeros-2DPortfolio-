@@ -29,7 +29,7 @@ namespace Portfolio.Battle
 
         private void Update()
         {
-            if (battleUnit.isUseSkill) return;
+            if (battleUnit.IsSkill) return;
 
             if (BattleManager.Instance.BattleState == BattleState.PLAY && battleUnit.IsTurn && isAI)
             {

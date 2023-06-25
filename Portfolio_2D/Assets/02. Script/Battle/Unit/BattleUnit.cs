@@ -69,7 +69,8 @@ namespace Portfolio.Battle
         [Header("Skill")]
         private int activeSkill_1_CoolTime = 0;
         private int activeSkill_2_CoolTime = 0;
-        [HideInInspector] public bool isUseSkill = false;
+        [HideInInspector] public bool isSkillUsing = false;
+        [HideInInspector] public bool isSkillAnimation = false;
 
         private Dictionary<int, ConditionSystem> conditionDic = new Dictionary<int, ConditionSystem>();
 
@@ -118,6 +119,7 @@ namespace Portfolio.Battle
         public bool IsDead { get => isDead; }
         public int ActiveSkill_1_CoolTime { get => activeSkill_1_CoolTime; set => activeSkill_1_CoolTime = value; }
         public int ActiveSkill_2_CoolTime { get => activeSkill_2_CoolTime; set => activeSkill_2_CoolTime = value; }
+        public bool IsSkill => isSkillUsing || isSkillAnimation;
 
 
 
@@ -333,11 +335,23 @@ namespace Portfolio.Battle
                     break;
             }
 
-            StartCoroutine(UseSkillAnim(skillType));
+            StartCoroutine(UseSkillProcess(skillType));
             if (!IsEnemy && !aiSystem.isAI)
             {
                 unitUI.HideSkillUI();
             }
+        }
+
+        private IEnumerator UseSkillProcess(UnitSkillType skillType)
+        {
+            StartCoroutine(UseSkillAnim(skillType));
+
+            while (IsSkill)
+            {
+                yield return null;
+            }
+
+            BattleManager.TurnBaseSystem.TurnEnd();
         }
 
         public bool CanActiveSkill(ActiveSkill activeSkill)
@@ -582,13 +596,12 @@ namespace Portfolio.Battle
             var clip = animator.GetCurrentAnimatorClipInfo(0)[0].clip;
             float length = clip.length;
 
-            isUseSkill = true;
+            isSkillAnimation = true;
             yield return new WaitForSeconds(length);
-            isUseSkill = false;
 
             animator.ResetTrigger(animatorTriggerName);
             animator.SetTrigger("Idle");
-            BattleManager.TurnBaseSystem.TurnEnd();
+            isSkillAnimation = false;
         }
 
         private IEnumerator OutputDeadAnim()

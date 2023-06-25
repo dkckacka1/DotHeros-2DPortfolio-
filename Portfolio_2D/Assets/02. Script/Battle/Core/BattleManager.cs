@@ -82,7 +82,7 @@ namespace Portfolio.Battle
                 SetMap();
                 SetUserUnit();
                 battleUI.Initialize(CurrentMap);
-                SetStage();
+                SetNextStage();
             }
             else
             {
@@ -96,7 +96,7 @@ namespace Portfolio.Battle
                 battleFactory.CreateUserUnit(userChoiceUnits);
 
                 battleUI.Initialize(currentMap);
-                SetStage();
+                SetNextStage();
             }
         }
 
@@ -190,7 +190,16 @@ namespace Portfolio.Battle
             SwitchBattleState(BattleState.PLAY);
         }
 
-        public void SetStage()
+        public void SetStartStage()
+        {
+            SwitchBattleState(BattleState.SETSTAGE);
+            BattleUIManager.ShowStageUI(CurrentMap);
+            currentStage = stageDatas.Dequeue();
+            BattleFactory.CreateStage(currentStage);
+            BattleStart();
+        }
+
+        public void SetNextStage()
         {
             SwitchBattleState(BattleState.SETSTAGE);
             StartCoroutine(SetStageProcedure());
@@ -212,7 +221,7 @@ namespace Portfolio.Battle
             SwitchBattleState(BattleState.WIN);
             if (stageDatas.Count() >= 1)
             {
-                SetStage();
+                SetNextStage();
             }
             else
             {
@@ -249,7 +258,7 @@ namespace Portfolio.Battle
         private IEnumerator SetStageProcedure()
         {
             yield return new WaitForSeconds(stageOutputTime);
-            BattleUIManager.ShowNextStageUI(CurrentMap);
+            BattleUIManager.ShowStageUI(CurrentMap);
             currentStage = stageDatas.Dequeue();
             BattleFactory.CreateStage(currentStage);
             BattleStart();

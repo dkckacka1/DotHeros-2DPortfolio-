@@ -22,6 +22,7 @@ namespace Portfolio.skill
 
         public virtual void Action(object sender, SkillActionEventArgs e)
         {
+            e.actionUnit.isSkillUsing = true;
             BattleManager.BattleUIManager.AddLog(GetLogString(e));
         }
 

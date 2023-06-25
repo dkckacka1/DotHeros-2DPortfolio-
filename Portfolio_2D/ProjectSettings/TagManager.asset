@@ -12,7 +12,7 @@ TagManager:
   - Water
   - UI
   - Unit
-  - 
+  - Particle
   - 
   - 
   - 
@@ -49,4 +49,7 @@ TagManager:
     locked: 0
   - name: Unit
     uniqueID: 263923263
+    locked: 0
+  - name: Particle
+    uniqueID: 2822876829
     locked: 0

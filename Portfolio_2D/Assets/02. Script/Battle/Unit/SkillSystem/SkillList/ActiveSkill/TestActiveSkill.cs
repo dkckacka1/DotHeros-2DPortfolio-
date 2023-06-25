@@ -28,6 +28,7 @@ namespace Portfolio.skill
                     targetUnit.AddCondition(GetData.conditinID_1, condition, 1);
                 }
             }
+            e.actionUnit.isSkillUsing = false;
         }
     }
 

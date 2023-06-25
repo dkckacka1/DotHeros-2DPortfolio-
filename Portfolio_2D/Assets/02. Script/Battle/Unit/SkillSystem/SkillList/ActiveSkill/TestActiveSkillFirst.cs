@@ -25,6 +25,7 @@ namespace Portfolio.skill
             {
                 targetUnit.TakeDamage(args.actionUnit.AttackPoint * 0.5f);
             }
+            e.actionUnit.isSkillUsing = false;
         }
     }
 }

@@ -23,7 +23,11 @@ namespace Portfolio.skill
             foreach (var targetUnit in args.targetUnits)
             {
                 targetUnit.TakeDamage(args.actionUnit.AttackPoint);
+                var effect = BattleManager.ObjectPool.SpawnSkillEffect("TestEffect");
+                effect.transform.position = targetUnit.transform.position;
             }
+
+            e.actionUnit.isSkillUsing = false;
         }
     }
 

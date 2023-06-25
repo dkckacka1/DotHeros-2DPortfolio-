@@ -6,34 +6,30 @@ namespace Portfolio.Battle
 {
     public class BattleUIManager : MonoBehaviour
     {
-        [Header("Canvas")]
-        [SerializeField] private Canvas playableCanvas;
-
-        [Header("MapInfoUI")]
-        [SerializeField] private BattleMapInfoUI mapInfoUI;
-
-        [Header("SequenceUI")]
+        [Header("BattleCanvas")]
+        [SerializeField] private Canvas battleCanvas;
         [SerializeField] private BattleSequenceUI sequenceUI;
         [SerializeField] private BattleUnitSequenceUI unitSequenceUIPrefab;
         [SerializeField] private RectTransform unitSequenceUIParent;
+        [SerializeField] Vector2 battleUICreatePosOffset;
 
-        [Header("SkillUI")]
+        [Header("PlayableCnavas")]
+        [SerializeField] private Canvas playableCanvas;
         [SerializeField] private BattleUnitSkillUI playerUnitSkillUIPrefab;
         [SerializeField] private RectTransform unitSkillUIParent;
         [SerializeField] private BattleSkillDescUI battleSkillDescUI;
 
-        [Header("ManaUI")]
+        [Header("ConfigureCanvas")]
+        [SerializeField] private Canvas configureCanvas;
+        [SerializeField] private BattleMapInfoUI mapInfoUI;
+        [SerializeField] private BattleLogUI battleLogUI;
         [SerializeField] private BattleManaUI battleManaUI;
 
-        [Header("LogUI")]
-        [SerializeField] private BattleLogUI battleLogUI;
 
-        [Header("ResultUI")]
+        [Header("ResultCanvas")]
         [SerializeField] private WinResultPopup winResultPopup;
         [SerializeField] private DefeatResultPopup defeatResultPopup;
 
-        [Header("ResultUI")]
-        [SerializeField] Vector2 battleUICreatePosOffset;
 
         //===========================================================
         // Property
@@ -63,7 +59,7 @@ namespace Portfolio.Battle
             mapInfoUI.SetMapInfo(currentMap);
         }
 
-        public void ShowNextStageUI(Map currentMap)
+        public void ShowStageUI(Map currentMap)
         {
             mapInfoUI.NextStage(currentMap);
         }

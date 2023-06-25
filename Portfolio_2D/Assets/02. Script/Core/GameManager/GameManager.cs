@@ -6,6 +6,7 @@ using UnityEngine;
 using Portfolio.skill;
 using System;
 using Portfolio.condition;
+using Portfolio.Battle;
 
 namespace Portfolio
 {
@@ -36,6 +37,7 @@ namespace Portfolio
         private Dictionary<int, Condition> conditionDictionary = new Dictionary<int, Condition>();
         private Dictionary<int, Map> mapDictionary = new Dictionary<int, Map>();
         private Dictionary<string, RuntimeAnimatorController> animationDictionary = new Dictionary<string, RuntimeAnimatorController>();
+        private Dictionary<string, SkillEffect> skillEffectDictionary = new Dictionary<string, SkillEffect>();
 
         //===========================================================
         // TestValue
@@ -65,8 +67,7 @@ namespace Portfolio
             }
 
             ResourcesLoader.LoadAllData(dataDictionary);
-            ResourcesLoader.LoadAllResource(spriteDictionary, animationDictionary);
-            //Debug.Log(spriteDictionary.Count);
+            ResourcesLoader.LoadAllResource(spriteDictionary, animationDictionary, skillEffectDictionary);
             CreateGameSource();
 
             if (SaveManager.LoadUserData(out UserData CurrentUserData))
@@ -224,6 +225,18 @@ namespace Portfolio
             }
 
             map = mapDictionary[ID];
+            return true;
+        }
+
+        public bool TryGetEffect(string name, out SkillEffect skillEffect)
+        {
+            if (!skillEffectDictionary.ContainsKey(name))
+            {
+                skillEffect = null;
+                return false;
+            }
+
+            skillEffect = skillEffectDictionary[name];
             return true;
         }
 

@@ -7,6 +7,7 @@ using Portfolio;
 using System;
 using Portfolio.skill;
 using Portfolio.condition;
+using Portfolio.Battle;
 
 namespace Portfolio
 {
@@ -15,6 +16,7 @@ namespace Portfolio
         private const string dataResourcesPath = @"Data/";
         private const string spriteResourcesPath = @"Sprite/";
         private const string AnimationResourcesPath = @"Animation/";
+        private const string SkillEffectResourcesPath = @"SkillEffect/";
 
         public static void LoadAllData(Dictionary<int, Data> dataDic)
         {
@@ -28,7 +30,7 @@ namespace Portfolio
             LoadData<ConsumableItemData>(dataDic, dataResourcesPath +Constant.consumableItemDataJsonName);
         }
 
-        public static void LoadAllResource(Dictionary<string, Sprite> spriteDic, Dictionary<string, RuntimeAnimatorController> animDic)
+        public static void LoadAllResource(Dictionary<string, Sprite> spriteDic, Dictionary<string, RuntimeAnimatorController> animDic, Dictionary<string, SkillEffect> effectDic)
         {
             var sprites = Resources.LoadAll<Sprite>(spriteResourcesPath);
             foreach (var sprite in sprites)
@@ -40,6 +42,12 @@ namespace Portfolio
             foreach (var anim in animations)
             {
                 animDic.Add(anim.name, anim);
+            }
+
+            var effects = Resources.LoadAll<SkillEffect>(SkillEffectResourcesPath);
+            foreach (var effect in effects)
+            {
+                effectDic.Add(effect.gameObject.name, effect);
             }
         }
 
