@@ -77,7 +77,7 @@ namespace Portfolio.Battle
 
         private void Start()
         {
-            if (!isTest)
+            if (!GameManager.Instance.isTest)
             {
                 SetMap();
                 SetUserUnit();

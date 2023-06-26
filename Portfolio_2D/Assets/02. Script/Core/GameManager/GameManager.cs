@@ -64,12 +64,52 @@ namespace Portfolio
             else
             {
                 Destroy(this.gameObject);
+                return;
             }
 
-            ResourcesLoader.LoadAllData(dataDictionary);
-            ResourcesLoader.LoadAllResource(spriteDictionary, animationDictionary, skillEffectDictionary);
-            CreateGameSource();
+            if(isTest)
+            {
+                LoadResource();
+                LoadUserData();
+            }
 
+            uiManager.HideUserInfoCanvas();
+        }
+
+
+        private void Start()
+        {
+            if (!isTest)
+            {
+                Debug.LogWarning("GameManager Test");
+            }
+            else
+            {
+                if (ShowUserUI)
+                {
+                    uiManager.ShowUserInfoCanvas();
+                }
+                else
+                {
+                    uiManager.HideUserInfoCanvas();
+                }
+            }
+        }
+
+        private void OnApplicationQuit()
+        {
+            CurrentUser.LastAccessTime = DateTime.Now;
+            SaveUser();
+        }
+
+        public void LoadData()
+        {
+            LoadResource();
+            LoadUserData();
+        }
+
+        private void LoadUserData()
+        {
             if (SaveManager.LoadUserData(out UserData CurrentUserData))
             {
                 CurrentUser = new User(CurrentUserData);
@@ -91,33 +131,16 @@ namespace Portfolio
                 CurrentUser.AddConsumableItem(2002, 10);
                 SaveUser();
             }
-        }
 
-        private void Start()
-        {
             uiManager.ShowUserInfo();
-            if (!isTest)
-            {
-                Debug.LogWarning("GameManager Test");
-                SceneLoader.LoadLobbyScene();
-            }
-            else
-            {
-                if (ShowUserUI)
-                {
-                    uiManager.ShowUserInfoCanvas();
-                }
-                else
-                {
-                    uiManager.HideUserInfoCanvas();
-                }
-            }
+            StartCoroutine(timeChecker.energyCheck());
         }
 
-        private void OnApplicationQuit()
+        private void LoadResource()
         {
-            CurrentUser.LastAccessTime = DateTime.Now;
-            SaveUser();
+            ResourcesLoader.LoadAllData(dataDictionary);
+            ResourcesLoader.LoadAllResource(spriteDictionary, animationDictionary, skillEffectDictionary);
+            CreateGameSource();
         }
 
         public void SaveUser()

@@ -11,10 +11,10 @@ namespace Portfolio
 
         private void Start()
         {
-            StartCoroutine(energyCheck());
+            
         }
 
-        IEnumerator energyCheck()
+        public IEnumerator energyCheck()
         {
             while (true)
             {
