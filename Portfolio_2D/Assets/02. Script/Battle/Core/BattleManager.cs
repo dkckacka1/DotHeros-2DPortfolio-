@@ -52,8 +52,8 @@ namespace Portfolio.Battle
         public BattleState BattleState { get => battleState; }
         public Map CurrentMap
         {
-            get => currentMap; 
-            set => currentMap = value; 
+            get => currentMap;
+            set => currentMap = value;
         }
 
         private void Awake()
@@ -82,7 +82,7 @@ namespace Portfolio.Battle
                 SetMap();
                 SetUserUnit();
                 battleUI.Initialize(CurrentMap);
-                SetNextStage();
+                StartCoroutine(SetStartStage());
             }
             else
             {
@@ -96,7 +96,7 @@ namespace Portfolio.Battle
                 battleFactory.CreateUserUnit(userChoiceUnits);
 
                 battleUI.Initialize(currentMap);
-                SetNextStage();
+                StartCoroutine(SetStartStage());
             }
         }
 
@@ -133,22 +133,18 @@ namespace Portfolio.Battle
             unitList.Clear();
         }
         public List<BattleUnit> GetUnitList() => unitList;
-
         public IEnumerable<BattleUnit> GetUnitList(Func<BattleUnit, bool> predicate)
         {
             return unitList.Where(predicate);
         }
-
         public int GetUnitListCount(IEnumerable<BattleUnit> list)
         {
             return list.Count();
         }
-
         private IEnumerable<BattleUnit> GetUnitList(bool isEnemy)
         {
             return unitList.Where(battleUnit => (battleUnit.IsEnemy == isEnemy) && !battleUnit.IsDead);
         }
-
         public void CheckUnitList()
         {
             if (GetUnitList(true).Count() == 0)
@@ -163,7 +159,6 @@ namespace Portfolio.Battle
                 Defeat();
             }
         }
-
         public void GetItem(int id, int count)
         {
             if (GetItemDic.ContainsKey(id))
@@ -174,6 +169,16 @@ namespace Portfolio.Battle
             {
                 GetItemDic.Add(id, count);
             }
+        }
+        private void ClearDeadUnit()
+        {
+            var deadUnitList = unitList.Where(unit => unit.IsDead).ToList();
+            foreach(var unit in deadUnitList)
+            {
+                RemoveUnit(unit);
+                Destroy(unit.gameObject);
+            }
+
         }
 
         //===========================================================
@@ -190,12 +195,15 @@ namespace Portfolio.Battle
             SwitchBattleState(BattleState.PLAY);
         }
 
-        public void SetStartStage()
+        public IEnumerator SetStartStage()
         {
             SwitchBattleState(BattleState.SETSTAGE);
             BattleUIManager.ShowStageUI(CurrentMap);
             currentStage = stageDatas.Dequeue();
             BattleFactory.CreateStage(currentStage);
+            battleUI.SetStartStageDirect();
+            yield return new WaitForSecondsRealtime(stageOutputTime);
+            battleUI.SetBattleStartDirect();
             BattleStart();
         }
 
@@ -258,11 +266,15 @@ namespace Portfolio.Battle
         private IEnumerator SetStageProcedure()
         {
             yield return new WaitForSeconds(stageOutputTime);
+            ClearDeadUnit();
             BattleUIManager.ShowStageUI(CurrentMap);
             currentStage = stageDatas.Dequeue();
             BattleFactory.CreateStage(currentStage);
+            turnBaseSystem.ResetAllUnitTurn();
+            yield return new WaitForSeconds(stageOutputTime);
             BattleStart();
         }
+
 
         //===========================================================
         // StateEvent

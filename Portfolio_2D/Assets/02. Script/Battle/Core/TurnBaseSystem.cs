@@ -36,6 +36,12 @@ namespace Portfolio.Battle
             }
         }
 
+        public void AddUnitTurnBase(UnitTurnBase unitTurnBase)
+        {
+            unitTurnBaseList.Add(unitTurnBase);
+            ProceedTurn(unitTurnBase);
+        }
+
         public bool IsUnitTurn(UnitTurnBase unitTurn)
         {
             return currentTurnUnit == unitTurn;
@@ -78,6 +84,15 @@ namespace Portfolio.Battle
             currentTurnType = TurnType.WAITTING;
             BattleManager.ActionSystem.IsPlayerActionTime = false;
             currentTurnUnitNameText.gameObject.SetActive(false);
+        }
+
+        public void ResetAllUnitTurn()
+        {
+            foreach(var unitTurnBase in unitTurnBaseList)
+            {
+                unitTurnBase.ResetUnitTurnCount();
+                ProceedTurn(unitTurnBase);
+            }
         }
     }
 

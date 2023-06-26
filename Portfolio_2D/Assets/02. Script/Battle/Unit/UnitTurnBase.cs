@@ -23,8 +23,8 @@ namespace Portfolio.Battle
 
         private void Start()
         {
-            BattleManager.TurnBaseSystem.UnitTurnBaseList.Add(this);
             currentTurnCount = 0f;
+            BattleManager.TurnBaseSystem.AddUnitTurnBase(this);
         }
 
         private void OnDisable()

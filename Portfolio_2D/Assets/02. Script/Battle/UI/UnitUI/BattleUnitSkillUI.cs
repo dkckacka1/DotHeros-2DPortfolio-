@@ -14,15 +14,21 @@ namespace Portfolio.Battle
         private BattleSkillDescUI battleSkillDescUI;
 
         [SerializeField] Button turnEndBtn;
-        [SerializeField] Button BasicAttackBtn;
-        [SerializeField] Button activeSkill_1_ActionBtn;
-        [SerializeField] Button activeSkill_2_ActionBtn;
         [SerializeField] Button actionBtn;
-        [SerializeField] Image basicAttackSkillImage;
+
+        [Header("Skill_1")]
+        [SerializeField] Button activeSkill_1_ActionBtn;
         [SerializeField] Image activeSkill_1_Image;
-        [SerializeField] Image activeSkill_2_Image;
         [SerializeField] TextMeshProUGUI skillCoolTime_1_Text;
+
+        [Header("Skill_2")]
+        [SerializeField] Button activeSkill_2_ActionBtn;
+        [SerializeField] Image activeSkill_2_Image;
         [SerializeField] TextMeshProUGUI skillCoolTime_2_Text;
+
+        [Header("BaseAttack")]
+        [SerializeField] Button BasicAttackBtn;
+        [SerializeField] Image basicAttackSkillImage;
 
         int actionLevel = 0;
 

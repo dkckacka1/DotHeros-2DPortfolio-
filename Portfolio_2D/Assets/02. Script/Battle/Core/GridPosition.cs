@@ -1,22 +1,39 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 namespace Portfolio.Battle
 {
     public class GridPosition : MonoBehaviour
     {
+        [SerializeField] private float moveTime = 1f;
+
         public LineType lineType;
 
         public List<GridPosition> LinkedGridPosition;
 
-        public BattleUnit unit;
+        private BattleUnit currentUnit;
 
-        public bool IsUnit { get => (unit != null); }
+        public bool IsUnit { get => (CurrentUnit != null); }
 
-        public bool isDead { get => (unit.IsDead); }
+        public bool isDead { get => (CurrentUnit.IsDead); }
 
-        public bool IsEnemy { get => unit.IsEnemy; }
+        public bool IsEnemy { get => CurrentUnit.IsEnemy; }
+        public BattleUnit CurrentUnit { get => currentUnit; }
+
+        public void CreateBattleUnit(BattleUnit unit)
+        {
+            if(unit == null)
+            {
+                currentUnit = null;
+            }
+            else
+            {
+                currentUnit = unit;
+                currentUnit.CreateAnim();
+            }
+        }
     }
 
 }

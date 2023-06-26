@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -29,7 +30,6 @@ namespace Portfolio.Battle
         [Header("ResultCanvas")]
         [SerializeField] private WinResultPopup winResultPopup;
         [SerializeField] private DefeatResultPopup defeatResultPopup;
-
 
         //===========================================================
         // Property
@@ -102,5 +102,20 @@ namespace Portfolio.Battle
             battleText.gameObject.SetActive(true);
         }
 
+        public void SetStartStageDirect()
+        {
+            sequenceUI.gameObject.SetActive(false);
+            unitSequenceUIParent.gameObject.SetActive(false);
+            playableCanvas.gameObject.SetActive(false);
+            configureCanvas.gameObject.SetActive(false);
+        }
+
+        public void SetBattleStartDirect()
+        {
+            sequenceUI.gameObject.SetActive(true);
+            unitSequenceUIParent.gameObject.SetActive(true);
+            playableCanvas.gameObject.SetActive(true);
+            configureCanvas.gameObject.SetActive(true);
+        }
     }
 }

@@ -260,6 +260,10 @@ namespace Portfolio.Battle
             isDead = true;
             unitUI.Dead();
             OnDeadEvent?.Invoke(this, EventArgs.Empty);
+            BattleManager.Instance.CheckUnitList();
+            BattleManager.Instance.UnPublishEvent(BattleState.BATTLESTART, BattleStart);
+            BattleManager.Instance.UnPublishEvent(BattleState.WIN, Win);
+            BattleManager.Instance.UnPublishEvent(BattleState.DEFEAT, Defeat);
             StartCoroutine(DeadProcedure());
         }
 
@@ -270,13 +274,6 @@ namespace Portfolio.Battle
             {
                 BattleManager.TurnBaseSystem.TurnEnd();
             }
-
-
-            BattleManager.Instance.UnPublishEvent(BattleState.BATTLESTART, BattleStart);
-            BattleManager.Instance.UnPublishEvent(BattleState.WIN, Win);
-            BattleManager.Instance.UnPublishEvent(BattleState.DEFEAT, Defeat);
-            BattleManager.Instance.CheckUnitList();
-            Destroy(this.gameObject, deadDestoryTime);
         }
 
         public bool IsAlly(BattleUnit targetUnit)
@@ -573,6 +570,11 @@ namespace Portfolio.Battle
         //===========================================================
         // Animation
         //===========================================================
+        public void CreateAnim()
+        {
+            animator.SetTrigger("Create");
+        }
+
         private IEnumerator UseSkillAnim(UnitSkillType skillType)
         {
             animator.ResetTrigger("Idle");

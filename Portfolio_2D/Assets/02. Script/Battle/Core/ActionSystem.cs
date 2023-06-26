@@ -51,7 +51,7 @@ namespace Portfolio.Battle
                 if (hit2D.collider?.transform.gameObject.layer == 6)
                 {
                     GridPosition grid = hit2D.transform.GetComponent<GridPosition>();
-                    BattleUnit targetUnit = grid.unit;
+                    BattleUnit targetUnit = grid.CurrentUnit;
                     if (CanTargetedUnit(grid, targetUnit))
                     {
                         if (!SelectedUnits.Contains(targetUnit))
@@ -171,7 +171,7 @@ namespace Portfolio.Battle
         {
             var list = unitGrids.
                 Where((grid) => isUnitAtGrid(grid) && !grid.isDead && IsTargetUnitTypeAtGrid(grid) && IsTargetLineTypeAtGrid(grid)).
-                OrderByDescending((grid) => Convert.ToInt32(Convert.ToInt32(BattleManager.TurnBaseSystem.CurrentTurnUnit.BattleUnit.IsAlly(grid.unit)) == (int)autoPeer) + Convert.ToInt32((int)grid.lineType == (int)autoProcession));
+                OrderByDescending((grid) => Convert.ToInt32(Convert.ToInt32(BattleManager.TurnBaseSystem.CurrentTurnUnit.BattleUnit.IsAlly(grid.CurrentUnit)) == (int)autoPeer) + Convert.ToInt32((int)grid.lineType == (int)autoProcession));
 
             int count = 0;
             //Debug.Log(list.Count());
@@ -188,7 +188,7 @@ namespace Portfolio.Battle
                 }
 
                 ++count;
-                SelectedUnit(unit.unit);
+                SelectedUnit(unit.CurrentUnit);
             }
         }
 
@@ -196,7 +196,7 @@ namespace Portfolio.Battle
         {
             var list = unitGrids.
             Where((grid) => isUnitAtGrid(grid) && !grid.isDead && IsTargetUnitTypeAtGrid(grid) && IsTargetLineTypeAtGrid(grid)).
-            Select(grid => grid.unit).
+            Select(grid => grid.CurrentUnit).
             OrderBy(orderby);
 
             int count = 0;
@@ -229,8 +229,8 @@ namespace Portfolio.Battle
             //$"isEnemyTarget = {isEnemyTarget}\n" +
             //$"grid.GetUnitType = {grid.GetUnitType}\n" +
             //$"(isPlayerTarget && grid.GetUnitType == UnitType.Player) || (isEnemyTarget && grid.GetUnitType == UnitType.Enemy) = {(isPlayerTarget && grid.GetUnitType == UnitType.Player) || (isEnemyTarget && grid.GetUnitType == UnitType.Enemy)}");
-            return (isEnemyTarget == !BattleManager.TurnBaseSystem.CurrentTurnUnit.BattleUnit.IsAlly(grid.unit)) 
-                || (isAllyTarget == BattleManager.TurnBaseSystem.CurrentTurnUnit.BattleUnit.IsAlly(grid.unit));
+            return (isEnemyTarget == !BattleManager.TurnBaseSystem.CurrentTurnUnit.BattleUnit.IsAlly(grid.CurrentUnit)) 
+                || (isAllyTarget == BattleManager.TurnBaseSystem.CurrentTurnUnit.BattleUnit.IsAlly(grid.CurrentUnit));
         }
         private bool IsTargetLineTypeAtGrid(GridPosition grid)
         {
@@ -244,8 +244,8 @@ namespace Portfolio.Battle
                 Where(grid =>
                     isUnitAtGrid(grid) 
                     && !grid.isDead 
-                    && ((actionUnit.IsAlly(grid.unit) && passiveSkill.GetData.isAllAlly) || ((actionUnit.IsAlly(grid.unit) && passiveSkill.GetData.isAllEnemy)))).
-                        Select(grid => grid.unit).ToList();
+                    && ((actionUnit.IsAlly(grid.CurrentUnit) && passiveSkill.GetData.isAllAlly) || ((actionUnit.IsAlly(grid.CurrentUnit) && passiveSkill.GetData.isAllEnemy)))).
+                        Select(grid => grid.CurrentUnit).ToList();
 
             //foreach (var unit in list)
             //{
