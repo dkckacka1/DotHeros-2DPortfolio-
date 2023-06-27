@@ -10,12 +10,16 @@ namespace Portfolio
 
         [SerializeField] UserInfoUI userInfoUI;
 
-        [Header("AlertPoup")]
+        [Header("ConfigurePopup")]
+        [SerializeField] ConfigurePopupUI configurePopupUI;
+
+        [Header("AlertPopup")]
         [SerializeField] AlertPoupUI alertPopup;
         [SerializeField] ConfirmationPopupUI confirmationPopup;
 
         public UserInfoUI UserInfoUI => userInfoUI;
 
+   
         public void ShowUserInfo()
         {
             userInfoUI.Show(GameManager.CurrentUser);
@@ -34,6 +38,11 @@ namespace Portfolio
         public void HideUserInfoCanvas()
         {
             userInfoUI.transform.parent.gameObject.SetActive(false);
+        }
+
+        public void ShowConfigure()
+        {
+            configurePopupUI.Show();
         }
 
         public void ShowAlert(string text)

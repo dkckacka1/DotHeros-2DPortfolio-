@@ -1257,7 +1257,8 @@ MonoBehaviour:
   animator: {fileID: 3419272698024072879}
   deadDestoryTime: 1
   isDead: 0
-  isUseSkill: 0
+  isSkillUsing: 0
+  isSkillAnimation: 0
 --- !u!114 &-2571103185468094933
 MonoBehaviour:
   m_ObjectHideFlags: 0

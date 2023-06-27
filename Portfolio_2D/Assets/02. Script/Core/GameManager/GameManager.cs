@@ -98,8 +98,11 @@ namespace Portfolio
 
         private void OnApplicationQuit()
         {
-            CurrentUser.LastAccessTime = DateTime.Now;
-            SaveUser();
+            if(CurrentUser != null)
+            {
+                CurrentUser.LastAccessTime = DateTime.Now;
+                SaveUser();
+            }
         }
 
         public void LoadData()
