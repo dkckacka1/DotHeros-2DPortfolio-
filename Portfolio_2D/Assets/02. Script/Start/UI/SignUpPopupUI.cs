@@ -7,7 +7,7 @@ using UnityEngine.UI;
 using TMPro;
 using System;
 using System.Text;
-using System.Text.RegularExpressions;
+
 
 namespace Portfolio.Start
 {
@@ -19,51 +19,67 @@ namespace Portfolio.Start
         [SerializeField] TMP_InputField passwordInputConfirmField;
         [SerializeField] TextMeshProUGUI passwordConfirmErrorText;
         [SerializeField] TMP_InputField nickNameInputField;
+        [SerializeField] Button signUpBtn;
 
+        private bool isIDError;
+        private bool isPasswordError;
+        private bool isPasswordConfirmError;
+        private bool isNickNameError;
         public void Show()
         {
             this.gameObject.SetActive(true);
+            passwordInputField.text = string.Empty;
+            passwordInputConfirmField.text = string.Empty;
+            signUpBtn.interactable = false;
         }
 
         public void SignUp()
         {
-            string id = idInputField.text;
-            string password = passwordInputField.text;
-            string nickname = nickNameInputField.text;
-
-            Debug.ClearDeveloperConsole();
-            Debug.Log($"{id} : {password} : {nickname}");
-            string idHash = ComputeSHA256(id);
-            string passwordHash = ComputeSHA256(password);
-            string hashTag = ComputeSHA256(id + password);
-            Debug.Log($"{idHash} : {passwordHash}");
-            Debug.Log($"{hashTag}");
         }
 
         public void CheckPassworld(string password)
         {
-            bool isError = false;
+            isPasswordError = false;
 
             if (password.Length < 8 || password.Length > 12)
             {
                 passwordErrorText.text = "패스워드는 8글자 이상, 12글자 이하로 작성해주세요.";
-                isError = true;
+                isPasswordError = true;
             }
 
-            if (!isError && Regex.IsMatch(password, "^[a-zA-Z0-9]*$"))
+            if (!isPasswordError && 
+                !(IsNumberCheck(password) && IsAlphabet(password)))
             {
                 passwordErrorText.text = "패스워드는 영숫자 혼합으로 작성해주세요.";
-                isError = true;
+                isPasswordError = true;
             }
 
-            passwordErrorText.gameObject.SetActive(isError);
+            passwordErrorText.gameObject.SetActive(isPasswordError);
         }
 
-        public bool isNumberCheck(string str)
+        public void SignCheck()
+        {
+            signUpBtn.interactable = !(!isIDError && !isPasswordError && !isPasswordConfirmError && !isNickNameError);
+        }
+
+        public bool IsNumberCheck(string str)
         {
             foreach (var charvalue in str)
             {
                 if(Char.IsDigit(charvalue))
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        public bool IsAlphabet(string str)
+        {
+            foreach (var charvalue in str)
+            {
+                if (Char.IsLetter(charvalue))
                 {
                     return true;
                 }
