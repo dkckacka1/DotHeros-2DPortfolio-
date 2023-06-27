@@ -44,8 +44,6 @@ namespace Portfolio
         //===========================================================
         // Path
         //===========================================================
-        public const string UserSLName = @"User";
-
         public const string dataTablePath = @"\05. DataTable\";
         public const string resorucesDataPath = @"\Resources\Data\";
         public const string skillDataTableName = @"SkillDataTable";

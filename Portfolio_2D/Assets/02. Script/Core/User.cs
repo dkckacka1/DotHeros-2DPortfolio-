@@ -54,10 +54,10 @@ namespace Portfolio
         }
         public string UserNickName 
         { 
-            get => userData.userName; 
-            set => userData.userName = value; 
+            get => userData.userNickName; 
+            set => userData.userNickName = value; 
         }
-        public int UserID
+        public string UserID
         {
             get => userData.userID;
         }

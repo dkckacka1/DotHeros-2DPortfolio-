@@ -1794,6 +1794,58 @@ PrefabInstance:
       propertyPath: m_Name
       value: InputField
       objectReference: {fileID: 0}
+    - target: {fileID: 6688204727401352616, guid: c2f50363b75c0774fba8d211d089e6ef, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6688204727401352616, guid: c2f50363b75c0774fba8d211d089e6ef, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6688204727401352616, guid: c2f50363b75c0774fba8d211d089e6ef, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6688204727401352616, guid: c2f50363b75c0774fba8d211d089e6ef, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 737811275}
+    - target: {fileID: 6688204727401352616, guid: c2f50363b75c0774fba8d211d089e6ef, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 737811275}
+    - target: {fileID: 6688204727401352616, guid: c2f50363b75c0774fba8d211d089e6ef, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6688204727401352616, guid: c2f50363b75c0774fba8d211d089e6ef, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6688204727401352616, guid: c2f50363b75c0774fba8d211d089e6ef, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: CheckNickName
+      objectReference: {fileID: 0}
+    - target: {fileID: 6688204727401352616, guid: c2f50363b75c0774fba8d211d089e6ef, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: CheckSignVaild
+      objectReference: {fileID: 0}
+    - target: {fileID: 6688204727401352616, guid: c2f50363b75c0774fba8d211d089e6ef, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Portfolio.Start.SignUpPopupUI, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 6688204727401352616, guid: c2f50363b75c0774fba8d211d089e6ef, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: Portfolio.Start.SignUpPopupUI, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 6688204727401352616, guid: c2f50363b75c0774fba8d211d089e6ef, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 6688204727401352616, guid: c2f50363b75c0774fba8d211d089e6ef, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 8965674132059106268, guid: c2f50363b75c0774fba8d211d089e6ef, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -3021,6 +3073,58 @@ PrefabInstance:
       propertyPath: m_Name
       value: InputField
       objectReference: {fileID: 0}
+    - target: {fileID: 6688204727401352616, guid: c2f50363b75c0774fba8d211d089e6ef, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6688204727401352616, guid: c2f50363b75c0774fba8d211d089e6ef, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6688204727401352616, guid: c2f50363b75c0774fba8d211d089e6ef, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6688204727401352616, guid: c2f50363b75c0774fba8d211d089e6ef, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 737811275}
+    - target: {fileID: 6688204727401352616, guid: c2f50363b75c0774fba8d211d089e6ef, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 737811275}
+    - target: {fileID: 6688204727401352616, guid: c2f50363b75c0774fba8d211d089e6ef, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6688204727401352616, guid: c2f50363b75c0774fba8d211d089e6ef, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6688204727401352616, guid: c2f50363b75c0774fba8d211d089e6ef, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: CheckID
+      objectReference: {fileID: 0}
+    - target: {fileID: 6688204727401352616, guid: c2f50363b75c0774fba8d211d089e6ef, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: CheckSignVaild
+      objectReference: {fileID: 0}
+    - target: {fileID: 6688204727401352616, guid: c2f50363b75c0774fba8d211d089e6ef, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Portfolio.Start.SignUpPopupUI, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 6688204727401352616, guid: c2f50363b75c0774fba8d211d089e6ef, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: Portfolio.Start.SignUpPopupUI, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 6688204727401352616, guid: c2f50363b75c0774fba8d211d089e6ef, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 6688204727401352616, guid: c2f50363b75c0774fba8d211d089e6ef, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 8965674132059106268, guid: c2f50363b75c0774fba8d211d089e6ef, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -3761,7 +3865,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6688204727401352616, guid: c2f50363b75c0774fba8d211d089e6ef, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
-      value: SignCheck
+      value: CheckSignVaild
       objectReference: {fileID: 0}
     - target: {fileID: 6688204727401352616, guid: c2f50363b75c0774fba8d211d089e6ef, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
@@ -4384,6 +4488,58 @@ PrefabInstance:
     - target: {fileID: 6164980664937407070, guid: c2f50363b75c0774fba8d211d089e6ef, type: 3}
       propertyPath: m_Name
       value: InputField
+      objectReference: {fileID: 0}
+    - target: {fileID: 6688204727401352616, guid: c2f50363b75c0774fba8d211d089e6ef, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6688204727401352616, guid: c2f50363b75c0774fba8d211d089e6ef, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6688204727401352616, guid: c2f50363b75c0774fba8d211d089e6ef, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6688204727401352616, guid: c2f50363b75c0774fba8d211d089e6ef, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 737811275}
+    - target: {fileID: 6688204727401352616, guid: c2f50363b75c0774fba8d211d089e6ef, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 737811275}
+    - target: {fileID: 6688204727401352616, guid: c2f50363b75c0774fba8d211d089e6ef, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6688204727401352616, guid: c2f50363b75c0774fba8d211d089e6ef, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6688204727401352616, guid: c2f50363b75c0774fba8d211d089e6ef, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: CheckPasswordConfirm
+      objectReference: {fileID: 0}
+    - target: {fileID: 6688204727401352616, guid: c2f50363b75c0774fba8d211d089e6ef, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: CheckSignVaild
+      objectReference: {fileID: 0}
+    - target: {fileID: 6688204727401352616, guid: c2f50363b75c0774fba8d211d089e6ef, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Portfolio.Start.SignUpPopupUI, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 6688204727401352616, guid: c2f50363b75c0774fba8d211d089e6ef, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: Portfolio.Start.SignUpPopupUI, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 6688204727401352616, guid: c2f50363b75c0774fba8d211d089e6ef, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 6688204727401352616, guid: c2f50363b75c0774fba8d211d089e6ef, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 8965674132059106268, guid: c2f50363b75c0774fba8d211d089e6ef, type: 3}
       propertyPath: m_Pivot.x

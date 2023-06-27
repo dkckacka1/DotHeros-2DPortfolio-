@@ -6,9 +6,9 @@ namespace Portfolio
 {
     public class UserData
     {
-
-        public int userID = 00000001;
-        public string userName;
+        public string userID;
+        public string userPassword;
+        public string userNickName;
         public int userLevel = 1;
         public int userCurrentExperience;
         public int gold;
@@ -28,8 +28,12 @@ namespace Portfolio
 
         public DateTime LastAccessTime;
 
-        public UserData()
+        public UserData(string userID, string userPassword,string userNickName)
         {
+            this.userID = userID;
+            this.userPassword = userPassword;
+            this.userNickName = userNickName;
+
             unitDataList = new List<UserUnitData>();
             equipmentItemDataList = new List<EquipmentItemData>();
             consumalbeItemDic = new Dictionary<int, int>();

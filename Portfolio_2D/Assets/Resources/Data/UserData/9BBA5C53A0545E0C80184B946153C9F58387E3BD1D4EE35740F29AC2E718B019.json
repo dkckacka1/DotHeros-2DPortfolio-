@@ -1,0 +1,16 @@
+{
+  "userID": "tester",
+  "userPassword": "4B3E025591E34B648A9BC5856B6F786F742289FAFC26956B89B1574968C6AA57",
+  "userNickName": "asdqwe",
+  "userLevel": 1,
+  "userCurrentExperience": 0,
+  "gold": 0,
+  "diamond": 0,
+  "energy": 0,
+  "maxUnitListCount": 30,
+  "unitDataList": [],
+  "equipmentItemDataList": [],
+  "consumalbeItemDic": {},
+  "clearMapList": [],
+  "LastAccessTime": "0001-01-01T00:00:00"
+}

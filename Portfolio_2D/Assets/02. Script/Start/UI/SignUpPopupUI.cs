@@ -28,13 +28,48 @@ namespace Portfolio.Start
         public void Show()
         {
             this.gameObject.SetActive(true);
+            idInputField.text = string.Empty;
             passwordInputField.text = string.Empty;
             passwordInputConfirmField.text = string.Empty;
+            nickNameInputField.text = string.Empty;
+            isIDError = true;
+            isPasswordError = true;
+            isPasswordConfirmError = true;
+            isNickNameError = true;
             signUpBtn.interactable = false;
         }
 
         public void SignUp()
         {
+            string hashID = ComputeSHA256(idInputField.text);
+            if (SaveManager.ContainUserData(hashID))
+            {
+                GameManager.UIManager.ShowAlert("중복된 ID가 존재합니다.");
+            }
+            else
+            {
+                GameManager.UIManager.ShowConfirmation("계정 생성", "새로운 계정을 생성하시겠습니까?", CreateUser);
+            }
+        }
+
+        private void CreateUser()
+        {
+            string hashID = ComputeSHA256(idInputField.text);
+            string hashPassword = ComputeSHA256(passwordInputField.text);
+            var newUserData = SaveManager.CreateNewUser(idInputField.text, hashPassword, nickNameInputField.text);
+            SaveManager.SaveUserData(newUserData, hashID);
+            GameManager.UIManager.ShowAlert("계정 생성을 완료했습니다.\n새로 만든 계정으로 로그인 해주세요.");
+            this.gameObject.SetActive(false);
+        }
+
+        public void CheckID(string id)
+        {
+            isIDError = false;
+
+            if(id.Length < 6)
+            {
+                isIDError = true;
+            }
         }
 
         public void CheckPassworld(string password)
@@ -57,9 +92,32 @@ namespace Portfolio.Start
             passwordErrorText.gameObject.SetActive(isPasswordError);
         }
 
-        public void SignCheck()
+        public void CheckPasswordConfirm(string passwordConfirm)
         {
-            signUpBtn.interactable = !(!isIDError && !isPasswordError && !isPasswordConfirmError && !isNickNameError);
+            isPasswordConfirmError = false;
+
+            if(passwordConfirm != passwordInputField.text)
+            {
+
+                passwordConfirmErrorText.text = "패스워드와 일치하지 않습니다.";
+                isPasswordConfirmError = true;
+            }
+
+            passwordConfirmErrorText.gameObject.SetActive(isPasswordConfirmError);
+        }
+
+        public void CheckNickName(string nickName)
+        {
+            isNickNameError = false;
+            if (nickName.Length < 2)
+            {
+                isNickNameError = true;
+            }
+        }
+
+        public void CheckSignVaild()
+        {
+            signUpBtn.interactable = !isIDError && !isPasswordError && !isPasswordConfirmError && !isNickNameError;
         }
 
         public bool IsNumberCheck(string str)
