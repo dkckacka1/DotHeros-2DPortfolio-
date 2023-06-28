@@ -18,6 +18,7 @@ namespace Portfolio.Start
         {
             this.userData = userData;
             this.gameObject.SetActive(true);
+            userImage.sprite = Resources.Load<Sprite>("Sprite/CharacterPortrait/" + userData.userPortraitName);
             userNickNameText.text = userData.userNickName + " (" + userData.userID + ")";
             userLevelText.text = $"·¹º§ ({userData.userLevel})";
         }

@@ -61,6 +61,27 @@ namespace Portfolio
         {
             get => userData.userID;
         }
+
+        public string UserPortraitName
+        {
+            get
+            {
+                return userData.userPortraitName;
+            }
+            set
+            {
+                userData.userPortraitName = value;
+            }
+        }
+
+        public Sprite GetUserPortrait
+        {
+            get
+            {
+                return GameManager.Instance.GetSprite(userData.userPortraitName);
+            }
+        }
+
         public int UserLevel
         {
             get => userData.userLevel;
