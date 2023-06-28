@@ -11,6 +11,7 @@ namespace Portfolio
         public static List<Unit> userChoiceUnits;
         public static Map userChocieMap;
 
+        public static string GetSceneName => SceneManager.GetActiveScene().name;
         public static void LoadLobbyScene()
         {
             SceneManager.LoadScene("Lobby");

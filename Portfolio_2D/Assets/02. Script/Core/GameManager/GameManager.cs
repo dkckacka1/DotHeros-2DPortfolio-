@@ -7,6 +7,7 @@ using Portfolio.skill;
 using System;
 using Portfolio.condition;
 using Portfolio.Battle;
+using Portfolio.UI;
 
 namespace Portfolio
 {

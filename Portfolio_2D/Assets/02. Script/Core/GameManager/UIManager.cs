@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-namespace Portfolio
+namespace Portfolio.UI
 {
     public class UIManager : MonoBehaviour
     {
-
         [SerializeField] UserInfoUI userInfoUI;
+        [SerializeField] UserPortraitChangePopupUI portraitChangePopupUI;
 
         [Header("ConfigurePopup")]
         [SerializeField] ConfigurePopupUI configurePopupUI;
@@ -53,6 +53,14 @@ namespace Portfolio
         public void ShowConfirmation(string title, string alertText, UnityAction confirmEvent)
         {
             confirmationPopup.Show(title, alertText, confirmEvent);
+        }
+
+        public void ShowPortraitChangePopupUI()
+        {
+            Debug.Log(SceneLoader.GetSceneName);
+            if (SceneLoader.GetSceneName != "Lobby") return;
+
+            portraitChangePopupUI.Show();
         }
     }
 }

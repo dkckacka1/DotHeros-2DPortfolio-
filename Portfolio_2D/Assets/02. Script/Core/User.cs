@@ -52,33 +52,25 @@ namespace Portfolio
                 return (userData.userLevel * 100);
             }
         }
-        public string UserNickName 
-        { 
-            get => userData.userNickName; 
-            set => userData.userNickName = value; 
+        public string UserNickName
+        {
+            get => userData.userNickName;
+            set => userData.userNickName = value;
         }
         public string UserID
         {
             get => userData.userID;
         }
 
-        public string UserPortraitName
-        {
-            get
-            {
-                return userData.userPortraitName;
-            }
-            set
-            {
-                userData.userPortraitName = value;
-            }
-        }
-
-        public Sprite GetUserPortrait
+        public Sprite UserPortrait
         {
             get
             {
                 return GameManager.Instance.GetSprite(userData.userPortraitName);
+            }
+            set
+            {
+                userData.userPortraitName = value.name;
             }
         }
 
@@ -86,7 +78,7 @@ namespace Portfolio
         {
             get => userData.userLevel;
             set => userData.userLevel = value;
-        }      
+        }
         public int UserCurrentExperience
         {
             get => userData.userCurrentExperience;
@@ -106,7 +98,7 @@ namespace Portfolio
         public int Gold
         {
             get => userData.gold;
-            set 
+            set
             {
                 userData.gold = value;
                 GameManager.UIManager.UserInfoUI.ShowGold(userData.gold);
@@ -152,8 +144,8 @@ namespace Portfolio
         {
             get => userData.LastAccessTime;
             set => userData.LastAccessTime = value;
-        }   
-        
+        }
+
         //===========================================================
         // SetUserData
         //===========================================================
@@ -262,7 +254,21 @@ namespace Portfolio
                 userEquipmentItemDataList.Add(unit.RingData);
                 unit.RingData = null;
             }
+        }
 
+        public List<Unit> GetUserCollectUnitList()
+        {
+            List<Unit> userCollectUnitList = new List<Unit>();
+
+            foreach (var unit in userUnitList)
+            {
+                if (userCollectUnitList.Where(collectUnit => collectUnit.UnitID == unit.UnitID).Count() == 0)
+                {
+                    userCollectUnitList.Add(unit);
+                }
+            }
+
+            return userCollectUnitList;
         }
 
         //===========================================================
@@ -313,7 +319,7 @@ namespace Portfolio
 
         public int GetConsumItemCount(int ID)
         {
-            if(IsHaveComsumableItem(ID))
+            if (IsHaveComsumableItem(ID))
             {
                 return UserConsumableItemDic[ID];
             }

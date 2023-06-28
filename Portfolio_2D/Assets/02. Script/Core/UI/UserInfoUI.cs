@@ -25,7 +25,7 @@ namespace Portfolio
             userLevelText.text = $"·¹º§ ({user.UserLevel})";
             userExperienceSlider.value = user.UserCurrentExperience / user.MaxExperience;
             userExperienceText.text = $"{userExperienceSlider.value * 100f}%";
-            userImage.sprite = user.GetUserPortrait;
+            userImage.sprite = user.UserPortrait;
             ShowEnergy(user.CurrentEnergy, user.MaxEnergy);
             ShowGold(user.Gold);
             ShowDiamond(user.Diamond);
