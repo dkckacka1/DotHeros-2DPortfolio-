@@ -9,12 +9,12 @@ namespace Portfolio
     {
         public int energyChargeCount = (int)Constant.energyChargeTime;
 
-        private void Start()
+        public void CheckEnergy()
         {
-            
+            StartCoroutine(EnergyCheckCoroutine());
         }
 
-        public IEnumerator energyCheck()
+        private IEnumerator EnergyCheckCoroutine()
         {
             while (true)
             {

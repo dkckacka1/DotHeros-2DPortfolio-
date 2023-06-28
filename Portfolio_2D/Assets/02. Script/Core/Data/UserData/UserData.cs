@@ -9,6 +9,7 @@ namespace Portfolio
         public string userID;
         public string userPassword;
         public string userNickName;
+        public bool isNewUser = false;
         public int userLevel = 1;
         public int userCurrentExperience;
         public int gold;
@@ -33,6 +34,7 @@ namespace Portfolio
             this.userID = userID;
             this.userPassword = userPassword;
             this.userNickName = userNickName;
+            isNewUser = true;
 
             unitDataList = new List<UserUnitData>();
             equipmentItemDataList = new List<EquipmentItemData>();

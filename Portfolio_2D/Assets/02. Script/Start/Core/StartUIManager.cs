@@ -8,6 +8,7 @@ namespace Portfolio.Start
     {
         [SerializeField] LoginPopupUI loginPopupUI;
         [SerializeField] SignUpPopupUI signUpPopupUI;
+        [SerializeField] LoginConfirmPopupUI loginConfirmPopupUI;
 
         public void ShowLoginPopup()
         {
@@ -17,6 +18,11 @@ namespace Portfolio.Start
         public void ShowSignUpPopup()
         {
             signUpPopupUI.Show();
+        }
+
+        public void ShowLoginConfirm(UserData userData)
+        {
+            loginConfirmPopupUI.Show(userData);
         }
     }
 }

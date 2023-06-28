@@ -70,7 +70,6 @@ namespace Portfolio
             if(isTest)
             {
                 LoadResource();
-                LoadUserData();
             }
 
             uiManager.HideUserInfoCanvas();
@@ -108,36 +107,32 @@ namespace Portfolio
         public void LoadData()
         {
             LoadResource();
-            LoadUserData();
         }
 
-        private void LoadUserData()
+        public void LoadUser(UserData userData)
         {
-            if (SaveManager.LoadUserData(out UserData CurrentUserData))
+            if (!userData.isNewUser)
             {
-                CurrentUser = new User(CurrentUserData);
+                CurrentUser = new User(userData);
                 int timeCheck = (int)((CurrentUser.LastAccessTime - DateTime.Now).TotalSeconds * -1);
-                //Debug.Log(timeCheck);
                 CurrentUser.CurrentEnergy += (int)(timeCheck / Constant.energyChargeTime);
                 timeChecker.energyChargeCount = (int)(timeCheck % Constant.energyChargeTime);
             }
             else
             {
-                // TODO
-                //CurrentUser = new User(SaveManager.CreateNewUser());
+                userData.isNewUser = false;
+                CurrentUser = new User(userData);
                 UnitData defaultUnitData;
                 TryGetData(100, out defaultUnitData);
                 UserUnitData defaultUserUnitData = new UserUnitData(defaultUnitData);
                 Unit defaultUnit = new Unit(defaultUnitData, defaultUserUnitData);
+                CurrentUser.CurrentEnergy = CurrentUser.MaxEnergy;
                 CurrentUser.AddNewUnit(defaultUnit);
                 CurrentUser.AddConsumableItem(2000, 10);
                 CurrentUser.AddConsumableItem(2001, 10);
                 CurrentUser.AddConsumableItem(2002, 10);
                 SaveUser();
             }
-
-            uiManager.ShowUserInfo();
-            StartCoroutine(timeChecker.energyCheck());
         }
 
         private void LoadResource()

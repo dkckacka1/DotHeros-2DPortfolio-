@@ -7,7 +7,7 @@ using UnityEngine.UI;
 using TMPro;
 using System;
 using System.Text;
-
+using UnityEditor;
 
 namespace Portfolio.Start
 {
@@ -41,8 +41,7 @@ namespace Portfolio.Start
 
         public void SignUp()
         {
-            string hashID = ComputeSHA256(idInputField.text);
-            if (SaveManager.ContainUserData(hashID))
+            if (SaveManager.ContainUserData(idInputField.text))
             {
                 GameManager.UIManager.ShowAlert("중복된 ID가 존재합니다.");
             }
@@ -54,12 +53,11 @@ namespace Portfolio.Start
 
         private void CreateUser()
         {
-            string hashID = ComputeSHA256(idInputField.text);
-            string hashPassword = ComputeSHA256(passwordInputField.text);
-            var newUserData = SaveManager.CreateNewUser(idInputField.text, hashPassword, nickNameInputField.text);
-            SaveManager.SaveUserData(newUserData, hashID);
+            var newUserData = SaveManager.CreateNewUser(idInputField.text, passwordInputField.text, nickNameInputField.text);
+            SaveManager.SaveUserData(newUserData, idInputField.text);
             GameManager.UIManager.ShowAlert("계정 생성을 완료했습니다.\n새로 만든 계정으로 로그인 해주세요.");
             this.gameObject.SetActive(false);
+            AssetDatabase.Refresh();
         }
 
         public void CheckID(string id)
@@ -146,24 +144,8 @@ namespace Portfolio.Start
             return false;
         }
 
-        static string ComputeSHA256(string s)
-        {
-            string hash = String.Empty;
 
-            // SHA256 해시 객체 초기화
-            using (SHA256 sha256 = SHA256.Create())
-            {
-                // 주어진 문자열의 해시를 계산합니다.
-                byte[] hashValue = sha256.ComputeHash(Encoding.UTF8.GetBytes(s));
 
-                // 바이트 배열을 문자열 형식으로 변환
-                foreach (byte b in hashValue)
-                {
-                    hash += $"{b:X2}";
-                }
-            }
 
-            return hash;
-        }
     }
 }
