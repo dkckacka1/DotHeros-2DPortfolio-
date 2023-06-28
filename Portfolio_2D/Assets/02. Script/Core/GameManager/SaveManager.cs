@@ -31,26 +31,6 @@ namespace Portfolio
             return loginUserData.userPassword == userPasswordHash;
         }
 
-        public static void SaveUserData(UserData userData, string userID)
-        {
-#if UNITY_EDITOR
-            var json = JsonConvert.SerializeObject(userData, Formatting.Indented, new JsonSerializerSettings
-            {
-                TypeNameHandling = TypeNameHandling.Auto
-            });
-
-            string userHashID = GameLib.ComputeSHA256(userID);
-
-            File.WriteAllText(slpath + userHashID + ".json", json);
-#else
-            var json = JsonConvert.SerializeObject(userData, Formatting.Indented, new JsonSerializerSettings
-            {
-                TypeNameHandling = TypeNameHandling.Auto
-            });
-            PlayerPrefs.SetString("userData", json);
-#endif
-        }
-
         public static void SaveUserData(UserData userData)
         {
 #if UNITY_EDITOR

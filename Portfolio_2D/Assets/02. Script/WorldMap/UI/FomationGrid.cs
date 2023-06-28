@@ -73,7 +73,7 @@ namespace Portfolio.WorldMap
 
             currentFomationSlotUI.UnSelect();
             currentFomationSlotUI = null;
-            unitSlotUI.Init(null);
+            unitSlotUI.Init(null, true, true);
             ReShow();
 
             btnLayout.gameObject.SetActive(false);

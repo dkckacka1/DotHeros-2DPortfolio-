@@ -8,12 +8,25 @@ namespace Portfolio.Lobby.Summon
     public class SummonPanel : PanelUI
     {
         [SerializeField] SummonResultUI summonResultUI;
+        [SerializeField] CheckProbabilityPopupUI checkProbabilityPopupUI;
+
+
+        public void Awake()
+        {
+            checkProbabilityPopupUI.Init();
+        }
 
         protected override void OnEnable()
         {
             base.OnEnable();
             summonResultUI.ClearSummonResult();
         }
+
+        private void OnDisable()
+        {
+            checkProbabilityPopupUI.gameObject.SetActive(false);
+        }
+
 
         private Unit SummonUnit()
         {
@@ -35,7 +48,7 @@ namespace Portfolio.Lobby.Summon
                 unitGrade = 1;
             }
 
-            var dataList = GameManager.Instance.GetDatas<UnitData>().Where(data => data.defaultGrade == unitGrade).ToList();
+            var dataList = GameManager.Instance.GetDatas<UnitData>().Where(data => data.isUserUnit && data.defaultGrade == unitGrade).ToList();
             if (dataList.Count == 0)
             {
                 return null;
@@ -95,6 +108,11 @@ namespace Portfolio.Lobby.Summon
 
                 summonResultUI.ShowSummonResult(summonList);
             }
+        }
+
+        public void ShowCheckProbabilityPopup()
+        {
+            checkProbabilityPopupUI.Show();
         }
     }
 }

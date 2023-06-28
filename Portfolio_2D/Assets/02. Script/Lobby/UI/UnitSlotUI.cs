@@ -11,12 +11,14 @@ namespace Portfolio.UI
     public class UnitSlotUI : MonoBehaviour
     {
         private Unit currentUnit;
+        private UnitData currentUnitData;
 
         [SerializeField] Image unitPortraitImage;
         [SerializeField] TextMeshProUGUI unitLevelText;
         [SerializeField] List<Image> starImages = new List<Image>();
 
-        public Unit CurrentUnit { get => currentUnit; }
+        public Unit CurrentUnit => currentUnit;
+        public UnitData CurrentUnitData => currentUnitData;
 
         public void Init(Unit unit, bool isShowLevelText = true, bool isShowGradeImage = true)
         {
@@ -33,6 +35,23 @@ namespace Portfolio.UI
             for (int i = 0; i < 5; i++)
             {
                 starImages[i].gameObject.SetActive(i < unit.UnitGrade && isShowGradeImage);
+            }
+        }
+
+        public void Init(UnitData unitData, bool isShowGradeImage = true)
+        {
+            if (unitData == null)
+            {
+                currentUnitData = null;
+                return;
+            }
+
+            this.currentUnitData = unitData;
+            unitLevelText.gameObject.SetActive(false);
+            unitPortraitImage.sprite = GameManager.Instance.GetSprite(currentUnitData.portraitImageName);
+            for (int i = 0; i < 5; i++)
+            {
+                starImages[i].gameObject.SetActive(i < currentUnitData.defaultGrade && isShowGradeImage);
             }
         }
     } 

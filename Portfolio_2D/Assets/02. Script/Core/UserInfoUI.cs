@@ -25,6 +25,8 @@ namespace Portfolio
             userLevelText.text = $"·¹º§ ({user.UserLevel})";
             userExperienceSlider.value = user.UserCurrentExperience / user.MaxExperience;
             userExperienceText.text = $"{userExperienceSlider.value * 100f}%";
+            //TODO
+            //userImage.sprite = GameManager.Instance.GetSprite();
             ShowEnergy(user.CurrentEnergy, user.MaxEnergy);
             ShowGold(user.Gold);
             ShowDiamond(user.Diamond);

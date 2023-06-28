@@ -54,7 +54,7 @@ namespace Portfolio.Start
         private void CreateUser()
         {
             var newUserData = SaveManager.CreateNewUser(idInputField.text, passwordInputField.text, nickNameInputField.text);
-            SaveManager.SaveUserData(newUserData, idInputField.text);
+            SaveManager.SaveUserData(newUserData);
             GameManager.UIManager.ShowAlert("계정 생성을 완료했습니다.\n새로 만든 계정으로 로그인 해주세요.");
             this.gameObject.SetActive(false);
             AssetDatabase.Refresh();

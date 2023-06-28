@@ -9,6 +9,7 @@ namespace Portfolio
         // DefualtProperty
         public string unitName;
         public ElementalType elementalType;
+        public bool isUserUnit = true;
         public int defaultGrade = 1;
 
         // UnitAttribute

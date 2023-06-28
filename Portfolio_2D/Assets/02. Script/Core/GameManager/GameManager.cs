@@ -70,6 +70,9 @@ namespace Portfolio
             if(isTest)
             {
                 LoadResource();
+                SaveManager.LoadUserData("tester", out UserData user);
+                LoadUser(user);
+                uiManager.ShowUserInfo();
             }
 
             uiManager.HideUserInfoCanvas();

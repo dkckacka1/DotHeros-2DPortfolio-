@@ -27,9 +27,9 @@ namespace Portfolio.Lobby.Summon
                     continue;
                 }
 
-                resultUnitSlotList[i].Init(summonList[i]);
+                resultUnitSlotList[i].Init(summonList[i], false, true);
                 resultUnitSlotList[i].gameObject.SetActive(true);
             }
         }
-    } 
+    }
 }
