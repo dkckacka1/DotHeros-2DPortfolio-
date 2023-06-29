@@ -89,5 +89,18 @@
     "consumEnergy": 5,
     "experienceValue": 10,
     "getGoldValue": 1000
+  },
+  {
+    "ID": 999,
+    "isExternalMap": true,
+    "mapName": "테스트용맵",
+    "stage_1_ID": 5999,
+    "stage_2_ID": -1,
+    "stage_3_ID": -1,
+    "stage_4_ID": -1,
+    "stage_5_ID": -1,
+    "consumEnergy": 5,
+    "experienceValue": 10,
+    "getGoldValue": 2000
   }
 ]

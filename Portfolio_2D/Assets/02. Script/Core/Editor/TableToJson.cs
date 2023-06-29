@@ -24,10 +24,10 @@ namespace Portfolio.Editor
                 string json = text.ReadToEnd();
                 //Debug.Log(json);
                 var skillDatas = JsonConvert.DeserializeObject<ActiveSkillData[]>(json);
-                //foreach (var skill in skillDatas)
-                //{
-                //    Debug.Log(skill);
-                //}
+                foreach (var skill in skillDatas)
+                {
+                    Debug.Log(skill);
+                }
             }
             else
             {

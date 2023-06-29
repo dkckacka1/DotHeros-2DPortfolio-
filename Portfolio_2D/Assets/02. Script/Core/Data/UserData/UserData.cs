@@ -35,7 +35,7 @@ namespace Portfolio
             this.userID = userID;
             this.userPassword = userPassword;
             this.userNickName = userNickName;
-            this.userPortraitName = "Dwarf_1";
+            this.userPortraitName = "Sprite_Unit_Portrait_ZICH";
             isNewUser = true;
 
             unitDataList = new List<UserUnitData>();

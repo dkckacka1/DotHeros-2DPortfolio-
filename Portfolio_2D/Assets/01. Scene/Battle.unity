@@ -6379,8 +6379,8 @@ MonoBehaviour:
   battleState: -1
   stageOutputTime: 2
   isTest: 1
-  CallMapID: 500
-  userUnitTakeCount: 5
+  CallMapID: 999
+  userUnitTakeCount: 1
 --- !u!4 &1077764693
 Transform:
   m_ObjectHideFlags: 0
