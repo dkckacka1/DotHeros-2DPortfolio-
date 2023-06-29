@@ -69,8 +69,6 @@ namespace Portfolio.condition
         {
             conditionUI.isActive = false;
             conditionUI.gameObject.SetActive(false);
-            Count = 0;
-            OverlapingCount = 0;
         }
 
         public bool isCountEnd()

@@ -469,14 +469,6 @@ namespace Portfolio.Battle
             else
             // 적용안된 상태이상 일때
             {
-                if(conditionDic.Count >= 10)
-                    // 이미 적용된 상태이상이 10개 이상일때
-                {
-                    // 가장 오래된 상태이상을 제거해준다.
-                    conditionDic.First().Value.EndCondition();
-                    conditionDic.Remove(conditionDic.First().Key);
-                }
-
                 conditionDic.Add(conditionID, new ConditionSystem(count, condition, this.unitUI.CreateConditionUI(count, condition)));
                 if (conditionDic[conditionID].Condition is ContinuationCondition)
                 // 지속형 상태이상일때

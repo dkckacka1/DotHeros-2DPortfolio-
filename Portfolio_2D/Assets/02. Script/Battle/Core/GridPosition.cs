@@ -7,6 +7,8 @@ namespace Portfolio.Battle
 {
     public class GridPosition : MonoBehaviour
     {
+        [SerializeField] private float moveTime = 1f;
+
         public LineType lineType;
 
         public List<GridPosition> LinkedGridPosition;
