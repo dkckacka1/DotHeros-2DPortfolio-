@@ -9714,8 +9714,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   battleTextPrefab: {fileID: 3873239597844396245, guid: 4065b884173d5224580f405102e74ce0, type: 3}
   battleTextParents: {fileID: 309904329}
-  battleTextDefualtCreateNum: 5
+  battleTextDefaultCreateNum: 5
+  skillEffectPrefab: {fileID: 8474718124794660004, guid: 4acaec47fd9448a419176ee42dbb4c30, type: 3}
   skillEffectParent: {fileID: 891986202}
+  skillEffectDefaultCreateNum: 5
 --- !u!1 &1808051115
 GameObject:
   m_ObjectHideFlags: 0

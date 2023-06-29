@@ -604,6 +604,11 @@ namespace Portfolio
 
         public int GetSkillLevel(UnitSkillType skillType)
         {
+            if (userUnitData == null)
+            {
+                return 1;
+            }
+
             switch (skillType)
             {
                 case UnitSkillType.ActiveSkill_1:

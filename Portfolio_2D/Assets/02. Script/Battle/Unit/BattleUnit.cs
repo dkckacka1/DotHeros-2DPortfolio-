@@ -62,15 +62,23 @@ namespace Portfolio.Battle
         [Header("UnitApprence")]
         [SerializeField] Animator animator;
         [SerializeField] float deadDestoryTime = 1f;
+        [SerializeField] SpriteRenderer unitImage;
+        [SerializeField] Material defaultMat;
+        [SerializeField] Material whitePaintMat;
+        [SerializeField] float damageMatPingpongTime;
+        [SerializeField] int damageMatPingpongCount;
+        public Transform footPos;
+        public Transform backHeadPos;
+        private Coroutine takeDamageRoutine;
 
-        [Header("UnitState)")]
+        [Header("UnitState")]
         [SerializeField] private bool isDead = false;
 
         [Header("Skill")]
         private int activeSkill_1_CoolTime = 0;
         private int activeSkill_2_CoolTime = 0;
-        [HideInInspector] public bool isSkillUsing = false;
-        [HideInInspector] public bool isSkillAnimation = false;
+        public bool isSkillUsing = false;
+        public bool isSkillAnimation = false;
 
         private Dictionary<int, ConditionSystem> conditionDic = new Dictionary<int, ConditionSystem>();
 
@@ -131,7 +139,6 @@ namespace Portfolio.Battle
             unitUI = GetComponent<BattleUnitUI>();
             aiSystem = GetComponent<AISystem>();
             unitTurnBase = GetComponent<UnitTurnBase>();
-
 
             OnChangedCurrentHPEvent += unitUI.BattleUnit_OnCurrentHPChangedEvent;
         }
@@ -247,6 +254,12 @@ namespace Portfolio.Battle
         {
             CurrentHP -= DamagePoint;
             BattleManager.BattleUIManager.GetDamageText(this, (int)DamagePoint);
+            if (takeDamageRoutine != null)
+            {
+                StopCoroutine(takeDamageRoutine);
+            }
+
+            takeDamageRoutine = StartCoroutine(TakeDamageCoroutine());
         }
 
         public void Heal(float healPoint)
@@ -309,7 +322,7 @@ namespace Portfolio.Battle
                 case UnitSkillType.ActiveSkill_1:
                     {
                         useSkill = unit.activeSkill_1;
-                        skillLevel = unit.activeSkill_1.GetData.skillCoolTime;
+                        skillLevel = unit.GetSkillLevel(skillType);
                         activeSkill_1_CoolTime = (useSkill as ActiveSkill).GetData.skillCoolTime + 1; // 턴종료시에 바로 쿨타임하나가 줄기에 +1 만큼 더해줌
                         useSkill.Action(this, new SkillActionEventArgs(skillLevel, this, BattleManager.ActionSystem.SelectedUnits));
                         if (!IsEnemy)
@@ -321,7 +334,7 @@ namespace Portfolio.Battle
                 case UnitSkillType.ActiveSkill_2:
                     {
                         useSkill = unit.activeSkill_2;
-                        skillLevel = unit.activeSkill_2.GetData.skillCoolTime;
+                        skillLevel = unit.GetSkillLevel(skillType);
                         activeSkill_2_CoolTime = (useSkill as ActiveSkill).GetData.skillCoolTime + 1; // 턴종료시에 바로 쿨타임하나가 줄기에 +1 만큼 더해줌
                         useSkill.Action(this, new SkillActionEventArgs(skillLevel, this, BattleManager.ActionSystem.SelectedUnits));
                         if (!IsEnemy)
@@ -622,6 +635,17 @@ namespace Portfolio.Battle
             float length = clip.length;
             Debug.Log(length);
             yield return new WaitForSeconds(length);
+        }
+
+        private IEnumerator TakeDamageCoroutine()
+        {
+            for (int i = 0; i < damageMatPingpongCount; i++)
+            {
+                unitImage.material = whitePaintMat;
+                yield return new WaitForSeconds(damageMatPingpongTime);
+                unitImage.material = defaultMat;
+                yield return new WaitForSeconds(damageMatPingpongTime);
+            }
         }
     }
 }

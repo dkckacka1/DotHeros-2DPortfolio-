@@ -30,7 +30,7 @@ namespace Portfolio
             LoadData<ConsumableItemData>(dataDic, dataResourcesPath +Constant.consumableItemDataJsonName);
         }
 
-        public static void LoadAllResource(Dictionary<string, Sprite> spriteDic, Dictionary<string, RuntimeAnimatorController> animDic, Dictionary<string, SkillEffect> effectDic)
+        public static void LoadAllResource(Dictionary<string, Sprite> spriteDic, Dictionary<string, RuntimeAnimatorController> animDic)
         {
             var sprites = Resources.LoadAll<Sprite>(spriteResourcesPath);
             foreach (var sprite in sprites)
@@ -42,12 +42,6 @@ namespace Portfolio
             foreach (var anim in animations)
             {
                 animDic.Add(anim.name, anim);
-            }
-
-            var effects = Resources.LoadAll<SkillEffect>(SkillEffectResourcesPath);
-            foreach (var effect in effects)
-            {
-                effectDic.Add(effect.gameObject.name, effect);
             }
         }
 

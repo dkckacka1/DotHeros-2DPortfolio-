@@ -9,19 +9,26 @@ namespace Portfolio.Battle
         [Header("DamageTextPool")]
         [SerializeField] BattleTextUI battleTextPrefab;
         [SerializeField] GameObject battleTextParents;
-        [SerializeField] int battleTextDefualtCreateNum;
+        [SerializeField] int battleTextDefaultCreateNum;
         Queue<BattleTextUI> battleTextPool = new Queue<BattleTextUI>();
 
         [Header("SkillEffectPool")]
+        [SerializeField] SkillEffect skillEffectPrefab;
         [SerializeField] Transform skillEffectParent;
-        Dictionary<string, Queue<SkillEffect>> skillEffectDic = new Dictionary<string, Queue<SkillEffect>>();
+        [SerializeField] int skillEffectDefaultCreateNum;
+        Queue<SkillEffect> skillEffectPool = new Queue<SkillEffect>();
 
 
         private void Awake()
         {
-            for(int i =0; i < battleTextDefualtCreateNum; i++)
+            for(int i =0; i < battleTextDefaultCreateNum; i++)
             {
                 CreateBattleText();
+            }
+
+            for (int i = 0; i < skillEffectDefaultCreateNum; i++)
+            {
+                CreateSkillEffect();
             }
         }
 
@@ -53,38 +60,21 @@ namespace Portfolio.Battle
             battleTextPool.Enqueue(releaseBattleText);
         }
 
-        private SkillEffect CreateSkillEffect(string effectName)
+        private SkillEffect CreateSkillEffect()
         {
-            SkillEffect newSkillEffect = null;
-            if (GameManager.Instance.TryGetEffect(effectName, out SkillEffect skillEffectPrefab))
-            {
-                Debug.Log(skillEffectPrefab.name);
-                newSkillEffect = Instantiate(skillEffectPrefab, skillEffectParent);
-                newSkillEffect.name = effectName;
-            }
-            else
-            {
-                Debug.Log("name is NULL");
-            }
-            
-            if (!skillEffectDic.ContainsKey(effectName))
-            {
-                skillEffectDic.Add(effectName, new Queue<SkillEffect>());
-            }
-
+            SkillEffect newSkillEffect = Instantiate(skillEffectPrefab, skillEffectParent);
             ReleaseSkillEffect(newSkillEffect);
             return newSkillEffect;
         }
 
-        public SkillEffect SpawnSkillEffect(string effectName, bool isActive = true)
+        public SkillEffect SpawnSkillEffect(bool isActive = true)
         {
-            SkillEffect skillEffect = null;
-            if (!skillEffectDic.ContainsKey(effectName) || skillEffectDic[effectName].Count < 1)
+            if (skillEffectPool.Count == 0)
             {
-                CreateSkillEffect(effectName);
+                CreateSkillEffect();
             }
 
-            skillEffect = skillEffectDic[effectName].Dequeue();
+            var skillEffect = skillEffectPool.Dequeue();
             skillEffect.gameObject.SetActive(isActive);
 
             return skillEffect;
@@ -93,7 +83,8 @@ namespace Portfolio.Battle
         public void ReleaseSkillEffect(SkillEffect releaseSkillEffect)
         {
             releaseSkillEffect.gameObject.SetActive(false);
-            skillEffectDic[releaseSkillEffect.name].Enqueue(releaseSkillEffect);
+            releaseSkillEffect.transform.position = Vector3.zero;
+            skillEffectPool.Enqueue(releaseSkillEffect);
         }
     } 
 }

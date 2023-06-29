@@ -1,3 +1,4 @@
+using Portfolio.Battle;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -12,11 +13,17 @@ namespace Portfolio.skill
         public ActiveSkill(ActiveSkillData skillData) : base(skillData)
         {
         }
-
+        public override void Action(object sender, SkillActionEventArgs e)
+        {
+            base.Action(sender, e);
+            e.actionUnit.isSkillUsing = true;
+        }
         public override string GetDesc(int skillLevel)
         {
             return base.GetDesc(skillLevel);
             //Debug.Log("나는 액티브 스킬입니다.");
         }
+
+
     }
 }

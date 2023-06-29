@@ -7,31 +7,15 @@ namespace Portfolio.Battle
 {
     public class SkillEffect : MonoBehaviour
     {
-        List<ParticleSystem> particleList = new List<ParticleSystem>();
-        private void Awake()
+        [SerializeField] Animator animator;
+
+        public void PlayEffect(string effectName)
         {
-            foreach (var particle in GetComponentsInChildren<ParticleSystem>())
-            {
-                particleList.Add(particle);
-            }
+            animator.Play(effectName);
         }
 
-        private void OnEnable()
+        public void ReleaseEffect()
         {
-            StartCoroutine(particleChecker());
-        }
-
-        private IEnumerator particleChecker()
-        {
-            while (true)
-            {
-                yield return new WaitForSeconds(0.5f);
-                if (particleList.Where(particle => particle.isPlaying).Count() == 0)
-                {
-                    break;
-                }
-            }
-
             BattleManager.ObjectPool.ReleaseSkillEffect(this);
         }
     }

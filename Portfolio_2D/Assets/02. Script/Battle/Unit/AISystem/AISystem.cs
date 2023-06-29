@@ -41,6 +41,7 @@ namespace Portfolio.Battle
 
                 timer = 0;
 
+
                 if (battleUnit.Unit == null)
                 {
                     Debug.Log(battleUnit.Unit);
