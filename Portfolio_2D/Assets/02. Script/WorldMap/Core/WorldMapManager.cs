@@ -86,25 +86,27 @@ namespace Portfolio.WorldMap
                 nodeArrow.GetComponentInChildren<Button>().onClick.AddListener(() => { CurrentUserChoiceNode = currentMapNode.prevNode; });
             }
 
-            bool isClear = GameManager.CurrentUser.isClearMap(currentMapNode.Map.MapID);
+            bool isClear = GameManager.CurrentUser.IsClearMap(currentMapNode.Map.MapID);
             bool isExternalMap = currentMapNode.Map.IsExternMap;
 
-            // TODO
-            //if (isClear || (isExternalMap && currentMapNode.prevNode != null && currentMapNode.prevNode.Map.MapID <= GameManager.CurrentUser.ClearHighestMapID))
-            //{
-            //    currentMapNode.SetNodeBtnInteractable(true);
-            //    currentMapNode.ShowLockImage(false);
-            //    currentMapNode.ShowNodeArrow(true);
-            //}
-            //else
-            //{
-            //    currentMapNode.SetNodeBtnInteractable(false);
-            //    currentMapNode.ShowLockImage(true);
-            //    currentMapNode.ShowNodeArrow(false);
-            //}
-            currentMapNode.SetNodeBtnInteractable(true);
-            currentMapNode.ShowLockImage(false);
-            currentMapNode.ShowNodeArrow(true);
+            if(GameManager.CurrentUser.ClearHighestMapID == currentMapNode.Map.MapID)
+            {
+                currentMapNode.SetNodeBtnInteractable(true);
+                currentMapNode.ShowLockImage(false);
+                currentMapNode.ShowNodeArrow(false);
+            }
+            else if (isClear)
+            {
+                currentMapNode.SetNodeBtnInteractable(true);
+                currentMapNode.ShowLockImage(false);
+                currentMapNode.ShowNodeArrow(true);
+            }
+            else
+            {
+                currentMapNode.SetNodeBtnInteractable(false);
+                currentMapNode.ShowLockImage(true);
+                currentMapNode.ShowNodeArrow(false);
+            }
         }
 
 

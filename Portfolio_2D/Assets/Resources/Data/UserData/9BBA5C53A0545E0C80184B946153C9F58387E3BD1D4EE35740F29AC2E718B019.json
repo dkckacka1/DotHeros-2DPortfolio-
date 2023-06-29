@@ -2,7 +2,7 @@
   "userID": "tester",
   "userPassword": "20504CDFDDAAD0B590CA53C4861EDD4F5F5CF9C348C38295BD2DBF0E91BCA4C3",
   "userNickName": "asdqwe",
-  "userPortraitName": "Dwarf_12",
+  "userPortraitName": "Human_9",
   "isNewUser": false,
   "userLevel": 1,
   "userCurrentExperience": 0,
@@ -195,5 +195,5 @@
     "2002": 10
   },
   "clearMapList": [],
-  "LastAccessTime": "2023-06-28T19:14:44.1003288+09:00"
+  "LastAccessTime": "2023-06-29T11:49:38.0319178+09:00"
 }
