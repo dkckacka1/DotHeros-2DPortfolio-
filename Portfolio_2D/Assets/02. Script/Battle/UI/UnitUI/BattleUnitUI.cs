@@ -78,7 +78,6 @@ namespace Portfolio.Battle
 
         public BattleUnitConditionUI CreateConditionUI(int count, Condition condition)
         {
-            // TODO
             var conditionUI = conditionUIList.Where(ui => !ui.gameObject.activeInHierarchy).First();
             conditionUI.ShowCondition(condition);
             conditionUI.isActive = true;

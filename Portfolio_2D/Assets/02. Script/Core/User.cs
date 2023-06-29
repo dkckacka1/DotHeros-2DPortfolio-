@@ -351,11 +351,11 @@ namespace Portfolio
         //===========================================================
         // Map
         //===========================================================
-        public bool isClearMap(int mapID) => userData.clearMapList.Contains(mapID);
+        public bool IsClearMap(int mapID) => userData.clearMapList.Contains(mapID);
 
         public void ClearMap(int mapID)
         {
-            if (!isClearMap(mapID))
+            if (!IsClearMap(mapID))
             {
                 userData.clearMapList.Add(mapID);
             }
