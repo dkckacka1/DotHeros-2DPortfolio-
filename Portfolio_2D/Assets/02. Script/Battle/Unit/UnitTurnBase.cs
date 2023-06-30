@@ -27,7 +27,7 @@ namespace Portfolio.Battle
             BattleManager.TurnBaseSystem.AddUnitTurnBase(this);
         }
 
-        private void OnDisable()
+        public void Dead()
         {
             BattleManager.TurnBaseSystem.UnitTurnBaseList.Remove(this);
         }

@@ -15,9 +15,10 @@
     public enum TurnType
     {
         NONE = -1,
-        WAITTING,
+        WAITUNITTURN,
         PLAYER,
-        ENEMY
+        ENEMY,
+        STOP
     }
 
     public enum LineType

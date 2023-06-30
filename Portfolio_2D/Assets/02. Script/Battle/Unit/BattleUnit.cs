@@ -86,17 +86,19 @@ namespace Portfolio.Battle
         //===========================================================
         // Event
         //===========================================================
+        #region Event
         public event EventHandler OnStartBattleEvent; // 전투 시작시 호출될 이벤트
         public event EventHandler OnStartCurrentTurnEvent; // 자신의 턴이 왔다면 호출될 이벤트
         public event EventHandler OnEndCurrentTurnEvent; // 자신의 턴이 종료될때 호출될 이벤트
         public event EventHandler OnChangedCurrentHPEvent; // 자신의 체력이 변화될때 호출될 이벤트
         public event EventHandler OnAttackEvent; // 자신이 공격(기본공격, 스킬공격)시 호출될 이벤트
         public event EventHandler OnTakeAttackEvent; // 자신이 공격받았을때 호출될 이벤트
-        public event EventHandler OnDeadEvent; // 자신이 죽었을때 호출될 이벤트
-
+        public event EventHandler OnDeadEvent; // 자신이 죽었을때 호출될 이벤트 
+        #endregion
         //===========================================================
         // Property
         //===========================================================
+        #region Property
         public Unit Unit { get => this.unit; }
         public bool IsTurn { get => isTurn; }
         public bool IsEnemy { get => isEnemy; set => isEnemy = value; }
@@ -105,13 +107,13 @@ namespace Portfolio.Battle
         public float Speed { get => speed; set => speed = value; }
         public float DefencePoint { get => defencePoint; set => defencePoint = value; }
         public float CriticalPercent { get => criticalPercent; set => criticalPercent = value; }
-        public float CriticalDamage 
+        public float CriticalDamage
         {
             get
             {
                 //Debug.Log($"CriticalDamage Get {criticalDamage}");
-               return criticalDamage;
-            } 
+                return criticalDamage;
+            }
             set
             {
                 //Debug.Log($"CriticalDamage Set {criticalDamage} -> {value}");
@@ -141,12 +143,14 @@ namespace Portfolio.Battle
         public int ActiveSkill_1_CoolTime { get => activeSkill_1_CoolTime; set => activeSkill_1_CoolTime = value; }
         public int ActiveSkill_2_CoolTime { get => activeSkill_2_CoolTime; set => activeSkill_2_CoolTime = value; }
         public bool IsSkill => isSkillUsing || isSkillAnimation;
-
-
-
+        public Animator Animator => animator;
+        public AnimationClip GetCurrentClip => animator.GetCurrentAnimatorClipInfo(0)[0].clip;
+        public AnimationEvent[] GetAnimationEvents => animator.GetCurrentAnimatorClipInfo(0)[0].clip.events;
+        #endregion
         //===========================================================
         // UnityEvent
         //===========================================================
+        #region UnityEvent
         private void Awake()
         {
             unitUI = GetComponent<BattleUnitUI>();
@@ -154,11 +158,12 @@ namespace Portfolio.Battle
             unitTurnBase = GetComponent<UnitTurnBase>();
 
             OnChangedCurrentHPEvent += unitUI.BattleUnit_OnCurrentHPChangedEvent;
-        }
-
+        } 
+        #endregion
         //===========================================================
         // CreateUnit
         //===========================================================
+        #region CreateUnit
         public virtual void SetUnit(Unit unit)
         {
             this.unit = unit;
@@ -183,11 +188,12 @@ namespace Portfolio.Battle
             BattleManager.Instance.PublishEvent(BattleState.BATTLESTART, BattleStart);
             BattleManager.Instance.PublishEvent(BattleState.WIN, Win);
             BattleManager.Instance.PublishEvent(BattleState.DEFEAT, Defeat);
-        }
-
+        } 
+        #endregion
         //===========================================================
         // TurnSystem & ActionSystem
         //===========================================================
+        #region TurnSystem & ActionSystem
         public virtual void StartUnitTurn()
         {
             //Debug.Log(this.gameObject.name + "의 턴");
@@ -240,9 +246,11 @@ namespace Portfolio.Battle
             unitUI.SetTargetedUI(false);
         }
 
+        #endregion
         //===========================================================
         // BattleMethod
         //===========================================================
+        #region BattleMethod
         public void BattleStart()
         {
             SetPassiveSkill(unit.passiveSkill_1, unit.PassiveSkillLevel_1);
@@ -264,17 +272,17 @@ namespace Portfolio.Battle
         }
 
         public void HitTarget(BattleUnit targetUnit, float damagePoint, bool isCritical = false)
-            // isCritical = 확정 크리
+        // isCritical = 확정 크리
         {
             if (isCritical || GameLib.ProbabilityCalculation(CriticalPercent * 100))
-                // 치명타 성공
+            // 치명타 성공
             {
                 float criticalDamage = damagePoint * (1 + CriticalDamage);
                 targetUnit.TakeDamage(criticalDamage);
                 //Debug.Log($"{damagePoint} : {(1 + CriticalDamage)} -> {criticalDamage}");
             }
             else
-                // 실패
+            // 실패
             {
                 targetUnit.TakeDamage(damagePoint);
             }
@@ -303,6 +311,7 @@ namespace Portfolio.Battle
             isDead = true;
             unitUI.Dead();
             OnDeadEvent?.Invoke(this, EventArgs.Empty);
+            unitTurnBase.Dead();
             BattleManager.Instance.CheckUnitList();
             BattleManager.Instance.UnPublishEvent(BattleState.BATTLESTART, BattleStart);
             BattleManager.Instance.UnPublishEvent(BattleState.WIN, Win);
@@ -317,6 +326,7 @@ namespace Portfolio.Battle
             {
                 BattleManager.TurnBaseSystem.TurnEnd();
             }
+            this.gameObject.SetActive(false);
         }
 
         public bool IsAlly(BattleUnit targetUnit)
@@ -325,9 +335,11 @@ namespace Portfolio.Battle
             return targetUnit.IsEnemy == IsEnemy;
         }
 
+        #endregion
         //===========================================================
         // SkillSystem
         //===========================================================
+        #region SkillSystem
         public void UseSkill(UnitSkillType skillType)
         {
             int skillLevel = 1;
@@ -407,12 +419,10 @@ namespace Portfolio.Battle
                 return CanActiveSkillCool(activeSkill);
             }
         }
-
         public bool CanActiveSkillAbleMana(ActiveSkill activeSkill)
         {
             return BattleManager.ManaSystem.canUseMana(activeSkill.GetData.consumeManaValue);
         }
-
         public bool CanActiveSkillCool(ActiveSkill activeSkill)
         {
             if (activeSkill == unit.activeSkill_1)
@@ -428,7 +438,6 @@ namespace Portfolio.Battle
                 return true;
             }
         }
-
         private void SetPassiveSkill(PassiveSkill skill, int skillLevel)
         {
             if (skill == null)
@@ -445,7 +454,6 @@ namespace Portfolio.Battle
                 SetPassiveSkillEvent(skill, skillLevel, BattleManager.ActionSystem.GetPassiveTargetUnit(skill, this));
             }
         }
-
         private void SetPassiveSkillEvent(PassiveSkill skill, int skillLevel, IEnumerable<BattleUnit> targetUnits)
         {
             if (skill.GetData.isOnStartBattle)
@@ -481,9 +489,11 @@ namespace Portfolio.Battle
             }
         }
 
+        #endregion
         //===========================================================
         // AbnormalConditionSystem
         //===========================================================
+        #region AbnormalConditionSystem
 
         public bool HasCondition(int conditionID) => conditionDic.ContainsKey(conditionID);
         public bool HasCondition(Condition condition) => conditionDic.ContainsKey(condition.conditionID);
@@ -515,8 +525,8 @@ namespace Portfolio.Battle
             else
             // 적용안된 상태이상 일때
             {
-                if(conditionDic.Count >= 10)
-                    // 이미 적용된 상태이상이 10개 이상일때
+                if (conditionDic.Count >= 10)
+                // 이미 적용된 상태이상이 10개 이상일때
                 {
                     // 가장 오래된 상태이상을 제거해준다.
                     conditionDic.First().Value.EndCondition();
@@ -601,9 +611,11 @@ namespace Portfolio.Battle
             return conditionDic.Values.Where(conditionSystem => conditionSystem.Condition is T);
         }
 
+        #endregion
         //===========================================================
         // AISystem
         //===========================================================
+        #region AISystem
         public void CheckAutoBattle()
         {
             if (aiSystem.isAI)
@@ -621,9 +633,11 @@ namespace Portfolio.Battle
             }
         }
 
+        #endregion
         //===========================================================
         // Animation
         //===========================================================
+        #region Animation
         public void CreateAnim()
         {
             animator.SetTrigger("Create");
@@ -679,6 +693,7 @@ namespace Portfolio.Battle
                 unitImage.material = defaultMat;
                 yield return new WaitForSeconds(damageMatPingpongTime);
             }
-        }
+        } 
+        #endregion
     }
 }

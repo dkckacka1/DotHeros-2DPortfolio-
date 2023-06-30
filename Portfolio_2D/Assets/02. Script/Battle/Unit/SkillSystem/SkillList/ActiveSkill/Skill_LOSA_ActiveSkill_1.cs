@@ -17,32 +17,45 @@ namespace Portfolio.skill
         {
             base.Action(sender, e);
 
-            float skillDamage = e.actionUnit.AttackPoint * (1 + (e.skillLevel * GetData.skillLevelValue_1 * 0.01f));
-            //Debug.Log(skillDamage);
-            //Debug.Log(conditionList.Count);
+            e.actionUnit.StartCoroutine(PlaySkillEffect(e));
+        }
 
+        private IEnumerator PlaySkillEffect(SkillActionEventArgs e)
+        {
+            float skillDamage = e.actionUnit.AttackPoint * (1 + (e.skillLevel * GetData.skillLevelValue_1 * 0.01f));
+            yield return new WaitForSeconds(0.45f);
             foreach (var targetUnit in e.targetUnits)
             {
-                if(targetUnit.HasCondition(conditionList[0].conditionID))
-                    // 낙인 상태이상을 가지고 있다면
-                {
-                    e.actionUnit.HitTarget(targetUnit, skillDamage, true);
-                }
-                else
-                    // 낙인 상태이상을 가지고 있지 않다면
-                {
-                    e.actionUnit.HitTarget(targetUnit, skillDamage);
-                }
                 var effect = BattleManager.ObjectPool.SpawnSkillEffect();
                 effect.PlayEffect("Anim_Skill_Effect_LOSA_ArrowProjectile");
-                effect.transform.position = e.actionUnit.projectilePos.position;
-                effect.transform.localScale = e.actionUnit.IsEnemy ? new Vector3(-1, 1, 1) : Vector3.one;
-                effect.transform.DOMove(targetUnit.transform.position, effect.arrowProjectileTime).SetEase(Ease.InOutSine).OnComplete(() => { effect.PlayEffect("Anim_Skill_Effect_LOSA_ArrowProjectileHit"); });
-                Debug.Log(targetUnit.transform.position);
-                //effect.transform.DOMove(targetUnit.transform.position, effect.arrowProjectileTime).OnComplete(() => { effect.ReleaseEffect(); });
+                Vector3 arrowPos;
+                if (e.actionUnit.IsEnemy)
+                {
+                    effect.transform.localScale = new Vector3(-1, 1, 1);
+                    arrowPos = e.actionUnit.projectilePos.position + new Vector3(-1.2f, 0);
+                }
+                else
+                {
+                    effect.transform.localScale = Vector3.one;
+                    arrowPos = e.actionUnit.projectilePos.position + new Vector3(1.2f, 0);
+                }
+                effect.transform.position = arrowPos;
+                effect.transform.DOMove(targetUnit.transform.position, effect.arrowProjectileTime).SetEase(Ease.InOutSine).OnComplete(() =>
+                {
+                    effect.PlayEffect("Anim_Skill_Effect_LOSA_ArrowProjectileHit");
+                    if (targetUnit.HasCondition(conditionList[0].conditionID))
+                    // 낙인 상태이상을 가지고 있다면
+                    {
+                        e.actionUnit.HitTarget(targetUnit, skillDamage, true);
+                    }
+                    else
+                    // 낙인 상태이상을 가지고 있지 않다면
+                    {
+                        e.actionUnit.HitTarget(targetUnit, skillDamage);
+                    }
+                    e.actionUnit.isSkillUsing = false;
+                });
             }
-
-            e.actionUnit.isSkillUsing = false;
         }
     }
 }

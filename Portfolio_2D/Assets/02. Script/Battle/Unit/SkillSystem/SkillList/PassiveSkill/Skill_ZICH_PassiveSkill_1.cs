@@ -20,7 +20,7 @@ namespace Portfolio.skill
             }
 
 
-            Debug.Log((1 + (GetData.skillLevelValue_1 * e.skillLevel * 0.01f)));
+            //Debug.Log((1 + (GetData.skillLevelValue_1 * e.skillLevel * 0.01f)));
             e.actionUnit.AttackPoint *= (1 + (GetData.skillLevelValue_1 * e.skillLevel * 0.01f));
         }
     }

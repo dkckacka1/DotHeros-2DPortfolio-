@@ -20,7 +20,7 @@ namespace Portfolio.Battle
 
         private void Update()
         {
-            if (BattleManager.Instance.BattleState == BattleState.PLAY && currentTurnType == TurnType.WAITTING)
+            if (BattleManager.Instance.BattleState == BattleState.PLAY && currentTurnType == TurnType.WAITUNITTURN)
             {
                 foreach (UnitTurnBase unitTurnBase in unitTurnBaseList)
                 {
@@ -81,7 +81,7 @@ namespace Portfolio.Battle
             BattleManager.BattleUIManager.SequenceUI.SetSequenceUnitUIYPosition(currentTurnUnit.UnitSequenceUI, 0);
             BattleManager.ActionSystem.ClearSelectedUnits();
             currentTurnUnit = null;
-            currentTurnType = TurnType.WAITTING;
+            currentTurnType = TurnType.WAITUNITTURN;
             BattleManager.ActionSystem.IsPlayerActionTime = false;
             currentTurnUnitNameText.gameObject.SetActive(false);
         }
