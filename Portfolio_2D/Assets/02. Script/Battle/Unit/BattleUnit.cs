@@ -487,6 +487,14 @@ namespace Portfolio.Battle
                     targetUnit.OnTakeAttackEvent += ((sender, e) => skill.Action(this, new SkillActionEventArgs(skillLevel, this, targetUnits)));
                 }
             }
+
+            if (skill.GetData.isOnDead)
+            {
+                foreach (var targetUnit in targetUnits)
+                {
+                    targetUnit.OnDeadEvent += ((sender, e) => skill.Action(this, new SkillActionEventArgs(skillLevel, this, targetUnits)));
+                }
+            }
         }
 
         #endregion

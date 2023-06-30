@@ -31,5 +31,16 @@
     "isBuff": false,
     "isOverlaping": false,
     "isResetCount": false
+  },
+  {
+    "ID": 1003,
+    "conditionName": "방어력 상승",
+    "conditionDesc": "방어력을 30% 증가 시킵니다.",
+    "conditionClassName": "IncreaseDefencePoint",
+    "conditionIconSpriteName": "Sprite_Condition_IncreaseDefencePoint",
+    "conditionType": 0,
+    "isBuff": true,
+    "isOverlaping": false,
+    "isResetCount": true
   }
 ]

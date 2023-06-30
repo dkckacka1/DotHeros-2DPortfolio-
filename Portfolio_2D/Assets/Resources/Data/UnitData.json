@@ -46,5 +46,29 @@
     "passiveSkillID_2": -1,
     "portraitImageName": "Sprite_Unit_Portrait_LOSA",
     "animationName": "LOSA_AnimCT"
+  },
+  {
+    "ID": 102,
+    "unitName": "릴리",
+    "elementalType": "Fire",
+    "isUserUnit": true,
+    "defaultGrade": 2,
+    "maxHP": 90,
+    "attackPoint": 7,
+    "defencePoint": 3,
+    "speed": 105,
+    "criticalPercent": 0.1,
+    "criticalDamage": 0.2,
+    "effectHit": 0.3,
+    "effectResistance": 0.3,
+    "levelValue": 0.03,
+    "gradeValue": 0.25,
+    "basicAttackSKillID": 10006,
+    "activeSkillID_1": 10007,
+    "activeSkillID_2": 10008,
+    "passiveSkillID_1": 20002,
+    "passiveSkillID_2": 20003,
+    "portraitImageName": "Sprite_Unit_Portrait_LILY",
+    "animationName": "LILY_AnimCT"
   }
 ]

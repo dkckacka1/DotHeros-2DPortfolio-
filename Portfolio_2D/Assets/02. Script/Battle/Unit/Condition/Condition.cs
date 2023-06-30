@@ -21,7 +21,6 @@ namespace Portfolio.condition
             conditionIcon = GameManager.Instance.GetSprite(conditionData.conditionIconSpriteName);
         }
 
-
         public abstract void ApplyCondition(BattleUnit unit);
     }
 }

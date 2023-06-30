@@ -55,6 +55,7 @@ SpriteAtlas:
   m_PackedSprites:
   - {fileID: 21300000, guid: f96d959197ec4a941afc44cfc5d43ead, type: 3}
   - {fileID: 21300000, guid: 006e41029057df34e823abb25214c9ac, type: 3}
+  - {fileID: 21300000, guid: 4b1455c2234729c44a4692a45f73094c, type: 3}
   - {fileID: 21300000, guid: e2b48ac36ba11b64491edd791e6e595b, type: 3}
   - {fileID: 21300000, guid: 85abf6f33c033104981abeed60b3fe67, type: 3}
   - {fileID: 21300000, guid: 7d6941948494f46b6ab536505c248e91, type: 3}
@@ -63,16 +64,23 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 79fcc8a5b28fbc342b72233011776bd7, type: 3}
   - {fileID: 21300000, guid: e85ddec52afc9cb438a60dfb603faa29, type: 3}
   - {fileID: 21300000, guid: 178f9007474a98949baf3a7bcdcf3ae1, type: 3}
+  - {fileID: 21300000, guid: 5dcb7837e409c26468168a6af641c2d6, type: 3}
   - {fileID: 21300000, guid: e36a47283bb580149b697e0305b0a170, type: 3}
   - {fileID: 21300000, guid: 723147881c79bb14cb2eaf66ec3651b5, type: 3}
   - {fileID: 21300000, guid: 5a1d39f8c93588641bfebdbd4ee6e445, type: 3}
   - {fileID: 21300000, guid: bbeb5ac959a7f51438754835a7eb822e, type: 3}
+  - {fileID: 21300000, guid: 54928e9b9799c544eabce8eefca3c5e0, type: 3}
+  - {fileID: 21300000, guid: c9094adb02621a749b0848c70969ee90, type: 3}
+  - {fileID: 21300000, guid: b8ae0fdbbc2e4fb4a8c99fa769384583, type: 3}
+  - {fileID: 21300000, guid: 4dd3d83c23a6a324baae3442bdd31260, type: 3}
   - {fileID: 21300000, guid: dc0613ec4cfd6b244b95d1ef6f0d8cf9, type: 3}
   - {fileID: 21300000, guid: b93f270d9037d8d42bf6ba652651f49d, type: 3}
+  - {fileID: 21300000, guid: d344ac4e23ff1674bbd913540dab22b6, type: 3}
   - {fileID: 21300000, guid: f80334be705ca8b4eb41213ab331f6bc, type: 3}
   m_PackedSpriteNamesToIndex:
   - Sprite_SkillIcon_ZICH_PassiveSkill_1
   - Sprite_SkillIcon_LOSA_PassiveSkill_1
+  - Sprite_SkillIcon_LILY_PassiveSkill_1
   - Experience_potion_green_1
   - Sprite_SkillIcon_ZICH_ActiveSkill_2
   - SkillLevelUP_potion
@@ -81,12 +89,18 @@ SpriteAtlas:
   - Sprite_SkillIcon_LOSA_BaseAttack
   - Sprite_Unit_Portrait_ZICH
   - Sprite_SkillIcon_ZICH_ActiveSkill_1
+  - Sprite_SkillIcon_LILY_ActiveSkill_2
   - Sprite_Condition_Posion
   - Sprite_SkillIcon_ZICH_BaseAttack
   - Sprite_Unit_Portrait_LOSA
   - Sprite_SkillIcon_LOSA_ActiveSkill_2
+  - Sprite_SkillIcon_LILY_PassiveSkill_2
+  - Sprite_SkillIcon_LILY_BaseAttack
+  - Sprite_Unit_Portrait_LILY
+  - Sprite_SkillIcon_LILY_ActiveSkill_1
   - Sprite_SkillIcon_LOSA_ActiveSkill_1
   - Experience_potion_green_3
+  - Sprite_Condition_IncreaseDefencePoint
   - Experience_potion_green_2
   m_RenderDataMap: {}
   m_Tag: PortraitIcon
