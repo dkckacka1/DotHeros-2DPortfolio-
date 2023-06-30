@@ -46,7 +46,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ddc8299d0b823b74284dd7741565c5d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animator: {fileID: 3499618097417071808}
+  arrowProjectileTime: 0.3
 --- !u!212 &5412722088630711177
 SpriteRenderer:
   m_ObjectHideFlags: 0

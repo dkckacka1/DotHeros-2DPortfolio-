@@ -69,6 +69,7 @@ namespace Portfolio.Battle
         [SerializeField] int damageMatPingpongCount;
         public Transform footPos;
         public Transform backHeadPos;
+        public Transform projectilePos;
         private Coroutine takeDamageRoutine;
 
         [Header("UnitState")]

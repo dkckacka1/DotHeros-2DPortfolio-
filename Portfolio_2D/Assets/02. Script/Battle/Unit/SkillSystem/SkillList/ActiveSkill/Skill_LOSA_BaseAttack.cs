@@ -22,10 +22,9 @@ namespace Portfolio.skill
             {
                 e.actionUnit.HitTarget(targetUnit, skillDamage);
                 targetUnit.AddCondition(conditionList[0].conditionID, conditionList[0], 2);
-                // TODO
-                //var effect = BattleManager.ObjectPool.SpawnSkillEffect();
-                //effect.PlayEffect("Anim_Skill_Effect_ZICH_BaseAttack");
-                //effect.transform.position = targetUnit.transform.position;
+                var effect = BattleManager.ObjectPool.SpawnSkillEffect();
+                effect.PlayEffect("Anim_Skill_Effect_LOSA_BaseAttack");
+                effect.transform.position = targetUnit.transform.position;
 
             }
             e.actionUnit.isSkillUsing = false;

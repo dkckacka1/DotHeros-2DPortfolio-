@@ -33,6 +33,37 @@ Transform:
   m_Father: {fileID: 7066011998833549734}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &257568516932913750
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7398875169043905394}
+  m_Layer: 6
+  m_Name: Projectile
+  m_TagString: Untagged
+  m_Icon: {fileID: 7250588514170254948, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7398875169043905394
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 257568516932913750}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.07, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8025050636559716976}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &271154678772858288
 GameObject:
   m_ObjectHideFlags: 0
@@ -238,6 +269,7 @@ Transform:
   m_Children:
   - {fileID: 4405199222892905756}
   - {fileID: 2612927183158660738}
+  - {fileID: 7398875169043905394}
   m_Father: {fileID: 3532174377713189982}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1328,6 +1360,7 @@ MonoBehaviour:
   damageMatPingpongCount: 6
   footPos: {fileID: 4405199222892905756}
   backHeadPos: {fileID: 2612927183158660738}
+  projectilePos: {fileID: 7398875169043905394}
   isDead: 0
   isSkillUsing: 0
   isSkillAnimation: 0

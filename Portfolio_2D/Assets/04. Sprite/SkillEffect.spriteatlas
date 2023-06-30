@@ -1,0 +1,168 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: SkillEffect
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 1
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings:
+    - serializedVersion: 3
+      m_BuildTarget: DefaultTexturePlatform
+      m_MaxTextureSize: 4096
+      m_ResizeAlgorithm: 0
+      m_TextureFormat: -1
+      m_TextureCompression: 1
+      m_CompressionQuality: 50
+      m_CrunchedCompression: 0
+      m_AllowsAlphaSplitting: 0
+      m_Overridden: 0
+      m_AndroidETC2FallbackOverride: 0
+      m_ForceMaximumCompressionQuality_BC6H_BC7: 0
+    packingSettings:
+      serializedVersion: 2
+      padding: 4
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 1
+      enableTightPacking: 0
+      enableAlphaDilation: 0
+    secondaryTextureSettings: {}
+    variantMultiplier: 1
+    packables:
+    - {fileID: 102900000, guid: e1087e22b7a0dea4eb0a9af85eb0df13, type: 3}
+    bindAsDefault: 1
+    isAtlasV2: 0
+    cachedData: {fileID: 0}
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 21300000, guid: f7cd1e804671c1c47bc3370640cf37b7, type: 3}
+  - {fileID: 21300000, guid: 2477c3b0c808a2f4d97fb8e0262c62af, type: 3}
+  - {fileID: 21300000, guid: 5fe843e012a0da1468a374de81c0532c, type: 3}
+  - {fileID: 21300000, guid: 23df44314d84ccf42a0208df3ffc623d, type: 3}
+  - {fileID: 21300000, guid: b2104841b84b1c84a88545e527fe5dee, type: 3}
+  - {fileID: 21300000, guid: bf4c2f7131a6db24bacd0b07c650d9f4, type: 3}
+  - {fileID: 21300000, guid: 1e3e40e2834acf0459984212fe79f548, type: 3}
+  - {fileID: -918708772, guid: c989312362b94e24ba027ed9823995fd, type: 3}
+  - {fileID: -410884271, guid: c989312362b94e24ba027ed9823995fd, type: 3}
+  - {fileID: 619966691, guid: c989312362b94e24ba027ed9823995fd, type: 3}
+  - {fileID: 195128779, guid: c989312362b94e24ba027ed9823995fd, type: 3}
+  - {fileID: -752591756, guid: c989312362b94e24ba027ed9823995fd, type: 3}
+  - {fileID: -1100756680, guid: c989312362b94e24ba027ed9823995fd, type: 3}
+  - {fileID: -136558609, guid: c989312362b94e24ba027ed9823995fd, type: 3}
+  - {fileID: 2078189350, guid: c989312362b94e24ba027ed9823995fd, type: 3}
+  - {fileID: 1939893339, guid: c989312362b94e24ba027ed9823995fd, type: 3}
+  - {fileID: 1734467968, guid: c989312362b94e24ba027ed9823995fd, type: 3}
+  - {fileID: -1320899623, guid: c989312362b94e24ba027ed9823995fd, type: 3}
+  - {fileID: 1061380331, guid: c989312362b94e24ba027ed9823995fd, type: 3}
+  - {fileID: 79115340, guid: c989312362b94e24ba027ed9823995fd, type: 3}
+  - {fileID: 967679707, guid: c989312362b94e24ba027ed9823995fd, type: 3}
+  - {fileID: -542279890, guid: c989312362b94e24ba027ed9823995fd, type: 3}
+  - {fileID: 21300000, guid: fbd84293db128e748a1e2752de7c9ccf, type: 3}
+  - {fileID: 21300000, guid: 0a7ff3f320e80064486cfe7e299166af, type: 3}
+  - {fileID: 21300000, guid: f5f3c5f4612b409448fd0fc96bd8ee10, type: 3}
+  - {fileID: 21300000, guid: 62e72c05760d28b479a8956d997b1241, type: 3}
+  - {fileID: 21300000, guid: dab1ee750a7459448b67a75ff4a20fe2, type: 3}
+  - {fileID: 21300000, guid: b4d8db86e560317488b3bb9c7cef53f9, type: 3}
+  - {fileID: 21300000, guid: f3055e775a46c7c41a9ec4a400fbc1fd, type: 3}
+  - {fileID: 21300000, guid: b457ee08795257149b300d2eed55fef2, type: 3}
+  - {fileID: -1696173363, guid: cd9d9a88b9b1cf643ad026cb8abf8fb8, type: 3}
+  - {fileID: -612994194, guid: cd9d9a88b9b1cf643ad026cb8abf8fb8, type: 3}
+  - {fileID: -1705912203, guid: cd9d9a88b9b1cf643ad026cb8abf8fb8, type: 3}
+  - {fileID: 49969673, guid: cd9d9a88b9b1cf643ad026cb8abf8fb8, type: 3}
+  - {fileID: 2054020519, guid: cd9d9a88b9b1cf643ad026cb8abf8fb8, type: 3}
+  - {fileID: -1862096307, guid: cd9d9a88b9b1cf643ad026cb8abf8fb8, type: 3}
+  - {fileID: -643304154, guid: cd9d9a88b9b1cf643ad026cb8abf8fb8, type: 3}
+  - {fileID: 1444577165, guid: cd9d9a88b9b1cf643ad026cb8abf8fb8, type: 3}
+  - {fileID: 1822138919, guid: cd9d9a88b9b1cf643ad026cb8abf8fb8, type: 3}
+  - {fileID: -1566079590, guid: cd9d9a88b9b1cf643ad026cb8abf8fb8, type: 3}
+  - {fileID: 21300000, guid: 1f5f66d832fda14478eedf415fcc7768, type: 3}
+  - {fileID: 21300000, guid: 4da46b0962f89e9458752ea8b50cd314, type: 3}
+  - {fileID: 21300000, guid: 5fbb7eb98e2d4c5428c9e1e328cd4b78, type: 3}
+  - {fileID: 21300000, guid: a7c6da4abf17f7c48bf5b445ffd10723, type: 3}
+  - {fileID: 21300000, guid: ebb69a8a23347424f8aeed0176a8169e, type: 3}
+  - {fileID: 21300000, guid: 54ce22aa172ae754a9917e3c0228afbf, type: 3}
+  - {fileID: 21300000, guid: 9da356aaa45b439408a69ee4b4365fe2, type: 3}
+  - {fileID: 21300000, guid: 067981fa661ced54c8e56aa03b39ead5, type: 3}
+  - {fileID: 21300000, guid: 03f0104be1387d9498bb2b7423a009e9, type: 3}
+  - {fileID: 21300000, guid: 1fde7f7b8e1a72a41a5e4d86c9fd7dea, type: 3}
+  - {fileID: 21300000, guid: 612eabbb7d5fdac4eb9c2e94fd27f0bc, type: 3}
+  - {fileID: 21300000, guid: af1f46fc2cc45164c836a6602ea708e4, type: 3}
+  - {fileID: 21300000, guid: 84531f3d19c7b01478d22990853d7b85, type: 3}
+  - {fileID: 21300000, guid: 5e84b45d7490d5a4081923de15428eb4, type: 3}
+  - {fileID: 21300000, guid: 73a9876ff1515a14eb2592441acc647c, type: 3}
+  - {fileID: 21300000, guid: 10502fbf47700be47b3593db320dd68a, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - arrow_hit_3
+  - frame0055
+  - arrow_hit_6
+  - Smoke VFX B2
+  - Smoke VFX B9
+  - Smoke VFX B6
+  - Smoke VFX B1
+  - Holy VFX 02_8
+  - Holy VFX 02_9
+  - Holy VFX 02_0
+  - Holy VFX 02_1
+  - Holy VFX 02_2
+  - Holy VFX 02_3
+  - Holy VFX 02_4
+  - Holy VFX 02_5
+  - Holy VFX 02_6
+  - Holy VFX 02_7
+  - Holy VFX 02_13
+  - Holy VFX 02_12
+  - Holy VFX 02_11
+  - Holy VFX 02_10
+  - Holy VFX 02_14
+  - frame0065
+  - arrow_hit_4
+  - frame0105
+  - frame0095
+  - Smoke VFX B3
+  - frame0000
+  - arrow_hit_2
+  - frame0035
+  - pipo-mapeffect013a_3
+  - pipo-mapeffect013a_2
+  - pipo-mapeffect013a_1
+  - pipo-mapeffect013a_0
+  - pipo-mapeffect013a_7
+  - pipo-mapeffect013a_6
+  - pipo-mapeffect013a_5
+  - pipo-mapeffect013a_4
+  - pipo-mapeffect013a_9
+  - pipo-mapeffect013a_8
+  - Smoke VFX B8
+  - Smoke VFX B10
+  - arrow_
+  - arrow_hit_5
+  - frame0005
+  - frame0045
+  - Smoke VFX B4
+  - frame0115
+  - frame0025
+  - Smoke VFX B7
+  - arrow_hit_1
+  - frame0015
+  - frame0075
+  - Smoke VFX B5
+  - Smoke VFX B11
+  - frame0085
+  m_RenderDataMap: {}
+  m_Tag: SkillEffect
+  m_IsVariant: 0

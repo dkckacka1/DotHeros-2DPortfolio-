@@ -63,6 +63,7 @@ namespace Portfolio.Battle
         private SkillEffect CreateSkillEffect()
         {
             SkillEffect newSkillEffect = Instantiate(skillEffectPrefab, skillEffectParent);
+            newSkillEffect.Init();
             ReleaseSkillEffect(newSkillEffect);
             return newSkillEffect;
         }
@@ -84,6 +85,7 @@ namespace Portfolio.Battle
         {
             releaseSkillEffect.gameObject.SetActive(false);
             releaseSkillEffect.transform.position = Vector3.zero;
+            releaseSkillEffect.transform.rotation = Quaternion.identity;
             skillEffectPool.Enqueue(releaseSkillEffect);
         }
     } 

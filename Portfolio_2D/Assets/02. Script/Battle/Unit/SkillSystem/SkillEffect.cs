@@ -7,7 +7,15 @@ namespace Portfolio.Battle
 {
     public class SkillEffect : MonoBehaviour
     {
-        [SerializeField] Animator animator;
+        Animator animator;
+
+        [Header("LOSAEffectValue")]
+        public float arrowProjectileTime = 0.5f;
+
+        public void Init()
+        {
+            animator = GetComponent<Animator>();
+        }
 
         public void PlayEffect(string effectName)
         {

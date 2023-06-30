@@ -2,7 +2,8 @@ using Portfolio.Battle;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using DG.Tweening;
+using System;
 
 namespace Portfolio.skill
 {
@@ -32,9 +33,13 @@ namespace Portfolio.skill
                 {
                     e.actionUnit.HitTarget(targetUnit, skillDamage);
                 }
-                //var effect = BattleManager.ObjectPool.SpawnSkillEffect();
-                //effect.PlayEffect("Anim_Skill_Effect_ZICH_BaseAttack");
-                //effect.transform.position = targetUnit.transform.position;
+                var effect = BattleManager.ObjectPool.SpawnSkillEffect();
+                effect.PlayEffect("Anim_Skill_Effect_LOSA_ArrowProjectile");
+                effect.transform.position = e.actionUnit.projectilePos.position;
+                effect.transform.localScale = e.actionUnit.IsEnemy ? new Vector3(-1, 1, 1) : Vector3.one;
+                effect.transform.DOMove(targetUnit.transform.position, effect.arrowProjectileTime).SetEase(Ease.InOutSine).OnComplete(() => { effect.PlayEffect("Anim_Skill_Effect_LOSA_ArrowProjectileHit"); });
+                Debug.Log(targetUnit.transform.position);
+                //effect.transform.DOMove(targetUnit.transform.position, effect.arrowProjectileTime).OnComplete(() => { effect.ReleaseEffect(); });
             }
 
             e.actionUnit.isSkillUsing = false;
