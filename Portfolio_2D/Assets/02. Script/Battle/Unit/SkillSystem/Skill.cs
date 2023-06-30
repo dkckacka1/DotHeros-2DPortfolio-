@@ -1,4 +1,5 @@
 using Portfolio.Battle;
+using Portfolio.condition;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -13,11 +14,39 @@ namespace Portfolio.skill
 
         public SkillData GetData => skillData;
         public Sprite skillSprite;
+        public List<Condition> conditionList = new List<Condition>();
 
         public Skill(SkillData skillData)
         {
             this.skillData = skillData;
             this.skillSprite = GameManager.Instance.GetSprite(skillData.skillIconSpriteName);
+            if(skillData.conditinID_1 != -1)
+            {
+                if (GameManager.Instance.TryGetCondition(skillData.conditinID_1, out Condition condition_1))
+                {
+                    //Debug.Log("conditionO");
+                    conditionList.Add(condition_1);
+                }
+                else
+                {
+                    //Debug.Log("conditionX");
+                }
+            }
+            if (skillData.conditinID_2 != -1)
+            {
+                if (GameManager.Instance.TryGetCondition(skillData.conditinID_2, out Condition condition_2))
+                {
+                    conditionList.Add(condition_2);
+                }
+            }
+            if (skillData.conditinID_3 != -1)
+            {
+                if (GameManager.Instance.TryGetCondition(skillData.conditinID_3, out Condition condition_3))
+                {
+                    conditionList.Add(condition_3);
+                }
+            }
+            //Debug.Log(skillData.skillName + " " + skillData.conditinID_1 + " " + skillData.conditinID_2 + " " + skillData.conditinID_3 + " : " + conditionList.Count);
         }
 
         public virtual void Action(object sender, SkillActionEventArgs e)

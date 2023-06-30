@@ -19,9 +19,7 @@ namespace Portfolio.skill
                 return;
             }
 
-
-            //TODO
-            //e.actionUnit.AttackPoint *= (1 + (0.2f * e.skillLevel));
+            e.actionUnit.CriticalDamage *= 1 + (0.25f + (e.skillLevel * GetData.skillLevelValue_1 * 0.01f));
         }
     }
 

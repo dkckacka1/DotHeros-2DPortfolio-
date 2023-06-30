@@ -14,15 +14,11 @@ namespace Portfolio.skill
         public override void Action(object sender, SkillActionEventArgs e)
         {
             base.Action(sender, e);
-            if (!TryGetSkillActionArgs(e, out SkillActionEventArgs args))
-            {
-                return;
-            }
 
-            float skillDamage = args.actionUnit.AttackPoint + (args.actionUnit.AttackPoint * (e.skillLevel * GetData.skillLevelValue_1 * 0.01f));
-            foreach (var targetUnit in args.targetUnits)
+            float skillDamage = e.actionUnit.AttackPoint + (e.actionUnit.AttackPoint * (e.skillLevel * GetData.skillLevelValue_1 * 0.01f));
+            foreach (var targetUnit in e.targetUnits)
             {
-                targetUnit.TakeDamage(skillDamage);
+                e.actionUnit.HitTarget(targetUnit, skillDamage);
                 var effect = BattleManager.ObjectPool.SpawnSkillEffect();
                 effect.PlayEffect("Anim_Skill_Effect_ZICH_BaseAttack");
                 effect.transform.position = targetUnit.transform.position;

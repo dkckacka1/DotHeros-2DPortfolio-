@@ -104,7 +104,19 @@ namespace Portfolio.Battle
         public float Speed { get => speed; set => speed = value; }
         public float DefencePoint { get => defencePoint; set => defencePoint = value; }
         public float CriticalPercent { get => criticalPercent; set => criticalPercent = value; }
-        public float CriticalDamage { get => criticalDamage; set => criticalDamage = value; }
+        public float CriticalDamage 
+        {
+            get
+            {
+                //Debug.Log($"CriticalDamage Get {criticalDamage}");
+               return criticalDamage;
+            } 
+            set
+            {
+                //Debug.Log($"CriticalDamage Set {criticalDamage} -> {value}");
+                criticalDamage = value;
+            }
+        }
         public float EffectTarget { get => effectHit; set => effectHit = value; }
         public float EffectResistance { get => effectResistance; set => effectResistance = value; }
         public float CurrentHP
@@ -258,6 +270,7 @@ namespace Portfolio.Battle
             {
                 float criticalDamage = damagePoint * (1 + CriticalDamage);
                 targetUnit.TakeDamage(criticalDamage);
+                //Debug.Log($"{damagePoint} : {(1 + CriticalDamage)} -> {criticalDamage}");
             }
             else
                 // ½ÇÆÐ
@@ -472,6 +485,7 @@ namespace Portfolio.Battle
         //===========================================================
 
         public bool HasCondition(int conditionID) => conditionDic.ContainsKey(conditionID);
+        public bool HasCondition(Condition condition) => conditionDic.ContainsKey(condition.conditionID);
 
         public void AddCondition(int conditionID, Condition condition, int count)
         {

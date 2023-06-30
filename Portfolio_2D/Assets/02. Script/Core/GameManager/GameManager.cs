@@ -73,6 +73,12 @@ namespace Portfolio
                 SaveManager.LoadUserData("tester", out UserData user);
                 LoadUser(user);
                 uiManager.ShowUserInfo();
+                //Debug.Log(conditionDictionary.Count);
+                //foreach(var item in conditionDictionary)
+                //{
+                //    Debug.Log(item.Key);
+                //    Debug.Log(item.Value);
+                //}
             }
 
             uiManager.HideUserInfoCanvas();
@@ -262,9 +268,9 @@ namespace Portfolio
 
         private void CreateGameSource()
         {
+            LoadCondition();
             LoadSkill();
             LoadUnit();
-            LoadCondition();
             LoadMap();
         }
 
@@ -311,6 +317,7 @@ namespace Portfolio
             {
                 var type = Type.GetType("Portfolio.condition." + (data as ConditionData).conditionClassName);
                 object obj = Activator.CreateInstance(type, data as ConditionData);
+                //Debug.Log(data.ID + " = " + (obj is Condition));
                 conditionDictionary.Add(data.ID, obj as Condition);
             }
         }

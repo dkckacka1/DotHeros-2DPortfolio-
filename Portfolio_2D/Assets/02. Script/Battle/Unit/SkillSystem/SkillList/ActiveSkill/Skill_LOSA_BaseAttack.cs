@@ -15,22 +15,13 @@ namespace Portfolio.skill
         public override void Action(object sender, SkillActionEventArgs e)
         {
             base.Action(sender, e);
-            if (!TryGetSkillActionArgs(e, out SkillActionEventArgs args))
-            {
-                return;
-            }
 
-            Condition brand;
+            float skillDamage = e.actionUnit.AttackPoint * 0.8f;
 
-            if (!GameManager.Instance.TryGetCondition(GetData.conditinID_1, out brand))
+            foreach (var targetUnit in e.targetUnits)
             {
-                return;
-            }
-
-            foreach (var targetUnit in args.targetUnits)
-            {
-                targetUnit.TakeDamage(args.actionUnit.AttackPoint * 0.8f);
-                targetUnit.AddCondition(brand.conditionID, brand, 2);
+                e.actionUnit.HitTarget(targetUnit, skillDamage);
+                targetUnit.AddCondition(conditionList[0].conditionID, conditionList[0], 2);
                 // TODO
                 //var effect = BattleManager.ObjectPool.SpawnSkillEffect();
                 //effect.PlayEffect("Anim_Skill_Effect_ZICH_BaseAttack");

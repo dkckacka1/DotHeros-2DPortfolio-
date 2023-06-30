@@ -1,4 +1,5 @@
 using Portfolio.Battle;
+using Portfolio.condition;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -14,20 +15,26 @@ namespace Portfolio.skill
         public override void Action(object sender, SkillActionEventArgs e)
         {
             base.Action(sender, e);
-            if (!TryGetSkillActionArgs(e, out SkillActionEventArgs args))
+
+
+            float skillDamage = e.actionUnit.AttackPoint * (0.5f + (e.skillLevel * GetData.skillLevelValue_1 * 0.01f));
+
+            foreach (var targetUnit in e.targetUnits)
             {
-                return;
+                if(targetUnit.HasCondition(conditionList[0]))
+                {
+                    e.actionUnit.HitTarget(targetUnit, skillDamage, true);
+                }
+                else
+                {
+                    e.actionUnit.HitTarget(targetUnit, skillDamage);
+                    targetUnit.AddCondition(conditionList[0].conditionID, conditionList[0], 2);
+                }
+
+                //var effect = BattleManager.ObjectPool.SpawnSkillEffect();
+                //effect.PlayEffect("Anim_Skill_Effect_ZICH_BaseAttack");
+                //effect.transform.position = targetUnit.transform.position;
             }
-
-            // TODO
-            //foreach (var targetUnit in args.targetUnits)
-            //{
-            //    targetUnit.TakeDamage(args.actionUnit.AttackPoint);
-            //    var effect = BattleManager.ObjectPool.SpawnSkillEffect();
-            //    effect.PlayEffect("Anim_Skill_Effect_ZICH_BaseAttack");
-            //    effect.transform.position = targetUnit.transform.position;
-
-            //}
             e.actionUnit.isSkillUsing = false;
         }
     }
