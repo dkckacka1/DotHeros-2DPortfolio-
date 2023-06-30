@@ -21,6 +21,7 @@ namespace Portfolio.Editor
             Debug.Log("컨디션 Json 파일 생성 = " + TableToJson.GetConditionTable());
             Debug.Log("맵, 스테이지 Json 파일 생성 = " + TableToJson.GetMapTable());
             Debug.Log("아이템 Json 파일 생성 = " + TableToJson.GetItemTable());
+            AssetDatabase.Refresh();
         }
     } 
 }

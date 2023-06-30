@@ -296,6 +296,7 @@ namespace Portfolio
                         break;
                     case SkillType.PassiveSkill:
                         {
+                            //Debug.LogError(type.Name);
                             obj = Activator.CreateInstance(type, skillData as PassiveSkillData);
                             skillDictionary.Add(data.ID, obj as PassiveSkill);
                         }

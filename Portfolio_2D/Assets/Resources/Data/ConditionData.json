@@ -20,5 +20,16 @@
     "isBuff": false,
     "isOverlaping": true,
     "isResetCount": true
+  },
+  {
+    "ID": 1002,
+    "conditionName": "낙인",
+    "conditionDesc": "대상의 방어력을 20%만큼 감소 시킵니다.",
+    "conditionClassName": "Brand",
+    "conditionIconSpriteName": "Sprite_Condition_Brand",
+    "conditionType": 0,
+    "isBuff": false,
+    "isOverlaping": false,
+    "isResetCount": false
   }
 ]

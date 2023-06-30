@@ -22,5 +22,29 @@
     "passiveSkillID_2": -1,
     "portraitImageName": "Sprite_Unit_Portrait_ZICH",
     "animationName": "ZICH_AnimCT"
+  },
+  {
+    "ID": 101,
+    "unitName": "로사",
+    "elementalType": "Fire",
+    "isUserUnit": true,
+    "defaultGrade": 1,
+    "maxHP": 75,
+    "attackPoint": 15,
+    "defencePoint": 5,
+    "speed": 110,
+    "criticalPercent": 0.2,
+    "criticalDamage": 0.5,
+    "effectHit": 0,
+    "effectResistance": 0,
+    "levelValue": 0.02,
+    "gradeValue": 0.2,
+    "basicAttackSKillID": 10003,
+    "activeSkillID_1": 10004,
+    "activeSkillID_2": 10005,
+    "passiveSkillID_1": 20001,
+    "passiveSkillID_2": -1,
+    "portraitImageName": "Sprite_Unit_Portrait_LOSA",
+    "animationName": "LOSA_AnimCT"
   }
 ]
