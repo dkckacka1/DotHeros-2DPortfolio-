@@ -15,16 +15,10 @@ namespace Portfolio.skill
         public override void Action(object sender, SkillActionEventArgs e)
         {
             base.Action(sender, e);
-            if (!TryGetSkillActionArgs(e, out SkillActionEventArgs args))
-            {
-                return;
-            }
 
-            foreach (var targetUnit in args.targetUnits)
+            foreach (var targetUnit in e.targetUnits)
             {
-                targetUnit.TakeDamage(args.actionUnit.AttackPoint);
-                //var effect = BattleManager.ObjectPool.SpawnSkillEffect("TestEffect");
-                //effect.transform.position = targetUnit.transform.position;
+                e.actionUnit.HitTarget(targetUnit, e.actionUnit.AttackPoint);
             }
 
             e.actionUnit.isSkillUsing = false;

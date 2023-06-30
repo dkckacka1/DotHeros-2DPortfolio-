@@ -1,4 +1,5 @@
 using Portfolio.Battle;
+using Portfolio.condition;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -19,15 +20,23 @@ namespace Portfolio.skill
                 return;
             }
 
-            // TODO
-            //foreach (var targetUnit in args.targetUnits)
-            //{
-            //    targetUnit.TakeDamage(args.actionUnit.AttackPoint);
-            //    var effect = BattleManager.ObjectPool.SpawnSkillEffect();
-            //    effect.PlayEffect("Anim_Skill_Effect_ZICH_BaseAttack");
-            //    effect.transform.position = targetUnit.transform.position;
+            Condition brand;
 
-            //}
+            if (!GameManager.Instance.TryGetCondition(GetData.conditinID_1, out brand))
+            {
+                return;
+            }
+
+            foreach (var targetUnit in args.targetUnits)
+            {
+                targetUnit.TakeDamage(args.actionUnit.AttackPoint * 0.8f);
+                targetUnit.AddCondition(brand.conditionID, brand, 2);
+                // TODO
+                //var effect = BattleManager.ObjectPool.SpawnSkillEffect();
+                //effect.PlayEffect("Anim_Skill_Effect_ZICH_BaseAttack");
+                //effect.transform.position = targetUnit.transform.position;
+
+            }
             e.actionUnit.isSkillUsing = false;
         }
     }

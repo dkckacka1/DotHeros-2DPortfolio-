@@ -354,7 +354,6 @@ namespace Portfolio.Editor
                 writer.WriteEndArray();
                 return true;
             }
-            AssetDatabase.Refresh();
         }
     }
 }

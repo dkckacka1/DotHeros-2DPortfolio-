@@ -3,7 +3,7 @@
     "ID": 20000,
     "skillClassName": "Skill_ZICH_PassiveSkill_1",
     "skillName": "전투 태세",
-    "skillDesc": "전투 시작시 자신의 공격력을 {0}% 만큼 상승 시킵니다.",
+    "skillDesc": "[전투 시작 시] 자신의 공격력을 {0}% 만큼 상승 시킵니다.",
     "skillLevelValue_1": 20,
     "skillLevelValue_2": 0,
     "skillLevelValue_3": 0,

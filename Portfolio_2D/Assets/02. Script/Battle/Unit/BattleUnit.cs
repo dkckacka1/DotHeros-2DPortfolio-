@@ -103,7 +103,7 @@ namespace Portfolio.Battle
         public float AttackPoint { get => attackPoint; set => attackPoint = value; }
         public float Speed { get => speed; set => speed = value; }
         public float DefencePoint { get => defencePoint; set => defencePoint = value; }
-        public float CriticalPoint { get => criticalPercent; set => criticalPercent = value; }
+        public float CriticalPercent { get => criticalPercent; set => criticalPercent = value; }
         public float CriticalDamage { get => criticalDamage; set => criticalDamage = value; }
         public float EffectTarget { get => effectHit; set => effectHit = value; }
         public float EffectResistance { get => effectResistance; set => effectResistance = value; }
@@ -250,10 +250,26 @@ namespace Portfolio.Battle
             ResetCondition();
         }
 
-        public void TakeDamage(float DamagePoint)
+        public void HitTarget(BattleUnit targetUnit, float damagePoint, bool isCritical = false)
+            // isCritical = 확정 크리
         {
-            CurrentHP -= DamagePoint;
-            BattleManager.BattleUIManager.GetDamageText(this, (int)DamagePoint);
+            if (isCritical || GameLib.ProbabilityCalculation(CriticalPercent * 100))
+                // 치명타 성공
+            {
+                float criticalDamage = damagePoint * (1 + CriticalDamage);
+                targetUnit.TakeDamage(criticalDamage);
+            }
+            else
+                // 실패
+            {
+                targetUnit.TakeDamage(damagePoint);
+            }
+        }
+
+        public void TakeDamage(float damagePoint)
+        {
+            CurrentHP -= damagePoint;
+            BattleManager.BattleUIManager.GetDamageText(this, (int)damagePoint);
             if (takeDamageRoutine != null)
             {
                 StopCoroutine(takeDamageRoutine);
@@ -454,6 +470,8 @@ namespace Portfolio.Battle
         //===========================================================
         // AbnormalConditionSystem
         //===========================================================
+
+        public bool HasCondition(int conditionID) => conditionDic.ContainsKey(conditionID);
 
         public void AddCondition(int conditionID, Condition condition, int count)
         {

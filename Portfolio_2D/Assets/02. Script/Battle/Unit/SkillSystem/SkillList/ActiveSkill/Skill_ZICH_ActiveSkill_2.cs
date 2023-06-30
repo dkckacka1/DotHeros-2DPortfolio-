@@ -19,10 +19,10 @@ namespace Portfolio.skill
                 return;
             }
 
-            float damage = args.actionUnit.AttackPoint + (args.actionUnit.AttackPoint * (0.1f * e.skillLevel));
+            float skillDamage = args.actionUnit.AttackPoint + (args.actionUnit.AttackPoint * (e.skillLevel * GetData.skillLevelValue_1 * 0.01f));
             foreach (var targetUnit in args.targetUnits)
             {
-                targetUnit.TakeDamage(damage);
+                targetUnit.TakeDamage(skillDamage);
                 var effect = BattleManager.ObjectPool.SpawnSkillEffect();
                 effect.PlayEffect("Anim_Skill_Effect_ZICH_BaseAttack");
                 effect.transform.position = targetUnit.transform.position;
