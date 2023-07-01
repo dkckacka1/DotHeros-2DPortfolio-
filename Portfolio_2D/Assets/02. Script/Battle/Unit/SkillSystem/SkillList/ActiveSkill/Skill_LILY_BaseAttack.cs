@@ -14,6 +14,19 @@ namespace Portfolio.skill
         public override void Action(object sender, SkillActionEventArgs e)
         {
             base.Action(sender, e);
+
+            float skillDamage = e.actionUnit.AttackPoint * 0.75f;
+
+            foreach (var targetUnit in e.targetUnits)
+            {
+                e.actionUnit.HitTarget(targetUnit, skillDamage);
+            }
+            e.actionUnit.isSkillUsing = false;
+        }
+
+        public override IEnumerable<BattleUnit> SetTarget(BattleUnit actionUnit, List<BattleUnit> targetUnits)
+        {
+            return targetUnits.GetEnemyTarget(actionUnit).GetLowHealth().GetTargetNum(this);
         }
     }
 }

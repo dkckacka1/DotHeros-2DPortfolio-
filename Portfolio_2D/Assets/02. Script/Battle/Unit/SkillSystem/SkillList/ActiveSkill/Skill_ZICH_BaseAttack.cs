@@ -1,6 +1,7 @@
 using Portfolio.Battle;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace Portfolio.skill
@@ -10,6 +11,8 @@ namespace Portfolio.skill
         public Skill_ZICH_BaseAttack(ActiveSkillData skillData) : base(skillData)
         {
         }
+        public override IEnumerable<BattleUnit> SetTarget(BattleUnit actionUnit, List<BattleUnit> targetUnits) => targetUnits.GetEnemyTarget(actionUnit).GetLowHealth().GetTargetNum(GetData.targetNum);
+
 
         public override void Action(object sender, SkillActionEventArgs e)
         {
@@ -25,5 +28,6 @@ namespace Portfolio.skill
             }
             e.actionUnit.isSkillUsing = false;
         }
+
     }
 }

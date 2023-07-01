@@ -29,6 +29,11 @@ namespace Portfolio.skill
             }
             e.actionUnit.isSkillUsing = false;
         }
+
+        public override IEnumerable<BattleUnit> SetTarget(BattleUnit actionUnit, List<BattleUnit> targetUnits)
+        {
+            return targetUnits.GetEnemyTarget(actionUnit).GetLowHealth().GetTargetNum(this);
+        }
     }
 }
 

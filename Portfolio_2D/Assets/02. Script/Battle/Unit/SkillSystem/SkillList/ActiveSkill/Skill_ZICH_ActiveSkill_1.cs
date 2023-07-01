@@ -27,5 +27,10 @@ namespace Portfolio.skill
 
             e.actionUnit.isSkillUsing = false;
         }
+
+        public override IEnumerable<BattleUnit> SetTarget(BattleUnit actionUnit, List<BattleUnit> targetUnits)
+        {
+            return targetUnits.GetAllyTarget(actionUnit).GetTargetNum(this);
+        }
     }
 }

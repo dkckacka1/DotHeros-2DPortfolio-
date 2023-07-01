@@ -25,5 +25,6 @@ namespace Portfolio.skill
             //Debug.Log("나는 액티브 스킬입니다.");
         }
 
+        public abstract IEnumerable<BattleUnit> SetTarget(BattleUnit actionUnit, List<BattleUnit> targetUnits);
     }
 }

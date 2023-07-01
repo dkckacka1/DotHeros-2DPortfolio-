@@ -1,6 +1,7 @@
 using Portfolio.Battle;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace Portfolio.skill
@@ -14,6 +15,12 @@ namespace Portfolio.skill
         public override void Action(object sender, SkillActionEventArgs e)
         {
             base.Action(sender, e);
+            var targetUnit = BattleManager.ActionSystem.GetLiveUnit.GetAllyTarget(e.actionUnit).GetLowHealth().First();
+            if (targetUnit != null)
+            {
+                float healValue = targetUnit.MaxHP * (0.1f + (e.skillLevel * GetData.skillLevelValue_1 * 0.01f));
+                e.actionUnit.HealTarget(targetUnit, healValue);
+            }
         }
     }
 

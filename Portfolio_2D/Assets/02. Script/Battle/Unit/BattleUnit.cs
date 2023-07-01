@@ -300,6 +300,11 @@ namespace Portfolio.Battle
             takeDamageRoutine = StartCoroutine(TakeDamageCoroutine());
         }
 
+        public void HealTarget(BattleUnit targetUnit, float healValue)
+        {
+            targetUnit.Heal(healValue);
+        }
+
         public void Heal(float healPoint)
         {
             CurrentHP += healPoint;
@@ -329,11 +334,8 @@ namespace Portfolio.Battle
             this.gameObject.SetActive(false);
         }
 
-        public bool IsAlly(BattleUnit targetUnit)
         // true면 나의 아군, false면 나의 적군
-        {
-            return targetUnit.IsEnemy == IsEnemy;
-        }
+        public bool IsAlly(BattleUnit targetUnit) => targetUnit.IsEnemy == IsEnemy;
 
         #endregion
         //===========================================================

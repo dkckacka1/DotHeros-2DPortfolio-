@@ -149,5 +149,7 @@ namespace Portfolio.skill
 
             return levelValues.ToArray();
         }
+
+
     } 
 }

@@ -9,16 +9,16 @@
     "skillLevelValue_3": 0,
     "skillIconSpriteName": "Sprite_SkillIcon_ZICH_PassiveSkill_1",
     "skillType": 1,
+    "conditinID_1": -1,
+    "conditinID_2": -1,
+    "conditinID_3": -1,
     "isAllAlly": false,
     "isAllEnemy": false,
     "isOnStartBattle": true,
     "isOnStartTurn": false,
     "isOnAttack": false,
     "isOnTakeDamage": false,
-    "isOnDead": false,
-    "conditinID_1": -1,
-    "conditinID_2": -1,
-    "conditinID_3": -1
+    "isOnDead": false
   },
   {
     "ID": 20001,
@@ -30,16 +30,16 @@
     "skillLevelValue_3": 0,
     "skillIconSpriteName": "Sprite_SkillIcon_LOSA_PassiveSkill_1",
     "skillType": 1,
+    "conditinID_1": -1,
+    "conditinID_2": -1,
+    "conditinID_3": -1,
     "isAllAlly": false,
     "isAllEnemy": false,
     "isOnStartBattle": true,
     "isOnStartTurn": false,
     "isOnAttack": false,
     "isOnTakeDamage": false,
-    "isOnDead": false,
-    "conditinID_1": -1,
-    "conditinID_2": -1,
-    "conditinID_3": -1
+    "isOnDead": false
   },
   {
     "ID": 20002,
@@ -51,16 +51,16 @@
     "skillLevelValue_3": 0,
     "skillIconSpriteName": "Sprite_SkillIcon_LILY_PassiveSkill_1",
     "skillType": 1,
+    "conditinID_1": -1,
+    "conditinID_2": -1,
+    "conditinID_3": -1,
     "isAllAlly": false,
     "isAllEnemy": false,
     "isOnStartBattle": false,
     "isOnStartTurn": false,
     "isOnAttack": true,
     "isOnTakeDamage": false,
-    "isOnDead": false,
-    "conditinID_1": -1,
-    "conditinID_2": -1,
-    "conditinID_3": -1
+    "isOnDead": false
   },
   {
     "ID": 20003,
@@ -72,15 +72,15 @@
     "skillLevelValue_3": 0,
     "skillIconSpriteName": "Sprite_SkillIcon_LILY_PassiveSkill_2",
     "skillType": 1,
+    "conditinID_1": -1,
+    "conditinID_2": -1,
+    "conditinID_3": -1,
     "isAllAlly": false,
     "isAllEnemy": false,
     "isOnStartBattle": false,
     "isOnStartTurn": false,
     "isOnAttack": false,
     "isOnTakeDamage": false,
-    "isOnDead": true,
-    "conditinID_1": -1,
-    "conditinID_2": -1,
-    "conditinID_3": -1
+    "isOnDead": true
   }
 ]

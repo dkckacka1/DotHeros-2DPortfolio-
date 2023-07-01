@@ -14,8 +14,8 @@
     {
       "unitID": 100,
       "unitLevel": 1,
-      "unitGrade": 1,
-      "unitExperience": 10.0,
+      "unitGrade": 5,
+      "unitExperience": 30.0,
       "activeSkillLevel_1": 1,
       "activeSkillLevel_2": 1,
       "passiveSkillLevel_1": 1,
@@ -30,8 +30,8 @@
     {
       "unitID": 101,
       "unitLevel": 1,
-      "unitGrade": 1,
-      "unitExperience": 10.0,
+      "unitGrade": 5,
+      "unitExperience": 30.0,
       "activeSkillLevel_1": 1,
       "activeSkillLevel_2": 1,
       "passiveSkillLevel_1": 1,
@@ -47,7 +47,7 @@
       "unitID": 102,
       "unitLevel": 1,
       "unitGrade": 2,
-      "unitExperience": 10.0,
+      "unitExperience": 30.0,
       "activeSkillLevel_1": 1,
       "activeSkillLevel_2": 1,
       "passiveSkillLevel_1": 1,
@@ -69,5 +69,5 @@
   "clearMapList": [
     999
   ],
-  "LastAccessTime": "2023-06-30T22:05:47.0691122+09:00"
+  "LastAccessTime": "2023-07-01T17:56:32.7218972+09:00"
 }

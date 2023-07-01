@@ -20,6 +20,11 @@ namespace Portfolio.skill
             e.actionUnit.StartCoroutine(PlaySkillEffect(e));
         }
 
+        public override IEnumerable<BattleUnit> SetTarget(BattleUnit actionUnit, List<BattleUnit> targetUnits)
+        {
+            return targetUnits.GetEnemyTarget(actionUnit).GetLowHealth().GetTargetNum(this);
+        }
+
         private IEnumerator PlaySkillEffect(SkillActionEventArgs e)
         {
             float skillDamage = e.actionUnit.AttackPoint * (1 + (e.skillLevel * GetData.skillLevelValue_1 * 0.01f));

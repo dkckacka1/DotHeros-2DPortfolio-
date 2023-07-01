@@ -116,7 +116,7 @@ namespace Portfolio.Battle
             {
                 if (this.battleUnit.CanActiveSkill(activeSkill_2))
                 {
-                    if (activeSkill_2.GetData.isAutoTarget || orderby == null)
+                    if (orderby == null)
                     {
                         BattleManager.ActionSystem.SetActiveSkill(activeSkill_2);
                     }
@@ -134,7 +134,7 @@ namespace Portfolio.Battle
             {
                 if (this.battleUnit.CanActiveSkill(activeSkill_1))
                 {
-                    if (activeSkill_1.GetData.isAutoTarget || orderby == null)
+                    if (orderby == null)
                     {
                         BattleManager.ActionSystem.SetActiveSkill(activeSkill_1);
                     }

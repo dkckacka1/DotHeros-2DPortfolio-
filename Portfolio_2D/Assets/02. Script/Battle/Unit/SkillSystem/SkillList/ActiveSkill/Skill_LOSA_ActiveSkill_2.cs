@@ -18,26 +18,11 @@ namespace Portfolio.skill
             base.Action(sender, e);
 
             e.actionUnit.StartCoroutine(PlaySkillEffect(e));
+        }
 
-            float skillDamage = e.actionUnit.AttackPoint * (0.5f + (e.skillLevel * GetData.skillLevelValue_1 * 0.01f));
-
-            foreach (var targetUnit in e.targetUnits)
-            {
-                if (targetUnit.HasCondition(conditionList[0]))
-                {
-                    e.actionUnit.HitTarget(targetUnit, skillDamage, true);
-                }
-                else
-                {
-                    e.actionUnit.HitTarget(targetUnit, skillDamage);
-                    targetUnit.AddCondition(conditionList[0].conditionID, conditionList[0], 2);
-                }
-
-                //var effect = BattleManager.ObjectPool.SpawnSkillEffect();
-                //effect.PlayEffect("Anim_Skill_Effect_ZICH_BaseAttack");
-                //effect.transform.position = targetUnit.transform.position;
-            }
-            e.actionUnit.isSkillUsing = false;
+        public override IEnumerable<BattleUnit> SetTarget(BattleUnit actionUnit, List<BattleUnit> targetUnits)
+        {
+            return targetUnits.GetEnemyTarget(actionUnit).GetTargetNum(this);
         }
 
         private IEnumerator PlaySkillEffect(SkillActionEventArgs e)
