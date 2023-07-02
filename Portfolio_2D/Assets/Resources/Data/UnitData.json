@@ -70,5 +70,29 @@
     "passiveSkillID_2": 20003,
     "portraitImageName": "Sprite_Unit_Portrait_LILY",
     "animationName": "LILY_AnimCT"
+  },
+  {
+    "ID": 103,
+    "unitName": "아바타",
+    "elementalType": "Fire",
+    "isUserUnit": true,
+    "defaultGrade": 2,
+    "maxHP": 110,
+    "attackPoint": 10,
+    "defencePoint": 10,
+    "speed": 105,
+    "criticalPercent": 0.1,
+    "criticalDamage": 0.2,
+    "effectHit": 0.3,
+    "effectResistance": 0.3,
+    "levelValue": 0.03,
+    "gradeValue": 0.25,
+    "basicAttackSKillID": 10009,
+    "activeSkillID_1": 10010,
+    "activeSkillID_2": 10011,
+    "passiveSkillID_1": 20004,
+    "passiveSkillID_2": 20005,
+    "portraitImageName": "Sprite_Unit_Portrait_AVATA",
+    "animationName": "AVATA_AnimCT"
   }
 ]

@@ -58,6 +58,22 @@
       "amuletData": null,
       "ringData": null,
       "shoeData": null
+    },
+    {
+      "unitID": 103,
+      "unitLevel": 1,
+      "unitGrade": 2,
+      "unitExperience": 30.0,
+      "activeSkillLevel_1": 1,
+      "activeSkillLevel_2": 3,
+      "passiveSkillLevel_1": 1,
+      "passiveSkillLevel_2": 1,
+      "weaponData": null,
+      "helmetData": null,
+      "armorData": null,
+      "amuletData": null,
+      "ringData": null,
+      "shoeData": null
     }
   ],
   "equipmentItemDataList": [],
@@ -69,5 +85,5 @@
   "clearMapList": [
     999
   ],
-  "LastAccessTime": "2023-07-02T22:18:38.7374849+09:00"
+  "LastAccessTime": "2023-07-02T23:11:19.2571761+09:00"
 }

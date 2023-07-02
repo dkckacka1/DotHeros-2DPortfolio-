@@ -367,7 +367,7 @@ namespace Portfolio.Battle
                     {
                         useSkill = unit.activeSkill_1;
                         skillLevel = unit.GetSkillLevel(skillType);
-                        activeSkill_1_CoolTime = (useSkill as ActiveSkill).GetActiveSkillCooltime + 1; // 턴종료시에 바로 쿨타임하나가 줄기에 +1 만큼 더해줌
+                        activeSkill_1_CoolTime = (useSkill as ActiveSkill).GetActiveSkillCooltime(skillLevel) + 1; // 턴종료시에 바로 쿨타임하나가 줄기에 +1 만큼 더해줌
                         useSkill.Action(this, new SkillActionEventArgs(skillLevel, this, BattleManager.ActionSystem.SelectedUnits));
                         if (!IsEnemy)
                         {
@@ -379,7 +379,7 @@ namespace Portfolio.Battle
                     {
                         useSkill = unit.activeSkill_2;
                         skillLevel = unit.GetSkillLevel(skillType);
-                        activeSkill_2_CoolTime = (useSkill as ActiveSkill).GetActiveSkillCooltime + 1; // 턴종료시에 바로 쿨타임하나가 줄기에 +1 만큼 더해줌
+                        activeSkill_2_CoolTime = (useSkill as ActiveSkill).GetActiveSkillCooltime(skillLevel) + 1; // 턴종료시에 바로 쿨타임하나가 줄기에 +1 만큼 더해줌
                         useSkill.Action(this, new SkillActionEventArgs(skillLevel, this, BattleManager.ActionSystem.SelectedUnits));
                         if (!IsEnemy)
                         {

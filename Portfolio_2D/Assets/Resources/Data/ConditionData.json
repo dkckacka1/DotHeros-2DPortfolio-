@@ -42,5 +42,16 @@
     "isBuff": true,
     "isOverlaping": false,
     "isResetCount": true
+  },
+  {
+    "ID": 1004,
+    "conditionName": "불안정",
+    "conditionDesc": "효과 저항을 30% 감소시킵니다.",
+    "conditionClassName": "Unstable",
+    "conditionIconSpriteName": "Sprite_Condition_Unstable",
+    "conditionType": 0,
+    "isBuff": true,
+    "isOverlaping": false,
+    "isResetCount": true
   }
 ]

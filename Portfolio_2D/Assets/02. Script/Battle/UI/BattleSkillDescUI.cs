@@ -25,7 +25,7 @@ namespace Portfolio.Battle
         {
             skillNameText.text = $"{skill.GetData.skillName} (LV{skillLevel})";
             skillManaText.text = $"소비 마나 : {skill.GetData.consumeManaValue}";
-            skillCoolTimeText.text = $"스킬 쿨타임 : {skill.GetData.skillCoolTime}";
+            skillCoolTimeText.text = $"스킬 쿨타임 : {skill.GetActiveSkillCooltime(skillLevel)}";
             skillDescText.text = skill.GetDesc(skillLevel);
         }
     }

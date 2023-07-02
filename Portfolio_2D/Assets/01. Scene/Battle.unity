@@ -1509,14 +1509,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eef3d6b21348cdf4e9c61a2b2618f071, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isAutoTarget: 1
-  isAllyTarget: 1
-  isEnemyTarget: 1
-  isFrontTarget: 1
-  isRearTarget: 1
-  autoPeer: -1
-  autoProcession: -1
-  targetNum: 10
   unitGrids:
   - {fileID: 85177422}
   - {fileID: 647259306}
@@ -5792,7 +5784,7 @@ MonoBehaviour:
   stageOutputTime: 2
   isTest: 1
   CallMapID: 999
-  userUnitTakeCount: 3
+  userUnitTakeCount: 4
 --- !u!4 &1077764693
 Transform:
   m_ObjectHideFlags: 0
