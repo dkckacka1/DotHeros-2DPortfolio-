@@ -11,6 +11,8 @@ namespace Portfolio.skill
     {
         public new ActiveSkillData GetData { get => (this.skillData as ActiveSkillData); }
 
+        public virtual int GetActiveSkillCooltime { get => GetData.skillCoolTime; }
+
         public ActiveSkill(ActiveSkillData skillData) : base(skillData)
         {
         }

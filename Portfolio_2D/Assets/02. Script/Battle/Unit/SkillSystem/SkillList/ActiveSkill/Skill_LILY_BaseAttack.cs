@@ -20,6 +20,9 @@ namespace Portfolio.skill
             foreach (var targetUnit in e.targetUnits)
             {
                 e.actionUnit.HitTarget(targetUnit, skillDamage);
+                var effect = BattleManager.ObjectPool.SpawnSkillEffect();
+                effect.PlayEffect("Anim_Skill_Effect_LILY_BaseAttack");
+                effect.transform.position = targetUnit.transform.position;
             }
             e.actionUnit.isSkillUsing = false;
         }
