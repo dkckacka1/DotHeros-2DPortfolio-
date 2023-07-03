@@ -93,7 +93,7 @@ namespace Portfolio.Battle
         public void SelectSkillTarget(ActiveSkill activeSkill)
         {
             var actionUnit = BattleManager.TurnBaseSystem.CurrentTurnUnit.BattleUnit;
-            var targetUnits = unitGrids.Where(grid => grid.CurrentUnit != null && !grid.CurrentUnit.IsDead).Select(grid => grid.CurrentUnit).ToList();
+            var targetUnits = unitGrids.Where(grid => grid.CurrentUnit != null && !grid.CurrentUnit.IsDead).ToList();
 
             //Debug.Log(actionUnit == null);
             //Debug.Log(targetUnits.Count);

@@ -10,9 +10,9 @@ namespace Portfolio.skill
         public Skill_LILY_BaseAttack(ActiveSkillData skillData) : base(skillData)
         {
         }
-        public override IEnumerable<BattleUnit> SetTarget(BattleUnit actionUnit, List<BattleUnit> targetUnits)
+        public override IEnumerable<BattleUnit> SetTarget(BattleUnit actionUnit, List<GridPosition> targetUnits)
         {
-            return targetUnits.GetEnemyTarget(actionUnit).GetLowHealth().GetTargetNum(this);
+            return targetUnits.GetEnemyTarget(actionUnit).OrderLowHealth().GetTargetNum(this).SelectBattleUnit();
         }
 
         protected override IEnumerator PlaySkill(SkillActionEventArgs e)

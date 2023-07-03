@@ -17,9 +17,9 @@ namespace Portfolio.skill
             return base.GetActiveSkillCooltime(skillLevel) - skillLevel;
         }
 
-        public override IEnumerable<BattleUnit> SetTarget(BattleUnit actionUnit, List<BattleUnit> targetUnits)
+        public override IEnumerable<BattleUnit> SetTarget(BattleUnit actionUnit, List<GridPosition> targetUnits)
         {
-            return targetUnits.GetEnemyTarget(actionUnit).GetLowHealth().GetTargetNum(this);
+            return targetUnits.GetEnemyTarget(actionUnit).OrderLowHealth().GetTargetNum(this).SelectBattleUnit();
         }
 
         protected override IEnumerator PlaySkill(SkillActionEventArgs e)

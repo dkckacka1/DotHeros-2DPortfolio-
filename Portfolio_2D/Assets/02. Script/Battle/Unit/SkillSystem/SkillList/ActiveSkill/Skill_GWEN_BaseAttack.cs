@@ -11,14 +11,14 @@ namespace Portfolio.skill
         {
         }
 
-        public override IEnumerable<BattleUnit> SetTarget(BattleUnit actionUnit, List<BattleUnit> targetUnits)
+        public override IEnumerable<BattleUnit> SetTarget(BattleUnit actionUnit, List<GridPosition> targetUnits)
         {
-            throw new System.NotImplementedException();
+            return targetUnits.GetEnemyTarget(actionUnit).OrderLowHealth().GetTargetNum(this).SelectBattleUnit();
         }
 
         protected override IEnumerator PlaySkill(SkillActionEventArgs e)
         {
-            throw new System.NotImplementedException();
+            yield return new WaitForSeconds(1f);
         }
     }
 

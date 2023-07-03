@@ -13,9 +13,9 @@ namespace Portfolio.skill
 
         }
 
-        public override IEnumerable<BattleUnit> SetTarget(BattleUnit actionUnit, List<BattleUnit> targetUnits)
+        public override IEnumerable<BattleUnit> SetTarget(BattleUnit actionUnit, List<GridPosition> targetUnits)
         {
-            return targetUnits.GetAllyTarget(actionUnit).GetTargetNum(this);
+            return targetUnits.GetAllyTarget(actionUnit).GetTargetNum(this).SelectBattleUnit();
         }
 
         protected override IEnumerator PlaySkill(SkillActionEventArgs e)

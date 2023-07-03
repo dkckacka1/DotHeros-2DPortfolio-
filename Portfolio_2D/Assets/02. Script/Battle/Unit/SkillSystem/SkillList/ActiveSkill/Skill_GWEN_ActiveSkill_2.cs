@@ -11,7 +11,7 @@ namespace Portfolio.skill
         {
         }
 
-        public override IEnumerable<BattleUnit> SetTarget(BattleUnit actionUnit, List<BattleUnit> targetUnits)
+        public override IEnumerable<BattleUnit> SetTarget(BattleUnit actionUnit, List<GridPosition> targetUnits)
         {
             throw new System.NotImplementedException();
         }

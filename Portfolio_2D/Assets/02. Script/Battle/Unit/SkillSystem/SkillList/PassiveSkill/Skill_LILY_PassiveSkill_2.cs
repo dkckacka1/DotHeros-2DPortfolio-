@@ -2,6 +2,7 @@ using Portfolio.Battle;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 namespace Portfolio.skill
 {
@@ -14,7 +15,7 @@ namespace Portfolio.skill
         public override void Action(object sender, SkillActionEventArgs e)
         {
             base.Action(sender, e);
-            var targetUnits = BattleManager.ActionSystem.GetLiveUnit.GetAllyTarget(e.actionUnit).GetLowHealth().GetTargetNum(5);
+            var targetUnits = BattleManager.ActionSystem.GetLiveUnit.Where(unit => e.actionUnit.IsAlly(unit));
             foreach (var targetUnit in targetUnits)
             {
                 if (targetUnit != null)

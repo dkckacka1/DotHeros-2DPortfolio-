@@ -2,7 +2,7 @@
   "userID": "tester",
   "userPassword": "20504CDFDDAAD0B590CA53C4861EDD4F5F5CF9C348C38295BD2DBF0E91BCA4C3",
   "userNickName": "asdqwe123",
-  "userPortraitName": "Sprite_Unit_Portrait_LILY",
+  "userPortraitName": "Sprite_Unit_Portrait_GWEN",
   "isNewUser": false,
   "userLevel": 1,
   "userCurrentExperience": 0,
@@ -101,5 +101,5 @@
   "clearMapList": [
     999
   ],
-  "LastAccessTime": "2023-07-03T13:11:17.2310257+09:00"
+  "LastAccessTime": "2023-07-03T13:34:27.1628291+09:00"
 }
