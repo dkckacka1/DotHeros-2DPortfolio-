@@ -53,5 +53,27 @@
     "isBuff": true,
     "isOverlaping": false,
     "isResetCount": true
+  },
+  {
+    "ID": 1005,
+    "conditionName": "은신",
+    "conditionDesc": "적의 단일 공격의 대상이 되지 않습니다.",
+    "conditionClassName": "Hide",
+    "conditionIconSpriteName": "Sprite_Condition_Hide",
+    "conditionType": 0,
+    "isBuff": true,
+    "isOverlaping": false,
+    "isResetCount": true
+  },
+  {
+    "ID": 1006,
+    "conditionName": "칼날 방패",
+    "conditionDesc": "피해을 입을 시 피해를 입힌 대상에게 피해량의 50%만큼 피해를 입힙니다.",
+    "conditionClassName": "BladeShield",
+    "conditionIconSpriteName": "Sprite_Condition_BladeShield",
+    "conditionType": 0,
+    "isBuff": true,
+    "isOverlaping": false,
+    "isResetCount": true
   }
 ]

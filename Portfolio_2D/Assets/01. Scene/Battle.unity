@@ -5784,7 +5784,7 @@ MonoBehaviour:
   stageOutputTime: 2
   isTest: 1
   CallMapID: 999
-  userUnitTakeCount: 4
+  userUnitTakeCount: 5
 --- !u!4 &1077764693
 Transform:
   m_ObjectHideFlags: 0

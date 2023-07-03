@@ -89,7 +89,7 @@ namespace Portfolio.Battle
                     }
                 }
                 
-                if (TryUseActiveSkill(ActiveSkillType.Singleattack, GetLowHealthUnit))
+                if (TryUseActiveSkill(ActiveSkillType.SingleAttack, GetLowHealthUnit))
                     // 단일 공격을 사용할 수 있다면 사용
                 {
                     //BattleManager.TurnBaseSystem.TurnEnd();

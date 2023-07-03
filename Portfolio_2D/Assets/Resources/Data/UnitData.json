@@ -94,5 +94,29 @@
     "passiveSkillID_2": 20005,
     "portraitImageName": "Sprite_Unit_Portrait_AVATA",
     "animationName": "AVATA_AnimCT"
+  },
+  {
+    "ID": 104,
+    "unitName": "그웬",
+    "elementalType": "Fire",
+    "isUserUnit": true,
+    "defaultGrade": 3,
+    "maxHP": 100,
+    "attackPoint": 20,
+    "defencePoint": 10,
+    "speed": 120,
+    "criticalPercent": 0.25,
+    "criticalDamage": 0.5,
+    "effectHit": 0.25,
+    "effectResistance": 0.3,
+    "levelValue": 0.04,
+    "gradeValue": 0.3,
+    "basicAttackSKillID": 10012,
+    "activeSkillID_1": 10013,
+    "activeSkillID_2": 10014,
+    "passiveSkillID_1": 20006,
+    "passiveSkillID_2": 20007,
+    "portraitImageName": "Sprite_Unit_Portrait_GWEN",
+    "animationName": "GWEN_AnimCT"
   }
 ]
