@@ -16,9 +16,18 @@ namespace Portfolio.skill
             return targetUnits.GetEnemyTarget(actionUnit).GetLowHealth().GetTargetNum(this);
         }
 
-        public override void Action(object sender, SkillActionEventArgs e)
+        protected override IEnumerator PlaySkill(SkillActionEventArgs e)
         {
-            base.Action(sender, e);
+            float skillDamage = e.actionUnit.AttackPoint * (0.5f + (e.skillLevel * GetData.skillLevelValue_1 * 0.01f));
+
+            foreach (var targetUnit in e.targetUnits)
+            {
+                e.actionUnit.HitTarget(targetUnit, skillDamage);
+                targetUnit.AddCondition(GetData.conditinID_1, conditionList[0], 3);
+            }
+
+            yield return new WaitForSeconds(0.5f);
+
             e.actionUnit.isSkillUsing = false;
         }
     }

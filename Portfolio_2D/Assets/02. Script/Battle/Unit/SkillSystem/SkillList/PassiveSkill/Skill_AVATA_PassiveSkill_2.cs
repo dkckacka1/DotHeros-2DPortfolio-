@@ -14,6 +14,10 @@ namespace Portfolio.skill
         public override void Action(object sender, SkillActionEventArgs e)
         {
             base.Action(sender, e);
+            if(GameLib.ProbabilityCalculation((e.skillLevel * GetData.skillLevelValue_1)))
+            {
+                BattleManager.ManaSystem.AddMana(1);
+            }
         }
     }
 

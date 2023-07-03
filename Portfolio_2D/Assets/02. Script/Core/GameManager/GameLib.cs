@@ -107,9 +107,11 @@ namespace Portfolio
         /// <param name="value">확률</param>
         /// <param name="seed">들어온 값</param>
         /// <returns></returns>
-        public static bool ProbabilityCalculation(float value)
+        public static bool ProbabilityCalculation(float value, float maxValue = 100f)
         {
-            return value < UnityEngine.Random.Range(0, 100);
+            float probability = UnityEngine.Random.Range(0, maxValue);
+            Debug.Log($"{value} > {probability} = {value > probability}");
+            return value > probability;
         }
 
 

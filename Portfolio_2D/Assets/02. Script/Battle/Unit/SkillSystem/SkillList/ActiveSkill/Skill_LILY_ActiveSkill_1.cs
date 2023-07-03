@@ -11,21 +11,22 @@ namespace Portfolio.skill
         {
         }
 
-        public override void Action(object sender, SkillActionEventArgs e)
+        public override IEnumerable<BattleUnit> SetTarget(BattleUnit actionUnit, List<BattleUnit> targetUnits)
         {
-            base.Action(sender, e);
+            return targetUnits.GetAllyTarget(actionUnit).GetLowHealth().GetTargetNum(this);
+        }
 
+        protected override IEnumerator PlaySkill(SkillActionEventArgs e)
+        {
             foreach (var targetUnit in e.targetUnits)
             {
                 float healValue = targetUnit.MaxHP * (0.3f + (e.skillLevel * GetData.skillLevelValue_1 * 0.01f));
                 e.actionUnit.HealTarget(targetUnit, healValue);
             }
-            e.actionUnit.isSkillUsing = false;
-        }
 
-        public override IEnumerable<BattleUnit> SetTarget(BattleUnit actionUnit, List<BattleUnit> targetUnits)
-        {
-            return targetUnits.GetAllyTarget(actionUnit).GetLowHealth().GetTargetNum(this);
+            yield return new WaitForSeconds(0.5f);
+
+            e.actionUnit.isSkillUsing = false;
         }
     }
 

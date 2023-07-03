@@ -10,11 +10,13 @@ namespace Portfolio.skill
         public Skill_LILY_BaseAttack(ActiveSkillData skillData) : base(skillData)
         {
         }
-
-        public override void Action(object sender, SkillActionEventArgs e)
+        public override IEnumerable<BattleUnit> SetTarget(BattleUnit actionUnit, List<BattleUnit> targetUnits)
         {
-            base.Action(sender, e);
+            return targetUnits.GetEnemyTarget(actionUnit).GetLowHealth().GetTargetNum(this);
+        }
 
+        protected override IEnumerator PlaySkill(SkillActionEventArgs e)
+        {
             float skillDamage = e.actionUnit.AttackPoint * 0.75f;
 
             foreach (var targetUnit in e.targetUnits)
@@ -24,12 +26,8 @@ namespace Portfolio.skill
                 effect.PlayEffect("Anim_Skill_Effect_LILY_BaseAttack");
                 effect.transform.position = targetUnit.transform.position;
             }
+            yield return new WaitForSeconds(1f);
             e.actionUnit.isSkillUsing = false;
-        }
-
-        public override IEnumerable<BattleUnit> SetTarget(BattleUnit actionUnit, List<BattleUnit> targetUnits)
-        {
-            return targetUnits.GetEnemyTarget(actionUnit).GetLowHealth().GetTargetNum(this);
         }
     }
 }

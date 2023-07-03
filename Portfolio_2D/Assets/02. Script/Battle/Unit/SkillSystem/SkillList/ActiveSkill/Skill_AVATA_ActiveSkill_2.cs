@@ -1,6 +1,7 @@
 using Portfolio.Battle;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace Portfolio.skill
@@ -21,9 +22,18 @@ namespace Portfolio.skill
             return targetUnits.GetEnemyTarget(actionUnit).GetLowHealth().GetTargetNum(this);
         }
 
-        public override void Action(object sender, SkillActionEventArgs e)
+        protected override IEnumerator PlaySkill(SkillActionEventArgs e)
         {
-            base.Action(sender, e);
+            foreach(var targetUnit in e.targetUnits)
+            {
+                if(targetUnit.IsEffectHit(e.actionUnit.EffectHit))
+                {
+                    BattleManager.ManaSystem.AddMana(1);
+                }
+            }
+
+            yield return new WaitForSeconds(0.5f);
+
             e.actionUnit.isSkillUsing = false;
         }
     }

@@ -13,10 +13,12 @@ namespace Portfolio.condition
 
         public override void ApplyCondition(BattleUnit unit)
         {
+            unit.EffectResistance -= 0.3f;
         }
 
         public override void UnApplyCondition(BattleUnit unit)
         {
+            unit.EffectResistance += 0.3f;
         }
     }
 

@@ -13,21 +13,18 @@ namespace Portfolio.skill
         }
         public override IEnumerable<BattleUnit> SetTarget(BattleUnit actionUnit, List<BattleUnit> targetUnits) => targetUnits.GetEnemyTarget(actionUnit).GetLowHealth().GetTargetNum(GetData.targetNum);
 
-
-        public override void Action(object sender, SkillActionEventArgs e)
+        protected override IEnumerator PlaySkill(SkillActionEventArgs e)
         {
-            base.Action(sender, e);
-
+            float skillDamage = e.actionUnit.AttackPoint;
             foreach (var targetUnit in e.targetUnits)
             {
-                e.actionUnit.HitTarget(targetUnit, e.actionUnit.AttackPoint);
+                e.actionUnit.HitTarget(targetUnit, skillDamage);
                 var effect = BattleManager.ObjectPool.SpawnSkillEffect();
                 effect.PlayEffect("Anim_Skill_Effect_ZICH_BaseAttack");
                 effect.transform.position = targetUnit.transform.position;
-
             }
+            yield return new WaitForSeconds(0.5f);
             e.actionUnit.isSkillUsing = false;
         }
-
     }
 }

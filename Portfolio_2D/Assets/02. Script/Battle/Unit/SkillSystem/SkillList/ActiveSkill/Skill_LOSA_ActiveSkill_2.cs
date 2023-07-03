@@ -13,19 +13,12 @@ namespace Portfolio.skill
         {
         }
 
-        public override void Action(object sender, SkillActionEventArgs e)
-        {
-            base.Action(sender, e);
-
-            e.actionUnit.StartCoroutine(PlaySkillEffect(e));
-        }
-
         public override IEnumerable<BattleUnit> SetTarget(BattleUnit actionUnit, List<BattleUnit> targetUnits)
         {
             return targetUnits.GetEnemyTarget(actionUnit).GetTargetNum(this);
         }
 
-        private IEnumerator PlaySkillEffect(SkillActionEventArgs e)
+        protected override IEnumerator PlaySkill(SkillActionEventArgs e)
         {
             float skillDamage = e.actionUnit.AttackPoint * (1 + (e.skillLevel * GetData.skillLevelValue_1 * 0.01f));
             yield return new WaitForSeconds(0.45f);

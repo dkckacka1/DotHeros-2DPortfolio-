@@ -20,6 +20,7 @@ namespace Portfolio.skill
         {
             base.Action(sender, e);
             e.actionUnit.isSkillUsing = true;
+            e.actionUnit.StartCoroutine(PlaySkill(e));
         }
         public override string GetDesc(int skillLevel)
         {
@@ -28,5 +29,6 @@ namespace Portfolio.skill
         }
 
         public abstract IEnumerable<BattleUnit> SetTarget(BattleUnit actionUnit, List<BattleUnit> targetUnits);
+        protected abstract IEnumerator PlaySkill(SkillActionEventArgs e);
     }
 }

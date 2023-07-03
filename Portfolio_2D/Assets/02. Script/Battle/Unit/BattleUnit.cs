@@ -120,7 +120,7 @@ namespace Portfolio.Battle
                 criticalDamage = value;
             }
         }
-        public float EffectTarget { get => effectHit; set => effectHit = value; }
+        public float EffectHit { get => effectHit; set => effectHit = value; }
         public float EffectResistance { get => effectResistance; set => effectResistance = value; }
         public float CurrentHP
         {
@@ -336,6 +336,13 @@ namespace Portfolio.Battle
 
         // true면 나의 아군, false면 나의 적군
         public bool IsAlly(BattleUnit targetUnit) => targetUnit.IsEnemy == IsEnemy;
+
+        public bool IsEffectHit(float actionUnitEffectHit)
+        {
+            Debug.Log($"액션유닛의 효과 적중률 : {actionUnitEffectHit}\n" +
+                $"나의 효과 저항률 : {EffectResistance}");
+            return GameLib.ProbabilityCalculation(actionUnitEffectHit - EffectResistance, 1f);
+        }
 
         #endregion
         //===========================================================
