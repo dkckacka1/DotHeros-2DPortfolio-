@@ -11,14 +11,12 @@ namespace Portfolio.skill
         {
         }
 
-        public override void Action(object sender, SkillActionEventArgs e)
+        public override void SetPassiveSkill(SkillActionEventArgs e)
         {
-            base.Action(sender, e);
-
-            foreach(var targetUnit in e.targetUnits)
+            e.actionUnit.OnStartBattleEvent += (object sender, System.EventArgs s) =>
             {
-                targetUnit.EffectHit += (e.skillLevel * GetData.skillLevelValue_1 * 0.01f);
-            }
+                e.actionUnit.EffectHit += (e.skillLevel * GetData.skillLevelValue_1 * 0.01f);
+            };
         }
     }
 

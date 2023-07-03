@@ -21,18 +21,23 @@ namespace Portfolio.Battle
         public BattleUnit actionUnit;
         public IEnumerable<BattleUnit> targetUnits;
 
-        public SkillActionEventArgs(int skillLevel, BattleUnit actionUnit, BattleUnit targetUnits)
-        {
-            this.skillLevel = skillLevel;
-            this.actionUnit = actionUnit;
-            this.targetUnits = new List<BattleUnit>() { targetUnits };
-        }
-
         public SkillActionEventArgs(int skillLevel, BattleUnit actionUnit, IEnumerable<BattleUnit> targetUnits)
         {
             this.skillLevel = skillLevel;
             this.actionUnit = actionUnit;
             this.targetUnits = targetUnits;
+        }
+    }
+
+    public class HitEventArgs : EventArgs
+    {
+        public BattleUnit actionUnit;
+        public BattleUnit targetUnit;
+
+        public HitEventArgs(BattleUnit actionUnit, BattleUnit targetUnit)
+        {
+            this.actionUnit = actionUnit;
+            this.targetUnit = targetUnit;
         }
     }
 
@@ -91,9 +96,10 @@ namespace Portfolio.Battle
         public event EventHandler OnStartCurrentTurnEvent; // 자신의 턴이 왔다면 호출될 이벤트
         public event EventHandler OnEndCurrentTurnEvent; // 자신의 턴이 종료될때 호출될 이벤트
         public event EventHandler OnChangedCurrentHPEvent; // 자신의 체력이 변화될때 호출될 이벤트
-        public event EventHandler OnAttackEvent; // 자신이 공격(기본공격, 스킬공격)시 호출될 이벤트
+        public event EventHandler OnAttackEvent; // 자신이 기본공격시 호출될 이벤트
         public event EventHandler OnTakeAttackEvent; // 자신이 공격받았을때 호출될 이벤트
         public event EventHandler OnDeadEvent; // 자신이 죽었을때 호출될 이벤트 
+        public event EventHandler<HitEventArgs> OnHitTargetEvent; // 대상을 공격 시(HitTarget) 호출될 이벤트
         #endregion
         //===========================================================
         // Property
@@ -274,6 +280,7 @@ namespace Portfolio.Battle
         public void HitTarget(BattleUnit targetUnit, float damagePoint, bool isCritical = false)
         // isCritical = 확정 크리
         {
+            OnHitTargetEvent?.Invoke(this, new HitEventArgs(this, targetUnit));
             if (isCritical || GameLib.ProbabilityCalculation(CriticalPercent * 100))
             // 치명타 성공
             {
@@ -465,45 +472,7 @@ namespace Portfolio.Battle
         }
         private void SetPassiveSkillEvent(PassiveSkill skill, int skillLevel, IEnumerable<BattleUnit> targetUnits)
         {
-            if (skill.GetData.isOnStartBattle)
-            {
-                foreach (var targetUnit in targetUnits)
-                {
-                    targetUnit.OnStartBattleEvent += ((sender, e) => skill.Action(this, new SkillActionEventArgs(skillLevel, this, targetUnits)));
-                }
-            }
-
-            if (skill.GetData.isOnStartTurn)
-            {
-                foreach (var targetUnit in targetUnits)
-                {
-                    targetUnit.OnStartCurrentTurnEvent += ((sender, e) => skill.Action(this, new SkillActionEventArgs(skillLevel, this, targetUnits)));
-                }
-            }
-
-            if (skill.GetData.isOnAttack)
-            {
-                foreach (var targetUnit in targetUnits)
-                {
-                    targetUnit.OnAttackEvent += ((sender, e) => skill.Action(this, new SkillActionEventArgs(skillLevel, this, targetUnits)));
-                }
-            }
-
-            if (skill.GetData.isOnTakeDamage)
-            {
-                foreach (var targetUnit in targetUnits)
-                {
-                    targetUnit.OnTakeAttackEvent += ((sender, e) => skill.Action(this, new SkillActionEventArgs(skillLevel, this, targetUnits)));
-                }
-            }
-
-            if (skill.GetData.isOnDead)
-            {
-                foreach (var targetUnit in targetUnits)
-                {
-                    targetUnit.OnDeadEvent += ((sender, e) => skill.Action(this, new SkillActionEventArgs(skillLevel, this, targetUnits)));
-                }
-            }
+            skill.SetPassiveSkill(new SkillActionEventArgs(skillLevel, this, targetUnits));
         }
 
         #endregion

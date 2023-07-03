@@ -13,12 +13,7 @@
     "conditinID_2": -1,
     "conditinID_3": -1,
     "isAllAlly": false,
-    "isAllEnemy": false,
-    "isOnStartBattle": true,
-    "isOnStartTurn": false,
-    "isOnAttack": false,
-    "isOnTakeDamage": false,
-    "isOnDead": false
+    "isAllEnemy": false
   },
   {
     "ID": 20001,
@@ -34,12 +29,7 @@
     "conditinID_2": -1,
     "conditinID_3": -1,
     "isAllAlly": false,
-    "isAllEnemy": false,
-    "isOnStartBattle": true,
-    "isOnStartTurn": false,
-    "isOnAttack": false,
-    "isOnTakeDamage": false,
-    "isOnDead": false
+    "isAllEnemy": false
   },
   {
     "ID": 20002,
@@ -55,12 +45,7 @@
     "conditinID_2": -1,
     "conditinID_3": -1,
     "isAllAlly": false,
-    "isAllEnemy": false,
-    "isOnStartBattle": false,
-    "isOnStartTurn": false,
-    "isOnAttack": true,
-    "isOnTakeDamage": false,
-    "isOnDead": false
+    "isAllEnemy": false
   },
   {
     "ID": 20003,
@@ -76,12 +61,7 @@
     "conditinID_2": -1,
     "conditinID_3": -1,
     "isAllAlly": false,
-    "isAllEnemy": false,
-    "isOnStartBattle": false,
-    "isOnStartTurn": false,
-    "isOnAttack": false,
-    "isOnTakeDamage": false,
-    "isOnDead": true
+    "isAllEnemy": false
   },
   {
     "ID": 20004,
@@ -97,12 +77,7 @@
     "conditinID_2": -1,
     "conditinID_3": -1,
     "isAllAlly": false,
-    "isAllEnemy": false,
-    "isOnStartBattle": false,
-    "isOnStartTurn": true,
-    "isOnAttack": false,
-    "isOnTakeDamage": false,
-    "isOnDead": false
+    "isAllEnemy": false
   },
   {
     "ID": 20005,
@@ -118,12 +93,7 @@
     "conditinID_2": -1,
     "conditinID_3": -1,
     "isAllAlly": false,
-    "isAllEnemy": false,
-    "isOnStartBattle": false,
-    "isOnStartTurn": true,
-    "isOnAttack": false,
-    "isOnTakeDamage": false,
-    "isOnDead": false
+    "isAllEnemy": false
   },
   {
     "ID": 20006,
@@ -139,12 +109,7 @@
     "conditinID_2": -1,
     "conditinID_3": -1,
     "isAllAlly": false,
-    "isAllEnemy": false,
-    "isOnStartBattle": false,
-    "isOnStartTurn": true,
-    "isOnAttack": false,
-    "isOnTakeDamage": false,
-    "isOnDead": false
+    "isAllEnemy": false
   },
   {
     "ID": 20007,
@@ -160,11 +125,6 @@
     "conditinID_2": -1,
     "conditinID_3": -1,
     "isAllAlly": false,
-    "isAllEnemy": false,
-    "isOnStartBattle": false,
-    "isOnStartTurn": true,
-    "isOnAttack": false,
-    "isOnTakeDamage": true,
-    "isOnDead": false
+    "isAllEnemy": false
   }
 ]

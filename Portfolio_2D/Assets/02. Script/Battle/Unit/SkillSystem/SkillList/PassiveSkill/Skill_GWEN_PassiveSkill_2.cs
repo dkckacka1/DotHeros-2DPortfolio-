@@ -15,6 +15,11 @@ namespace Portfolio.skill
         {
             base.Action(sender, e);
         }
+
+        public override void SetPassiveSkill(SkillActionEventArgs e)
+        {
+            // TODO
+        }
     }
 
 }

@@ -1,3 +1,4 @@
+using Portfolio.Battle;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -18,6 +19,8 @@ namespace Portfolio.skill
             return base.GetDesc(skillLevel);
             //Debug.Log("나는 패시브 스킬입니다.");
         }
+
+        public abstract void SetPassiveSkill(SkillActionEventArgs e);
     }
 
 }

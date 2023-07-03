@@ -11,15 +11,12 @@ namespace Portfolio.skill
         {
         }
 
-        public override void Action(object sender, SkillActionEventArgs e)
+        public override void SetPassiveSkill(SkillActionEventArgs e)
         {
-            base.Action(sender, e);
-            if (!TryGetSkillActionArgs(e, out SkillActionEventArgs args))
+            e.actionUnit.OnStartBattleEvent += (object sender, System.EventArgs s) =>
             {
-                return;
-            }
-
-            e.actionUnit.CriticalDamage *= 1 + (0.25f + (e.skillLevel * GetData.skillLevelValue_1 * 0.01f));
+                e.actionUnit.CriticalDamage *= 1 + (0.25f + (e.skillLevel * GetData.skillLevelValue_1 * 0.01f));
+            };
         }
     }
 
