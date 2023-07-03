@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9154422412690723789}
   - component: {fileID: 3873239597844396245}
+  - component: {fileID: 5640658341192220557}
   m_Layer: 5
   m_Name: BattleTextUI
   m_TagString: Untagged
@@ -54,6 +55,22 @@ MonoBehaviour:
   relaseTime: 1
   damagedColor: {r: 1, g: 1, b: 1, a: 0}
   healedColor: {r: 0.20488167, g: 1, b: 0, a: 0}
+--- !u!111 &5640658341192220557
+Animation:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9154422412690723790}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 7400000, guid: f9dd18b563798fd40ac79fbdd165b1b3, type: 2}
+  m_Animations:
+  - {fileID: 7400000, guid: f9dd18b563798fd40ac79fbdd165b1b3, type: 2}
+  m_WrapMode: 0
+  m_PlayAutomatically: 1
+  m_AnimatePhysics: 0
+  m_CullingType: 0
 --- !u!1001 &7601291785821273678
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -185,30 +202,9 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6363679268759669959, guid: 458597434171c35479ece0fb63a2c833, type: 3}
   m_PrefabInstance: {fileID: 7601291785821273678}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3543596299197133451}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &3543596299197133451 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6363679268759669957, guid: 458597434171c35479ece0fb63a2c833, type: 3}
-  m_PrefabInstance: {fileID: 7601291785821273678}
-  m_PrefabAsset: {fileID: 0}
---- !u!111 &256283493400592950
-Animation:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3543596299197133451}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Animation: {fileID: 7400000, guid: f9dd18b563798fd40ac79fbdd165b1b3, type: 2}
-  m_Animations:
-  - {fileID: 7400000, guid: f9dd18b563798fd40ac79fbdd165b1b3, type: 2}
-  m_WrapMode: 0
-  m_PlayAutomatically: 1
-  m_AnimatePhysics: 0
-  m_CullingType: 0

@@ -63,5 +63,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7998194954082249218, guid: 8898834aca0794a409e1e82f006c6540, type: 3}
+      propertyPath: battleUICreatePosOffset.y
+      value: 145
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8898834aca0794a409e1e82f006c6540, type: 3}

@@ -314,10 +314,10 @@ namespace Portfolio.Battle
             CurrentHP -= damagePoint;
             if (!IsDead && canDamagedEvent)
             {
-                // TODO
-                OnTakeDamagedEvent.Invoke(this, new TakeDamageEventArgs(hitUnit, this, damagePoint));
+                OnTakeDamagedEvent?.Invoke(this, new TakeDamageEventArgs(hitUnit, this, damagePoint));
             }
-            BattleManager.BattleUIManager.GetDamageText(this, (int)damagePoint);
+            unitUI.AddDamagedText((int)damagePoint);
+            //BattleManager.BattleUIManager.GetDamageText(this, (int)damagePoint);
             if (takeDamageRoutine != null)
             {
                 StopCoroutine(takeDamageRoutine);
@@ -681,7 +681,7 @@ namespace Portfolio.Battle
             animator.SetTrigger("Dead");
             var clip = animator.GetCurrentAnimatorClipInfo(0)[0].clip;
             float length = clip.length;
-            Debug.Log(length);
+            //Debug.Log(length);
             yield return new WaitForSeconds(length);
         }
 

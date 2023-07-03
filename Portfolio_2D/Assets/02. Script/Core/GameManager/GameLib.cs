@@ -110,7 +110,7 @@ namespace Portfolio
         public static bool ProbabilityCalculation(float value, float maxValue = 100f)
         {
             float probability = UnityEngine.Random.Range(0, maxValue);
-            Debug.Log($"{value} > {probability} = {value > probability}");
+            //Debug.Log($"{value} > {probability} = {value > probability}");
             return value > probability;
         }
 

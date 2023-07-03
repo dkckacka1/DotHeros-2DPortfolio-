@@ -1405,6 +1405,8 @@ MonoBehaviour:
   - {fileID: 4772437931354745632}
   - {fileID: 443856103042688380}
   - {fileID: 7609159602523623935}
+  battleTextCreatePosOffset: {x: 0, y: 145}
+  battleTextCreateTime: 0.1
 --- !u!114 &5508705306554680237
 MonoBehaviour:
   m_ObjectHideFlags: 0

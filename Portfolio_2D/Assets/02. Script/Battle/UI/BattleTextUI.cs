@@ -13,12 +13,6 @@ namespace Portfolio.Battle
         [SerializeField] Color damagedColor;
         [SerializeField] Color healedColor;
 
-
-        private void OnEnable()
-        {
-            StartCoroutine(releaseCoroutine());
-        }
-
         public void SetDamage(int damage)
         {
             battleText.color = damagedColor;
@@ -31,9 +25,9 @@ namespace Portfolio.Battle
             battleText.text = heal.ToString();
         }
 
-        private IEnumerator releaseCoroutine()
+        public void Release()
         {
-            yield return new WaitForSeconds(relaseTime);
+            Debug.Log("this release");
             BattleManager.ObjectPool.ReleaseBattleText(this);
         }
     }
