@@ -99,7 +99,7 @@
     "ID": 20006,
     "skillClassName": "Skill_GWEN_PassiveSkill_1",
     "skillName": "독 바르기",
-    "skillDesc": "[피해를 입힐 시] 적에게 [효과 판단] 하여 [독]중첩을 부여합니다. (스킬 레벨 1당 효과 적중 {0}% 증가)",
+    "skillDesc": "[피해를 입힐 시] 적에게 [효과 판단] 하여 [독]중첩을 부여합니다. (스킬 레벨 1당 효과 적중 10% 증가)",
     "skillLevelValue_1": 10,
     "skillLevelValue_2": 0,
     "skillLevelValue_3": 0,

@@ -13,7 +13,7 @@ namespace Portfolio.skill
 
         public override IEnumerable<BattleUnit> SetTarget(BattleUnit actionUnit, List<GridPosition> targetUnits)
         {
-            return targetUnits.GetEnemyTarget(actionUnit).GetTargetNum(this).SelectBattleUnit();
+            return targetUnits.GetEnemyTarget(actionUnit, this).GetTargetNum(this).SelectBattleUnit();
         }
 
         protected override IEnumerator PlaySkill(SkillActionEventArgs e)

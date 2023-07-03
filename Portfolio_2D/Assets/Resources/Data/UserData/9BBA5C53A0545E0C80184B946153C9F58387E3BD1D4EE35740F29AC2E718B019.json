@@ -78,12 +78,12 @@
     {
       "unitID": 104,
       "unitLevel": 1,
-      "unitGrade": 3,
+      "unitGrade": 1,
       "unitExperience": 40.0,
       "activeSkillLevel_1": 1,
       "activeSkillLevel_2": 3,
       "passiveSkillLevel_1": 1,
-      "passiveSkillLevel_2": 1,
+      "passiveSkillLevel_2": 5,
       "weaponData": null,
       "helmetData": null,
       "armorData": null,
@@ -101,5 +101,5 @@
   "clearMapList": [
     999
   ],
-  "LastAccessTime": "2023-07-03T20:19:21.6413432+09:00"
+  "LastAccessTime": "2023-07-03T22:31:19.8588884+09:00"
 }

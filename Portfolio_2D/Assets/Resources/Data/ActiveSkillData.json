@@ -231,13 +231,13 @@
     "activeSkillType": "BasicAttack",
     "skillCoolTime": 0,
     "consumeManaValue": 0,
-    "targetNum": 1
+    "targetNum": 2
   },
   {
     "ID": 10013,
     "skillClassName": "Skill_GWEN_ActiveSkill_1",
     "skillName": "다중 베기",
-    "skillDesc": "적군 한명에게 기본 공격력의 {0}%로 7회 베기 공격을 합니다. ",
+    "skillDesc": "적군 한명에게 기본 공격력의 {0}%로 7회 베기 공격을 합니다. 이 공격은 전열을 우선시 합니다.",
     "skillLevelValue_1": 10,
     "skillLevelValue_2": 0,
     "skillLevelValue_3": 0,

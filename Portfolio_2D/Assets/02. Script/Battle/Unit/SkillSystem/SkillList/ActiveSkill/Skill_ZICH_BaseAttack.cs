@@ -11,7 +11,10 @@ namespace Portfolio.skill
         public Skill_ZICH_BaseAttack(ActiveSkillData skillData) : base(skillData)
         {
         }
-        public override IEnumerable<BattleUnit> SetTarget(BattleUnit actionUnit, List<GridPosition> targetUnits) => targetUnits.GetEnemyTarget(actionUnit).OrderLowHealth().GetTargetNum(GetData.targetNum).SelectBattleUnit();
+        public override IEnumerable<BattleUnit> SetTarget(BattleUnit actionUnit, List<GridPosition> targetUnits)
+        {
+            return targetUnits.GetEnemyTarget(actionUnit, this).OrderLowHealth().GetTargetNum(GetData.targetNum).SelectBattleUnit();
+        }
 
         protected override IEnumerator PlaySkill(SkillActionEventArgs e)
         {

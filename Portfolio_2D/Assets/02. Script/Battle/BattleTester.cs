@@ -19,7 +19,7 @@ namespace Portfolio.Battle
                 var enemies = battleManager.GetUnitList().Where(unit => unit.IsEnemy && !unit.IsDead);
                 foreach (var enemy in enemies)
                 {
-                    enemy.TakeDamage(enemy.CurrentHP);
+                    enemy.TakeDamage(enemy.CurrentHP, null, false);
                 }
             }
 
@@ -28,7 +28,7 @@ namespace Portfolio.Battle
                 var userUnits = battleManager.GetUnitList().Where(unit => !unit.IsEnemy && !unit.IsDead);
                 foreach (var unit in userUnits)
                 {
-                    unit.TakeDamage(unit.CurrentHP);
+                    unit.TakeDamage(unit.CurrentHP, null, false);
                 }
             }
         }

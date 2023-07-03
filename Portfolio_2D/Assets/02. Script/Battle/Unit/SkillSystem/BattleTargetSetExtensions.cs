@@ -22,9 +22,17 @@ public static class BattleTargetSetExtensions
         return targetUnits.Where(grid => actionUnit.IsAlly(grid.CurrentUnit));
     }
 
-    public static IEnumerable<GridPosition> GetEnemyTarget(this IEnumerable<GridPosition> targetUnits, BattleUnit actionUnit)
+    public static IEnumerable<GridPosition> GetEnemyTarget(this IEnumerable<GridPosition> targetUnits, BattleUnit actionUnit, ActiveSkill activeSkill)
     {
-        return targetUnits.Where(grid => !actionUnit.IsAlly(grid.CurrentUnit));
+        if (activeSkill is ISingleTarget)
+        {
+            return targetUnits.Where(grid => !actionUnit.IsAlly(grid.CurrentUnit) && !grid.CurrentUnit.HasCondition(1005));
+        }
+        else
+        {
+            return targetUnits.Where(grid => !actionUnit.IsAlly(grid.CurrentUnit));
+        }
+
     }
 
     public static IEnumerable<GridPosition> OrderLowHealth(this IEnumerable<GridPosition> targetUnits)

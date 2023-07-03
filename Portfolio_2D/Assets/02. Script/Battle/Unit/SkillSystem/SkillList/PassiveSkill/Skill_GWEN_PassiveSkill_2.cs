@@ -11,14 +11,16 @@ namespace Portfolio.skill
         {
         }
 
-        public override void Action(object sender, SkillActionEventArgs e)
-        {
-            base.Action(sender, e);
-        }
-
         public override void SetPassiveSkill(SkillActionEventArgs e)
         {
-            // TODO
+            e.actionUnit.OnTakeDamagedEvent += (object sender, TakeDamageEventArgs s) =>
+            {
+                float effectPercent = (e.skillLevel * GetData.skillLevelValue_1 * 0.01f);
+                if (GameLib.ProbabilityCalculation(effectPercent, 1f))
+                {
+                    e.actionUnit.AddCondition(GetData.conditinID_1, conditionList[0], 1);
+                }
+            };
         }
     }
 
