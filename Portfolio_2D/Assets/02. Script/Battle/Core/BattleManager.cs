@@ -38,7 +38,7 @@ namespace Portfolio.Battle
         public bool isTest = false;
         public int CallMapID = 500;
         public int userUnitTakeCount = 5;
-
+            
         //===========================================================
         // Property & Singleton
         //===========================================================

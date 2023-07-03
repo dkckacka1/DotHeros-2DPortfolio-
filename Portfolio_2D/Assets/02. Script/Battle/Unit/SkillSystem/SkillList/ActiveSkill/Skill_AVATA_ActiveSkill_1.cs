@@ -24,9 +24,12 @@ namespace Portfolio.skill
             {
                 e.actionUnit.HitTarget(targetUnit, skillDamage);
                 targetUnit.AddCondition(GetData.conditinID_1, conditionList[0], 3);
+                var effect = BattleManager.ObjectPool.SpawnSkillEffect();
+                effect.PlayEffect("Anim_Skill_Effect_AVATA_ActiveSkill1");
+                effect.transform.position = targetUnit.footPos.position;
             }
 
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(1f);
 
             e.actionUnit.isSkillUsing = false;
         }

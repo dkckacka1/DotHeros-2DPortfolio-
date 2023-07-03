@@ -24,9 +24,14 @@ namespace Portfolio.skill
 
         protected override IEnumerator PlaySkill(SkillActionEventArgs e)
         {
-            foreach(var targetUnit in e.targetUnits)
+            SkillEffect effect = BattleManager.ObjectPool.SpawnSkillEffect();
+            effect.PlayEffect("Anim_Skill_Effect_AVATA_ActiveSkill2");
+            effect.transform.position = e.actionUnit.transform.position;
+
+
+            foreach (var targetUnit in e.targetUnits)
             {
-                if(targetUnit.IsEffectHit(e.actionUnit.EffectHit))
+                if (targetUnit.IsEffectHit(e.actionUnit.EffectHit))
                 {
                     BattleManager.ManaSystem.AddMana(1);
                 }

@@ -23,16 +23,25 @@ namespace Portfolio.skill
             foreach(var targetUnit in e.targetUnits)
             {
                 e.actionUnit.HitTarget(targetUnit, skillDamage);
+                var effect = BattleManager.ObjectPool.SpawnSkillEffect();
+                effect.PlayEffect("Anim_Skill_Effect_AVATA_BaseAttack");
+                effect.transform.position = targetUnit.transform.position;
             }
             yield return new WaitForSeconds(0.2f);
             foreach (var targetUnit in e.targetUnits)
             {
                 e.actionUnit.HitTarget(targetUnit, skillDamage);
+                var effect = BattleManager.ObjectPool.SpawnSkillEffect();
+                effect.PlayEffect("Anim_Skill_Effect_AVATA_BaseAttack");
+                effect.transform.position = targetUnit.transform.position;
             }
             yield return new WaitForSeconds(0.2f);
             foreach (var targetUnit in e.targetUnits)
             {
                 e.actionUnit.HitTarget(targetUnit, skillDamage);
+                var effect = BattleManager.ObjectPool.SpawnSkillEffect();
+                effect.PlayEffect("Anim_Skill_Effect_AVATA_BaseAttack");
+                effect.transform.position = targetUnit.transform.position;
             }
             yield return new WaitForSeconds(0.1f);
             e.actionUnit.isSkillUsing = false;
