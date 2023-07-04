@@ -27,7 +27,7 @@ namespace Portfolio.Battle
 
         public void Release()
         {
-            Debug.Log("this release");
+            //Debug.Log("this release");
             BattleManager.ObjectPool.ReleaseBattleText(this);
         }
     }

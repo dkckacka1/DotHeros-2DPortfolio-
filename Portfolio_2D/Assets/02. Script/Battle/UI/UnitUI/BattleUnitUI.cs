@@ -137,7 +137,7 @@ namespace Portfolio.Battle
                 battleTextCoroutine = StartCoroutine(battleTextQueueSequence());
             }
 
-            Debug.Log(battleTextQueue.Count);
+            //Debug.Log(battleTextQueue.Count);
         }
 
         public void AddHealText()
@@ -150,7 +150,7 @@ namespace Portfolio.Battle
             while (battleTextQueue.Count > 0)
             {
                 battleTextQueue.Dequeue().gameObject.SetActive(true);
-                Debug.Log("데미지 텍스트 출력");
+                //Debug.Log("데미지 텍스트 출력");
                 yield return new WaitForSeconds(battleTextCreateTime);
             }
         }

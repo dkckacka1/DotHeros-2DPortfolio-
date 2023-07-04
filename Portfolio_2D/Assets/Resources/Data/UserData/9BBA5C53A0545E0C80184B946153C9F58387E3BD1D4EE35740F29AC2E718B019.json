@@ -77,8 +77,8 @@
     },
     {
       "unitID": 104,
-      "unitLevel": 1,
-      "unitGrade": 1,
+      "unitLevel": 50,
+      "unitGrade": 5,
       "unitExperience": 40.0,
       "activeSkillLevel_1": 1,
       "activeSkillLevel_2": 3,
@@ -101,5 +101,5 @@
   "clearMapList": [
     999
   ],
-  "LastAccessTime": "2023-07-03T23:27:51.6783915+09:00"
+  "LastAccessTime": "2023-07-04T11:26:45.3016165+09:00"
 }

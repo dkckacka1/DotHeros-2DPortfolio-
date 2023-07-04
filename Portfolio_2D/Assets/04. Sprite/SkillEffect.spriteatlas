@@ -52,6 +52,10 @@ SpriteAtlas:
   m_PackedSprites:
   - {fileID: 21300000, guid: b51e1c80e3552f54cb997c79112369a8, type: 3}
   - {fileID: 21300000, guid: f7cd1e804671c1c47bc3370640cf37b7, type: 3}
+  - {fileID: -752987183, guid: b57bef804c5845b4e8ca477a7e1189b4, type: 3}
+  - {fileID: -348359161, guid: b57bef804c5845b4e8ca477a7e1189b4, type: 3}
+  - {fileID: -1082365671, guid: b57bef804c5845b4e8ca477a7e1189b4, type: 3}
+  - {fileID: 1182804789, guid: b57bef804c5845b4e8ca477a7e1189b4, type: 3}
   - {fileID: 21300000, guid: 2477c3b0c808a2f4d97fb8e0262c62af, type: 3}
   - {fileID: 1635192152, guid: 9a85ecd0ebacd1542a041bad4d084712, type: 3}
   - {fileID: 513157695, guid: 9a85ecd0ebacd1542a041bad4d084712, type: 3}
@@ -62,6 +66,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 23df44314d84ccf42a0208df3ffc623d, type: 3}
   - {fileID: 21300000, guid: b2104841b84b1c84a88545e527fe5dee, type: 3}
   - {fileID: 21300000, guid: bf4c2f7131a6db24bacd0b07c650d9f4, type: 3}
+  - {fileID: 21300000, guid: 26e009b21c9c12049b86bfc70cfa7c59, type: 3}
   - {fileID: 21300000, guid: 1e3e40e2834acf0459984212fe79f548, type: 3}
   - {fileID: 21300000, guid: 740d08f2889025e42ac362c163af2b82, type: 3}
   - {fileID: -918708772, guid: c989312362b94e24ba027ed9823995fd, type: 3}
@@ -79,13 +84,16 @@ SpriteAtlas:
   - {fileID: 79115340, guid: c989312362b94e24ba027ed9823995fd, type: 3}
   - {fileID: 967679707, guid: c989312362b94e24ba027ed9823995fd, type: 3}
   - {fileID: -542279890, guid: c989312362b94e24ba027ed9823995fd, type: 3}
+  - {fileID: 21300000, guid: e199f583bb047564598a0a33ccbff756, type: 3}
   - {fileID: 21300000, guid: fbd84293db128e748a1e2752de7c9ccf, type: 3}
   - {fileID: 21300000, guid: 0a7ff3f320e80064486cfe7e299166af, type: 3}
+  - {fileID: 21300000, guid: c28bf00433d5a5341a5529a21b579d79, type: 3}
   - {fileID: 21300000, guid: fb915a14e2b9d834cba05f9ceeffee41, type: 3}
   - {fileID: 21300000, guid: ebc3e5d46c6247b4790bc0697a9cffa8, type: 3}
   - {fileID: 21300000, guid: f5f3c5f4612b409448fd0fc96bd8ee10, type: 3}
   - {fileID: 21300000, guid: 62e72c05760d28b479a8956d997b1241, type: 3}
   - {fileID: 21300000, guid: dab1ee750a7459448b67a75ff4a20fe2, type: 3}
+  - {fileID: 21300000, guid: 70d562b57f540ba47aea730e7920bdf8, type: 3}
   - {fileID: 21300000, guid: d40ad5b5b85b04348b6d6a89a76b28c8, type: 3}
   - {fileID: 21300000, guid: e9a63036607b0aa4990a97406f72a003, type: 3}
   - {fileID: 21300000, guid: d340a4362800a804c81e7d721cb08ac7, type: 3}
@@ -108,6 +116,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 42e820a9e87d00e4bac7606bcf3b3d14, type: 3}
   - {fileID: 21300000, guid: 5fbb7eb98e2d4c5428c9e1e328cd4b78, type: 3}
   - {fileID: 21300000, guid: 95fe5cd9a20d33a449ba31c6e5802004, type: 3}
+  - {fileID: 21300000, guid: 8a59583a474d6cd41aaa653a9ac0016a, type: 3}
   - {fileID: 21300000, guid: a7c6da4abf17f7c48bf5b445ffd10723, type: 3}
   - {fileID: 21300000, guid: e18aac5a560071d4caf7580e8d725217, type: 3}
   - {fileID: 21300000, guid: ebb69a8a23347424f8aeed0176a8169e, type: 3}
@@ -115,12 +124,14 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 9da356aaa45b439408a69ee4b4365fe2, type: 3}
   - {fileID: 21300000, guid: 067981fa661ced54c8e56aa03b39ead5, type: 3}
   - {fileID: 21300000, guid: 03f0104be1387d9498bb2b7423a009e9, type: 3}
+  - {fileID: 21300000, guid: dc9aac7bec08c9749abdeaace50068e1, type: 3}
   - {fileID: 21300000, guid: 1fde7f7b8e1a72a41a5e4d86c9fd7dea, type: 3}
   - {fileID: 21300000, guid: 612eabbb7d5fdac4eb9c2e94fd27f0bc, type: 3}
   - {fileID: 21300000, guid: 220885cb23d61cb4ba01fd71e4bda5ef, type: 3}
   - {fileID: 21300000, guid: fcc91bcb0808d4e4ca546e85621d085b, type: 3}
   - {fileID: 21300000, guid: 0174ce5cee07bf547b5c9ff6f3d78f18, type: 3}
   - {fileID: 21300000, guid: af1f46fc2cc45164c836a6602ea708e4, type: 3}
+  - {fileID: 21300000, guid: 5647290d1df22d045841847160ae4eae, type: 3}
   - {fileID: -3058115, guid: 15274f0d0ed60734ba3b78b9f9c78f97, type: 3}
   - {fileID: 2105472412, guid: 15274f0d0ed60734ba3b78b9f9c78f97, type: 3}
   - {fileID: -219774707, guid: 15274f0d0ed60734ba3b78b9f9c78f97, type: 3}
@@ -130,12 +141,20 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 84531f3d19c7b01478d22990853d7b85, type: 3}
   - {fileID: 21300000, guid: 8033e14d5990cd94cb68d83b68ce9b96, type: 3}
   - {fileID: 21300000, guid: 5e84b45d7490d5a4081923de15428eb4, type: 3}
+  - {fileID: 21300000, guid: 473be9fd392cafa4098f0ef96cb79fc4, type: 3}
   - {fileID: 21300000, guid: 0e53a54ed2cfa5248bad86ccc2bef5bb, type: 3}
+  - {fileID: 21300000, guid: 9c79121fc9e43a746a3702f4bc8ade6e, type: 3}
+  - {fileID: 21300000, guid: bb59e04ffae93de4ead7ff4c68734470, type: 3}
   - {fileID: 21300000, guid: 73a9876ff1515a14eb2592441acc647c, type: 3}
+  - {fileID: 21300000, guid: 0e207b7f9ca0120428b386f3ebf6a28e, type: 3}
   - {fileID: 21300000, guid: 10502fbf47700be47b3593db320dd68a, type: 3}
   m_PackedSpriteNamesToIndex:
   - Smoke VFX A6
   - arrow_hit_3
+  - vSlash1_2
+  - vSlash1_3
+  - vSlash1_0
+  - vSlash1_1
   - frame0055
   - Water Effect and Bullet 16x16_3
   - Water Effect and Bullet 16x16_2
@@ -146,6 +165,7 @@ SpriteAtlas:
   - Smoke VFX B2
   - Smoke VFX B9
   - Smoke VFX B6
+  - projectile_land_4
   - Smoke VFX B1
   - Smoke VFX A1
   - Holy VFX 02_8
@@ -163,13 +183,16 @@ SpriteAtlas:
   - Holy VFX 02_11
   - Holy VFX 02_10
   - Holy VFX 02_14
+  - trap_detonate_4
   - frame0065
   - arrow_hit_4
+  - trap_detonate_2
   - Smoke VFX C4
   - Smoke VFX A5
   - frame0105
   - frame0095
   - Smoke VFX B3
+  - projectile_land_5
   - Smoke VFX A9
   - Smoke VFX A3
   - Smoke VFX A4
@@ -192,6 +215,7 @@ SpriteAtlas:
   - Smoke VFX C7
   - arrow_
   - Smoke VFX C5
+  - projectile_land_3
   - arrow_hit_5
   - Smoke VFX A7
   - frame0005
@@ -199,12 +223,14 @@ SpriteAtlas:
   - Smoke VFX B4
   - frame0115
   - frame0025
+  - projectile_land_1
   - Smoke VFX B7
   - arrow_hit_1
   - Smoke VFX C8
   - Smoke VFX C2
   - Smoke VFX A8
   - frame0015
+  - trap_detonate_3
   - SmokeFX Lite SpriteSheet 3A-5_3
   - SmokeFX Lite SpriteSheet 3A-5_2
   - SmokeFX Lite SpriteSheet 3A-5_1
@@ -214,8 +240,12 @@ SpriteAtlas:
   - frame0075
   - Smoke VFX C3
   - Smoke VFX B5
+  - trap_detonate_5
   - Smoke VFX C1
+  - projectile_land_2
+  - projectile_throw
   - Smoke VFX B11
+  - trap_detonate_1
   - frame0085
   m_RenderDataMap: {}
   m_Tag: SkillEffect
