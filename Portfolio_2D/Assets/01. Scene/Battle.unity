@@ -2296,7 +2296,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2648879711716426105, guid: 73c6ccdfa7c4c6143a0cc91d89f44281, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: RePlayMapBtn
+      value: BTN_OnClick_RePlayMapBtn
       objectReference: {fileID: 0}
     - target: {fileID: 2648879711716426105, guid: 73c6ccdfa7c4c6143a0cc91d89f44281, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
@@ -4965,7 +4965,7 @@ MonoBehaviour:
   sequenceUI: {fileID: 1186397701}
   unitSequenceUIPrefab: {fileID: 2416663524681561345, guid: 4841eb6c336c404458197c3258daa373, type: 3}
   unitSequenceUIParent: {fileID: 861734185}
-  battleUICreatePosOffset: {x: 0, y: 145}
+  currentTurnUnitNameText: {fileID: 775837970}
   playableCanvas: {fileID: 662502208}
   playerUnitSkillUIPrefab: {fileID: 6562929814234236488, guid: 1ee5d7ba55db37241bcc79e7bc9636ad, type: 3}
   unitSkillUIParent: {fileID: 192843952}
@@ -5090,7 +5090,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   turnCount: 100
   currentTurnUnit: {fileID: 0}
-  currentTurnUnitNameText: {fileID: 775837970}
 --- !u!1001 &945235155
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5780,7 +5779,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ee79c47f79b536428225e2136cc3cc4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  battleState: -1
+  currentBattleState: -1
   stageOutputTime: 2
   isTest: 1
   CallMapID: 999
@@ -7529,7 +7528,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8088778473168990124, guid: febc63b235b3f744b9a0a0e25a986947, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: ReturnToLobby
+      value: BTN_OnClick_ReturnToLobby
       objectReference: {fileID: 0}
     - target: {fileID: 8088778473168990124, guid: febc63b235b3f744b9a0a0e25a986947, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName

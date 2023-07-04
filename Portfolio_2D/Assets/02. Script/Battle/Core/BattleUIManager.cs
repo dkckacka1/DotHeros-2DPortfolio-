@@ -1,35 +1,40 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+
+/*
+ *  전투 UI를 관리하는 매니저 클래스
+ */
 
 namespace Portfolio.Battle
 {
     public class BattleUIManager : MonoBehaviour
     {
         [Header("BattleCanvas")]
-        [SerializeField] private Canvas battleCanvas;
-        [SerializeField] private BattleSequenceUI sequenceUI;
-        [SerializeField] private BattleUnitSequenceUI unitSequenceUIPrefab;
-        [SerializeField] private RectTransform unitSequenceUIParent;
-        [SerializeField] Vector2 battleUICreatePosOffset;
+        [SerializeField] private Canvas battleCanvas;                       // 전투 캔버스
+        [SerializeField] private BattleSequenceUI sequenceUI;               // 턴 진행 UI
+        [SerializeField] private BattleUnitSequenceUI unitSequenceUIPrefab; // 유닛 턴 진행 UI 부모 오브젝트
+        [SerializeField] private RectTransform unitSequenceUIParent;        // 유닛 턴 진행 UI 프리팹
+        [SerializeField] TextMeshProUGUI currentTurnUnitNameText;           // 현재 턴 유닛 UI
 
-        [Header("PlayableCnavas")]
-        [SerializeField] private Canvas playableCanvas;
-        [SerializeField] private BattleUnitSkillUI playerUnitSkillUIPrefab;
-        [SerializeField] private RectTransform unitSkillUIParent;
-        [SerializeField] private BattleSkillDescUI battleSkillDescUI;
+        [Header("PlayableCnavas")] 
+        [SerializeField] private Canvas playableCanvas;                     // 플레이어 선택 가능 캔버스
+        [SerializeField] private BattleUnitSkillUI playerUnitSkillUIPrefab; // 스킬 UI 부모 오브젝트
+        [SerializeField] private RectTransform unitSkillUIParent;           // 스킬 UI 프리팹
+        [SerializeField] private BattleSkillDescUI battleSkillDescUI;       // 스킬 설명 UI
 
         [Header("ConfigureCanvas")]
-        [SerializeField] private Canvas configureCanvas;
-        [SerializeField] private BattleMapInfoUI mapInfoUI;
-        [SerializeField] private BattleLogUI battleLogUI;
-        [SerializeField] private BattleManaUI battleManaUI;
+        [SerializeField] private Canvas configureCanvas;                    // 환경 캔버스
+        [SerializeField] private BattleMapInfoUI mapInfoUI;                 // 맵정보 UI
+        [SerializeField] private BattleLogUI battleLogUI;                   // 전투 로그 UI
+        [SerializeField] private BattleManaUI battleManaUI;                 // 전투 마나 UI
 
 
-        [Header("ResultCanvas")]
-        [SerializeField] private WinResultPopup winResultPopup;
-        [SerializeField] private DefeatResultPopup defeatResultPopup;
+        [Header("ResultCanvas")] 
+        [SerializeField] private WinResultPopup winResultPopup;             // 전투 승리 팝업창
+        [SerializeField] private DefeatResultPopup defeatResultPopup;       // 전투 패배 팝업창
 
         //===========================================================
         // Property
@@ -42,11 +47,13 @@ namespace Portfolio.Battle
         public WinResultPopup WinResultPopup => winResultPopup;
         private ObjectPool objectPool => BattleManager.ObjectPool;
 
+        // 유닛 턴 진행 UI 생성
         public BattleUnitSequenceUI CreateUnitSequenceUI()
         {
             return Instantiate(unitSequenceUIPrefab, unitSequenceUIParent);
         }
 
+        // 유닛 스킬 UI 생성
         public BattleUnitSkillUI CreateUnitSkillUI()
         {
             var skillUI = Instantiate(PlayerUnitSkillUIPrefab, unitSkillUIParent);
@@ -54,23 +61,28 @@ namespace Portfolio.Battle
             return skillUI;
         }
 
-        public void Initialize(Map currentMap)
+        // 맵 정보 표시
+        public void ShowMapInfo(Map currentMap)
         {
             mapInfoUI.SetMapInfo(currentMap);
         }
 
-        public void ShowStageUI(Map currentMap)
+        // 스테이지 정보 표시
+        public void ShowStageInfo(Map currentMap)
         {
             mapInfoUI.NextStage(currentMap);
         }
 
+        // 전투 로그 표시
         public void AddLog(string str)
         {
             battleLogUI.AddLog(str);
         }
 
+        // 승리
         public void Win()
         {
+            // 결과창 캔버스 표시
             winResultPopup.transform.parent.gameObject.SetActive(true);
             winResultPopup.gameObject.SetActive(true);
             winResultPopup.Show();
@@ -78,30 +90,13 @@ namespace Portfolio.Battle
 
         public void Defeat()
         {
+            // 결과창 캔버스 표시
             defeatResultPopup.transform.parent.gameObject.SetActive(true);
             defeatResultPopup.gameObject.SetActive(true);
             defeatResultPopup.Show();
         }
 
-        public void GetDamageText(BattleUnit takeDamagedUnit, int damageValue)
-        {
-            var battleText = objectPool.SpawnBattleText(false);
-
-            battleText.SetDamage(damageValue);
-            battleText.transform.position = Camera.main.WorldToScreenPoint(takeDamagedUnit.transform.position);
-            (battleText.transform as RectTransform).anchoredPosition += battleUICreatePosOffset;
-            battleText.gameObject.SetActive(true);
-        }
-        public void GetHealText(BattleUnit takeHealUnit, int healValue)
-        {
-            var battleText = objectPool.SpawnBattleText(false);
-
-            battleText.SetHeal(healValue);
-            battleText.transform.position = Camera.main.WorldToScreenPoint(takeHealUnit.transform.position);
-            (battleText.transform as RectTransform).anchoredPosition += battleUICreatePosOffset;
-            battleText.gameObject.SetActive(true);
-        }
-
+        // 첫 스테이지 시작 연출
         public void SetStartStageDirect()
         {
             sequenceUI.gameObject.SetActive(false);
@@ -110,12 +105,27 @@ namespace Portfolio.Battle
             configureCanvas.gameObject.SetActive(false);
         }
 
+        // 전투 시작 연출
         public void SetBattleStartDirect()
         {
             sequenceUI.gameObject.SetActive(true);
             unitSequenceUIParent.gameObject.SetActive(true);
             playableCanvas.gameObject.SetActive(true);
             configureCanvas.gameObject.SetActive(true);
+        }
+
+        // 현재 턴 유닛 표시
+        public void ShowTurnUnit(UnitTurnBase unitTurnBase)
+        {
+            if (unitTurnBase == null)
+            {
+                currentTurnUnitNameText.gameObject.SetActive(false);
+            }
+            else
+            {
+                currentTurnUnitNameText.gameObject.SetActive(true);
+                currentTurnUnitNameText.text = unitTurnBase.BattleUnit.Unit.UnitName;
+            }
         }
     }
 }

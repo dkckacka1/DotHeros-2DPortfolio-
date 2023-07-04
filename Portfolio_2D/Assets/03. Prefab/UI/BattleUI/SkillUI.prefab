@@ -123,8 +123,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 6562929814234236488}
-        m_TargetAssemblyTypeName: Portfolio.UnitSkillUI, Assembly-CSharp
-        m_MethodName: TurnEnd
+        m_TargetAssemblyTypeName: Portfolio.Battle.BattleUnitSkillUI, Assembly-CSharp
+        m_MethodName: BTN_OnClick_TurnSkip
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -322,8 +322,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 6562929814234236488}
-        m_TargetAssemblyTypeName: Portfolio.UnitSkillUI, Assembly-CSharp
-        m_MethodName: Action
+        m_TargetAssemblyTypeName: Portfolio.Battle.BattleUnitSkillUI, Assembly-CSharp
+        m_MethodName: BTN_OnClick_Action
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -696,10 +696,18 @@ PrefabInstance:
       objectReference: {fileID: 6562929814234236488}
     - target: {fileID: 6596660774195099062, guid: 33b9fc73e7ca5d0409e9a21b1122a3c7, type: 3}
       propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: ShowDescActiveSkill_2
+      value: TRIGGER_OnPointerEnter_ShowDescActiveSkill_2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6596660774195099062, guid: 33b9fc73e7ca5d0409e9a21b1122a3c7, type: 3}
+      propertyPath: m_Delegates.Array.data[1].callback.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: TRIGGER_OnPointerExit_HideSkillDesc
       objectReference: {fileID: 0}
     - target: {fileID: 6596660774195099062, guid: 33b9fc73e7ca5d0409e9a21b1122a3c7, type: 3}
       propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Portfolio.Battle.BattleUnitSkillUI, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 6596660774195099062, guid: 33b9fc73e7ca5d0409e9a21b1122a3c7, type: 3}
+      propertyPath: m_Delegates.Array.data[1].callback.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
       value: Portfolio.Battle.BattleUnitSkillUI, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 9148530231516603304, guid: 33b9fc73e7ca5d0409e9a21b1122a3c7, type: 3}
@@ -708,7 +716,7 @@ PrefabInstance:
       objectReference: {fileID: 6562929814234236488}
     - target: {fileID: 9148530231516603304, guid: 33b9fc73e7ca5d0409e9a21b1122a3c7, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: ActiveSkill_2_Action
+      value: BTN_OnClick_ActiveSkill_2_Choice
       objectReference: {fileID: 0}
     - target: {fileID: 9148530231516603304, guid: 33b9fc73e7ca5d0409e9a21b1122a3c7, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
@@ -859,10 +867,18 @@ PrefabInstance:
       objectReference: {fileID: 6562929814234236488}
     - target: {fileID: 6596660774195099062, guid: 33b9fc73e7ca5d0409e9a21b1122a3c7, type: 3}
       propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: ShowBasicAttackSkill
+      value: TRIGGER_OnPointerEnter_ShowBasicAttackSkill
+      objectReference: {fileID: 0}
+    - target: {fileID: 6596660774195099062, guid: 33b9fc73e7ca5d0409e9a21b1122a3c7, type: 3}
+      propertyPath: m_Delegates.Array.data[1].callback.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: TRIGGER_OnPointerExit_HideSkillDesc
       objectReference: {fileID: 0}
     - target: {fileID: 6596660774195099062, guid: 33b9fc73e7ca5d0409e9a21b1122a3c7, type: 3}
       propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Portfolio.Battle.BattleUnitSkillUI, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 6596660774195099062, guid: 33b9fc73e7ca5d0409e9a21b1122a3c7, type: 3}
+      propertyPath: m_Delegates.Array.data[1].callback.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
       value: Portfolio.Battle.BattleUnitSkillUI, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 9148530231516603304, guid: 33b9fc73e7ca5d0409e9a21b1122a3c7, type: 3}
@@ -871,7 +887,7 @@ PrefabInstance:
       objectReference: {fileID: 6562929814234236488}
     - target: {fileID: 9148530231516603304, guid: 33b9fc73e7ca5d0409e9a21b1122a3c7, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: BasicAttack
+      value: BTN_OnClick_BaseAttackChoice
       objectReference: {fileID: 0}
     - target: {fileID: 9148530231516603304, guid: 33b9fc73e7ca5d0409e9a21b1122a3c7, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
@@ -1013,10 +1029,34 @@ PrefabInstance:
       propertyPath: m_Delegates.Array.data[1].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 6562929814234236488}
+    - target: {fileID: 6596660774195099062, guid: 33b9fc73e7ca5d0409e9a21b1122a3c7, type: 3}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: TRIGGER_OnPointerEnter_ShowDescActiveSkill_1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6596660774195099062, guid: 33b9fc73e7ca5d0409e9a21b1122a3c7, type: 3}
+      propertyPath: m_Delegates.Array.data[1].callback.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: TRIGGER_OnPointerExit_HideSkillDesc
+      objectReference: {fileID: 0}
+    - target: {fileID: 6596660774195099062, guid: 33b9fc73e7ca5d0409e9a21b1122a3c7, type: 3}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Portfolio.Battle.BattleUnitSkillUI, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 6596660774195099062, guid: 33b9fc73e7ca5d0409e9a21b1122a3c7, type: 3}
+      propertyPath: m_Delegates.Array.data[1].callback.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Portfolio.Battle.BattleUnitSkillUI, Assembly-CSharp
+      objectReference: {fileID: 0}
     - target: {fileID: 9148530231516603304, guid: 33b9fc73e7ca5d0409e9a21b1122a3c7, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 6562929814234236488}
+    - target: {fileID: 9148530231516603304, guid: 33b9fc73e7ca5d0409e9a21b1122a3c7, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: BTN_OnClick_ActiveSkill_1_Choice
+      objectReference: {fileID: 0}
+    - target: {fileID: 9148530231516603304, guid: 33b9fc73e7ca5d0409e9a21b1122a3c7, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Portfolio.Battle.BattleUnitSkillUI, Assembly-CSharp
+      objectReference: {fileID: 0}
     - target: {fileID: 9148530231516603306, guid: 33b9fc73e7ca5d0409e9a21b1122a3c7, type: 3}
       propertyPath: m_Name
       value: Skill1Btn

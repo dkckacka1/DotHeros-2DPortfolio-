@@ -46,6 +46,7 @@ namespace Portfolio.skill
                 // 스킬 이펙트 생성
                 var effect = BattleManager.ObjectPool.SpawnSkillEffect();
                 effect.PlayEffect("Anim_Skill_Effect_GWEN_BaseAttack_Move");
+                var rotation = effect.StartCoroutine(RotationEffect(effect));
                 effect.transform.position = firstTarget.transform.position;
                 Vector3 projectilePos;
                 if (e.actionUnit.IsEnemy)
@@ -78,20 +79,22 @@ namespace Portfolio.skill
                             effect.transform.DOMoveX(-1f, projectileMoveTime).SetEase(Ease.OutQuart);
                             effect.transform.DOMoveY(firstTarget.transform.position.y + 3, projectileMoveTime).SetEase(Ease.OutQuart).OnComplete(() =>
                              {
-                                // 단검이 두번째 대상에게 날아간다.
-                                effect.transform.DOMove(secondTarget.transform.position, projectileMoveTime).OnComplete(() =>
-                                 {
-                                    // 단검 꽂히는 이펙트 출력하고 데미지를 입힌 후 스킬 종료
-                                    effect.PlayEffect("Anim_Skill_Effect_GWEN_BaseAttack_Check");
-                                     e.actionUnit.HitTarget(secondTarget, skillDamage);
-                                     e.actionUnit.isSkillUsing = false;
-                                 });
+                                 // 단검이 두번째 대상에게 날아간다.
+                                 effect.transform.DOMove(secondTarget.transform.position, projectileMoveTime).OnComplete(() =>
+                                  {
+                                      // 단검 꽂히는 이펙트 출력하고 데미지를 입힌 후 스킬 종료
+                                      effect.StopCoroutine(rotation);
+                                      effect.PlayEffect("Anim_Skill_Effect_GWEN_BaseAttack_Check");
+                                      e.actionUnit.HitTarget(secondTarget, skillDamage);
+                                      e.actionUnit.isSkillUsing = false;
+                                  });
                              });
                         }
                         else
                         // 존재 안할경우
                         {
                             // 단검 꽂히는 이펙트 출력하고 스킬 종료
+                            effect.StopCoroutine(rotation);
                             effect.PlayEffect("Anim_Skill_Effect_GWEN_BaseAttack_Check");
                             e.actionUnit.isSkillUsing = false;
                         }
@@ -100,6 +103,7 @@ namespace Portfolio.skill
                     // 죽지 않았다면
                     {
                         // 단검 꽂히는 이펙트 출력하고 스킬 종료
+                        effect.StopCoroutine(rotation);
                         effect.PlayEffect("Anim_Skill_Effect_GWEN_BaseAttack_Check");
                         e.actionUnit.isSkillUsing = false;
                     }
@@ -109,6 +113,15 @@ namespace Portfolio.skill
             }
 
             yield return new WaitForSeconds(1f);
+        }
+
+        IEnumerator RotationEffect(SkillEffect effect)
+        {
+            while (true)
+            {
+                effect.transform.Rotate(new Vector3(0, 0, 3600 * Time.deltaTime));
+                yield return null;
+            }
         }
     }
 

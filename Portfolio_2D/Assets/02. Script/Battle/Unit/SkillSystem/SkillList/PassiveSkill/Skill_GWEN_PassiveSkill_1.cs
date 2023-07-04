@@ -11,11 +11,6 @@ namespace Portfolio.skill
         {
         }
 
-        public override void Action(object sender, SkillActionEventArgs e)
-        {
-            base.Action(sender, e);
-        }
-
         public override void SetPassiveSkill(SkillActionEventArgs e)
         {
             e.actionUnit.OnHitTargetEvent += (object sender, HitEventArgs s) =>

@@ -91,7 +91,7 @@ namespace Portfolio.Battle
                 // 유저 유닛 세팅
                 SetUserUnit();
                 // 전투 UI 현재 맵 데이터 바인딩
-                battleUI.Initialize(CurrentMap);
+                battleUI.ShowMapInfo(CurrentMap);
                 // 스테이지 시작 연출
                 StartCoroutine(SetStartStage());
             }
@@ -109,7 +109,7 @@ namespace Portfolio.Battle
                 userChoiceUnits = GameManager.CurrentUser.userUnitList.OrderByDescending(GameLib.UnitBattlePowerSort).Take(userUnitTakeCount).ToList();
                 battleFactory.CreateUserUnit(userChoiceUnits);
 
-                battleUI.Initialize(currentMap);
+                battleUI.ShowMapInfo(currentMap);
                 StartCoroutine(SetStartStage());
             }
         }
@@ -225,7 +225,7 @@ namespace Portfolio.Battle
             // 첫번째 스테이지 시작
         {
             SwitchBattleState(BattleState.SETSTAGE);
-            BattleUIManager.ShowStageUI(CurrentMap);
+            BattleUIManager.ShowStageInfo(CurrentMap);
             currentStage = stageDatas.Dequeue();
             BattleFactory.CreateStage(currentStage);
             battleUI.SetStartStageDirect();
@@ -248,7 +248,7 @@ namespace Portfolio.Battle
             // 죽은 유닛 삭제
             ClearDeadUnit();
             // 스테이지 정보 바인딩
-            BattleUIManager.ShowStageUI(CurrentMap);
+            BattleUIManager.ShowStageInfo(CurrentMap);
             // 다음 스테이지 정보 가져오기
             currentStage = stageDatas.Dequeue();
             // 다음 스테이지 적군 전투 유닛 세팅

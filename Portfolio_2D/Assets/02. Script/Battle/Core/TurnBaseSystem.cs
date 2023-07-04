@@ -14,7 +14,6 @@ namespace Portfolio.Battle
     {
         [SerializeField] private float turnCount = 100f;                    // 유닛 턴베이스가 도달할 수치
         [SerializeField] private UnitTurnBase currentTurnUnit = null;       // 현재 턴인 유닛의 턴베이스
-        [SerializeField] TextMeshProUGUI currentTurnUnitNameText;           // TODO
 
         private List<UnitTurnBase> unitTurnBaseList = new List<UnitTurnBase>(); // 유닛 턴베이스 시스템 리스트
         private TurnType currentTurnType;                                       // 현재 턴 상태
@@ -92,9 +91,7 @@ namespace Portfolio.Battle
                 currentTurnType = TurnType.ENEMY;
             }
 
-            // TODO
-            currentTurnUnitNameText.text = unitbase.BattleUnit.Unit.UnitName;
-            currentTurnUnitNameText.gameObject.SetActive(true);
+            BattleManager.BattleUIManager.ShowTurnUnit(currentTurnUnit);
 
             // 해당 유닛의 턴 시작
             currentTurnUnit.TurnStart();
@@ -112,11 +109,12 @@ namespace Portfolio.Battle
             BattleManager.BattleUIManager.SequenceUI.SetSequenceUnitUIYPosition(currentTurnUnit.UnitSequenceUI, 0);
             // 선택된 유닛이 있다면 초기화 시켜준다.
             BattleManager.ActionSystem.ClearSelectedUnits();
-            // 턴 상태를 대기 상태로 전환 시켜준다.
+            // 현재 턴 유닛을 null로 변경해준다.
             currentTurnUnit = null;
+            BattleManager.BattleUIManager.ShowTurnUnit(currentTurnUnit);
+            // 턴 상태를 대기 상태로 전환 시켜준다.
             currentTurnType = TurnType.WAITUNITTURN;
             BattleManager.ActionSystem.IsPlayerActionTime = false;
-            currentTurnUnitNameText.gameObject.SetActive(false);
         }
 
         public void ResetAllUnitTurn()

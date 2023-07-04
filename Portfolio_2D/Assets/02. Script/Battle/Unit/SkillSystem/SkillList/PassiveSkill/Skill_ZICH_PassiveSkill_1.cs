@@ -11,19 +11,6 @@ namespace Portfolio.skill
         {
         }
 
-        public override void Action(object sender, SkillActionEventArgs e)
-        {
-            base.Action(sender, e);
-            if (!TryGetSkillActionArgs(e, out SkillActionEventArgs args))
-            {
-                return;
-            }
-
-
-            //Debug.Log((1 + (GetData.skillLevelValue_1 * e.skillLevel * 0.01f)));
-            e.actionUnit.AttackPoint *= (1 + (GetData.skillLevelValue_1 * e.skillLevel * 0.01f));
-        }
-
         public override void SetPassiveSkill(SkillActionEventArgs e)
         {
             e.actionUnit.OnStartBattleEvent += (object sender, System.EventArgs s) => { e.actionUnit.AttackPoint *= (1 + (GetData.skillLevelValue_1 * e.skillLevel * 0.01f)); };

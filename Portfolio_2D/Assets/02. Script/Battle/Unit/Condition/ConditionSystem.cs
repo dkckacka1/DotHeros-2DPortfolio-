@@ -67,7 +67,6 @@ namespace Portfolio.condition
 
         public void EndCondition()
         {
-            conditionUI.isActive = false;
             conditionUI.gameObject.SetActive(false);
             Count = 0;
             OverlapingCount = 0;

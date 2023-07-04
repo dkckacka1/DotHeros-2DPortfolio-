@@ -24,7 +24,7 @@ namespace Portfolio.skill
             yield return new WaitForSeconds(0.45f);
             foreach (var targetUnit in e.targetUnits)
             {
-                var effect = BattleManager.ObjectPool.SpawnSkillEffect();
+                SkillEffect effect = BattleManager.ObjectPool.SpawnSkillEffect();
                 effect.PlayEffect("Anim_Skill_Effect_LOSA_ArrowProjectile");
                 Vector3 arrowPos;
                 if (e.actionUnit.IsEnemy)

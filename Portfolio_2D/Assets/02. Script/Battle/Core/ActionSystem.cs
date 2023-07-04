@@ -34,9 +34,9 @@ namespace Portfolio.Battle
         public bool IsSkillAction { get => isSkillAction; set => isSkillAction = value; }
         // 현재 그리드 리스트에서 유닛이 있고, 생존중인 그리드만 가져온다.
         public IEnumerable<BattleUnit> GetLiveUnit => unitGrids.Where(grid => grid.CurrentUnit != null && !grid.CurrentUnit.IsDead).Select(grid => grid.CurrentUnit);
-
+        public int SelectUnitCount => selectedUnits.Count;
+        // 유닛 선택
         private void SelectedUnit(BattleUnit unit)
-            // 유닛 선택
         {
             // 선택 리스트에 추가
             SelectedUnits.Add(unit);
@@ -94,14 +94,8 @@ namespace Portfolio.Battle
         public List<BattleUnit> GetPassiveTargetUnit(PassiveSkill passiveSkill, BattleUnit actionUnit)
             // 패시브 스킬 대상 확인
         {
-            // TODO
-            // 유닛이 있으며, 죽지 않았고
-            var list = unitGrids.
-                Where(grid =>
-                    isUnitAtGrid(grid) 
-                    && !grid.isDead 
-                    && ((actionUnit.IsAlly(grid.CurrentUnit) && passiveSkill.GetData.isAllAlly) || ((actionUnit.IsAlly(grid.CurrentUnit) && passiveSkill.GetData.isAllEnemy)))).
-                        Select(grid => grid.CurrentUnit).ToList();
+            // 생존 유닛중 (유닛이 아군이고 아군 전체 대상 스킬) 또는 (유닛이 적군이고 적군 전체 대상 스킬) 리스트
+            var list = GetLiveUnit.Where(unit => (actionUnit.IsAlly(unit) && passiveSkill.GetData.isAllAlly) || (!actionUnit.IsAlly(unit) && passiveSkill.GetData.isAllEnemy)).ToList();
             return list;
         }
     }

@@ -20,6 +20,24 @@ namespace Portfolio.skill
             //Debug.Log("나는 패시브 스킬입니다.");
         }
 
+        protected override string GetLogString(SkillActionEventArgs e)
+        {
+            string playerUnit = string.Empty;
+
+            if (!e.actionUnit.IsEnemy)
+            {
+                playerUnit = $"<color=green>[{e.actionUnit.name}]</color>";
+            }
+            else
+            {
+                playerUnit = $"<color=red>[{e.actionUnit.name}]</color>";
+            }
+
+            string log = $"{playerUnit}의 패시브 스킬[{GetData.skillName}] 발동!";
+
+            return log;
+        }
+
         public abstract void SetPassiveSkill(SkillActionEventArgs e);
     }
 
