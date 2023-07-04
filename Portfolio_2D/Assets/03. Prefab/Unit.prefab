@@ -1342,15 +1342,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isEnemy: 0
-  maxHP: 100
-  currentHP: 100
-  attackPoint: 10
-  speed: 100
-  defencePoint: 0
-  criticalPercent: 0
-  criticalDamage: 0
-  effectHit: 0
-  effectResistance: 0
   animator: {fileID: 3419272698024072879}
   deadDestoryTime: 1
   unitImage: {fileID: 8087565255811772947}

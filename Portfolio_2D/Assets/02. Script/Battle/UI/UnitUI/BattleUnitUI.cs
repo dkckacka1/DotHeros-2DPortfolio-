@@ -30,23 +30,14 @@ namespace Portfolio.Battle
         [SerializeField] Vector2 battleTextCreatePosOffset;
         [SerializeField] float battleTextCreateTime = 0.01f;
         Queue<BattleTextUI> battleTextQueue = new Queue<BattleTextUI>();
-        Coroutine battleTextCoroutine;
+        // 텍스트가 출력중인가
+        bool isTextOutput;
 
         public BattleUnitSequenceUI UnitSequenceUI { get => unitSequenceUI; }
 
         private void Awake()
         {
             unitUICanvas.worldCamera = Camera.main;
-        }
-
-        public void Win()
-        {
-            
-        }
-
-        public void Defeat()
-        {
-
         }
 
         public void Dead()
@@ -122,37 +113,53 @@ namespace Portfolio.Battle
         // BattleText
         //===========================================================
         public void AddDamagedText(int damageValue)
+            // 피격 텍스트 입력
         {
-            // TODO : 버그 수정
-            //Debug.Log("데미지 텍스트 출력");
             var battleText = BattleManager.ObjectPool.SpawnBattleText(false);
             battleText.SetDamage(damageValue);
             battleText.transform.position = Camera.main.WorldToScreenPoint(this.transform.position);
             (battleText.transform as RectTransform).anchoredPosition += battleTextCreatePosOffset;
 
+            OutputText(battleText);
+        }
+
+        public void AddHealText(int healValue)
+            // 힐 텍스트 입력
+        {
+            var battleText = BattleManager.ObjectPool.SpawnBattleText(false);
+            battleText.SetHeal(healValue);
+            battleText.transform.position = Camera.main.WorldToScreenPoint(this.transform.position);
+            (battleText.transform as RectTransform).anchoredPosition += battleTextCreatePosOffset;
+
+            OutputText(battleText);
+        }
+
+        private void OutputText(BattleTextUI battleText)
+            // 텍스트 출력
+        {
             battleTextQueue.Enqueue(battleText);
 
-            if (battleTextCoroutine == null)
+            if (!isTextOutput)
+            // 텍스트가 출력중이 아니라면
             {
-                battleTextCoroutine = StartCoroutine(battleTextQueueSequence());
+                // 출력 시퀀스 실행
+                StartCoroutine(battleTextQueueSequence());
             }
-
-            //Debug.Log(battleTextQueue.Count);
         }
 
-        public void AddHealText()
+        private IEnumerator battleTextQueueSequence()
+            // 텍스트 출력 시퀀스
         {
-
-        }
-
-        IEnumerator battleTextQueueSequence()
-        {
+            // 출력중 세팅
+            isTextOutput = true;
             while (battleTextQueue.Count > 0)
             {
                 battleTextQueue.Dequeue().gameObject.SetActive(true);
-                //Debug.Log("데미지 텍스트 출력");
+                // 텍스트가 겹치지 않도록 큐에서 순차적으로 꺼내와 출력
                 yield return new WaitForSeconds(battleTextCreateTime);
             }
+            // 출력 끝
+            isTextOutput = false;
         }
     }
 }

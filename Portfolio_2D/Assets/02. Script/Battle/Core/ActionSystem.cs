@@ -6,16 +6,24 @@ using UnityEngine.Events;
 using System;
 using Portfolio.skill;
 
+/*
+ * 전투중 선택 관련 시스템
+ */
+
 namespace Portfolio.Battle
 {
     public class ActionSystem : MonoBehaviour
     {
+        // 현재 플레이어 턴인지
         private bool isPlayerActionTime = false;
+        // 스킬 선택했는지
         private bool isSkillAction = false;
 
-        private List<BattleUnit> selectedUnits;
+        // 현재 선택한 유닛 리스트
+        private List<BattleUnit> selectedUnits = new List<BattleUnit>();
 
         [Header("Grid")]
+        // 모든 전열 후열 그리드 리스트
         [SerializeField] List<GridPosition> unitGrids;
 
         //===========================================================
@@ -24,27 +32,29 @@ namespace Portfolio.Battle
         public bool IsPlayerActionTime { get => isPlayerActionTime; set => isPlayerActionTime = value; }
         public List<BattleUnit> SelectedUnits { get => selectedUnits; set => selectedUnits = value; }
         public bool IsSkillAction { get => isSkillAction; set => isSkillAction = value; }
-
+        // 현재 그리드 리스트에서 유닛이 있고, 생존중인 그리드만 가져온다.
         public IEnumerable<BattleUnit> GetLiveUnit => unitGrids.Where(grid => grid.CurrentUnit != null && !grid.CurrentUnit.IsDead).Select(grid => grid.CurrentUnit);
 
-        private void Awake()
-        {
-            SelectedUnits = new List<BattleUnit>();
-        }
-
         private void SelectedUnit(BattleUnit unit)
+            // 유닛 선택
         {
+            // 선택 리스트에 추가
             SelectedUnits.Add(unit);
+            // 유닛 선택 함수 호출
             unit.Select();
         }
 
         private void UnSelectedUnit(BattleUnit unit)
+            // 선택 해제
         {
+            // 선택 리스트에서 제거
             SelectedUnits.Remove(unit);
+            // 유닛 선택 해제 함수 호출
             unit.UnSelect();
         }
 
         public void ClearSelectedUnits()
+            // 모든 선택 유닛 해제
         {
             foreach (var unit in SelectedUnits)
             {
@@ -55,78 +65,43 @@ namespace Portfolio.Battle
         }
 
         public void SetActiveSkill(ActiveSkill skill)
+            // 액티브 스킬 선택
         {
             isSkillAction = true;
+            // 기존 선택된 유닛 선택 해제
             ClearSelectedUnits();
-            SetHowToTarget(skill);
+            // 해당 액티브 스킬에 맞는 타겟 선정
             SelectSkillTarget(skill);
-            //if (isAutoTarget)
-            //{
-            //    SelectAutoTarget();
-            //}
-        }
-
-        public void SetActiveSkill(ActiveSkill skill, Func<BattleUnit, int> orderby)
-        {
-            isSkillAction = true;
-            ClearSelectedUnits();
-            SetHowToTarget(skill);
-            SelectSkillTarget(skill);
-            //if (isAutoTarget)
-            //{
-            //    SelectAutoTarget();
-            //}
-            //else
-            //{
-            //    SelectAITarget(orderby);
-            //}
-        }
-
-        public void SetHowToTarget(ActiveSkill skill)
-        {
-            if (skill == null)
-            {
-                Debug.Log("skill is null");
-            }
         }
 
         public void SelectSkillTarget(ActiveSkill activeSkill)
         {
+            // 현재 스킬 사용 유닛
             var actionUnit = BattleManager.TurnBaseSystem.CurrentTurnUnit.BattleUnit;
+            // 선택할 수 있는 유닛 리스트
             var targetUnits = unitGrids.Where(grid => grid.CurrentUnit != null && !grid.CurrentUnit.IsDead).ToList();
 
-            //Debug.Log(actionUnit == null);
-            //Debug.Log(targetUnits.Count);
-            //foreach (var targetunit in targetUnits)
-            //{
-            //    Debug.Log(targetunit.name);
-            //}
-
-            var list = activeSkill.SetTarget(actionUnit, targetUnits);
-            foreach (var unit in list)
+            // 해당 액티브 스킬에 맞는 리스트 선정후 선택
+            foreach (var unit in activeSkill.SetTarget(actionUnit, targetUnits))
             {
                 SelectedUnit(unit);
             }
         }
 
-        private bool isUnitAtGrid(GridPosition grid)
-        {
-            return grid.IsUnit;
-        }
+        // 해당 그리드에 유닛이 있는지 확인
+        private bool isUnitAtGrid(GridPosition grid) => grid.IsUnit;
 
         public List<BattleUnit> GetPassiveTargetUnit(PassiveSkill passiveSkill, BattleUnit actionUnit)
+            // 패시브 스킬 대상 확인
         {
+            // TODO
+            // 유닛이 있으며, 죽지 않았고
             var list = unitGrids.
                 Where(grid =>
                     isUnitAtGrid(grid) 
                     && !grid.isDead 
                     && ((actionUnit.IsAlly(grid.CurrentUnit) && passiveSkill.GetData.isAllAlly) || ((actionUnit.IsAlly(grid.CurrentUnit) && passiveSkill.GetData.isAllEnemy)))).
                         Select(grid => grid.CurrentUnit).ToList();
-
-            //foreach (var unit in list)
-            //{
-            //    Debug.Log(unit.name);
-            //}
             return list;
         }
     }

@@ -16,7 +16,7 @@ namespace Portfolio.Battle
         {
             if (GUI.Button(new Rect(10, 10, 190, 100), "碍力 铰府 贸府"))
             {
-                var enemies = battleManager.GetUnitList().Where(unit => unit.IsEnemy && !unit.IsDead);
+                var enemies = battleManager.UnitList.Where(unit => unit.IsEnemy && !unit.IsDead);
                 foreach (var enemy in enemies)
                 {
                     enemy.TakeDamage(enemy.CurrentHP, null, false);
@@ -25,7 +25,7 @@ namespace Portfolio.Battle
 
             if (GUI.Button(new Rect(10, 200, 190, 100), "碍力 菩硅 贸府"))
             {
-                var userUnits = battleManager.GetUnitList().Where(unit => !unit.IsEnemy && !unit.IsDead);
+                var userUnits = battleManager.UnitList.Where(unit => !unit.IsEnemy && !unit.IsDead);
                 foreach (var unit in userUnits)
                 {
                     unit.TakeDamage(unit.CurrentHP, null, false);

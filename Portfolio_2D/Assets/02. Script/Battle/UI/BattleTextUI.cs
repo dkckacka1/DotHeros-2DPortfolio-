@@ -8,7 +8,6 @@ namespace Portfolio.Battle
     public class BattleTextUI : MonoBehaviour
     {
         [SerializeField] TextMeshProUGUI battleText;
-        [SerializeField] float relaseTime = 1f;
 
         [SerializeField] Color damagedColor;
         [SerializeField] Color healedColor;

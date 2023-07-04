@@ -136,11 +136,11 @@ PrefabInstance:
       objectReference: {fileID: 22100000, guid: f6a93afab0df4a844bef2f388c0a8695, type: 2}
     - target: {fileID: 3848287944017989782, guid: 8898834aca0794a409e1e82f006c6540, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3848287944017989782, guid: 8898834aca0794a409e1e82f006c6540, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7066011998833549732, guid: 8898834aca0794a409e1e82f006c6540, type: 3}
       propertyPath: m_Name
@@ -148,7 +148,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7066011998833549732, guid: 8898834aca0794a409e1e82f006c6540, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7066011998833549734, guid: 8898834aca0794a409e1e82f006c6540, type: 3}
       propertyPath: m_RootOrder
@@ -334,11 +334,11 @@ PrefabInstance:
       objectReference: {fileID: 22100000, guid: cebc3b98dafb15846bb552c79652af7c, type: 2}
     - target: {fileID: 3848287944017989782, guid: 8898834aca0794a409e1e82f006c6540, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3848287944017989782, guid: 8898834aca0794a409e1e82f006c6540, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7066011998833549732, guid: 8898834aca0794a409e1e82f006c6540, type: 3}
       propertyPath: m_Name
@@ -346,7 +346,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7066011998833549732, guid: 8898834aca0794a409e1e82f006c6540, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7066011998833549734, guid: 8898834aca0794a409e1e82f006c6540, type: 3}
       propertyPath: m_RootOrder
@@ -552,6 +552,10 @@ PrefabInstance:
     - target: {fileID: 4027465950764824842, guid: 4acaec47fd9448a419176ee42dbb4c30, type: 3}
       propertyPath: m_Name
       value: SkillEffect
+      objectReference: {fileID: 0}
+    - target: {fileID: 4027465950764824842, guid: 4acaec47fd9448a419176ee42dbb4c30, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5412722088630711177, guid: 4acaec47fd9448a419176ee42dbb4c30, type: 3}
       propertyPath: m_Sprite
