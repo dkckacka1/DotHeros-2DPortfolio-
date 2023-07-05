@@ -5,6 +5,10 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
+/*
+ * 그웬 유닛의 기본 공격 스킬 클래스
+ */
+
 namespace Portfolio.skill
 {
     public class Skill_GWEN_BaseAttack : ActiveSkill
@@ -115,10 +119,12 @@ namespace Portfolio.skill
             yield return new WaitForSeconds(1f);
         }
 
+        // 단검을 빙글빙글 돌려주는 메서드
         IEnumerator RotationEffect(SkillEffect effect)
         {
             while (true)
             {
+                // 초당 10번 회전하도록
                 effect.transform.Rotate(new Vector3(0, 0, 3600 * Time.deltaTime));
                 yield return null;
             }

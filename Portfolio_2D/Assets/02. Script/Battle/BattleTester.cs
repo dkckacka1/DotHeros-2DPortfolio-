@@ -3,6 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 
+/*
+ * 전투 중 테스트용 클래스
+ */
+
 namespace Portfolio.Battle
 {
     public class BattleTester : MonoBehaviour

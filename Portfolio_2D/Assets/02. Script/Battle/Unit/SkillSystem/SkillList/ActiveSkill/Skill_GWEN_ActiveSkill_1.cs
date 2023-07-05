@@ -3,6 +3,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/*
+ * 그웬 유닛의 액티브 스킬 1 클래스
+ */
+
 namespace Portfolio.skill
 {
     public class Skill_GWEN_ActiveSkill_1 : ActiveSkill

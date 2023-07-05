@@ -5,33 +5,37 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
+/*
+ *  전투 유닛의 UI를 관리하는 클래스
+ */
+
 namespace Portfolio.Battle
 {
     public class BattleUnitUI : MonoBehaviour
     {
-        [SerializeField] private Canvas unitUICanvas;
+        [SerializeField] private Canvas unitUICanvas;                           // 전투 유닛 UI 그려질 캔버스
 
         [Header("Turn UI")]
-        [SerializeField] private GameObject currentTurnUIObject;
-        [SerializeField] private GameObject targetedUIObject;
-        private BattleUnitSequenceUI unitSequenceUI;
+        [SerializeField] private GameObject currentTurnUIObject;                // 현재 턴 UI 오브젝트
+        [SerializeField] private GameObject targetedUIObject;                   // 타겟당할 때 UI 오브젝트
+        private BattleUnitSequenceUI unitSequenceUI;                            // 턴 진행 UI
 
         [Header("HPBar UI")]
-        [SerializeField] private BattleUnitHPUI unitHPUI;
+        [SerializeField] private BattleUnitHPUI unitHPUI;                       // 유닛 체력바 UI
 
         [Header("Condition UI")]
-        [SerializeField] private RectTransform conditionLayout;
-        [SerializeField] private List<BattleUnitConditionUI> conditionUIList = new List<BattleUnitConditionUI>();
+        [SerializeField] private RectTransform conditionLayout;                 // 상태이상 레이아웃
+        [SerializeField] private List<BattleUnitConditionUI> conditionUIList    // 상태이상 UI 리스트
+            = new List<BattleUnitConditionUI>();
 
         [Header("Skill UI")]
-        private BattleUnitSkillUI skillUI;
+        private BattleUnitSkillUI skillUI;                                      // 유닛 스킬 UI
 
         [Header("BattleText UI")]
-        [SerializeField] Vector2 battleTextCreatePosOffset;
-        [SerializeField] float battleTextCreateTime = 0.01f;
-        Queue<BattleTextUI> battleTextQueue = new Queue<BattleTextUI>();
-        // 텍스트가 출력중인가
-        bool isTextOutput;
+        [SerializeField] Vector2 battleTextCreatePosOffset;                     // 전투 텍스트 출력 위치 오프셋
+        [SerializeField] float battleTextCreateTime = 0.01f;                    // 출력될 전투 텍스트 텀
+        Queue<BattleTextUI> battleTextQueue = new Queue<BattleTextUI>();        // 전투 텍스트 큐
+        bool isTextOutput;                                                      // 텍스트 출력중인지
 
         public BattleUnitSequenceUI UnitSequenceUI { get => unitSequenceUI; }
 
@@ -40,21 +44,7 @@ namespace Portfolio.Battle
             unitUICanvas.worldCamera = Camera.main;
         }
 
-        public void Dead()
-        {
-            conditionLayout.gameObject.SetActive(false);
-            unitSequenceUI.gameObject.SetActive(false);
-            unitHPUI.gameObject.SetActive(false);
-        }
-
-        public void SetCurrentTurnUI(bool isTurn)
-        {
-            currentTurnUIObject.SetActive(isTurn);
-        }
-        public void SetTargetedUI(bool isTarget)
-        {
-            targetedUIObject.SetActive(isTarget);
-        }
+        // 배틀 유닛 생성될 시 세팅
         public void SetBattleUnit(BattleUnit unit)
         {
             unitHPUI.SetHP(unit.MaxHP);
@@ -65,6 +55,27 @@ namespace Portfolio.Battle
             }
         }
 
+        // 유닛 사망시 UI를 숨겨준다.
+        public void Dead()
+        {
+            conditionLayout.gameObject.SetActive(false);
+            unitSequenceUI.gameObject.SetActive(false);
+            unitHPUI.gameObject.SetActive(false);
+        }
+
+        // 현재 턴 설정
+        public void SetCurrentTurnUI(bool isTurn)
+        {
+            currentTurnUIObject.SetActive(isTurn);
+        }
+        
+        // 타겟당할때 설정
+        public void SetTargetedUI(bool isTarget)
+        {
+            targetedUIObject.SetActive(isTarget);
+        }
+
+        // 체력이 변화될때 구독될 이벤트
         public void BattleUnit_OnCurrentHPChangedEvent(object sender, EventArgs e)
         {
             ChangeCurrnetHPEventArgs args = (ChangeCurrnetHPEventArgs)e;
@@ -72,8 +83,10 @@ namespace Portfolio.Battle
             unitHPUI.ChangeHP(args.currentHP);
         }
 
+        // 새로운 상태이상이 걸렸을때
         public BattleUnitConditionUI CreateConditionUI(int count, Condition condition)
         {
+            // 액티브 중이 아닌 상태이상 UI중 첫번째를 골라 상태이상을 출력시킨다.
             var conditionUI = conditionUIList.Where(ui => !ui.gameObject.activeInHierarchy).First();
             conditionUI.ShowCondition(condition);
             conditionUI.SetCount(count);
@@ -81,28 +94,33 @@ namespace Portfolio.Battle
             return conditionUI;
         }
 
+        // 턴 진행 UI를 생성한다.
         public void CreateSequenceUI(BattleUnit battleUnit)
         {
             unitSequenceUI = BattleManager.BattleUIManager.CreateUnitSequenceUI();
             unitSequenceUI.ShowUnit(battleUnit);
         }
 
+        // 플레이어 유닛일 시 스킬 UI를 생성한다.
         public void CreateSkillUI(BattleUnit battleUnit)
         {
             this.skillUI = BattleManager.BattleUIManager.CreateUnitSkillUI();
             this.skillUI.SetUnit(battleUnit);
         }
 
+        // 스킬 UI를 보여준다.
         public void ShowSkillUI()
         {
             skillUI?.ShowSkillUI();
         }
 
+        // 스킬 UI를 숨겨준다.
         public void HideSkillUI()
         {
             skillUI?.HideSkillUI();
         }
 
+        // 스킬 UI를 초기화 시킨다.
         public void ResetSkillUI(BattleUnit unit)
         {
             skillUI?.ResetSkillUI(unit);

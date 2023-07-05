@@ -618,7 +618,7 @@ namespace Portfolio.Battle
             {
                 conditionSystem.CountDown();
                 // 지속시간 진행
-                if (conditionSystem.isCountEnd())
+                if (conditionSystem.isCountEnd)
                     // 지속시간이 끝났다면
                 {
                     // 상태이상을 종료상태로 둔다.
@@ -637,7 +637,7 @@ namespace Portfolio.Battle
             {
                 conditionSystem.CountDown();
                 // 지속시간 진행
-                if (conditionSystem.isCountEnd())
+                if (conditionSystem.isCountEnd)
                     // 지속시간이 끝났다면
                 {
                     for (int i = 0; i < conditionSystem.OverlapingCount; i++)
@@ -672,7 +672,7 @@ namespace Portfolio.Battle
             // 지속시간이 끝난 상태이상을 모두 지워준다.
         {
             // 지워질 상태이상 리스트
-            var removeIDList = conditionDic.Values.Where(conditionSystem => conditionSystem.isCountEnd()).Select(conditionSystem => conditionSystem.Condition.conditionID).ToList();
+            var removeIDList = conditionDic.Values.Where(conditionSystem => conditionSystem.isCountEnd).Select(conditionSystem => conditionSystem.Condition.conditionID).ToList();
             foreach (var id in removeIDList)
             {
                 // 상태이상 Dic에서 제거

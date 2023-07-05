@@ -3,6 +3,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/*
+ * 그웬 유닛의 액티브 스킬 2 클래스
+ */
+
 namespace Portfolio.skill
 {
     public class Skill_GWEN_ActiveSkill_2 : ActiveSkill
@@ -23,6 +27,7 @@ namespace Portfolio.skill
             int conditionTime = 1 + (e.skillLevel);
             foreach (var targetUnit in e.targetUnits)
             {
+                // 타겟에게 칼날 방패 상태이상 부여
                 targetUnit.AddCondition(GetData.conditinID_1, conditionList[0], conditionTime);
                 // 각 타겟의 발밑에서 이펙트 발동
                 var effect = BattleManager.ObjectPool.SpawnSkillEffect();

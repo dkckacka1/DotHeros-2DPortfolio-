@@ -69,7 +69,7 @@ namespace Portfolio.Battle
             unitTurnBase.AddUnitTurnCount(unitTurnBase.BattleUnit.Speed * Time.deltaTime);
 
             //올라간 수치만큼 턴 진행바 위의 높이를 수정해준다.
-            float SequenceUIYNormalizedPos = unitTurnBase.GetCurrentTurnCount() / turnCount;
+            float SequenceUIYNormalizedPos = unitTurnBase.CurrentTurnCount / turnCount;
             BattleManager.BattleUIManager.SequenceUI.SetSequenceUnitUIYPosition(unitTurnBase.UnitSequenceUI, SequenceUIYNormalizedPos);
         }
 

@@ -6,32 +6,36 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
+/*
+ * 스킬의 기본을 만들 추상 클래스
+ */
+
 namespace Portfolio.skill
 {
     public abstract class Skill
     {
-        protected SkillData skillData;
+        protected SkillData skillData;                                  // 스킬 데이터
 
-        public SkillData GetData => skillData;
-        public Sprite skillSprite;
-        public List<Condition> conditionList = new List<Condition>();
+        public SkillData GetData => skillData;                          // 스킬 데이터를 리턴한다.
+        public Sprite skillSprite;                                      // 스킬의 이미지를 표기할 스프라이트
+        public List<Condition> conditionList = new List<Condition>();   // 스킬이 가지고있는 상태이상
 
         public Skill(SkillData skillData)
         {
+            // 데이터를 참조한다.
             this.skillData = skillData;
+            // 스프라이트 이미지를 가져온다.
             this.skillSprite = GameManager.Instance.GetSprite(skillData.skillIconSpriteName);
             if(skillData.conditinID_1 != -1)
+                // 스킬 데이터에서 상태이상이 존재하면
             {
                 if (GameManager.Instance.TryGetCondition(skillData.conditinID_1, out Condition condition_1))
+                    // 상태이상을 가져와 리스트에 넣어준다.
                 {
-                    //Debug.Log("conditionO");
                     conditionList.Add(condition_1);
                 }
-                else
-                {
-                    //Debug.Log("conditionX");
-                }
             }
+
             if (skillData.conditinID_2 != -1)
             {
                 if (GameManager.Instance.TryGetCondition(skillData.conditinID_2, out Condition condition_2))
@@ -39,6 +43,7 @@ namespace Portfolio.skill
                     conditionList.Add(condition_2);
                 }
             }
+
             if (skillData.conditinID_3 != -1)
             {
                 if (GameManager.Instance.TryGetCondition(skillData.conditinID_3, out Condition condition_3))
@@ -46,49 +51,47 @@ namespace Portfolio.skill
                     conditionList.Add(condition_3);
                 }
             }
-            //Debug.Log(skillData.skillName + " " + skillData.conditinID_1 + " " + skillData.conditinID_2 + " " + skillData.conditinID_3 + " : " + conditionList.Count);
         }
 
+        // 스킬을 사용할때 호출되는 가상 함수
         public virtual void Action(object sender, SkillActionEventArgs e)
         {
+            // 스킬을 사용하면 로그에 등록된다.
             BattleManager.BattleUIManager.AddLog(GetLogString(e));
         }
 
-        protected bool TryGetSkillActionArgs(EventArgs args, out SkillActionEventArgs skillargs)
-        {
-
-            if (args != null && args is SkillActionEventArgs)
-            {
-                skillargs = args as SkillActionEventArgs;
-                return true;
-            }
-
-            Debug.LogWarning("Action Eventargs error");
-            skillargs = null;
-            return false;
-        }
-
+        // 로그에 등록될 로그 정보를 만드는 순수 가상 함수
         protected abstract string GetLogString(SkillActionEventArgs e);
 
+        // 스킬 설명을 보여준다.
         public virtual string GetDesc(int skillLevel)
         {
             string desc = string.Empty;
-            object[] values = GetLevelValue();
+            object[] values = GetLevelValue(); // 스킬 레벨에 의해 변경될 수치들
 
             if (values.Length == 0)
+                // 변경될 수치가 없다면
             {
+                // 스킬 설명을 그대로 리턴
                 desc = GetData.skillDesc;
             }
             else
+                // 변경될 수치가 있다면
             {
-                var SetSkillLevelValues = values.Select(value => (float)value * skillLevel).ToArray();
+                float[] SetSkillLevelValues = values.Select(value => (float)value * skillLevel).ToArray();
+                // 스킬 설명을 string.format 방식으로 가져온다.
+                // Cast<object>().ToArray()를 하지않으면 컴파일러가 SetSkillLevelValues을 배열이 아닌 하나의 오브젝트로 판단하여
+                // public static String Format(String format, object arg0); 함수를 호출해버린다.
+                // Cast<object>().ToArray()를 사용해야
+                // public static String Format(String format, params object[] args); 함수를 호출한다.
                 desc = string.Format(GetData.skillDesc, SetSkillLevelValues.Cast<object>().ToArray());
             }
 
             return desc;
         }
 
-        public object[] GetLevelValue()
+        // 스킬 데이터에서 수치를 가져온다.
+        private object[] GetLevelValue()
         {
             List<object> levelValues = new List<object>();
             if (GetData.skillLevelValue_1 != 0)

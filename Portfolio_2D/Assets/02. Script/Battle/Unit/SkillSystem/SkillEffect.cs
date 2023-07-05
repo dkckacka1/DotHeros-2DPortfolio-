@@ -3,15 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 
+/*
+ * 스킬의 연출을 표시할 이펙트 클래스
+ */
+
 namespace Portfolio.Battle
 {
     public class SkillEffect : MonoBehaviour
     {
         Animator animator;
         List<SpriteRenderer> renderers = new List<SpriteRenderer>();
-
-        [Header("LOSAEffectValue")]
-        public float arrowProjectileTime = 0.5f;
 
 
         public void Init()
