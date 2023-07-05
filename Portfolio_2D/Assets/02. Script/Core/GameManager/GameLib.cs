@@ -4,7 +4,7 @@ using System.Text;
 using UnityEngine;
 
 /*
- * 게임 함수 모음 클래스
+ * 게임 함수 모음 static 클래스
  */
 
 namespace Portfolio
@@ -124,7 +124,7 @@ namespace Portfolio
 
 
         // TODO : 정렬 함수 만들어 줘야함
-        public static int UnitBattlePowerSort(Unit arg)
+        public static float UnitBattlePowerSort(Unit arg)
         {
             return arg.battlePower;
         }

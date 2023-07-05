@@ -179,7 +179,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 471089353, guid: 71a835bcbb72e2e4aa7511a1241a0436, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: Select
+      value: BTN_OnClick_Select
       objectReference: {fileID: 0}
     - target: {fileID: 471089353, guid: 71a835bcbb72e2e4aa7511a1241a0436, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName

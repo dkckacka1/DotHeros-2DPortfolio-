@@ -210,9 +210,14 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 451cd109040e0426483bf2ea4aa176ee, type: 3}
   - {fileID: 21300000, guid: eac7c619002dd428db37f41e4fcb9390, type: 3}
   - {fileID: 21300000, guid: 3f37a929d30164a0b95d09e9315e7c5f, type: 3}
+  - {fileID: 1477385965, guid: 68a06039cae2b444cab4e8885fb67081, type: 3}
+  - {fileID: -1034432418, guid: 68a06039cae2b444cab4e8885fb67081, type: 3}
+  - {fileID: 1335355166, guid: 68a06039cae2b444cab4e8885fb67081, type: 3}
+  - {fileID: -339818070, guid: 68a06039cae2b444cab4e8885fb67081, type: 3}
   - {fileID: 369187635, guid: 68a06039cae2b444cab4e8885fb67081, type: 3}
   - {fileID: 285695792, guid: 68a06039cae2b444cab4e8885fb67081, type: 3}
   - {fileID: -733163018, guid: 68a06039cae2b444cab4e8885fb67081, type: 3}
+  - {fileID: -2062657417, guid: 68a06039cae2b444cab4e8885fb67081, type: 3}
   - {fileID: -671318360, guid: 68a06039cae2b444cab4e8885fb67081, type: 3}
   - {fileID: 456713680, guid: 68a06039cae2b444cab4e8885fb67081, type: 3}
   - {fileID: 372501457, guid: 68a06039cae2b444cab4e8885fb67081, type: 3}
@@ -490,9 +495,14 @@ SpriteAtlas:
   - frame_itemframe_00_s1
   - slider_edgetype_02_fill
   - frame_cardframe_00_s_back
+  - 06_11
+  - 06_10
+  - 06_8
+  - 06_9
   - 06_4
   - 06_5
   - 06_6
+  - 06_7
   - 06_0
   - 06_1
   - 06_2

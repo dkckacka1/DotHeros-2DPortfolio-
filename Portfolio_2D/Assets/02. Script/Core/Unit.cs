@@ -6,24 +6,29 @@ using UnityEngine.Events;
 using Portfolio.skill;
 using System.Linq;
 
+/*
+ * 유저 데이터를 토대로 만든 유닛 클래스
+ */
+
 namespace Portfolio
 {
     public class Unit
     {
-        private UnitData unitData;
-        private UserUnitData userUnitData;
-        private int? designatedLevel;
-        private int? designatedGrade;
+        private UnitData unitData;              // 유닛 데이터
+        private UserUnitData userUnitData;      // 유저 유닛 데이터
+        private int? designatedLevel;           // 유저 유닛 데이터가 없다면 표시할 기본 레벨
+        private int? designatedGrade;           // 유저 유닛 데이터가 없다면 표시할 기본 등급
 
-        public ActiveSkill basicAttackSkill;
-        public ActiveSkill activeSkill_1;
-        public ActiveSkill activeSkill_2;
-        public PassiveSkill passiveSkill_1;
-        public PassiveSkill passiveSkill_2;
+        public ActiveSkill basicAttackSkill;    // 기본 공격 스킬
+        public ActiveSkill activeSkill_1;       // 액티브 스킬 1
+        public ActiveSkill activeSkill_2;       // 액티브 스킬 2
+        public PassiveSkill passiveSkill_1;     // 패시브 스킬 1
+        public PassiveSkill passiveSkill_2;     // 패시브 스킬 2
 
         //===========================================================
         // Equipment
         //===========================================================
+        // 장비 아이템은 유저 유닛 데이터에서 가져온다.
         public WeaponData WeaponData
         {
             get
@@ -94,41 +99,37 @@ namespace Portfolio
         //===========================================================
         // Apparence
         //===========================================================
-        public Sprite portraitSprite;
-        public RuntimeAnimatorController animController;
+        public Sprite portraitSprite;                       // 유닛 포트레이트 이미지
+        public RuntimeAnimatorController animController;    // 유닛 애니메이션 컨트롤러
 
         //===========================================================
         // Property
         //===========================================================
-        public UserUnitData UserData
-        {
-            get => userUnitData;
-        }
-        public int UnitID
-        {
-            get => unitData.ID;
-        }
-        public string UnitName
-        {
-            get => unitData.unitName;
-        }
-
+        public UserUnitData UserData => userUnitData;
+        public int UnitID => unitData.ID;
+        public string UnitName => unitData.unitName;
         public int UnitCurrentLevel
         {
             get
             {
                 if (userUnitData != null)
+                // 유저 유닛 데이터가 있다면
                 {
+                    // 유저유닛데이터의 유닛 레벨 리턴
                     return userUnitData.unitLevel;
                 }
                 else
+                // 유저 유닛 데이터가 없다면
                 {
                     if (designatedLevel != null)
+                    // 기본 레벨이 있다면
                     {
+                        // 기본 레벨 표시
                         return (int)designatedLevel;
                     }
                     else
                     {
+                        // 없다면 1 고정값
                         return 1;
                     }
                 }
@@ -136,17 +137,13 @@ namespace Portfolio
             set
             {
                 if (userUnitData != null)
+                // 유저 유닛 데이터가 있다면
                 {
-                    if (value >= UnitMaxLevel)
-                    {
-                        userUnitData.unitLevel = UnitMaxLevel;
-                    }
-                    else
-                    {
-                        userUnitData.unitLevel = value;
-                    }
+                    // UnitMaxLevel 이내의 값으로 설정
+                    userUnitData.unitLevel = Mathf.Clamp(value, 1, UnitMaxLevel);
                 }
                 else
+                // 유저 유닛 데이터가 없다면
                 {
                     designatedLevel = value;
                     return;
@@ -158,17 +155,23 @@ namespace Portfolio
             get
             {
                 if (userUnitData != null)
+                // 유저 유닛 데이터가 있다면
                 {
+                    // 유저 유닛 데이터의 등급 리턴
                     return userUnitData.unitGrade;
                 }
                 else
+                // 유저 유닛 데이터가 없다면
                 {
                     if (designatedGrade != null)
+                    // 기본 유닛 등급이 있다면 
                     {
+                        // 기본 유닛 등급 리턴
                         return (int)designatedGrade;
                     }
                     else
                     {
+                        // 데이터 상의 등급 리턴
                         return unitData.defaultGrade;
                     }
                 }
@@ -176,12 +179,16 @@ namespace Portfolio
             set
             {
                 if (userUnitData != null)
+                // 유저 유닛 데이터가 있다면
                 {
-                    userUnitData.unitGrade = value;
+                    // 유저 유닛의 등급을 설정
+                    userUnitData.unitGrade = Mathf.Clamp(value, 1, 5);
                 }
                 else
+                // 유저 유닛 데이터가 없다면
                 {
-                    designatedGrade = value;
+                    // 기본 유닛 등급을 설정
+                    designatedGrade = Mathf.Clamp(value, 1, 5);
                     return;
                 }
             }
@@ -191,11 +198,15 @@ namespace Portfolio
             get
             {
                 if (userUnitData != null)
+                // 유저 유닛 데이터가 있다면
                 {
+                    // 유저 유닛 등급 * 10이 최대 레벨
                     return userUnitData.unitGrade * 10;
                 }
                 else
+                // 유저 유닛 데이터가 없다면
                 {
+                    // 1 고정값
                     return 1;
                 }
             }
@@ -204,6 +215,7 @@ namespace Portfolio
         {
             get
             {
+                // 유닛 현재 레벨이 최대 레벨인지 확인
                 return UnitCurrentLevel == UnitMaxLevel;
             }
         }
@@ -212,27 +224,37 @@ namespace Portfolio
             get
             {
                 if (userUnitData != null)
+                // 유저 유닛 데이터가 있다면
                 {
+                    // 유저 유닛 데이터의 경험치 리턴
                     return userUnitData.unitExperience;
                 }
                 else
+                // 유저 유닛 데이터가 없다면
                 {
+                    // 0 고정
                     return 0;
                 }
             }
             set
             {
                 if (userUnitData != null)
+                // 유저 유닛 데이터가 있다면
                 {
                     if (value >= MaxExperience)
+                    // 만약 최대 경험치 량을 넘어 선다면
                     {
                         if (IsMaxLevel)
+                        // 이미 최대 레벨 일 경우
                         {
+                            // 경험치는 맥스 경험치로 고정
                             userUnitData.unitExperience = MaxExperience;
                         }
                         else
                         {
+                            // 경험치는 맥스 경험치를 뺀 나머지
                             userUnitData.unitExperience = value - MaxExperience;
+                            // 레벨업 한다.
                             LevelUP();
                         }
                     }
@@ -252,23 +274,29 @@ namespace Portfolio
         {
             get
             {
-                //Debug.Log("최대 경험치 : " + Mathf.Log(10, UnitCurrentLevel));
+                // 유저 현재 레벨 * 1000f 리턴
                 return UnitCurrentLevel * Constant.unitLevelUpExperienceVluae;
             }
         }
+
         public float AttackPoint
         {
             get
             {
+                // 유닛 공격력 가져오기
                 float returnValue = GetProperty(unitData.attackPoint);
+                // 장비 능력치 가져오기
                 if (WeaponData != null)
                 {
                     returnValue += WeaponData.attackPoint;
                 }
 
+                // 합연산 계산
                 returnValue += GetItemOptionValue(EquipmentOptionStat.AttackPoint);
+                // 곱연산 계산
                 returnValue *= (1 + GetItemOptionValue(EquipmentOptionStat.AttackPercent));
 
+                // 소수점 버리기
                 return Mathf.Round(returnValue);
             }
         }
@@ -327,6 +355,7 @@ namespace Portfolio
                 }
 
                 returnValue += GetItemOptionValue(EquipmentOptionStat.CriticalPercent);
+                // 치명타 확률의 최대 수치는 80%
                 return Mathf.Clamp(returnValue, 0, 0.8f);
             }
         }
@@ -342,7 +371,8 @@ namespace Portfolio
                 }
 
                 returnValue += GetItemOptionValue(EquipmentOptionStat.CriticalDamagePercent);
-                return Mathf.Clamp(returnValue, 0, 0.8f);
+                // 치명타 공격력의 최대 수치는 150%
+                return Mathf.Clamp(returnValue, 0, 1.5f);
             }
         }
         public float EffectHit
@@ -356,7 +386,8 @@ namespace Portfolio
                 }
 
                 returnValue += GetItemOptionValue(EquipmentOptionStat.EffectHitPercent);
-                return Mathf.Clamp(returnValue, 0, 0.8f);
+                // 효과 적중의 최대 수치는 200%
+                return Mathf.Clamp(returnValue, 0, 2.0f);
             }
         }
         public float EffectResistance
@@ -370,6 +401,7 @@ namespace Portfolio
                 }
 
                 returnValue += GetItemOptionValue(EquipmentOptionStat.EffectResistancePercent);
+                // 효과 저항력의 최대 수치는 100%
                 return Mathf.Clamp(returnValue, 0, 1f);
             }
         }
@@ -378,18 +410,23 @@ namespace Portfolio
             get
             {
                 if (userUnitData != null)
+                // 유저 유닛 데이터가 있다면
                 {
+                    // 유저 유닛 데이터의 액티브 스킬레벨 1 리턴
                     return userUnitData.activeSkillLevel_1;
                 }
                 else
                 {
+                    // 없다면 1 고정
                     return 1;
                 }
             }
             set
             {
                 if (userUnitData != null)
+                // 유저 유닛 데이터가 있다면
                 {
+                    // 유저 유닛 데이터의 액티브 스킬레벨 1 세팅
                     userUnitData.activeSkillLevel_1 = value;
                 }
                 else
@@ -404,18 +441,23 @@ namespace Portfolio
             get
             {
                 if (userUnitData != null)
+                // 유저 유닛 데이터가 있다면
                 {
+                    // 유저 유닛 데이터의 액티브 스킬레벨 2 리턴
                     return userUnitData.activeSkillLevel_2;
                 }
                 else
                 {
+                    // 없다면 1 고정
                     return 1;
                 }
             }
             set
             {
                 if (userUnitData != null)
+                // 유저 유닛 데이터가 있다면
                 {
+                    // 유저 유닛 데이터의 액티브 스킬레벨 2 세팅
                     userUnitData.activeSkillLevel_2 = value;
                 }
                 else
@@ -430,18 +472,23 @@ namespace Portfolio
             get
             {
                 if (userUnitData != null)
+                // 유저 유닛 데이터가 있다면
                 {
+                    // 유저 유닛 데이터의 패시브 스킬레벨 1 리턴
                     return userUnitData.passiveSkillLevel_1;
                 }
                 else
                 {
+                    // 없다면 1 고정
                     return 1;
                 }
             }
             set
             {
                 if (userUnitData != null)
+                // 유저 유닛 데이터가 있다면
                 {
+                    // 유저 유닛 데이터의 패시브 스킬레벨 1 설정
                     userUnitData.passiveSkillLevel_1 = value;
                 }
                 else
@@ -456,18 +503,23 @@ namespace Portfolio
             get
             {
                 if (userUnitData != null)
+                // 유저 유닛 데이터가 있다면
                 {
+                    // 유저 유닛 데이터의 패시브 스킬레벨 2 리턴
                     return userUnitData.passiveSkillLevel_2;
                 }
                 else
                 {
+                    // 없다면 1 고정
                     return 1;
                 }
             }
             set
             {
                 if (userUnitData != null)
+                // 유저 유닛 데이터가 있다면
                 {
+                    // 유저 유닛 데이터의 패시브 스킬레벨 2 설정
                     userUnitData.passiveSkillLevel_2 = value;
                 }
                 else
@@ -477,22 +529,26 @@ namespace Portfolio
                 }
             }
         }
-        public int battlePower
+        public float battlePower
         {
             get
             {
-                return (int)(AttackPoint + DefencePoint);
+                // ((공격력 * 1.6 + 공격력 * 1.6 * 치명확률 * 치명피해량) * (1 + (속도 - 45) * 0.02) + 채력 + 방어력 * 9.3) * (1 + (저항 + 적중) / 4)
+                return ((AttackPoint * 1.6f + AttackPoint * 1.6f * CriticalPercent * CriticalDamage) * (1 + (Speed - 45) * 0.02f) + HealthPoint + DefencePoint * 9.3f) * (1 + (EffectHit + EffectResistance) / 4);
             }
         }
+
         //===========================================================
         // SetUnit
         //===========================================================
+        // 유닛 데이터를 토대로 한 생성자
         public Unit(UnitData unitData)
         {
             this.unitData = unitData;
             SetUnitData(unitData);
         }
 
+        // 적 유닛을 만들 때 생성자
         public Unit(UnitData unitData, int grade, int level)
         {
             this.unitData = unitData;
@@ -501,6 +557,7 @@ namespace Portfolio
             SetUnitData(unitData);
         }
 
+        // 유저가 가지고 있는 유닛 정보를 토대로한 생성자
         public Unit(UnitData unitData, UserUnitData userUnitData)
         {
             this.unitData = unitData;
@@ -516,6 +573,7 @@ namespace Portfolio
             SetUnitData(unitData);
         }
 
+        // 리소스 세팅
         private void SetUnitData(UnitData unitData)
         {
             portraitSprite = GameManager.Instance.GetSprite(this.unitData.portraitImageName);
@@ -527,6 +585,7 @@ namespace Portfolio
             GameManager.Instance.TryGetSkill(unitData.passiveSkillID_2, out passiveSkill_2);
         }
 
+        // 유닛 등급과 유닛 레벨에 맞춰서 스텟값 리턴 (공격력, 생명력, 방어력만 해당)
         public float GetProperty(float DefaultValue)
         {
             if (userUnitData != null)
@@ -539,6 +598,7 @@ namespace Portfolio
             }
         }
 
+        // 장비의 옵션 스탯 가져오기
         public float GetItemOptionValue(EquipmentOptionStat optionStatType)
         {
             float returnValue = 0;
@@ -569,12 +629,14 @@ namespace Portfolio
             return returnValue;
         }
 
+        // 유닛의 장비 아이템 정보 가져오기
         public IEnumerable<EquipmentItemData> GetEuqipmentList()
         {
             List<EquipmentItemData> list = new List<EquipmentItemData>() { WeaponData, HelmetData, ArmorData, AmuletData, RingData, ShoeData };
             return list.Where(item => item != null);
         }
 
+        // 유닛 레벨업
         private void LevelUP()
         {
             UnitCurrentLevel++;
@@ -583,6 +645,7 @@ namespace Portfolio
         //===========================================================
         // SkillMethod
         //===========================================================
+        // 스킬 레벨업
         public void SkillLevelUp(UnitSkillType skillType, int levelCount = 1)
         {
             switch (skillType)
@@ -602,9 +665,11 @@ namespace Portfolio
             }
         }
 
+        // 스킬 레벨을 가져온다.
         public int GetSkillLevel(UnitSkillType skillType)
         {
             if (userUnitData == null)
+                // 유저 유닛 데이타가 없다면 1 고정
             {
                 return 1;
             }
@@ -628,6 +693,7 @@ namespace Portfolio
         //===========================================================
         // EquipmentMethod
         //===========================================================
+        // 장비아이템을 장착하고 있는지 확인
         public bool IsItemEquipment(EquipmentItemType equipmentType)
         {
             switch (equipmentType)
@@ -635,7 +701,7 @@ namespace Portfolio
                 case EquipmentItemType.Weapon:
                     return WeaponData != null;
                 case EquipmentItemType.Helmet:
-                    return HelmetData != null; 
+                    return HelmetData != null;
                 case EquipmentItemType.Armor:
                     return ArmorData != null;
                 case EquipmentItemType.Amulet:
@@ -649,8 +715,10 @@ namespace Portfolio
             return false;
         }
 
+        // 장비아이템 변경해주기
         public EquipmentItemData ChangeEquipment(EquipmentItemType changeType, EquipmentItemData changeData)
         {
+            // 이미 장착중이라면 해제한다.
             EquipmentItemData existingEquipment = ReleaseEquipment(changeType);
 
             switch (changeType)
@@ -674,9 +742,12 @@ namespace Portfolio
                     ShoeData = changeData as ShoeData;
                     break;
             }
+
+            // 장착 해제한 장비
             return existingEquipment;
         }
 
+        // 장비를 해제한다.
         public EquipmentItemData ReleaseEquipment(EquipmentItemType releaseType)
         {
             EquipmentItemData existingEquipment = null;
@@ -708,6 +779,7 @@ namespace Portfolio
                     break;
             }
 
+            // 장착 해제한 장비 리턴
             return existingEquipment;
         }
     }
