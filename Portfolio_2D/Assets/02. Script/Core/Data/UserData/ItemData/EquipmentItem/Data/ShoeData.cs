@@ -1,13 +1,12 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
+/*
+ * 신발 데이터 클래스
+ */
 
 namespace Portfolio
 {
     [System.Serializable]
     public class ShoeData : EquipmentItemData
     {
-        public float speed;
+        public float speed; // 장비 속도
     }
 }
