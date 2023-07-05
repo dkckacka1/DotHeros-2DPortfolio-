@@ -281,7 +281,7 @@ namespace Portfolio
         //===========================================================
         public void AddConsumableItem(int ID, int count = 1)
         {
-            if (GameManager.Instance.IsData<ConsumableItemData>(ID))
+            if (GameManager.Instance.HasData<ConsumableItemData>(ID))
             {
                 if (UserConsumableItemDic.ContainsKey(ID))
                 {
@@ -331,7 +331,7 @@ namespace Portfolio
 
         public bool IsHaveComsumableItem(int ID, int count = 1)
         {
-            if (GameManager.Instance.IsData<ConsumableItemData>(ID))
+            if (GameManager.Instance.HasData<ConsumableItemData>(ID))
             {
                 if (UserConsumableItemDic.ContainsKey(ID))
                 {

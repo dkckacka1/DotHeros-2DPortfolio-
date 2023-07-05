@@ -3,10 +3,15 @@ using System.Security.Cryptography;
 using System.Text;
 using UnityEngine;
 
+/*
+ * 게임 함수 모음 클래스
+ */
+
 namespace Portfolio
 {
     public static class GameLib
     {
+        // 옵션 스탯 정보에 맞게 텍스트를 출력
         public static string GetOptionStatusText(EquipmentOptionStat optionStat)
         {
             switch (optionStat)
@@ -38,6 +43,7 @@ namespace Portfolio
             return "없음";
         }
 
+        // 장비 아이템 타입 텍스트를 출력
         public static string GetEquipmentTypeText(EquipmentItemType type)
         {
             switch (type)
@@ -59,6 +65,7 @@ namespace Portfolio
             return "없음";
         }
 
+        // 장비 등급 텍스트 출력
         public static string GetGradeTypeText(GradeType type)
         {
             switch (type)
@@ -76,6 +83,7 @@ namespace Portfolio
             return "없음";
         }
 
+        // 장비 속성 텍스트 출력
         public static string GetSetTypeText(SetType type)
         {
             switch (type)
@@ -121,6 +129,7 @@ namespace Portfolio
             return arg.battlePower;
         }
 
+        // 문자열을 해시 변환 해주는 함수
         public static string ComputeSHA256(string s)
         {
             string hash = String.Empty;

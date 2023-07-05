@@ -7,6 +7,6 @@ namespace Portfolio
 {
     public class ItemData  : Data
     {
-        public string itemName;
+        public string itemName; // 아이템 이름
     }
 }

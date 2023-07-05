@@ -27,6 +27,7 @@ namespace Portfolio.Start
 
         public void GotoLobby(UserData loginUserData)
         {
+            // TODO
             GameManager.Instance.LoadData();
             GameManager.Instance.LoadUser(loginUserData);
             SceneLoader.LoadLobbyScene();

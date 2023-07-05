@@ -28,7 +28,7 @@ namespace Portfolio
                 }
                 else
                 {
-                    return GameManager.Instance.IsContainsMap(mapData.ID + 1);
+                    return GameManager.Instance.CheckContainsMap(mapData.ID + 1);
                 }
             }
         }
