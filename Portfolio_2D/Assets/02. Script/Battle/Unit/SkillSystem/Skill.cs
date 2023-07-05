@@ -18,7 +18,7 @@ namespace Portfolio.skill
 
         public SkillData GetData => skillData;                          // 스킬 데이터를 리턴한다.
         public Sprite skillSprite;                                      // 스킬의 이미지를 표기할 스프라이트
-        public List<Condition> conditionList = new List<Condition>();   // 스킬이 가지고있는 상태이상
+        public List<Condition> conditionList = new List<Condition>() { null, null, null };  // 스킬이 가지고있는 상태이상
 
         public Skill(SkillData skillData)
         {
@@ -26,30 +26,60 @@ namespace Portfolio.skill
             this.skillData = skillData;
             // 스프라이트 이미지를 가져온다.
             this.skillSprite = GameManager.Instance.GetSprite(skillData.skillIconSpriteName);
-            if(skillData.conditinID_1 != -1)
+
+
+            if (skillData.conditinID_1 != -1)
                 // 스킬 데이터에서 상태이상이 존재하면
             {
                 if (GameManager.Instance.TryGetCondition(skillData.conditinID_1, out Condition condition_1))
                     // 상태이상을 가져와 리스트에 넣어준다.
                 {
-                    conditionList.Add(condition_1);
+                    conditionList[0] = condition_1;
                 }
+                else
+                    // 상태이상이 존재 하지 않으면
+                {
+                    // null 값 넣기
+                    conditionList[0] = null;
+                }
+            }
+            else
+            // 스킬 데이터에서 상태이상이 존재하지 않으면
+            {
+                // null 값 넣기
+                conditionList[0] = null;
             }
 
             if (skillData.conditinID_2 != -1)
             {
                 if (GameManager.Instance.TryGetCondition(skillData.conditinID_2, out Condition condition_2))
                 {
-                    conditionList.Add(condition_2);
+                    conditionList[1] = condition_2;
                 }
+                else
+                {
+                    conditionList[1] = null;
+                }
+            }
+            else
+            {
+                conditionList[1] = null;
             }
 
             if (skillData.conditinID_3 != -1)
             {
                 if (GameManager.Instance.TryGetCondition(skillData.conditinID_3, out Condition condition_3))
                 {
-                    conditionList.Add(condition_3);
+                    conditionList[2] = condition_3;
                 }
+                else
+                {
+                    conditionList[2] = null;
+                }
+            }
+            else
+            {
+                conditionList[2] = null;
             }
         }
 
