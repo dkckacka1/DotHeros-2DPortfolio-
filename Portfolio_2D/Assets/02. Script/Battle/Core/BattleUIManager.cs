@@ -24,6 +24,7 @@ namespace Portfolio.Battle
         [SerializeField] private BattleUnitSkillUI playerUnitSkillUIPrefab; // 스킬 UI 부모 오브젝트
         [SerializeField] private RectTransform unitSkillUIParent;           // 스킬 UI 프리팹
         [SerializeField] private BattleSkillDescUI battleSkillDescUI;       // 스킬 설명 UI
+        [SerializeField] private BattleUnitDescPopupUI battleUnitDescPopupUI; // 전투 유닛 설명 팝업 UI
 
         [Header("ConfigureCanvas")]
         [SerializeField] private Canvas configureCanvas;                    // 환경 캔버스
@@ -126,6 +127,12 @@ namespace Portfolio.Battle
                 currentTurnUnitNameText.gameObject.SetActive(true);
                 currentTurnUnitNameText.text = unitTurnBase.BattleUnit.Unit.UnitName;
             }
+        }
+
+        // 전투 유닛의 현재 상태를 보여주는 팝업창을 띄어준다.
+        public void ShowBattleUnitDesc(BattleUnit battleUnit)
+        {
+            battleUnitDescPopupUI.Show(battleUnit);
         }
     }
 }

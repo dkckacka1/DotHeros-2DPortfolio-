@@ -35,6 +35,25 @@ namespace Portfolio.Battle
         // 현재 그리드 리스트에서 유닛이 있고, 생존중인 그리드만 가져온다.
         public IEnumerable<BattleUnit> GetLiveUnit => unitGrids.Where(grid => grid.CurrentUnit != null && !grid.CurrentUnit.IsDead).Select(grid => grid.CurrentUnit);
         public int SelectUnitCount => selectedUnits.Count;
+
+        private void Update()
+        {
+            if (BattleManager.Instance.BattleState == BattleState.PLAY)
+            {
+                if (Input.GetMouseButtonDown(0))
+                {
+                    RaycastHit2D hit2D = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
+
+                    if (hit2D.collider?.transform.gameObject.layer == 6)
+                    {
+                        GridPosition grid = hit2D.transform.GetComponent<GridPosition>();
+                        BattleUnit targetUnit = grid.CurrentUnit;
+                        BattleManager.BattleUIManager.ShowBattleUnitDesc(targetUnit);
+                    }
+                }
+            }
+        }
+
         // 유닛 선택
         private void SelectedUnit(BattleUnit unit)
         {
@@ -43,7 +62,6 @@ namespace Portfolio.Battle
             // 유닛 선택 함수 호출
             unit.Select();
         }
-
         private void UnSelectedUnit(BattleUnit unit)
             // 선택 해제
         {
