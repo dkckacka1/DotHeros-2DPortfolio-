@@ -26,6 +26,7 @@ namespace Portfolio
         public List<UserUnitData> unitDataList;                     // 유저 소지 유닛 정보 리스트
 
         // 인벤토리 부문
+        public int maxEquipmentListCount = 50;                      // 최대 소지 장비 갯수
         public List<EquipmentItemData> equipmentItemDataList;       // 유저 소지 장비 아이템 리스트
         public Dictionary<int, int> consumalbeItemDic;              // 유저 소지 소비 아이템 리스트 (KEY : ID, VALUE : COUNT)
 

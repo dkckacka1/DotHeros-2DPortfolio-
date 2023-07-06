@@ -122,6 +122,13 @@ namespace Portfolio
             get => userData.maxUnitListCount;
             set => userData.maxUnitListCount = value;
         }
+
+        public int MaxEquipmentListCount
+        {
+            get => userData.maxEquipmentListCount;
+            set => userData.maxEquipmentListCount = value;
+        }
+
         public bool IsMaxUnitCount => userData.maxUnitListCount == userUnitList.Count;  // 현재 유닛 리스트 갯수가 최대 유닛 리스트와동일한지
         public int ClearHighestMapID
         {

@@ -41,6 +41,12 @@ namespace Portfolio
         public const int summon_1_unitConsumeDiaValue = 30;
         // 열번 소환할 때 소비되는 다이아 량
         public const int summon_10_unitConsumeDiaValue = 270;
+        // 장비 리스트 사이즈 올릴 떄 소비될 다이아 량
+        public const int equipmentListSizeUpDiaConsumeValue = 50;
+        // 장비 리스트 사이즈 올릴 때 올라갈 갯수
+        public const int equipmentListSizeUpCount = 5;
+        // 장비 리스트 최대 사이즈 수
+        public const int equipmentListMaxSizeCount = 100;
 
         //===========================================================
         // RandomValue

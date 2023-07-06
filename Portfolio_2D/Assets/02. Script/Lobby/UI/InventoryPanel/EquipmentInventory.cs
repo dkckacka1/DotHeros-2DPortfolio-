@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Portfolio.UI;
 using UnityEngine.UI;
+using TMPro;
 
 namespace Portfolio.Lobby.Inventory
 {
@@ -10,7 +11,11 @@ namespace Portfolio.Lobby.Inventory
     {
         private List<UnitEquipmentSlotUI> equipmentSlotUIList;
 
+        [SerializeField] TextMeshProUGUI equipmentListSizeText;
         [SerializeField] ScrollRect slotScrollView;
+        [SerializeField] Toggle multipleSelectionToggle;
+
+        public bool IsMultipleSelection => multipleSelectionToggle.isOn;
 
         public void Init()
         {
@@ -35,6 +40,8 @@ namespace Portfolio.Lobby.Inventory
                 equipmentSlotUIList[i].ShowEquipment(list[i]);
                 equipmentSlotUIList[i].gameObject.SetActive(true);
             }
+
+            equipmentListSizeText.text = $"{list.Count} / {GameManager.CurrentUser.MaxEquipmentListCount}";
         }
 
         public Vector2 GetScrollViewMiddlePoint()
