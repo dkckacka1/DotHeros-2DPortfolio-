@@ -12,41 +12,6 @@ namespace Portfolio.Lobby
      
         private void OnGUI()
         {
-
-            if (GUI.Button(new Rect(10, 120, 100, 100), "테스트용 유닛 넣기(1)"))
-            {
-                GameManager.Instance.TryGetData(100, out UnitData unitdata);
-                UserUnitData userUnitData = new UserUnitData(unitdata);
-
-                userUnitData.weaponData = GameManager.ItemCreator.CreateEquipmentItemData<WeaponData>(GradeType.Normal);
-                userUnitData.helmetData = GameManager.ItemCreator.CreateEquipmentItemData<HelmetData>(GradeType.Normal);
-                userUnitData.armorData = GameManager.ItemCreator.CreateEquipmentItemData<ArmorData>(GradeType.Normal);
-                userUnitData.shoeData = GameManager.ItemCreator.CreateEquipmentItemData<ShoeData>(GradeType.Normal);
-                userUnitData.amuletData = GameManager.ItemCreator.CreateEquipmentItemData<AmuletData>(GradeType.Normal);
-                userUnitData.ringData = GameManager.ItemCreator.CreateEquipmentItemData<RingData>(GradeType.Normal);
-
-                GameManager.CurrentUser.AddNewUnit(new Unit(unitdata, userUnitData));
-
-                GameManager.Instance.SaveUser();
-            }
-
-            if (GUI.Button(new Rect(120, 120, 100, 100), "테스트용 유닛 넣기(2)"))
-            {
-                GameManager.Instance.TryGetData(101, out UnitData unitdata);
-                UserUnitData userUnitData = new UserUnitData(unitdata);
-
-                userUnitData.weaponData = GameManager.ItemCreator.CreateEquipmentItemData<WeaponData>(GradeType.Normal);
-                userUnitData.helmetData = GameManager.ItemCreator.CreateEquipmentItemData<HelmetData>(GradeType.Normal);
-                userUnitData.armorData = GameManager.ItemCreator.CreateEquipmentItemData<ArmorData>(GradeType.Normal);
-                userUnitData.shoeData = GameManager.ItemCreator.CreateEquipmentItemData<ShoeData>(GradeType.Normal);
-                userUnitData.amuletData = GameManager.ItemCreator.CreateEquipmentItemData<AmuletData>(GradeType.Normal);
-                userUnitData.ringData = GameManager.ItemCreator.CreateEquipmentItemData<RingData>(GradeType.Normal);
-
-                GameManager.CurrentUser.AddNewUnit(new Unit(unitdata, userUnitData));
-
-                GameManager.Instance.SaveUser();
-            }
-
             if (GUI.Button(new Rect(10, 340, 100, 100), "랜덤 아이템 추가하기"))
             {
                 EquipmentItemData itemData = null;
@@ -76,7 +41,7 @@ namespace Portfolio.Lobby
 
                 if (itemData == null) return;
 
-                GameManager.CurrentUser.userEquipmentItemDataList.Add(itemData);
+                GameManager.CurrentUser.AddEquipmentItem(itemData);
                 GameManager.Instance.SaveUser();
             }
 

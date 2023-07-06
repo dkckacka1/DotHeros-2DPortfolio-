@@ -135,15 +135,5 @@ namespace Portfolio.UI
             HeroPanelUI.SelectEquipmentItem = currentEquipmentData;
             HeroPanelUI.SelectEquipmentItemType = equipmentItemType;
         }
-
-        public void ShowTooltip(InventoryPanel inventoryPanel)
-        {
-            inventoryPanel.ShowTooltip(this.currentEquipmentData, this.transform as RectTransform);
-        }
-
-        public void HideTooltip(InventoryPanel inventoryPanel)
-        {
-            inventoryPanel.HideTooltip();
-        }
     }
 }

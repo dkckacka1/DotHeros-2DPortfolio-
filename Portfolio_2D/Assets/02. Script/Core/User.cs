@@ -13,12 +13,13 @@ namespace Portfolio
     public class User
     {
         private UserData userData;                                  // 유저 데이터
-        public List<Unit> userUnitList;                             // 유저가 가지고 있는 유닛 리스트
-        public List<EquipmentItemData> userEquipmentItemDataList;   // 유저가 가지고 있는 장비 리스트
+        private List<Unit> userUnitList;                             // 유저가 가지고 있는 유닛 리스트
+        private List<EquipmentItemData> userEquipmentItemDataList;   // 유저가 가지고 있는 장비 리스트
 
         //===========================================================
         // Property
         //===========================================================
+        public List<Unit> UserUnitList => userUnitList;
         public Dictionary<int, int> UserConsumableItemDic
         {
             get
@@ -117,19 +118,9 @@ namespace Portfolio
                 GameManager.UIManager.UserInfoUI.ShowDiamond(userData.diamond);
             }
         }
-        public int MaxUnitListCount
-        {
-            get => userData.maxUnitListCount;
-            set => userData.maxUnitListCount = value;
-        }
 
-        public int MaxEquipmentListCount
-        {
-            get => userData.maxEquipmentListCount;
-            set => userData.maxEquipmentListCount = value;
-        }
+        
 
-        public bool IsMaxUnitCount => userData.maxUnitListCount == userUnitList.Count;  // 현재 유닛 리스트 갯수가 최대 유닛 리스트와동일한지
         public int ClearHighestMapID
         {
             get
@@ -213,6 +204,17 @@ namespace Portfolio
         //===========================================================
         // Unit
         //===========================================================
+        // 최대 유닛 리스트 사이즈
+        public int MaxUnitListCount
+        {
+            get => userData.maxUnitListCount;
+            set => userData.maxUnitListCount = value;
+        }
+
+        // 현재 유닛 리스트 갯수가 최대 유닛 리스트와동일한지
+        public bool IsMaxUnitCount => MaxUnitListCount == userUnitList.Count;
+
+
         // 유닛 클래스를 통해서 유닛 추가 (유닛 1명 뽑기)
         public void AddNewUnit(Unit unit)
         {
@@ -239,37 +241,37 @@ namespace Portfolio
         {
             if (unit.WeaponData != null)
             {
-                userEquipmentItemDataList.Add(unit.WeaponData);
+                AddEquipmentItem(unit.WeaponData);
                 unit.WeaponData = null;
             }
 
             if (unit.ArmorData != null)
             {
-                userEquipmentItemDataList.Add(unit.ArmorData);
+                AddEquipmentItem(unit.ArmorData);
                 unit.ArmorData = null;
             }
 
             if (unit.HelmetData != null)
             {
-                userEquipmentItemDataList.Add(unit.HelmetData);
+                AddEquipmentItem(unit.HelmetData);
                 unit.HelmetData = null;
             }
 
             if (unit.ShoeData != null)
             {
-                userEquipmentItemDataList.Add(unit.ShoeData);
+                AddEquipmentItem(unit.ShoeData);
                 unit.ShoeData = null;
             }
 
             if (unit.AmuletData != null)
             {
-                userEquipmentItemDataList.Add(unit.AmuletData);
+                AddEquipmentItem(unit.AmuletData);
                 unit.AmuletData = null;
             }
 
             if (unit.RingData != null)
             {
-                userEquipmentItemDataList.Add(unit.RingData);
+                AddEquipmentItem(unit.RingData);
                 unit.RingData = null;
             }
         }
@@ -295,6 +297,69 @@ namespace Portfolio
         //===========================================================
         // 다이아를 사용할 수 있는지 확인한다.
         public bool CanDIamondConsume(int consumeValue) => userData.diamond >= consumeValue;
+
+        //===========================================================
+        // EquipmentItem
+        //===========================================================
+        // 유저의 장비아이템을 반환합니다.
+        public List<EquipmentItemData> GetInventoryEquipmentItem => userEquipmentItemDataList;
+
+        // 최대 장비 아이템 인벤토리 사이즈
+        public int MaxEquipmentListCount
+        {
+            get => userData.maxEquipmentListCount;
+            set => userData.maxEquipmentListCount = value;
+        }
+
+        // 장비 인벤토리에 여유가 있는지 확인
+        public bool IsMaxEquipmentCount => MaxEquipmentListCount <= GetInventoryEquipmentItem.Count;
+
+        // 모든 유저 유닛의 장비아이템을 반환합니다.
+        public List<EquipmentItemData> GetAllUnitEquipmentItem()
+        {
+            List<EquipmentItemData> equipmentItemList = new List<EquipmentItemData>();
+            foreach (var unit in userUnitList)
+            {
+                equipmentItemList.AddRange(unit.GetAllEquipmentItem());
+            }
+
+            return equipmentItemList;
+        }
+
+        // 장비 인벤토리에 아이템을 추가한다.
+        public void AddEquipmentItem(EquipmentItemData equipmentItemData) => userEquipmentItemDataList.Add(equipmentItemData);
+
+        // 장비 아이템을 인벤토리에 추가해보려 한다.
+        public bool TryAddEquipmentItem(EquipmentItemData equipmentItemData)
+        {
+            if (IsMaxEquipmentCount)
+                // 장비 아이템을 추가할 공간이 없다.
+            {
+                return false;
+            }
+            else
+                // 추가할 공간이 있다.
+            {
+                AddEquipmentItem(equipmentItemData);
+                return true;
+            }
+        }
+
+        // 장비 아이템을 제거해보려 한다.
+        public bool TryRemoveEquipmentItem(EquipmentItemData equipmentItemData)
+        {
+            if (userEquipmentItemDataList.Contains(equipmentItemData))
+                // 장비아이템이 인벤토리에 있다면 제거 성공
+            {
+                userEquipmentItemDataList.Remove(equipmentItemData);
+                return true;
+            }
+            else
+                // 없다면 제거 실패
+            {
+                return false;
+            }
+        }
 
         //===========================================================
         // ConsumableItem

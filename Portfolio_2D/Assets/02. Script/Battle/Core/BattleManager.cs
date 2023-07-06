@@ -106,7 +106,7 @@ namespace Portfolio.Battle
                 }
 
                 // 유저 유닛을 전투력 순으로 정렬 후 userUnitTakeCount 갯수만큼 가져와서 세팅
-                userChoiceUnits = GameManager.CurrentUser.userUnitList.OrderByDescending(GameLib.UnitBattlePowerSort).Take(userUnitTakeCount).ToList();
+                userChoiceUnits = GameManager.CurrentUser.UserUnitList.OrderByDescending(GameLib.UnitBattlePowerSort).Take(userUnitTakeCount).ToList();
                 battleFactory.CreateUserUnit(userChoiceUnits);
 
                 battleUI.ShowMapInfo(currentMap);

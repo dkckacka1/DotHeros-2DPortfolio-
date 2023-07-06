@@ -7,7 +7,7 @@
   "userLevel": 1,
   "userCurrentExperience": 0,
   "gold": 0,
-  "diamond": 0,
+  "diamond": 1000,
   "energy": 35,
   "maxUnitListCount": 30,
   "unitDataList": [
@@ -36,7 +36,24 @@
       "activeSkillLevel_2": 1,
       "passiveSkillLevel_1": 1,
       "passiveSkillLevel_2": 1,
-      "weaponData": null,
+      "weaponData": {
+        "attackPoint": 9.0,
+        "equipmentGrade": 0,
+        "equipmentElementType": 0,
+        "equipmentType": 0,
+        "setType": 4,
+        "reinforceCount": 0,
+        "optionStat_1_Type": -1,
+        "optionStat_1_value": 0.0,
+        "optionStat_2_Type": -1,
+        "optionStat_2_value": 0.0,
+        "optionStat_3_Type": -1,
+        "optionStat_3_value": 0.0,
+        "optionStat_4_Type": -1,
+        "optionStat_4_value": 0.0,
+        "itemName": null,
+        "ID": 0
+      },
       "helmetData": null,
       "armorData": null,
       "amuletData": null,
@@ -92,6 +109,7 @@
       "shoeData": null
     }
   ],
+  "maxEquipmentListCount": 50,
   "equipmentItemDataList": [],
   "consumalbeItemDic": {
     "2000": 10,
@@ -101,5 +119,5 @@
   "clearMapList": [
     999
   ],
-  "LastAccessTime": "2023-07-06T11:36:16.2528062+09:00"
+  "LastAccessTime": "2023-07-06T19:17:07.9207195+09:00"
 }

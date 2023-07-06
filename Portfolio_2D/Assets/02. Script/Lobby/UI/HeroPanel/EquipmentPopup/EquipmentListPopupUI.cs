@@ -65,7 +65,7 @@ namespace Portfolio.Lobby.Hero
         public void ShowEquipmentList(EquipmentItemData equipmentItemData)
         {
             // 유저의 장비아이템을 보여주되 선택한 장비 또는 장비 타입과 같은 것부터 정렬
-            var listOrdered = (from item in GameManager.CurrentUser.userEquipmentItemDataList
+            var listOrdered = (from item in GameManager.CurrentUser.GetInventoryEquipmentItem
                                 orderby (item.equipmentType == equipmentItemData.equipmentType) descending
                                 select item)
                                 .ToList();
@@ -111,7 +111,7 @@ namespace Portfolio.Lobby.Hero
         // 장비 타입으로 리스트 보여주기
         public void ShowEquipmentList(EquipmentItemType itemType)
         {
-            var listOrdered = (from item in GameManager.CurrentUser.userEquipmentItemDataList
+            var listOrdered = (from item in GameManager.CurrentUser.GetInventoryEquipmentItem
                                orderby (item.equipmentType == itemType) descending
                                select item)
                         .ToList();

@@ -715,6 +715,21 @@ namespace Portfolio
             return false;
         }
 
+        // 유닛이 가지고 있는 모든 장비아이템을 반환한다.
+        public List<EquipmentItemData> GetAllEquipmentItem()
+        {
+            List<EquipmentItemData> equipmentItemList = new List<EquipmentItemData>();
+
+            if (WeaponData != null) equipmentItemList.Add(WeaponData);
+            if (ArmorData != null)  equipmentItemList.Add(ArmorData);
+            if (HelmetData != null) equipmentItemList.Add(HelmetData);
+            if (ShoeData != null)   equipmentItemList.Add(ShoeData);
+            if (AmuletData != null) equipmentItemList.Add(AmuletData);
+            if (RingData != null)   equipmentItemList.Add(RingData);
+
+            return equipmentItemList;
+        }
+
         // 장비아이템 변경해주기
         public EquipmentItemData ChangeEquipment(EquipmentItemType changeType, EquipmentItemData changeData)
         {

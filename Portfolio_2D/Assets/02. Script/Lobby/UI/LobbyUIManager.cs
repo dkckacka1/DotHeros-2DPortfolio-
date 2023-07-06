@@ -39,7 +39,7 @@ namespace Portfolio.Lobby
 
         public void ShowMainUnits()
         {
-            var mainUnits = GameManager.CurrentUser.userUnitList.OrderByDescending(unit => unit.UnitCurrentLevel).ThenByDescending(unit => unit.UnitGrade).Take(5).ToList();
+            var mainUnits = GameManager.CurrentUser.UserUnitList.OrderByDescending(unit => unit.UnitCurrentLevel).ThenByDescending(unit => unit.UnitGrade).Take(5).ToList();
             for (int i = 0; i < mainHeros.Length; i++)
             {
                 if (mainUnits.Count <= i)

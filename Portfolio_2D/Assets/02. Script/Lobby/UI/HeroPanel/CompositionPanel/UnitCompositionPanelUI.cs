@@ -223,7 +223,7 @@ namespace Portfolio.Lobby.Hero
                 {
                     // 빼기 전 없앨 유닛이 장비 아이템을 장착 하고 있었던 경우 장비 아이템을 해제 해준다.
                     GameManager.CurrentUser.GetUnitEquipment(slot.CurrentUnit);
-                    GameManager.CurrentUser.userUnitList.Remove(slot.CurrentUnit);
+                    GameManager.CurrentUser.UserUnitList.Remove(slot.CurrentUnit);
                 }
             }
 

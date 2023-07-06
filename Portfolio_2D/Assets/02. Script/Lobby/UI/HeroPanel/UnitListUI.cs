@@ -37,7 +37,7 @@ namespace Portfolio.Lobby.Hero
 
         public void ShowUnitList()
         {
-            var userUnitSortingList = GameManager.CurrentUser.userUnitList.OrderByDescending(GameLib.UnitBattlePowerSort).ToList();
+            var userUnitSortingList = GameManager.CurrentUser.UserUnitList.OrderByDescending(GameLib.UnitBattlePowerSort).ToList();
             for (int i = 0; i < unitSlotList.Count; i++)
             {
                 if (userUnitSortingList.Count <= i)
@@ -68,7 +68,7 @@ namespace Portfolio.Lobby.Hero
 
         public void ShowUnitListCountText()
         {
-            unitListCountText.text = $"{GameManager.CurrentUser.userUnitList.Count} / {GameManager.CurrentUser.MaxUnitListCount}";
+            unitListCountText.text = $"{GameManager.CurrentUser.UserUnitList.Count} / {GameManager.CurrentUser.MaxUnitListCount}";
         }
 
         private void SetSelector<T>(List<T> selectors, bool isTrue) where T : MonoBehaviour

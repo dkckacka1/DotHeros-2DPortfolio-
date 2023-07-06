@@ -68,7 +68,7 @@ namespace Portfolio.Lobby.Summon
             {
                 GameManager.UIManager.ShowAlert("다이아몬드가 부족합니다!");
             }
-            else if (GameManager.CurrentUser.userUnitList.Count + 1 > GameManager.CurrentUser.MaxUnitListCount)
+            else if (GameManager.CurrentUser.UserUnitList.Count + 1 > GameManager.CurrentUser.MaxUnitListCount)
             {
                 GameManager.UIManager.ShowAlert("최대 유닛 개수를 초과힙니다!");
             }
@@ -90,7 +90,7 @@ namespace Portfolio.Lobby.Summon
             {
                 GameManager.UIManager.ShowAlert("다이아몬드가 부족합니다!");
             }
-            else if (GameManager.CurrentUser.userUnitList.Count + 10 > GameManager.CurrentUser.MaxUnitListCount)
+            else if (GameManager.CurrentUser.UserUnitList.Count + 10 > GameManager.CurrentUser.MaxUnitListCount)
             {
                 GameManager.UIManager.ShowAlert("최대 유닛 개수를 초과힙니다!");
             }

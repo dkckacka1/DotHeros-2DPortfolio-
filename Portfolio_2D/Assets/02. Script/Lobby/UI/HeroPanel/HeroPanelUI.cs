@@ -124,7 +124,7 @@ namespace Portfolio.Lobby.Hero
 
         private void Start()
         {
-            SelectUnit = GameManager.CurrentUser.userUnitList[0];
+            SelectUnit = GameManager.CurrentUser.UserUnitList[0];
         }
 
         protected override void OnEnable()
@@ -173,7 +173,7 @@ namespace Portfolio.Lobby.Hero
         public void ShowStatus()
         {
             unitListUI.SetStatus();
-            SelectUnit = GameManager.CurrentUser.userUnitList[0];
+            SelectUnit = GameManager.CurrentUser.UserUnitList[0];
         }
 
         public void ShowComposition()
@@ -254,23 +254,32 @@ namespace Portfolio.Lobby.Hero
 
         public void ReleaseEquipment()
         {
-            var releaseItem = selectUnit.ReleaseEquipment(selectEquipmentItemType);
-            GameManager.CurrentUser.userEquipmentItemDataList.Add(releaseItem);
-            selectEquipmentItem = null;
-            choiceEquipmentItem = null;
+            if (GameManager.CurrentUser.IsMaxEquipmentCount)
+                // 장비 인벤토리에 넣을 공간이 없다면
+            {
+                GameManager.UIManager.ShowAlert("장비를 넣을 공간이 없습니다.\n장비 인벤토리에서 장비를 버려주세요.");
+            }
+            else
+                // 장비 인벤토리에 넣을 공간이 있다면
+            {
+                var releaseItem = selectUnit.ReleaseEquipment(selectEquipmentItemType);
+                GameManager.CurrentUser.AddEquipmentItem(releaseItem);
+                selectEquipmentItem = null;
+                choiceEquipmentItem = null;
 
-            equipmentListPopupUI.UnChoiceList();
-            ReShow();
-            GameManager.Instance.SaveUser();
+                equipmentListPopupUI.UnChoiceList();
+                ReShow();
+                GameManager.Instance.SaveUser();
+            }
         }
 
         public void ChangeEquipment()
         {
-            GameManager.CurrentUser.userEquipmentItemDataList.Remove(choiceEquipmentItem);
+            GameManager.CurrentUser.GetInventoryEquipmentItem.Remove(choiceEquipmentItem);
             var releaseItem = selectUnit.ChangeEquipment(selectEquipmentItemType, choiceEquipmentItem);
             if (releaseItem != null)
             {
-                GameManager.CurrentUser.userEquipmentItemDataList.Add(selectEquipmentItem);
+                GameManager.CurrentUser.AddEquipmentItem(selectEquipmentItem);
             }
 
             selectEquipmentItem = choiceEquipmentItem;
