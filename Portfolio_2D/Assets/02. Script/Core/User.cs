@@ -149,21 +149,24 @@ namespace Portfolio
         //===========================================================
         // SetUserData
         //===========================================================
+        // 유저 데이터를 토대로 만든 생성자
         public User(UserData userData)
         {
             this.userData = userData;
+            // 유저가 가지고 있는 유닛 리스트
             userUnitList = new List<Unit>();
-            userEquipmentItemDataList = new List<EquipmentItemData>();
-
+            // 유저 유닛 데이터로 유닛 데이터를 참조한 후 두 데이터를 통해 유닛을 생성 후 리스트에 넣어준다.
             foreach (var userUnitData in userData.unitDataList)
             {
-                //Debug.Log(userUnitData.unitID);
                 if (GameManager.Instance.TryGetData<UnitData>(userUnitData.unitID, out UnitData unitData))
                 {
                     userUnitList.Add(new Unit(unitData, userUnitData));
                 }
             }
 
+            // 유저가 가지고 있는 장비 리스트
+            userEquipmentItemDataList = new List<EquipmentItemData>();
+            // 장비 데이터의 장비 아이템 타입에 맞춰 장비 아이템을 리스트에 넣어준다.
             foreach (var item in userData.equipmentItemDataList)
             {
                 switch (item.equipmentType)
@@ -189,9 +192,13 @@ namespace Portfolio
                 }
             }
         }
+
+        // 유저에서 유저 데이터를 업데이트해서 리턴해준다.
         public UserData GetSaveUserData()
         {
+            // 유닛 리스트에서 유저 유닛 데이터만 추출해서 유저 데이터에 넣어준다.
             userData.unitDataList = this.userUnitList.Select(item => item.UserData).ToList();
+            // 유저 데이터에서 장비 아이템 데이터를 업데이트 해준다.
             userData.equipmentItemDataList = this.userEquipmentItemDataList;
 
             return userData;
@@ -199,6 +206,7 @@ namespace Portfolio
         //===========================================================
         // Unit
         //===========================================================
+        // 유닛 클래스를 통해서 유닛 추가 (유닛 1명 뽑기)
         public void AddNewUnit(Unit unit)
         {
             userUnitList.Add(unit);
@@ -206,6 +214,7 @@ namespace Portfolio
             GameManager.Instance.SaveUser();
         }
 
+        // 유닛 리스트를 통해서 유닛 추가 (유닛 10명 뽑기)
         public void AddNewUnit(List<Unit> units)
         {
             foreach (var unit in units)
@@ -217,6 +226,8 @@ namespace Portfolio
             GameManager.Instance.SaveUser();
         }
 
+        // 유닛이 장착한 아이템들을 전부 해제한 후 장비 인벤토리에 넣어준다.
+        // 영웅합성 시 사용
         public void GetUnitEquipment(Unit unit)
         {
             if (unit.WeaponData != null)
@@ -256,6 +267,7 @@ namespace Portfolio
             }
         }
 
+        // 유저 유닛 리스트에서 중복이 없도록 리스트를 만든 후 리턴
         public List<Unit> GetUserCollectUnitList()
         {
             List<Unit> userCollectUnitList = new List<Unit>();
@@ -274,20 +286,25 @@ namespace Portfolio
         //===========================================================
         // Resources
         //===========================================================
+        // 다이아를 사용할 수 있는지 확인한다.
         public bool CanDIamondConsume(int consumeValue) => userData.diamond >= consumeValue;
 
         //===========================================================
         // ConsumableItem
         //===========================================================
+        // 소비아이템을 추가한다.
         public void AddConsumableItem(int ID, int count = 1)
         {
             if (GameManager.Instance.HasData<ConsumableItemData>(ID))
+                // 해당  ID를 가진 소비아이템 데이터가 있는지 확인
             {
                 if (UserConsumableItemDic.ContainsKey(ID))
+                    // 이미 인벤토리에 있는 소비아이템이라면 갯수만 더해준다.
                 {
                     UserConsumableItemDic[ID] += count;
                 }
                 else
+                    // 인벤토리에 없는 아이템이라면 KV를 추가한다.
                 {
                     UserConsumableItemDic.Add(ID, count);
                 }
@@ -298,15 +315,19 @@ namespace Portfolio
             }
         }
 
+        // 소비아이템 사용
         public void ConsumItem(int ID, int count = 1)
         {
             if (IsHaveComsumableItem(ID, count))
+                // count 만큼의 갯수를 가지고 있는지 확인한다.
             {
                 if (UserConsumableItemDic[ID] == count)
+                    // 모든 갯수를 사용한다면 KV를 삭제한다.
                 {
                     UserConsumableItemDic.Remove(ID);
                 }
                 else
+                    // 사용하려는 갯수가 가방의 갯수보다 적다면 사용하는 갯수만큼 빼준다.
                 {
                     UserConsumableItemDic[ID] -= count;
                 }
@@ -317,27 +338,34 @@ namespace Portfolio
             }
         }
 
+        // 소비아이템이 몇개 있는지 확인한다.
         public int GetConsumItemCount(int ID)
         {
             if (IsHaveComsumableItem(ID))
+                // 가방에 있는 아이템이면 갯수 리턴
             {
                 return UserConsumableItemDic[ID];
             }
             else
+                // 가방에 없다면 0 고정
             {
                 return 0;
             }
         }
 
+        // 충분한 소비 아이템을 가지고 있는지 확인한다.
         public bool IsHaveComsumableItem(int ID, int count = 1)
         {
             if (GameManager.Instance.HasData<ConsumableItemData>(ID))
+                // 적절한 ID인지 확인
             {
                 if (UserConsumableItemDic.ContainsKey(ID))
+                    // 가방에 있다면 갯수 비교
                 {
                     return UserConsumableItemDic[ID] >= count;
                 }
                 else
+                    // 가방에 없다면 false 고정
                 {
                     return false;
                 }
@@ -351,16 +379,20 @@ namespace Portfolio
         //===========================================================
         // Map
         //===========================================================
+        // mapID 가 내가 클리어한 맵인지 확인한다.
         public bool IsClearMap(int mapID) => userData.clearMapList.Contains(mapID);
 
+        // 맵을 클리어한다.
         public void ClearMap(int mapID)
         {
             if (!IsClearMap(mapID))
+                // 클리어한 맵 리스트에 없다면 추가해준다.
             {
                 userData.clearMapList.Add(mapID);
             }
         }
 
+        // 에너지 여분을 확인한다.
         public bool IsLeftEnergy(int consumeEnergy)
         {
             return CurrentEnergy >= consumeEnergy;

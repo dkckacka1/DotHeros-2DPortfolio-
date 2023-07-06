@@ -1,4 +1,8 @@
-﻿namespace Portfolio
+﻿/*
+ * 모든 Enum을 모아놓은 클래스
+ */
+
+namespace Portfolio
 {
     public enum BattleState
     { 
