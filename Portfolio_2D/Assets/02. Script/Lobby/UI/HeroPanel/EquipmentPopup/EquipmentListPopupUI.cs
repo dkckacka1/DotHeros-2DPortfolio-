@@ -7,17 +7,22 @@ using UnityEngine.UI;
 using System.Linq;
 using Portfolio.UI;
 
+/*
+ * 유닛의 장비 아이템을 변경하기 위한 장비아이템 리스트 팝업 UI 클래스
+ */
+
 namespace Portfolio.Lobby.Hero
 {
     public class EquipmentListPopupUI : MonoBehaviour
     {
-        [SerializeField] List<UnitEquipmentSlotUI> equipmentSlotList;
-        [SerializeField] ScrollRect equipmentListScrollView;
-        [SerializeField] EquipmentTooltip equipmentTooltipUI;
-        [SerializeField] Button equipmentChangeBtn;
-        [SerializeField] Button equipmentDiscardBtn;
-        [SerializeField] TextMeshProUGUI notingText;
+        [SerializeField] List<UnitEquipmentSlotUI> equipmentSlotList;   // 장비 슬롯 리스트
+        [SerializeField] ScrollRect equipmentListScrollView;            // 장비 슬롯의 스크롤 뷰
+        [SerializeField] EquipmentTooltip equipmentTooltipUI;           // 장비아이템에 포인터를 올려놨을 때 표시할 장비아이템 툴팁
+        [SerializeField] Button equipmentChangeBtn;                     // 장비 변경 버튼
+        [SerializeField] Button equipmentDiscardBtn;                    // 장착 해제 버튼
+        [SerializeField] TextMeshProUGUI notingText;                    // 장비 아이템이 없을 때 표시할 텍스트
 
+        // 최초 세팅
         public void Init()
         {
             equipmentSlotList = new List<UnitEquipmentSlotUI>();
@@ -26,6 +31,8 @@ namespace Portfolio.Lobby.Hero
                 equipmentSlotList.Add(slot);
                 slot.GetComponent<EquipmentSelectUI>().Init();
             }
+            
+            // 장비아이템이 변경될 때 이벤트
             LobbyManager.UIManager.equipmentItemDataChangeEvent += ShowList;
         }
 

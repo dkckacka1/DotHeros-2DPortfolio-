@@ -2,6 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/*
+ * 로비 씬에서 사용되는 매니저 클래스
+ */
+
 namespace Portfolio.Lobby
 {
     public class LobbyManager : MonoBehaviour
@@ -9,8 +13,8 @@ namespace Portfolio.Lobby
         //===========================================================
         // Singleton
         //===========================================================
-        private static LobbyManager instance;
-        private static LobbyUIManager uiManager;
+        private static LobbyManager instance;                           // 로비 매니저 싱글턴
+        private static LobbyUIManager uiManager;                        // 로비 UI매니저
         public static LobbyManager Instance { get => instance; }
         public static LobbyUIManager UIManager { get => uiManager; }
 
