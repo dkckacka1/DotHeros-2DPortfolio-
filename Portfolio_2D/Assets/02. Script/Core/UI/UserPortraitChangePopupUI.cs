@@ -3,6 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Selector = Portfolio.UI.UnitSlotSelector_UserPortraitChange; // 셀렉터 이름이 너무 길어서 별명 사용
+
 
 /*
  *  유저 이미지 변경 팝업 UI 클래스
@@ -16,8 +18,8 @@ namespace Portfolio.UI
 
         List<UnitSlotUI> unitSlotUIList = new List<UnitSlotUI>();   // 유저 유닛 포트레이트 리스트
 
-        UserProfilPortraitSelector currentChoice;                   // 현재 사용중인 유저 선택 포트레이트
-        UserProfilPortraitSelector selectPortrait;                  // 현재 선택한 유저 선택 포트레이트
+        Selector currentChoice;                   // 현재 사용중인 유저 선택 포트레이트
+        Selector selectPortrait;                  // 현재 선택한 유저 선택 포트레이트
 
         public void Awake()
         {
@@ -35,7 +37,7 @@ namespace Portfolio.UI
             selectPortrait = null;
             foreach (var slot in unitSlotUIList)
             {
-                slot.GetComponent<UserProfilPortraitSelector>().UnSelect();
+                slot.GetComponent<Selector>().UnSelect();
             }
         }
 
@@ -62,7 +64,7 @@ namespace Portfolio.UI
                     // 현재 유닛 슬롯 이미지가 유저 이미지 포트레이트 이름과 같다면
                 {
                     // 현재 사용중 이미지 표시
-                    currentChoice = unitSlotUIList[i].GetComponent<UserProfilPortraitSelector>();
+                    currentChoice = unitSlotUIList[i].GetComponent<UnitSlotSelector_UserPortraitChange>();
                     currentChoice.CurrentChoice();
                 }
 
@@ -71,7 +73,7 @@ namespace Portfolio.UI
         }
 
         // 유저 포트레이트 이미지를 선택한다.
-        public void SelectPortrait(UserProfilPortraitSelector userProfilPortraitSelector)
+        public void SelectPortrait(Selector userProfilPortraitSelector)
         {
             if (selectPortrait != null)
                 // 기존 선택한 이미지가 있다면 선택 취소 해준다.

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using Selector = Portfolio.Lobby.Hero.Composition.UnitSlotSelector_HeroComposition; // 클래스 이름이 너무 길어서 별칭 사용
 
 /*
  * 영웅 합성창에서의 유닛 슬롯 UI 클래스
@@ -20,10 +21,10 @@ namespace Portfolio.Lobby.Hero
         [SerializeField] Sprite defaultSprite;                              // 빈칸일 때 표시할 스프라이트
         [SerializeField] Image selectImage;                                 // 현재 들어가야할 슬롯 표시할 이미지
 
-        [HideInInspector] public UnitSlotHeroCompositionSelector selector;  // 현재 선택한 유닛 슬롯 UI 셀렉터
+        [HideInInspector] public Selector selector;  // 현재 선택한 유닛 슬롯 UI 셀렉터
         private bool isSelect;                                              // 현재 선택 되었는지
         Unit unit;                                                          // 보여줄 유닛
-                                                                            // 
+
         public Unit CurrentUnit
         {
             get => unit;

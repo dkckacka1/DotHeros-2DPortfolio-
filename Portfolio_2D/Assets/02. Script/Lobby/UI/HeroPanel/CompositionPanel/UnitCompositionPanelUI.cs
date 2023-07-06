@@ -5,12 +5,13 @@ using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using Selector = Portfolio.Lobby.Hero.Composition.UnitSlotSelector_HeroComposition;
 
 /*
  * 영웅 합성 창 UI 클래스
  */
 
-namespace Portfolio.Lobby.Hero
+namespace Portfolio.Lobby.Hero.Composition
 {
     public class UnitCompositionPanelUI : MonoBehaviour
     {
@@ -82,7 +83,7 @@ namespace Portfolio.Lobby.Hero
         }
 
         // 슬롯에 유닛을 넣는다.
-        public void InsertUnit(UnitSlotHeroCompositionSelector selector)
+        public void InsertUnit(Selector selector)
         {
             // 넣을 슬롯이 null 이면 리턴
             if (selectedCompositionUnitSlot == null) return;
@@ -161,7 +162,7 @@ namespace Portfolio.Lobby.Hero
         }
 
         // 메인 슬롯에 유닛을 넣었을 때
-        private void SetMainUnit(UnitSlotHeroCompositionSelector mainSelector)
+        private void SetMainUnit(Selector mainSelector)
         {
             // 넣어야할 유닛은 메인 유닛의 등급 + 1 개 (이미 메인슬롯에 한개가 들어가 있기 때문)
             putInUnitCount = mainSelector.CurrentUnit.UnitGrade + 1;

@@ -14,7 +14,7 @@ namespace Portfolio.Lobby.Hero
         [SerializeField] Button reinforceBtn;
 
         [Header("Equipment Data")]
-        [SerializeField] UnitEquipmentSlotUI equipmentSlotUI;
+        [SerializeField] EquipmentItemSlot equipmentSlotUI;
         [SerializeField] TextMeshProUGUI equipmentNameText;
         [SerializeField] TextMeshProUGUI equipmentSetText;
         [SerializeField] Sprite[] defualtEquipmentSprits;

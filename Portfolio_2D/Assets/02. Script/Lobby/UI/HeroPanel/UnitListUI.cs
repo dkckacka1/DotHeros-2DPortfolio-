@@ -1,11 +1,11 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 using Portfolio.UI;
 using System.Linq;
-using System;
+using HeroSelector = Portfolio.Lobby.Hero.UnitSlotSelector_HeroStatus;                          // // 클래스 이름이 너무 길어서 별칭 사용
+using CompositionSelector = Portfolio.Lobby.Hero.Composition.UnitSlotSelector_HeroComposition;  // // 클래스 이름이 너무 길어서 별칭 사용
 
 namespace Portfolio.Lobby.Hero
 {
@@ -15,8 +15,8 @@ namespace Portfolio.Lobby.Hero
         [SerializeField] ScrollRect unitScrollView;
         [SerializeField] TextMeshProUGUI unitListCountText;
 
-        List<UnitSlotHeroStatusSelector> unitSlotHeroStatusSelectors = new List<UnitSlotHeroStatusSelector>();
-        List<UnitSlotHeroCompositionSelector> unitSlotHeroCompositionSelectors = new List<UnitSlotHeroCompositionSelector>();
+        List<HeroSelector> unitSlotHeroStatusSelectors = new List<HeroSelector>();
+        List<CompositionSelector> unitSlotHeroCompositionSelectors = new List<CompositionSelector>();
 
 
         public void Init()
@@ -25,8 +25,8 @@ namespace Portfolio.Lobby.Hero
             foreach (var slot in unitScrollView.content.GetComponentsInChildren<UnitSlotUI>())
             {
                 unitSlotList.Add(slot);
-                unitSlotHeroStatusSelectors.Add(slot.GetComponent<UnitSlotHeroStatusSelector>());
-                unitSlotHeroCompositionSelectors.Add(slot.GetComponent<UnitSlotHeroCompositionSelector>());
+                unitSlotHeroStatusSelectors.Add(slot.GetComponent<HeroSelector>());
+                unitSlotHeroCompositionSelectors.Add(slot.GetComponent<CompositionSelector>());
             }
         }
 
@@ -93,7 +93,7 @@ namespace Portfolio.Lobby.Hero
             }
         }
 
-        public void SetCompositionList(UnitSlotHeroCompositionSelector mainSelector)
+        public void SetCompositionList(CompositionSelector mainSelector)
         {
             var siblingList = unitSlotList.Where(slot => slot.gameObject.activeInHierarchy && slot.CurrentUnit.UnitID == mainSelector.CurrentUnit.UnitID).
                 OrderByDescending(slot => slot.CurrentUnit == mainSelector.CurrentUnit).                // 메인 합성 유닛부터 표시
@@ -106,12 +106,11 @@ namespace Portfolio.Lobby.Hero
 
             var list = unitSlotList.Where(slot => slot.gameObject.activeInHierarchy).
                 Where(slot => slot.CurrentUnit.UnitID != mainSelector.CurrentUnit.UnitID || slot.CurrentUnit.UnitGrade != mainSelector.CurrentUnit.UnitGrade);
-                //Select(slot => slot.GetComponent<UnitSlotHeroCompositionSelector>().CanSelect = false) ;
                 
             foreach (var item in list)
             {
-                Debug.Log(item.GetComponent<UnitSlotHeroCompositionSelector>() == null);
-                item.GetComponent<UnitSlotHeroCompositionSelector>().CanSelect = false;
+                Debug.Log(item.GetComponent<CompositionSelector>() == null);
+                item.GetComponent<CompositionSelector>().CanSelect = false;
             }
         }
 

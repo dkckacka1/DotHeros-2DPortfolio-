@@ -1,3 +1,4 @@
+using Portfolio.Lobby.Hero.Composition;
 using Portfolio.skill;
 using System.Collections;
 using System.Collections.Generic;
@@ -16,7 +17,7 @@ namespace Portfolio.Lobby.Hero
         [Header("Panel")]
         [SerializeField] UnitListUI unitListUI;
         [SerializeField] UnitStatusUI unitStatusUI;
-        [SerializeField] UnitEquipmentUI unitEquipmentUI;
+        [SerializeField] UnitEquipmentPanelUI unitEquipmentUI;
         [SerializeField] UnitSkillPanelUI unitSkillPanelUI;
         [SerializeField] UnitCompositionPanelUI unitCompositionPanelUI;
 
@@ -267,7 +268,7 @@ namespace Portfolio.Lobby.Hero
                 selectEquipmentItem = null;
                 choiceEquipmentItem = null;
 
-                equipmentListPopupUI.UnChoiceList();
+                equipmentListPopupUI.ChoiceItemReset();
                 ReShow();
                 GameManager.Instance.SaveUser();
             }
@@ -284,7 +285,7 @@ namespace Portfolio.Lobby.Hero
 
             selectEquipmentItem = choiceEquipmentItem;
             choiceEquipmentItem = null;
-            equipmentListPopupUI.UnChoiceList();
+            equipmentListPopupUI.ChoiceItemReset();
             ReShow();
             GameManager.Instance.SaveUser();
         }

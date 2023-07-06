@@ -204,7 +204,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1348488510812059173}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 10bc76a44865f5445a9ca5f89008249c, type: 3}
+  m_Script: {fileID: 11500000, guid: 3c86e12851375cf4e80c9226a40a1fd3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   equipmentItemType: 0
@@ -214,9 +214,9 @@ MonoBehaviour:
   reinforceCountText: {fileID: 429693665056927710}
   spriteScaleOffset: {x: 0, y: 0, z: 0}
   weaponSprite: {fileID: 21300000, guid: 93d97a4398691495c8a11dfc794b89e0, type: 3}
-  helmetSprite: {fileID: 21300000, guid: ded77ef94631d425787fb06ea53496fa, type: 3}
+  helmetSprite: {fileID: 21300000, guid: 068f39a5261e94c84a25db700fa75af3, type: 3}
   armorSprite: {fileID: 21300000, guid: 6fd0c242a45d6472cb3533e9f7dbf179, type: 3}
-  shoeSprite: {fileID: 21300000, guid: 82b8b2544f0ce4164a31119e70601d03, type: 3}
+  shoeSprite: {fileID: 21300000, guid: 509f6258c730641ed8611f36650b568f, type: 3}
   amuletSprite: {fileID: 21300000, guid: 8ca268967a08f8c4d85965310f08f83e, type: 3}
   ringSprite: {fileID: 21300000, guid: 9e214ce8e73474c55a9b0d279bb7bb0e, type: 3}
 --- !u!114 &2452188451700603041
