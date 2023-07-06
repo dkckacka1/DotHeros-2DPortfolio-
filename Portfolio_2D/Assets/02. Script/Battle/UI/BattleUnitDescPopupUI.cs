@@ -26,15 +26,17 @@ namespace Portfolio.Battle
         [SerializeField] TextMeshProUGUI battleUnitEffectHitText;           // 유닛 효과 적중률 텍스트 
         [SerializeField] TextMeshProUGUI battleUnitEffectResText;           // 유닛 효과 저항력 텍스트 
 
+        [SerializeField] List<BattleUnitDescConditionUI> conditionDescUIList;
+
         // 전투 유닛의 현재 상태 보여준다.
         public void Show(BattleUnit battleUnit)
         {
             // 이미 활성화 된 상태라면 리턴
             if (this.gameObject.activeInHierarchy) return;
 
-            unitSlotUI.Init(battleUnit.Unit, false, false);
+            unitSlotUI.Init(battleUnit.Unit, false, true);
             battleUnitNameText.text = battleUnit.Unit.UnitName;
-            battleUnitLevelText.text = battleUnit.Unit.UnitCurrentLevel.ToString();
+            battleUnitLevelText.text = "LV :"+ battleUnit.Unit.UnitCurrentLevel.ToString();
 
             battleUnitAttackPointText.text = battleUnit.AttackPoint.ToString();
             battleUnitHealthPointText.text = $"{battleUnit.CurrentHP} / {battleUnit.MaxHP}";
@@ -44,6 +46,19 @@ namespace Portfolio.Battle
             battleUnitCriticalDamageText.text = (battleUnit.CriticalDamage * 100).ToString("00") + "%";
             battleUnitEffectHitText.text = (battleUnit.EffectHit * 100).ToString("00") + "%";
             battleUnitEffectResText.text = (battleUnit.EffectResistance * 100).ToString("00") + "%";
+
+            var hasConditionSystemList = battleUnit.GetActiveConditionSystems;
+
+            for(int i = 0; i < conditionDescUIList.Count; i++)
+            {
+                if(hasConditionSystemList.Count <= i)
+                {
+                    conditionDescUIList[i].Show(null);
+                    continue;
+                }
+
+                conditionDescUIList[i].Show(hasConditionSystemList[i]);
+            }
 
             this.gameObject.SetActive(true);
         }

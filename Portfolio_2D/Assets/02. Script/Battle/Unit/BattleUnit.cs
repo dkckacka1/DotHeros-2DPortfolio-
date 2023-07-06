@@ -561,6 +561,8 @@ namespace Portfolio.Battle
         //===========================================================
         #region AbnormalConditionSystem
 
+        // 현재 걸린 상태이상을 가져온다.
+        public List<ConditionSystem> GetActiveConditionSystems => conditionDic.Values.ToList();
         // 상태이상 ID로 현재 상태이상을 가지고 있는지 확인
         public bool HasCondition(int conditionID) => conditionDic.ContainsKey(conditionID);
         // 상태이상 클래스로 현재 상태이상을 가지고 있는지 확인
@@ -691,7 +693,6 @@ namespace Portfolio.Battle
             // 상태이상 Dic 초기화
             conditionDic.Clear();
         }
-
 
 
         #endregion
