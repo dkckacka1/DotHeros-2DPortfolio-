@@ -59,7 +59,7 @@ namespace Portfolio.UI
                 }
 
                 // 유닛 슬롯 세팅
-                unitSlotUIList[i].Init(collectList[i], false, false);
+                unitSlotUIList[i].ShowUnit(collectList[i], false, false);
                 if (unitSlotUIList[i].CurrentUnit.portraitSprite.name == currentPortraitName)
                     // 현재 유닛 슬롯 이미지가 유저 이미지 포트레이트 이름과 같다면
                 {

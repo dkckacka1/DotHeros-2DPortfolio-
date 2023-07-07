@@ -6,10 +6,12 @@ using Portfolio.UI;
 
 /*
  * 유닛 합성 패널에 사용되는 유닛 슬롯 UI 셀렉터 클래스
+ * 유닛 슬롯 컴포넌트가 부착된 오브젝트에만 부착할 수있다.
  */
 
 namespace Portfolio.Lobby.Hero.Composition
 {
+    [RequireComponent(typeof(UnitSlotUI))]
     public class UnitSlotSelector_HeroComposition : MonoBehaviour
     {
         UnitSlotUI unitSlotUI;                         // 유닛 슬롯 UI

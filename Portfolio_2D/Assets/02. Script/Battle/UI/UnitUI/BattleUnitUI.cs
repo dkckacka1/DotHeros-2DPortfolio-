@@ -151,9 +151,16 @@ namespace Portfolio.Battle
             OutputText(battleText);
         }
 
+        // 마나텍스트 입력
         public void AddManaText(int manaValue)
         {
+            Debug.Log("마나 회복");
+            var battleText = BattleManager.ObjectPool.SpawnBattleText(false);
+            battleText.SetMana(manaValue);
+            battleText.transform.position = Camera.main.WorldToScreenPoint(this.transform.position);
+            (battleText.transform as RectTransform).anchoredPosition += battleTextCreatePosOffset;
 
+            OutputText(battleText);
         }
 
         private void OutputText(BattleTextUI battleText)

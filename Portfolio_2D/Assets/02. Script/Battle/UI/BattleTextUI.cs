@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -16,6 +17,7 @@ namespace Portfolio.Battle
 
         [SerializeField] Color damagedColor;        // 데미지를 입었을때의 텍스트 색
         [SerializeField] Color healedColor;         // 체력이 회복될 때의 텍스트 색
+        [SerializeField] Color manaColor;           // 마나이 회복될 때의 텍스트 색
 
         // 데미지 텍스트가 들어온다.
         public void SetDamage(int damage)
@@ -31,11 +33,20 @@ namespace Portfolio.Battle
             battleText.text = heal.ToString();
         }
 
+        // 마나 텍스트가 들어온다.
+        public void SetMana(int manaValue)
+        {
+            battleText.color = manaColor;
+            battleText.text = manaValue.ToString();
+        }
+
         // 전투 텍스트의 애니메이션이 종료될 경우 오브젝트 풀로 반환된다.
         public void AnimationEvent_Release()
         {
             BattleManager.ObjectPool.ReleaseBattleText(this);
         }
+
+
     }
 
 }

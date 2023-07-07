@@ -49,7 +49,7 @@ namespace Portfolio.Lobby.Summon
                     continue;
                 }
 
-                unitSlotUIList[i].Init(gradeOneUnitList[i], false);
+                unitSlotUIList[i].ShowUnit(gradeOneUnitList[i], false);
                 unitSlotUIList[i].GetComponent<UnitSlotProbabilityUI>().Show(probability);
                 unitSlotUIList[i].gameObject.SetActive(true);
             }
@@ -69,7 +69,7 @@ namespace Portfolio.Lobby.Summon
                     continue;
                 }
 
-                unitSlotUIList[i].Init(gradeTwoUnitList[i], false);
+                unitSlotUIList[i].ShowUnit(gradeTwoUnitList[i], false);
                 unitSlotUIList[i].GetComponent<UnitSlotProbabilityUI>().Show(probability);
                 unitSlotUIList[i].gameObject.SetActive(true);
             }
@@ -89,7 +89,7 @@ namespace Portfolio.Lobby.Summon
                     continue;
                 }
 
-                unitSlotUIList[i].Init(gradethreeUnitList[i], false);
+                unitSlotUIList[i].ShowUnit(gradethreeUnitList[i], false);
                 unitSlotUIList[i].GetComponent<UnitSlotProbabilityUI>().Show(probability);
                 unitSlotUIList[i].gameObject.SetActive(true);
             }

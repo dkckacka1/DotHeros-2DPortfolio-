@@ -31,7 +31,7 @@ namespace Portfolio.WorldMap
         {
             if (!isSelect)
             {
-                targetUnitUI.UnitSlotUI.Init(mineSlot.CurrentUnit, false, false);
+                targetUnitUI.UnitSlotUI.ShowUnit(mineSlot.CurrentUnit, false, false);
                 targetUnitUI.selectFomationSlotUI = this;
                 targetUnitUI.gameObject.SetActive(true);
                 targetUnitUI.transform.position = eventData.position;

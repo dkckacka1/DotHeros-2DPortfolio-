@@ -24,7 +24,7 @@ namespace Portfolio.Battle
         // 유닛의 정보, 레벨과 경험치를 표시한다.
         public void InitSlot(Unit unit,float getExperience)
         {
-            unitSlotUI.Init(unit);
+            unitSlotUI.ShowUnit(unit);
             unitLevel = unit.UnitCurrentLevel;
             unitGrade = unit.UnitGrade;
             unitExperienceSlider.maxValue = unit.MaxExperience;

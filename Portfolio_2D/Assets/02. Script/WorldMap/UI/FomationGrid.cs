@@ -33,7 +33,7 @@ namespace Portfolio.WorldMap
 
             if (isUnit)
             {
-                unitSlotUI.Init(unit);
+                unitSlotUI.ShowUnit(unit);
                 unitNameText.text = unit.UnitName;
             }
         }
@@ -73,7 +73,7 @@ namespace Portfolio.WorldMap
 
             currentFomationSlotUI.UnSelect();
             currentFomationSlotUI = null;
-            unitSlotUI.Init(null, true, true);
+            unitSlotUI.ShowUnit(null, true, true);
             ReShow();
 
             btnLayout.gameObject.SetActive(false);

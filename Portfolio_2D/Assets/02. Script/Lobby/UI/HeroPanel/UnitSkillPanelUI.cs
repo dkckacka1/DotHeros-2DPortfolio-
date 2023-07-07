@@ -25,10 +25,10 @@ namespace Portfolio.Lobby.Hero
             Unit unit = HeroPanelUI.SelectUnit;
             if (unit == null) return;
 
-            activeSkilll_1_UI.Init(unit.activeSkill_1, unit.ActiveSkillLevel_1, true, UnitSkillType.ActiveSkill_1);
-            activeSkilll_2_UI.Init(unit.activeSkill_2, unit.ActiveSkillLevel_2, true, UnitSkillType.ActiveSkill_2);
-            passiveSkill_1_UI.Init(unit.passiveSkill_1, unit.PassiveSkillLevel_1, true, UnitSkillType.PassiveSkill_1);
-            passiveSkill_2_UI.Init(unit.passiveSkill_2, unit.PassiveSkillLevel_2, true, UnitSkillType.PassiveSkill_2);
+            activeSkilll_1_UI.Show(unit.activeSkill_1, unit.ActiveSkillLevel_1, true, UnitSkillType.ActiveSkill_1);
+            activeSkilll_2_UI.Show(unit.activeSkill_2, unit.ActiveSkillLevel_2, true, UnitSkillType.ActiveSkill_2);
+            passiveSkill_1_UI.Show(unit.passiveSkill_1, unit.PassiveSkillLevel_1, true, UnitSkillType.PassiveSkill_1);
+            passiveSkill_2_UI.Show(unit.passiveSkill_2, unit.PassiveSkillLevel_2, true, UnitSkillType.PassiveSkill_2);
         }
 
         public void Undo()

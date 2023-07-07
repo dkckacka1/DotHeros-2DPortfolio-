@@ -8,7 +8,7 @@ using UnityEngine.UI;
 
 namespace Portfolio.Lobby.Hero
 {
-    public class SkillLevelUpUI : MonoBehaviour
+    public class SkillLevelUpPanelUI : MonoBehaviour
     {
         [SerializeField] UnitSkillUI prevSkillUI;
         [SerializeField] UnitSkillUI afterSkillUI;
@@ -36,7 +36,7 @@ namespace Portfolio.Lobby.Hero
             if (selectSkill == null) return;
             
             plusPotionBtn.interactable = GameManager.CurrentUser.GetConsumItemCount(2003) != 0;
-            prevSkillUI.Init(selectSkill, HeroPanelUI.SelectSkillLevel, false);
+            prevSkillUI.Show(selectSkill, HeroPanelUI.SelectSkillLevel, false);
             ShowAfterSkill(selectSkill);
             potionCountText.text = (GameManager.CurrentUser.GetConsumItemCount(2003) - potionCount).ToString();
             BtnSet();
@@ -44,7 +44,7 @@ namespace Portfolio.Lobby.Hero
 
         private void ShowAfterSkill(Skill skill)
         {
-            afterSkillUI.Init(skill, HeroPanelUI.SelectSkillLevel + potionCount, false);
+            afterSkillUI.Show(skill, HeroPanelUI.SelectSkillLevel + potionCount, false);
         }
 
         public void BTN_ONCLICK_AddPotion()

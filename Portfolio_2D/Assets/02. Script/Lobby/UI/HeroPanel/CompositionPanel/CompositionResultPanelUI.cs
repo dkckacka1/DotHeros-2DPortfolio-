@@ -22,7 +22,7 @@ namespace Portfolio.Lobby.Hero.Composition
             this.gameObject.SetActive(true);
 
             // 유닛 슬롯과 이름을 설정한다.
-            unitSlotUI.Init(unit, false, false);
+            unitSlotUI.ShowUnit(unit, false, false);
             unitNameText.text = unit.UnitName;
 
             // 유닛 등급에 맞게 별 활성화

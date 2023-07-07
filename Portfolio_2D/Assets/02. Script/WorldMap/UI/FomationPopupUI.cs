@@ -58,7 +58,7 @@ namespace Portfolio.WorldMap
                     continue;
                 }
 
-                unitSlotList[i].Init(userUnitList[i]);
+                unitSlotList[i].ShowUnit(userUnitList[i]);
                 unitSlotList[i].gameObject.SetActive(true);
             }
         }

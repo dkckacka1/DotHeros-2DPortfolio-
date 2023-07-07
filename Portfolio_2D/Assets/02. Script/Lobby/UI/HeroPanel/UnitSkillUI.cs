@@ -22,7 +22,7 @@ namespace Portfolio.Lobby.Hero
         [SerializeField] TextMeshProUGUI skillDescText;
         [SerializeField] Button skillLevelUpBtn;
 
-        public void Init(Skill skill, int skillLevel, bool showSkillLevelUpBtn = true, UnitSkillType unitSkillType = UnitSkillType.ActiveSkill_1)
+        public void Show(Skill skill, int skillLevel, bool showSkillLevelUpBtn = true, UnitSkillType unitSkillType = UnitSkillType.ActiveSkill_1)
         {
             if (skill == null)
             {

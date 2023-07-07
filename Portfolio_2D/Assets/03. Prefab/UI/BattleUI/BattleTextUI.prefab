@@ -52,9 +52,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   battleText: {fileID: 3543596299197133449}
-  relaseTime: 1
   damagedColor: {r: 1, g: 1, b: 1, a: 0}
   healedColor: {r: 0.20488167, g: 1, b: 0, a: 0}
+  manaColor: {r: 0, g: 0.5664313, b: 1, a: 0}
 --- !u!111 &5640658341192220557
 Animation:
   m_ObjectHideFlags: 0

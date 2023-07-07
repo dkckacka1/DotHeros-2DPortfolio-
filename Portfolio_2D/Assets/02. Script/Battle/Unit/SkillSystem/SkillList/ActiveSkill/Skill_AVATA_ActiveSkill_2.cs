@@ -35,16 +35,21 @@ namespace Portfolio.skill
             effect.PlayEffect("Anim_Skill_Effect_AVATA_ActiveSkill2");
             effect.transform.position = e.actionUnit.transform.position;
 
+            int manaValue = 0;
 
             foreach (var targetUnit in e.targetUnits)
             {
                 if (targetUnit.IsEffectHit(e.actionUnit.EffectHit))
                     // 대상에게 효과 적중 판단을 하고 성공했으면
                 {
-                    // 마나 1회복
-                    BattleManager.ManaSystem.AddMana(1);
+                    // 마나 회복 수치 증가
+                    manaValue++;
                 }
             }
+
+            // 마나 회복
+            if (manaValue > 0)
+                e.actionUnit.AddMana(manaValue);
 
             yield return new WaitForSeconds(0.5f);
 

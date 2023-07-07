@@ -43,7 +43,7 @@ namespace Portfolio.WorldMap
                     continue;
                 }
 
-                unitSlotList[i].Init(monsterUnitList[i], false, false);
+                unitSlotList[i].ShowUnit(monsterUnitList[i], false, false);
                 unitSlotList[i].gameObject.SetActive(true);
             }
 

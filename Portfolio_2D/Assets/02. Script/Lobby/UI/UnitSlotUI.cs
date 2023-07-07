@@ -20,7 +20,7 @@ namespace Portfolio.UI
         public Unit CurrentUnit => currentUnit;
         public UnitData CurrentUnitData => currentUnitData;
 
-        public void Init(Unit unit, bool isShowLevelText = true, bool isShowGradeImage = true)
+        public void ShowUnit(Unit unit, bool isShowLevelText = true, bool isShowGradeImage = true)
         {
             if (unit == null)
             {
@@ -38,7 +38,7 @@ namespace Portfolio.UI
             }
         }
 
-        public void Init(UnitData unitData, bool isShowGradeImage = true)
+        public void ShowUnit(UnitData unitData, bool isShowGradeImage = true)
         {
             if (unitData == null)
             {

@@ -10,7 +10,7 @@ namespace Portfolio.UI
 {
     public class UIAnimationPlayer : MonoBehaviour
     {
-        Animation animation; // 오브젝트에 부착된 애니메이션 컴포넌트
+        new Animation animation; // 오브젝트에 부착된 애니메이션 컴포넌트
 
         int currentAnimClipNum; // 현재 플레이중인 애니메이션 클립 넘버
         List<string> clipNames; // 애니메이션 컴포넌트가 가지고 있는 레거시 애니메이션 클립의 이름 리스트

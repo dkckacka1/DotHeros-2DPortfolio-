@@ -34,7 +34,7 @@ namespace Portfolio.Battle
             // 이미 활성화 된 상태라면 리턴
             if (this.gameObject.activeInHierarchy) return;
 
-            unitSlotUI.Init(battleUnit.Unit, false, true);
+            unitSlotUI.ShowUnit(battleUnit.Unit, false, true);
             battleUnitNameText.text = battleUnit.Unit.UnitName;
             battleUnitLevelText.text = "LV :"+ battleUnit.Unit.UnitCurrentLevel.ToString();
 

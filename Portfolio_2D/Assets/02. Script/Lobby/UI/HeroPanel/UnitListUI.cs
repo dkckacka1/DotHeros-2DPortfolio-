@@ -51,7 +51,7 @@ namespace Portfolio.Lobby.Hero
                     continue;
                 }
 
-                unitSlotList[i].Init(userUnitSortingList[i]);
+                unitSlotList[i].ShowUnit(userUnitSortingList[i]);
                 unitSlotList[i].gameObject.SetActive(true);
             }
             ShowUnitListCountText();
