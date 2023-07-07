@@ -6,6 +6,8 @@ using TMPro;
 using Portfolio.UI;
 using System.Linq;
 
+// TODO : 주석은 여기서 부터 달아야함
+
 namespace Portfolio.Lobby.Summon
 {
     public class CheckProbabilityPopupUI : MonoBehaviour

@@ -128,4 +128,12 @@ namespace Portfolio
         Continuation = 0, // 지속형
         Tick    // 틱형
     }
+
+    // 결제 수단 종류
+    public enum PaymentType
+    {
+        Cash,
+        Diamond,
+        Gold
+    }
 }

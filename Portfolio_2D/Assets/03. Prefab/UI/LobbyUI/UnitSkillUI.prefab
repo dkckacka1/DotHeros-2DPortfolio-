@@ -133,6 +133,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f50291f05239d6a4db2d3fe440852328, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  SkillType: 0
   skillImage: {fileID: 2724874388062860901}
   skillTypeText: {fileID: 2724874388384659355}
   skillLevelText: {fileID: 1436246089040891237}
@@ -970,7 +971,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 7469167862286005604}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2724874387427156435}
+        m_TargetAssemblyTypeName: Portfolio.Lobby.Hero.UnitSkillUI, Assembly-CSharp
+        m_MethodName: BTN_OnClick_HeroPanelSelectSkill
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &7710748875579918262
 GameObject:
   m_ObjectHideFlags: 0

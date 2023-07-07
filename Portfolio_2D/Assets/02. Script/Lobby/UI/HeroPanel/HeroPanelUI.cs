@@ -179,7 +179,7 @@ namespace Portfolio.Lobby.Hero
         //===========================================================
         // TogglePlugin
         //===========================================================
-        public void ResetPanel()
+        public void TOGGLE_OnClick_ResetPanel()
         {
             
             if (!unitEquipmentUI.gameObject.activeInHierarchy || !unitSkillPanelUI.gameObject.activeInHierarchy)
@@ -191,26 +191,24 @@ namespace Portfolio.Lobby.Hero
             }
         }
 
-        //===========================================================
-        // ShowUI
-        //===========================================================
-        // TODO : 주석 마저 달고 버튼 메서드 이름 변경해주어야함
         // 스테이터스 패널 창을 보여준다.
-        public void ShowStatus()
+        public void TOGGLE_OnClick_ShowStatus()
         {
             unitListUI.SetStatus();
             SelectUnit = GameManager.CurrentUser.UserUnitList[0];
         }
 
         // 유닛 합성창을 보여준다.
-        public void ShowComposition()
+        public void TOGGLE_OnClick_ShowComposition()
         {
             unitListUI.SetComposition();
         }
 
-
+        //===========================================================
+        // BtnPlugin
+        //===========================================================
         // 유닛 장비창을 보여준다.
-        public void ShowEquipmentUI()
+        public void BTN_OnClick_ShowEquipmentUI()
         {
             // 스킬창이 켜저있는 상태라면 언두를 실행한다.
             if (!unitEquipmentUI.gameObject.activeInHierarchy)
@@ -226,7 +224,7 @@ namespace Portfolio.Lobby.Hero
         }
 
         // 유닛 스킬창을 보여준다.
-        public void ShowSkillUI()
+        public void BTN_OnClick_ShowSkillUI()
         {
             // 장비창이 켜져있는 상태라면 언두를 실행한다.
             if (!unitSkillPanelUI.gameObject.activeInHierarchy)
@@ -251,43 +249,47 @@ namespace Portfolio.Lobby.Hero
         }
 
         // 장비 강화 팝업창을 보여준다.
-        public void ShowReinforcePopup()
+        public void BTN_OnClick_ShowReinforcePopup()
         {
             reinforcePopupUI.gameObject.SetActive(true);
             equipmentListPopupUI.gameObject.SetActive(false);
         }
 
         // 장비 리스트 팝업창을 보여준다.
-        public void ShowEquipmentListPopup()
+        public void BTN_OnClick_ShowEquipmentListPopup()
         {
             equipmentListPopupUI.gameObject.SetActive(true);
             reinforcePopupUI.gameObject.SetActive(false);
         }
 
         // 스킬 레벨업 팝업창을 보여준다.
-        public void ShowSkillLevelUPPopup()
+        public void BTN_OnClick_ShowSkillLevelUPPopup()
         {
             skillLevelUpPopupUI.gameObject.SetActive(true);
             skillLevelUpPopupUI.Show();
         }
 
-        //===========================================================
-        // BtnPlugin
-        //===========================================================
-        public void Reinforce()
+
+        // 선택한 장비를 강화한다.
+        public void BTN_OnClick_Reinforce()
         {
+            // 유저의 골드를 강화 비용만큼 감소시킨다.
             GameManager.CurrentUser.Gold-= Constant.reinforceConsumeGoldValues[selectEquipmentItem.reinforceCount];
 
             if (Random.Range(0f, 1f) <= Constant.reinforceProbabilitys[selectEquipmentItem.reinforceCount])
+                // 강화 성공 여부를 확인해서 성공시 
             {
+                // 선택한 장비를 강화한다.
                 GameManager.ItemCreator.ReinforceEquipment(selectEquipmentItem);
             }
 
+            // UI를 업데이트하고 유저 정보를 저장합니다.
             ReShow();
             GameManager.Instance.SaveUser();
         }
 
-        public void ReleaseEquipment()
+        // 장비를 해제한다.
+        public void BTN_OnClick_ReleaseEquipment()
         {
             if (GameManager.CurrentUser.IsMaxEquipmentCount)
                 // 장비 인벤토리에 넣을 공간이 없다면
@@ -303,65 +305,87 @@ namespace Portfolio.Lobby.Hero
                 choiceEquipmentItem = null;
 
                 equipmentListPopupUI.ChoiceItemReset();
+            // UI를 업데이트하고 유저 정보를 저장합니다.
                 ReShow();
                 GameManager.Instance.SaveUser();
             }
         }
 
-        public void ChangeEquipment()
+        // 장비를 교체합니다.
+        public void BTN_OnClick_ChangeEquipment()
         {
+            // 현재 장비 인벤토리에서 선택한 장비를 제거합니다.
             GameManager.CurrentUser.GetInventoryEquipmentItem.Remove(choiceEquipmentItem);
+            // 선택한 유닛의 바꾸고자 하는 장비 타입의 아이템을 인벤토리에서 선택한 아이템으로 교체합니다.
             var releaseItem = selectUnit.ChangeEquipment(selectEquipmentItemType, choiceEquipmentItem);
             if (releaseItem != null)
+                // 기존에 장착중인 아이템이 있었다면
             {
+                // 인벤토리에 넣어줍니다.
                 GameManager.CurrentUser.AddEquipmentItem(selectEquipmentItem);
             }
 
+            // 교체한 아이템을 현재 유저가 선택한 아이템으로 변경해줍니다.
             selectEquipmentItem = choiceEquipmentItem;
+            // 선택한 아이템은 초기화
             choiceEquipmentItem = null;
             equipmentListPopupUI.ChoiceItemReset();
+            // UI를 업데이트하고 유저 정보를 저장합니다.
             ReShow();
             GameManager.Instance.SaveUser();
         }
 
-        public void GetExperience(float getValue)
+        // 경험치를 획득합니다.
+        public void BTN_OnClick_GetExperience(float getValue)
         {
+            // 선택한 유닛의 경험치를 증가 시킵니다.
             selectUnit.CurrentExperience += getValue;
+            // UI를 업데이트하고 유저 정보를 저장합니다.
             ReShow();
+            GameManager.Instance.SaveUser();
         }
 
-        public void SkillLevelUp()
+        // 스킬을 레벨업합니다.
+        public void BTN_OnClick_SkillLevelUp()
         {
             skillLevelUpPopupUI.SkillLevelUP();
+            // UI를 업데이트하고 유저 정보를 저장합니다.
             ReShow();
+            GameManager.Instance.SaveUser();
         }
 
-        public void SizeUPUintList()
+        // 유저의 유닛 슬롯의 최대갯수를 늘립니다.
+        public void BTN_OnClick_SizeUPUintList()
         {
-            Debug.Log("사이즈업 버튼 누름");
             if (GameManager.CurrentUser.MaxUnitListCount >= Constant.unitListMaxSizeCount)
+                // 이미 최대 사이즈에 도달한 상태라면 경고창을 표시합니다.
             {
                 GameManager.UIManager.ShowAlert("이미 최대 사이즈에 도달했습니다!");
             }
             else
+                // 최대 사이즈가 아니라면 확인 다이얼로그 창을 표시합니다.
             {
                 int consumeDia = Constant.unitListSizeUPDiaConsumeValue;
                 GameManager.UIManager.ShowConfirmation("최대 유닛 개수 증가", $"최대 유닛 개수를 증가 시키겠습니까?\n{consumeDia} 다이아가 소비되며\n{Constant.unitListSizeUpCount}칸이 늘어납니다.\n(최대 100칸)", SizeUp);
-                Debug.Log("사이즈업 버튼 확인 누름");
             }
         }
 
+        // 유저의 유닛 슬롯의 최대 갯수를 늘립니다.
         private void SizeUp()
         {
             if (GameManager.CurrentUser.CanDIamondConsume(Constant.unitListSizeUPDiaConsumeValue))
+                // 유닛 슬롯 개수를 늘릴 다이아 양이 충분하다면 
             {
+                //다이아양을 소비하고 최대 갯수를 증가 시킵니다.
                 GameManager.CurrentUser.Diamond -= Constant.unitListSizeUPDiaConsumeValue;
                 GameManager.CurrentUser.MaxUnitListCount += Constant.unitListSizeUpCount;
+                // 유닛슬롯 텍스트를 업데이트 합니다.
                 unitListUI.ShowUnitListCountText();
-                Debug.Log("증가됨");
             }
             else
+            // 다이아양이 불충분하다면
             {
+                // 경고창 표시
                 GameManager.UIManager.ShowAlert("다이아몬드가 부족합니다!");
             }
         }

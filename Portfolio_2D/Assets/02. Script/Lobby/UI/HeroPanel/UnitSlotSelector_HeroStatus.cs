@@ -4,8 +4,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+/*
+ * 유닛 상태창과 연동되는 유닛 슬롯 UI 셀렉터 클래스
+ * UnitSlotUI 컴포넌트를 부착한 오브젝트에만 부착할 수 있다.
+ */
+
 namespace Portfolio.Lobby.Hero
 {
+    [RequireComponent(typeof(UnitSlotUI))]
     public class UnitSlotSelector_HeroStatus : MonoBehaviour
     {
         UnitSlotUI unitSlotUI;

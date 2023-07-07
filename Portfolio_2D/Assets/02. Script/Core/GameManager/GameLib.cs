@@ -122,8 +122,6 @@ namespace Portfolio
             return value > probability;
         }
 
-
-        // TODO : 정렬 함수 만들어 줘야함
         public static float UnitBattlePowerSort(Unit arg)
         {
             return arg.battlePower;

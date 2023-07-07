@@ -8,6 +8,10 @@ using System;
 using System.Linq;
 using Selector = Portfolio.Lobby.Inventory.EquipmentSlotSelector_EquipmentInventory; // 클래스 이름이 너무 길어서 별칭 사용
 
+/*
+ * 장비아이템 인벤토리를 보여주는 UI 클래스
+ */
+
 namespace Portfolio.Lobby.Inventory
 {
     public class EquipmentInventory : MonoBehaviour

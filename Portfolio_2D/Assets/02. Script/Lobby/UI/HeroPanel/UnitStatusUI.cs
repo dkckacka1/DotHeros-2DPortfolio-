@@ -6,35 +6,41 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
+/*
+ * 유닛의 스텟창을 보여주는 패널 UI 클래스
+ */
+
 namespace Portfolio.Lobby.Hero
 {
     public class UnitStatusUI : MonoBehaviour
     {
-        [SerializeField] Image unitPortraitImage;
-        [SerializeField] TextMeshProUGUI unitNameText;
-        [SerializeField] TextMeshProUGUI unitGradeText;
-        [SerializeField] TextMeshProUGUI unitCurrentLevelText;
-        [SerializeField] TextMeshProUGUI unitMaxLevelText;
-        [SerializeField] Slider unitExperienceSlider;
-        [SerializeField] TextMeshProUGUI unitExperienceText;
-        [SerializeField] RectTransform potionSlot;
+        [SerializeField] Image unitPortraitImage;                   // 유닛 포트레이트 이미지
+        [SerializeField] TextMeshProUGUI unitNameText;              // 유닛 이름 텍스트
+        [SerializeField] TextMeshProUGUI unitGradeText;             // 유닛의 등급 텍스트
+        [SerializeField] TextMeshProUGUI unitCurrentLevelText;      // 유닛의 현재 레벨 텍스트
+        [SerializeField] TextMeshProUGUI unitMaxLevelText;          // 유닛의 최대 레벨 텍스트
+        [SerializeField] Slider unitExperienceSlider;               // 유닛의 경험치 슬라이더바
+        [SerializeField] TextMeshProUGUI unitExperienceText;        // 유닛의 경험치양 텍스트
+        [SerializeField] RectTransform potionSlot;                  // 포션 슬롯 레이아웃 오브젝트
 
         [Header("유닛 프로퍼티")]
-        [SerializeField] TextMeshProUGUI unitAttackPointText;
-        [SerializeField] TextMeshProUGUI unitHealthPointText;
-        [SerializeField] TextMeshProUGUI unitDefencePointText;
-        [SerializeField] TextMeshProUGUI unitSpeedText;
-        [SerializeField] TextMeshProUGUI unitCriticalPercentText;
-        [SerializeField] TextMeshProUGUI unitCriticalDamageText;
-        [SerializeField] TextMeshProUGUI unitEffectHitText;
-        [SerializeField] TextMeshProUGUI unitEffectResText;
-        [SerializeField] ItemSlotUI[] experiencePotionSlots;
+        [SerializeField] TextMeshProUGUI unitAttackPointText;       // 유닛의 공격력 텍스트
+        [SerializeField] TextMeshProUGUI unitHealthPointText;       // 유닛의 생명력 텍스트
+        [SerializeField] TextMeshProUGUI unitDefencePointText;      // 유닛의 방어력 텍스트
+        [SerializeField] TextMeshProUGUI unitSpeedText;             // 유닛의 속도 텍스트
+        [SerializeField] TextMeshProUGUI unitCriticalPercentText;   // 유닛의 치명타 확률 텍스트
+        [SerializeField] TextMeshProUGUI unitCriticalDamageText;    // 유닛의 치명타 공격력 텍스트
+        [SerializeField] TextMeshProUGUI unitEffectHitText;         // 유닛의 효과 적중률 텍스트
+        [SerializeField] TextMeshProUGUI unitEffectResText;         // 유닛의 효과 저항력 텍스트
+        [SerializeField] ItemSlotUI[] experiencePotionSlots;        // 포션 아이템 슬롯들
 
         public void Init()
         {
+            // 유저가 선택한 유닛이 변경되면 UI를 업데이트 한다.
             LobbyManager.UIManager.unitChangedEvent += ShowStat;
         }
 
+        // 유저가 선택한 유닛의 정보를 표시한다.
         public void ShowStat(object sender, EventArgs eventArgs)
         {
             Unit unit = HeroPanelUI.SelectUnit;
@@ -46,12 +52,13 @@ namespace Portfolio.Lobby.Hero
             unitCurrentLevelText.text = unit.UnitCurrentLevel.ToString();
             unitMaxLevelText.text = "/ " + unit.UnitMaxLevel.ToString();
             unitExperienceSlider.value = unit.CurrentExperience / unit.MaxExperience;
-            unitExperienceText.text = (unit.CurrentExperience / unit.MaxExperience * 100f).ToString("N1") + " %";
+            unitExperienceText.text = (unit.CurrentExperience / unit.MaxExperience * 100f).ToString("F1") + " %";
 
             unitAttackPointText.text = unit.AttackPoint.ToString("N0");
             unitHealthPointText.text = unit.HealthPoint.ToString("N0");
             unitDefencePointText.text = unit.DefencePoint.ToString("N0");
             unitSpeedText.text = unit.Speed.ToString("N0");
+            // 소수점 첫번째 자리까지 표시한다.
             unitCriticalPercentText.text = (unit.CriticalPercent * 100f).ToString("F1") + " %";
             unitCriticalDamageText.text = (unit.CriticalDamage * 100f).ToString("F1") + " %";
             unitEffectHitText.text = (unit.EffectHit * 100f).ToString("F1") + " %";
