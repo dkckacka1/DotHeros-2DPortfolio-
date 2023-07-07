@@ -11,25 +11,22 @@ namespace Portfolio.Lobby.Hero
         UnitSlotUI unitSlotUI;
         Button button;
 
+        private bool isActive = true;
+
+        public bool IsActive { get => isActive; set => isActive = value; }
+
         private void Awake()
         {
             unitSlotUI = GetComponent<UnitSlotUI>();
             button = GetComponent<Button>();
         }
 
-        private void OnEnable()
+        public void BTN_OnClick_UnitStatusSelect()
         {
-            button.onClick.AddListener(UnitStatusSelect);
-        }
-
-        private void OnDisable()
-        {
-            button.onClick.RemoveListener(UnitStatusSelect);
-        }
-
-        public void UnitStatusSelect()
-        {
-            HeroPanelUI.SelectUnit = unitSlotUI.CurrentUnit;
+            if(IsActive)
+            {
+                HeroPanelUI.SelectUnit = unitSlotUI.CurrentUnit;
+            }
         }
     }
 }

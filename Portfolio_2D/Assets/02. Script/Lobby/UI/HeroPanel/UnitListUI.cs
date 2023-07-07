@@ -35,6 +35,11 @@ namespace Portfolio.Lobby.Hero
             ShowUnitList();
         }
 
+        private void OnDisable()
+        {
+            SetStatus();
+        }
+
         public void ShowUnitList()
         {
             var userUnitSortingList = GameManager.CurrentUser.UserUnitList.OrderByDescending(GameLib.UnitBattlePowerSort).ToList();
@@ -54,29 +59,35 @@ namespace Portfolio.Lobby.Hero
 
         public void SetStatus()
         {
-            SetSelector(unitSlotHeroStatusSelectors, true);
-            SetSelector(unitSlotHeroCompositionSelectors, false);
+            foreach(var statusSelector in unitSlotHeroStatusSelectors)
+            {
+                statusSelector.IsActive = true;
+            }
+
+            foreach (var compositionSelector in unitSlotHeroCompositionSelectors)
+            {
+                compositionSelector.IsActive = false;
+            }
             ResetDefaultList();
         }
 
         public void SetComposition()
         {
-            SetSelector(unitSlotHeroStatusSelectors, false);
-            SetSelector(unitSlotHeroCompositionSelectors, true);
+            foreach (var statusSelector in unitSlotHeroStatusSelectors)
+            {
+                statusSelector.IsActive = false;
+            }
+
+            foreach (var compositionSelector in unitSlotHeroCompositionSelectors)
+            {
+                compositionSelector.IsActive = true;
+            }
             ResetCompositionList();
         }
 
         public void ShowUnitListCountText()
         {
             unitListCountText.text = $"{GameManager.CurrentUser.UserUnitList.Count} / {GameManager.CurrentUser.MaxUnitListCount}";
-        }
-
-        private void SetSelector<T>(List<T> selectors, bool isTrue) where T : MonoBehaviour
-        {
-            foreach (var selector in selectors)
-            {
-                selector.enabled = isTrue;
-            }
         }
 
         public void ResetCompositionList()

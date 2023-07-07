@@ -370,6 +370,12 @@ namespace Portfolio.Battle
             targetUnit.Heal(healValue);
         }
 
+        public void AddMana(int mana)
+        {
+            unitUI.AddManaText(mana);
+            BattleManager.ManaSystem.AddMana(mana);
+        }
+
         public void Heal(float healPoint)
             // 회복 받음
         {

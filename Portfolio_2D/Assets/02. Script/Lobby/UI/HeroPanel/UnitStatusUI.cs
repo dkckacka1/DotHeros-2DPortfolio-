@@ -35,11 +35,6 @@ namespace Portfolio.Lobby.Hero
             LobbyManager.UIManager.unitChangedEvent += ShowStat;
         }
 
-        private void OnDisable()
-        {
-            potionSlot.gameObject.SetActive(false);
-        }
-
         public void ShowStat(object sender, EventArgs eventArgs)
         {
             Unit unit = HeroPanelUI.SelectUnit;

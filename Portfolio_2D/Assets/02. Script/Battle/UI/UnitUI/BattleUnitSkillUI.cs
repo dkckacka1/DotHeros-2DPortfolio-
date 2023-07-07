@@ -19,6 +19,8 @@ namespace Portfolio.Battle
 
         [SerializeField] Button turnEndBtn;                     // 턴 종료 버튼
         [SerializeField] Button actionBtn;                      // 스킬 수행 버튼
+        [SerializeField] GameObject actionObject;               // 액션 오브젝트
+        [SerializeField] GameObject lockObject;                 // 잠김 오브젝트
 
         [Header("Skill_1")]
         [SerializeField] Button activeSkill_1_ActionBtn;        // 액티브 스킬 1 선택 버튼
@@ -36,6 +38,19 @@ namespace Portfolio.Battle
 
         int actionLevel = 0;                                    // 스킬 레벨
         private ActiveSkill selectActiveSkill;                  // 선택한 액티브 스킬
+
+        // 현재 스킬을 사용할 수 있는 대상이 있는지 확인 여부
+        bool IsAction
+        {
+            set
+            {
+                // 사용할 수 있다면 액션 오브젝트와 액션 버튼 상호작용 활성화
+                actionObject.SetActive(value);
+                actionBtn.interactable = value;
+
+                lockObject.SetActive(!value);
+            }
+        }
 
         // 전투 유닛 설정
         public void SetUnit(BattleUnit battleUnit)
@@ -91,6 +106,8 @@ namespace Portfolio.Battle
         {
             // 선택한 스킬 초기화
             selectActiveSkill = null;
+            actionObject.SetActive(true);
+            lockObject.SetActive(false);
             actionBtn.interactable = false;
         }
 
@@ -134,7 +151,7 @@ namespace Portfolio.Battle
             // 기본 공격 스킬의 타겟 유닛 설정
             BattleManager.ActionSystem.SetActiveSkill(battleUnit.Unit.basicAttackSkill);
             // 타겟 유닛이 0명이면 액션 스킬 상호작용 불가
-            actionBtn.interactable = BattleManager.ActionSystem.SelectUnitCount != 0;
+            IsAction = BattleManager.ActionSystem.SelectUnitCount != 0;
             // 기본공격의 스킬레벨은 1 고정
             actionLevel = 1;
             // 선택한 스킬은 기본 공격 스킬
@@ -147,7 +164,7 @@ namespace Portfolio.Battle
             // 액티브 스킬1의 타겟 유닛 설정
             BattleManager.ActionSystem.SetActiveSkill(battleUnit.Unit.activeSkill_1);
             // 타겟 유닛이 0명이면 액션 스킬 상호작용 불가
-            actionBtn.interactable = BattleManager.ActionSystem.SelectUnitCount != 0;
+            IsAction = BattleManager.ActionSystem.SelectUnitCount != 0;
             // 액티브 스킬 1의 스킬 레벨 참조
             actionLevel = battleUnit.Unit.ActiveSkillLevel_1;
             // 선택한 스킬은 액티브 스킬 1
@@ -160,7 +177,7 @@ namespace Portfolio.Battle
             // 액티브 스킬2의 타겟 유닛 설정
             BattleManager.ActionSystem.SetActiveSkill(battleUnit.Unit.activeSkill_2);
             // 타겟 유닛이 0명이면 액션 스킬 상호작용 불가
-            actionBtn.interactable = BattleManager.ActionSystem.SelectUnitCount != 0; ;
+            IsAction = BattleManager.ActionSystem.SelectUnitCount != 0; ;
             // 액티브 스킬 2의 스킬 레벨 참조
             actionLevel = battleUnit.Unit.ActiveSkillLevel_2;
             // 선택한 스킬은 액티브 스킬 2

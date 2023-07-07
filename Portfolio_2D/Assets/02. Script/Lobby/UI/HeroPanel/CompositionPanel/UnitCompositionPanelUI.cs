@@ -5,7 +5,7 @@ using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using Selector = Portfolio.Lobby.Hero.Composition.UnitSlotSelector_HeroComposition;
+using Selector = Portfolio.Lobby.Hero.Composition.UnitSlotSelector_HeroComposition; // 클래스 이름이 너무 길어서 별칭 사용
 
 /*
  * 영웅 합성 창 UI 클래스
@@ -25,6 +25,9 @@ namespace Portfolio.Lobby.Hero.Composition
         [SerializeField] List<CompositionUnitSlot> subUnitSlotList;                                 // 재료 유닛 슬롯
         [HideInInspector] public CompositionUnitSlot selectedCompositionUnitSlot;                   // 현재 넣어야할 유닛 슬롯
         private Stack<CompositionUnitSlot> insertUnitSlotStack = new Stack<CompositionUnitSlot>();  // 넣은 유닛 리스트
+
+        [Header("Result")]
+        [SerializeField] CompositionResultPanelUI compositionResultPanelUI; // 합성 결과창을 보여주는 패널 UI
 
         private int putInUnitCount; // 넣어야할 재료 유닛 수
 
@@ -89,6 +92,8 @@ namespace Portfolio.Lobby.Hero.Composition
             if (selectedCompositionUnitSlot == null) return;
             // 이미 선택한 유닛 슬롯이면 리턴
             if (selector.IsSelected) return;
+            // 만약 결과창을 출력중이라면 리턴
+            if (compositionResultPanelUI.gameObject.activeInHierarchy) return;
 
             // 넣은 유닛 스택에 넣어준다.
             insertUnitSlotStack.Push(selectedCompositionUnitSlot);
@@ -200,6 +205,12 @@ namespace Portfolio.Lobby.Hero.Composition
                 // 만약 메인슬롯의 유닛이 빠졌다면 영웅 합성창을 초기화 해준다.
             {
                 unitListUI.ResetCompositionList();
+                // 메인 슬롯과 재료 슬롯을 초기화 해준다.
+                mainUnitSlot.Reset();
+                foreach (var slot in subUnitSlotList)
+                {
+                    slot.Reset();
+                }
             }
 
             // 스택이 비워졌다면 되돌리기 버튼 상호작용을 비활성화 한다.
@@ -228,11 +239,15 @@ namespace Portfolio.Lobby.Hero.Composition
                 }
             }
 
+            // 영웅 합성 결과창을 출력한다.
+            compositionResultPanelUI.Show(mainUnitSlot.CurrentUnit);
+
             // 영웅 합성창을 초기화 해준다.
             Reset();
             unitListUI.ResetCompositionList();
             unitListUI.ShowUnitList();
             SelectSlot(mainUnitSlot);
+
         }
     }
 

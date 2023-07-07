@@ -151,6 +151,11 @@ namespace Portfolio.Battle
             OutputText(battleText);
         }
 
+        public void AddManaText(int manaValue)
+        {
+
+        }
+
         private void OutputText(BattleTextUI battleText)
             // 텍스트 출력
         {

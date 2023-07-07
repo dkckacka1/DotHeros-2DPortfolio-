@@ -22,6 +22,18 @@ namespace Portfolio.Lobby.Hero.Composition
         private bool canSelect = true;  // 선택할 수 있는지 여부
         private bool isMainSelect;      // 합성 메인 재료인지 여부
         private bool isSubSelect;       // 합성 서브 재료인지 여부
+        private bool isActive;          // 현재 셀렉터 활성화 여부
+
+        public bool IsActive 
+        {
+            set 
+            {
+                isActive = value;
+                CanSelect = true;
+                ResetSelect();
+            }
+        }
+
 
         private void Awake()
         {
@@ -85,25 +97,11 @@ namespace Portfolio.Lobby.Hero.Composition
             }
         }
 
-        // 이 컴포넌트가 활성화 되면 버튼 클릭에 유닛 선택 함수를 구독해준다.
-        private void OnEnable()
-        {
-            button.onClick.AddListener(SelectUnit);
-        }
-
-        // 이 컴포넌트가 비활성화 되면 버튼 클릭에 유닛 선택 함수를 구독 해지 해준다.
-        private void OnDisable()
-        {
-            button.onClick.RemoveListener(SelectUnit);
-            // 선택되었다면 취소
-            ResetSelect();
-        }
-
         // 유닛을 선택한다.
-        public void SelectUnit()
+        public void BTN_OnClick_SelectUnit()
         {
-            // 선택할 수 있는 상태라면
-            if (canSelect)
+            // 현재 활성화 상태고 선택할 수 있는 상태라면
+            if (isActive && canSelect)
             {
                 // 합성 패널에 이 유닛을 넣어준다.
                 unitCompositionPanelUI.InsertUnit(this);

@@ -12,9 +12,6 @@ using Selector = Portfolio.Lobby.Hero.EquipmentItemSlotSelector_EquipmentListPop
  * 유닛의 장비 아이템을 변경하기 위한 장비아이템 리스트 팝업 UI 클래스
  */
 
-
-// TODO : 장비 슬롯 선택 비선택 개선 필요
-
 namespace Portfolio.Lobby.Hero
 {
     public class EquipmentListPopupUI : MonoBehaviour
@@ -107,12 +104,14 @@ namespace Portfolio.Lobby.Hero
 
             for (int i = 0; i < equipmentSlotList.Count; i++)
             {
+                // 장비 갯수 만큼 슬롯을 활성화 한다.
                 if (listOrdered.Count <= i)
                 {
                     equipmentSlotList[i].gameObject.SetActive(false);
                     continue;
                 }
 
+                // 동일한 장비타입을 가진 장비 슬롯만 선택 가능하도록 한다.
                 var equipmentData = listOrdered[i];
                 equipmentSlotList[i].ShowEquipment(equipmentData);
                 equipmentSlotList[i].gameObject.SetActive(true);
