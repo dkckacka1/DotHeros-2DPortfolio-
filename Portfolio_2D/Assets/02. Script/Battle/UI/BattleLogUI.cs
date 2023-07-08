@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
+// ORDER : 큐를 이용한 로그 시스템
 /*
  * 전투 로그를 표시하는 UI 클래스
  */

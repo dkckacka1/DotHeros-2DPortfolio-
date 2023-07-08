@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// ORDER : ScriptableObject로 만든 랜덤 데이터 생성기를 통한 랜덤 아이템 데이터 생성 구현
 /*
  *  아이템 생성 클래스
  *  아이템 생성 데이타 클래스를 통해 랜덤한 아이템을 생성한다.

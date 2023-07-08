@@ -5,6 +5,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
+// ORDER : 확장 메서드, 메서드 체이닝을 이용해서 전투 대상을 찾는 시스템
 /*
  * 전투 타겟을 잡기 위한 확장 메서드를 모아놓은 클래스
  */

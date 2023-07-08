@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
+// ORDER : 턴제 배틀 시스템 구현
 /*
  * 턴제 배틀 시스템 클래스
  */

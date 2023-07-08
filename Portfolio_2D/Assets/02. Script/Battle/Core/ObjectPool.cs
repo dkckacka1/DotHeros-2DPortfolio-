@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// ORDER : 오브젝트 풀링 사용 예
+
 /*
  * 전투중 자주 생성되는 프리팹에 대한 오브젝트 풀
  * 오브젝트 풀에 등록되는 프리팹은 생성, 소환, 반환 메서드를 가지고 있다.

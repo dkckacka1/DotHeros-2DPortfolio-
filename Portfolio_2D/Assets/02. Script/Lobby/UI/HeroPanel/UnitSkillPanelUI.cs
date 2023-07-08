@@ -9,7 +9,7 @@ using UnityEngine;
 
 namespace Portfolio.Lobby.Hero
 {
-    public class UnitSkillPanelUI : MonoBehaviour, UndoAble
+    public class UnitSkillPanelUI : MonoBehaviour, IUndoable
     {
         [SerializeField] UnitSkillUI activeSkilll_1_UI; // 유저 액티브 스킬 1
         [SerializeField] UnitSkillUI activeSkilll_2_UI; // 유저 액티브 스킬 2

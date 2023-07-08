@@ -10,6 +10,8 @@ using Newtonsoft.Json;
 using Portfolio.skill;
 using Portfolio.condition;
 
+// ORDER : ExcelDataReader 와 Newtonsoft.Json 을 활용해서 만든 데이터 테이블 JSON 변환
+
 namespace Portfolio.Editor
 {
 

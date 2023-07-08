@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
+// ORDER : 드래그 앤 드랍으로 만든 유닛 포지션 배정 시스템
 namespace Portfolio.WorldMap
 {
     public class FomationSlotUI : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler

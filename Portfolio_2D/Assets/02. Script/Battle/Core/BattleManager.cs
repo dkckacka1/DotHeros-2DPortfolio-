@@ -61,6 +61,7 @@ namespace Portfolio.Battle
         }
         public List<BattleUnit> UnitList => unitList;
 
+        // ORDER : 싱글톤 클래스 생성 예
         private void Awake()
         {
             // 싱글톤 생성
@@ -327,6 +328,7 @@ namespace Portfolio.Battle
         //===========================================================
         // StateEvent
         //===========================================================
+        // ORDER : 이벤트 버스를 이용해서 만든 전투 상태에 따른 이벤트 구독 시스템
         public void PublishEvent(BattleState state, UnityAction action)
             // 전투 상태에 이벤트 구독
         {

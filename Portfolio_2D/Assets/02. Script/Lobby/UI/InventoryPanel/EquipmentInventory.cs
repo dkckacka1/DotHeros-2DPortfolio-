@@ -74,6 +74,7 @@ namespace Portfolio.Lobby.Inventory
             ClearSelect();
         }
 
+        // ORDER : 다중 선택 토글에 의한 장비아이템 일반 선택 혹은 다중 선택 시스템 구현
         public void EquipmentSlotSelect(EquipmentSlotSelector_EquipmentInventory equipmentSlotUIInventorySelector)
         {
             if (multipleSelectionToggle.isOn)

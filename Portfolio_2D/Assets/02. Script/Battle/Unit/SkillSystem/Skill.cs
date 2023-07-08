@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
+// ORDER : 상속을 이용하여 만든 스킬 시스템 구현
 /*
  * 스킬의 기본을 만들 추상 클래스
  */
@@ -93,6 +94,7 @@ namespace Portfolio.skill
         // 로그에 등록될 로그 정보를 만드는 순수 가상 함수
         protected abstract string GetLogString(SkillActionEventArgs e);
 
+        // ORDER : string.Format을 활용한 스킬 설명 구현
         // 스킬 설명을 보여준다.
         public virtual string GetDesc(int skillLevel)
         {

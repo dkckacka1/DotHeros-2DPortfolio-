@@ -10,7 +10,7 @@ using UnityEngine;
 
 namespace Portfolio.Lobby.Hero.Composition
 {
-    public class CompositionResultPanelUI : MonoBehaviour, UndoAble
+    public class CompositionResultPanelUI : MonoBehaviour, IUndoable
     {
         [SerializeField] UnitSlotUI unitSlotUI;                         // ¿Ø¥÷ ΩΩ∑‘
         [SerializeField] List<UnitGradeUpUI> unitGradeUIList;           // ¿Ø¥÷ µÓ±ﬁ ¿ÃπÃ¡ˆµÈ

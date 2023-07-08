@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+// TODO : 주석은 여기서 부터 달아야 합니다.
 
 namespace Portfolio.Start
 {
@@ -25,6 +26,7 @@ namespace Portfolio.Start
             }
         }
 
+        // ORDER : 비동기 씬 호출을 통한 로딩 구현
         public void GotoLobby(UserData loginUserData)
         {
             StartCoroutine(SceneLoader.LoadLobbySceneAsync());

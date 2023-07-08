@@ -9,7 +9,7 @@ using UnityEngine.UI;
 
 namespace Portfolio.Lobby.Hero
 {
-    public class UnitEquipmentPanelUI : MonoBehaviour, UndoAble
+    public class UnitEquipmentPanelUI : MonoBehaviour, IUndoable
     {
         [SerializeField] private Animator unitAnim;             // 현재 표시될 유닛
         [SerializeField] private EquipmentItemSlot weaponSlot;  // 유닛이 장착한 무기 슬롯

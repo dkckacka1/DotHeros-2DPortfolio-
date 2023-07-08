@@ -6,41 +6,49 @@ using TMPro;
 using Portfolio.UI;
 using System.Linq;
 
-// TODO : 주석은 여기서 부터 달아야함
+/*
+ * 유닛 뽑기 확률창을 보여주는 팝업 UI 클래스
+ */ 
+
 
 namespace Portfolio.Lobby.Summon
 {
     public class CheckProbabilityPopupUI : MonoBehaviour
     {
-        [SerializeField] ScrollRect unitScrollView;
-        [SerializeField] TextMeshProUGUI probablilityText;
+        [SerializeField] ScrollRect unitScrollView;                 // 유닛 슬롯 UI 스크롤 뷰
+        [SerializeField] TextMeshProUGUI probablilityText;          // 뽑기 확률을 보여주는 텍스트
 
-        List<UnitSlotUI> unitSlotUIList = new List<UnitSlotUI>();
-        List<UnitData> gradeOneUnitList = new List<UnitData>();
-        List<UnitData> gradeTwoUnitList = new List<UnitData>();
-        List<UnitData> gradethreeUnitList = new List<UnitData>();
+        List<UnitSlotUI> unitSlotUIList = new List<UnitSlotUI>();   // 유닛 슬롯 UI 리스트
+        List<UnitData> gradeOneUnitList = new List<UnitData>();     // 기본 1성 등급 유닛 리스트
+        List<UnitData> gradeTwoUnitList = new List<UnitData>();     // 기본 2성 등급 유닛 리스트
+        List<UnitData> gradethreeUnitList = new List<UnitData>();   // 기본 3성 등급 유닛 리스트
 
+        // 팝업창을 보여준다.
         public void Show()
         {
             this.gameObject.SetActive(true);
             ShowGradeOne();
         }
 
+        // 슬롯 리스트와 유닛 리스트를 초기화합니다.
         public void Init()
         {
             foreach(var unitSlot in unitScrollView.content.GetComponentsInChildren<UnitSlotUI>())
             {
                 unitSlotUIList.Add(unitSlot);
             }
+            // 전체 유닛 데이터에서 각 등급에 맞는 데이터를 추출해온다.
             gradeOneUnitList = GameManager.Instance.GetDatas<UnitData>().Where(data => data.isUserUnit && data.defaultGrade == 1).ToList();
             gradeTwoUnitList = GameManager.Instance.GetDatas<UnitData>().Where(data => data.isUserUnit && data.defaultGrade == 2).ToList();
             gradethreeUnitList = GameManager.Instance.GetDatas<UnitData>().Where(data => data.isUserUnit && data.defaultGrade == 3).ToList();
         }
 
+        // 기본 1성 등급의 유닛을 보여줍니다.
         public void ShowGradeOne()
         {
             probablilityText.text = $"1성 유닛 획득 확률 : {Constant.normalSummonPercent * 100}%";
 
+            // 각 1성 유닛당 나올 확률을 체크합니다.
             float probability = Constant.normalSummonPercent / gradeOneUnitList.Count;
 
             for (int i = 0; i < unitSlotUIList.Count; i++)
@@ -51,8 +59,9 @@ namespace Portfolio.Lobby.Summon
                     continue;
                 }
 
+                // 유닛 데이터를 보여주고 확률을 보여줍니다.
                 unitSlotUIList[i].ShowUnit(gradeOneUnitList[i], false);
-                unitSlotUIList[i].GetComponent<UnitSlotProbabilityUI>().Show(probability);
+                unitSlotUIList[i].GetComponent<UnitProbaility>().Show(probability);
                 unitSlotUIList[i].gameObject.SetActive(true);
             }
         }
@@ -72,7 +81,7 @@ namespace Portfolio.Lobby.Summon
                 }
 
                 unitSlotUIList[i].ShowUnit(gradeTwoUnitList[i], false);
-                unitSlotUIList[i].GetComponent<UnitSlotProbabilityUI>().Show(probability);
+                unitSlotUIList[i].GetComponent<UnitProbaility>().Show(probability);
                 unitSlotUIList[i].gameObject.SetActive(true);
             }
         }
@@ -92,7 +101,7 @@ namespace Portfolio.Lobby.Summon
                 }
 
                 unitSlotUIList[i].ShowUnit(gradethreeUnitList[i], false);
-                unitSlotUIList[i].GetComponent<UnitSlotProbabilityUI>().Show(probability);
+                unitSlotUIList[i].GetComponent<UnitProbaility>().Show(probability);
                 unitSlotUIList[i].gameObject.SetActive(true);
             }
         }

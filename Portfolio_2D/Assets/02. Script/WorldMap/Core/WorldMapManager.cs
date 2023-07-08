@@ -55,6 +55,8 @@ namespace Portfolio.WorldMap
             CurrentUserChoiceNode = worldNodeList[0];
         }
 
+        // ORDER : 트리 구조로 만든 맵 노드 트리를 DFS 재귀를 이용해서 만든 맵노드 끼리 노드 연결
+
         private void NodeSetting(MapNode currentMapNode)
         {
             RectTransform nodeLinePrefab = WorldMapUIManager.NodeLinePrefab;
