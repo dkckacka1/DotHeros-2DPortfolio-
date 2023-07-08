@@ -8,7 +8,7 @@
   "userCurrentExperience": 0,
   "gold": 3001000,
   "diamond": 70489,
-  "energy": 35,
+  "energy": 29,
   "maxUnitListCount": 30,
   "unitDataList": [
     {
@@ -1240,5 +1240,5 @@
     500,
     999
   ],
-  "LastAccessTime": "2023-07-08T14:48:17.1424177+09:00"
+  "LastAccessTime": "2023-07-08T18:41:54.9592048+09:00"
 }

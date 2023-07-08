@@ -447,7 +447,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 4274069123143489449}
         m_TargetAssemblyTypeName: Portfolio.WorldMap.MapNode, Assembly-CSharp
-        m_MethodName: BTN_ONCLICK_SetMapNode
+        m_MethodName: BTN_OnClick_SelectMapNode
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -459,7 +459,7 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 4274069123143489449}
         m_TargetAssemblyTypeName: Portfolio.WorldMap.MapNode, Assembly-CSharp
-        m_MethodName: BTN_ONCLICK_ShowMapInfoUI
+        m_MethodName: BTN_OnClick_ShowMapInfoUI
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -529,6 +529,7 @@ MonoBehaviour:
   mapNameText: {fileID: 4274069122816255936}
   RockImage: {fileID: 1711640468143603088}
   nodeArrowParent: {fileID: 3926711155529580087}
+  isDefaultMap: 0
 --- !u!1 &4803951695971163929
 GameObject:
   m_ObjectHideFlags: 0

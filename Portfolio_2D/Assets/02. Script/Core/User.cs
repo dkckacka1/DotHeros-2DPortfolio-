@@ -121,6 +121,7 @@ namespace Portfolio
 
         
 
+        // 도달가능한 가장 높은 맵 ID를 리턴합니다
         public int ClearHighestMapID
         {
             get
@@ -132,8 +133,11 @@ namespace Portfolio
                 }
                 else
                 {
-                    // 외전 맵이 아닌 클리어한 맵을 내림차 순으로 정렬한 후 첫번째 맵 리턴
-                    return userData.clearMapList.Where(mapID => mapID < 600).OrderByDescending(mapID => mapID).First();
+                    // 외전 맵이 아닌 클리어한 맵을 내림차 순으로 정렬한 후 첫번째 맵 ID
+                    int nextMapID = userData.clearMapList.Where(mapID => mapID < 600).OrderByDescending(mapID => mapID).First();
+
+                    // 클리어한 맵의 다음맵이 있다면 다음맵 리턴, 다음맵이 없다면 클리어한 맵중 가장 높은맵 리턴
+                    return GameManager.Instance.HasData<MapData>(nextMapID + 1) ? nextMapID + 1 : nextMapID;
                 }
             }
         }

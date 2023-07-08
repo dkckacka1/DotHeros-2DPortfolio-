@@ -8058,7 +8058,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentBattleState: -1
   stageOutputTime: 2
-  isTest: 1
+  isTest: 0
   CallMapID: 999
   userUnitTakeCount: 5
 --- !u!4 &1077764693

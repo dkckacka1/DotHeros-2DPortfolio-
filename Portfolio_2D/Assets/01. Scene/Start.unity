@@ -208,7 +208,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1636244762}
         m_TargetAssemblyTypeName: Portfolio.Start.StartUIManager, Assembly-CSharp
-        m_MethodName: ShowLoginPopup
+        m_MethodName: BTN_OnClick_ShowLoginPopup
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1124,7 +1124,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2648879711716426105, guid: 73c6ccdfa7c4c6143a0cc91d89f44281, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: GotoLobby
+      value: BTN_OnClick_GotoLobby
       objectReference: {fileID: 0}
     - target: {fileID: 2648879711716426105, guid: 73c6ccdfa7c4c6143a0cc91d89f44281, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
@@ -1409,7 +1409,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2648879711716426105, guid: 73c6ccdfa7c4c6143a0cc91d89f44281, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: ShowSignUpPopup
+      value: BTN_OnClick_ShowSignUpPopup
       objectReference: {fileID: 0}
     - target: {fileID: 2648879711716426105, guid: 73c6ccdfa7c4c6143a0cc91d89f44281, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
@@ -1671,11 +1671,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6688204727401352616, guid: c2f50363b75c0774fba8d211d089e6ef, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: CheckNickName
+      value: INFUTFIELD_OnValueChanged_CheckNickName
       objectReference: {fileID: 0}
     - target: {fileID: 6688204727401352616, guid: c2f50363b75c0774fba8d211d089e6ef, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
-      value: CheckSignVaild
+      value: INFUTFIELD_OnValueChanged_CheckSignVaild
       objectReference: {fileID: 0}
     - target: {fileID: 6688204727401352616, guid: c2f50363b75c0774fba8d211d089e6ef, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
@@ -2791,7 +2791,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2648879711716426105, guid: 73c6ccdfa7c4c6143a0cc91d89f44281, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: Login
+      value: BTN_OnClick_TryLogin
       objectReference: {fileID: 0}
     - target: {fileID: 2648879711716426105, guid: 73c6ccdfa7c4c6143a0cc91d89f44281, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
@@ -2968,11 +2968,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6688204727401352616, guid: c2f50363b75c0774fba8d211d089e6ef, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: CheckID
+      value: INFUTFIELD_OnValueChanged_CheckID
       objectReference: {fileID: 0}
     - target: {fileID: 6688204727401352616, guid: c2f50363b75c0774fba8d211d089e6ef, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
-      value: CheckSignVaild
+      value: INFUTFIELD_OnValueChanged_CheckSignVaild
       objectReference: {fileID: 0}
     - target: {fileID: 6688204727401352616, guid: c2f50363b75c0774fba8d211d089e6ef, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
@@ -3150,11 +3150,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6688204727401352616, guid: c2f50363b75c0774fba8d211d089e6ef, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: CheckPassworld
+      value: INFUTFIELD_OnValueChanged_CheckPassworld
       objectReference: {fileID: 0}
     - target: {fileID: 6688204727401352616, guid: c2f50363b75c0774fba8d211d089e6ef, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
-      value: CheckSignVaild
+      value: INFUTFIELD_OnValueChanged_CheckSignVaild
       objectReference: {fileID: 0}
     - target: {fileID: 6688204727401352616, guid: c2f50363b75c0774fba8d211d089e6ef, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
@@ -3615,7 +3615,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2648879711716426105, guid: 73c6ccdfa7c4c6143a0cc91d89f44281, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: SignUp
+      value: BTN_OnClick_SignUp
       objectReference: {fileID: 0}
     - target: {fileID: 2648879711716426105, guid: 73c6ccdfa7c4c6143a0cc91d89f44281, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
@@ -4368,11 +4368,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6688204727401352616, guid: c2f50363b75c0774fba8d211d089e6ef, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: CheckPasswordConfirm
+      value: INFUTFIELD_OnValueChanged_CheckPasswordConfirm
       objectReference: {fileID: 0}
     - target: {fileID: 6688204727401352616, guid: c2f50363b75c0774fba8d211d089e6ef, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
-      value: CheckSignVaild
+      value: INFUTFIELD_OnValueChanged_CheckSignVaild
       objectReference: {fileID: 0}
     - target: {fileID: 6688204727401352616, guid: c2f50363b75c0774fba8d211d089e6ef, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
