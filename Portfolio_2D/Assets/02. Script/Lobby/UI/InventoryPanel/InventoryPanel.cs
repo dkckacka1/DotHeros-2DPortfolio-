@@ -11,10 +11,14 @@ namespace Portfolio.Lobby.Inventory
 {
     public class InventoryPanel : PanelUI
     {
-        [SerializeField] EquipmentInventory equipmentInventory;             // 장비 아이템 인벤토리
-        [SerializeField] ConsumableItemInventory consumableItemInventory;   // 소비 아이템 인벤토리
+        [Header("Toggle")]
         [SerializeField] Toggle equipmentInventoryToggle;                   // 장비 인벤토리 토글
         [SerializeField] Toggle consumableItemInventoryToggle;              // 소비 인벤토리 토글
+
+        [Header("Inventory")]
+        [SerializeField] EquipmentInventory equipmentInventory;             // 장비 아이템 인벤토리
+        [SerializeField] ConsumableItemInventory consumableItemInventory;   // 소비 아이템 인벤토리
+        [Header("Tooltip")]
         [SerializeField] InventoryTooltip tooltip;                          // 툴팁
         private Vector2 pos;
 

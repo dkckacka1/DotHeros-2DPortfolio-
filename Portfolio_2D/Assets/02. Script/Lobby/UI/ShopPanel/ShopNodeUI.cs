@@ -13,8 +13,8 @@ namespace Portfolio.Lobby.Shop
 {
     public abstract class ShopNodeUI : MonoBehaviour
     {
-        [SerializeField] PaymentType paymentType = PaymentType.Gold;    // 상품을 구매하기 위한 결제 수단 종류
-        [SerializeField] int paymentValue = 100;                        // 상품을 구매하기 위한 금액
+        [SerializeField] protected PaymentType paymentType = PaymentType.Gold;    // 상품을 구매하기 위한 결제 수단 종류
+        [SerializeField] protected int paymentValue = 100;                        // 상품을 구매하기 위한 금액
 
         [Header("Cash")]
         [SerializeField] TextMeshProUGUI cashText;      // 현금 소비 텍스트
@@ -49,7 +49,12 @@ namespace Portfolio.Lobby.Shop
 
         protected virtual void Start()
         {
-            // 결제 종류에 따라 보여줄 텍스트 및 이미지를 정해준다.
+            ShowPayment();
+        }
+
+        // 결제 종류에 따라 보여줄 텍스트 및 이미지를 정해준다.
+        private void ShowPayment()
+        {
             cashText.gameObject.SetActive(paymentType == PaymentType.Cash);
             resourceImage.gameObject.SetActive(paymentType != PaymentType.Cash);
             resourceText.gameObject.SetActive(paymentType != PaymentType.Cash);

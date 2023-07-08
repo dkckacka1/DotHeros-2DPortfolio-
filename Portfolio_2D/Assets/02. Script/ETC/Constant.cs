@@ -47,6 +47,10 @@ namespace Portfolio
         public const int equipmentListSizeUpCount = 5;
         // 장비 리스트 최대 사이즈 수
         public const int equipmentListMaxSizeCount = 100;
+        // 상점의 할인율
+        public static readonly float[] shopProductDiscountValues = { 0f, 0.1f, 0.25f, 0.33f, 0.5f, 0.7f, 0.9f};
+        // 상점에서 소비아이템의 판매시 최대 갯수
+        public static int shopProductMaxCount = 6;
 
         //===========================================================
         // RandomValue
