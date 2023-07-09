@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /*
- * 환경설정을 표시하는 팝업 UI 클래스
- * TODO
+ * TODO : 환경설정을 표시하는 팝업 UI 클래스
  */
 
 namespace Portfolio

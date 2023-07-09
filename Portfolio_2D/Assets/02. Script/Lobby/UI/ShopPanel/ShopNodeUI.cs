@@ -13,7 +13,7 @@ namespace Portfolio.Lobby.Shop
 {
     public abstract class ShopNodeUI : MonoBehaviour
     {
-        [SerializeField] protected PaymentType paymentType = PaymentType.Gold;    // 상품을 구매하기 위한 결제 수단 종류
+        [SerializeField] private PaymentType paymentType = PaymentType.Gold;    // 상품을 구매하기 위한 결제 수단 종류
         [SerializeField] protected int paymentValue = 100;                        // 상품을 구매하기 위한 금액
 
         [Header("Cash")]
@@ -47,13 +47,19 @@ namespace Portfolio.Lobby.Shop
             }
         }
 
+        public PaymentType PaymentType 
+        {
+            get => paymentType; 
+            protected set => paymentType = value;
+        }
+
         protected virtual void Start()
         {
             ShowPayment();
         }
 
         // 결제 종류에 따라 보여줄 텍스트 및 이미지를 정해준다.
-        private void ShowPayment()
+        protected void ShowPayment()
         {
             cashText.gameObject.SetActive(paymentType == PaymentType.Cash);
             resourceImage.gameObject.SetActive(paymentType != PaymentType.Cash);

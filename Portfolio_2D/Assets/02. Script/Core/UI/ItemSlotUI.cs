@@ -7,7 +7,6 @@ using UnityEngine.UI;
 
 /*
  * 아이템 슬롯 UI클래스
- * TODO : 소비아이템 셀렉터, 인벤토리 셀렉터로 분할 해줘야함
  */
 
 namespace Portfolio.UI

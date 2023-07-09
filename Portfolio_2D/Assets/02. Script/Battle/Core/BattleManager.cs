@@ -42,7 +42,7 @@ namespace Portfolio.Battle
         public bool isTest = false;
         public int CallMapID = 500;
         public int userUnitTakeCount = 5;
-            
+
         //===========================================================
         // Property & Singleton
         //===========================================================
@@ -85,7 +85,7 @@ namespace Portfolio.Battle
         private void Start()
         {
             if (!GameManager.Instance.isTest)
-                // 테스트 상태가 아니면
+            // 테스트 상태가 아니면
             {
                 // 맵 세팅
                 SetMap();
@@ -97,7 +97,7 @@ namespace Portfolio.Battle
                 StartCoroutine(SetStartStage());
             }
             else
-                // 테스트 중이면
+            // 테스트 중이면
             {
                 // MapID 값으로 맵 세팅
                 GameManager.Instance.TryGetMap(CallMapID, out currentMap);
@@ -131,7 +131,7 @@ namespace Portfolio.Battle
         }
 
         private void SetUserUnit()
-            // 유저가 선택한 유닛 리스트를 가져와서 전투 유닛 생성 해주기
+        // 유저가 선택한 유닛 리스트를 가져와서 전투 유닛 생성 해주기
         {
             userChoiceUnits = SceneLoader.userChoiceUnits;
             battleFactory.CreateUserUnit(userChoiceUnits);
@@ -178,26 +178,26 @@ namespace Portfolio.Battle
             }
         }
         public void GetItem(int id, int count)
-            // 아이템 획득
+        // 아이템 획득
         {
             if (GetItemDic.ContainsKey(id))
-                // 이미 아이템 가방에 있는 아이템이면
+            // 이미 아이템 가방에 있는 아이템이면
             {
                 // 획득 숫자만 조절
                 GetItemDic[id] += count;
             }
             else
-                // 아이템 가방에 없다면
+            // 아이템 가방에 없다면
             {
                 // 새로이 추가
                 GetItemDic.Add(id, count);
             }
         }
         private void ClearDeadUnit()
-            // 죽은 유닛 삭제
+        // 죽은 유닛 삭제
         {
             var deadUnitList = unitList.Where(unit => unit.IsDead).ToList();
-            foreach(var unit in deadUnitList)
+            foreach (var unit in deadUnitList)
             {
                 RemoveUnit(unit);
                 Destroy(unit.gameObject);
@@ -209,7 +209,7 @@ namespace Portfolio.Battle
         // SetState
         //===========================================================
         public void SwitchBattleState(BattleState state)
-            // 전투 상태 변경
+        // 전투 상태 변경
         {
             currentBattleState = state;
             // 전투 상태 변경에 따른 이벤트를 호출해준다.
@@ -217,13 +217,13 @@ namespace Portfolio.Battle
         }
 
         public void Play()
-            // 전투 중
+        // 전투 중
         {
             SwitchBattleState(BattleState.PLAY);
         }
 
         public IEnumerator SetStartStage()
-            // 첫번째 스테이지 시작
+        // 첫번째 스테이지 시작
         {
             SwitchBattleState(BattleState.SETSTAGE);
             BattleUIManager.ShowStageInfo(CurrentMap);
@@ -237,13 +237,13 @@ namespace Portfolio.Battle
         }
 
         public void SetNextStage()
-            // 다음 스테이지 시작
+        // 다음 스테이지 시작
         {
             SwitchBattleState(BattleState.SETSTAGE);
             StartCoroutine(SetStageSequence());
         }
         private IEnumerator SetStageSequence()
-            // 스테이지 출력 연출
+        // 스테이지 출력 연출
         {
             yield return new WaitForSeconds(stageOutputTime);
             // 죽은 유닛 삭제
@@ -260,44 +260,46 @@ namespace Portfolio.Battle
             BattleStart();
         }
         public void BattleStart()
-            // 전투 시작
+        // 전투 시작
         {
             SwitchBattleState(BattleState.BATTLESTART);
             Play();
         }
 
         public void Pause()
-            // 전투 멈춤
+        // 전투 멈춤
         {
             SwitchBattleState(BattleState.PAUSE);
         }
 
         public void Win()
-            // 승리
+        // 승리
         {
             SwitchBattleState(BattleState.WIN);
             if (stageDatas.Count() >= 1)
-                // 다음 스테이지가 남아있다면
+            // 다음 스테이지가 남아있다면
             {
                 // 다음 스테이지 출력
                 SetNextStage();
             }
             else
-                // 다음 스테이지가 없다면
+            // 다음 스테이지가 없다면
             {
                 // 전투 승리 UI 출력
                 BattleUIManager.Win();
                 // 유저 정보에 얻은 아이템 넣어주기
                 UesrGetItem();
                 // 유닛들 경험치 증가시켜주기
-                UnitGetExperience();
+                UserUnitGetExperience();
+                // 유저 경험치 증가시켜주기
+                UserGetExperience();
                 // 현재 맵 정보 넘겨줘서 맵 클리어 해주기
                 GameManager.CurrentUser.ClearMap(currentMap.MapID);
             }
         }
 
         public void Defeat()
-            // 패배
+        // 패배
         {
             SwitchBattleState(BattleState.DEFEAT);
             // 패배 UI 출력
@@ -305,7 +307,7 @@ namespace Portfolio.Battle
         }
 
         private void UesrGetItem()
-            // 얻은 아이템들 유저 가방에 넣어주기
+        // 얻은 아이템들 유저 가방에 넣어주기
         {
             foreach (var itemKV in GetItemDic.ToList())
             {
@@ -313,8 +315,14 @@ namespace Portfolio.Battle
             }
         }
 
-        private void UnitGetExperience()
-            // 유닛들 경험치 획득시켜주기
+        // 유저의 경험치 증가
+        private void UserGetExperience()
+        {
+            GameManager.CurrentUser.UserCurrentExperience += currentMap.MapUserExperience;
+        }
+
+        private void UserUnitGetExperience()
+        // 유닛들 경험치 획득시켜주기
         {
             var experienceValue = currentMap.MapExperience;
             foreach (var unit in userChoiceUnits)
@@ -330,10 +338,10 @@ namespace Portfolio.Battle
         //===========================================================
         // ORDER : 이벤트 버스를 이용해서 만든 전투 상태에 따른 이벤트 구독 시스템
         public void PublishEvent(BattleState state, UnityAction action)
-            // 전투 상태에 이벤트 구독
+        // 전투 상태에 이벤트 구독
         {
             if (StateEventHandlerDic.ContainsKey(state))
-                // 이벤트 Dic에 해당 전투 상태 KEY가 있다면
+            // 이벤트 Dic에 해당 전투 상태 KEY가 있다면
             {
                 //이벤트 구독
                 StateEventHandlerDic[state].AddListener(action);
@@ -347,7 +355,7 @@ namespace Portfolio.Battle
         }
 
         public void UnPublishEvent(BattleState state, UnityAction action)
-            // 이벤트 구독 해제
+        // 이벤트 구독 해제
         {
             if (StateEventHandlerDic.ContainsKey(state))
             {
@@ -356,7 +364,7 @@ namespace Portfolio.Battle
         }
 
         public void InvokeStateEvent(BattleState state)
-            // 구독한 이벤트 모두 호출
+        // 구독한 이벤트 모두 호출
         {
             if (StateEventHandlerDic.ContainsKey(state))
             {
@@ -368,7 +376,7 @@ namespace Portfolio.Battle
         // BtnPlugin
         //===========================================================
         public void SetAutomaticBattle()
-            // 자동 전투 설정
+        // 자동 전투 설정
         {
             // 모든 플레이어블 유닛에 대한 자동 전투 체크
             var list = unitList.Where(battleUnit => !battleUnit.IsEnemy);

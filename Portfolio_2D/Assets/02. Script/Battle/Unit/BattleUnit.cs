@@ -672,6 +672,11 @@ namespace Portfolio.Battle
                 {
                     // 효과 발동
                     conditionSystem.Condition.ApplyCondition(this);
+                    if (isDead)
+                        // 유닛이 사망한다면 발동 중지
+                    {
+                        return;
+                    }
                 }
             }
         }

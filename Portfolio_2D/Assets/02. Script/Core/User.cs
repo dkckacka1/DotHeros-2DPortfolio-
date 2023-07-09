@@ -96,6 +96,8 @@ namespace Portfolio
                 {
                     userData.userCurrentExperience = value;
                 }
+                // 경험치와 레벨을 업데이트합니다.
+                GameManager.UIManager.UserInfoUI.ShowUserLevel(this);
             }
         }
         public int Gold

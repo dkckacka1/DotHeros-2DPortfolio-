@@ -25,6 +25,8 @@ namespace Portfolio.Lobby.Shop
 
         public ConsumableItemData ConsumableItemData => productConsumalbeItem;
 
+        public float DiscountValue => discountValue;
+
         // 판매할 아이템을 세팅합니다.
         public void SetConsumableItemProduct(ConsumableItemData itemData, int count, bool isGoldPayment, float discountValue)
         {
@@ -37,12 +39,12 @@ namespace Portfolio.Lobby.Shop
             if (isGoldPayment)
             {
                 defaultPayment = productConsumalbeItem.productGoldValue;
-                base.paymentType = PaymentType.Gold;
+                PaymentType = PaymentType.Gold;
             }
             else
             {
                 defaultPayment = productConsumalbeItem.productDiaValue;
-                base.paymentType = PaymentType.Diamond;
+                PaymentType = PaymentType.Diamond;
             }
             
             // 상품 가격, 갯수, 할인율을 통해 금액을 결정합니다.
@@ -60,9 +62,9 @@ namespace Portfolio.Lobby.Shop
             productCountText.text = productCount.ToString() + " 개";
 
             // 할인율이 0% 가 아니면 할인 오브젝트를 표시합니다.
-            if (discountValue != 0)
+            if (DiscountValue != 0)
             {
-                productDiscountText.text = $"{(discountValue * 100).ToString("00")}%\n할인!";
+                productDiscountText.text = $"{(DiscountValue * 100).ToString("00")}%\n할인!";
                 productDiscountText.transform.parent.gameObject.SetActive(true);
             }
             else
@@ -70,6 +72,8 @@ namespace Portfolio.Lobby.Shop
                 productDiscountText.transform.parent.gameObject.SetActive(false);
             }
             saleCompletedObject.gameObject.SetActive(false);
+
+            ShowPayment();
         }
 
         // 판매 완료를 표시합니다.

@@ -3,18 +3,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using TargetSelector = Portfolio.WorldMap.UnitSlotSelector_FormationPopupTarget;    // 셀렉터 이름이 너무 길어서 별칭 사용
 
 // ORDER : 드래그 앤 드랍으로 만든 유닛 포지션 배정 시스템
 /*
  * 유닛 슬롯을 드래그앤 드랍해서 진형을 만들 수 있게하는 셀렉터 클래스
+ * 유닛 슬롯 UI가있는 오브젝트에만 부착할 수 있다.
  */
-// TODO : 셀렉터로 변경
 namespace Portfolio.WorldMap
 {
-    public class FormationSlotUI : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
+    [RequireComponent(typeof(UnitSlotUI))]
+    public class UnitSlotSelector_FormationPopup : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
     {
         UnitSlotUI mineSlot;                                    // 자신의 유닛 슬롯 UI
-        [SerializeField] FormationTargetUnitUI targetUnitUI;    // 포메이션의 드래그 슬롯
+        [SerializeField] TargetSelector targetUnitUI;           // 포메이션의 드래그 슬롯
 
         [SerializeField] GameObject SelectedUI;                 // 선택했음을 보여주는 오브젝트 // TODO 깃발 이미지로 바꿔주기
 

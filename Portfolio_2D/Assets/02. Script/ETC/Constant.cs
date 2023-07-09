@@ -51,6 +51,8 @@ namespace Portfolio
         public static readonly float[] shopProductDiscountValues = { 0f, 0.1f, 0.25f, 0.33f, 0.5f, 0.7f, 0.9f};
         // 상점에서 소비아이템의 판매시 최대 갯수
         public static int shopProductMaxCount = 6;
+        // 소비아이템 상점 새로고침시 소비되는 다이아 양
+        public const int shopRefreshDiaConsumValue = 20;
 
         //===========================================================
         // RandomValue

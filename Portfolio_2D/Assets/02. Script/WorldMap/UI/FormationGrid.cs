@@ -7,7 +7,6 @@ using UnityEngine.EventSystems;
 
 /*
  * 전투 진형을 설정하기 위한 유닛 슬롯
- * TODO : 슬롯과 분할해야함
  */
 
 namespace Portfolio.WorldMap
@@ -15,12 +14,12 @@ namespace Portfolio.WorldMap
     public class FormationGrid : MonoBehaviour, IDropHandler
     {
         [SerializeField] UnitSlotUI unitSlotUI;                         // 들어올 유닛 정보를 보여줄 유닛 슬롯
-        [SerializeField] FormationTargetUnitUI fomationTargetSlotUI;    // 드래그로 들어온 유닛 슬롯 셀렉터
+        [SerializeField] UnitSlotSelector_FormationPopupTarget targetSelector;    // 드래그로 들어온 유닛 슬롯 셀렉터
         [SerializeField] TextMeshProUGUI unitNameText;                  // 유닛 이름 텍스트
         [SerializeField] TextMeshProUGUI emptyLabel;                    // 비어있음을 표시할 텍스트
         [SerializeField] GameObject btnLayout;                          // 들어온 유닛을 제거할 수있는 버튼이 들어있는 레이아웃
 
-        FormationSlotUI currentFomationSlotUI;  // 현재 유닛슬롯
+        UnitSlotSelector_FormationPopup currentFomationSlotUI;  // 현재 유닛슬롯
 
         public Unit GetCurrentUnit => unitSlotUI.CurrentUnit;
 
@@ -49,14 +48,14 @@ namespace Portfolio.WorldMap
         // 이 슬롯위에서 타겟슬롯이 드랍되었다면 드랍된 슬롯의 정보를 입력합니다.
         public void OnDrop(PointerEventData eventData)
         {
-            if (fomationTargetSlotUI.IsSelectUnit)
+            if (targetSelector.IsSelectUnit)
                 // 만약 선택된 타겟슬롯이 있다면
             {
                 if (currentFomationSlotUI == null)
                     // 해당 진형에 유닛이 존재하지 않는다면
                 {
                     // 이 슬롯에 드랍된 정보를 입력한다.
-                    currentFomationSlotUI = fomationTargetSlotUI.selectFomationSlotUI;
+                    currentFomationSlotUI = targetSelector.selectFomationSlotUI;
                     // 선택된 슬롯을 선택한다.
                     currentFomationSlotUI.Select();
                 }
@@ -66,13 +65,13 @@ namespace Portfolio.WorldMap
                     // 기선택된 슬롯을 비선택한다.
                     currentFomationSlotUI.UnSelect();
                     // 이 슬롯에 드랍된 정보를 입력한다.
-                    currentFomationSlotUI = fomationTargetSlotUI.selectFomationSlotUI;
+                    currentFomationSlotUI = targetSelector.selectFomationSlotUI;
                     // 선택된 슬롯을 선택한다.
                     currentFomationSlotUI.Select();
                 }
 
                 // 선택한 유닛의 정보를 보여줍니다.
-                Unit selectUnit = fomationTargetSlotUI.SelectUnit;
+                Unit selectUnit = targetSelector.SelectUnit;
                 ShowUnit(selectUnit);
             }
         }

@@ -14,11 +14,12 @@ namespace Portfolio
     {
         private MapData mapData;
 
-        private List<Stage> stageList = new List<Stage>();
+        private List<Stage> stageList = new List<Stage>();  // 현재 맵이 스테이지 리스트
         public List<Stage> StageList => stageList;
         public int MapID => mapData.ID;
         public string MapName => mapData.mapName;
         public float MapExperience => mapData.experienceValue;
+        public int MapUserExperience => mapData.userExperienceValue;
         public int ConsumEnergy => mapData.consumEnergy;
         public bool IsExternMap => mapData.isExternalMap;
         public bool IsHeigestMapID => !IsExternMap && GameManager.CurrentUser.ClearHighestMapID == mapData.ID; // 이 맵이 유저가 가장 높이 깬 맵이 맞는지 확인

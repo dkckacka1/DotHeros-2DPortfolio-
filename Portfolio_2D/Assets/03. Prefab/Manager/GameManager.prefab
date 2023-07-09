@@ -1641,7 +1641,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 41771949476148389}
         m_TargetAssemblyTypeName: Portfolio.UI.UIManager, Assembly-CSharp
-        m_MethodName: ShowPortraitChangePopupUI
+        m_MethodName: BTN_OnClick_ShowPortraitChangePopupUI
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

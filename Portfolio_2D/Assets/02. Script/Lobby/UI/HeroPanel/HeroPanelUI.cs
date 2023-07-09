@@ -161,9 +161,9 @@ namespace Portfolio.Lobby.Hero
             equipmentListPopupUI.gameObject.SetActive(false);
             equipmentTooltipUI.gameObject.SetActive(false);
             skillLevelUpPopupUI.gameObject.SetActive(false);
-            unitCompositionToggle.onValueChanged.Invoke(false);
-            unitStatusToggle.onValueChanged.Invoke(true);
             unitStatusToggle.isOn = true;
+            unitStatusToggle.onValueChanged.Invoke(true);
+            unitCompositionToggle.onValueChanged.Invoke(false);
             GameManager.Instance.SaveUser();
             
         }
@@ -204,9 +204,6 @@ namespace Portfolio.Lobby.Hero
             unitListUI.SetComposition();
         }
 
-        //===========================================================
-        // BtnPlugin
-        //===========================================================
         // 유닛 장비창을 보여준다.
         public void BTN_OnClick_ShowEquipmentUI()
         {

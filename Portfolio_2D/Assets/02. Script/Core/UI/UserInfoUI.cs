@@ -28,11 +28,8 @@ namespace Portfolio
         {
             // 닉네임 표시
             userNickNameText.text = user.UserNickName+ "(" + user.UserID+ ")";
-            // 레벨 표시
-            userLevelText.text = $"레벨 ({user.UserLevel})";
-            // 경험치량 표시
-            userExperienceSlider.value = user.UserCurrentExperience / user.MaxExperience;
-            userExperienceText.text = $"{userExperienceSlider.value * 100f}%";
+            // 유저 레벨 경험치 표시
+            ShowUserLevel(user);
             // 유저 이미지 스프라이트
             userImage.sprite = user.UserPortrait;
             // 에너지 표시
@@ -65,6 +62,15 @@ namespace Portfolio
         public void ShowRemainTime(int time)
         {
             userEnergyChargeRemainText.text = $"{(time / 60).ToString("00")} : {(time % 60).ToString("00")}";
+        }
+
+        public void ShowUserLevel(User user)
+        {
+            // 레벨 표시
+            userLevelText.text = $"레벨 ({user.UserLevel})";
+            // 경험치량 표시
+            userExperienceSlider.value = user.UserCurrentExperience / user.MaxExperience;
+            userExperienceText.text = $"{userExperienceSlider.value * 100f}%";
         }
     }
 }

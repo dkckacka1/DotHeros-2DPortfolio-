@@ -17,5 +17,6 @@ namespace Portfolio
         public int consumEnergy = 5;                // 소비 에너지 량
         public int experienceValue = 10;            // 획득 경험치
         public int getGoldValue = 100;              // 획득 골드 량
+        public int userExperienceValue = 100;       // 획득 유저 경험치
     }
 }
