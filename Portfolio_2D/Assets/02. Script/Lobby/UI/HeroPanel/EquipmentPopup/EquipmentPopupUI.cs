@@ -40,10 +40,16 @@ namespace Portfolio.Lobby.Hero
         [SerializeField] TextMeshProUGUI optionStat_4_Lable;        // 옵션 스텟 4 종류 텍스트
         [SerializeField] TextMeshProUGUI optionStat_4_Value;        // 옵션 스텟 4 값 텍스트
 
-        public void Init()
+        private void OnEnable()
         {
-            // 영웅창에서 선택한 장비가 바뀌었을 때 이벤트를 구독한다.
+            // 영웅창에서 선택한 장비가 바뀌었을 때 UI를 업데이트 하기위해 구독합니다.
             LobbyManager.UIManager.equipmentItemDataChangeEvent += ShowEquipment;
+        }
+
+        private void OnDisable()
+        {
+            // 창이 꺼지면 구독 해제
+            LobbyManager.UIManager.equipmentItemDataChangeEvent -= ShowEquipment;
         }
 
         // 장비아이템을 보여준다.

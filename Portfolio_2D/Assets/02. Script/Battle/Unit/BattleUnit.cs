@@ -343,9 +343,18 @@ namespace Portfolio.Battle
             }
         }
 
-        public void TakeDamage(float damagePoint, BattleUnit hitUnit ,bool canDamagedEvent = true)
-            // 피해 입기
+        // 피해 입기
+        public void TakeDamage(float damagePoint, BattleUnit hitUnit ,bool canDamagedEvent = true, bool canDefence = true)
         {
+            float damageValue = damagePoint;
+
+            if (canDefence)
+                // 방어가 가능한 공격이면 방어 공식을 계산한다.
+            {
+                // 최소데미지는 20%이다.
+                damageValue = Mathf.Clamp(DefensiveCalculation(damageValue), damagePoint * 0.2f, damagePoint);
+            }
+
             // 체력이 감소된다. (체력 변화 이벤트 호출됨)
             CurrentHP -= damagePoint;
             if (!IsDead && canDamagedEvent)
@@ -423,7 +432,14 @@ namespace Portfolio.Battle
             this.gameObject.SetActive(false);
         }
 
-
+        // 들어온 데미지를 방어하는 방어도 계산식
+        private float DefensiveCalculation(float damageValue)
+        {
+            // 방어율 = 방어도 / 방어도 + 방어 상수
+            float defenciveAverage = DefencePoint / DefencePoint + Constant.DEFENCE_CONST_VALUE;
+            // 들어온 데미지 * 방어율 = 실제 받는 피해
+            return damageValue * defenciveAverage;
+        }
 
         #endregion
         //===========================================================

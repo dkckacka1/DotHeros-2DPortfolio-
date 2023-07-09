@@ -8,7 +8,7 @@ using UnityEngine;
 
 namespace Portfolio.Lobby.Inventory
 {
-    public class InventoryTooltip : MonoBehaviour
+    public class Tooltip : MonoBehaviour
     {
         [SerializeField] EquipmentTooltip equipmentTooltipUI;               // 장비 아이템 툴팁
         [SerializeField] ConsumableItemTooltip consumableItemTooltipUI;     // 소비 아이템 툴팁

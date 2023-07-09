@@ -16,14 +16,21 @@ namespace Portfolio.Lobby.Hero
         [SerializeField] UnitSkillUI passiveSkill_1_UI; // 유저 패시브 스킬 1
         [SerializeField] UnitSkillUI passiveSkill_2_UI; // 유저 패시브 스킬 3
 
-        internal void Init()
+        private void Start()
+        {
+            this.gameObject.SetActive(false);
+        }
+
+        private void OnEnable()
         {
             // 유저가 선택한 유닛이 변경될 때 UI를 업데이트한다.
             LobbyManager.UIManager.unitChangedEvent += ShowSkill;
         }
-        private void Start()
+
+        private void OnDisable()
         {
-            this.gameObject.SetActive(false);
+            // 창이 꺼지맨 구독을 해제한다.
+            LobbyManager.UIManager.unitChangedEvent -= ShowSkill;
         }
 
         // 유저가 선택한 유닛의 스킬을 보여줍니다.

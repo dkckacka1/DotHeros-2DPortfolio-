@@ -40,6 +40,10 @@ namespace Portfolio.Lobby
 
             // 유저의 메인 유닛을 보여줍니다.
             ShowMainUnits();
+
+            // 유닛이나 장비의 데이터가 변경된다면 로비의 메인 유닛도 변경되도록 이벤트 구독
+            unitChangedEvent += (sender, e) => { ShowMainUnits(); };
+            equipmentItemDataChangeEvent += (sender, e) => { ShowMainUnits(); };
         }
 
         // 유저의 메인 유닛을 보여줍니다.
@@ -58,7 +62,19 @@ namespace Portfolio.Lobby
                 mainHeros[i].ShowUnit(mainUnits[i]);
             }
         }
-        
+
+        //===========================================================
+        // DataChangedEvent
+        //===========================================================
+        public event EventHandler unitChangedEvent;             // 유닛의 데이터가 변경될 때의 이벤트
+        public event EventHandler equipmentItemDataChangeEvent; // 장비아이템 데이터가 변경될 때의 이벤트
+
+        // 유닛이 변경될 때의 이벤트 호출
+        public void OnUnitChanged() => unitChangedEvent?.Invoke(this, EventArgs.Empty);
+        // 장비아이템 데이터가 변경될 때의 이벤트 호출
+        public void OnEquipmentItemChanged() => equipmentItemDataChangeEvent?.Invoke(this, EventArgs.Empty);
+
+
         // 보여줄 창의 캔버스를 활성화합니다.
         public void BTN_OnClick_ShowCanvas(Canvas canvas)
         {
@@ -76,16 +92,6 @@ namespace Portfolio.Lobby
         {
             SceneLoader.LoadWorldMapScene();
         }
-        //===========================================================
-        // DataChangedEvent
-        //===========================================================
-        public event EventHandler unitChangedEvent;             // 유닛의 데이터가 변경될 때의 이벤트
-        public event EventHandler equipmentItemDataChangeEvent; // 장비아이템 데이터가 변경될 때의 이벤트
-
-        // 유닛이 변경될 때의 이벤트 호출
-        public void OnUnitChanged() => unitChangedEvent?.Invoke(this, EventArgs.Empty);
-        // 장비아이템 데이터가 변경될 때의 이벤트 호출
-        public void OnEquipmentItemChanged() => equipmentItemDataChangeEvent?.Invoke(this, EventArgs.Empty);
 
         //===========================================================
         // UndoSystem

@@ -18,10 +18,16 @@ namespace Portfolio.Lobby.Hero
 
         [SerializeField] Button reinforceBtn;   // 장비 강화 버튼
 
-        public void Init()
+        private void OnEnable()
         {
-            // 장비 데이터가 변경되면 보여줄 이벤트
+            // 장비 데이터가 변경되면 UI를 업데이트합니다.
             LobbyManager.UIManager.equipmentItemDataChangeEvent += ShowReinforce;
+        }
+
+        private void OnDisable()
+        {
+            // 창이 꺼지면 구독 해제
+            LobbyManager.UIManager.equipmentItemDataChangeEvent -= ShowReinforce;
         }
 
         // 장비 강화창을 표시한다.

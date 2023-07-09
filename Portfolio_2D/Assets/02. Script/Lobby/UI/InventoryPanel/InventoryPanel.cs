@@ -19,7 +19,7 @@ namespace Portfolio.Lobby.Inventory
         [SerializeField] EquipmentInventory equipmentInventory;             // 장비 아이템 인벤토리
         [SerializeField] ConsumableItemInventory consumableItemInventory;   // 소비 아이템 인벤토리
         [Header("Tooltip")]
-        [SerializeField] InventoryTooltip tooltip;                          // 툴팁
+        [SerializeField] Tooltip tooltip;                          // 툴팁
         private Vector2 pos;
 
         private void Awake()

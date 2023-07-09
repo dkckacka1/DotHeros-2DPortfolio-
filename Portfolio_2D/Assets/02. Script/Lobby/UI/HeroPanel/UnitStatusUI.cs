@@ -15,6 +15,7 @@ namespace Portfolio.Lobby.Hero
     public class UnitStatusUI : MonoBehaviour
     {
         [SerializeField] Image unitPortraitImage;                   // 유닛 포트레이트 이미지
+        [SerializeField] TextMeshProUGUI unitBattlePowerText;       // 유닛 전투력 텍스트
         [SerializeField] TextMeshProUGUI unitNameText;              // 유닛 이름 텍스트
         [SerializeField] TextMeshProUGUI unitGradeText;             // 유닛의 등급 텍스트
         [SerializeField] TextMeshProUGUI unitCurrentLevelText;      // 유닛의 현재 레벨 텍스트
@@ -37,17 +38,19 @@ namespace Portfolio.Lobby.Hero
         [SerializeField] Toggle potionPanelToggle;                  // 포션 슬롯 토글
         [SerializeField] ItemSlotUI[] experiencePotionSlots;        // 포션 아이템 슬롯들
 
-        public void Init()
+        private void OnEnable()
         {
             // 유저가 선택한 유닛이 변경되면 UI를 업데이트 한다.
             LobbyManager.UIManager.unitChangedEvent += ShowStat;
         }
+
 
         private void OnDisable()
         {
             // 창이 꺼질때 포션 슬롯이 켜저있다면 꺼줍니다.
             potionPanelToggle.isOn = false;
             potionPanelToggle.onValueChanged?.Invoke(false);
+            LobbyManager.UIManager.unitChangedEvent -= ShowStat;
         }
 
         // 유저가 선택한 유닛의 정보를 표시한다.
@@ -56,6 +59,7 @@ namespace Portfolio.Lobby.Hero
             Unit unit = HeroPanelUI.SelectUnit;
             if (unit == null) return;
 
+            unitBattlePowerText.text = unit.battlePower.ToString("###,###,###");
             unitPortraitImage.sprite = unit.portraitSprite;
             unitNameText.text = unit.UnitName;
             unitGradeText.text = unit.UnitGrade.ToString() + " 성";

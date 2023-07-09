@@ -33,7 +33,7 @@ namespace Portfolio.condition
         {
             // 피해를 입었을 때 타격한 유닛에게 입은 데미지의 반절 데미지로 타격한다.
             // 이 공격으로는 피격 이벤트가 호출 되지 않는다.
-            e.hitUnit.TakeDamage(e.damage / 2, e.hitUnit ,false);
+            e.hitUnit.TakeDamage(e.damage / 2, e.hitUnit ,false, false);
         }
     }
 

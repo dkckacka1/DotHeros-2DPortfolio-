@@ -63,6 +63,8 @@ namespace Portfolio.Lobby.Hero.Composition
             releaseCompositionBtn.interactable = false;
             // 스택도 비워준다.
             insertUnitSlotStack.Clear();
+            // 설명을 보여줍니다.
+            explainText.text = $"등급을 상승시킬 유닛을 선택해주세요.";
         }
 
         // 슬롯을 변경한다.
@@ -108,6 +110,9 @@ namespace Portfolio.Lobby.Hero.Composition
                 // 메인 유닛으로 설정
                 SetMainUnit(selector);
                 selector.IsMainSelect = true;
+
+                // 설명을 보여줍니다.
+                explainText.text = $"{selector.CurrentUnit.UnitGrade}성 등급의 유닛을 상승시킬려면 동일 등급 유닛이 {selector.CurrentUnit.UnitGrade} 개 필요합니다.";
             }
             else
                 // 넣은 슬롯이 재료 슬롯이면
@@ -212,6 +217,11 @@ namespace Portfolio.Lobby.Hero.Composition
                 {
                     slot.Reset();
                 }
+                // 설명을 보여줍니다.
+                explainText.text = $"등급을 상승시킬 유닛을 선택해주세요.";
+
+                // 선택 메인슬롯이 선택된것을 알려줍니다.
+                mainUnitSlot.IsSelect = true;
             }
 
             // 스택이 비워졌다면 되돌리기 버튼 상호작용을 비활성화 한다.

@@ -170,7 +170,6 @@ namespace Portfolio
         public void SaveUser()
         {
             SaveManager.SaveUserData(CurrentUser.GetSaveUserData());
-            Debug.Log("유저 데이터 세이브");
         }
 
         // 데이터 확인

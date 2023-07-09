@@ -71,6 +71,8 @@ namespace Portfolio
         //===========================================================
         // 전투 시 최대 마나량
         public const int MAX_MANA_COUNT = 4;
+        // 방어도를 계산할 때 사용하는 방어 상수
+        public const float DEFENCE_CONST_VALUE = 100;
 
         //===========================================================
         // AIValue

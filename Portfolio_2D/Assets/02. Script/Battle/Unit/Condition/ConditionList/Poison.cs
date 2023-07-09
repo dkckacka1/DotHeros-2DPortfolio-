@@ -19,7 +19,7 @@ namespace Portfolio.condition
         public override void ApplyCondition(BattleUnit unit)
         {
             // 상태이상 효과가 발동하면 최대체력의 10%가 감소한다.
-            unit.TakeDamage(unit.MaxHP * 0.1f, unit, false);
+            unit.TakeDamage(unit.MaxHP * 0.1f, unit, false, false);
         }
     }
 

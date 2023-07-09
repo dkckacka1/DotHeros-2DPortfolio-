@@ -18,17 +18,23 @@ namespace Portfolio.Lobby.Hero
         [SerializeField] private EquipmentItemSlot shoeSlot;    // À¯´ÖÀÌ ÀåÂøÇÑ ½Å¹ß ½½·Ô
         [SerializeField] private EquipmentItemSlot amuletSlot;  // À¯´ÖÀÌ ÀåÂøÇÑ ¸ñ°ÉÀÌ ½½·Ô
         [SerializeField] private EquipmentItemSlot ringSlot;    // À¯´ÖÀÌ ÀåÂøÇÑ ¹ÝÁö ½½·Ô
+        private void Start()
+        {
+            this.gameObject.SetActive(false);
+        }
 
-        internal void Init()
+        private void OnEnable()
         {
             // ¼±ÅÃÇÑ À¯´ÖÀÌ ¹Ù²î¸é UI¸¦ ¾÷µ¥ÀÌÆ®ÇÏµµ·Ï ±¸µ¶
             LobbyManager.UIManager.unitChangedEvent += ShowEquipment;
         }
 
-        private void Start()
+        // Ã¢ÀÌ ²¨Áö¸é ±¸µ¶ ÇØÁ¦
+        private void OnDisable()
         {
-            this.gameObject.SetActive(false);
+            LobbyManager.UIManager.unitChangedEvent -= ShowEquipment;
         }
+
 
         // ÀåÂøÇÑ ¾ÆÀÌÅÛÀ» º¸¿©ÁÝ´Ï´Ù.
         public void ShowEquipment(object sender, EventArgs eventArgs)
