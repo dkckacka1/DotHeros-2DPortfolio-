@@ -77,7 +77,7 @@ namespace Portfolio.Battle
                 }
 
                 // 아이템 슬롯 보여주기
-                getItemSlotList[i].ShowItem(getItemList[i].Key, getItemList[i].Value, false);
+                getItemSlotList[i].ShowItem(getItemList[i].Key, getItemList[i].Value);
                 getItemSlotList[i].gameObject.SetActive(true);
             }
 

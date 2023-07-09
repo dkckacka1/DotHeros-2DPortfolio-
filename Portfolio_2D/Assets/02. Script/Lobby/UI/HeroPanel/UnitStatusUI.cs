@@ -23,7 +23,7 @@ namespace Portfolio.Lobby.Hero
         [SerializeField] TextMeshProUGUI unitExperienceText;        // 유닛의 경험치양 텍스트
         [SerializeField] RectTransform potionSlot;                  // 포션 슬롯 레이아웃 오브젝트
 
-        [Header("유닛 프로퍼티")]
+        [Header("Unit Status")]
         [SerializeField] TextMeshProUGUI unitAttackPointText;       // 유닛의 공격력 텍스트
         [SerializeField] TextMeshProUGUI unitHealthPointText;       // 유닛의 생명력 텍스트
         [SerializeField] TextMeshProUGUI unitDefencePointText;      // 유닛의 방어력 텍스트
@@ -32,12 +32,22 @@ namespace Portfolio.Lobby.Hero
         [SerializeField] TextMeshProUGUI unitCriticalDamageText;    // 유닛의 치명타 공격력 텍스트
         [SerializeField] TextMeshProUGUI unitEffectHitText;         // 유닛의 효과 적중률 텍스트
         [SerializeField] TextMeshProUGUI unitEffectResText;         // 유닛의 효과 저항력 텍스트
+        
+        [Header("ExperiencePotion")]
+        [SerializeField] Toggle potionPanelToggle;                  // 포션 슬롯 토글
         [SerializeField] ItemSlotUI[] experiencePotionSlots;        // 포션 아이템 슬롯들
 
         public void Init()
         {
             // 유저가 선택한 유닛이 변경되면 UI를 업데이트 한다.
             LobbyManager.UIManager.unitChangedEvent += ShowStat;
+        }
+
+        private void OnDisable()
+        {
+            // 창이 꺼질때 포션 슬롯이 켜저있다면 꺼줍니다.
+            potionPanelToggle.isOn = false;
+            potionPanelToggle.onValueChanged?.Invoke(false);
         }
 
         // 유저가 선택한 유닛의 정보를 표시한다.
@@ -66,7 +76,18 @@ namespace Portfolio.Lobby.Hero
 
             for (int i = 0; i < experiencePotionSlots.Length; i++)
             {
-                experiencePotionSlots[i].ShowItem();
+                // 경험치 포션을 업데이트 합니다.
+                experiencePotionSlots[i].GetComponent<ItemSlotSelector_ItemConsum>().ShowSlot();
+            }
+        }
+
+        // 포션 슬롯을 업데이트 합니다.
+        public void TOGGLE_OnValueChanged_SetPotionSlot()
+        {
+            for (int i = 0; i < experiencePotionSlots.Length; i++)
+            {
+                // 경험치 포션을 업데이트 합니다.
+                experiencePotionSlots[i].GetComponent<ItemSlotSelector_ItemConsum>().ShowSlot();
             }
         }
     }
