@@ -5,17 +5,17 @@
   "userPortraitName": "Sprite_Unit_Portrait_AVATA",
   "isNewUser": false,
   "userLevel": 11,
-  "userCurrentExperience": 0,
+  "userCurrentExperience": 500,
   "gold": 1044050,
   "diamond": 69360,
-  "energy": 80,
+  "energy": 85,
   "maxUnitListCount": 30,
   "unitDataList": [
     {
       "unitID": 100,
       "unitLevel": 8,
       "unitGrade": 5,
-      "unitExperience": 7260.0,
+      "unitExperience": 7270.0,
       "activeSkillLevel_1": 1,
       "activeSkillLevel_2": 1,
       "passiveSkillLevel_1": 1,
@@ -81,7 +81,7 @@
       "unitID": 102,
       "unitLevel": 9,
       "unitGrade": 2,
-      "unitExperience": 7860.0,
+      "unitExperience": 7870.0,
       "activeSkillLevel_1": 1,
       "activeSkillLevel_2": 1,
       "passiveSkillLevel_1": 1,
@@ -130,7 +130,7 @@
       "unitID": 104,
       "unitLevel": 50,
       "unitGrade": 5,
-      "unitExperience": 1860.0,
+      "unitExperience": 1870.0,
       "activeSkillLevel_1": 1,
       "activeSkillLevel_2": 3,
       "passiveSkillLevel_1": 1,
@@ -162,7 +162,7 @@
       "unitID": 100,
       "unitLevel": 1,
       "unitGrade": 3,
-      "unitExperience": 110.0,
+      "unitExperience": 120.0,
       "activeSkillLevel_1": 1,
       "activeSkillLevel_2": 1,
       "passiveSkillLevel_1": 1,
@@ -354,7 +354,7 @@
       "unitID": 104,
       "unitLevel": 1,
       "unitGrade": 3,
-      "unitExperience": 110.0,
+      "unitExperience": 120.0,
       "activeSkillLevel_1": 1,
       "activeSkillLevel_2": 1,
       "passiveSkillLevel_1": 1,
@@ -884,5 +884,5 @@
     500,
     999
   ],
-  "LastAccessTime": "2023-07-09T22:48:27.0655012+09:00"
+  "LastAccessTime": "2023-07-10T22:05:12.2981201+09:00"
 }

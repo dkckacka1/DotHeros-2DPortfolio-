@@ -23,6 +23,10 @@ PrefabInstance:
       propertyPath: m_LocalScale.x
       value: -1
       objectReference: {fileID: 0}
+    - target: {fileID: 3733868280926391611, guid: 8898834aca0794a409e1e82f006c6540, type: 3}
+      propertyPath: damagedTime
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 3848287944017989782, guid: 8898834aca0794a409e1e82f006c6540, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
