@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.UI;
 
 /*
  * 전투 매니저
@@ -329,22 +330,22 @@ namespace Portfolio.Battle
                         switch (type)
                         {
                             case EquipmentItemType.Weapon:
-                                newEquipmentItem = GameManager.ItemCreator.CreateEquipmentItemData<WeaponData>(GradeType.Normal);
+                                newEquipmentItem = GameManager.ItemCreator.CreateEquipmentItemData<WeaponData>(lootitem.gradeType);
                                 break;
                             case EquipmentItemType.Helmet:
-                                newEquipmentItem = GameManager.ItemCreator.CreateEquipmentItemData<HelmetData>(GradeType.Normal);
+                                newEquipmentItem = GameManager.ItemCreator.CreateEquipmentItemData<HelmetData>(lootitem.gradeType);
                                 break;
                             case EquipmentItemType.Armor:
-                                newEquipmentItem = GameManager.ItemCreator.CreateEquipmentItemData<ArmorData>(GradeType.Normal);
+                                newEquipmentItem = GameManager.ItemCreator.CreateEquipmentItemData<ArmorData>(lootitem.gradeType);
                                 break;
                             case EquipmentItemType.Amulet:
-                                newEquipmentItem = GameManager.ItemCreator.CreateEquipmentItemData<AmuletData>(GradeType.Normal);
+                                newEquipmentItem = GameManager.ItemCreator.CreateEquipmentItemData<AmuletData>(lootitem.gradeType);
                                 break;
                             case EquipmentItemType.Ring:
-                                newEquipmentItem = GameManager.ItemCreator.CreateEquipmentItemData<RingData>(GradeType.Normal);
+                                newEquipmentItem = GameManager.ItemCreator.CreateEquipmentItemData<RingData>(lootitem.gradeType);
                                 break;
                             case EquipmentItemType.Shoe:
-                                newEquipmentItem = GameManager.ItemCreator.CreateEquipmentItemData<ShoeData>(GradeType.Normal);
+                                newEquipmentItem = GameManager.ItemCreator.CreateEquipmentItemData<ShoeData>(lootitem.gradeType);
                                 break;
                         }
 
@@ -442,8 +443,9 @@ namespace Portfolio.Battle
         //===========================================================
         // BtnPlugin
         //===========================================================
-        public void SetAutomaticBattle()
+
         // 자동 전투 설정
+        public void TOGGLE_OnChangedValue_SetAutoBattle()
         {
             // 모든 플레이어블 유닛에 대한 자동 전투 체크
             var list = unitList.Where(battleUnit => !battleUnit.IsEnemy);

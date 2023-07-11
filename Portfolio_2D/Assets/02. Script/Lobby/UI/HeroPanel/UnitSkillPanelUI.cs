@@ -25,6 +25,7 @@ namespace Portfolio.Lobby.Hero
         {
             // 유저가 선택한 유닛이 변경될 때 UI를 업데이트한다.
             LobbyManager.UIManager.unitChangedEvent += ShowSkill;
+            ShowSkill(this, EventArgs.Empty);
         }
 
         private void OnDisable()

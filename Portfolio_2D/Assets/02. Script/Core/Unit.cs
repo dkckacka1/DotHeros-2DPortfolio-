@@ -367,7 +367,7 @@ namespace Portfolio
 
                 if (AmuletData != null)
                 {
-                    returnValue += AmuletData.criticalPercent;
+                    returnValue += AmuletData.criticalDamage;
                 }
 
                 returnValue += GetItemOptionValue(EquipmentOptionStat.CriticalDamagePercent);

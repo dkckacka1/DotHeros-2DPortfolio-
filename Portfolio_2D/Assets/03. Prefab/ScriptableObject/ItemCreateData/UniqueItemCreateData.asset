@@ -13,41 +13,60 @@ MonoBehaviour:
   m_Name: UniqueItemCreateData
   m_EditorClassIdentifier: 
   createGrade: 2
-  minWeaponAttackPoint: 0
-  maxWeaponAttackPoint: 0
-  minHelmetHealthPoint: 0
-  maxHelmetHealthPoint: 0
-  minArmorDefencePoint: 0
-  maxArmorDefencePoint: 0
-  minAmuletCriticalPercent: 0
-  maxAmuletCriticalPercent: 0
-  minAmuletCriticalDamage: 0
-  maxAmuletCriticalDamage: 0
-  minRingEffectHit: 0
-  maxRingEffectHit: 0
-  minRingEffectRes: 0
-  maxRingEffectRes: 0
-  minShoeSpeed: 0
-  maxShoeSpeed: 0
-  minOptionAttackPoint: 0
-  maxOptionAttackPoint: 0
-  minOptionAttackPercent: 0
-  maxOptionAttackPercent: 0
-  minOptionHealthPoint: 0
-  maxOptionHealthPoint: 0
-  minOptionHealthPercent: 0
-  maxOptionHealthPercent: 0
-  minOptionDefencePoint: 0
-  maxOptionDefencePoint: 0
-  minOptionDefencePercent: 0
-  maxOptionDefencePercent: 0
-  minOptionCriticalPercent: 0
-  maxOptionCriticalPercent: 0
-  minOptionCriticalDamage: 0
-  maxOptionCiritcalDamage: 0
-  minOptionSpeed: 0
-  maxOptionSpeed: 0
-  minOptionEffectHit: 0
-  maxOptionEffectHit: 0
-  minOptionEffectRes: 0
-  maxOptionEffectRes: 0
+  attackPoint:
+    min: 25
+    max: 35
+  healthPoint:
+    min: 300
+    max: 350
+  defencePoint:
+    min: 15
+    max: 20
+  criticalPercent:
+    min: 0.2
+    max: 0.25
+  criticalDamage:
+    min: 0.5
+    max: 0.75
+  effectHit:
+    min: 0.3
+    max: 0.5
+  effectRes:
+    min: 0.2
+    max: 0.3
+  speed:
+    min: 30
+    max: 40
+  optionAttackPoint:
+    min: 20
+    max: 30
+  optionAttackPercent:
+    min: 0.3
+    max: 0.5
+  optionHealthPoint:
+    min: 300
+    max: 350
+  optionHealthPercent:
+    min: 0.3
+    max: 0.5
+  optionDefencePoint:
+    min: 15
+    max: 20
+  optionDefencePercent:
+    min: 0.3
+    max: 0.5
+  optionCriticalPercent:
+    min: 0.2
+    max: 0.3
+  optionCriticalDamage:
+    min: 0.3
+    max: 0.5
+  optionSpeed:
+    min: 15
+    max: 20
+  optionEffectHit:
+    min: 0.4
+    max: 0.6
+  optionEffectRes:
+    min: 0.3
+    max: 0.5

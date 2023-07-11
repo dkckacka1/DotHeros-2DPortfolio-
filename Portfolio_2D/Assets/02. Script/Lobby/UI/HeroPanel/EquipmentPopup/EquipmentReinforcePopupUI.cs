@@ -22,6 +22,7 @@ namespace Portfolio.Lobby.Hero
         {
             // 장비 데이터가 변경되면 UI를 업데이트합니다.
             LobbyManager.UIManager.equipmentItemDataChangeEvent += ShowReinforce;
+            ShowReinforce(this, EventArgs.Empty);
         }
 
         private void OnDisable()

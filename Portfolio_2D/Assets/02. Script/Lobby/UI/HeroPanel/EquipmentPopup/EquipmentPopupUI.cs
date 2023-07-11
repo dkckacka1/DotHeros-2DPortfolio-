@@ -44,6 +44,7 @@ namespace Portfolio.Lobby.Hero
         {
             // 영웅창에서 선택한 장비가 바뀌었을 때 UI를 업데이트 하기위해 구독합니다.
             LobbyManager.UIManager.equipmentItemDataChangeEvent += ShowEquipment;
+            ShowEquipment(this, EventArgs.Empty);
         }
 
         private void OnDisable()

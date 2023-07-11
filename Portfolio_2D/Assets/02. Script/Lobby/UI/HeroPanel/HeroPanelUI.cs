@@ -187,14 +187,14 @@ namespace Portfolio.Lobby.Hero
         }
 
         // 스테이터스 패널 창을 보여준다.
-        public void TOGGLE_OnClick_ShowStatus()
+        public void BTN_OnClick_ShowStatus()
         {
             unitListUI.SetStatus();
             SelectUnit = GameManager.CurrentUser.UserUnitList[0];
         }
 
         // 유닛 합성창을 보여준다.
-        public void TOGGLE_OnClick_ShowComposition()
+        public void BTN_OnClick_ShowComposition()
         {
             unitListUI.SetComposition();
         }

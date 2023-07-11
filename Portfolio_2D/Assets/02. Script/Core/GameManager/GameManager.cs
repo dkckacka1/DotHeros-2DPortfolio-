@@ -72,8 +72,8 @@ namespace Portfolio
                 return;
             }
 
-            if(isTest)
-                // 테스트 중이라면
+            if (isTest)
+            // 테스트 중이라면
             {
                 // 데이터 및 리소스 불러오기
                 LoadResource();
@@ -110,7 +110,7 @@ namespace Portfolio
         private void OnApplicationQuit()
         {
             // 게임 종료시 유저 정보에 마지막 접속 시간 넣기
-            if(CurrentUser != null)
+            if (CurrentUser != null)
             {
                 CurrentUser.LastAccessTime = DateTime.Now;
                 // 유저 정보 저장
@@ -124,10 +124,10 @@ namespace Portfolio
         }
 
         public void LoadUser(UserData userData)
-            // 계정 정보로 유저를 생성한다.
+        // 계정 정보로 유저를 생성한다.
         {
             if (!userData.isNewUser)
-                // 신규 유저가 아닐 경우
+            // 신규 유저가 아닐 경우
             {
                 CurrentUser = new User(userData);
                 // 마지막 접속 시간과 현재 시간을 비교하여 에너지를 충전시킨다.
@@ -136,7 +136,7 @@ namespace Portfolio
                 timeChecker.energyChargeCount = (int)(timeCheck % Constant.energyChargeTime);
             }
             else
-                // 신규 유저 라면
+            // 신규 유저 라면
             {
                 userData.isNewUser = false;
                 CurrentUser = new User(userData);
@@ -176,14 +176,14 @@ namespace Portfolio
         public bool HasData<T>(int ID) where T : Data
         {
             if (!dataDictionary.ContainsKey(ID))
-                // 키가 없다면
+            // 키가 없다면
             {
                 Debug.LogWarning("KeyValue is not Contains");
                 return false;
             }
 
             if (!(dataDictionary[ID] is T))
-                // T가 아니라면
+            // T가 아니라면
             {
                 Debug.LogWarning("Value is not " + typeof(T).Name);
                 return false;
@@ -196,7 +196,7 @@ namespace Portfolio
         public bool TryGetData<T>(int ID, out T data) where T : Data
         {
             if (!dataDictionary.ContainsKey(ID))
-                // 키가 없다면
+            // 키가 없다면
             {
                 Debug.LogWarning("KeyValue is not Contains");
                 data = null;
@@ -204,7 +204,7 @@ namespace Portfolio
             }
 
             if (!(dataDictionary[ID] is T))
-                // T가 아니라면
+            // T가 아니라면
             {
                 Debug.LogWarning("Value is not " + typeof(T).Name);
                 data = null;
@@ -228,7 +228,7 @@ namespace Portfolio
         public bool TryGetUnit(int ID, out Unit unit)
         {
             if (!unitDictionary.ContainsKey(ID))
-                // 키가 없다면
+            // 키가 없다면
             {
                 Debug.LogWarning(ID + " is not Contains");
                 unit = null;
@@ -243,7 +243,7 @@ namespace Portfolio
         public bool TryGetCondition(int ID, out Condition condition)
         {
             if (!conditionDictionary.ContainsKey(ID))
-                // 키가 없다면
+            // 키가 없다면
             {
                 Debug.LogWarning(ID + " is not Contains");
                 condition = null;
@@ -258,14 +258,14 @@ namespace Portfolio
         public bool TryGetSkill<T>(int ID, out T skill) where T : Skill
         {
             if (!skillDictionary.ContainsKey(ID))
-                // 키가 없다면
+            // 키가 없다면
             {
                 skill = null;
                 return false;
             }
 
             if (!(skillDictionary[ID] is T))
-                // T가 아니라면
+            // T가 아니라면
             {
                 skill = null;
                 return false;
@@ -279,7 +279,7 @@ namespace Portfolio
         public bool TryGetMap(int ID, out Map map)
         {
             if (!mapDictionary.ContainsKey(ID))
-                // 키가 없다면
+            // 키가 없다면
             {
                 map = null;
                 return false;
@@ -396,9 +396,24 @@ namespace Portfolio
                 mapDictionary.Add(data.ID, new Map(data));
             }
         }
-
-
-
         #endregion
+
+        // 게임 종료 버튼
+        public void BTN_OnClick_GameQuit()
+        {
+            UIManager.ShowConfirmation("게임 종료", "정말로 게임을 종료하시겠습니까?", () =>
+            {
+                // TODO 게임 종료 만들기
+            });
+        }
+
+        // 로그아웃 버튼
+        public void BTN_OnClick_Logout()
+        {
+            UIManager.ShowConfirmation("로그아웃", "정말로 로그아웃 하시겠습니까?", () =>
+            {
+                // TODO 로그아웃 만들기
+            });
+        }
     }
 }

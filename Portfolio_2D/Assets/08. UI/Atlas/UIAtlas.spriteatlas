@@ -316,6 +316,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 0f1eca8e6cd854ab3bd618b1a9ac5900, type: 3}
   - {fileID: 21300000, guid: 65f42b8e2924f4e26adf8ce8fb34fcdf, type: 3}
   - {fileID: 21300000, guid: 2da9659ea9f6547808423fb363e16e47, type: 3}
+  - {fileID: 21300000, guid: 2a70079eedb54954db7625fd8c432552, type: 3}
   - {fileID: 21300000, guid: 812fa4aed413b4eefbc23a3e243622ff, type: 3}
   - {fileID: 21300000, guid: d03a58aea01b3463bae64bcb2982b431, type: 3}
   - {fileID: 21300000, guid: 3c7e60ce2d6bb49beba1034b9a9c891c, type: 3}
@@ -601,6 +602,7 @@ SpriteAtlas:
   - slider_icontype_04_fill_area
   - btn_circle_01_red
   - popup_01_frame
+  - circleArrow
   - frame_iconframe_circle_01_n
   - frame_linetextframe_05_White1
   - frame_cardframe_00_n_front2

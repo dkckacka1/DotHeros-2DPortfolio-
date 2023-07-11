@@ -29,4 +29,4 @@ MonoBehaviour:
       type: {class: LootItemTable/LootingEquipmentItem, ns: Portfolio, asm: Assembly-CSharp}
       data:
         lootingPercent: 1
-        gradeType: 0
+        gradeType: 3

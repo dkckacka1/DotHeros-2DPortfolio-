@@ -66,6 +66,7 @@ namespace Portfolio.Start
             yield return StartCoroutine(GameManager.UIManager.Loading(() =>
             {
                 GameManager.Instance.LoadUser(loginUserData);
+                GameManager.UIManager.ShowUserInfo();
             }, "유저 정보를 불러오고 있습니다.", 0.3f, 1f));
 
             // 로딩을 완료합니다.

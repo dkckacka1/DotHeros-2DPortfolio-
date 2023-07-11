@@ -46,14 +46,28 @@ namespace Portfolio.Battle
             if (!isHeal)
                 // 체력이 감소 되었다면
             {
-                if (isDamaged)
-                // 체력이 감소중이라면
+                if (hpSlider.value <= 0)
+                    // 사망했다면
                 {
-                    // 기존에 감소중인 코루틴을 취소하고 새로 시작합니다.
-                    StopCoroutine(DamageHPChange(hpSlider));
+                    if (isDamaged)
+                    // 체력이 감소중이라면
+                    {
+                        // 기존에 감소중인 코루틴을 취소하고 새로 시작합니다.
+                        StopCoroutine(DamageHPChange(hpSlider));
+                    }
                 }
+                else
+                    // 사망하지 않았다면
+                {
+                    if (isDamaged)
+                    // 체력이 감소중이라면
+                    {
+                        // 기존에 감소중인 코루틴을 취소하고 새로 시작합니다.
+                        StopCoroutine(DamageHPChange(hpSlider));
+                    }
 
-                StartCoroutine(DamageHPChange(hpSlider));
+                    StartCoroutine(DamageHPChange(hpSlider));
+                }
             }
             else
             {

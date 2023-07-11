@@ -27,6 +27,7 @@ namespace Portfolio.Lobby.Hero
         {
             // 선택한 유닛이 바뀌면 UI를 업데이트하도록 구독
             LobbyManager.UIManager.unitChangedEvent += ShowEquipment;
+            ShowEquipment(this, EventArgs.Empty);
         }
 
         // 창이 꺼지면 구독 해제

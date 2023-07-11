@@ -82,7 +82,17 @@ namespace Portfolio.WorldMap
                 userChoiceList.Add(grid.GetCurrentUnit);
             }
 
-            if (userChoiceList.Count == 0)
+            // 현재 선택한 유닛이 있는지 체크합니다
+            bool isUserChoice = false;
+            for (int i = 0; i < userChoiceList.Count; i++)
+            {
+                if (userChoiceList[i] != null)
+                {
+                    isUserChoice = true;
+                }
+            }
+
+            if (!isUserChoice)
                 // 선택한 유닛이 없다면
             {
                 // 경고를 표시합니다.
