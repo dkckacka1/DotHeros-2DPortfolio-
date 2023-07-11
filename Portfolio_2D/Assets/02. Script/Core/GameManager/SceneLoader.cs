@@ -85,5 +85,15 @@ namespace Portfolio
 
             isLobbySceneLoad = false;
         }
+
+        public static void LoadStartScene()
+        {
+            SceneManager.LoadScene("Start");
+            // 유저 인포를 숨긴다.
+            GameManager.UIManager.HideUserInfoCanvas();
+            GameManager.CurrentUser = null;
+            // 시간 체크를 중지합니다.
+            GameManager.TimeChecker.StopCheckEnergy();
+        }
     }
 }

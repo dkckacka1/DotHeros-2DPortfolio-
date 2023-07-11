@@ -13,19 +13,19 @@ MonoBehaviour:
   m_Name: testLootTable
   m_EditorClassIdentifier: 
   lootItemList:
-  - rid: 7405136298754965516
-  - rid: 7405136298754965517
+  - rid: 7405136308760215552
+  - rid: 7405136308760215553
   references:
     version: 2
     RefIds:
-    - rid: 7405136298754965516
+    - rid: 7405136308760215552
       type: {class: LootItemTable/LootingConsumableItem, ns: Portfolio, asm: Assembly-CSharp}
       data:
         lootingPercent: 1
         ID: 2000
-        minCount: 3
+        minCount: 5
         maxCount: 10
-    - rid: 7405136298754965517
+    - rid: 7405136308760215553
       type: {class: LootItemTable/LootingEquipmentItem, ns: Portfolio, asm: Assembly-CSharp}
       data:
         lootingPercent: 1

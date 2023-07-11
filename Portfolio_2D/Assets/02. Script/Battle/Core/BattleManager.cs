@@ -315,7 +315,7 @@ namespace Portfolio.Battle
         private void AddLootingItem()
         {
             // 현재 맵의 루팅테이블에서 루팅아이템 리스트를 참조합니다.
-            foreach (LootItemTable.ILooting ILootingItem in currentMap.lootItemTable.lootItemList)
+            foreach (var ILootingItem in currentMap.lootItemTable.lootItemList)
             {
                 if (ILootingItem is LootItemTable.LootingEquipmentItem)
                     // 루팅 아이템이 장비 아이템일 경우

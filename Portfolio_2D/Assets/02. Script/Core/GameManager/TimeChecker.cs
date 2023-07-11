@@ -19,6 +19,11 @@ namespace Portfolio
             StartCoroutine(EnergyCheckCoroutine());
         }
 
+        public void StopCheckEnergy()
+        {
+            StopCoroutine(EnergyCheckCoroutine());
+        }
+
         // 에너지 회복 코루틴
         private IEnumerator EnergyCheckCoroutine()
         {

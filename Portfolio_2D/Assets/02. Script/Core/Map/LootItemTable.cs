@@ -13,14 +13,9 @@ namespace Portfolio
     [CreateAssetMenu(fileName = "newLootTable", menuName = "newScritableOBJ/CreateLootTable", order = 0)]
     public class LootItemTable : ScriptableObject
     {
-        // 루팅 아이템임을 표시하는 인터페이스
-        public interface ILooting
-        {
-            // 자신을 리턴합니다
-            public LootingItem GetLootingItem();
-        }
 
-        public abstract class LootingItem : ILooting
+        [System.Serializable]
+        public abstract class LootingItem
         {
             [Range(0f, 1f)]
             public float lootingPercent; // 루팅확률
@@ -31,14 +26,12 @@ namespace Portfolio
             }
         }
 
-        [System.Serializable]
         public class LootingEquipmentItem : LootingItem
         {
             public GradeType gradeType; // 루팅될 장비아이템 등급
 
         }
 
-        [System.Serializable]
         public class LootingConsumableItem : LootingItem
         {   
             public int ID;          // 루팅될 소비아이템ID
@@ -47,9 +40,6 @@ namespace Portfolio
         }
 
         [SerializeReference]
-        public List<ILooting> lootItemList; // 루팅될 아이템 리스트
-
-
-        
+        public List<LootingItem> lootItemList; // 루팅될 아이템 리스트
     }
 }

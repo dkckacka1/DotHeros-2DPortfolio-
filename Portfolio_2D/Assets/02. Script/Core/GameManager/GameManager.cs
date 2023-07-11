@@ -403,7 +403,11 @@ namespace Portfolio
         {
             UIManager.ShowConfirmation("게임 종료", "정말로 게임을 종료하시겠습니까?", () =>
             {
-                // TODO 게임 종료 만들기
+#if UNITY_EDITOR
+                UnityEditor.EditorApplication.isPlaying = false;
+#else
+                Application.Quit();
+#endif
             });
         }
 
@@ -412,7 +416,7 @@ namespace Portfolio
         {
             UIManager.ShowConfirmation("로그아웃", "정말로 로그아웃 하시겠습니까?", () =>
             {
-                // TODO 로그아웃 만들기
+                SceneLoader.LoadStartScene();
             });
         }
     }

@@ -5,7 +5,7 @@
   "userPortraitName": "Sprite_Unit_Portrait_AVATA",
   "isNewUser": false,
   "userLevel": 17,
-  "userCurrentExperience": 900,
+  "userCurrentExperience": 1400,
   "gold": 24800,
   "diamond": 39320,
   "energy": 115,
@@ -15,7 +15,7 @@
       "unitID": 100,
       "unitLevel": 8,
       "unitGrade": 5,
-      "unitExperience": 7440.0,
+      "unitExperience": 7450.0,
       "activeSkillLevel_1": 1,
       "activeSkillLevel_2": 1,
       "passiveSkillLevel_1": 1,
@@ -116,7 +116,7 @@
       "unitID": 102,
       "unitLevel": 9,
       "unitGrade": 2,
-      "unitExperience": 8030.0,
+      "unitExperience": 8040.0,
       "activeSkillLevel_1": 5,
       "activeSkillLevel_2": 1,
       "passiveSkillLevel_1": 1,
@@ -165,7 +165,7 @@
       "unitID": 104,
       "unitLevel": 50,
       "unitGrade": 5,
-      "unitExperience": 2030.0,
+      "unitExperience": 2040.0,
       "activeSkillLevel_1": 1,
       "activeSkillLevel_2": 3,
       "passiveSkillLevel_1": 1,
@@ -357,7 +357,7 @@
       "unitID": 103,
       "unitLevel": 1,
       "unitGrade": 2,
-      "unitExperience": 60.0,
+      "unitExperience": 70.0,
       "activeSkillLevel_1": 1,
       "activeSkillLevel_2": 1,
       "passiveSkillLevel_1": 1,
@@ -406,7 +406,7 @@
       "unitID": 104,
       "unitLevel": 1,
       "unitGrade": 3,
-      "unitExperience": 280.0,
+      "unitExperience": 290.0,
       "activeSkillLevel_1": 1,
       "activeSkillLevel_2": 1,
       "passiveSkillLevel_1": 1,
@@ -713,16 +713,35 @@
       "optionStat_4_value": 0.0,
       "itemName": null,
       "ID": 0
+    },
+    {
+      "$type": "Portfolio.ShoeData, Assembly-CSharp",
+      "speed": 83.0,
+      "equipmentGrade": 3,
+      "equipmentElementType": 0,
+      "equipmentType": 5,
+      "setType": 2,
+      "reinforceCount": 0,
+      "optionStat_1_Type": -1,
+      "optionStat_1_value": 0.0,
+      "optionStat_2_Type": -1,
+      "optionStat_2_value": 0.0,
+      "optionStat_3_Type": -1,
+      "optionStat_3_value": 0.0,
+      "optionStat_4_Type": -1,
+      "optionStat_4_value": 0.0,
+      "itemName": null,
+      "ID": 0
     }
   ],
   "consumalbeItemDic": {
     "2003": 26,
-    "2000": 117,
+    "2000": 127,
     "2001": 3
   },
   "clearMapList": [
     500,
     999
   ],
-  "LastAccessTime": "2023-07-11T17:41:31.0541105+09:00"
+  "LastAccessTime": "2023-07-11T23:11:27.8877463+09:00"
 }
