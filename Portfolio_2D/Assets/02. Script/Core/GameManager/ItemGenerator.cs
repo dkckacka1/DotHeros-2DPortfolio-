@@ -101,7 +101,7 @@ namespace Portfolio
             return newData;
         }
 
-        // 아ㅣㅇ템 강화
+        // 아이템 강화
         public void ReinforceEquipment(EquipmentItemData data)
         {
             // 강화 수치 증가

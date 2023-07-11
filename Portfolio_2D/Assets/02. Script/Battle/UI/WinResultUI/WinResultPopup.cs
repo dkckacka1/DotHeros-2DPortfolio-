@@ -19,7 +19,8 @@ namespace Portfolio.Battle
         [SerializeField] ScrollRect itemScrollView;                             // 얻은 아이템 표시 스크롤뷰
 
         List<WinResultUnitSlot> unitSlotList = new List<WinResultUnitSlot>();   // 전투 참가 유저 유닛 리스트
-        List<ItemSlotUI> getItemSlotList = new List<ItemSlotUI>();              // 아이템 리스트
+        List<EquipmentItemSlot> equipmentItemSlotList = new List<EquipmentItemSlot>();  // 획득 장비아이템 슬롯 리스트
+        List<ItemSlotUI> getItemSlotList = new List<ItemSlotUI>();              // 획득 소비아이템 슬롯 리스트
 
         [SerializeField] Button ReplayMapBtn;                                   // 맵 재시작 버튼
         [SerializeField] TextMeshProUGUI currentMapConsumEnergyValueText;       // 현재 맵 에너지 소비량 텍스트
@@ -33,6 +34,11 @@ namespace Portfolio.Battle
             foreach (var unitSlot in unitListLayout.GetComponentsInChildren<WinResultUnitSlot>())
             {
                 unitSlotList.Add(unitSlot);
+            }
+
+            foreach (var equipmentItemSlot in itemScrollView.content.GetComponentsInChildren<EquipmentItemSlot>())
+            {
+                equipmentItemSlotList.Add(equipmentItemSlot);
             }
 
             foreach (var itemSlot in itemScrollView.content.GetComponentsInChildren<ItemSlotUI>())
@@ -65,8 +71,22 @@ namespace Portfolio.Battle
                 unitSlotList[i].gameObject.SetActive(true);
             }
 
-            // 얻은 아이템 참조
-            var getItemList = BattleManager.Instance.GetItemDic.ToList();
+            // 얻은 장비 아이템참조
+            var getEquipmentItemList = BattleManager.Instance.getEquipmentItemList;
+            for (int i = 0; i < equipmentItemSlotList.Count; i++)
+            {
+                if (getEquipmentItemList.Count <= i)
+                {
+                    equipmentItemSlotList[i].gameObject.SetActive(false);
+                    continue;
+                }
+
+                equipmentItemSlotList[i].ShowEquipment(getEquipmentItemList[i]);
+                equipmentItemSlotList[i].gameObject.SetActive(true);
+            }
+
+            // 얻은 소비아이템 참조
+            var getItemList = BattleManager.Instance.getConsumableItemDic.ToList();
             for (int i = 0; i < getItemSlotList.Count; i++)
             {
                 // 얻은 아이템들만 보여주기

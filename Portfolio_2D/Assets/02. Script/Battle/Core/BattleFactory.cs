@@ -35,18 +35,6 @@ namespace Portfolio.Battle
                 BattleUnit battleUnit = enemyList[i];
                 if (battleUnit == null) continue;
 
-                if (stage.EnemyLootItemList[i].canLoot)
-                    // 해당 적이 루팅할 아이템을 가지고 있다면
-                {
-                    // 루팅할 아이템 세팅
-                    int itemLootCount = Random.Range(stage.EnemyLootItemList[i].lootItemMinCount, stage.EnemyLootItemList[i].lootItemMaxCount + 1);
-                    if (itemLootCount != 0)
-                    {
-                        int itemID = stage.EnemyLootItemList[i].lootItemID;
-                        // 해당 유닛이 죽었을 때 배틀매니저에 아이템을 추가하는 이벤트를 구독해준다.
-                        battleUnit.OnDeadEvent += (sender, e) => { BattleManager.Instance.GetItem(itemID, itemLootCount); };
-                    }
-                }
             }
         }
 

@@ -109,6 +109,9 @@ namespace Portfolio
         public const string itemDataTableName = @"ItemDataTable";
         // 소비아이템 Json 파일 이름
         public const string consumableItemDataJsonName = @"ConsumableItemData";
+        // 리소스폴더내의 스크립테이블 오브젝트 폴더 위치
+        public const string scriptableObjectResourcesPath = @"ScriptableObject";
+        public const string lootingTableResourcesPath = @"LootingTable";
 
 
     }

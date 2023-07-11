@@ -11,7 +11,8 @@
     "consumEnergy": 5,
     "experienceValue": 10,
     "getGoldValue": 1000,
-    "userExperienceValue": 500
+    "userExperienceValue": 500,
+    "lootingTableName": "testLootTable"
   },
   {
     "ID": 501,
@@ -25,7 +26,8 @@
     "consumEnergy": 5,
     "experienceValue": 10,
     "getGoldValue": 2000,
-    "userExperienceValue": 500
+    "userExperienceValue": 500,
+    "lootingTableName": "testLootTable"
   },
   {
     "ID": 502,
@@ -39,7 +41,8 @@
     "consumEnergy": 5,
     "experienceValue": 10,
     "getGoldValue": 1000,
-    "userExperienceValue": 500
+    "userExperienceValue": 500,
+    "lootingTableName": "testLootTable"
   },
   {
     "ID": 503,
@@ -53,7 +56,8 @@
     "consumEnergy": 5,
     "experienceValue": 10,
     "getGoldValue": 2000,
-    "userExperienceValue": 500
+    "userExperienceValue": 500,
+    "lootingTableName": "testLootTable"
   },
   {
     "ID": 600,
@@ -67,7 +71,8 @@
     "consumEnergy": 5,
     "experienceValue": 10,
     "getGoldValue": 1000,
-    "userExperienceValue": 500
+    "userExperienceValue": 500,
+    "lootingTableName": "testLootTable"
   },
   {
     "ID": 601,
@@ -81,7 +86,8 @@
     "consumEnergy": 5,
     "experienceValue": 10,
     "getGoldValue": 2000,
-    "userExperienceValue": 500
+    "userExperienceValue": 500,
+    "lootingTableName": "testLootTable"
   },
   {
     "ID": 602,
@@ -95,7 +101,8 @@
     "consumEnergy": 5,
     "experienceValue": 10,
     "getGoldValue": 1000,
-    "userExperienceValue": 500
+    "userExperienceValue": 500,
+    "lootingTableName": "testLootTable"
   },
   {
     "ID": 999,
@@ -109,6 +116,7 @@
     "consumEnergy": 5,
     "experienceValue": 10,
     "getGoldValue": 2000,
-    "userExperienceValue": 500
+    "userExperienceValue": 500,
+    "lootingTableName": "testLootTable"
   }
 ]

@@ -15,6 +15,7 @@ namespace Portfolio
         private MapData mapData;
 
         private List<Stage> stageList = new List<Stage>();  // 현재 맵이 스테이지 리스트
+        public LootItemTable lootItemTable; // 현재 맵의 루팅아이템 테이블
         public List<Stage> StageList => stageList;
         public int MapID => mapData.ID;
         public string MapName => mapData.mapName;
@@ -45,6 +46,10 @@ namespace Portfolio
         public Map(MapData mapData)
         {
             this.mapData = mapData;
+
+            // 루팅아이템 스크립테이블 오브젝트 가져오기
+            lootItemTable = Resources.Load<LootItemTable>(Constant.scriptableObjectResourcesPath + "\\" + Constant.lootingTableResourcesPath + "\\" + mapData.lootingTableName);
+
 
             // 맵 데이터의 스테이지 ID를 통해서 스테이지를 생성한다.
             if (mapData.stage_1_ID != -1 && GameManager.Instance.TryGetData(mapData.stage_1_ID, out StageData stageData1))

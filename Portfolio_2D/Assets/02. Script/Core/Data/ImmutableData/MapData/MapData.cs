@@ -18,5 +18,6 @@ namespace Portfolio
         public int experienceValue = 10;            // 획득 경험치
         public int getGoldValue = 100;              // 획득 골드 량
         public int userExperienceValue = 100;       // 획득 유저 경험치
+        public string lootingTableName;             // 루팅 테이블 스크립테이블 오브젝트의 이름
     }
 }

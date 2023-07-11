@@ -24,10 +24,13 @@ namespace Portfolio.Battle
         private Dictionary<BattleState, UnityEvent> StateEventHandlerDic = new Dictionary<BattleState, UnityEvent>(); // 전투 상태 이벤트 Dic
 
         [SerializeField] private BattleState currentBattleState = BattleState.NONE; // 현재 전투 상태
+
         public Queue<Stage> stageDatas = new Queue<Stage>(); // 스테이지 정보 큐
         public Stage currentStage; // 현재 스테이지
-        public Dictionary<int, int> GetItemDic = new Dictionary<int, int>(); // 전투중 얻은 아이템 Dic
         public float stageOutputTime = 2f;  // 스테이지 출력 대기시간
+
+        public List<EquipmentItemData> getEquipmentItemList = new List<EquipmentItemData>();    // 전투 승리 후 얻은 장비아이템 리스트
+        public Dictionary<int, int> getConsumableItemDic = new Dictionary<int, int>(); // 전투 승리 후 얻은 소비아이템 Dic
 
         //===========================================================
         // SceneLoaderData
@@ -180,17 +183,17 @@ namespace Portfolio.Battle
         public void GetItem(int id, int count)
         // 아이템 획득
         {
-            if (GetItemDic.ContainsKey(id))
+            if (getConsumableItemDic.ContainsKey(id))
             // 이미 아이템 가방에 있는 아이템이면
             {
                 // 획득 숫자만 조절
-                GetItemDic[id] += count;
+                getConsumableItemDic[id] += count;
             }
             else
             // 아이템 가방에 없다면
             {
                 // 새로이 추가
-                GetItemDic.Add(id, count);
+                getConsumableItemDic.Add(id, count);
             }
         }
         private void ClearDeadUnit()
@@ -285,6 +288,8 @@ namespace Portfolio.Battle
             else
             // 다음 스테이지가 없다면
             {
+                // 맵에 있는 루팅 아이템을 획득 가방에 넣어줍니다.
+                AddLootingItem();
                 // 전투 승리 UI 출력
                 BattleUIManager.Win();
                 // 유저 정보에 얻은 아이템 넣어주기
@@ -298,6 +303,7 @@ namespace Portfolio.Battle
             }
         }
 
+
         public void Defeat()
         // 패배
         {
@@ -305,11 +311,72 @@ namespace Portfolio.Battle
             // 패배 UI 출력
             BattleUIManager.Defeat();
         }
+        private void AddLootingItem()
+        {
+            // 현재 맵의 루팅테이블에서 루팅아이템 리스트를 참조합니다.
+            foreach (LootItemTable.ILooting ILootingItem in currentMap.lootItemTable.lootItemList)
+            {
+                if (ILootingItem is LootItemTable.LootingEquipmentItem)
+                    // 루팅 아이템이 장비 아이템일 경우
+                {
+                    var lootitem = ILootingItem.GetLootingItem() as LootItemTable.LootingEquipmentItem;
+                    if (GameLib.ProbabilityCalculation(lootitem.lootingPercent, 1f))
+                    // 아이템 획득 판정에 성공했을 경우
+                    {
+                        // 랜덤한 타입의 장비아이템을 등급에 맞게 생성합니다.
+                        EquipmentItemData newEquipmentItem = null;
+                        EquipmentItemType type = (EquipmentItemType)UnityEngine.Random.Range(0, 6);
+                        switch (type)
+                        {
+                            case EquipmentItemType.Weapon:
+                                newEquipmentItem = GameManager.ItemCreator.CreateEquipmentItemData<WeaponData>(GradeType.Normal);
+                                break;
+                            case EquipmentItemType.Helmet:
+                                newEquipmentItem = GameManager.ItemCreator.CreateEquipmentItemData<HelmetData>(GradeType.Normal);
+                                break;
+                            case EquipmentItemType.Armor:
+                                newEquipmentItem = GameManager.ItemCreator.CreateEquipmentItemData<ArmorData>(GradeType.Normal);
+                                break;
+                            case EquipmentItemType.Amulet:
+                                newEquipmentItem = GameManager.ItemCreator.CreateEquipmentItemData<AmuletData>(GradeType.Normal);
+                                break;
+                            case EquipmentItemType.Ring:
+                                newEquipmentItem = GameManager.ItemCreator.CreateEquipmentItemData<RingData>(GradeType.Normal);
+                                break;
+                            case EquipmentItemType.Shoe:
+                                newEquipmentItem = GameManager.ItemCreator.CreateEquipmentItemData<ShoeData>(GradeType.Normal);
+                                break;
+                        }
+
+                        if (newEquipmentItem == null) continue;
+
+                        // 획득 장비아이템 가방에 넣어줍니다.
+                        getEquipmentItemList.Add(newEquipmentItem);
+                    }
+                }
+                else if (ILootingItem is LootItemTable.LootingConsumableItem)
+                    // 루팅 아이템이 소비 아이템일 경우
+                {
+                    var lootitem = ILootingItem.GetLootingItem() as LootItemTable.LootingConsumableItem;
+                    if (GameLib.ProbabilityCalculation(lootitem.lootingPercent, 1f))
+                        // 아이템 획득 판정에 성공했을 경우
+                    {
+                        // 획득 아이템 가방에 소비아이템 정보를 넣어줍니다.
+                        getConsumableItemDic.Add(lootitem.ID, UnityEngine.Random.Range(lootitem.minCount, lootitem.maxCount + 1));
+                    }
+                }
+            }
+        }
 
         private void UesrGetItem()
         // 얻은 아이템들 유저 가방에 넣어주기
         {
-            foreach (var itemKV in GetItemDic.ToList())
+            foreach (var item in getEquipmentItemList)
+            {
+                GameManager.CurrentUser.TryAddEquipmentItem(item);
+            }
+
+            foreach (var itemKV in getConsumableItemDic.ToList())
             {
                 GameManager.CurrentUser.AddConsumableItem(itemKV.Key, itemKV.Value);
             }
