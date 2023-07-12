@@ -18,7 +18,7 @@ namespace Portfolio.WorldMap
         UnitSlotUI mineSlot;                                    // 자신의 유닛 슬롯 UI
         [SerializeField] TargetSelector targetUnitUI;           // 포메이션의 드래그 슬롯
 
-        [SerializeField] GameObject SelectedUI;                 // 선택했음을 보여주는 오브젝트 // TODO 깃발 이미지로 바꿔주기
+        [SerializeField] GameObject SelectedUI;                 // 선택했음을 보여주는 오브젝트
 
         public Unit CurrentUnit => mineSlot.CurrentUnit;
 

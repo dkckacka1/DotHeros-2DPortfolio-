@@ -129,6 +129,8 @@ namespace Portfolio.WorldMap
                     nextNode.ShowLockImage(false);
                 }
             }
+
+            // 이중 클리어한 맵노드는 클리어 표시를 합니다.
             currentMapNode.ShowClearObject(GameManager.CurrentUser.IsClearMap(currentMapNode.Map.MapID));
         }
 

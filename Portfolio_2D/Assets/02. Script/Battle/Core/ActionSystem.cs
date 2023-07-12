@@ -100,7 +100,7 @@ namespace Portfolio.Battle
             // 선택할 수 있는 유닛 리스트
             var targetUnits = unitGrids.Where(grid => grid.CurrentUnit != null && !grid.CurrentUnit.IsDead).ToList();
 
-            // 해당 액티브 스킬에 맞는 리스트 선정후 선택
+            // 해당 액티브 스킬에 맞는 대상 유닛 선정
             foreach (var unit in activeSkill.SetTarget(actionUnit, targetUnits))
             {
                 SelectedUnit(unit);
