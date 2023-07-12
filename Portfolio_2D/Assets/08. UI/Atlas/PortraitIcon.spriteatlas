@@ -59,18 +59,21 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 006e41029057df34e823abb25214c9ac, type: 3}
   - {fileID: 21300000, guid: 3f27be122f526f645b723210521439e1, type: 3}
   - {fileID: 21300000, guid: 4b1455c2234729c44a4692a45f73094c, type: 3}
+  - {fileID: 21300000, guid: 0f37f7a385ec422469f46b26c9da8b52, type: 3}
   - {fileID: 21300000, guid: e2b48ac36ba11b64491edd791e6e595b, type: 3}
   - {fileID: 21300000, guid: 85abf6f33c033104981abeed60b3fe67, type: 3}
   - {fileID: 21300000, guid: 7d6941948494f46b6ab536505c248e91, type: 3}
   - {fileID: 21300000, guid: 957a6b25476884745bcea7b8580f8bc2, type: 3}
   - {fileID: 21300000, guid: 4de79a75a0d6fc44f965e568ae44ea8f, type: 3}
   - {fileID: 21300000, guid: 79fcc8a5b28fbc342b72233011776bd7, type: 3}
+  - {fileID: 21300000, guid: e680abb5b38ebc447abf6033d96db180, type: 3}
   - {fileID: 21300000, guid: e85ddec52afc9cb438a60dfb603faa29, type: 3}
   - {fileID: 21300000, guid: 26657c260e2354b45a8a6ea281b8d91d, type: 3}
   - {fileID: 21300000, guid: 96e56936daac8324fbeba40533223aea, type: 3}
   - {fileID: 21300000, guid: 32ebca465249f46439358f04984a5a6a, type: 3}
   - {fileID: 21300000, guid: 2af94c8695b36c84bb08a85852278a3a, type: 3}
   - {fileID: 21300000, guid: 178f9007474a98949baf3a7bcdcf3ae1, type: 3}
+  - {fileID: 21300000, guid: 7ada5f275686df142aa5022f48165aa6, type: 3}
   - {fileID: 21300000, guid: 5dcb7837e409c26468168a6af641c2d6, type: 3}
   - {fileID: 21300000, guid: e36a47283bb580149b697e0305b0a170, type: 3}
   - {fileID: 21300000, guid: 723147881c79bb14cb2eaf66ec3651b5, type: 3}
@@ -84,7 +87,9 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 54928e9b9799c544eabce8eefca3c5e0, type: 3}
   - {fileID: 21300000, guid: c9094adb02621a749b0848c70969ee90, type: 3}
   - {fileID: 21300000, guid: b8ae0fdbbc2e4fb4a8c99fa769384583, type: 3}
+  - {fileID: 21300000, guid: 6a059c0c3ab9d534e903e97121a72842, type: 3}
   - {fileID: 21300000, guid: 4dd3d83c23a6a324baae3442bdd31260, type: 3}
+  - {fileID: 21300000, guid: 6d82df6c6abd89144a1ac914105c9373, type: 3}
   - {fileID: 21300000, guid: cfe8baccd8f7d9e478f2a06844a4409b, type: 3}
   - {fileID: 21300000, guid: dc0613ec4cfd6b244b95d1ef6f0d8cf9, type: 3}
   - {fileID: 21300000, guid: b93f270d9037d8d42bf6ba652651f49d, type: 3}
@@ -99,18 +104,21 @@ SpriteAtlas:
   - Sprite_SkillIcon_LOSA_PassiveSkill_1
   - Sprite_Condition_Unstable
   - Sprite_SkillIcon_LILY_PassiveSkill_1
+  - Sprite_Unit_Portrait_Ghost
   - Experience_potion_green_1
   - Sprite_SkillIcon_ZICH_ActiveSkill_2
   - SkillLevelUP_potion
   - Sprite_Condition_IncreaseAttackDamage
   - Sprite_Condition_Brand
   - Sprite_SkillIcon_LOSA_BaseAttack
+  - Sprite_Unit_Portrait_Mushroom
   - Sprite_Unit_Portrait_ZICH
   - Sprite_SkillIcon_AVATA_ActiveSkill_1
   - Sprite_Condition_BladeShield
   - Sprite_SkillIcon_AVATA_BaseAttack
   - Sprite_Condition_Hide
   - Sprite_SkillIcon_ZICH_ActiveSkill_1
+  - Sprite_Unit_Portrait_Skeleton
   - Sprite_SkillIcon_LILY_ActiveSkill_2
   - Sprite_Condition_Posion
   - Sprite_SkillIcon_ZICH_BaseAttack
@@ -124,7 +132,9 @@ SpriteAtlas:
   - Sprite_SkillIcon_LILY_PassiveSkill_2
   - Sprite_SkillIcon_LILY_BaseAttack
   - Sprite_Unit_Portrait_LILY
+  - Sprite_Unit_Portrait_HB
   - Sprite_SkillIcon_LILY_ActiveSkill_1
+  - Sprite_Unit_Portrait_Goblin
   - Sprite_SkillIcon_AVATA_PassiveSkill_1
   - Sprite_SkillIcon_LOSA_ActiveSkill_1
   - Experience_potion_green_3

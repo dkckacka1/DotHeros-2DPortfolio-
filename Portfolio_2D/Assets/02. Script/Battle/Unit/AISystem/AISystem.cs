@@ -130,7 +130,7 @@ namespace Portfolio.Battle
         // 액티브 스킬 타입에 따라 스킬을 사용할 수 있는지 여부를 판단하고 사용(액티브 스킬 2를 우선적으로 사용한다.)
         private bool TryUseActiveSkill(ActiveSkillType type)
         {
-            if (activeSkill_2.GetData.activeSkillType == type)
+            if (activeSkill_2 != null && activeSkill_2.GetData.activeSkillType == type)
             {
                 if (this.battleUnit.CanActiveSkill(activeSkill_2))
                     // 액티브 스킬을 사용할 수 있는 상태인지 판별(마나량, 쿨타임)
@@ -146,7 +146,7 @@ namespace Portfolio.Battle
                 }
             }
 
-            if (activeSkill_1.GetData.activeSkillType == type)
+            if (activeSkill_1 != null && activeSkill_1.GetData.activeSkillType == type)
             {
                 if (this.battleUnit.CanActiveSkill(activeSkill_1))
                     // 액티브 스킬을 사용할 수 있는 상태인지 판별(마나량, 쿨타임)
