@@ -20,7 +20,7 @@ namespace Portfolio
         public int MapID => mapData.ID;
         public string MapName => mapData.mapName;
         public float MapExperience => mapData.experienceValue;
-        public int MapUserExperience => mapData.userExperienceValue;
+        public int MapUserExperience => mapData.consumEnergy * 10;        // 획득 유저 경험치는 소비 에너지양의 * 10
         public int ConsumEnergy => mapData.consumEnergy;
         public bool IsExternMap => mapData.isExternalMap;
         public bool IsHeigestMapID => !IsExternMap && GameManager.CurrentUser.ClearHighestMapID == mapData.ID; // 이 맵이 유저가 가장 높이 깬 맵이 맞는지 확인
@@ -48,7 +48,7 @@ namespace Portfolio
             this.mapData = mapData;
 
             // 루팅아이템 스크립테이블 오브젝트 가져오기
-            lootItemTable = Resources.Load<LootItemTable>(Constant.scriptableObjectResourcesPath + "\\" + Constant.lootingTableResourcesPath + "\\" + mapData.lootingTableName);
+            lootItemTable = Resources.Load<LootItemTable>(Constant.scriptableObjectResourcesPath + "\\" + Constant.lootingTableResourcesPath + "\\" + $"LootingTable_{mapData.ID}");
 
 
             // 맵 데이터의 스테이지 ID를 통해서 스테이지를 생성한다.

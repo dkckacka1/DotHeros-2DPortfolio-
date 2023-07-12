@@ -10,23 +10,25 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 206ad011b82433e44b7d8a8be12b0657, type: 3}
-  m_Name: testLootTable
+  m_Name: LootingTable_504
   m_EditorClassIdentifier: 
   lootItemList:
-  - rid: 7405136308760215552
-  - rid: 7405136308760215553
+  - rid: 8807688747206049795
+  - rid: 8807688747206049797
   references:
     version: 2
     RefIds:
-    - rid: 7405136308760215552
+    - rid: 8807688747206049795
       type: {class: LootItemTable/LootingConsumableItem, ns: Portfolio, asm: Assembly-CSharp}
       data:
         lootingPercent: 1
-        ID: 2000
-        minCount: 5
-        maxCount: 10
-    - rid: 7405136308760215553
-      type: {class: LootItemTable/LootingEquipmentItem, ns: Portfolio, asm: Assembly-CSharp}
+        ID: 2003
+        minCount: 1
+        maxCount: 3
+    - rid: 8807688747206049797
+      type: {class: LootItemTable/LootingConsumableItem, ns: Portfolio, asm: Assembly-CSharp}
       data:
         lootingPercent: 1
-        gradeType: 3
+        ID: 2002
+        minCount: 2
+        maxCount: 5

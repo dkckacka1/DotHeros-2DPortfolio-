@@ -23,6 +23,9 @@ namespace Portfolio.WorldMap
         [SerializeField] RectTransform nodeLineParent;          // 맵 노드 라인의 부모 오브젝트
         [SerializeField] RectTransform nodeLinePrefab;          // 맵 노드 라인 프리팹
         [SerializeField] RectTransform nodeArrowPrefab;         // 맵 노드 화살표 프리팹
+
+        [SerializeField] MapInfoUI mapInfoUI;                   // 맵 정보 UI
+
         public RectTransform NodeLinePrefab => nodeLinePrefab;  
         public RectTransform NodeLineParent => nodeLineParent;   
         public RectTransform NodeArrowPrefab => nodeArrowPrefab; 
@@ -81,6 +84,13 @@ namespace Portfolio.WorldMap
                 yield return null;
             }
             // 설정한 시간이 끝나면 이동종료
+        }
+
+        // 맵 정보를 표시합니다.
+        public void ShowMapInfo(Map map)
+        {
+            mapInfoUI.gameObject.SetActive(true);
+            mapInfoUI.ShowMapInfo(map);
         }
     }
 }

@@ -113,8 +113,6 @@ namespace Portfolio.Lobby.Hero
         {
             foreach (var selector in unitSlotHeroCompositionSelectors)
             {
-                Debug.Log($"{selector == null} : {selector.CurrentUnit == null}");
-
                 if (selector.CurrentUnit != null && selector.CurrentUnit.UnitGrade == 5)
                 {
                     selector.CanSelect = false;

@@ -61,6 +61,9 @@ namespace Portfolio.Battle
             conditionLayout.gameObject.SetActive(false);
             unitSequenceUI.gameObject.SetActive(false);
             unitHPUI.gameObject.SetActive(false);
+            targetedUIObject.SetActive(false);
+
+
         }
 
         // 현재 턴 설정

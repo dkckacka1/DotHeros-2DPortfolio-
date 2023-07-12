@@ -314,6 +314,9 @@ namespace Portfolio.Battle
         }
         private void AddLootingItem()
         {
+            // 만약 루팅테이블이 없다면 리턴
+            if (currentMap.lootItemTable == null) return;
+
             // 현재 맵의 루팅테이블에서 루팅아이템 리스트를 참조합니다.
             foreach (var ILootingItem in currentMap.lootItemTable.lootItemList)
             {
@@ -361,9 +364,25 @@ namespace Portfolio.Battle
                     var lootitem = ILootingItem.GetLootingItem() as LootItemTable.LootingConsumableItem;
                     if (GameLib.ProbabilityCalculation(lootitem.lootingPercent, 1f))
                         // 아이템 획득 판정에 성공했을 경우
-                    {
                         // 획득 아이템 가방에 소비아이템 정보를 넣어줍니다.
-                        getConsumableItemDic.Add(lootitem.ID, UnityEngine.Random.Range(lootitem.minCount, lootitem.maxCount + 1));
+                    {
+                        // 얻을 아이템 갯수를 정해줍니다.
+                        int count = UnityEngine.Random.Range(lootitem.minCount, lootitem.maxCount + 1);
+
+                        if(count > 0)
+                            // 얻는 갯수가 1개 이상이면 획득 가방에 넣어줍니다.
+                        {
+                            if(!getConsumableItemDic.ContainsKey(lootitem.ID))
+                                // 처음 얻는 소비아이템인 경우 KV로 추가합니다.
+                            {
+                                getConsumableItemDic.Add(lootitem.ID, UnityEngine.Random.Range(lootitem.minCount, lootitem.maxCount + 1));
+                            }
+                            else
+                            // 이미 획득 가방에 얻을 아이템 ID가 있는 경우 갯수만 증가시킨다.
+                            {
+                                getConsumableItemDic[lootitem.ID] += count;
+                            }
+                        }
                     }
                 }
             }
@@ -395,6 +414,7 @@ namespace Portfolio.Battle
             var experienceValue = currentMap.MapExperience;
             foreach (var unit in userChoiceUnits)
             {
+                if (unit == null) continue;
                 unit.CurrentExperience += experienceValue;
             }
         }

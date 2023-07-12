@@ -214,5 +214,29 @@
     "passiveSkillID_2": -1,
     "portraitImageName": "Sprite_Unit_Portrait_Ghost",
     "animationName": "Ghost_AnimCT"
+  },
+  {
+    "ID": 109,
+    "unitName": "죽음수확자",
+    "elementalType": "Fire",
+    "isUserUnit": false,
+    "defaultGrade": 1,
+    "maxHP": 200,
+    "attackPoint": 30,
+    "defencePoint": 10,
+    "speed": 100,
+    "criticalPercent": 0.25,
+    "criticalDamage": 0.3,
+    "effectHit": 0.5,
+    "effectResistance": 0.9,
+    "levelValue": 0.02,
+    "gradeValue": 0.2,
+    "basicAttackSKillID": 10000,
+    "activeSkillID_1": -1,
+    "activeSkillID_2": -1,
+    "passiveSkillID_1": -1,
+    "passiveSkillID_2": -1,
+    "portraitImageName": "Sprite_Unit_Portrait_DeathBringer",
+    "animationName": "DeathBringer_AnimCT"
   }
 ]

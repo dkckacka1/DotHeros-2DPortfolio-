@@ -1,0 +1,36 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 206ad011b82433e44b7d8a8be12b0657, type: 3}
+  m_Name: LootingTable_603
+  m_EditorClassIdentifier: 
+  lootItemList:
+  - rid: 8807688747206049792
+  - rid: 8807688747206049793
+  - rid: 8807688747206049794
+  references:
+    version: 2
+    RefIds:
+    - rid: 8807688747206049792
+      type: {class: LootItemTable/LootingEquipmentItem, ns: Portfolio, asm: Assembly-CSharp}
+      data:
+        lootingPercent: 1
+        gradeType: 3
+    - rid: 8807688747206049793
+      type: {class: LootItemTable/LootingEquipmentItem, ns: Portfolio, asm: Assembly-CSharp}
+      data:
+        lootingPercent: 0.6
+        gradeType: 3
+    - rid: 8807688747206049794
+      type: {class: LootItemTable/LootingEquipmentItem, ns: Portfolio, asm: Assembly-CSharp}
+      data:
+        lootingPercent: 0.25
+        gradeType: 3

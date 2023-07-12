@@ -23,6 +23,7 @@ namespace Portfolio.WorldMap
         [SerializeField] Image RockImage;               // 잠금 이미지
         [SerializeField] GameObject nodeArrowParent;    // 맵 화살표의 부모 오브젝트
         [SerializeField] bool isDefaultMap = false;     // 첫번째 맵 노드를 표시
+        [SerializeField] GameObject clearTextObject;
 
         private Map map;    // 맵 노드와 연결된 맵
         public Map Map { get => map; }
@@ -35,7 +36,7 @@ namespace Portfolio.WorldMap
         // 이전 노드 리턴
         public MapNode GetPrevMapNode => HasPrevMap ? prevNode : null;
 
-        public GameObject NodeArrowParent { get => nodeArrowParent;}
+        public GameObject NodeArrowParent { get => nodeArrowParent; }
 
         // 맵 노드 버튼 상호작용 활성화 여부를 결정한다.
         public void SetNodeBtnInteractable(bool isActive) => nodeBtn.interactable = isActive;
@@ -43,6 +44,7 @@ namespace Portfolio.WorldMap
         public void ShowLockImage(bool isActive) => RockImage.gameObject.SetActive(isActive);
         // 맵 노드 화살표를 표시할것인지 결정한다.
         public void ShowNodeArrow(bool isActive) => nodeArrowParent.SetActive(isActive);
+        public void ShowClearObject(bool isActive) => clearTextObject.SetActive(isActive);
 
         private void Awake()
         {
@@ -71,10 +73,9 @@ namespace Portfolio.WorldMap
         }
 
         // 맵 정보를 표시합니다.
-        public void BTN_OnClick_ShowMapInfoUI(MapInfoUI mapInfoUI)
+        public void BTN_OnClick_ShowMapInfoUI()
         {
-            mapInfoUI.gameObject.SetActive(true);
-            mapInfoUI.ShowMapInfo(map);
+            WorldMapManager.UIManager.ShowMapInfo(map);
         }
 
     }

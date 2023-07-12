@@ -17,7 +17,7 @@ namespace Portfolio.WorldMap
         private static WorldMapManager instance;
         public static WorldMapManager Instance { get => instance; }
         private static WorldMapUIManager worldMapUIManager;
-        public static WorldMapUIManager WorldMapUIManager { get => worldMapUIManager; }
+        public static WorldMapUIManager UIManager { get => worldMapUIManager; }
 
         List<MapNode> worldNodeList = new List<MapNode>();  // 맵 노드 리스트
         MapNode currentUserChoiceNode;                      // 현재 유저가 선택한 맵
@@ -72,9 +72,9 @@ namespace Portfolio.WorldMap
         private void NodeSetting(MapNode currentMapNode)
         {
             // 현재 맵 노드의 라인 부모 오브젝트, 라인 프리팹, 맵 노드 화살표 부모 오브젝트를 참조합니다.
-            RectTransform nodeLinePrefab = WorldMapUIManager.NodeLinePrefab;
-            RectTransform nodeLineParent = WorldMapUIManager.NodeLineParent;
-            RectTransform nodeArrowPrefab = WorldMapUIManager.NodeArrowPrefab;
+            RectTransform nodeLinePrefab = UIManager.NodeLinePrefab;
+            RectTransform nodeLineParent = UIManager.NodeLineParent;
+            RectTransform nodeArrowPrefab = UIManager.NodeArrowPrefab;
 
             foreach (var nextNode in currentMapNode.nextNodeList)
                 // 현재 맵노드의 다음 노드들을 순회합니다.
@@ -93,7 +93,7 @@ namespace Portfolio.WorldMap
                 nodeArrow.transform.rotation = Quaternion.Euler(0, 0, arrowAngle - 90);
 
                 // 화살표를 누르면 유저가 선택한 맵노드를 변경하고 화면 가운데로 이동시킵니다.
-                nodeArrow.GetComponentInChildren<Button>().onClick.AddListener(() => { CurrentUserChoiceNode = nextNode; });
+                nodeArrow.GetComponentInChildren<Button>().onClick.AddListener(() => { CurrentUserChoiceNode = nextNode; UIManager.ShowMapInfo(nextNode.Map); });
 
                 // 이 노드는 이 다음 노드의 이전 노드가 됩니다.
                 nextNode.SetPrevNode(currentMapNode);
@@ -108,36 +108,28 @@ namespace Portfolio.WorldMap
                 RectTransform nodeArrow = Instantiate(nodeArrowPrefab, currentMapNode.transform.position, Quaternion.identity, currentMapNode.NodeArrowParent.transform);
                 var arrowAngle = Mathf.Atan2(currentMapNode.prevNode.transform.position.y - currentMapNode.transform.position.y, currentMapNode.prevNode.transform.position.x - currentMapNode.transform.position.x) * Mathf.Rad2Deg;
                 nodeArrow.transform.rotation = Quaternion.Euler(0, 0, arrowAngle - 90);
-                nodeArrow.GetComponentInChildren<Button>().onClick.AddListener(() => { CurrentUserChoiceNode = currentMapNode.prevNode; });
+                nodeArrow.GetComponentInChildren<Button>().onClick.AddListener(() => { CurrentUserChoiceNode = currentMapNode.prevNode; UIManager.ShowMapInfo(currentMapNode.prevNode.Map); });
             }
 
             // 이 맵노드가 유저가 도달가능한 가장 높은맵인지 여부
             bool isClear = GameManager.CurrentUser.IsClearMap(currentMapNode.Map.MapID);
 
-            if(GameManager.CurrentUser.ClearHighestMapID == currentMapNode.Map.MapID)
-            // 이 맵노드가 유저가 도달가능한 가장 높은맵이라면
+            if(GameManager.CurrentUser.IsClearMap(currentMapNode.Map.MapID))
+                // 이미 클리어한 맵이라면
             {
-                // 버튼을 활성화 하고, 잠금 이미지와 화살표를 숨겨 줍니다.
-                currentMapNode.SetNodeBtnInteractable(true);
-                currentMapNode.ShowLockImage(false);
-                currentMapNode.ShowNodeArrow(false);
-            }
-            else if (isClear)
-                // 그냥 클리어한 맵이라면
-            {
-                // 버튼과 맵 노드 화살표를 활성화 하고 잠금 이미지를 숨겨줍니다
+                // 맵 노드 버튼과 화살표를 활성화 하고 잠금이미지를 숨겨줍니다.
                 currentMapNode.SetNodeBtnInteractable(true);
                 currentMapNode.ShowLockImage(false);
                 currentMapNode.ShowNodeArrow(true);
+
+                // 다음 노드들의 버튼을 활성화하고 잠금이미지를 숨겨줍니다.
+                foreach(var nextNode in currentMapNode.nextNodeList)
+                {
+                    nextNode.SetNodeBtnInteractable(true);
+                    nextNode.ShowLockImage(false);
+                }
             }
-            else
-                // 클리어한 맵도 아니라면
-            {
-                // 버튼과 화살표를 비활성화 하고 잠금이미지를 보여줍니다.
-                currentMapNode.SetNodeBtnInteractable(false);
-                currentMapNode.ShowLockImage(true);
-                currentMapNode.ShowNodeArrow(false);
-            }
+            currentMapNode.ShowClearObject(GameManager.CurrentUser.IsClearMap(currentMapNode.Map.MapID));
         }
 
 
