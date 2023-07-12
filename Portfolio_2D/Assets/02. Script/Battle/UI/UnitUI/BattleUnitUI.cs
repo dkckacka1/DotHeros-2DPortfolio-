@@ -100,14 +100,14 @@ namespace Portfolio.Battle
         // 턴 진행 UI를 생성한다.
         public void CreateSequenceUI(BattleUnit battleUnit)
         {
-            unitSequenceUI = BattleManager.BattleUIManager.CreateUnitSequenceUI();
+            unitSequenceUI = BattleManager.UIManager.CreateUnitSequenceUI();
             unitSequenceUI.ShowUnit(battleUnit);
         }
 
         // 플레이어 유닛일 시 스킬 UI를 생성한다.
         public void CreateSkillUI(BattleUnit battleUnit)
         {
-            this.skillUI = BattleManager.BattleUIManager.CreateUnitSkillUI();
+            this.skillUI = BattleManager.UIManager.CreateUnitSkillUI();
             this.skillUI.SetUnit(battleUnit);
         }
 

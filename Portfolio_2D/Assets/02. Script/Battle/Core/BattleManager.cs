@@ -14,7 +14,7 @@ namespace Portfolio.Battle
 {
     public class BattleManager : MonoBehaviour
     {
-        private static BattleUIManager battleUI;        // 전투 UI
+        private static BattleUIManager uiManager;        // 전투 UI
         private static BattleFactory battleFactory;     // 전투유닛 생성기
         private static TurnBaseSystem turnBaseSystem;   // 턴제 시스템
         private static ActionSystem actionSystem;       // 액션 시스템
@@ -51,7 +51,7 @@ namespace Portfolio.Battle
         // Property & Singleton
         //===========================================================
         public static BattleManager Instance { get; private set; }
-        public static BattleUIManager BattleUIManager { get => battleUI; }
+        public static BattleUIManager UIManager { get => uiManager; }
         public static BattleFactory BattleFactory { get => battleFactory; }
         public static TurnBaseSystem TurnBaseSystem { get => turnBaseSystem; }
         public static ActionSystem ActionSystem { get => actionSystem; }
@@ -78,7 +78,7 @@ namespace Portfolio.Battle
 
             Instance = this;
 
-            battleUI = GetComponentInChildren<BattleUIManager>();
+            uiManager = GetComponentInChildren<BattleUIManager>();
             battleFactory = GetComponentInChildren<BattleFactory>();
             turnBaseSystem = GetComponentInChildren<TurnBaseSystem>();
             actionSystem = GetComponentInChildren<ActionSystem>();
@@ -96,7 +96,7 @@ namespace Portfolio.Battle
                 // 유저 유닛 세팅
                 SetUserUnit();
                 // 전투 UI 현재 맵 데이터 바인딩
-                battleUI.ShowMapInfo(CurrentMap);
+                uiManager.ShowMapInfo(CurrentMap);
                 // 스테이지 시작 연출
                 StartCoroutine(SetStartStage());
             }
@@ -114,7 +114,7 @@ namespace Portfolio.Battle
                 userChoiceUnits = GameManager.CurrentUser.UserUnitList.OrderByDescending(GameLib.UnitBattlePowerSort).Take(userUnitTakeCount).ToList();
                 battleFactory.CreateUserUnit(userChoiceUnits);
 
-                battleUI.ShowMapInfo(currentMap);
+                uiManager.ShowMapInfo(currentMap);
                 StartCoroutine(SetStartStage());
             }
         }
@@ -230,13 +230,13 @@ namespace Portfolio.Battle
         // 첫번째 스테이지 시작
         {
             SwitchBattleState(BattleState.SETSTAGE);
-            BattleUIManager.ShowStageInfo(CurrentMap);
+            UIManager.ShowStageInfo(CurrentMap);
             currentStage = stageDatas.Dequeue();
             BattleFactory.CreateStage(currentStage);
-            battleUI.SetStartStageDirect();
+            uiManager.SetStartStageDirect();
             yield return new WaitForSecondsRealtime(stageOutputTime);
             // 전투 시작 연출
-            battleUI.SetBattleStartDirect();
+            uiManager.SetBattleStartDirect();
             BattleStart();
         }
 
@@ -253,7 +253,7 @@ namespace Portfolio.Battle
             // 죽은 유닛 삭제
             ClearDeadUnit();
             // 스테이지 정보 바인딩
-            BattleUIManager.ShowStageInfo(CurrentMap);
+            UIManager.ShowStageInfo(CurrentMap);
             // 다음 스테이지 정보 가져오기
             currentStage = stageDatas.Dequeue();
             // 다음 스테이지 적군 전투 유닛 세팅
@@ -292,7 +292,7 @@ namespace Portfolio.Battle
                 // 맵에 있는 루팅 아이템을 획득 가방에 넣어줍니다.
                 AddLootingItem();
                 // 전투 승리 UI 출력
-                BattleUIManager.Win();
+                UIManager.Win();
                 // 유저 정보에 얻은 아이템 넣어주기
                 UesrGetItem();
                 // 유닛들 경험치 증가시켜주기
@@ -310,7 +310,7 @@ namespace Portfolio.Battle
         {
             SwitchBattleState(BattleState.DEFEAT);
             // 패배 UI 출력
-            BattleUIManager.Defeat();
+            UIManager.Defeat();
         }
         private void AddLootingItem()
         {
@@ -473,6 +473,28 @@ namespace Portfolio.Battle
             {
                 unit.CheckAutoBattle();
             }
+        }
+
+        public void BTN_OnClick_ShowConfigurePopup()
+        {
+            uiManager.ShowConfigurePopup();
+            Pause();
+        }
+
+        public void BTN_OnClick_DungeonRetry()
+        {
+            GameManager.UIManager.ShowConfirmation("던전 재도전", "던전을 현재 유닛들로 재도전하시겠습니까?\n에너지는 소비되지 않습니다.", () => 
+            {
+                SceneLoader.LoadBattleScene(userChoiceUnits, CurrentMap);
+            });
+        }
+
+        public void BTN_OnClick_DungeonExit()
+        {
+            GameManager.UIManager.ShowConfirmation("던전 나가기", "던전을 나가시겠습니까?\n소비된 에너지는 복구되지 않습니다. .", () =>
+            {
+                SceneLoader.LoadLobbyScene();
+            });
         }
     }
 

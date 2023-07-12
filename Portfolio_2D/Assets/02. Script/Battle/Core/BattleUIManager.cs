@@ -31,7 +31,7 @@ namespace Portfolio.Battle
         [SerializeField] private BattleMapInfoUI mapInfoUI;                 // 맵정보 UI
         [SerializeField] private BattleLogUI battleLogUI;                   // 전투 로그 UI
         [SerializeField] private BattleManaUI battleManaUI;                 // 전투 마나 UI
-
+        [SerializeField] private ConfigurePopupUI configurePopupUI;         // 환경설정 팝업 UI
 
         [Header("ResultCanvas")] 
         [SerializeField] private WinResultPopup winResultPopup;             // 전투 승리 팝업창
@@ -133,6 +133,11 @@ namespace Portfolio.Battle
         public void ShowBattleUnitDesc(BattleUnit battleUnit)
         {
             battleUnitDescPopupUI.Show(battleUnit);
+        }
+
+        public void ShowConfigurePopup()
+        {
+            configurePopupUI.Show();
         }
     }
 }

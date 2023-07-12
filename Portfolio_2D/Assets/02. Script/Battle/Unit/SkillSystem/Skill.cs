@@ -88,7 +88,7 @@ namespace Portfolio.skill
         public virtual void Action(object sender, SkillActionEventArgs e)
         {
             // 스킬을 사용하면 로그에 등록된다.
-            BattleManager.BattleUIManager.AddLog(GetLogString(e));
+            BattleManager.UIManager.AddLog(GetLogString(e));
         }
 
         // 로그에 등록될 로그 정보를 만드는 순수 가상 함수

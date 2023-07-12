@@ -23,7 +23,7 @@ namespace Portfolio.Battle
                 // 마나값이 변화하면 0 ~ Constant.MAX_MANA_COUNT 사이 값으로 조절해준다.
                 mana = Mathf.Clamp(value, 0, Constant.MAX_MANA_COUNT);
                 // 마나 UI 변화
-                BattleManager.BattleUIManager.BattleManaUI.SetManaCount(mana);
+                BattleManager.UIManager.BattleManaUI.SetManaCount(mana);
             }
         }
 

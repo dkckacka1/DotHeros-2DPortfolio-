@@ -27,6 +27,7 @@ namespace Portfolio.Lobby.Hero
             button = GetComponent<Button>();
         }
 
+        // 슬롯을 클릭했을때 유저가 선택한 유닛을 이유닛으로 변경합니다.
         public void BTN_OnClick_UnitStatusSelect()
         {
             if(IsActive)

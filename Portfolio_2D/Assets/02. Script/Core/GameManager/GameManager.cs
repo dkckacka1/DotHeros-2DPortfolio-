@@ -21,16 +21,24 @@ namespace Portfolio
         // Singleton
         //===========================================================
         private static GameManager instance;
-        public static GameManager Instance { get => instance; }
+        public static GameManager Instance => instance; 
 
+        // 아이템 생성기
         private static ItemGenerator itemCreator;
-        public static ItemGenerator ItemCreator { get => itemCreator; }
+        public static ItemGenerator ItemCreator => itemCreator; 
 
+        // 시간 확인자
         private static TimeChecker timeChecker;
-        public static TimeChecker TimeChecker { get => timeChecker; }
+        public static TimeChecker TimeChecker => timeChecker; 
 
+        // 게임 UI 매니저
         private static UIManager uiManager;
-        public static UIManager UIManager { get => uiManager; }
+        public static UIManager UIManager => uiManager; 
+
+        // 오디오 관리자
+        private static AudioManager audioManager;
+        public static AudioManager AudioManager => audioManager;
+
 
         //===========================================================
         // Dictionary
@@ -64,6 +72,8 @@ namespace Portfolio
                 itemCreator = GetComponentInChildren<ItemGenerator>();
                 timeChecker = GetComponentInChildren<TimeChecker>();
                 uiManager = GetComponentInChildren<UIManager>();
+                audioManager = GetComponentInChildren<AudioManager>();
+
                 DontDestroyOnLoad(this.gameObject);
             }
             else

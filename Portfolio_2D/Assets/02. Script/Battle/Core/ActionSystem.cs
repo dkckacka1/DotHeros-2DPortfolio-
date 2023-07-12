@@ -49,7 +49,7 @@ namespace Portfolio.Battle
                     {
                         GridPosition grid = hit2D.transform.GetComponent<GridPosition>();
                         BattleUnit targetUnit = grid.CurrentUnit;
-                        BattleManager.BattleUIManager.ShowBattleUnitDesc(targetUnit);
+                        BattleManager.UIManager.ShowBattleUnitDesc(targetUnit);
                     }
                 }
             }

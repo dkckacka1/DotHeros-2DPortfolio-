@@ -71,7 +71,7 @@ namespace Portfolio.Battle
 
             //올라간 수치만큼 턴 진행바 위의 높이를 수정해준다.
             float SequenceUIYNormalizedPos = unitTurnBase.CurrentTurnCount / turnCount;
-            BattleManager.BattleUIManager.SequenceUI.SetSequenceUnitUIYPosition(unitTurnBase.UnitSequenceUI, SequenceUIYNormalizedPos);
+            BattleManager.UIManager.SequenceUI.SetSequenceUnitUIYPosition(unitTurnBase.UnitSequenceUI, SequenceUIYNormalizedPos);
         }
 
         public void StartTurn(UnitTurnBase unitbase)
@@ -92,7 +92,7 @@ namespace Portfolio.Battle
                 currentTurnType = TurnType.ENEMY;
             }
 
-            BattleManager.BattleUIManager.ShowTurnUnit(currentTurnUnit);
+            BattleManager.UIManager.ShowTurnUnit(currentTurnUnit);
 
             // 해당 유닛의 턴 시작
             currentTurnUnit.TurnStart();
@@ -107,12 +107,12 @@ namespace Portfolio.Battle
             // 해당 유닛의 턴 종료
             currentTurnUnit.TurnEnd();
             // 턴 진행도를 0으로 초기화 시켜준다.
-            BattleManager.BattleUIManager.SequenceUI.SetSequenceUnitUIYPosition(currentTurnUnit.UnitSequenceUI, 0);
+            BattleManager.UIManager.SequenceUI.SetSequenceUnitUIYPosition(currentTurnUnit.UnitSequenceUI, 0);
             // 선택된 유닛이 있다면 초기화 시켜준다.
             BattleManager.ActionSystem.ClearSelectedUnits();
             // 현재 턴 유닛을 null로 변경해준다.
             currentTurnUnit = null;
-            BattleManager.BattleUIManager.ShowTurnUnit(currentTurnUnit);
+            BattleManager.UIManager.ShowTurnUnit(currentTurnUnit);
             // 턴 상태를 대기 상태로 전환 시켜준다.
             currentTurnType = TurnType.WAITUNITTURN;
             BattleManager.ActionSystem.IsPlayerActionTime = false;

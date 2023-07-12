@@ -52,7 +52,15 @@ namespace Portfolio.Lobby.Hero.Composition
         // 현재 슬롯의 유닛 정보
         public Unit CurrentUnit
         {
-            get => unitSlotUI.CurrentUnit;
+            get
+            {
+                // 초기화가 안되었다면 초기화
+                if (unitSlotUI == null)
+                {
+                    Awake();
+                }
+                return unitSlotUI.CurrentUnit;
+            }
         }
 
         public bool IsMainSelect
