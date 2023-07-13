@@ -26,8 +26,12 @@ namespace Portfolio
         public void PlayMusic(string clipName)
         {
             var clip = GameManager.Instance.GetAudioClip(clipName);
-            musicSource.clip = clip;
-            musicSource.Play();
+            // 기존에 계속 사용되던 음악이 아니라면 음악 바꾸기
+            if (clip != musicSource.clip)
+            {
+                musicSource.clip = clip;
+                musicSource.Play();
+            }
         }
 
         // 효과음을 재생시킵니다.

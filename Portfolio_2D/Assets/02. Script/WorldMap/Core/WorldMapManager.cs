@@ -21,15 +21,15 @@ namespace Portfolio.WorldMap
 
         List<MapNode> worldNodeList = new List<MapNode>();  // 맵 노드 리스트
         MapNode currentUserChoiceNode;                      // 현재 유저가 선택한 맵
-        
-        public MapNode CurrentUserChoiceNode 
+
+        public MapNode CurrentUserChoiceNode
         {
             get
             {
                 return currentUserChoiceNode;
             }
             set
-                // 유저가 맵 노드를 선택합니다.
+            // 유저가 맵 노드를 선택합니다.
             {
                 // 선택한 맵노드가 화면 중앙으로 오도록 합니다.
                 worldMapUIManager.MoveMapNode(value);
@@ -77,7 +77,7 @@ namespace Portfolio.WorldMap
             RectTransform nodeArrowPrefab = UIManager.NodeArrowPrefab;
 
             foreach (var nextNode in currentMapNode.nextNodeList)
-                // 현재 맵노드의 다음 노드들을 순회합니다.
+            // 현재 맵노드의 다음 노드들을 순회합니다.
             {
                 // 맵노드 라인을 생성합니다.
                 RectTransform nodeLine = Instantiate(nodeLinePrefab, currentMapNode.transform.position, Quaternion.identity, nodeLineParent);
@@ -102,7 +102,7 @@ namespace Portfolio.WorldMap
             }
 
             if (currentMapNode.prevNode != null)
-                // 이 노드가 이전 노드가 존재한다면
+            // 이 노드가 이전 노드가 존재한다면
             {
                 // 맵 노드 화살표를 생성합니다.
                 RectTransform nodeArrow = Instantiate(nodeArrowPrefab, currentMapNode.transform.position, Quaternion.identity, currentMapNode.NodeArrowParent.transform);
@@ -111,11 +111,9 @@ namespace Portfolio.WorldMap
                 nodeArrow.GetComponentInChildren<Button>().onClick.AddListener(() => { CurrentUserChoiceNode = currentMapNode.prevNode; UIManager.ShowMapInfo(currentMapNode.prevNode.Map); });
             }
 
-            // 이 맵노드가 유저가 도달가능한 가장 높은맵인지 여부
-            bool isClear = GameManager.CurrentUser.IsClearMap(currentMapNode.Map.MapID);
 
-            if(GameManager.CurrentUser.IsClearMap(currentMapNode.Map.MapID))
-                // 이미 클리어한 맵이라면
+            if (GameManager.CurrentUser.IsClearMap(currentMapNode.Map.MapID))
+            // 이미 클리어한 맵이라면
             {
                 // 맵 노드 버튼과 화살표를 활성화 하고 잠금이미지를 숨겨줍니다.
                 currentMapNode.SetNodeBtnInteractable(true);
@@ -123,21 +121,28 @@ namespace Portfolio.WorldMap
                 currentMapNode.ShowNodeArrow(true);
 
                 // 다음 노드들의 버튼을 활성화하고 잠금이미지를 숨겨줍니다.
-                foreach(var nextNode in currentMapNode.nextNodeList)
+                foreach (var nextNode in currentMapNode.nextNodeList)
                 {
                     nextNode.SetNodeBtnInteractable(true);
                     nextNode.ShowLockImage(false);
                 }
+            }
+            else if (currentMapNode.Map.MapID == 500)
+            // 맵이 초반 맵이라면
+            {
+                currentMapNode.SetNodeBtnInteractable(true);
+                currentMapNode.ShowLockImage(false);
+
             }
 
             // 이중 클리어한 맵노드는 클리어 표시를 합니다.
             currentMapNode.ShowClearObject(GameManager.CurrentUser.IsClearMap(currentMapNode.Map.MapID));
         }
 
-
         public void BTN_OnClick_ReturnToLobby()
         {
             SceneLoader.LoadLobbyScene();
         }
     }
+
 }

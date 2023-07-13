@@ -52,6 +52,8 @@ namespace Portfolio
         private Dictionary<string, RuntimeAnimatorController> animationDictionary = new Dictionary<string, RuntimeAnimatorController>();    // 게임 유닛 애니메이터 Dic
         private Dictionary<string, AudioClip> audioDictionary = new Dictionary<string, AudioClip>();                                        // 게임 오디오 Dic
 
+        [HideInInspector] public bool isLoaded = false;  // 데이터와 리소스가 로드되었는지 확인
+
         //===========================================================
         // TestValue
         //===========================================================

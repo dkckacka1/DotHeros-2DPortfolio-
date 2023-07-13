@@ -71,8 +71,10 @@ namespace Portfolio.Start
             GameManager.UIManager.ShowAlert("계정 생성을 완료했습니다.\n새로 만든 계정으로 로그인 해주세요.");
             // 팝업창을 꺼줍니다.
             this.gameObject.SetActive(false);
+#if UNITY_EDITOR
             // 에셋폴더를 새로 고침합니다.
             AssetDatabase.Refresh();
+#endif
         }
 
         // 아이디 입력을 확인합니다.

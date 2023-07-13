@@ -54,16 +54,6 @@ namespace Portfolio.Lobby
             {
                 GameManager.CurrentUser.Diamond += 1000;
             }
-
-            if (GUI.Button(new Rect(10, 560, 100, 100), "경고 표시하기"))
-            {
-                GameManager.UIManager.ShowAlert(alertText);
-            }
-
-            if (GUI.Button(new Rect(110, 560, 100, 100), "확인창 표시하기"))
-            {
-                GameManager.UIManager.ShowConfirmation("경고창 표시", "경고창을 안끄시겠습니까?", () => { Debug.Log("뻥이야!"); });
-            }
         }
     }
 }

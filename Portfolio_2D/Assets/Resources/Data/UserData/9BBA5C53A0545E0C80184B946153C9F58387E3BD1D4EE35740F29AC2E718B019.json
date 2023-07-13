@@ -5,7 +5,7 @@
   "userPortraitName": "Sprite_Unit_Portrait_AVATA",
   "isNewUser": false,
   "userLevel": 18,
-  "userCurrentExperience": 1050,
+  "userCurrentExperience": 1250,
   "gold": 24800,
   "diamond": 37120,
   "energy": 120,
@@ -79,7 +79,7 @@
       "unitID": 104,
       "unitLevel": 50,
       "unitGrade": 5,
-      "unitExperience": 2040.0,
+      "unitExperience": 5040.0,
       "activeSkillLevel_1": 1,
       "activeSkillLevel_2": 1,
       "passiveSkillLevel_1": 1,
@@ -843,9 +843,10 @@
     }
   ],
   "consumalbeItemDic": {
-    "2003": 29,
+    "2003": 32,
     "2000": 138,
-    "2001": 4
+    "2001": 7,
+    "2002": 5
   },
   "clearMapList": [
     500,
@@ -853,7 +854,9 @@
     501,
     502,
     600,
-    505
+    505,
+    503,
+    504
   ],
-  "LastAccessTime": "2023-07-13T17:45:30.2191115+09:00"
+  "LastAccessTime": "2023-07-13T21:11:40.8714281+09:00"
 }

@@ -13,15 +13,22 @@ namespace Portfolio
     {
         public int energyChargeCount = (int)Constant.energyChargeTime; // 에너지 회복 시간
 
+        private IEnumerator checkIEnumerator;   // 에너지 체크 열거자
+
         public void CheckEnergy()
         {
             // 에너지 회복 체크를 시작한다.
-            StartCoroutine(EnergyCheckCoroutine());
+            checkIEnumerator = EnergyCheckCoroutine();
+
+            StartCoroutine(checkIEnumerator);
         }
 
+        // 에너지 회복을 중단합니다.
         public void StopCheckEnergy()
         {
-            StopCoroutine(EnergyCheckCoroutine());
+            StopCoroutine(checkIEnumerator);
+
+            checkIEnumerator = null;
         }
 
         // 에너지 회복 코루틴

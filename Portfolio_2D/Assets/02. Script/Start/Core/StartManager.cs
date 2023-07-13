@@ -47,20 +47,30 @@ namespace Portfolio.Start
             GameManager.UIManager.ShowLoading();
             // 데이터를 로드합니다. 리소스와 데이터를 불러와 Dictonary에 바인딩합니다.
             // 완료시 로딩 슬라이더를 30% 채우고 1초대기합니다.
-            yield return StartCoroutine(GameManager.UIManager.Loading(() =>
+            if (!GameManager.Instance.isLoaded)
+                // 이미 데이터와 리소스가 로드된 상태가 아니라면
             {
-                GameManager.Instance.LoadData();
-            }, "데이터를 로드 하고 있습니다.", 0.3f, 1f));
+                yield return StartCoroutine(GameManager.UIManager.Loading(() =>
+                {
+                    GameManager.Instance.LoadData();
+                    GameManager.Instance.isLoaded = true;
+                }, "데이터를 로드 하고 있습니다.", 0.3f, 1f));
+            }
+            else
+                // 이미 데이터와 리소스가 로드된 상태라면 어떠한 작업도 하지 않는다.
+            {
+                yield return StartCoroutine(GameManager.UIManager.Loading(() =>
+                {
+                }, "데이터를 로드 하고 있습니다.", 0.3f, 0.5f));
+            }
 
             // 유저 정보를 UI를 표시하고 시간 체크를 시작합니다.
             // 완료시 로딩 슬라이더를 30% 채우고 1초대기합니다.
             yield return StartCoroutine(GameManager.UIManager.Loading(() =>
             {
-                Debug.Log("TestTests");
                 GameManager.UIManager.ShowUserInfoCanvas();
                 GameManager.TimeChecker.CheckEnergy();
             }, "UI 정보와 에너지를 충전하고 있습니다..", 0.3f, 1f));
-
             // 유저 데이터로 유저를 생성합니다.
             // 완료시 로딩 슬라이더를 30% 채우고 1초대기합니다.
             yield return StartCoroutine(GameManager.UIManager.Loading(() =>
