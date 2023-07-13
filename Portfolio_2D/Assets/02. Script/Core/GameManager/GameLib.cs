@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Security.Cryptography;
+using System.Collections;
 using System.Text;
 using UnityEngine;
+using UnityEngine.Events;
 
 /*
  * 게임 함수 모음 static 클래스
@@ -145,6 +147,14 @@ namespace Portfolio
                 }
             }
             return hash;
+        }
+
+        // 일정 시간 후 함수를 호출하고 싶을때 사용 (UnityAction형만)
+        public static IEnumerator WaitMethodCall(float waitTime, UnityAction action)
+        {
+            yield return new WaitForSeconds(waitTime);
+
+            action?.Invoke();
         }
     }
 }

@@ -1000,16 +1000,48 @@ PrefabInstance:
       value: Portfolio.Battle.BattleUnitSkillUI, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 9148530231516603304, guid: 33b9fc73e7ca5d0409e9a21b1122a3c7, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 9148530231516603304, guid: 33b9fc73e7ca5d0409e9a21b1122a3c7, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 9148530231516603304, guid: 33b9fc73e7ca5d0409e9a21b1122a3c7, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 6562929814234236488}
+    - target: {fileID: 9148530231516603304, guid: 33b9fc73e7ca5d0409e9a21b1122a3c7, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 6562929814234236488}
+    - target: {fileID: 9148530231516603304, guid: 33b9fc73e7ca5d0409e9a21b1122a3c7, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 9148530231516603304, guid: 33b9fc73e7ca5d0409e9a21b1122a3c7, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: BTN_OnClick_ActiveSkill_2_Choice
       objectReference: {fileID: 0}
     - target: {fileID: 9148530231516603304, guid: 33b9fc73e7ca5d0409e9a21b1122a3c7, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: BTN_OnClick_BtnSelect
+      objectReference: {fileID: 0}
+    - target: {fileID: 9148530231516603304, guid: 33b9fc73e7ca5d0409e9a21b1122a3c7, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
       value: Portfolio.Battle.BattleUnitSkillUI, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 9148530231516603304, guid: 33b9fc73e7ca5d0409e9a21b1122a3c7, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: Portfolio.Battle.BattleUnitSkillUI, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 9148530231516603304, guid: 33b9fc73e7ca5d0409e9a21b1122a3c7, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgument
+      value: 
+      objectReference: {fileID: 7727959243065102320}
+    - target: {fileID: 9148530231516603304, guid: 33b9fc73e7ca5d0409e9a21b1122a3c7, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.UI.Button, UnityEngine.UI
       objectReference: {fileID: 0}
     - target: {fileID: 9148530231516603306, guid: 33b9fc73e7ca5d0409e9a21b1122a3c7, type: 3}
       propertyPath: m_Name
@@ -1171,16 +1203,48 @@ PrefabInstance:
       value: Portfolio.Battle.BattleUnitSkillUI, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 9148530231516603304, guid: 33b9fc73e7ca5d0409e9a21b1122a3c7, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 9148530231516603304, guid: 33b9fc73e7ca5d0409e9a21b1122a3c7, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 9148530231516603304, guid: 33b9fc73e7ca5d0409e9a21b1122a3c7, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 6562929814234236488}
+    - target: {fileID: 9148530231516603304, guid: 33b9fc73e7ca5d0409e9a21b1122a3c7, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 6562929814234236488}
+    - target: {fileID: 9148530231516603304, guid: 33b9fc73e7ca5d0409e9a21b1122a3c7, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 9148530231516603304, guid: 33b9fc73e7ca5d0409e9a21b1122a3c7, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: BTN_OnClick_BaseAttackChoice
       objectReference: {fileID: 0}
     - target: {fileID: 9148530231516603304, guid: 33b9fc73e7ca5d0409e9a21b1122a3c7, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: BTN_OnClick_BtnSelect
+      objectReference: {fileID: 0}
+    - target: {fileID: 9148530231516603304, guid: 33b9fc73e7ca5d0409e9a21b1122a3c7, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
       value: Portfolio.Battle.BattleUnitSkillUI, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 9148530231516603304, guid: 33b9fc73e7ca5d0409e9a21b1122a3c7, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: Portfolio.Battle.BattleUnitSkillUI, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 9148530231516603304, guid: 33b9fc73e7ca5d0409e9a21b1122a3c7, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgument
+      value: 
+      objectReference: {fileID: 1595779275787709458}
+    - target: {fileID: 9148530231516603304, guid: 33b9fc73e7ca5d0409e9a21b1122a3c7, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.UI.Button, UnityEngine.UI
       objectReference: {fileID: 0}
     - target: {fileID: 9148530231516603306, guid: 33b9fc73e7ca5d0409e9a21b1122a3c7, type: 3}
       propertyPath: m_Name
@@ -1335,16 +1399,48 @@ PrefabInstance:
       value: Portfolio.Battle.BattleUnitSkillUI, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 9148530231516603304, guid: 33b9fc73e7ca5d0409e9a21b1122a3c7, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 9148530231516603304, guid: 33b9fc73e7ca5d0409e9a21b1122a3c7, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 9148530231516603304, guid: 33b9fc73e7ca5d0409e9a21b1122a3c7, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 6562929814234236488}
+    - target: {fileID: 9148530231516603304, guid: 33b9fc73e7ca5d0409e9a21b1122a3c7, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 6562929814234236488}
+    - target: {fileID: 9148530231516603304, guid: 33b9fc73e7ca5d0409e9a21b1122a3c7, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 9148530231516603304, guid: 33b9fc73e7ca5d0409e9a21b1122a3c7, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: BTN_OnClick_ActiveSkill_1_Choice
       objectReference: {fileID: 0}
     - target: {fileID: 9148530231516603304, guid: 33b9fc73e7ca5d0409e9a21b1122a3c7, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: BTN_OnClick_BtnSelect
+      objectReference: {fileID: 0}
+    - target: {fileID: 9148530231516603304, guid: 33b9fc73e7ca5d0409e9a21b1122a3c7, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
       value: Portfolio.Battle.BattleUnitSkillUI, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 9148530231516603304, guid: 33b9fc73e7ca5d0409e9a21b1122a3c7, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: Portfolio.Battle.BattleUnitSkillUI, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 9148530231516603304, guid: 33b9fc73e7ca5d0409e9a21b1122a3c7, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgument
+      value: 
+      objectReference: {fileID: 1107960567245317472}
+    - target: {fileID: 9148530231516603304, guid: 33b9fc73e7ca5d0409e9a21b1122a3c7, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.UI.Button, UnityEngine.UI
       objectReference: {fileID: 0}
     - target: {fileID: 9148530231516603306, guid: 33b9fc73e7ca5d0409e9a21b1122a3c7, type: 3}
       propertyPath: m_Name

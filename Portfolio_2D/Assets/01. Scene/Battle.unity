@@ -8566,7 +8566,7 @@ MonoBehaviour:
   stageOutputTime: 2
   getEquipmentItemList: []
   isTest: 0
-  CallMapID: 999
+  CallMapID: 505
   userUnitTakeCount: 5
 --- !u!4 &1077764693
 Transform:

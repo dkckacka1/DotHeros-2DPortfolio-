@@ -43,7 +43,6 @@ namespace Portfolio.Battle
         // TestValue
         //===========================================================
         [Header("TestValue")]
-        public bool isTest = false;
         public int CallMapID = 500;
         public int userUnitTakeCount = 5;
 
@@ -291,8 +290,18 @@ namespace Portfolio.Battle
             {
                 // 맵에 있는 루팅 아이템을 획득 가방에 넣어줍니다.
                 AddLootingItem();
-                // 전투 승리 UI 출력
-                UIManager.Win();
+                if (currentMap.MapID == Constant.lastMapID)
+                // 마지막 맵이라면
+                {
+                    // 1초뒤에 엔딩 씬 보여주기
+                    StartCoroutine(GameLib.WaitMethodCall(1f, () => { SceneLoader.LoadEndingScene(); }));
+                }
+                else
+                // 마지막 맵이 아니라면
+                {
+                    // 전투 승리 UI 출력
+                    UIManager.Win();
+                }
                 // 유저 정보에 얻은 아이템 넣어주기
                 UesrGetItem();
                 // 유닛들 경험치 증가시켜주기
@@ -321,7 +330,7 @@ namespace Portfolio.Battle
             foreach (var ILootingItem in currentMap.lootItemTable.lootItemList)
             {
                 if (ILootingItem is LootItemTable.LootingEquipmentItem)
-                    // 루팅 아이템이 장비 아이템일 경우
+                // 루팅 아이템이 장비 아이템일 경우
                 {
                     var lootitem = ILootingItem.GetLootingItem() as LootItemTable.LootingEquipmentItem;
                     if (GameLib.ProbabilityCalculation(lootitem.lootingPercent, 1f))
@@ -359,21 +368,21 @@ namespace Portfolio.Battle
                     }
                 }
                 else if (ILootingItem is LootItemTable.LootingConsumableItem)
-                    // 루팅 아이템이 소비 아이템일 경우
+                // 루팅 아이템이 소비 아이템일 경우
                 {
                     var lootitem = ILootingItem.GetLootingItem() as LootItemTable.LootingConsumableItem;
                     if (GameLib.ProbabilityCalculation(lootitem.lootingPercent, 1f))
-                        // 아이템 획득 판정에 성공했을 경우
-                        // 획득 아이템 가방에 소비아이템 정보를 넣어줍니다.
+                    // 아이템 획득 판정에 성공했을 경우
+                    // 획득 아이템 가방에 소비아이템 정보를 넣어줍니다.
                     {
                         // 얻을 아이템 갯수를 정해줍니다.
                         int count = UnityEngine.Random.Range(lootitem.minCount, lootitem.maxCount + 1);
 
-                        if(count > 0)
-                            // 얻는 갯수가 1개 이상이면 획득 가방에 넣어줍니다.
+                        if (count > 0)
+                        // 얻는 갯수가 1개 이상이면 획득 가방에 넣어줍니다.
                         {
-                            if(!getConsumableItemDic.ContainsKey(lootitem.ID))
-                                // 처음 얻는 소비아이템인 경우 KV로 추가합니다.
+                            if (!getConsumableItemDic.ContainsKey(lootitem.ID))
+                            // 처음 얻는 소비아이템인 경우 KV로 추가합니다.
                             {
                                 getConsumableItemDic.Add(lootitem.ID, UnityEngine.Random.Range(lootitem.minCount, lootitem.maxCount + 1));
                             }
@@ -483,7 +492,7 @@ namespace Portfolio.Battle
 
         public void BTN_OnClick_DungeonRetry()
         {
-            GameManager.UIManager.ShowConfirmation("던전 재도전", "던전을 현재 유닛들로 재도전하시겠습니까?\n에너지는 소비되지 않습니다.", () => 
+            GameManager.UIManager.ShowConfirmation("던전 재도전", "던전을 현재 유닛들로 재도전하시겠습니까?\n에너지는 소비되지 않습니다.", () =>
             {
                 SceneLoader.LoadBattleScene(userChoiceUnits, CurrentMap);
             });

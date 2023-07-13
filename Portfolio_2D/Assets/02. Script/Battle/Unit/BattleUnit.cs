@@ -308,6 +308,9 @@ namespace Portfolio.Battle
             unitTurnBase.ResetUnitTurnCount();
             // 적용된 상태이상을 초기화 시켜준다.
             ResetCondition();
+            // 스킬 쿨타임을 초기화 시켜준다.
+            activeSkill_1_CoolTime = 0;
+            activeSkill_2_CoolTime = 0;
         }
 
         public void Defeat()

@@ -80,21 +80,28 @@ namespace Portfolio.Battle
             battleLogUI.AddLog(str);
         }
 
-        // 승리
+        // 승리 UI 보여주기
         public void Win()
         {
-            // 결과창 캔버스 표시
-            winResultPopup.transform.parent.gameObject.SetActive(true);
-            winResultPopup.gameObject.SetActive(true);
-            winResultPopup.Show();
+            // 전투 종료 1초 뒤에 승리 팝업창 표시
+            StartCoroutine(GameLib.WaitMethodCall(1f, () => 
+            {
+                winResultPopup.transform.parent.gameObject.SetActive(true);
+                winResultPopup.gameObject.SetActive(true);
+                winResultPopup.Show(); 
+            }));
         }
 
+        // 패배 UI 보여주기
         public void Defeat()
         {
-            // 결과창 캔버스 표시
-            defeatResultPopup.transform.parent.gameObject.SetActive(true);
-            defeatResultPopup.gameObject.SetActive(true);
-            defeatResultPopup.Show();
+            // 전투 종료 1초 뒤에 패배 팝업창 표시
+            StartCoroutine(GameLib.WaitMethodCall(1f, () => 
+            {
+                defeatResultPopup.transform.parent.gameObject.SetActive(true);
+                defeatResultPopup.gameObject.SetActive(true);
+                defeatResultPopup.Show(); 
+            }));
         }
 
         // 첫 스테이지 시작 연출

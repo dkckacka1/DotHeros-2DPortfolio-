@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using DG.Tweening;
 
 /*
  *  플레이어 유닛의 스킬창을 표시해주는 UI 클래스
@@ -38,6 +39,7 @@ namespace Portfolio.Battle
 
         int actionLevel = 0;                                    // 스킬 레벨
         private ActiveSkill selectActiveSkill;                  // 선택한 액티브 스킬
+        private Button selectBtn;                                // 선택한 버튼
 
         // 현재 스킬을 사용할 수 있는 대상이 있는지 확인 여부
         bool IsAction
@@ -116,7 +118,7 @@ namespace Portfolio.Battle
         {
             ResetSkillActionBtn();
             if (battleUnit.Unit.activeSkill_1 != null)
-                // 액티브 스킬 1이 null 이아닐 경우
+            // 액티브 스킬 1이 null 이아닐 경우
             {
                 // 액티브 스킬 1의 쿨타임과 마나량을 확인하요 상호작용 on/off
                 activeSkill_1_ActionBtn.interactable = battleUnit.CanActiveSkill(battleUnit.Unit.activeSkill_1);
@@ -126,7 +128,7 @@ namespace Portfolio.Battle
             }
 
             if (battleUnit.Unit.activeSkill_2 != null)
-                // 액티브 스킬 2이 null 이아닐 경우
+            // 액티브 스킬 2이 null 이아닐 경우
             {
                 // 액티브 스킬 2의 쿨타임과 마나량을 확인하요 상호작용 on/off
                 activeSkill_2_ActionBtn.interactable = battleUnit.CanActiveSkill(battleUnit.Unit.activeSkill_2);
@@ -188,13 +190,13 @@ namespace Portfolio.Battle
         public void BTN_OnClick_Action()
         {
             if (BattleManager.ActionSystem.SelectUnitCount == 0)
-                // 선택한 유닛이 없으면 리턴
+            // 선택한 유닛이 없으면 리턴
             {
                 return;
             }
 
             if (selectActiveSkill == battleUnit.Unit.basicAttackSkill)
-                // 선택된 스킬이 기본 공격 스킬이면
+            // 선택된 스킬이 기본 공격 스킬이면
             {
                 // 기본 공격 스킬 사용
                 battleUnit.UseSkill(UnitSkillType.BaseAttack);
@@ -202,19 +204,40 @@ namespace Portfolio.Battle
             else
             {
                 if (selectActiveSkill == battleUnit.Unit.activeSkill_1)
-                    // 선택된 스킬이 액티브 스킬 1이면
+                // 선택된 스킬이 액티브 스킬 1이면
                 {
                     // 액티브 스킬 1 사용
                     battleUnit.UseSkill(UnitSkillType.ActiveSkill_1);
 
                 }
-                else if(selectActiveSkill == battleUnit.Unit.activeSkill_2)
+                else if (selectActiveSkill == battleUnit.Unit.activeSkill_2)
                 // 선택된 스킬이 액티브 스킬 2이면
                 {
                     // 액티브 스킬 2 사용
                     battleUnit.UseSkill(UnitSkillType.ActiveSkill_2);
                 }
             }
+
+            // 선택한 버튼을 원래대로 되돌려줍니다.
+            selectBtn.transform.localScale = Vector3.one;
+            selectBtn = null;
+        }
+
+        // 유저가 버튼을 선택했는지 보여주기 위한 연출
+        public void BTN_OnClick_BtnSelect(Button btn)
+        {
+            // 기존에 선택한 버튼이 자기 자신이었다면 리턴
+            if (selectBtn == btn) return;
+
+            if (selectBtn != null)
+            {
+                // 기 선택한 버튼을 원래대로 되돌려줍니다.
+                selectBtn.transform.localScale = Vector3.one;
+            }
+
+            // 새로이 선택한 버튼을 크게 표시하여 유저가 알 수 있도록 합니다.
+            selectBtn = btn;
+            btn.transform.DOScale(new Vector3(1.2f, 1.2f, 1f), 0.15f);
         }
 
         // 기본 공격 스킬 설명 표시

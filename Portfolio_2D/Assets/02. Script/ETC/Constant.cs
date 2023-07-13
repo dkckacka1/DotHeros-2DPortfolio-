@@ -53,6 +53,8 @@ namespace Portfolio
         public static int shopProductMaxCount = 6;
         // 소비아이템 상점 새로고침시 소비되는 다이아 양
         public const int shopRefreshDiaConsumValue = 20;
+        // 마지막 맵의 ID
+        public const int lastMapID = 505;
 
         //===========================================================
         // RandomValue
