@@ -49,7 +49,7 @@ namespace Portfolio.Start
         // 회원가입을 시도합니다.
         public void BTN_OnClick_SignUp()
         {
-            if (SaveManager.ContainUserData(idInputField.text))
+            if (SLManager.ContainUserData(idInputField.text))
                 // 입력한 ID로 유저데이터가 존재한다면
             {
                 GameManager.UIManager.ShowAlert("중복된 ID가 존재합니다.");
@@ -65,9 +65,9 @@ namespace Portfolio.Start
         private void CreateUser()
         {
             // 입력한 ID와 패스워드, 닉네임으로 유저정보를 생성합니다.
-            var newUserData = SaveManager.CreateNewUser(idInputField.text, passwordInputField.text, nickNameInputField.text);
+            var newUserData = SLManager.CreateNewUser(idInputField.text, passwordInputField.text, nickNameInputField.text);
             // 유저 정보를 저장합니다.
-            SaveManager.SaveUserData(newUserData);
+            SLManager.SaveUserData(newUserData);
             GameManager.UIManager.ShowAlert("계정 생성을 완료했습니다.\n새로 만든 계정으로 로그인 해주세요.");
             // 팝업창을 꺼줍니다.
             this.gameObject.SetActive(false);

@@ -132,7 +132,7 @@ SpriteAtlas:
   - Sprite_SkillIcon_LILY_PassiveSkill_2
   - Sprite_SkillIcon_LILY_BaseAttack
   - Sprite_Unit_Portrait_LILY
-  - Sprite_Unit_Portrait_HB
+  - Sprite_Unit_Portrait_DeathBringer
   - Sprite_SkillIcon_LILY_ActiveSkill_1
   - Sprite_Unit_Portrait_Goblin
   - Sprite_SkillIcon_AVATA_PassiveSkill_1

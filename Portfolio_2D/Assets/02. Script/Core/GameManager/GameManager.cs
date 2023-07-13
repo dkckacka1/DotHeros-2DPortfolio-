@@ -88,7 +88,7 @@ namespace Portfolio
                 // 데이터 및 리소스 불러오기
                 LoadResource();
                 // 테스터용 계정 데이터 불러오기
-                SaveManager.LoadUserData("tester", out UserData user);
+                SLManager.LoadUserData("tester", out UserData user);
                 LoadUser(user);
 
                 uiManager.ShowUserInfo();
@@ -179,7 +179,7 @@ namespace Portfolio
         // 유저 정보 저장
         public void SaveUser()
         {
-            SaveManager.SaveUserData(CurrentUser.GetSaveUserData());
+            SLManager.SaveUserData(CurrentUser.GetSaveUserData());
         }
 
         // 데이터 확인

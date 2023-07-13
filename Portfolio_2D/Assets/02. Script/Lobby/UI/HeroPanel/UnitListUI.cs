@@ -126,12 +126,17 @@ namespace Portfolio.Lobby.Hero
         // 합성시 메인 슬롯에 유닛을 넣었을때 유닛 리스트를 재정렬 해서 보여줍니다.
         public void SetCompositionList(CompositionSelector mainSelector)
         {
-            // 1. 활성화된 슬롯중 메인 슬롯 유닛과 동일한 ID를 가진 슬롯만 추려냅니다.
+            // 1. 활성화된 슬롯만 추려냅니다.
             // 2. 개중 메인 합성 유닛을 가장 먼저 있도록 정렬합니다.
             // 3. 이후 같은 등급을 가진 유닛 순으로 정렬합니다.
-            var siblingList = unitSlotList.Where(slot => slot.gameObject.activeInHierarchy && slot.CurrentUnit.UnitID == mainSelector.CurrentUnit.UnitID).
-                OrderByDescending(slot => slot.CurrentUnit == mainSelector.CurrentUnit). 
-                ThenByDescending(slot => slot.CurrentUnit.UnitGrade == mainSelector.CurrentUnit.UnitGrade). 
+            // 4. 그 유닛들중 메인 합성 유닛과 동일한 ID부터 정렬합니다.
+            // 5. 이후 ID 순으로 정렬합니다.
+            var siblingList = unitSlotList.
+                Where(slot => slot.gameObject.activeInHierarchy).
+                OrderBy(slot => slot.CurrentUnit == mainSelector.CurrentUnit).
+                ThenByDescending(slot => slot.CurrentUnit.UnitGrade == mainSelector.CurrentUnit.UnitGrade).
+                ThenByDescending(slot => slot.CurrentUnit.UnitID == mainSelector.CurrentUnit.UnitID).
+                ThenBy(slot => slot.CurrentUnit.UnitID).
                 ToList();
 
             // 위 정렬 리스트부터 레이아웃을 재정렬 합니다.
@@ -142,12 +147,12 @@ namespace Portfolio.Lobby.Hero
 
             // 이후 정렬되지 않은 순으로 표시합니다.
             var list = unitSlotList.Where(slot => slot.gameObject.activeInHierarchy).
-                Where(slot => slot.CurrentUnit.UnitID != mainSelector.CurrentUnit.UnitID || slot.CurrentUnit.UnitGrade != mainSelector.CurrentUnit.UnitGrade);
+                Where(slot => slot.CurrentUnit.UnitGrade != mainSelector.CurrentUnit.UnitGrade);
                 
             // 위에 정렬되지 않은 리스트는 선택 불가합니다.
-            foreach (var item in list)
+            foreach (var slot in list)
             {
-                item.GetComponent<CompositionSelector>().CanSelect = false;
+                slot.GetComponent<CompositionSelector>().CanSelect = false;
             }
         }
 

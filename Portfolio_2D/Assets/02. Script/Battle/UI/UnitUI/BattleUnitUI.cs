@@ -157,9 +157,30 @@ namespace Portfolio.Battle
         // 마나텍스트 입력
         public void AddManaText(int manaValue)
         {
-            Debug.Log("마나 회복");
             var battleText = BattleManager.ObjectPool.SpawnBattleText(false);
             battleText.SetMana(manaValue);
+            battleText.transform.position = Camera.main.WorldToScreenPoint(this.transform.position);
+            (battleText.transform as RectTransform).anchoredPosition += battleTextCreatePosOffset;
+
+            OutputText(battleText);
+        }
+
+        // 버프텍스트 입력
+        public void AddBuffText(string buffName)
+        {
+            var battleText = BattleManager.ObjectPool.SpawnBattleText(false);
+            battleText.SetBuff(buffName);
+            battleText.transform.position = Camera.main.WorldToScreenPoint(this.transform.position);
+            (battleText.transform as RectTransform).anchoredPosition += battleTextCreatePosOffset;
+
+            OutputText(battleText);
+        }
+
+        // 디버프 텍스트 입력
+        public void SetDebuffText(string buffName)
+        {
+            var battleText = BattleManager.ObjectPool.SpawnBattleText(false);
+            battleText.SetDebuff(buffName);
             battleText.transform.position = Camera.main.WorldToScreenPoint(this.transform.position);
             (battleText.transform as RectTransform).anchoredPosition += battleTextCreatePosOffset;
 

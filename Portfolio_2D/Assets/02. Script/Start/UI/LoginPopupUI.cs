@@ -26,11 +26,11 @@ namespace Portfolio.Start
         {
             UserData loginUserData = null;
 
-            if (SaveManager.LoadUserData(idInputField.text, out loginUserData))
+            if (SLManager.LoadUserData(idInputField.text, out loginUserData))
             // 입력한 ID로 저장되어있는 유저정보를 찾아봅니다.
             {
                 // 유저 정보가 있으면 비밀번호를 비교합니다.
-                if (SaveManager.CheckPassword(loginUserData, passwordInputField.text))
+                if (SLManager.CheckPassword(loginUserData, passwordInputField.text))
                     // 비밀번호가 맞다면
                 {
                     // 로그인 확인 팝업 표시

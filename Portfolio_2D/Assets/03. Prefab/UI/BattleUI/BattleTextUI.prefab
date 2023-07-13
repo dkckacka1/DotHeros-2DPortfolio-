@@ -55,6 +55,8 @@ MonoBehaviour:
   damagedColor: {r: 1, g: 1, b: 1, a: 0}
   healedColor: {r: 0.20488167, g: 1, b: 0, a: 0}
   manaColor: {r: 0, g: 0.5664313, b: 1, a: 0}
+  buffColor: {r: 0, g: 1, b: 0.4095266, a: 0}
+  debuffColor: {r: 0.5046358, g: 0, b: 1, a: 0}
 --- !u!111 &5640658341192220557
 Animation:
   m_ObjectHideFlags: 0
@@ -179,6 +181,14 @@ PrefabInstance:
       value: 10000
       objectReference: {fileID: 0}
     - target: {fileID: 6363679268759669959, guid: 458597434171c35479ece0fb63a2c833, type: 3}
+      propertyPath: m_fontSize
+      value: 44.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6363679268759669959, guid: 458597434171c35479ece0fb63a2c833, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 077cdc849e86b484eb7c440c039ab199, type: 2}
+    - target: {fileID: 6363679268759669959, guid: 458597434171c35479ece0fb63a2c833, type: 3}
       propertyPath: m_fontStyle
       value: 1
       objectReference: {fileID: 0}
@@ -187,8 +197,20 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6363679268759669959, guid: 458597434171c35479ece0fb63a2c833, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 44.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6363679268759669959, guid: 458597434171c35479ece0fb63a2c833, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 2100000, guid: 8a2a367513622834a9f6f65aee589bbc, type: 2}
+    - target: {fileID: 6363679268759669959, guid: 458597434171c35479ece0fb63a2c833, type: 3}
       propertyPath: m_fontColor32.rgba
       value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 6363679268759669959, guid: 458597434171c35479ece0fb63a2c833, type: 3}
+      propertyPath: m_enableWordWrapping
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 458597434171c35479ece0fb63a2c833, type: 3}

@@ -633,6 +633,19 @@ namespace Portfolio.Battle
                     conditionDic[conditionID].Condition.ApplyCondition(this);
                 }
             }
+
+            if (condition.IsBuff)
+                // 버프 상태이상이라면
+            {
+                // 버프 텍스트를 보여줍니다.
+                unitUI.AddBuffText(condition.ConditionName);
+            }
+            else
+            // 디버프 상태이상이라면
+            {
+                // 디버프텍스트를 보여줍니다.
+                unitUI.AddBuffText(condition.ConditionName);
+            }
         }
 
         private void ProceedTickCondition()

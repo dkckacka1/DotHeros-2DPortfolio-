@@ -5,12 +5,12 @@ using UnityEngine;
 using Newtonsoft.Json;
 
 /*
- * Save관련된 함수를 모아놓은 static 클래스
+ * Save 와 Load함수를 모아놓은 static 클래스
  */
 
 namespace Portfolio
 {
-    public static class SaveManager 
+    public static class SLManager 
     {
         private const string userDataPath = @"\UserData\";                                                  // 유저 저장 폴더 이름
         private static string slpath = Application.dataPath + Constant.resorucesDataPath + userDataPath;    // 저장할 데이터 패스
@@ -61,7 +61,10 @@ namespace Portfolio
             {
                 TypeNameHandling = TypeNameHandling.Auto
             });
-            PlayerPrefs.SetString("userData", json);
+
+            string userHashID = GameLib.ComputeSHA256(userData.userID);
+
+            PlayerPrefs.SetString(userHashID, json);
 #endif
         }
 
@@ -91,13 +94,14 @@ namespace Portfolio
 #else
 
             string loadJson = string.Empty;
-            if (!PlayerPrefs.HasKey("userData"))
+            string userHashID = GameLib.ComputeSHA256(userID);
+            if (!PlayerPrefs.HasKey(userHashID))
             {
                 loadData = null;
                 return false;
             }
 
-            loadJson = PlayerPrefs.GetString("userData");
+            loadJson = PlayerPrefs.GetString(userHashID);
 
             loadData = JsonConvert.DeserializeObject<UserData>(loadJson, new JsonSerializerSettings
             {
