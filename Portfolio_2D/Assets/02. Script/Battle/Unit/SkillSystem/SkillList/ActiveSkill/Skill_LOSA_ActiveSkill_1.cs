@@ -11,7 +11,7 @@ using System;
 
 namespace Portfolio.skill
 {
-    public class Skill_LOSA_ActiveSkill_1 : ActiveSkill
+    public class Skill_LOSA_ActiveSkill_1 : ActiveSkill, ISingleTarget
     {
         float arrowProjectileTime = 0.5f; // 화살이 날아가는 시간
 

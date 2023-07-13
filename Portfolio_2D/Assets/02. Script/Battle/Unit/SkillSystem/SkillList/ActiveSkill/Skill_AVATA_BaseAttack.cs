@@ -9,7 +9,7 @@ using UnityEngine;
 
 namespace Portfolio.skill
 {
-    public class Skill_AVATA_BaseAttack : ActiveSkill
+    public class Skill_AVATA_BaseAttack : ActiveSkill, ISingleTarget
     {
         public Skill_AVATA_BaseAttack(ActiveSkillData skillData) : base(skillData)
         {

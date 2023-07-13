@@ -9,7 +9,7 @@ using UnityEngine;
 
 namespace Portfolio.skill
 {
-    public class Skill_GWEN_ActiveSkill_1 : ActiveSkill
+    public class Skill_GWEN_ActiveSkill_1 : ActiveSkill, ISingleTarget
     {
         public Skill_GWEN_ActiveSkill_1(ActiveSkillData skillData) : base(skillData)
         {

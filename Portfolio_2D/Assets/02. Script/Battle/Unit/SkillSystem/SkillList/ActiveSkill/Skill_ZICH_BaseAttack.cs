@@ -10,7 +10,7 @@ using UnityEngine;
 
 namespace Portfolio.skill
 {
-    public class Skill_ZICH_BaseAttack : ActiveSkill
+    public class Skill_ZICH_BaseAttack : ActiveSkill, ISingleTarget
     {
         public Skill_ZICH_BaseAttack(ActiveSkillData skillData) : base(skillData)
         {

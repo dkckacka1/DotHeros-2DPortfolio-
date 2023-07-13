@@ -113,7 +113,12 @@ namespace Portfolio
         public const string consumableItemDataJsonName = @"ConsumableItemData";
         // 리소스폴더내의 스크립테이블 오브젝트 폴더 위치
         public const string scriptableObjectResourcesPath = @"ScriptableObject";
+        // 리소스폴더내의 루팅테이블 스크립테이블 폴더 위치
         public const string lootingTableResourcesPath = @"LootingTable";
+        // 유저의 효과음 볼륨 값이 저장된 플레이어프랩스의 이름
+        public const string soundVolumeConfigureLoadPath = "SoundVolume";
+        // 유저의 음악 볼륨 값이 저장된 플레이어프랩스의 이름
+        public const string musicVolumeConfigureLoadPath = "MusicVolume";
 
 
     }

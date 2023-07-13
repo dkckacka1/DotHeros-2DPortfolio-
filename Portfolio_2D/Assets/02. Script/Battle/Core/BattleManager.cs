@@ -260,7 +260,7 @@ namespace Portfolio.Battle
             // 모든 턴 초기화 해주기
             turnBaseSystem.ResetAllUnitTurn();
             yield return new WaitForSeconds(stageOutputTime);
-            BattleStart();
+            Play();
         }
         public void BattleStart()
         // 전투 시작

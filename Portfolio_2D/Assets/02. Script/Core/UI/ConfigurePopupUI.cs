@@ -20,6 +20,12 @@ namespace Portfolio
         [SerializeField] Slider musicVolumeBar;             // 음악 볼륨 슬라이더
         [SerializeField] TextMeshProUGUI musicVolumeText;   // 음악 볼륨 텍스트
 
+        // 환경설정창이 꺼질때 오디오 변수를 저장합니다.
+        private void OnDisable()
+        {
+            GameManager.AudioManager.SaveAudioConfigureData();
+        }
+
         // 팝업창을 표시합니다.
         public void Show()
         {

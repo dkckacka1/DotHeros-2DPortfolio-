@@ -11,7 +11,7 @@ using UnityEngine;
 
 namespace Portfolio.skill
 {
-    public class Skill_GWEN_BaseAttack : ActiveSkill
+    public class Skill_GWEN_BaseAttack : ActiveSkill, ISingleTarget
     {
         // 이펙트 이동 시간
         float projectileMoveTime = 0.5f;

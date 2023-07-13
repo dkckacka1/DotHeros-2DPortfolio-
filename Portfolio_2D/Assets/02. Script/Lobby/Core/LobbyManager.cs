@@ -30,5 +30,10 @@ namespace Portfolio.Lobby
                 Destroy(this.gameObject);
             }
         }
+
+        private void Start()
+        {
+            GameManager.AudioManager.PlayMusic("LobbySceneMusic");
+        }
     }
 }

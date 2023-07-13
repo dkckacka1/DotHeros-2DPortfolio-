@@ -17,9 +17,10 @@ namespace Portfolio
 {
     public static class ResourcesLoader
     {
-        private const string dataResourcesPath = @"Data/";              // Data찾는 path
-        private const string spriteResourcesPath = @"Sprite/";          // Sprite를 찾는 path
-        private const string AnimationResourcesPath = @"Animation/";    // Animation을 찾는 path
+        private const string dataResourcesPath = @"Data/";              // Data 리소스를 찾는 path
+        private const string spriteResourcesPath = @"Sprite/";          // Sprite 리소스를 찾는 path
+        private const string animationResourcesPath = @"Animation/";    // Animation 리소스를 찾는 path
+        private const string audioResourcesPath = @"Audio/";            // Audio 리소스를 찾는 path
 
         // 모든 데이터를 로드 한다.
         public static void LoadAllData(Dictionary<int, Data> dataDic)
@@ -30,11 +31,11 @@ namespace Portfolio
             LoadData<ConditionData>(dataDic, dataResourcesPath + Constant.conditionDataJsonName);
             LoadData<MapData>(dataDic, dataResourcesPath + Constant.mapDataJsonName);
             LoadData<StageData>(dataDic, dataResourcesPath + Constant.stageDataJsonName);
-            LoadData<ConsumableItemData>(dataDic, dataResourcesPath +Constant.consumableItemDataJsonName);
+            LoadData<ConsumableItemData>(dataDic, dataResourcesPath + Constant.consumableItemDataJsonName);
         }
 
         // 데이터가 아닌 모든 리소스를 로드한다.
-        public static void LoadAllResource(Dictionary<string, Sprite> spriteDic, Dictionary<string, RuntimeAnimatorController> animDic)
+        public static void LoadAllResource(Dictionary<string, Sprite> spriteDic, Dictionary<string, RuntimeAnimatorController> animDic, Dictionary<string, AudioClip> audioDic)
         {
             var sprites = Resources.LoadAll<Sprite>(spriteResourcesPath);
             // 스프라이트 로드
@@ -43,11 +44,18 @@ namespace Portfolio
                 spriteDic.Add(sprite.name, sprite);
             }
 
-            var animations = Resources.LoadAll<RuntimeAnimatorController>(AnimationResourcesPath);
+            var animations = Resources.LoadAll<RuntimeAnimatorController>(animationResourcesPath);
             // 애니메이션 로드
             foreach (var anim in animations)
             {
                 animDic.Add(anim.name, anim);
+            }
+
+            var audioClips = Resources.LoadAll<AudioClip>(audioResourcesPath);
+            // 모든 오디오클립을 로드
+            foreach (var clip in audioClips)
+            {
+                audioDic.Add(clip.name, clip);
             }
         }
 
@@ -64,7 +72,7 @@ namespace Portfolio
             // 역직렬화한 Data타입을 Dic에 넣어준다.
             foreach (var data in datas)
             {
-                dataDic.Add(data.ID ,data);
+                dataDic.Add(data.ID, data);
             }
         }
     }

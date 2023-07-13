@@ -50,6 +50,7 @@ namespace Portfolio
         private Dictionary<int, Condition> conditionDictionary = new Dictionary<int, Condition>();                                          // 게임 상태이상 Dic
         private Dictionary<int, Map> mapDictionary = new Dictionary<int, Map>();                                                            // 게임 맵 Dic
         private Dictionary<string, RuntimeAnimatorController> animationDictionary = new Dictionary<string, RuntimeAnimatorController>();    // 게임 유닛 애니메이터 Dic
+        private Dictionary<string, AudioClip> audioDictionary = new Dictionary<string, AudioClip>();                                        // 게임 오디오 Dic
 
         //===========================================================
         // TestValue
@@ -159,7 +160,7 @@ namespace Portfolio
                 // 에너지 최대로 채워주기
                 CurrentUser.CurrentEnergy = CurrentUser.MaxEnergy;
 
-                // 소비 아이템 지급
+                // 기본 소비 아이템 지급
                 CurrentUser.AddNewUnit(defaultUnit);
                 CurrentUser.AddConsumableItem(2000, 10);
                 CurrentUser.AddConsumableItem(2001, 10);
@@ -172,7 +173,7 @@ namespace Portfolio
         private void LoadResource()
         {
             ResourcesLoader.LoadAllData(dataDictionary);
-            ResourcesLoader.LoadAllResource(spriteDictionary, animationDictionary);
+            ResourcesLoader.LoadAllResource(spriteDictionary, animationDictionary, audioDictionary);
             CreateGameSource();
         }
 
@@ -323,6 +324,19 @@ namespace Portfolio
             else
             {
                 Debug.LogWarning(animName + " Anim is null");
+                return null;
+            }
+        }
+
+        public AudioClip GetAudioClip(string clipName)
+        {
+            if (audioDictionary.ContainsKey(clipName))
+            {
+                return audioDictionary[clipName];
+            }
+            else
+            {
+                Debug.LogWarning(clipName + " Audio is null");
                 return null;
             }
         }

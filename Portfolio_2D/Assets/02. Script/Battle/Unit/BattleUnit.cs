@@ -335,14 +335,15 @@ namespace Portfolio.Battle
             {
                 // 치명타 데미지는 유닛의 치명타 데미지 값을 가져와서 곱해준다.
                 float criticalDamage = damagePoint * (1 + CriticalDamage);
+                Debug.Log($"({CriticalDamage} + 1) * {damagePoint} = {criticalDamage}");
                 // 치명타 데미지로 타격
-                targetUnit.TakeDamage(criticalDamage, this);
+                targetUnit.TakeDamage(criticalDamage, this, true, true);
             }
             else
             // 실패했을 경우
             {
                 // 일반 데미지로 타격
-                targetUnit.TakeDamage(damagePoint, this);
+                targetUnit.TakeDamage(damagePoint, this, true, true);
             }
         }
 
