@@ -110,7 +110,7 @@
     {
       "unitID": 100,
       "unitLevel": 1,
-      "unitGrade": 1,
+      "unitGrade": 2,
       "unitExperience": 0.0,
       "activeSkillLevel_1": 1,
       "activeSkillLevel_2": 1,
@@ -239,22 +239,6 @@
       "unitID": 104,
       "unitLevel": 1,
       "unitGrade": 3,
-      "unitExperience": 0.0,
-      "activeSkillLevel_1": 1,
-      "activeSkillLevel_2": 1,
-      "passiveSkillLevel_1": 1,
-      "passiveSkillLevel_2": 1,
-      "weaponData": null,
-      "helmetData": null,
-      "armorData": null,
-      "amuletData": null,
-      "ringData": null,
-      "shoeData": null
-    },
-    {
-      "unitID": 100,
-      "unitLevel": 1,
-      "unitGrade": 1,
       "unitExperience": 0.0,
       "activeSkillLevel_1": 1,
       "activeSkillLevel_2": 1,
@@ -870,5 +854,5 @@
     502,
     600
   ],
-  "LastAccessTime": "2023-07-13T12:09:29.4634194+09:00"
+  "LastAccessTime": "2023-07-13T12:40:07.7882009+09:00"
 }

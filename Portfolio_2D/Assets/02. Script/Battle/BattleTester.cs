@@ -35,6 +35,11 @@ namespace Portfolio.Battle
                     unit.TakeDamage(unit.CurrentHP, null, false);
                 }
             }
+
+            if (GUI.Button(new Rect(10, 400, 190, 100), "엔딩 보여주기"))
+            {
+                SceneLoader.LoadEndingScene();
+            }
         }
     }
 }

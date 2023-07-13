@@ -86,6 +86,7 @@ namespace Portfolio
             isLobbySceneLoad = false;
         }
 
+        // 시작씬을 불러옵니다.
         public static void LoadStartScene()
         {
             SceneManager.LoadScene("Start");
@@ -94,6 +95,13 @@ namespace Portfolio
             GameManager.CurrentUser = null;
             // 시간 체크를 중지합니다.
             GameManager.TimeChecker.StopCheckEnergy();
+        }
+
+        // 엔딩씬을 불러옵니다.
+        public static void LoadEndingScene()
+        {
+            // 엔딩씬을 현재 씬에 덮어 씌웁니다.
+            SceneManager.LoadScene("Ending", LoadSceneMode.Additive);
         }
     }
 }

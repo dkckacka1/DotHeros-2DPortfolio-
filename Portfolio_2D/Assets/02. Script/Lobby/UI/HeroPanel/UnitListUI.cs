@@ -82,7 +82,7 @@ namespace Portfolio.Lobby.Hero
             }
 
             // 보여줄 순서를 초기화 합니다.
-            ResetDefaultList();
+            SortSlotListDefaultSet();
         }
 
         // 유닛 슬롯의 합성창 연동 셀렉터만 활성화 시킵니다.
@@ -157,7 +157,7 @@ namespace Portfolio.Lobby.Hero
         }
 
         // 유닛 리스트의 레이아웃을 다시 재정렬합니다.
-        public void ResetDefaultList()
+        public void SortSlotListDefaultSet()
         {
             for (int i = 0; i < unitSlotList.Count; i++)
             {

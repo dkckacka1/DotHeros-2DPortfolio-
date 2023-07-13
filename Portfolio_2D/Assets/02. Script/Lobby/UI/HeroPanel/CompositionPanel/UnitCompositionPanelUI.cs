@@ -210,7 +210,9 @@ namespace Portfolio.Lobby.Hero.Composition
             if (insertUnitSlotStack.Count == 0)
                 // 만약 메인슬롯의 유닛이 빠졌다면 영웅 합성창을 초기화 해준다.
             {
+                // 유닛 슬롯 리스트를 다시 정렬해줍니다.
                 unitListUI.ResetCompositionList();
+                unitListUI.SortSlotListDefaultSet();
                 // 메인 슬롯과 재료 슬롯을 초기화 해준다.
                 mainUnitSlot.Reset();
                 foreach (var slot in subUnitSlotList)

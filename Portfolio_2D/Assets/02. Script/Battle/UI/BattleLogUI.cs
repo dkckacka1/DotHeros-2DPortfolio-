@@ -53,6 +53,7 @@ namespace Portfolio.Battle
                 logQueue.Dequeue();
             }
 
+            // 로그를 업데이트 합니다.
             UpdateLog();
         }
 
