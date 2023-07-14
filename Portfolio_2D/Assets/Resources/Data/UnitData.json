@@ -232,7 +232,7 @@
     "levelValue": 0.02,
     "gradeValue": 0.2,
     "basicAttackSKillID": 10000,
-    "activeSkillID_1": -1,
+    "activeSkillID_1": 10015,
     "activeSkillID_2": -1,
     "passiveSkillID_1": -1,
     "passiveSkillID_2": -1,

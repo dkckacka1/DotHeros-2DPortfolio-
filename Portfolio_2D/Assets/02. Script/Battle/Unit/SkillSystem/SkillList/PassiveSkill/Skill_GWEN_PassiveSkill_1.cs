@@ -20,13 +20,14 @@ namespace Portfolio.skill
             // 유닛이 피해를 입힐때 피해입은 유닛과 효과 판단해서 성공 시 독중첩을 1부여한다.
             e.actionUnit.OnHitTargetEvent += (object sender, HitEventArgs s) =>
             {
-                Debug.Log("독 피해 해보기!");
                 float effectHit = s.actionUnit.EffectHit + (e.skillLevel * GetData.skillLevelValue_1 * 0.01f);
                 float effectRes = s.targetUnit.EffectResistance;
                 if (GameLib.ProbabilityCalculation(effectHit - effectRes, 1f))
                 {
                     s.targetUnit.AddCondition(GetData.conditinID_1, conditionList[0], 1);
                 }
+
+
             };
         }
     }

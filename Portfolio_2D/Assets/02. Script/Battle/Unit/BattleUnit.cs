@@ -72,6 +72,7 @@ namespace Portfolio.Battle
         // 유닛 턴 관련
         [Header("UnitTurnSystem")]
         protected bool isTurn;                  // 현재 턴인지 확인
+        private GridPosition currentGrid;       // 현재 유닛의 그리드
 
         // 유닛 수치 관련
         private float maxHP = 100;              // 최대 체력
@@ -127,6 +128,17 @@ namespace Portfolio.Battle
         //===========================================================
         #region Property
         public Unit Unit { get => this.unit; }
+        public GridPosition CurrentGrid
+        {
+            get
+            {
+                // 연결된 그리드가 없다면 부모 오브젝트에서 그리드 정보를 가져옵니다.
+                if (currentGrid == null)
+                    currentGrid = this.transform.parent.GetComponent<GridPosition>();
+
+                return currentGrid;
+            }
+        }
         public bool IsTurn { get => isTurn; }
         public bool IsEnemy { get => isEnemy; set => isEnemy = value; }
         public float MaxHP { get => maxHP; set => maxHP = value; }

@@ -22,8 +22,7 @@ namespace Portfolio.WorldMap
         [SerializeField] TextMeshProUGUI mapNameText;   // 맵이름 텍스트
         [SerializeField] Image RockImage;               // 잠금 이미지
         [SerializeField] GameObject nodeArrowParent;    // 맵 화살표의 부모 오브젝트
-        [SerializeField] bool isDefaultMap = false;     // 첫번째 맵 노드를 표시
-        [SerializeField] GameObject clearTextObject;
+        [SerializeField] GameObject clearTextObject;    // 맵 클리어 오브젝트
 
         private Map map;    // 맵 노드와 연결된 맵
         public Map Map { get => map; }

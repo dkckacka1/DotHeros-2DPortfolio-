@@ -18,12 +18,12 @@ namespace Portfolio.Battle
 
         private BattleUnit currentUnit;                 // 현재 그리드에 위치한 유닛
 
-        public bool IsUnit { get => (CurrentUnit != null); }
+        public bool IsUnit { get => (CurrentBattleUnit != null); }
 
-        public bool isDead { get => (CurrentUnit.IsDead); }
+        public bool isDead { get => (CurrentBattleUnit.IsDead); }
 
-        public bool IsEnemy { get => CurrentUnit.IsEnemy; }
-        public BattleUnit CurrentUnit { get => currentUnit; }
+        public bool IsEnemy { get => CurrentBattleUnit.IsEnemy; }
+        public BattleUnit CurrentBattleUnit { get => currentUnit; }
 
         public void CreateBattleUnit(BattleUnit unit)
             // 이 그리드에 전투 유닛 배치

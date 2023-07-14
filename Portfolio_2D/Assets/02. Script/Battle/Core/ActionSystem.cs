@@ -34,7 +34,7 @@ namespace Portfolio.Battle
         public List<BattleUnit> SelectedUnits { get => selectedUnits; set => selectedUnits = value; }
         public bool IsSkillAction { get => isSkillAction; set => isSkillAction = value; }
         // 현재 그리드 리스트에서 유닛이 있고, 생존중인 그리드만 가져온다.
-        public IEnumerable<BattleUnit> GetLiveUnit => unitGrids.Where(grid => grid.CurrentUnit != null && !grid.CurrentUnit.IsDead).Select(grid => grid.CurrentUnit);
+        public IEnumerable<BattleUnit> GetLiveUnit => unitGrids.Where(grid => grid.CurrentBattleUnit != null && !grid.CurrentBattleUnit.IsDead).Select(grid => grid.CurrentBattleUnit);
         public int SelectUnitCount => selectedUnits.Count;
 
         private void Update()
@@ -48,7 +48,7 @@ namespace Portfolio.Battle
                     if (hit2D.collider?.transform.gameObject.layer == 6)
                     {
                         GridPosition grid = hit2D.transform.GetComponent<GridPosition>();
-                        BattleUnit targetUnit = grid.CurrentUnit;
+                        BattleUnit targetUnit = grid.CurrentBattleUnit;
                         BattleManager.UIManager.ShowBattleUnitDesc(targetUnit);
                     }
                 }
@@ -98,7 +98,7 @@ namespace Portfolio.Battle
             // 현재 스킬 사용 유닛
             var actionUnit = BattleManager.TurnBaseSystem.CurrentTurnUnit.BattleUnit;
             // 선택할 수 있는 유닛 리스트
-            var targetUnits = unitGrids.Where(grid => grid.CurrentUnit != null && !grid.CurrentUnit.IsDead).ToList();
+            var targetUnits = unitGrids.Where(grid => grid.CurrentBattleUnit != null && !grid.CurrentBattleUnit.IsDead).ToList();
 
             // 해당 액티브 스킬에 맞는 대상 유닛 선정
             foreach (var unit in activeSkill.SetTarget(actionUnit, targetUnits))

@@ -268,5 +268,23 @@
     "skillCoolTime": 3,
     "consumeManaValue": 2,
     "targetNum": 5
+  },
+  {
+    "ID": 10015,
+    "skillClassName": "Skill_DeathBringer_ActiveSkill_1",
+    "skillName": "혼돈의 손길",
+    "skillDesc": "적군중 무작위 한명을 선택하여 자신의 공격력의 (80 +{0})% 만큼 데미지를 입힙니다. 그리고 연결된 유닛에게도  반절의 데미지를 입힙니다.",
+    "skillLevelValue_1": 20,
+    "skillLevelValue_2": 0,
+    "skillLevelValue_3": 0,
+    "skillIconSpriteName": "Sprite_SkillIcon_DeathBringer_ActiveSkill_1",
+    "skillType": 0,
+    "conditinID_1": -1,
+    "conditinID_2": -1,
+    "conditinID_3": -1,
+    "activeSkillType": "SingleAttack",
+    "skillCoolTime": 3,
+    "consumeManaValue": 0,
+    "targetNum": 1
   }
 ]

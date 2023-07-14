@@ -37,6 +37,7 @@ namespace Portfolio.skill
                 effect.PlayEffect("Anim_Skill_Effect_AVATA_ActiveSkill1");
                 effect.transform.position = targetUnit.footPos.position;
             }
+            // SOUND : 아바타 액티브 스킬 1 사운드
 
             yield return new WaitForSeconds(1f);
 

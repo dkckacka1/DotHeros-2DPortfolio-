@@ -58,6 +58,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: f96d959197ec4a941afc44cfc5d43ead, type: 3}
   - {fileID: 21300000, guid: 006e41029057df34e823abb25214c9ac, type: 3}
   - {fileID: 21300000, guid: 3f27be122f526f645b723210521439e1, type: 3}
+  - {fileID: 21300000, guid: 59fb285265802be4497053ba4bf543e0, type: 3}
   - {fileID: 21300000, guid: 4b1455c2234729c44a4692a45f73094c, type: 3}
   - {fileID: 21300000, guid: 0f37f7a385ec422469f46b26c9da8b52, type: 3}
   - {fileID: 21300000, guid: e2b48ac36ba11b64491edd791e6e595b, type: 3}
@@ -103,6 +104,7 @@ SpriteAtlas:
   - Sprite_SkillIcon_ZICH_PassiveSkill_1
   - Sprite_SkillIcon_LOSA_PassiveSkill_1
   - Sprite_Condition_Unstable
+  - Sprite_SkillIcon_DeathBringer_ActiveSkill_1
   - Sprite_SkillIcon_LILY_PassiveSkill_1
   - Sprite_Unit_Portrait_Ghost
   - Experience_potion_green_1

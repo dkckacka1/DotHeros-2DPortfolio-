@@ -50,6 +50,8 @@ SpriteAtlas:
     cachedData: {fileID: 0}
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
+  - {fileID: 21300000, guid: ea63673049653cf458af393203f1f13d, type: 3}
+  - {fileID: 21300000, guid: df7c7680fb40a1e4c8d1fc6c8a415f76, type: 3}
   - {fileID: 21300000, guid: b51e1c80e3552f54cb997c79112369a8, type: 3}
   - {fileID: 21300000, guid: f7cd1e804671c1c47bc3370640cf37b7, type: 3}
   - {fileID: -752987183, guid: b57bef804c5845b4e8ca477a7e1189b4, type: 3}
@@ -65,6 +67,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 782ff231e5709bc4fa47720048a09ab0, type: 3}
   - {fileID: 21300000, guid: 23df44314d84ccf42a0208df3ffc623d, type: 3}
   - {fileID: 21300000, guid: b2104841b84b1c84a88545e527fe5dee, type: 3}
+  - {fileID: 21300000, guid: a82aeb6134fffe3469715ed28f0570ae, type: 3}
   - {fileID: 21300000, guid: bf4c2f7131a6db24bacd0b07c650d9f4, type: 3}
   - {fileID: 21300000, guid: 26e009b21c9c12049b86bfc70cfa7c59, type: 3}
   - {fileID: 21300000, guid: 1e3e40e2834acf0459984212fe79f548, type: 3}
@@ -84,11 +87,16 @@ SpriteAtlas:
   - {fileID: 79115340, guid: c989312362b94e24ba027ed9823995fd, type: 3}
   - {fileID: 967679707, guid: c989312362b94e24ba027ed9823995fd, type: 3}
   - {fileID: -542279890, guid: c989312362b94e24ba027ed9823995fd, type: 3}
+  - {fileID: 21300000, guid: 94ebb133ff21bf74681db9eec8c1798a, type: 3}
   - {fileID: 21300000, guid: e199f583bb047564598a0a33ccbff756, type: 3}
   - {fileID: 21300000, guid: fbd84293db128e748a1e2752de7c9ccf, type: 3}
+  - {fileID: 21300000, guid: f16118b37df023f41aaf55440d21ace5, type: 3}
+  - {fileID: 21300000, guid: 8a2b4cc3f5c584b418d2185188298496, type: 3}
   - {fileID: 21300000, guid: 0a7ff3f320e80064486cfe7e299166af, type: 3}
   - {fileID: 21300000, guid: c28bf00433d5a5341a5529a21b579d79, type: 3}
+  - {fileID: 21300000, guid: 9da88814c73bdc946bcc08ab04023c36, type: 3}
   - {fileID: 21300000, guid: fb915a14e2b9d834cba05f9ceeffee41, type: 3}
+  - {fileID: 21300000, guid: 185786a437ef44e4c9ac0546bb1b555b, type: 3}
   - {fileID: 21300000, guid: ebc3e5d46c6247b4790bc0697a9cffa8, type: 3}
   - {fileID: 21300000, guid: f5f3c5f4612b409448fd0fc96bd8ee10, type: 3}
   - {fileID: 21300000, guid: 62e72c05760d28b479a8956d997b1241, type: 3}
@@ -98,7 +106,9 @@ SpriteAtlas:
   - {fileID: 21300000, guid: e9a63036607b0aa4990a97406f72a003, type: 3}
   - {fileID: 21300000, guid: d340a4362800a804c81e7d721cb08ac7, type: 3}
   - {fileID: 21300000, guid: b4d8db86e560317488b3bb9c7cef53f9, type: 3}
+  - {fileID: 21300000, guid: bd82ba178e44f8d49ad701b69e04c1c4, type: 3}
   - {fileID: 21300000, guid: f3055e775a46c7c41a9ec4a400fbc1fd, type: 3}
+  - {fileID: 21300000, guid: b6291ea7e18bf844e8aa2bfdc768e854, type: 3}
   - {fileID: 21300000, guid: 4c375fe7150782746bc2af7edbbf52a5, type: 3}
   - {fileID: 21300000, guid: b457ee08795257149b300d2eed55fef2, type: 3}
   - {fileID: -1696173363, guid: cd9d9a88b9b1cf643ad026cb8abf8fb8, type: 3}
@@ -113,6 +123,7 @@ SpriteAtlas:
   - {fileID: -1566079590, guid: cd9d9a88b9b1cf643ad026cb8abf8fb8, type: 3}
   - {fileID: 21300000, guid: 1f5f66d832fda14478eedf415fcc7768, type: 3}
   - {fileID: 21300000, guid: 4da46b0962f89e9458752ea8b50cd314, type: 3}
+  - {fileID: 21300000, guid: 1c948669903d48a4bbe894a61263bf58, type: 3}
   - {fileID: 21300000, guid: 42e820a9e87d00e4bac7606bcf3b3d14, type: 3}
   - {fileID: 21300000, guid: 5fbb7eb98e2d4c5428c9e1e328cd4b78, type: 3}
   - {fileID: 21300000, guid: 9414e9d9cb5ab0244bb483eb893aec5c, type: 3}
@@ -123,6 +134,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: ebb69a8a23347424f8aeed0176a8169e, type: 3}
   - {fileID: 21300000, guid: 54ce22aa172ae754a9917e3c0228afbf, type: 3}
   - {fileID: 21300000, guid: 9da356aaa45b439408a69ee4b4365fe2, type: 3}
+  - {fileID: 21300000, guid: ecfc00ba3b73093439777a6314d10743, type: 3}
   - {fileID: 21300000, guid: 067981fa661ced54c8e56aa03b39ead5, type: 3}
   - {fileID: 21300000, guid: 03f0104be1387d9498bb2b7423a009e9, type: 3}
   - {fileID: 21300000, guid: dc9aac7bec08c9749abdeaace50068e1, type: 3}
@@ -130,7 +142,10 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 612eabbb7d5fdac4eb9c2e94fd27f0bc, type: 3}
   - {fileID: 21300000, guid: 220885cb23d61cb4ba01fd71e4bda5ef, type: 3}
   - {fileID: 21300000, guid: fcc91bcb0808d4e4ca546e85621d085b, type: 3}
+  - {fileID: 21300000, guid: 003b493c858aee445a19ec2c4a973d2d, type: 3}
+  - {fileID: 21300000, guid: 45f6fb3c272f09342aa210a3377bc6e7, type: 3}
   - {fileID: 21300000, guid: 0174ce5cee07bf547b5c9ff6f3d78f18, type: 3}
+  - {fileID: 21300000, guid: ab9a426c4aa9fa142bca932115602856, type: 3}
   - {fileID: 21300000, guid: af1f46fc2cc45164c836a6602ea708e4, type: 3}
   - {fileID: 21300000, guid: 5647290d1df22d045841847160ae4eae, type: 3}
   - {fileID: -3058115, guid: 15274f0d0ed60734ba3b78b9f9c78f97, type: 3}
@@ -145,11 +160,14 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 473be9fd392cafa4098f0ef96cb79fc4, type: 3}
   - {fileID: 21300000, guid: 0e53a54ed2cfa5248bad86ccc2bef5bb, type: 3}
   - {fileID: 21300000, guid: 9c79121fc9e43a746a3702f4bc8ade6e, type: 3}
+  - {fileID: 21300000, guid: c7e1e82f924afc74b9361b99e6bbeac3, type: 3}
   - {fileID: 21300000, guid: bb59e04ffae93de4ead7ff4c68734470, type: 3}
   - {fileID: 21300000, guid: 73a9876ff1515a14eb2592441acc647c, type: 3}
   - {fileID: 21300000, guid: 0e207b7f9ca0120428b386f3ebf6a28e, type: 3}
   - {fileID: 21300000, guid: 10502fbf47700be47b3593db320dd68a, type: 3}
   m_PackedSpriteNamesToIndex:
+  - Bringer-of-Death_Spell_11
+  - Bringer-of-Death_Spell_4
   - Smoke VFX A6
   - arrow_hit_3
   - vSlash1_2
@@ -165,6 +183,7 @@ SpriteAtlas:
   - Smoke VFX C6
   - Smoke VFX B2
   - Smoke VFX B9
+  - Bringer-of-Death_Spell_9
   - Smoke VFX B6
   - projectile_land_4
   - Smoke VFX B1
@@ -184,11 +203,16 @@ SpriteAtlas:
   - Holy VFX 02_11
   - Holy VFX 02_10
   - Holy VFX 02_14
+  - Bringer-of-Death_Spell_8
   - trap_detonate_4
   - frame0065
+  - Bringer-of-Death_Spell_14
+  - Bringer-of-Death_Spell_2
   - arrow_hit_4
   - trap_detonate_2
+  - Bringer-of-Death_Spell_1
   - Smoke VFX C4
+  - Bringer-of-Death_Spell_6
   - Smoke VFX A5
   - frame0105
   - frame0095
@@ -198,7 +222,9 @@ SpriteAtlas:
   - Smoke VFX A3
   - Smoke VFX A4
   - frame0000
+  - Bringer-of-Death_Spell_13
   - arrow_hit_2
+  - Bringer-of-Death_Spell_5
   - Smoke VFX A2
   - frame0035
   - pipo-mapeffect013a_3
@@ -213,6 +239,7 @@ SpriteAtlas:
   - pipo-mapeffect013a_8
   - Smoke VFX B8
   - Smoke VFX B10
+  - Bringer-of-Death_Spell_7
   - Smoke VFX C7
   - arrow_
   - pngwing.com
@@ -223,6 +250,7 @@ SpriteAtlas:
   - frame0005
   - frame0045
   - Smoke VFX B4
+  - Bringer-of-Death_Spell_10
   - frame0115
   - frame0025
   - projectile_land_1
@@ -230,7 +258,10 @@ SpriteAtlas:
   - arrow_hit_1
   - Smoke VFX C8
   - Smoke VFX C2
+  - Bringer-of-Death_Spell_12
+  - Bringer-of-Death_Spell_15
   - Smoke VFX A8
+  - Bringer-of-Death_Spell_3
   - frame0015
   - trap_detonate_3
   - SmokeFX Lite SpriteSheet 3A-5_3
@@ -245,6 +276,7 @@ SpriteAtlas:
   - trap_detonate_5
   - Smoke VFX C1
   - projectile_land_2
+  - Bringer-of-Death_Spell_16
   - projectile_throw
   - Smoke VFX B11
   - trap_detonate_1
