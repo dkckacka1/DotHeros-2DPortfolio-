@@ -32,6 +32,7 @@ namespace Portfolio.skill
 
             // 화살을 쏘는 모션 나올때까지 대기
             yield return new WaitForSeconds(0.45f);
+            GameManager.AudioManager.PlaySoundOneShot("Sound_Skill_LOSA_ActiveSkill_Shoot");
             foreach (var targetUnit in e.targetUnits)
             {
                 // 이펙트 생성
@@ -78,6 +79,7 @@ namespace Portfolio.skill
                         // 대상에게 꽂혔다면
                         // 꽂힌 이펙트 표시
                         effect.PlayEffect("Anim_Skill_Effect_LOSA_ArrowProjectileHit");
+                        GameManager.AudioManager.PlaySoundOneShot("Sound_Skill_LOSA_ActiveSkill_Hit");
 
                         if (targetUnit.HasCondition(conditionList[0]))
                         {

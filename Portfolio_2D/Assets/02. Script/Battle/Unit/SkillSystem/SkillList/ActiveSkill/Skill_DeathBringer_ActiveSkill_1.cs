@@ -36,7 +36,7 @@ namespace Portfolio.skill
             var effect = BattleManager.ObjectPool.SpawnSkillEffect();
             effect.PlayEffect("Anim_Skill_Effect_DeathBringer_ActiveSkill_1");
             effect.transform.position = e.targetUnits.ToList()[0].footPos.position;
-
+            GameManager.AudioManager.PlaySoundOneShot("Sound_Skill_DeathBringer_ActiveSkill_1");
             yield return new WaitForSeconds(0.8f);
 
 

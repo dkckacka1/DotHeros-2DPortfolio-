@@ -20,7 +20,7 @@ namespace Portfolio.Battle
         public void SetMapInfo(Map map)
         {
             mapNameTxt.text = map.MapName;
-            mapStageProceedTxt.text = $"({currentStageCount++} / {map.StageList.Count})";
+            mapStageProceedTxt.text = $"({currentStageCount} / {map.StageList.Count})";
         }
 
         // 다음 스테이지에 넘어갈 시 UI 업데이트 해준다.

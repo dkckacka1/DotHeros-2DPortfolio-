@@ -24,6 +24,7 @@ namespace Portfolio.skill
         protected override IEnumerator PlaySkill(SkillActionEventArgs e)
         {
             float skillDamage = e.actionUnit.AttackPoint;
+            GameManager.AudioManager.PlaySoundOneShot("Sound_Skill_ZICH_BaseAttack");
             foreach (var targetUnit in e.targetUnits)
             {
                 // 대상 타격

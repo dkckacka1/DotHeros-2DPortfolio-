@@ -23,14 +23,28 @@ namespace Portfolio
         }
 
         // 음악을 재생시킵니다.
-        public void PlayMusic(string clipName)
+        public void PlayMusic(string clipName, bool isReplay = false)
         {
             var clip = GameManager.Instance.GetAudioClip(clipName);
-            // 기존에 계속 사용되던 음악이 아니라면 음악 바꾸기
-            if (clip != musicSource.clip)
+            // 해당 클립이 존재하지 않다면 리턴
+            if (clip == null) return;
+
+            if (isReplay)
+                // 음악 다시 재생한다면
             {
+                // 어떤 클립이 들어오던 재생합니다.
                 musicSource.clip = clip;
                 musicSource.Play();
+            }
+            else
+                // 음악 다시 재생하지 않는다면
+            {
+                if (clip != musicSource.clip)
+                    // 현재 음악과 다른 클립이 들어올때만 음악을 재생합니다.
+                {
+                    musicSource.clip = clip;
+                    musicSource.Play();
+                }
             }
         }
 

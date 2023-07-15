@@ -23,8 +23,8 @@ namespace Portfolio.skill
 
         protected override IEnumerator PlaySkill(SkillActionEventArgs e)
         {
-            // 스킬 공격력
             float skillDamage = e.actionUnit.AttackPoint + (e.actionUnit.AttackPoint * (e.skillLevel * GetData.skillLevelValue_1 * 0.01f));
+            GameManager.AudioManager.PlaySoundOneShot("Sound_Skill_ZICH_ActiveSkill_2");
             foreach (var targetUnit in e.targetUnits)
             {
                 // 대상을 타격한다.

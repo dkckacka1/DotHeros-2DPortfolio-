@@ -78,6 +78,7 @@ namespace Portfolio.Lobby
         // 보여줄 창의 캔버스를 활성화합니다.
         public void BTN_OnClick_ShowCanvas(Canvas canvas)
         {
+            GameManager.AudioManager.PlaySoundOneShot("Sound_Lobby_OpenPanel");
             canvas.gameObject.SetActive(true);
         }
 

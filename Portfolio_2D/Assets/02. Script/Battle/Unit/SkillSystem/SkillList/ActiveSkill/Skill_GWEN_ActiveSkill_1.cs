@@ -47,6 +47,7 @@ namespace Portfolio.skill
                     Vector3 effectPos = new Vector3(targetUnit.transform.position.x, targetUnit.transform.position.y + Random.Range(-1f,1f));
                     effect.transform.position = effectPos;
                     e.actionUnit.HitTarget(targetUnit, skillDamage);
+                    GameManager.AudioManager.PlaySoundOneShot("Sound_Skill_GWEN_ActiveSkill_1");
                 }
             }
             yield return new WaitForSeconds(1f);

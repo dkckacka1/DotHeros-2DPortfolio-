@@ -23,6 +23,7 @@ namespace Portfolio.skill
 
         protected override IEnumerator PlaySkill(SkillActionEventArgs e)
         {
+            GameManager.AudioManager.PlaySoundOneShot("Sound_Skill_GWEN_ActiveSkill_2");
             // 스킬 레벨에 따라 버프 턴 증가
             int conditionTime = 1 + (e.skillLevel);
             foreach (var targetUnit in e.targetUnits)

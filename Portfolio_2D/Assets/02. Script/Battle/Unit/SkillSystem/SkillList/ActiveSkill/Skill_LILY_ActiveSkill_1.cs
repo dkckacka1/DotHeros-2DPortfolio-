@@ -30,7 +30,7 @@ namespace Portfolio.skill
                 // 대상의 체력을 회복
                 e.actionUnit.HealTarget(targetUnit, healValue);
             }
-
+            GameManager.AudioManager.PlaySoundOneShot("Sound_Skill_LILY_ActiveSkill_Heal");
             yield return new WaitForSeconds(0.5f);
 
             // 스킬 종료

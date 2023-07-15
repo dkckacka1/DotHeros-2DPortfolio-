@@ -10,6 +10,12 @@ namespace Portfolio.Ending
 {
     public class EndingManager : MonoBehaviour
     {
+        private void Start()
+        {
+            GameManager.AudioManager.PlaySound("Sound_Ending");
+        }
+
+        // ∑Œ∫Ò æ¿¿∏∑Œ µπæ∆∞©¥œ¥Ÿ.
         public void BTN_OnClick_GotoLobby()
         {
             SceneLoader.LoadLobbyScene();

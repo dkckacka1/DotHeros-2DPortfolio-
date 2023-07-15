@@ -45,7 +45,7 @@ namespace Portfolio.skill
 
                 float skillDamage = e.actionUnit.AttackPoint * 0.8f;
                 // 데미지는 공격력의 80%
-
+                GameManager.AudioManager.PlaySoundOneShot("Sound_Skill_GWEN_BaseAttack_Throw");
                 // 던지는 모션 중
                 yield return new WaitForSeconds(0.2f);
                 // 스킬 이펙트 생성
@@ -70,6 +70,7 @@ namespace Portfolio.skill
                 // 1초간 대상위치로 이동
                 effect.transform.DOMove(firstTarget.transform.position, projectileMoveTime).OnComplete(() =>
                 {
+                    GameManager.AudioManager.PlaySoundOneShot("Sound_Skill_GWEN_BaseAttack_Hit");
                     // 이동완료시 데미지 입힘
                     e.actionUnit.HitTarget(firstTarget, skillDamage);
                     if (targetList[0].IsDead)
@@ -87,6 +88,7 @@ namespace Portfolio.skill
                                  // 단검이 두번째 대상에게 날아간다.
                                  effect.transform.DOMove(secondTarget.transform.position, projectileMoveTime).OnComplete(() =>
                                   {
+                                      GameManager.AudioManager.PlaySoundOneShot("Sound_Skill_GWEN_BaseAttack_Hit");
                                       // 단검 꽂히는 이펙트 출력하고 데미지를 입힌 후 스킬 종료
                                       effect.StopCoroutine(rotation);
                                       effect.PlayEffect("Anim_Skill_Effect_GWEN_BaseAttack_Check");
@@ -99,6 +101,7 @@ namespace Portfolio.skill
                         // 존재 안할경우
                         {
                             // 단검 꽂히는 이펙트 출력하고 스킬 종료
+                            GameManager.AudioManager.PlaySoundOneShot("Sound_Skill_GWEN_BaseAttack_Hit");
                             effect.StopCoroutine(rotation);
                             effect.PlayEffect("Anim_Skill_Effect_GWEN_BaseAttack_Check");
                             e.actionUnit.isSkillUsing = false;
@@ -108,6 +111,7 @@ namespace Portfolio.skill
                     // 죽지 않았다면
                     {
                         // 단검 꽂히는 이펙트 출력하고 스킬 종료
+                        GameManager.AudioManager.PlaySoundOneShot("Sound_Skill_GWEN_BaseAttack_Hit");
                         effect.StopCoroutine(rotation);
                         effect.PlayEffect("Anim_Skill_Effect_GWEN_BaseAttack_Check");
                         e.actionUnit.isSkillUsing = false;

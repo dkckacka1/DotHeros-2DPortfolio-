@@ -47,7 +47,7 @@ namespace Portfolio.skill
                 }
             }
 
-            // SOUND : 아바타 액티브 스킬 2 사운드
+            GameManager.AudioManager.PlaySoundOneShot("Sound_Skill_AVATA_ActiveSkill_2");
 
             // 마나 회복
             if (manaValue > 0)

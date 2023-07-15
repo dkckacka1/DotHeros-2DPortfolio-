@@ -86,6 +86,8 @@ namespace Portfolio.Battle
             // 전투 종료 1초 뒤에 승리 팝업창 표시
             StartCoroutine(GameLib.WaitMethodCall(1f, () => 
             {
+                // 승리 효과음 재생
+                GameManager.AudioManager.PlaySoundOneShot("Sound_Victory");
                 winResultPopup.transform.parent.gameObject.SetActive(true);
                 winResultPopup.gameObject.SetActive(true);
                 winResultPopup.Show(); 
@@ -98,6 +100,8 @@ namespace Portfolio.Battle
             // 전투 종료 1초 뒤에 패배 팝업창 표시
             StartCoroutine(GameLib.WaitMethodCall(1f, () => 
             {
+                // 패배 효과음 재생
+                GameManager.AudioManager.PlaySoundOneShot("Sound_Defeat");
                 defeatResultPopup.transform.parent.gameObject.SetActive(true);
                 defeatResultPopup.gameObject.SetActive(true);
                 defeatResultPopup.Show(); 

@@ -38,6 +38,7 @@ namespace Portfolio.skill
                 effect.PlayEffect("Anim_Skill_Effect_LOSA_BaseAttack");
                 effect.transform.position = targetUnit.transform.position;
             }
+            GameManager.AudioManager.PlaySoundOneShot("Sound_Skill_LOSA_BaseAttack");
             yield return new WaitForSeconds(0.5f);
             // 스킬 종료
             e.actionUnit.isSkillUsing = false;

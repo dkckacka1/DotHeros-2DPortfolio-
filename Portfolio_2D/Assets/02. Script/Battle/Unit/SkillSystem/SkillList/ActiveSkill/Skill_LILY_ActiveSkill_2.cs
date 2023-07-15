@@ -23,6 +23,7 @@ namespace Portfolio.skill
 
         protected override IEnumerator PlaySkill(SkillActionEventArgs e)
         {
+            GameManager.AudioManager.PlaySoundOneShot("Sound_Skill_LILY_ActiveSkill_Heal");
             foreach (var targetUnit in e.targetUnits)
             {
                 // 체력 회복 수치는 대상 체력의 상대 수치

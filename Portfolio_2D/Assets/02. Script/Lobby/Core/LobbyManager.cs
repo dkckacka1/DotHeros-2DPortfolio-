@@ -33,7 +33,8 @@ namespace Portfolio.Lobby
 
         private void Start()
         {
-            GameManager.AudioManager.PlayMusic("LobbySceneMusic");
+            // 로비 음악을 재생합니다.
+            GameManager.AudioManager.PlayMusic("Music_LobbyScene");
         }
     }
 }

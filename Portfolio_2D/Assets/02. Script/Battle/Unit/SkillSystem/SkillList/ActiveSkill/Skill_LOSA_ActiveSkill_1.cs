@@ -31,6 +31,7 @@ namespace Portfolio.skill
 
             // 화살을 쏘는 모션 나올때까지 대기
             yield return new WaitForSeconds(0.45f);
+            GameManager.AudioManager.PlaySoundOneShot("Sound_Skill_LOSA_ActiveSkill_Shoot");
             foreach (var targetUnit in e.targetUnits)
             {
                 // 화살 이펙트 출력
@@ -71,6 +72,7 @@ namespace Portfolio.skill
                         // 일반 공격
                         e.actionUnit.HitTarget(targetUnit, skillDamage);
                     }
+                    GameManager.AudioManager.PlaySoundOneShot("Sound_Skill_LOSA_ActiveSkill_Hit");
 
                     // 화살이 이동했다면 스킬 종료
                     e.actionUnit.isSkillUsing = false;

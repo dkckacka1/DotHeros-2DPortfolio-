@@ -25,6 +25,7 @@ namespace Portfolio.skill
 
         protected override IEnumerator PlaySkill(SkillActionEventArgs e)
         {
+            GameManager.AudioManager.PlaySoundOneShot("Sound_Skill_ZICH_ActiveSkill_1");
             foreach (var targetUnit in e.targetUnits)
             {
                 // 대상에게 공격력 증가 상태이상 부여 스킬 레벨에 따라 지속시간이 다르다.

@@ -87,6 +87,9 @@ namespace Portfolio.Battle
 
         private void Start()
         {
+            // 음악을 새롭게 재생합니다.
+            GameManager.AudioManager.PlayMusic("Music_BattleScene", true);
+
             if (!GameManager.Instance.isTest)
             // 테스트 상태가 아니면
             {
@@ -232,6 +235,8 @@ namespace Portfolio.Battle
             UIManager.ShowStageInfo(CurrentMap);
             currentStage = stageDatas.Dequeue();
             BattleFactory.CreateStage(currentStage);
+            // 전투 시작 효과음 재생
+            GameManager.AudioManager.PlaySoundOneShot("Sound_BattleStart");
             uiManager.SetStartStageDirect();
             yield return new WaitForSecondsRealtime(stageOutputTime);
             // 전투 시작 연출
@@ -266,6 +271,7 @@ namespace Portfolio.Battle
         // 전투 시작
         {
             SwitchBattleState(BattleState.BATTLESTART);
+
             Play();
         }
 
@@ -320,6 +326,7 @@ namespace Portfolio.Battle
             SwitchBattleState(BattleState.DEFEAT);
             // 패배 UI 출력
             UIManager.Defeat();
+
         }
         private void AddLootingItem()
         {

@@ -84,13 +84,14 @@ namespace Portfolio.WorldMap
                 // 맵 노드 라인의 길이는 현재 맵 노드와 다음 맵 노드의 사이 길이입니다.
                 (nodeLine.transform as RectTransform).sizeDelta = new Vector2(Vector2.Distance(currentMapNode.transform.position, nextNode.transform.position), (nodeLine.transform as RectTransform).sizeDelta.y);
                 // 맵 노드 라인이 각 맵노드를 이어주도록 회전 시켜 줍니다.
-                nodeLine.transform.rotation = Quaternion.Euler(0, 0, Vector2.Angle(Vector2.right, nextNode.transform.position - currentMapNode.transform.position));
+                Vector2 direction = nextNode.transform.position - currentMapNode.transform.position;
+                var angle = Vector2.SignedAngle(Vector2.right, direction);
+                nodeLine.transform.rotation = Quaternion.Euler(0, 0, angle);
 
                 // 맵 노드 화살표를 생성합니다.
                 RectTransform nodeArrow = Instantiate(nodeArrowPrefab, currentMapNode.transform.position, Quaternion.identity, currentMapNode.NodeArrowParent.transform);
                 // 화살표를 다음 맵 노드를 바라보도록 회전 시킵니다.
-                var arrowAngle = Mathf.Atan2(nextNode.transform.position.y - currentMapNode.transform.position.y, nextNode.transform.position.x - currentMapNode.transform.position.x) * Mathf.Rad2Deg;
-                nodeArrow.transform.rotation = Quaternion.Euler(0, 0, arrowAngle - 90);
+                nodeArrow.transform.rotation = Quaternion.Euler(0, 0, angle - 90);
 
                 // 화살표를 누르면 유저가 선택한 맵노드를 변경하고 화면 가운데로 이동시킵니다.
                 nodeArrow.GetComponentInChildren<Button>().onClick.AddListener(() => { CurrentUserChoiceNode = nextNode; UIManager.ShowMapInfo(nextNode.Map); });

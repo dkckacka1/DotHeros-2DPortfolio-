@@ -35,6 +35,7 @@ namespace Portfolio.skill
                 effect.PlayEffect("Anim_Skill_Effect_AVATA_BaseAttack");
                 effect.transform.position = targetUnit.transform.position;
             }
+            GameManager.AudioManager.PlaySoundOneShot("Sound_Skill_AVATA_BaseAttack");
             // 잠시 쉬고
             yield return new WaitForSeconds(0.2f);
             foreach (var targetUnit in e.targetUnits)
@@ -45,6 +46,7 @@ namespace Portfolio.skill
                 effect.PlayEffect("Anim_Skill_Effect_AVATA_BaseAttack");
                 effect.transform.position = targetUnit.transform.position;
             }
+            GameManager.AudioManager.PlaySoundOneShot("Sound_Skill_AVATA_BaseAttack");
             // 잠시 쉬고
             yield return new WaitForSeconds(0.2f);
             foreach (var targetUnit in e.targetUnits)
@@ -55,6 +57,7 @@ namespace Portfolio.skill
                 effect.PlayEffect("Anim_Skill_Effect_AVATA_BaseAttack");
                 effect.transform.position = targetUnit.transform.position;
             }
+            GameManager.AudioManager.PlaySoundOneShot("Sound_Skill_AVATA_BaseAttack");
             // 잠시 쉬고
             yield return new WaitForSeconds(0.1f);
             // 스킬 종료

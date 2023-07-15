@@ -24,6 +24,7 @@ namespace Portfolio.skill
         {
             // 스킬 데미지
             float skillDamage = e.actionUnit.AttackPoint * 0.75f;
+            GameManager.AudioManager.PlaySoundOneShot("Sound_Skill_LILY_BaseAttack");
 
             foreach (var targetUnit in e.targetUnits)
             {
