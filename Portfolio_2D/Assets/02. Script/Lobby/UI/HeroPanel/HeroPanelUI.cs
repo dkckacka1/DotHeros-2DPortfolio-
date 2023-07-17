@@ -272,13 +272,12 @@ namespace Portfolio.Lobby.Hero
             // 강화 성공 여부를 확인해서 성공시 
             {
                 // 선택한 장비를 강화한다.
-                GameManager.AudioManager.PlaySoundOneShot("Sound_SkillLevelUp");
-                // SOUND : 장비 강화 성공 사운드
+                GameManager.AudioManager.PlaySoundOneShot("Sound_ReinforceSuccess");
                 GameManager.ItemCreator.ReinforceEquipment(selectEquipmentItem);
             }
             else
             {
-                // SOUND : 장비 강화 실패 사운드
+                GameManager.AudioManager.PlaySoundOneShot("Sound_ReinforceFailed");
             }
 
             // UI를 업데이트하고 유저 정보를 저장합니다.
@@ -385,7 +384,7 @@ namespace Portfolio.Lobby.Hero
             if (GameManager.CurrentUser.CanDIamondConsume(Constant.UnitListSizeUPDiaConsumeValue))
             // 유닛 슬롯 개수를 늘릴 다이아 양이 충분하다면 
             {
-                // SOUND : 최대갯수 늘릴 때 성공 사운드
+                GameManager.AudioManager.PlaySoundOneShot("Sound_ListSizeUP");
                 //다이아양을 소비하고 최대 갯수를 증가 시킵니다.
                 GameManager.CurrentUser.Diamond -= Constant.UnitListSizeUPDiaConsumeValue;
                 GameManager.CurrentUser.MaxUnitListCount += Constant.UnitListSizeUpCount;

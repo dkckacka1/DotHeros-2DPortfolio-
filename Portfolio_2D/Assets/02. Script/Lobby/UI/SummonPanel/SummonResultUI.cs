@@ -87,7 +87,7 @@ namespace Portfolio.Lobby.Summon
             resultUnitDirectorObj.SetActive(true);
             for (int i = 0; i < summonList.Count; i++)
             {
-                // SOUND : 소환 연출 시 유닛 하나 보여줄 때마다 사운드 재생
+                GameManager.AudioManager.PlaySoundOneShot("Sound_UnitSummon");
                 //소환 유닛을 순차적으로 보여줍니다.
                 unitNameText.text = summonList[i].UnitName;
                 unitAnim.runtimeAnimatorController = summonList[i].animController;

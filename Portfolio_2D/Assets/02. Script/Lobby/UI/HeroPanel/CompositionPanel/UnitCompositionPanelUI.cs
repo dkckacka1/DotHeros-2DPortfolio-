@@ -134,7 +134,6 @@ namespace Portfolio.Lobby.Hero.Composition
             }
             else
             {
-                Debug.LogWarning("다음에 들어갈 슬롯이 없습니다.");
                 SelectSlot(null);
             }
         }
