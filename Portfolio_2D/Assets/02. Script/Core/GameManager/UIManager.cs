@@ -18,6 +18,8 @@ namespace Portfolio.UI
 
         [Header("LoadingCanvas")]
         [SerializeField] CanvasGroup loadingCanvasGroup;                // 로딩 캔버스 그룹
+        [SerializeField] GameObject sceneLoadingObj;                    // 씬을 로드할때 보여줄 로딩 오브젝트
+        [SerializeField] GameObject networkLoadingObj;                  // 네트워크와 통신할 때 보여줄 로딩 오브젝트
         [SerializeField] TextMeshProUGUI loadingText;                   // 로딩 텍스트
         [SerializeField] TextMeshProUGUI loadingProgressText;           // 로딩 진행 텍스트
         [SerializeField] Slider loadingSlider;                          // 로딩 슬라이더
@@ -86,15 +88,31 @@ namespace Portfolio.UI
         }
 
         // 로딩창을 보여준다.
-        public void ShowLoading()
+        public void ShowSceneLoading()
         {
+            // 알맞는 오브젝트를 보여줍니다.
+            sceneLoadingObj.SetActive(true);
+            networkLoadingObj.SetActive(false);
             // 로딩 캔버스 온
             loadingCanvasGroup.gameObject.SetActive(true);
+
             // 알파값 1로 조정
             loadingCanvasGroup.alpha = 1;
             // 로딩 슬라이더 0으로 조절
             loadingSlider.value = 0;
             loadingProgressText.text = "0%";
+        }
+
+        public void ShowNetworkLoading()
+        {
+            // 알맞는 오브젝트를 보여줍니다.
+            sceneLoadingObj.SetActive(false);
+            networkLoadingObj.SetActive(true);
+
+            // 로딩 캔버스 온
+            loadingCanvasGroup.gameObject.SetActive(true);
+            // 알파값 1로 조정
+            loadingCanvasGroup.alpha = 1;
         }
 
         // 로딩한다.

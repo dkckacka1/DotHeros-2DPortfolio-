@@ -7279,6 +7279,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2128824285, guid: e54576e26323fd5448a0afcfd8a529f4, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 41771947883656449, guid: e54576e26323fd5448a0afcfd8a529f4, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -8565,7 +8569,6 @@ MonoBehaviour:
   currentBattleState: -1
   stageOutputTime: 2
   getEquipmentItemList: []
-  isTest: 0
   CallMapID: 505
   userUnitTakeCount: 5
 --- !u!4 &1077764693

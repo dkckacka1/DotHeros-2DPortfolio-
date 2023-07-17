@@ -50,7 +50,7 @@ namespace Portfolio.Start
         private IEnumerator LoadingStart(UserData loginUserData)
         {
             // 로딩창을 보여줍니다.
-            GameManager.UIManager.ShowLoading();
+            GameManager.UIManager.ShowSceneLoading();
             // 데이터를 로드합니다. 리소스와 데이터를 불러와 Dictonary에 바인딩합니다.
             // 완료시 로딩 슬라이더를 30% 채우고 1초대기합니다.
             if (!GameManager.Instance.isLoaded)
