@@ -213,6 +213,7 @@ namespace Portfolio.Lobby.Inventory
         // 장비 아이템을 버린다.
         private void DumpEquipment()
         {
+            // SOUND : 장비 버리는 사운드 재생
             // 선택한 아이템을 인벤토리에서 제거해준다.
             foreach (var itemData in currentSelectorList.Select(selector => selector.unitEquipmentSlotUI.EquipmentData))
             {
