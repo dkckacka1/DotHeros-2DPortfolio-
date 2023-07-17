@@ -25,13 +25,13 @@ namespace Portfolio
         // 모든 데이터를 로드 한다.
         public static void LoadAllData(Dictionary<int, Data> dataDic)
         {
-            LoadData<UnitData>(dataDic, dataResourcesPath + Constant.unitDataJsonName);
-            LoadData<ActiveSkillData>(dataDic, dataResourcesPath + Constant.activeSkillJsonName);
-            LoadData<PassiveSkillData>(dataDic, dataResourcesPath + Constant.passiveSkillJsonName);
-            LoadData<ConditionData>(dataDic, dataResourcesPath + Constant.conditionDataJsonName);
-            LoadData<MapData>(dataDic, dataResourcesPath + Constant.mapDataJsonName);
-            LoadData<StageData>(dataDic, dataResourcesPath + Constant.stageDataJsonName);
-            LoadData<ConsumableItemData>(dataDic, dataResourcesPath + Constant.consumableItemDataJsonName);
+            LoadData<UnitData>(dataDic, dataResourcesPath + Constant.UnitDataJsonName);
+            LoadData<ActiveSkillData>(dataDic, dataResourcesPath + Constant.ActiveSkillJsonName);
+            LoadData<PassiveSkillData>(dataDic, dataResourcesPath + Constant.PassiveSkillJsonName);
+            LoadData<ConditionData>(dataDic, dataResourcesPath + Constant.ConditionDataJsonName);
+            LoadData<MapData>(dataDic, dataResourcesPath + Constant.MapDataJsonName);
+            LoadData<StageData>(dataDic, dataResourcesPath + Constant.StageDataJsonName);
+            LoadData<ConsumableItemData>(dataDic, dataResourcesPath + Constant.ConsumableItemDataJsonName);
         }
 
         // 데이터가 아닌 모든 리소스를 로드한다.

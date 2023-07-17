@@ -16,7 +16,7 @@ namespace Portfolio.WorldMap
     {
         [SerializeField] ScrollRect unitScrollView; // À¯´Ö ¸®½ºÆ® ½ºÅ©·Ñ ºä
 
-        List<UnitSlotUI> unitSlotList = new List<UnitSlotUI>(); // À¯´Ö ½½·Ô ¸®½ºÆ®
+        List<UnitSlotUI> unitSlotList = new List<UnitSlotUI>(Constant.UnitListMaxSizeCount); // À¯´Ö ½½·Ô ¸®½ºÆ®
 
         [SerializeField] List<FormationGrid> fomationGrids;     // ÁøÇü ±×¸®µå
 

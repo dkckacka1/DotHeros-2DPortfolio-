@@ -39,7 +39,7 @@ namespace Portfolio.Battle
 
         private void Update()
         {
-            if (BattleManager.Instance.BattleState == BattleState.PLAY)
+            if (BattleManager.Instance.BattleState == eBattleState.Play)
             {
                 if (Input.GetMouseButtonDown(0))
                 {

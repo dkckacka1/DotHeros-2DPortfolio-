@@ -21,17 +21,17 @@ namespace Portfolio.Battle
         private static ManaSystem manaSystem;           // 마나 시스템
         private static ObjectPool objectPool;           // 오브젝트 풀
 
-        private List<BattleUnit> unitList = new List<BattleUnit>();             // 현재 유닛
-        private Dictionary<BattleState, UnityEvent> StateEventHandlerDic = new Dictionary<BattleState, UnityEvent>(); // 전투 상태 이벤트 Dic
+        private List<BattleUnit> unitList = new List<BattleUnit>(30);             // 현재 유닛
+        private Dictionary<eBattleState, UnityEvent> StateEventHandlerDic = new Dictionary<eBattleState, UnityEvent>(); // 전투 상태 이벤트 Dic
 
-        [SerializeField] private BattleState currentBattleState = BattleState.NONE; // 현재 전투 상태
+        [SerializeField] private eBattleState currentBattleState = eBattleState.None; // 현재 전투 상태
 
         public Queue<Stage> stageDatas = new Queue<Stage>(); // 스테이지 정보 큐
         public Stage currentStage; // 현재 스테이지
         public float stageOutputTime = 2f;  // 스테이지 출력 대기시간
 
-        public List<EquipmentItemData> getEquipmentItemList = new List<EquipmentItemData>();    // 전투 승리 후 얻은 장비아이템 리스트
-        public Dictionary<int, int> getConsumableItemDic = new Dictionary<int, int>(); // 전투 승리 후 얻은 소비아이템 Dic
+        public List<EquipmentItemData> getEquipmentItemList = new List<EquipmentItemData>(5);    // 전투 승리 후 얻은 장비아이템 리스트
+        public Dictionary<int, int> getConsumableItemDic = new Dictionary<int, int>(5); // 전투 승리 후 얻은 소비아이템 Dic
 
         //===========================================================
         // SceneLoaderData
@@ -56,7 +56,7 @@ namespace Portfolio.Battle
         public static ActionSystem ActionSystem { get => actionSystem; }
         public static ManaSystem ManaSystem { get => manaSystem; }
         public static ObjectPool ObjectPool { get => objectPool; }
-        public BattleState BattleState { get => currentBattleState; }
+        public eBattleState BattleState { get => currentBattleState; }
         public Map CurrentMap
         {
             get => currentMap;
@@ -214,7 +214,7 @@ namespace Portfolio.Battle
         //===========================================================
         // SetState
         //===========================================================
-        public void SwitchBattleState(BattleState state)
+        public void SwitchBattleState(eBattleState state)
         // 전투 상태 변경
         {
             currentBattleState = state;
@@ -225,13 +225,13 @@ namespace Portfolio.Battle
         public void Play()
         // 전투 중
         {
-            SwitchBattleState(BattleState.PLAY);
+            SwitchBattleState(eBattleState.Play);
         }
 
         public IEnumerator SetStartStage()
         // 첫번째 스테이지 시작
         {
-            SwitchBattleState(BattleState.SETSTAGE);
+            SwitchBattleState(eBattleState.SetStage);
             UIManager.ShowStageInfo(CurrentMap);
             currentStage = stageDatas.Dequeue();
             BattleFactory.CreateStage(currentStage);
@@ -247,7 +247,7 @@ namespace Portfolio.Battle
         public void SetNextStage()
         // 다음 스테이지 시작
         {
-            SwitchBattleState(BattleState.SETSTAGE);
+            SwitchBattleState(eBattleState.SetStage);
             StartCoroutine(SetStageSequence());
         }
         private IEnumerator SetStageSequence()
@@ -270,7 +270,7 @@ namespace Portfolio.Battle
         public void BattleStart()
         // 전투 시작
         {
-            SwitchBattleState(BattleState.BATTLESTART);
+            SwitchBattleState(eBattleState.BattleStart);
 
             Play();
         }
@@ -278,13 +278,13 @@ namespace Portfolio.Battle
         public void Pause()
         // 전투 멈춤
         {
-            SwitchBattleState(BattleState.PAUSE);
+            SwitchBattleState(eBattleState.Pause);
         }
 
         public void Win()
         // 승리
         {
-            SwitchBattleState(BattleState.WIN);
+            SwitchBattleState(eBattleState.Win);
             if (stageDatas.Count() >= 1)
             // 다음 스테이지가 남아있다면
             {
@@ -296,7 +296,7 @@ namespace Portfolio.Battle
             {
                 // 맵에 있는 루팅 아이템을 획득 가방에 넣어줍니다.
                 AddLootingItem();
-                if (currentMap.MapID == Constant.lastMapID)
+                if (currentMap.MapID == Constant.LastMapID)
                 // 마지막 맵이라면
                 {
                     // 1초뒤에 엔딩 씬 보여주기
@@ -323,7 +323,7 @@ namespace Portfolio.Battle
         public void Defeat()
         // 패배
         {
-            SwitchBattleState(BattleState.DEFEAT);
+            SwitchBattleState(eBattleState.Defeat);
             // 패배 UI 출력
             UIManager.Defeat();
 
@@ -345,26 +345,29 @@ namespace Portfolio.Battle
                     {
                         // 랜덤한 타입의 장비아이템을 등급에 맞게 생성합니다.
                         EquipmentItemData newEquipmentItem = null;
-                        EquipmentItemType type = (EquipmentItemType)UnityEngine.Random.Range(0, 6);
+                        eEquipmentItemType type = (eEquipmentItemType)UnityEngine.Random.Range(0, 6);
                         switch (type)
                         {
-                            case EquipmentItemType.Weapon:
+                            case eEquipmentItemType.Weapon:
                                 newEquipmentItem = GameManager.ItemCreator.CreateEquipmentItemData<WeaponData>(lootitem.gradeType);
                                 break;
-                            case EquipmentItemType.Helmet:
+                            case eEquipmentItemType.Helmet:
                                 newEquipmentItem = GameManager.ItemCreator.CreateEquipmentItemData<HelmetData>(lootitem.gradeType);
                                 break;
-                            case EquipmentItemType.Armor:
+                            case eEquipmentItemType.Armor:
                                 newEquipmentItem = GameManager.ItemCreator.CreateEquipmentItemData<ArmorData>(lootitem.gradeType);
                                 break;
-                            case EquipmentItemType.Amulet:
+                            case eEquipmentItemType.Amulet:
                                 newEquipmentItem = GameManager.ItemCreator.CreateEquipmentItemData<AmuletData>(lootitem.gradeType);
                                 break;
-                            case EquipmentItemType.Ring:
+                            case eEquipmentItemType.Ring:
                                 newEquipmentItem = GameManager.ItemCreator.CreateEquipmentItemData<RingData>(lootitem.gradeType);
                                 break;
-                            case EquipmentItemType.Shoe:
+                            case eEquipmentItemType.Shoe:
                                 newEquipmentItem = GameManager.ItemCreator.CreateEquipmentItemData<ShoeData>(lootitem.gradeType);
+                                break;
+                            default:
+                                Debug.LogWarning("unknownType");
                                 break;
                         }
 
@@ -441,7 +444,7 @@ namespace Portfolio.Battle
         // StateEvent
         //===========================================================
         // ORDER : 이벤트 버스를 이용해서 만든 전투 상태에 따른 이벤트 구독 시스템
-        public void PublishEvent(BattleState state, UnityAction action)
+        public void PublishEvent(eBattleState state, UnityAction action)
         // 전투 상태에 이벤트 구독
         {
             if (StateEventHandlerDic.ContainsKey(state))
@@ -458,7 +461,7 @@ namespace Portfolio.Battle
             }
         }
 
-        public void UnPublishEvent(BattleState state, UnityAction action)
+        public void UnPublishEvent(eBattleState state, UnityAction action)
         // 이벤트 구독 해제
         {
             if (StateEventHandlerDic.ContainsKey(state))
@@ -467,7 +470,7 @@ namespace Portfolio.Battle
             }
         }
 
-        public void InvokeStateEvent(BattleState state)
+        public void InvokeStateEvent(eBattleState state)
         // 구독한 이벤트 모두 호출
         {
             if (StateEventHandlerDic.ContainsKey(state))

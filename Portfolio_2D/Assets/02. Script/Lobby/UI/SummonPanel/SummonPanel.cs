@@ -45,11 +45,11 @@ namespace Portfolio.Lobby.Summon
             int unitGrade = 0;
 
             // 랜덤한 값에 따라 나올 유닛의 등급을 결정합니다.
-            if (randomValue < Constant.uniqueSummonPercent)
+            if (randomValue < Constant.UniqueUnitSummonPercent)
             {
                 unitGrade = 3;
             }
-            else if (randomValue < Constant.rareSummonPercent)
+            else if (randomValue < Constant.RareUnitSummonPercent)
             {
                 unitGrade = 2;
             }
@@ -78,7 +78,7 @@ namespace Portfolio.Lobby.Summon
         // 1회 소환을 진행합니다.
         public void BTN_OnClick_SummonUnitBtn()
         {
-            if (!GameManager.CurrentUser.CanDIamondConsume(Constant.summon_1_unitConsumeDiaValue))
+            if (!GameManager.CurrentUser.CanDIamondConsume(Constant.Summon_1_unitConsumeDiaValue))
                 // 소지 다이아양이 부족하다면 경고창 팝업
             {
                 GameManager.UIManager.ShowAlert("다이아몬드가 부족합니다!");
@@ -92,7 +92,7 @@ namespace Portfolio.Lobby.Summon
             // 결격 사유가 없다면
             {
                 // 소지 다이아 양을 감소시킵니다.
-                GameManager.CurrentUser.Diamond -= Constant.summon_1_unitConsumeDiaValue;
+                GameManager.CurrentUser.Diamond -= Constant.Summon_1_unitConsumeDiaValue;
                 // 기존 결과창을 지워줍니다.
                 summonResultUI.ClearSummonResult();
 
@@ -109,7 +109,7 @@ namespace Portfolio.Lobby.Summon
         // 10 회 소환을 진행합니다.
         public void BTN_OnClick_SummonUnit_10_Btn()
         {
-            if (!GameManager.CurrentUser.CanDIamondConsume(Constant.summon_10_unitConsumeDiaValue))
+            if (!GameManager.CurrentUser.CanDIamondConsume(Constant.Summon_10_unitConsumeDiaValue))
             {
                 GameManager.UIManager.ShowAlert("다이아몬드가 부족합니다!");
             }
@@ -119,7 +119,7 @@ namespace Portfolio.Lobby.Summon
             }
             else
             {
-                GameManager.CurrentUser.Diamond -= Constant.summon_10_unitConsumeDiaValue;
+                GameManager.CurrentUser.Diamond -= Constant.Summon_10_unitConsumeDiaValue;
                 summonResultUI.ClearSummonResult();
 
                 List<Unit> summonList = new List<Unit>();

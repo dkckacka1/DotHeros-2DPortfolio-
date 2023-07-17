@@ -44,7 +44,7 @@ namespace Portfolio.Battle
             // 이미 스킬 사용중이면 리턴
             if (battleUnit.IsSkill) return;
 
-            if (BattleManager.Instance.BattleState == BattleState.PLAY && battleUnit.IsTurn && isAI)
+            if (BattleManager.Instance.BattleState == eBattleState.Play && battleUnit.IsTurn && isAI)
                 // 현재 전투 중이며, 자신의 턴이며, 자동 전투 상태일시
             {
                 if (timer <= turnEndTime)
@@ -64,7 +64,7 @@ namespace Portfolio.Battle
                     return;
                 }
 
-                if (TryUseActiveSkill(ActiveSkillType.Firstpriority))
+                if (TryUseActiveSkill(eActiveSkillType.Firstpriority))
                     // 최우선도 스킬을 사용할 수 있다면 사용
                 {
                     return;
@@ -78,13 +78,13 @@ namespace Portfolio.Battle
                 if (CheckConditionCount(allyList, 1, IsUnitDamaged))
                 // 1명 이상의 아군이 체력이 감소된 상태
                 {
-                    if (TryUseActiveSkill(ActiveSkillType.MultipleHeal))
+                    if (TryUseActiveSkill(eActiveSkillType.MultipleHeal))
                     // 광역힐을 사용할 수 있다면 사용
                     {
                         return;
                     }
 
-                    if (TryUseActiveSkill(ActiveSkillType.SingleHeal))
+                    if (TryUseActiveSkill(eActiveSkillType.SingleHeal))
                     // 단일힐을 사용할 수 있다면 사용
                     {
                         return;
@@ -94,14 +94,14 @@ namespace Portfolio.Battle
                 if (CheckConditionCount(enemyList, 3))
                 // 적군이 3명이상일 경우
                 {
-                    if (TryUseActiveSkill(ActiveSkillType.MultipleAttack))
+                    if (TryUseActiveSkill(eActiveSkillType.MultipleAttack))
                     // 광역 공격을 사용할 수 있다면 사용
                     {
                         return;
                     }
                 }
 
-                if (TryUseActiveSkill(ActiveSkillType.SingleAttack))
+                if (TryUseActiveSkill(eActiveSkillType.SingleAttack))
                 // 단일 공격을 사용할 수 있다면 사용
                 {
                     return;
@@ -115,7 +115,7 @@ namespace Portfolio.Battle
                     // 공격할 타겟이 있다면
                 {
                     // 기본 공격 스킬 사용
-                    battleUnit.UseSkill(UnitSkillType.BaseAttack);
+                    battleUnit.UseSkill(eUnitSkillType.BaseAttack);
                 }
                 else
                 {
@@ -128,7 +128,7 @@ namespace Portfolio.Battle
 
 
         // 액티브 스킬 타입에 따라 스킬을 사용할 수 있는지 여부를 판단하고 사용(액티브 스킬 2를 우선적으로 사용한다.)
-        private bool TryUseActiveSkill(ActiveSkillType type)
+        private bool TryUseActiveSkill(eActiveSkillType type)
         {
             if (activeSkill_2 != null && activeSkill_2.GetData.activeSkillType == type)
             {
@@ -140,7 +140,7 @@ namespace Portfolio.Battle
                     if (BattleManager.ActionSystem.SelectUnitCount != 0)
                         // 타겟이 존재하면 스킬 사용
                     {
-                        battleUnit.UseSkill(UnitSkillType.ActiveSkill_2);
+                        battleUnit.UseSkill(eUnitSkillType.ActiveSkill_2);
                         return true;
                     }
                 }
@@ -156,7 +156,7 @@ namespace Portfolio.Battle
                     if (BattleManager.ActionSystem.SelectUnitCount != 0)
                         // 타겟이 존재하면 스킬 사용
                     {
-                        battleUnit.UseSkill(UnitSkillType.ActiveSkill_1);
+                        battleUnit.UseSkill(eUnitSkillType.ActiveSkill_1);
                         return true;
                     }
                 }

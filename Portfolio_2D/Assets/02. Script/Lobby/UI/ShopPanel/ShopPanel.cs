@@ -76,13 +76,13 @@ namespace Portfolio.Lobby.Shop
         // 소비아이템 상점을 새로고침 합니다.
         public void BTN_OnClick_RefreshConsumableShop()
         {
-            GameManager.UIManager.ShowConfirmation("상점 새로고침", $"소비아이템 상점을 새로고침 하시겠습니까?\n{Constant.shopRefreshDiaConsumValue} 다이아가 소비됩니다.",
+            GameManager.UIManager.ShowConfirmation("상점 새로고침", $"소비아이템 상점을 새로고침 하시겠습니까?\n{Constant.ShopRefreshDiaConsumValue} 다이아가 소비됩니다.",
                 () =>
                 {
-                    if (GameManager.CurrentUser.CanDIamondConsume(Constant.shopRefreshDiaConsumValue))
+                    if (GameManager.CurrentUser.CanDIamondConsume(Constant.ShopRefreshDiaConsumValue))
                     // 소지 다이아량과 소비 다이아량을 비교한다.
                     {
-                        GameManager.CurrentUser.Diamond -= Constant.shopRefreshDiaConsumValue;
+                        GameManager.CurrentUser.Diamond -= Constant.ShopRefreshDiaConsumValue;
                         // 상점아이템을 세팅합니다.
                         SetConsumableItemShop();
                     }
@@ -98,17 +98,17 @@ namespace Portfolio.Lobby.Shop
         {
             var itemList = GameManager.Instance.GetDatas<ConsumableItemData>().Where(item => item.isShopProduct).ToList();
             // 나올 수 있는 할인율의 갯수
-            int discountLength = Constant.shopProductDiscountValues.Length;
+            int discountLength = Constant.ShopProductDiscountValues.Length;
             foreach (var node in consumableItemNodeList)
             {
                 // 랜덤한 소비아이템 데이터
                 var itemData = itemList[Random.Range(0, (int)itemList.Count)];
                 // 랜덤한 갯수
-                int itemCount = Random.Range(1, Constant.shopProductMaxCount);
+                int itemCount = Random.Range(1, Constant.ShopProductMaxCount);
                 // 골드판매할지 다이아판매할지
                 bool isGoldPayment = (Random.Range(0, 2) == 1) ? true : false;
                 // 랜덤한 할인율
-                float discountValue = Constant.shopProductDiscountValues[Random.Range(0, discountLength)];
+                float discountValue = Constant.ShopProductDiscountValues[Random.Range(0, discountLength)];
 
                 // 노드에 아이템을 세팅한다.
                 node.SetConsumableItemProduct(itemData, itemCount, isGoldPayment, discountValue);

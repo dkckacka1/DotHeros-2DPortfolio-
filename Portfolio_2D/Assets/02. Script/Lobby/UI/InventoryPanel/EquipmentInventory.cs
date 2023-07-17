@@ -29,7 +29,7 @@ namespace Portfolio.Lobby.Inventory
 
         public void Init()
         {
-            equipmentSlotUIList = new List<EquipmentItemSlot>();
+            equipmentSlotUIList = new List<EquipmentItemSlot>(Constant.EquipmentListMaxSizeCount);
             foreach (var slot in slotScrollView.content.GetComponentsInChildren<EquipmentItemSlot>())
             {
                 equipmentSlotUIList.Add(slot);
@@ -151,7 +151,7 @@ namespace Portfolio.Lobby.Inventory
         // 장비 인벤토리 최대 사이즈를 추가하는 버튼
         public void BTN_OnClick_EquipmentListSizeUp()
         {
-            if (GameManager.CurrentUser.MaxEquipmentListCount >= Constant.equipmentListMaxSizeCount)
+            if (GameManager.CurrentUser.MaxEquipmentListCount >= Constant.EquipmentListMaxSizeCount)
                 // 더이상 추가가 불가능 하면 경고창 표시
             {
                 GameManager.UIManager.ShowAlert("이미 최대 사이즈에 도달했습니다!");
@@ -159,8 +159,8 @@ namespace Portfolio.Lobby.Inventory
             else
                 // 추가가 가능하면 확인 다이얼로그 창을 표시 
             {
-                int consumeDia = Constant.equipmentListSizeUpDiaConsumeValue;
-                GameManager.UIManager.ShowConfirmation("최대 장비 개수 증가", $"최대 장비 개수를 증가 시키겠습니까?\n{consumeDia} 다이아가 소비되며\n{Constant.equipmentListSizeUpCount}칸이 늘어납니다.\n(최대 100칸)", EquipmentInventorySizeUp);
+                int consumeDia = Constant.EquipmentListSizeUpDiaConsumeValue;
+                GameManager.UIManager.ShowConfirmation("최대 장비 개수 증가", $"최대 장비 개수를 증가 시키겠습니까?\n{consumeDia} 다이아가 소비되며\n{Constant.EquipmentListSizeUpCount}칸이 늘어납니다.\n(최대 100칸)", EquipmentInventorySizeUp);
             }
         }
 
@@ -181,11 +181,11 @@ namespace Portfolio.Lobby.Inventory
         // 장비 인벤토리 사이즈를 추가한다.
         private void EquipmentInventorySizeUp()
         {
-            if (GameManager.CurrentUser.CanDIamondConsume(Constant.equipmentListSizeUpCount))
+            if (GameManager.CurrentUser.CanDIamondConsume(Constant.EquipmentListSizeUpCount))
                 // 소지 다이아량과 소비 다이아량을 비교한다.
             {
-                GameManager.CurrentUser.Diamond -= Constant.equipmentListSizeUpCount;
-                GameManager.CurrentUser.MaxEquipmentListCount += Constant.equipmentListSizeUpCount;
+                GameManager.CurrentUser.Diamond -= Constant.EquipmentListSizeUpCount;
+                GameManager.CurrentUser.MaxEquipmentListCount += Constant.EquipmentListSizeUpCount;
                 ShowEquipmentInventorySizeText();
             }
             else

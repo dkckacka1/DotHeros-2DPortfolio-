@@ -20,7 +20,7 @@ namespace Portfolio.Battle
         // 보여줄 마나를 표시한다.
         public void SetManaCount(int manaCount)
         {
-            manaText.text = $"( {manaCount} / {Constant.MAX_MANA_COUNT} )";
+            manaText.text = $"( {manaCount} / {Constant.MaxManaValue} )";
             manaImage.sprite = manaSprites[manaCount];
         }
     }

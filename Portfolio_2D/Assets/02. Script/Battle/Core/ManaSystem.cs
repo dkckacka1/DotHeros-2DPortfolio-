@@ -10,7 +10,7 @@ namespace Portfolio.Battle
 {
     public class ManaSystem : MonoBehaviour
     {
-        private int mana = Constant.MAX_MANA_COUNT;
+        private int mana = Constant.MaxManaValue;
 
         public int Mana 
         { 
@@ -21,7 +21,7 @@ namespace Portfolio.Battle
             set
             {
                 // 마나값이 변화하면 0 ~ Constant.MAX_MANA_COUNT 사이 값으로 조절해준다.
-                mana = Mathf.Clamp(value, 0, Constant.MAX_MANA_COUNT);
+                mana = Mathf.Clamp(value, 0, Constant.MaxManaValue);
                 // 마나 UI 변화
                 BattleManager.UIManager.BattleManaUI.SetManaCount(mana);
             }

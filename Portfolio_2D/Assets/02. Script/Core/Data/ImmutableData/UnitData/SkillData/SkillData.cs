@@ -14,7 +14,7 @@ namespace Portfolio.skill
         public float skillLevelValue_3;     // 스킬 레벨당 변하게 될 변수
         public string skillIconSpriteName;  // 스킬 이미지 스프라이트 이름
 
-        public SkillType skillType;         // 스킬 타입
+        public eSkillType skillType;         // 스킬 타입
 
         public int conditinID_1;            // 스킬이 가지고 있는 상태이상 ID
         public int conditinID_2;            // 스킬이 가지고 있는 상태이상 ID

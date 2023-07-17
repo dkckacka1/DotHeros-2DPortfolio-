@@ -222,9 +222,9 @@ namespace Portfolio.Battle
             aiSystem.SetActiveSkill(unit);
 
             // 전투 시작 승리, 패배 이벤트를 구독 해준다.
-            BattleManager.Instance.PublishEvent(BattleState.BATTLESTART, BattleStart);
-            BattleManager.Instance.PublishEvent(BattleState.WIN, Win);
-            BattleManager.Instance.PublishEvent(BattleState.DEFEAT, Defeat);
+            BattleManager.Instance.PublishEvent(eBattleState.BattleStart, BattleStart);
+            BattleManager.Instance.PublishEvent(eBattleState.Win, Win);
+            BattleManager.Instance.PublishEvent(eBattleState.Defeat, Defeat);
         } 
         #endregion
         //===========================================================
@@ -423,9 +423,9 @@ namespace Portfolio.Battle
             // 자신의 죽음을 배틀매니저에게 알린다.
             BattleManager.Instance.CheckUnitList();
             // 배틀 매니저의 이벤트 구독을 해제 시켜준다.
-            BattleManager.Instance.UnPublishEvent(BattleState.BATTLESTART, BattleStart);
-            BattleManager.Instance.UnPublishEvent(BattleState.WIN, Win);
-            BattleManager.Instance.UnPublishEvent(BattleState.DEFEAT, Defeat);
+            BattleManager.Instance.UnPublishEvent(eBattleState.BattleStart, BattleStart);
+            BattleManager.Instance.UnPublishEvent(eBattleState.Win, Win);
+            BattleManager.Instance.UnPublishEvent(eBattleState.Defeat, Defeat);
             // 죽음 연출 시작
             StartCoroutine(DeadProcedure());
         }
@@ -451,7 +451,7 @@ namespace Portfolio.Battle
         private float DefensiveCalculation(float damageValue)
         {
             // 방어율 = 방어도 / 방어도 + 방어 상수
-            float defenciveAverage = DefencePoint / DefencePoint + Constant.DEFENCE_CONST_VALUE;
+            float defenciveAverage = DefencePoint / DefencePoint + Constant.DefenciveConstValue;
             // 들어온 데미지 * 방어율 = 실제 받는 피해
             return damageValue * defenciveAverage;
         }
@@ -461,14 +461,14 @@ namespace Portfolio.Battle
         // SkillSystem
         //===========================================================
         #region SkillSystem
-        public void UseSkill(UnitSkillType skillType)
+        public void UseSkill(eUnitSkillType skillType)
             // 스킬 사용하는 함수
         {
             int skillLevel = 1;         // 초기 사용 스킬 레벨
             Skill useSkill = null;      // 사용할 스킬
             switch (skillType)
             {
-                case UnitSkillType.BaseAttack:
+                case eUnitSkillType.BaseAttack:
                     // 사용할 스킬이 기본공격 스킬일 경우 스킬레벨 1로 사용한다.
                     {
                         useSkill = unit.basicAttackSkill;
@@ -481,7 +481,7 @@ namespace Portfolio.Battle
                         }
                     }
                     break;
-                case UnitSkillType.ActiveSkill_1:
+                case eUnitSkillType.ActiveSkill_1:
                     {
                         // 사용할 스킬이 액티브 스킬 1일 경우 액티브 스킬 1의 스킬 레벨을 가져와서 세팅 후 사용한다.
                         useSkill = unit.activeSkill_1;
@@ -495,7 +495,7 @@ namespace Portfolio.Battle
                         }
                     }
                     break;
-                case UnitSkillType.ActiveSkill_2:
+                case eUnitSkillType.ActiveSkill_2:
                     {
                         // 사용할 스킬이 액티브 스킬 12일 경우 액티브 스킬 2의 스킬 레벨을 가져와서 세팅 후 사용한다.
                         useSkill = unit.activeSkill_2;
@@ -509,6 +509,9 @@ namespace Portfolio.Battle
                         }
                     }
                     break;
+                default:
+                    Debug.LogWarning("unknownType");
+                    break;
             }
 
             // 스킬 수행
@@ -520,7 +523,7 @@ namespace Portfolio.Battle
             }
         }
 
-        private IEnumerator UseSkillSequence(UnitSkillType skillType)
+        private IEnumerator UseSkillSequence(eUnitSkillType skillType)
             // 스킬 수행 시퀀스
         {
             // 애니메이션을 출력한다.
@@ -788,7 +791,7 @@ namespace Portfolio.Battle
             animator.SetTrigger("Create");
         }
 
-        private IEnumerator UseSkillAnim(UnitSkillType skillType)
+        private IEnumerator UseSkillAnim(eUnitSkillType skillType)
             // 스킬 애니메이션 연출
         {
             animator.ResetTrigger("Idle");
@@ -796,17 +799,20 @@ namespace Portfolio.Battle
             switch (skillType)
                 // 사용한 스킬에 따라 애니메이션 출력
             {
-                case UnitSkillType.BaseAttack:
+                case eUnitSkillType.BaseAttack:
                     animatorTriggerName = "BaseAttack";
                     animator.SetTrigger(animatorTriggerName);
                     break;
-                case UnitSkillType.ActiveSkill_1:
+                case eUnitSkillType.ActiveSkill_1:
                     animatorTriggerName = "ActiveSkill1";
                     animator.SetTrigger(animatorTriggerName);
                     break;
-                case UnitSkillType.ActiveSkill_2:
+                case eUnitSkillType.ActiveSkill_2:
                     animatorTriggerName = "ActiveSkill2";
                     animator.SetTrigger(animatorTriggerName);
+                    break;
+                default:
+                    Debug.LogWarning("unknownType");
                     break;
             }
 

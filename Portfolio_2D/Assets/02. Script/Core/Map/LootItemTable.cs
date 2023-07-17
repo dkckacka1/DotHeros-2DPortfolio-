@@ -28,7 +28,7 @@ namespace Portfolio
 
         public class LootingEquipmentItem : LootingItem
         {
-            public GradeType gradeType; // 루팅될 장비아이템 등급
+            public eGradeType gradeType; // 루팅될 장비아이템 등급
 
         }
 

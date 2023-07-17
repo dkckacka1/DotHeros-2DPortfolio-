@@ -46,10 +46,10 @@ namespace Portfolio.Lobby.Summon
         // ±âº» 1¼º µî±ÞÀÇ À¯´ÖÀ» º¸¿©ÁÝ´Ï´Ù.
         public void ShowGradeOne()
         {
-            probablilityText.text = $"1¼º À¯´Ö È¹µæ È®·ü : {Constant.normalSummonPercent * 100}%";
+            probablilityText.text = $"1¼º À¯´Ö È¹µæ È®·ü : {Constant.NormalUnitSummonPercent * 100}%";
 
             // °¢ 1¼º À¯´Ö´ç ³ª¿Ã È®·üÀ» Ã¼Å©ÇÕ´Ï´Ù.
-            float probability = Constant.normalSummonPercent / gradeOneUnitList.Count;
+            float probability = Constant.NormalUnitSummonPercent / gradeOneUnitList.Count;
 
             for (int i = 0; i < unitSlotUIList.Count; i++)
             {
@@ -68,9 +68,9 @@ namespace Portfolio.Lobby.Summon
 
         public void ShowGradeTwo()
         {
-            probablilityText.text = $"1¼º À¯´Ö È¹µæ È®·ü : {Constant.rareSummonPercent * 100}%";
+            probablilityText.text = $"1¼º À¯´Ö È¹µæ È®·ü : {Constant.RareUnitSummonPercent * 100}%";
 
-            float probability = Constant.rareSummonPercent / gradeTwoUnitList.Count;
+            float probability = Constant.RareUnitSummonPercent / gradeTwoUnitList.Count;
 
             for (int i = 0; i < unitSlotUIList.Count; i++)
             {
@@ -88,9 +88,9 @@ namespace Portfolio.Lobby.Summon
 
         public void ShowGradeThree()
         {
-            probablilityText.text = $"1¼º À¯´Ö È¹µæ È®·ü : {Constant.uniqueSummonPercent * 100}%";
+            probablilityText.text = $"1¼º À¯´Ö È¹µæ È®·ü : {Constant.UniqueUnitSummonPercent * 100}%";
 
-            float probability = Constant.uniqueSummonPercent / gradethreeUnitList.Count;
+            float probability = Constant.UniqueUnitSummonPercent / gradethreeUnitList.Count;
 
             for (int i = 0; i < unitSlotUIList.Count; i++)
             {

@@ -12,7 +12,7 @@ namespace Portfolio.Battle
 {
     public class GridPosition : MonoBehaviour
     {
-        public LineType lineType;                       // 전열 후열 타입
+        public eLineType lineType;                       // 전열 후열 타입
 
         public List<GridPosition> LinkedGridPosition;   // 이 그리드와 연결된 다른 그리드
 

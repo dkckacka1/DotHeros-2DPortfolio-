@@ -39,12 +39,12 @@ namespace Portfolio.Lobby.Shop
             if (isGoldPayment)
             {
                 defaultPayment = productConsumalbeItem.productGoldValue;
-                PaymentType = PaymentType.Gold;
+                PaymentType = ePaymentType.Gold;
             }
             else
             {
                 defaultPayment = productConsumalbeItem.productDiaValue;
-                PaymentType = PaymentType.Diamond;
+                PaymentType = ePaymentType.Diamond;
             }
             
             // 상품 가격, 갯수, 할인율을 통해 금액을 결정합니다.

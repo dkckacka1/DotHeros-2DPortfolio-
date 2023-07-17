@@ -11,7 +11,7 @@ namespace Portfolio
 {
     public class TimeChecker : MonoBehaviour
     {
-        public int energyChargeCount = (int)Constant.energyChargeTime; // 에너지 회복 시간
+        public int energyChargeCount = (int)Constant.EnergyChargeTime; // 에너지 회복 시간
 
         private IEnumerator checkIEnumerator;   // 에너지 체크 열거자
 
@@ -46,7 +46,7 @@ namespace Portfolio
                     // 유저의 에너지를 회복한다.
                     GameManager.CurrentUser.CurrentEnergy++;
                     // 회복 시간을 초기화 한다.
-                    energyChargeCount = (int)Constant.energyChargeTime;
+                    energyChargeCount = (int)Constant.EnergyChargeTime;
                 }
                 // UI를 업데이트 한다.
                 GameManager.UIManager.ShowRemainTime(energyChargeCount);

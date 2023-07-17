@@ -15,7 +15,7 @@ namespace Portfolio.Lobby.Hero
 {
     public class UnitSkillUI : MonoBehaviour
     {
-        [HideInInspector] public UnitSkillType SkillType;   // 이 스킬 슬롯의 스킬 타입
+        [HideInInspector] public eUnitSkillType SkillType;   // 이 스킬 슬롯의 스킬 타입
         Skill skill;                                        // 유닛의 스킬
         int skillLevel;                                     // 해당 스킬의 레벨
 
@@ -27,7 +27,7 @@ namespace Portfolio.Lobby.Hero
         [SerializeField] Button skillLevelUpBtn;            // 스킬 레벨업 버튼
 
         // 스킬을 보여줍니다.
-        public void Show(Skill skill, int skillLevel, bool showSkillLevelUpBtn = true, UnitSkillType unitSkillType = UnitSkillType.ActiveSkill_1)
+        public void Show(Skill skill, int skillLevel, bool showSkillLevelUpBtn = true, eUnitSkillType unitSkillType = eUnitSkillType.ActiveSkill_1)
         {
             // 스킬이 없다면 비활성화 합니다.
             if (skill == null)
@@ -44,7 +44,7 @@ namespace Portfolio.Lobby.Hero
             this.gameObject.SetActive(true);
             // 스킬의 정보를 표시합니다.
             skillImage.sprite = skill.skillSprite;
-            skillTypeText.text = (skill.GetData.skillType == Portfolio.SkillType.ActiveSkill) ? "액티브 스킬" : "패시브 스킬";
+            skillTypeText.text = (skill.GetData.skillType == Portfolio.eSkillType.ActiveSkill) ? "액티브 스킬" : "패시브 스킬";
             skillLevelText.text = "레벨 " + skillLevel.ToString();
             skillNameText.text = skill.GetData.skillName;
             skillDescText.text = skill.GetDesc(skillLevel);

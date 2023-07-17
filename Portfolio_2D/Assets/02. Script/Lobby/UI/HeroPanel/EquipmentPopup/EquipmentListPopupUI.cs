@@ -28,7 +28,7 @@ namespace Portfolio.Lobby.Hero
         // 최초 세팅
         public void Init()
         {
-            equipmentSlotList = new List<EquipmentItemSlot>();
+            equipmentSlotList = new List<EquipmentItemSlot>(Constant.EquipmentListMaxSizeCount);
             foreach (var slot in equipmentListScrollView.content.GetComponentsInChildren<EquipmentItemSlot>())
             {
                 equipmentSlotList.Add(slot);
@@ -95,7 +95,7 @@ namespace Portfolio.Lobby.Hero
 
 
         // 장비 타입으로 리스트 보여주기
-        public void ShowEquipmentList(EquipmentItemType itemType)
+        public void ShowEquipmentList(eEquipmentItemType itemType)
         {
             var listOrdered = (from item in GameManager.CurrentUser.GetInventoryEquipmentItem
                                orderby (item.equipmentType == itemType) descending

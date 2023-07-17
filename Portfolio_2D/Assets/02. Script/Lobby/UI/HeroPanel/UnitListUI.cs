@@ -19,14 +19,14 @@ namespace Portfolio.Lobby.Hero
         [SerializeField] ScrollRect unitScrollView;                 // 유닛 슬롯 스크롤 뷰
         [SerializeField] TextMeshProUGUI unitListCountText;         // 유닛 슬롯 개수를 표시하는 텍스트
 
-        List<HeroSelector> unitSlotHeroStatusSelectors = new List<HeroSelector>();                      // 유닛 상태창과 연결된 셀렉터
-        List<CompositionSelector> unitSlotHeroCompositionSelectors = new List<CompositionSelector>();   // 유닛 합성창과 연결된 셀렉터
+        List<HeroSelector> unitSlotHeroStatusSelectors = new List<HeroSelector>(Constant.UnitListMaxSizeCount);                      // 유닛 상태창과 연결된 셀렉터
+        List<CompositionSelector> unitSlotHeroCompositionSelectors = new List<CompositionSelector>(Constant.UnitListMaxSizeCount);   // 유닛 합성창과 연결된 셀렉터
 
 
         // 초기화 합니다.
         public void Init()
         {
-            unitSlotList = new List<UnitSlotUI>();
+            unitSlotList = new List<UnitSlotUI>(Constant.UnitListMaxSizeCount);
             foreach (var slot in unitScrollView.content.GetComponentsInChildren<UnitSlotUI>())
             {
                 unitSlotList.Add(slot);

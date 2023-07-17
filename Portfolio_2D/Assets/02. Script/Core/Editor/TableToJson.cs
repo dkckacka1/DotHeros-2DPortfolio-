@@ -24,7 +24,7 @@ namespace Portfolio.Editor
         public static bool CheckValidJson()
         {
             // JSON파일 가져오기
-            string activeSkillJson = Application.dataPath + Constant.resorucesDataPath + Constant.activeSkillJsonName + ".json";
+            string activeSkillJson = Application.dataPath + Constant.ResorucesDataPath + Constant.ActiveSkillJsonName + ".json";
             if (File.Exists(activeSkillJson))
                 // 파일이 있다면 JSON 변환 해봅니다.
             {
@@ -38,7 +38,7 @@ namespace Portfolio.Editor
                 return false;
             }
 
-            string passiveSkillJson = Application.dataPath + Constant.resorucesDataPath + Constant.passiveSkillJsonName + ".json";
+            string passiveSkillJson = Application.dataPath + Constant.ResorucesDataPath + Constant.PassiveSkillJsonName + ".json";
             if (File.Exists(passiveSkillJson))
             {
                 var text = File.OpenText(passiveSkillJson);
@@ -51,7 +51,7 @@ namespace Portfolio.Editor
                 return false;
             }
 
-            string unitJsonPath = Application.dataPath + Constant.resorucesDataPath + Constant.unitDataJsonName + ".json";
+            string unitJsonPath = Application.dataPath + Constant.ResorucesDataPath + Constant.UnitDataJsonName + ".json";
             if (File.Exists(unitJsonPath))
             {
                 var text = File.OpenText(unitJsonPath);
@@ -64,7 +64,7 @@ namespace Portfolio.Editor
                 return false;
             }
 
-            string conditionJsonPath = Application.dataPath + Constant.resorucesDataPath + Constant.conditionDataJsonName + ".json";
+            string conditionJsonPath = Application.dataPath + Constant.ResorucesDataPath + Constant.ConditionDataJsonName + ".json";
             if (File.Exists(conditionJsonPath))
             {
                 var text = File.OpenText(conditionJsonPath);
@@ -77,7 +77,7 @@ namespace Portfolio.Editor
                 return false;
             }
 
-            string mapJsonPath = Application.dataPath + Constant.resorucesDataPath + Constant.mapDataJsonName + ".json";
+            string mapJsonPath = Application.dataPath + Constant.ResorucesDataPath + Constant.MapDataJsonName + ".json";
             if (File.Exists(mapJsonPath))
             {
                 var text = File.OpenText(mapJsonPath);
@@ -91,7 +91,7 @@ namespace Portfolio.Editor
             }
 
 
-            string stageJsonPath = Application.dataPath + Constant.resorucesDataPath + Constant.stageDataJsonName + ".json";
+            string stageJsonPath = Application.dataPath + Constant.ResorucesDataPath + Constant.StageDataJsonName + ".json";
             if (File.Exists(stageJsonPath))
             {
                 var text = File.OpenText(stageJsonPath);
@@ -104,7 +104,7 @@ namespace Portfolio.Editor
                 return false;
             }
 
-            string consumableItemJsonPath = Application.dataPath + Constant.resorucesDataPath + Constant.consumableItemDataJsonName + ".json";
+            string consumableItemJsonPath = Application.dataPath + Constant.ResorucesDataPath + Constant.ConsumableItemDataJsonName + ".json";
             if (File.Exists(stageJsonPath))
             {
                 var text = File.OpenText(consumableItemJsonPath);
@@ -125,9 +125,9 @@ namespace Portfolio.Editor
         public static bool GetSkillTable()
         {
             // 엑셀파일의 위치와 생성할 JSON파일의 이름을 확인합니다
-            string xlsxPath = Application.dataPath + Constant.dataTablePath + Constant.skillDataTableName + ".xlsx";
-            string passiveSkilljsonPath = Application.dataPath + Constant.resorucesDataPath + Constant.passiveSkillJsonName + ".json";
-            string activeSkilljsonPath = Application.dataPath + Constant.resorucesDataPath + Constant.activeSkillJsonName + ".json";
+            string xlsxPath = Application.dataPath + Constant.DataTablePath + Constant.SkillDataTableName + ".xlsx";
+            string passiveSkilljsonPath = Application.dataPath + Constant.ResorucesDataPath + Constant.PassiveSkillJsonName + ".json";
+            string activeSkilljsonPath = Application.dataPath + Constant.ResorucesDataPath + Constant.ActiveSkillJsonName + ".json";
 
             if (File.Exists(xlsxPath))
                 // 엑셀위치에 엑셀파일이 존재한다면
@@ -162,8 +162,8 @@ namespace Portfolio.Editor
         #region 상태이상 데이터 로드
         public static bool GetConditionTable()
         {
-            string xlsxPath = Application.dataPath + Constant.dataTablePath + Constant.conditionDataTableName + ".xlsx";
-            string jsonPath = Application.dataPath + Constant.resorucesDataPath + Constant.conditionDataJsonName + ".json";
+            string xlsxPath = Application.dataPath + Constant.DataTablePath + Constant.ConditionDataTableName + ".xlsx";
+            string jsonPath = Application.dataPath + Constant.ResorucesDataPath + Constant.ConditionDataJsonName + ".json";
 
             if (File.Exists(xlsxPath))
             {
@@ -188,7 +188,7 @@ namespace Portfolio.Editor
 
         public static bool GetUnitTable()
         {
-            string xlsxPath = Application.dataPath + Constant.dataTablePath + Constant.unitDataTableName + ".xlsx";
+            string xlsxPath = Application.dataPath + Constant.DataTablePath + Constant.UnitDataTableName + ".xlsx";
 
             if (File.Exists(xlsxPath))
             {
@@ -212,7 +212,7 @@ namespace Portfolio.Editor
         #region 맵, 스테이지 데이터 로드
         public static bool GetMapTable()
         {
-            string xlsxPath = Application.dataPath + Constant.dataTablePath + Constant.mapDataTableName + ".xlsx";
+            string xlsxPath = Application.dataPath + Constant.DataTablePath + Constant.MapDataTableName + ".xlsx";
 
             if (File.Exists(xlsxPath))
             {
@@ -241,7 +241,7 @@ namespace Portfolio.Editor
         #region 아이템 데이터 로드
         public static bool GetItemTable()
         {
-            string xlsxPath = Application.dataPath + Constant.dataTablePath + Constant.itemDataTableName + ".xlsx";
+            string xlsxPath = Application.dataPath + Constant.DataTablePath + Constant.ItemDataTableName + ".xlsx";
 
             if (File.Exists(xlsxPath))
             {
@@ -270,7 +270,7 @@ namespace Portfolio.Editor
         // 엑셀에서 읽은 정보를 토대로 JSON파일을 생성합니다.
         private static bool WriteJson(DataTableReader reader, int rowCount, string excelPath)
         {
-            using (var writer = new JsonTextWriter(File.CreateText(Application.dataPath + Constant.resorucesDataPath + excelPath + ".json")))
+            using (var writer = new JsonTextWriter(File.CreateText(Application.dataPath + Constant.ResorucesDataPath + excelPath + ".json")))
                 // JSON 쓰기를 실행합니다.
             {
                 // JSON 파일의 속성 이름을 가져옵니다.

@@ -98,7 +98,10 @@ namespace Portfolio
             }
 
             uiManager.HideUserInfoCanvas();
+            // 게임 기본 환경을 설정합니다.
+            SetDefualtConfigure();
         }
+
 
 
         private void Start()
@@ -145,8 +148,8 @@ namespace Portfolio
                 CurrentUser = new User(userData);
                 // 마지막 접속 시간과 현재 시간을 비교하여 에너지를 충전시킨다.
                 int timeCheck = (int)((CurrentUser.LastAccessTime - DateTime.Now).TotalSeconds * -1);
-                CurrentUser.CurrentEnergy += (int)(timeCheck / Constant.energyChargeTime);
-                timeChecker.energyChargeCount = (int)(timeCheck % Constant.energyChargeTime);
+                CurrentUser.CurrentEnergy += (int)(timeCheck / Constant.EnergyChargeTime);
+                timeChecker.energyChargeCount = (int)(timeCheck % Constant.EnergyChargeTime);
             }
             else
             // 신규 유저 라면
@@ -383,19 +386,22 @@ namespace Portfolio
                 object obj = null;
                 switch (skillData.skillType)
                 {
-                    case SkillType.ActiveSkill:
+                    case eSkillType.ActiveSkill:
                         {
                             // 만든 타입으로 클래스를 런타임 생성한 후 스킬 Dic 에 넣어준다.
                             obj = Activator.CreateInstance(type, skillData as ActiveSkillData);
                             skillDictionary.Add(data.ID, obj as ActiveSkill);
                         }
                         break;
-                    case SkillType.PassiveSkill:
+                    case eSkillType.PassiveSkill:
                         {
                             // 만든 타입으로 클래스를 런타임 생성한 후 스킬 Dic 에 넣어준다.
                             obj = Activator.CreateInstance(type, skillData as PassiveSkillData);
                             skillDictionary.Add(data.ID, obj as PassiveSkill);
                         }
+                        break;
+                    default:
+                        Debug.LogWarning("unknownType");
                         break;
                 }
             }
@@ -423,6 +429,12 @@ namespace Portfolio
             }
         }
         #endregion
+
+        private void SetDefualtConfigure()
+        {
+            // 이 게임의 기본 프레임은 60
+            Application.targetFrameRate = Constant.GameDefualtFrame;
+        }
 
         // 게임 종료 버튼
         public void BTN_OnClick_GameQuit()

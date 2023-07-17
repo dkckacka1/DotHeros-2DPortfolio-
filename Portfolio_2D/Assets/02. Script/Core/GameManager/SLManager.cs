@@ -13,7 +13,7 @@ namespace Portfolio
     public static class SLManager 
     {
         private const string userDataPath = @"\UserData\";                                                  // 유저 저장 폴더 이름
-        private static string slpath = Application.dataPath + Constant.resorucesDataPath + userDataPath;    // 저장할 데이터 패스
+        private static string slpath = Application.dataPath + Constant.ResorucesDataPath + userDataPath;    // 저장할 데이터 패스
 
 
         // 유저 ID를 통해서 json 파일이 있는지 확인한다.

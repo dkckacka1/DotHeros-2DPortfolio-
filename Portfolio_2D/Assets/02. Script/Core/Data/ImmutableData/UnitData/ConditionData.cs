@@ -11,7 +11,7 @@ namespace Portfolio.condition
         public string conditionClassName;           // 상태이상 클래스 이름
         public string conditionIconSpriteName;      // 상태이상 이미지 스프라이트 이름
 
-        public ConditionType conditionType;         // 상태이상 타입
+        public eConditionType conditionType;         // 상태이상 타입
 
         public bool isBuff;                         // 상태이상 버프인가
         public bool isOverlaping;                   // 싱태이상 중첩가능

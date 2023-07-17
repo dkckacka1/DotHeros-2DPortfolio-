@@ -18,7 +18,7 @@ namespace Portfolio.WorldMap
         [SerializeField] ScrollRect unitSlotScrollView;         // 유닛 슬롯 스크롤 뷰
         [SerializeField] TextMeshProUGUI consumEnergyText;      // 요구 에너지양 텍스트
 
-        List<UnitSlotUI> unitSlotList = new List<UnitSlotUI>(); // 이 맵에서 출현하는 몬스터 리스트
+        List<UnitSlotUI> unitSlotList = new List<UnitSlotUI>(25); // 이 맵에서 출현하는 몬스터 리스트
         Map choiceMap;  // 선택한 맵
 
         private void Awake()

@@ -16,26 +16,29 @@ namespace Portfolio.Lobby
             {
                 EquipmentItemData itemData = null;
 
-                EquipmentItemType type = (EquipmentItemType)Random.Range(0, 6);
+                eEquipmentItemType type = (eEquipmentItemType)Random.Range(0, 6);
                 switch (type)
                 {
-                    case EquipmentItemType.Weapon:
-                        itemData = GameManager.ItemCreator.CreateEquipmentItemData<WeaponData>(GradeType.Normal);
+                    case eEquipmentItemType.Weapon:
+                        itemData = GameManager.ItemCreator.CreateEquipmentItemData<WeaponData>(eGradeType.Normal);
                         break;
-                    case EquipmentItemType.Helmet:
-                        itemData = GameManager.ItemCreator.CreateEquipmentItemData<HelmetData>(GradeType.Normal);
+                    case eEquipmentItemType.Helmet:
+                        itemData = GameManager.ItemCreator.CreateEquipmentItemData<HelmetData>(eGradeType.Normal);
                         break;
-                    case EquipmentItemType.Armor:
-                        itemData = GameManager.ItemCreator.CreateEquipmentItemData<ArmorData>(GradeType.Normal);
+                    case eEquipmentItemType.Armor:
+                        itemData = GameManager.ItemCreator.CreateEquipmentItemData<ArmorData>(eGradeType.Normal);
                         break;
-                    case EquipmentItemType.Amulet:
-                        itemData = GameManager.ItemCreator.CreateEquipmentItemData<AmuletData>(GradeType.Normal);
+                    case eEquipmentItemType.Amulet:
+                        itemData = GameManager.ItemCreator.CreateEquipmentItemData<AmuletData>(eGradeType.Normal);
                         break;
-                    case EquipmentItemType.Ring:
-                        itemData = GameManager.ItemCreator.CreateEquipmentItemData<RingData>(GradeType.Normal);
+                    case eEquipmentItemType.Ring:
+                        itemData = GameManager.ItemCreator.CreateEquipmentItemData<RingData>(eGradeType.Normal);
                         break;
-                    case EquipmentItemType.Shoe:
-                        itemData = GameManager.ItemCreator.CreateEquipmentItemData<ShoeData>(GradeType.Normal);
+                    case eEquipmentItemType.Shoe:
+                        itemData = GameManager.ItemCreator.CreateEquipmentItemData<ShoeData>(eGradeType.Normal);
+                        break;
+                    default:
+                        Debug.LogWarning("unknownType");
                         break;
                 }
 

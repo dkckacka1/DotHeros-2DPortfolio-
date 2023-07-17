@@ -20,7 +20,7 @@ namespace Portfolio.Lobby.Inventory
         // 초기화 합니다.
         public void Init()
         {
-            itemSlotUIList = new List<ItemSlotUI>();
+            itemSlotUIList = new List<ItemSlotUI>(10);
 
             foreach (var slot in slotScrollView.content.GetComponentsInChildren<ItemSlotUI>())
             {

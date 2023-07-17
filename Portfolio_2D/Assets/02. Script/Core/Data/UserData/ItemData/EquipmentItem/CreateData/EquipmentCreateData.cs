@@ -21,7 +21,7 @@ namespace Portfolio
         }
 
         // 생성할 아이템의 등급
-        public GradeType createGrade;
+        public eGradeType createGrade;
 
         // 장비별 기본 옵션 수치
         [Header("WeapoonData")]

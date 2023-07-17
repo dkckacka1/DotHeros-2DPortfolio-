@@ -129,7 +129,7 @@ namespace Portfolio.Lobby.Hero
             }
 
             // 옵션스탯이 하나도 없다면 강화 필요 텍스트를 보여준다.
-            optionExplanationText.gameObject.SetActive(equipmentData.optionStat_1_Type == EquipmentOptionStat.NONE);
+            optionExplanationText.gameObject.SetActive(equipmentData.optionStat_1_Type == eEquipmentOptionStat.NONE);
 
             // 옵션 스탯 종류에 따라 보여줄 텍스트를 입력해준다.
             InitOptionStat(equipmentData.optionStat_1_Type, equipmentData.optionStat_1_value, optionStat_1_Lable, optionStat_1_Value);
@@ -142,7 +142,7 @@ namespace Portfolio.Lobby.Hero
         }
 
         // 장착한 장비 아이템이 없을경우 장착 슬롯에 따른 장비 타입을 보여준다.
-        public void ShowEquipment(EquipmentItemType equipmentItemType)
+        public void ShowEquipment(eEquipmentItemType equipmentItemType)
         {
             // 기본 이미지를 보여준다.
             equipmentSlotUI.ShowEquipment(equipmentItemType);
@@ -171,10 +171,10 @@ namespace Portfolio.Lobby.Hero
         }
 
         // 들어온 옵션스탯 종류, 값 에 따라서 텍스트를 보여준다.
-        private void InitOptionStat(EquipmentOptionStat optionStat, float value, TextMeshProUGUI labelText, TextMeshProUGUI valueText)
+        private void InitOptionStat(eEquipmentOptionStat optionStat, float value, TextMeshProUGUI labelText, TextMeshProUGUI valueText)
         {
             // 들어온 스탯이 없다면 텍스트를 숨긴다.
-            if (optionStat == EquipmentOptionStat.NONE)
+            if (optionStat == eEquipmentOptionStat.NONE)
             {
                 labelText.gameObject.SetActive(false);
                 valueText.gameObject.SetActive(false);
@@ -189,22 +189,25 @@ namespace Portfolio.Lobby.Hero
 
             switch (optionStat)
             {
-                case EquipmentOptionStat.AttackPoint:
-                case EquipmentOptionStat.HealthPoint:
-                case EquipmentOptionStat.DefencePoint:
-                case EquipmentOptionStat.Speed:
+                case eEquipmentOptionStat.AttackPoint:
+                case eEquipmentOptionStat.HealthPoint:
+                case eEquipmentOptionStat.DefencePoint:
+                case eEquipmentOptionStat.Speed:
                     // 일반 수치를 보여준다.
                     valueText.text = value.ToString();
                     break;
-                case EquipmentOptionStat.AttackPercent:
-                case EquipmentOptionStat.HealthPercent:
-                case EquipmentOptionStat.DefencePercent:
-                case EquipmentOptionStat.CriticalPercent:
-                case EquipmentOptionStat.CriticalDamagePercent:
-                case EquipmentOptionStat.EffectHitPercent:
-                case EquipmentOptionStat.EffectResistancePercent:
+                case eEquipmentOptionStat.AttackPercent:
+                case eEquipmentOptionStat.HealthPercent:
+                case eEquipmentOptionStat.DefencePercent:
+                case eEquipmentOptionStat.CriticalPercent:
+                case eEquipmentOptionStat.CriticalDamagePercent:
+                case eEquipmentOptionStat.EffectHitPercent:
+                case eEquipmentOptionStat.EffectResistancePercent:
                     // % 수치로 보여준다. 소수점 첫번째자리 까지 보여준다.
                     valueText.text = (value * 100f).ToString("F1") + "%";
+                    break;
+                default:
+                    Debug.LogWarning("unknownType");
                     break;
             }
         }

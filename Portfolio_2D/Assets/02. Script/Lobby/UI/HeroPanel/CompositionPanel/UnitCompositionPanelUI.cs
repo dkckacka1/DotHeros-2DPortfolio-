@@ -25,7 +25,7 @@ namespace Portfolio.Lobby.Hero.Composition
         [SerializeField] CompositionUnitSlot mainUnitSlot;                                          // 합성할 유닛 슬롯
         [SerializeField] List<CompositionUnitSlot> subUnitSlotList;                                 // 재료 유닛 슬롯
         [HideInInspector] public CompositionUnitSlot selectedCompositionUnitSlot;                   // 현재 넣어야할 유닛 슬롯
-        private Stack<CompositionUnitSlot> insertUnitSlotStack = new Stack<CompositionUnitSlot>();  // 넣은 유닛 리스트
+        private Stack<CompositionUnitSlot> insertUnitSlotStack = new Stack<CompositionUnitSlot>(5);  // 넣은 유닛 리스트
 
         [Header("Result")]
         [SerializeField] CompositionResultPanelUI compositionResultPanelUI; // 합성 결과창을 보여주는 패널 UI

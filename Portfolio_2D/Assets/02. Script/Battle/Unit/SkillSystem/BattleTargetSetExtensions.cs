@@ -54,13 +54,13 @@ public static class BattleTargetSetExtensions
     // 전열에서 후열 순으로 가장 체력이 적은 타겟부터 정렬
     public static IEnumerable<GridPosition> OrderFrontLineNLowHealth(this IEnumerable<GridPosition> targetUnits)
     {
-        return targetUnits.OrderByDescending(grid => grid.lineType == Portfolio.LineType.FrontLine).ThenBy(grid => grid.CurrentBattleUnit.CurrentHP);
+        return targetUnits.OrderByDescending(grid => grid.lineType == Portfolio.eLineType.FrontLine).ThenBy(grid => grid.CurrentBattleUnit.CurrentHP);
     }
 
     // 후열에서 전열 순으로 가장 체력이 적은 타겟부터 정렬
     public static IEnumerable<GridPosition> OrderRearLineNLowHealth(this IEnumerable<GridPosition> targetUnits)
     {
-        return targetUnits.OrderByDescending(grid => grid.lineType == Portfolio.LineType.RearLine).ThenBy(grid => grid.CurrentBattleUnit.CurrentHP);
+        return targetUnits.OrderByDescending(grid => grid.lineType == Portfolio.eLineType.RearLine).ThenBy(grid => grid.CurrentBattleUnit.CurrentHP);
     }
 
     // 들어온 타겟에서 랜덤한 타겟 한명을 지정합니다.

@@ -14,98 +14,110 @@ namespace Portfolio
     public static class GameLib
     {
         // 옵션 스탯 정보에 맞게 텍스트를 출력
-        public static string GetOptionStatusText(EquipmentOptionStat optionStat)
+        public static string GetOptionStatusText(eEquipmentOptionStat optionStat)
         {
             switch (optionStat)
             {
-                case EquipmentOptionStat.AttackPoint:
+                case eEquipmentOptionStat.AttackPoint:
                     return "공격력";
-                case EquipmentOptionStat.AttackPercent:
+                case eEquipmentOptionStat.AttackPercent:
                     return "공격력(%)";
-                case EquipmentOptionStat.HealthPoint:
+                case eEquipmentOptionStat.HealthPoint:
                     return "생명력";
-                case EquipmentOptionStat.HealthPercent:
+                case eEquipmentOptionStat.HealthPercent:
                     return "생명력(%)";
-                case EquipmentOptionStat.DefencePoint:
+                case eEquipmentOptionStat.DefencePoint:
                     return "방어력";
-                case EquipmentOptionStat.DefencePercent:
+                case eEquipmentOptionStat.DefencePercent:
                     return "방어력(%)";
-                case EquipmentOptionStat.CriticalPercent:
+                case eEquipmentOptionStat.CriticalPercent:
                     return "치명타 적중";
-                case EquipmentOptionStat.CriticalDamagePercent:
+                case eEquipmentOptionStat.CriticalDamagePercent:
                     return "치명타 피해";
-                case EquipmentOptionStat.Speed:
+                case eEquipmentOptionStat.Speed:
                     return "속도";
-                case EquipmentOptionStat.EffectHitPercent:
+                case eEquipmentOptionStat.EffectHitPercent:
                     return "효과 적중";
-                case EquipmentOptionStat.EffectResistancePercent:
+                case eEquipmentOptionStat.EffectResistancePercent:
                     return "효과 저항";
+                default:
+                    Debug.LogWarning("unknownType");
+                    break;
             }
 
             return "없음";
         }
 
         // 장비 아이템 타입 텍스트를 출력
-        public static string GetEquipmentTypeText(EquipmentItemType type)
+        public static string GetEquipmentTypeText(eEquipmentItemType type)
         {
             switch (type)
             {
-                case EquipmentItemType.Weapon:
+                case eEquipmentItemType.Weapon:
                     return "무기";
-                case EquipmentItemType.Helmet:
+                case eEquipmentItemType.Helmet:
                     return "투구";
-                case EquipmentItemType.Armor:
+                case eEquipmentItemType.Armor:
                     return "갑옷";
-                case EquipmentItemType.Amulet:
+                case eEquipmentItemType.Amulet:
                     return "목걸이";
-                case EquipmentItemType.Ring:
+                case eEquipmentItemType.Ring:
                     return "반지";
-                case EquipmentItemType.Shoe:
+                case eEquipmentItemType.Shoe:
                     return "신발";
+                default:
+                    Debug.LogWarning("unknownType");
+                    break;
             }
 
             return "없음";
         }
 
         // 장비 등급 텍스트 출력
-        public static string GetGradeTypeText(GradeType type)
+        public static string GetGradeTypeText(eGradeType type)
         {
             switch (type)
             {
-                case GradeType.Normal:
+                case eGradeType.Normal:
                     return "일반";
-                case GradeType.Rare:
+                case eGradeType.Rare:
                     return "희귀";
-                case GradeType.Unique:
+                case eGradeType.Unique:
                     return "고유";
-                case GradeType.Legendary:
+                case eGradeType.Legendary:
                     return "전설";
+                default:
+                    Debug.LogWarning("unknownType");
+                    break;
             }
 
             return "없음";
         }
 
         // 장비 속성 텍스트 출력
-        public static string GetSetTypeText(SetType type)
+        public static string GetSetTypeText(eSetType type)
         {
             switch (type)
             {
-                case SetType.Critical:
+                case eSetType.Critical:
                     return "치명";
-                case SetType.Hit:
+                case eSetType.Hit:
                     return "적중";
-                case SetType.Speed:
+                case eSetType.Speed:
                     return "속도";
-                case SetType.Attack:
+                case eSetType.Attack:
                     return "공격";
-                case SetType.Defence:
+                case eSetType.Defence:
                     return "방어";
-                case SetType.Health:
+                case eSetType.Health:
                     return "체력";
-                case SetType.Resistance:
+                case eSetType.Resistance:
                     return "저항";
-                case SetType.Destruction:
+                case eSetType.Destruction:
                     return "파멸";
+                default:
+                    Debug.LogWarning("unknownType");
+                    break;
             }
 
             return "없음";

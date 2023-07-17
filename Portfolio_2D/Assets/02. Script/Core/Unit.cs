@@ -275,7 +275,7 @@ namespace Portfolio
             get
             {
                 // 유저 현재 레벨 * 1000f 리턴
-                return UnitCurrentLevel * Constant.unitLevelUpExperienceVluae;
+                return UnitCurrentLevel * Constant.UnitLevelUpExperienceValue;
             }
         }
 
@@ -292,9 +292,9 @@ namespace Portfolio
                 }
 
                 // 합연산 계산
-                returnValue += GetItemOptionValue(EquipmentOptionStat.AttackPoint);
+                returnValue += GetItemOptionValue(eEquipmentOptionStat.AttackPoint);
                 // 곱연산 계산
-                returnValue *= (1 + GetItemOptionValue(EquipmentOptionStat.AttackPercent));
+                returnValue *= (1 + GetItemOptionValue(eEquipmentOptionStat.AttackPercent));
 
                 // 소수점 버리기
                 return Mathf.Round(returnValue);
@@ -310,8 +310,8 @@ namespace Portfolio
                     returnValue += HelmetData.healthPoint;
                 }
 
-                returnValue += GetItemOptionValue(EquipmentOptionStat.HealthPoint);
-                returnValue *= 1 + GetItemOptionValue(EquipmentOptionStat.HealthPercent);
+                returnValue += GetItemOptionValue(eEquipmentOptionStat.HealthPoint);
+                returnValue *= 1 + GetItemOptionValue(eEquipmentOptionStat.HealthPercent);
                 return Mathf.Round(returnValue); ;
             }
         }
@@ -325,8 +325,8 @@ namespace Portfolio
                     returnValue += ArmorData.defencePoint;
                 }
 
-                returnValue += GetItemOptionValue(EquipmentOptionStat.DefencePoint);
-                returnValue *= 1 + GetItemOptionValue(EquipmentOptionStat.DefencePercent);
+                returnValue += GetItemOptionValue(eEquipmentOptionStat.DefencePoint);
+                returnValue *= 1 + GetItemOptionValue(eEquipmentOptionStat.DefencePercent);
                 return Mathf.Round(returnValue);
             }
         }
@@ -340,7 +340,7 @@ namespace Portfolio
                     returnValue += ShoeData.speed;
                 }
 
-                returnValue += GetItemOptionValue(EquipmentOptionStat.Speed);
+                returnValue += GetItemOptionValue(eEquipmentOptionStat.Speed);
                 return Mathf.Round(returnValue);
             }
         }
@@ -354,7 +354,7 @@ namespace Portfolio
                     returnValue += AmuletData.criticalPercent;
                 }
 
-                returnValue += GetItemOptionValue(EquipmentOptionStat.CriticalPercent);
+                returnValue += GetItemOptionValue(eEquipmentOptionStat.CriticalPercent);
                 // 치명타 확률의 최대 수치는 80%
                 return Mathf.Clamp(returnValue, 0, 0.8f);
             }
@@ -370,7 +370,7 @@ namespace Portfolio
                     returnValue += AmuletData.criticalDamage;
                 }
 
-                returnValue += GetItemOptionValue(EquipmentOptionStat.CriticalDamagePercent);
+                returnValue += GetItemOptionValue(eEquipmentOptionStat.CriticalDamagePercent);
                 // 치명타 공격력의 최대 수치는 150%
                 return Mathf.Clamp(returnValue, 0, 1.5f);
             }
@@ -385,7 +385,7 @@ namespace Portfolio
                     returnValue += RingData.effectHit;
                 }
 
-                returnValue += GetItemOptionValue(EquipmentOptionStat.EffectHitPercent);
+                returnValue += GetItemOptionValue(eEquipmentOptionStat.EffectHitPercent);
                 // 효과 적중의 최대 수치는 200%
                 return Mathf.Clamp(returnValue, 0, 2.0f);
             }
@@ -400,7 +400,7 @@ namespace Portfolio
                     returnValue += RingData.effectResistance;
                 }
 
-                returnValue += GetItemOptionValue(EquipmentOptionStat.EffectResistancePercent);
+                returnValue += GetItemOptionValue(eEquipmentOptionStat.EffectResistancePercent);
                 // 효과 저항력의 최대 수치는 100%
                 return Mathf.Clamp(returnValue, 0, 1f);
             }
@@ -599,7 +599,7 @@ namespace Portfolio
         }
 
         // 장비의 옵션 스탯 가져오기
-        public float GetItemOptionValue(EquipmentOptionStat optionStatType)
+        public float GetItemOptionValue(eEquipmentOptionStat optionStatType)
         {
             float returnValue = 0;
 
@@ -646,27 +646,30 @@ namespace Portfolio
         // SkillMethod
         //===========================================================
         // 스킬 레벨업
-        public void SkillLevelUp(UnitSkillType skillType, int levelCount = 1)
+        public void SkillLevelUp(eUnitSkillType skillType, int levelCount = 1)
         {
             switch (skillType)
             {
-                case UnitSkillType.ActiveSkill_1:
+                case eUnitSkillType.ActiveSkill_1:
                     userUnitData.activeSkillLevel_1 += levelCount;
                     break;
-                case UnitSkillType.ActiveSkill_2:
+                case eUnitSkillType.ActiveSkill_2:
                     userUnitData.activeSkillLevel_2 += levelCount;
                     break;
-                case UnitSkillType.PassiveSkill_1:
+                case eUnitSkillType.PassiveSkill_1:
                     userUnitData.passiveSkillLevel_1 += levelCount;
                     break;
-                case UnitSkillType.PassiveSkill_2:
+                case eUnitSkillType.PassiveSkill_2:
                     userUnitData.passiveSkillLevel_2 += levelCount;
+                    break;
+                default:
+                    Debug.LogWarning("unknownType");
                     break;
             }
         }
 
         // 스킬 레벨을 가져온다.
-        public int GetSkillLevel(UnitSkillType skillType)
+        public int GetSkillLevel(eUnitSkillType skillType)
         {
             if (userUnitData == null)
                 // 유저 유닛 데이타가 없다면 1 고정
@@ -676,14 +679,17 @@ namespace Portfolio
 
             switch (skillType)
             {
-                case UnitSkillType.ActiveSkill_1:
+                case eUnitSkillType.ActiveSkill_1:
                     return userUnitData.activeSkillLevel_1;
-                case UnitSkillType.ActiveSkill_2:
+                case eUnitSkillType.ActiveSkill_2:
                     return userUnitData.activeSkillLevel_2;
-                case UnitSkillType.PassiveSkill_1:
+                case eUnitSkillType.PassiveSkill_1:
                     return userUnitData.passiveSkillLevel_1;
-                case UnitSkillType.PassiveSkill_2:
+                case eUnitSkillType.PassiveSkill_2:
                     return userUnitData.passiveSkillLevel_2;
+                default:
+                    Debug.LogWarning("unknownType");
+                    break;
             }
 
             return 1;
@@ -694,22 +700,25 @@ namespace Portfolio
         // EquipmentMethod
         //===========================================================
         // 장비아이템을 장착하고 있는지 확인
-        public bool IsItemEquipment(EquipmentItemType equipmentType)
+        public bool IsItemEquipment(eEquipmentItemType equipmentType)
         {
             switch (equipmentType)
             {
-                case EquipmentItemType.Weapon:
+                case eEquipmentItemType.Weapon:
                     return WeaponData != null;
-                case EquipmentItemType.Helmet:
+                case eEquipmentItemType.Helmet:
                     return HelmetData != null;
-                case EquipmentItemType.Armor:
+                case eEquipmentItemType.Armor:
                     return ArmorData != null;
-                case EquipmentItemType.Amulet:
+                case eEquipmentItemType.Amulet:
                     return AmuletData != null;
-                case EquipmentItemType.Ring:
+                case eEquipmentItemType.Ring:
                     return RingData != null;
-                case EquipmentItemType.Shoe:
+                case eEquipmentItemType.Shoe:
                     return ShoeData != null;
+                default:
+                    Debug.LogWarning("unknownType");
+                    break;
             }
 
             return false;
@@ -731,30 +740,33 @@ namespace Portfolio
         }
 
         // 장비아이템 변경해주기
-        public EquipmentItemData ChangeEquipment(EquipmentItemType changeType, EquipmentItemData changeData)
+        public EquipmentItemData ChangeEquipment(eEquipmentItemType changeType, EquipmentItemData changeData)
         {
             // 이미 장착중이라면 해제한다.
             EquipmentItemData existingEquipment = ReleaseEquipment(changeType);
 
             switch (changeType)
             {
-                case EquipmentItemType.Weapon:
+                case eEquipmentItemType.Weapon:
                     WeaponData = changeData as WeaponData;
                     break;
-                case EquipmentItemType.Helmet:
+                case eEquipmentItemType.Helmet:
                     HelmetData = changeData as HelmetData;
                     break;
-                case EquipmentItemType.Armor:
+                case eEquipmentItemType.Armor:
                     ArmorData = changeData as ArmorData;
                     break;
-                case EquipmentItemType.Amulet:
+                case eEquipmentItemType.Amulet:
                     AmuletData = changeData as AmuletData;
                     break;
-                case EquipmentItemType.Ring:
+                case eEquipmentItemType.Ring:
                     RingData = changeData as RingData;
                     break;
-                case EquipmentItemType.Shoe:
+                case eEquipmentItemType.Shoe:
                     ShoeData = changeData as ShoeData;
+                    break;
+                default:
+                    Debug.LogWarning("unknownType");
                     break;
             }
 
@@ -763,34 +775,37 @@ namespace Portfolio
         }
 
         // 장비를 해제한다.
-        public EquipmentItemData ReleaseEquipment(EquipmentItemType releaseType)
+        public EquipmentItemData ReleaseEquipment(eEquipmentItemType releaseType)
         {
             EquipmentItemData existingEquipment = null;
             switch (releaseType)
             {
-                case EquipmentItemType.Weapon:
+                case eEquipmentItemType.Weapon:
                     existingEquipment = WeaponData;
                     WeaponData = null;
                     break;
-                case EquipmentItemType.Helmet:
+                case eEquipmentItemType.Helmet:
                     existingEquipment = HelmetData;
                     HelmetData = null;
                     break;
-                case EquipmentItemType.Armor:
+                case eEquipmentItemType.Armor:
                     existingEquipment = ArmorData;
                     ArmorData = null;
                     break;
-                case EquipmentItemType.Amulet:
+                case eEquipmentItemType.Amulet:
                     existingEquipment = AmuletData;
                     AmuletData = null;
                     break;
-                case EquipmentItemType.Ring:
+                case eEquipmentItemType.Ring:
                     existingEquipment = RingData;
                     RingData = null;
                     break;
-                case EquipmentItemType.Shoe:
+                case eEquipmentItemType.Shoe:
                     existingEquipment = ShoeData;
                     ShoeData = null;
+                    break;
+                default:
+                    Debug.LogWarning("unknownType");
                     break;
             }
 

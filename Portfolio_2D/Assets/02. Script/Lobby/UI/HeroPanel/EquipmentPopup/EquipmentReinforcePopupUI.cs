@@ -42,10 +42,10 @@ namespace Portfolio.Lobby.Hero
                 // 최대 강화 수치가 아니라면
             {
                 // 강화 수치에 따른 확률과 골드 소비량을 표시해준다.
-                reinforceBtn.interactable = GameManager.CurrentUser.Gold >= Constant.reinforceConsumeGoldValues[equipmentItemData.reinforceCount];
+                reinforceBtn.interactable = GameManager.CurrentUser.Gold >= Constant.ReinforceConsumeGoldValues[equipmentItemData.reinforceCount];
                 reinforceSuccessPercentText.text = $"현재 ( +{equipmentItemData.reinforceCount} )\n" +
-                    $"강화 성공 확률 ({Constant.reinforceProbabilitys[equipmentItemData.reinforceCount] * 100}%)";
-                reinforceConsumeGoldText.text = Constant.reinforceConsumeGoldValues[equipmentItemData.reinforceCount].ToString("N0");
+                    $"강화 성공 확률 ({Constant.ReinforceProbabilitys[equipmentItemData.reinforceCount] * 100}%)";
+                reinforceConsumeGoldText.text = Constant.ReinforceConsumeGoldValues[equipmentItemData.reinforceCount].ToString("N0");
             }
             else
                 // 강화 수치가 최대라면
@@ -60,7 +60,7 @@ namespace Portfolio.Lobby.Hero
         // 최대 강화 수치인지 확인한다.
         private bool IsMaxReinforceCount(EquipmentItemData equipmentItemData)
         {
-            return equipmentItemData.reinforceCount == Constant.MAX_REINFORCE_COUNT;
+            return equipmentItemData.reinforceCount == Constant.MaxReinforceCount;
         }
     }
 }

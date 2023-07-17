@@ -8,7 +8,7 @@ namespace Portfolio
     {
         // DefualtProperty
         public string unitName;                 // 유닛 이름
-        public ElementalType elementalType;     // 유닛 속성
+        public eElementalType elementalType;     // 유닛 속성
         public bool isUserUnit = true;          // 유닛이 유저가 사용가능한지
         public int defaultGrade = 1;            // 유닛 기본 등급
 

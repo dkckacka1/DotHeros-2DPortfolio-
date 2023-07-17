@@ -48,7 +48,7 @@ namespace Portfolio
             this.mapData = mapData;
 
             // 루팅아이템 스크립테이블 오브젝트 가져오기
-            lootItemTable = Resources.Load<LootItemTable>(Constant.scriptableObjectResourcesPath + "\\" + Constant.lootingTableResourcesPath + "\\" + $"LootingTable_{mapData.ID}");
+            lootItemTable = Resources.Load<LootItemTable>(Constant.ScriptableObjectResourcesPath + "\\" + Constant.LootingTableResourcesPath + "\\" + $"LootingTable_{mapData.ID}");
 
 
             // 맵 데이터의 스테이지 ID를 통해서 스테이지를 생성한다.

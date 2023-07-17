@@ -66,8 +66,8 @@ namespace Portfolio.Lobby.Hero
         }
 
         // 현재 유저가 선택한 장비 타입
-        private static EquipmentItemType selectEquipmentItemType = EquipmentItemType.Weapon;
-        public static EquipmentItemType SelectEquipmentItemType
+        private static eEquipmentItemType selectEquipmentItemType = eEquipmentItemType.Weapon;
+        public static eEquipmentItemType SelectEquipmentItemType
         {
             get
             {
@@ -109,8 +109,8 @@ namespace Portfolio.Lobby.Hero
         }
 
         // 현재 유저가 선택한 스킬 타입
-        private static UnitSkillType selectSkillType;
-        public static UnitSkillType SelectSkillType
+        private static eUnitSkillType selectSkillType;
+        public static eUnitSkillType SelectSkillType
         {
             get
             {
@@ -266,9 +266,9 @@ namespace Portfolio.Lobby.Hero
         public void BTN_OnClick_Reinforce()
         {
             // 유저의 골드를 강화 비용만큼 감소시킨다.
-            GameManager.CurrentUser.Gold -= Constant.reinforceConsumeGoldValues[selectEquipmentItem.reinforceCount];
+            GameManager.CurrentUser.Gold -= Constant.ReinforceConsumeGoldValues[selectEquipmentItem.reinforceCount];
 
-            if (Random.Range(0f, 1f) <= Constant.reinforceProbabilitys[selectEquipmentItem.reinforceCount])
+            if (Random.Range(0f, 1f) <= Constant.ReinforceProbabilitys[selectEquipmentItem.reinforceCount])
             // 강화 성공 여부를 확인해서 성공시 
             {
                 // 선택한 장비를 강화한다.
@@ -365,7 +365,7 @@ namespace Portfolio.Lobby.Hero
         // 유저의 유닛 슬롯의 최대갯수를 늘립니다.
         public void BTN_OnClick_SizeUPUintList()
         {
-            if (GameManager.CurrentUser.MaxUnitListCount >= Constant.unitListMaxSizeCount)
+            if (GameManager.CurrentUser.MaxUnitListCount >= Constant.UnitListMaxSizeCount)
             // 이미 최대 사이즈에 도달한 상태라면 경고창을 표시합니다.
             {
                 GameManager.UIManager.ShowAlert("이미 최대 사이즈에 도달했습니다!");
@@ -373,21 +373,21 @@ namespace Portfolio.Lobby.Hero
             else
             // 최대 사이즈가 아니라면 확인 다이얼로그 창을 표시합니다.
             {
-                int consumeDia = Constant.unitListSizeUPDiaConsumeValue;
-                GameManager.UIManager.ShowConfirmation("최대 유닛 개수 증가", $"최대 유닛 개수를 증가 시키겠습니까?\n{consumeDia} 다이아가 소비되며\n{Constant.unitListSizeUpCount}칸이 늘어납니다.\n(최대 100칸)", SizeUp);
+                int consumeDia = Constant.UnitListSizeUPDiaConsumeValue;
+                GameManager.UIManager.ShowConfirmation("최대 유닛 개수 증가", $"최대 유닛 개수를 증가 시키겠습니까?\n{consumeDia} 다이아가 소비되며\n{Constant.UnitListSizeUpCount}칸이 늘어납니다.\n(최대 100칸)", SizeUp);
             }
         }
 
         // 유저의 유닛 슬롯의 최대 갯수를 늘립니다.
         private void SizeUp()
         {
-            if (GameManager.CurrentUser.CanDIamondConsume(Constant.unitListSizeUPDiaConsumeValue))
+            if (GameManager.CurrentUser.CanDIamondConsume(Constant.UnitListSizeUPDiaConsumeValue))
             // 유닛 슬롯 개수를 늘릴 다이아 양이 충분하다면 
             {
                 // SOUND : 최대갯수 늘릴 때 성공 사운드
                 //다이아양을 소비하고 최대 갯수를 증가 시킵니다.
-                GameManager.CurrentUser.Diamond -= Constant.unitListSizeUPDiaConsumeValue;
-                GameManager.CurrentUser.MaxUnitListCount += Constant.unitListSizeUpCount;
+                GameManager.CurrentUser.Diamond -= Constant.UnitListSizeUPDiaConsumeValue;
+                GameManager.CurrentUser.MaxUnitListCount += Constant.UnitListSizeUpCount;
                 // 유닛슬롯 텍스트를 업데이트 합니다.
                 unitListUI.ShowUnitListCountText();
             }

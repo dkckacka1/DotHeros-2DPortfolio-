@@ -13,7 +13,7 @@ namespace Portfolio.Lobby.Shop
 {
     public abstract class ShopNodeUI : MonoBehaviour
     {
-        [SerializeField] private PaymentType paymentType = PaymentType.Gold;    // 상품을 구매하기 위한 결제 수단 종류
+        [SerializeField] private ePaymentType paymentType = ePaymentType.Gold;    // 상품을 구매하기 위한 결제 수단 종류
         [SerializeField] protected int paymentValue = 100;                        // 상품을 구매하기 위한 금액
 
         [Header("Cash")]
@@ -32,22 +32,25 @@ namespace Portfolio.Lobby.Shop
             {
                 switch (paymentType)
                 {
-                    case PaymentType.Cash:
+                    case ePaymentType.Cash:
                         // 현금 결제
                         return true;
-                    case PaymentType.Diamond:
+                    case ePaymentType.Diamond:
                         // 다이아로 구매
                         return GameManager.CurrentUser.Diamond >= paymentValue;
-                    case PaymentType.Gold:
+                    case ePaymentType.Gold:
                         // 골드로 구매
                         return GameManager.CurrentUser.Gold >= paymentValue;
+                    default:
+                        Debug.LogWarning("unknownType");
+                        break;
                 }
 
                 return false;
             }
         }
 
-        public PaymentType PaymentType 
+        public ePaymentType PaymentType 
         {
             get => paymentType; 
             protected set => paymentType = value;
@@ -61,25 +64,28 @@ namespace Portfolio.Lobby.Shop
         // 결제 종류에 따라 보여줄 텍스트 및 이미지를 정해준다.
         protected void ShowPayment()
         {
-            cashText.gameObject.SetActive(paymentType == PaymentType.Cash);
-            resourceImage.gameObject.SetActive(paymentType != PaymentType.Cash);
-            resourceText.gameObject.SetActive(paymentType != PaymentType.Cash);
+            cashText.gameObject.SetActive(paymentType == ePaymentType.Cash);
+            resourceImage.gameObject.SetActive(paymentType != ePaymentType.Cash);
+            resourceText.gameObject.SetActive(paymentType != ePaymentType.Cash);
 
             switch (paymentType)
             {
-                case PaymentType.Cash:
+                case ePaymentType.Cash:
                     // 현금 결제
                     cashText.text = $"{paymentValue} \\";
                     break;
-                case PaymentType.Diamond:
+                case ePaymentType.Diamond:
                     // 다이아로 구매
                     resourceImage.sprite = diaSprite;
                     resourceText.text = paymentValue.ToString();
                     break;
-                case PaymentType.Gold:
+                case ePaymentType.Gold:
                     // 골드로 구매
                     resourceImage.sprite = goldSprite;
                     resourceText.text = paymentValue.ToString();
+                    break;
+                default:
+                    Debug.LogWarning("unknownType");
                     break;
             }
         }
@@ -90,7 +96,7 @@ namespace Portfolio.Lobby.Shop
             if (HasPaymentValue)
             // 충분한 결제 수단이 있는 경우
             {
-                if (paymentType == PaymentType.Cash || paymentType == PaymentType.Diamond)
+                if (paymentType == ePaymentType.Cash || paymentType == ePaymentType.Diamond)
                 // 사용하는 재화가 현금 또는 다이아일 경우
                 {
                     // 확인 다이얼로그 창을 표시합니다.
@@ -130,13 +136,16 @@ namespace Portfolio.Lobby.Shop
             // 재화에 맞게 수치를 조절합니다.
             switch (paymentType)
             {
-                case PaymentType.Cash:
+                case ePaymentType.Cash:
                     break;
-                case PaymentType.Diamond:
+                case ePaymentType.Diamond:
                     GameManager.CurrentUser.Diamond -= paymentValue;
                     break;
-                case PaymentType.Gold:
+                case ePaymentType.Gold:
                     GameManager.CurrentUser.Gold -= paymentValue;
+                    break;
+                default:
+                    Debug.LogWarning("unknownType");
                     break;
             }
         }

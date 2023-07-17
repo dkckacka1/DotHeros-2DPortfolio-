@@ -175,23 +175,26 @@ namespace Portfolio
             {
                 switch (item.equipmentType)
                 {
-                    case EquipmentItemType.Weapon:
+                    case eEquipmentItemType.Weapon:
                         userEquipmentItemDataList.Add(item as WeaponData);
                         break;
-                    case EquipmentItemType.Helmet:
+                    case eEquipmentItemType.Helmet:
                         userEquipmentItemDataList.Add(item as HelmetData);
                         break;
-                    case EquipmentItemType.Armor:
+                    case eEquipmentItemType.Armor:
                         userEquipmentItemDataList.Add(item as ArmorData);
                         break;
-                    case EquipmentItemType.Amulet:
+                    case eEquipmentItemType.Amulet:
                         userEquipmentItemDataList.Add(item as AmuletData);
                         break;
-                    case EquipmentItemType.Ring:
+                    case eEquipmentItemType.Ring:
                         userEquipmentItemDataList.Add(item as RingData);
                         break;
-                    case EquipmentItemType.Shoe:
+                    case eEquipmentItemType.Shoe:
                         userEquipmentItemDataList.Add(item as ShoeData);
+                        break;
+                    default:
+                        Debug.LogWarning("unknownType");
                         break;
                 }
             }

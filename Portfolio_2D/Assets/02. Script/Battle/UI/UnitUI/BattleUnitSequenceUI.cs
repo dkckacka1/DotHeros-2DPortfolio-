@@ -21,11 +21,11 @@ namespace Portfolio.Battle
             unitPortraitImage.sprite = unit.Unit.portraitSprite;
             if (unit.IsEnemy)
             {
-                unitPortraitFrame.color = Constant.enemyColor;
+                unitPortraitFrame.color = Constant.EnemyUnitColor;
             }
             else
             {
-                unitPortraitFrame.color = Constant.playerColor;
+                unitPortraitFrame.color = Constant.PlayerUnitColor;
             }
         }
     }

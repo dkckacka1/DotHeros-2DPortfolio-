@@ -16,16 +16,16 @@ namespace Portfolio.Battle
         [SerializeField] private float turnCount = 100f;                    // 유닛 턴베이스가 도달할 수치
         [SerializeField] private UnitTurnBase currentTurnUnit = null;       // 현재 턴인 유닛의 턴베이스
 
-        private List<UnitTurnBase> unitTurnBaseList = new List<UnitTurnBase>(); // 유닛 턴베이스 시스템 리스트
-        private TurnType currentTurnType;                                       // 현재 턴 상태
+        private List<UnitTurnBase> unitTurnBaseList = new List<UnitTurnBase>(10); // 유닛 턴베이스 시스템 리스트
+        private eTurnType currentTurnType;                                       // 현재 턴 상태
 
         public List<UnitTurnBase> UnitTurnBaseList { get => unitTurnBaseList; }
-        public TurnType CurrentTurnType { get => currentTurnType; }
+        public eTurnType CurrentTurnType { get => currentTurnType; }
         public UnitTurnBase CurrentTurnUnit { get => currentTurnUnit; }
 
         private void Update()
         {
-            if (BattleManager.Instance.BattleState == BattleState.PLAY && currentTurnType == TurnType.WAITUNITTURN)
+            if (BattleManager.Instance.BattleState == eBattleState.Play && currentTurnType == eTurnType.WaitTurn)
                 // 현재 전투중이고 턴 대기 시간일 경우
             {
                 foreach (UnitTurnBase unitTurnBase in unitTurnBaseList)
@@ -84,12 +84,12 @@ namespace Portfolio.Battle
             {
                 // 현재 플레이어 턴
                 BattleManager.ActionSystem.IsPlayerActionTime = true;
-                currentTurnType = TurnType.PLAYER;
+                currentTurnType = eTurnType.Player;
             }
             else
             {
                 // 현재 적턴
-                currentTurnType = TurnType.ENEMY;
+                currentTurnType = eTurnType.Enemy;
             }
 
             BattleManager.UIManager.ShowTurnUnit(currentTurnUnit);
@@ -114,7 +114,7 @@ namespace Portfolio.Battle
             currentTurnUnit = null;
             BattleManager.UIManager.ShowTurnUnit(currentTurnUnit);
             // 턴 상태를 대기 상태로 전환 시켜준다.
-            currentTurnType = TurnType.WAITUNITTURN;
+            currentTurnType = eTurnType.WaitTurn;
             BattleManager.ActionSystem.IsPlayerActionTime = false;
         }
 

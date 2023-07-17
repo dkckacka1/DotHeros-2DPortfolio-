@@ -66,15 +66,15 @@ namespace Portfolio
         // 오디오 환경설정값을 저장합니다.
         public void SaveAudioConfigureData()
         {
-            PlayerPrefs.SetFloat(Constant.musicVolumeConfigureLoadPath, MusicSource.volume);
-            PlayerPrefs.SetFloat(Constant.soundVolumeConfigureLoadPath, soundSource.volume);
+            PlayerPrefs.SetFloat(Constant.MusicVolumeConfigureLoadPath, MusicSource.volume);
+            PlayerPrefs.SetFloat(Constant.SoundVolumeConfigureLoadPath, soundSource.volume);
         }
 
         // 유저의 볼륨 설정값을 가져옵니다.
         private void LoadAudioConfigureData()
         {
-            var musicVolume = PlayerPrefs.GetFloat(Constant.musicVolumeConfigureLoadPath, 1f);
-            var soundVolume = PlayerPrefs.GetFloat(Constant.soundVolumeConfigureLoadPath, 1f);
+            var musicVolume = PlayerPrefs.GetFloat(Constant.MusicVolumeConfigureLoadPath, 1f);
+            var soundVolume = PlayerPrefs.GetFloat(Constant.SoundVolumeConfigureLoadPath, 1f);
 
             MusicSource.volume = musicVolume;
             soundSource.volume = soundVolume;

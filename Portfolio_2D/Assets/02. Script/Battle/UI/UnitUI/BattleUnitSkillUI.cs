@@ -199,7 +199,7 @@ namespace Portfolio.Battle
             // 선택된 스킬이 기본 공격 스킬이면
             {
                 // 기본 공격 스킬 사용
-                battleUnit.UseSkill(UnitSkillType.BaseAttack);
+                battleUnit.UseSkill(eUnitSkillType.BaseAttack);
             }
             else
             {
@@ -207,14 +207,14 @@ namespace Portfolio.Battle
                 // 선택된 스킬이 액티브 스킬 1이면
                 {
                     // 액티브 스킬 1 사용
-                    battleUnit.UseSkill(UnitSkillType.ActiveSkill_1);
+                    battleUnit.UseSkill(eUnitSkillType.ActiveSkill_1);
 
                 }
                 else if (selectActiveSkill == battleUnit.Unit.activeSkill_2)
                 // 선택된 스킬이 액티브 스킬 2이면
                 {
                     // 액티브 스킬 2 사용
-                    battleUnit.UseSkill(UnitSkillType.ActiveSkill_2);
+                    battleUnit.UseSkill(eUnitSkillType.ActiveSkill_2);
                 }
             }
 

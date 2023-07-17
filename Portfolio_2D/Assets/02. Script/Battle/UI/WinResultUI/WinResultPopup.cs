@@ -18,9 +18,9 @@ namespace Portfolio.Battle
         [SerializeField] RectTransform unitListLayout;                          // 승리 시 보여줄 유닛 레이아웃
         [SerializeField] ScrollRect itemScrollView;                             // 얻은 아이템 표시 스크롤뷰
 
-        List<WinResultUnitSlot> unitSlotList = new List<WinResultUnitSlot>();   // 전투 참가 유저 유닛 리스트
-        List<EquipmentItemSlot> equipmentItemSlotList = new List<EquipmentItemSlot>();  // 획득 장비아이템 슬롯 리스트
-        List<ItemSlotUI> getItemSlotList = new List<ItemSlotUI>();              // 획득 소비아이템 슬롯 리스트
+        List<WinResultUnitSlot> unitSlotList = new List<WinResultUnitSlot>(5);   // 전투 참가 유저 유닛 리스트
+        List<EquipmentItemSlot> equipmentItemSlotList = new List<EquipmentItemSlot>(10);  // 획득 장비아이템 슬롯 리스트
+        List<ItemSlotUI> getItemSlotList = new List<ItemSlotUI>(10);              // 획득 소비아이템 슬롯 리스트
 
         [SerializeField] Button ReplayMapBtn;                                   // 맵 재시작 버튼
         [SerializeField] TextMeshProUGUI currentMapConsumEnergyValueText;       // 현재 맵 에너지 소비량 텍스트

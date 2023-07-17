@@ -5,35 +5,35 @@
 namespace Portfolio
 {
     // 전투 상태
-    public enum BattleState
+    public enum eBattleState
     { 
-        NONE = -1,
-        PLAY,           // 전투중
-        PAUSE,          // 멈춤
-        SETSTAGE,       // 스테이지 세팅중
-        BATTLESTART,    // 전투 시작
-        WIN,            // 승리
-        DEFEAT,         // 패배
+        None = -1,
+        Play,           // 전투중
+        Pause,          // 멈춤
+        SetStage,       // 스테이지 세팅중
+        BattleStart,    // 전투 시작
+        Win,            // 승리
+        Defeat,         // 패배
     }
 
     // 현재 턴 상태
-    public enum TurnType
+    public enum eTurnType
     {
-        NONE = -1,
-        WAITUNITTURN, // 턴 대기중
-        PLAYER,       // 플레이어 턴
-        ENEMY,        // 적 턴
+        None = -1,
+        WaitTurn, // 턴 대기중
+        Player,       // 플레이어 턴
+        Enemy,        // 적 턴
     }
 
     // 열 타입
-    public enum LineType
+    public enum eLineType
     {
         FrontLine,  // 전열
         RearLine    // 후열
     }
 
     // 속성 타입
-    public enum ElementalType
+    public enum eElementalType
     {
         Fire,       // 불
         Water,      // 물
@@ -43,7 +43,7 @@ namespace Portfolio
     }
 
     // 장비 타입
-    public enum EquipmentItemType
+    public enum eEquipmentItemType
     {
         Weapon, // 무기
         Helmet, // 헬멧
@@ -54,7 +54,7 @@ namespace Portfolio
     }
 
     // 세트 타입
-    public enum SetType
+    public enum eSetType
     {
         Critical,       // 치명
         Hit,            // 적중
@@ -68,7 +68,7 @@ namespace Portfolio
     }
 
     // 등급 타입
-    public enum GradeType
+    public enum eGradeType
     {
         Normal,     // 평범
         Rare,       // 희귀
@@ -77,7 +77,7 @@ namespace Portfolio
     }
 
     // 옵션 스탯 종류
-    public enum EquipmentOptionStat
+    public enum eEquipmentOptionStat
     {
         NONE = -1,
         AttackPoint,                // 공격력
@@ -94,14 +94,14 @@ namespace Portfolio
     }
 
     // 스킬 타입
-    public enum SkillType
+    public enum eSkillType
     {
         ActiveSkill, // 액티브 스킬
         PassiveSkill // 패시브 스킬
     }
 
     // 유닛의 스킬 종류
-    public enum UnitSkillType
+    public enum eUnitSkillType
     {
         BaseAttack,         // 기본 공격 스킬
         ActiveSkill_1,      // 액티브 스킬 1
@@ -111,7 +111,7 @@ namespace Portfolio
     }
 
     // 액티브 스킬의 종류
-    public enum ActiveSkillType
+    public enum eActiveSkillType
     {
         NONE = -1,
         BasicAttack,    // 기본 공격
@@ -123,14 +123,14 @@ namespace Portfolio
     }
 
     // 상태이상 종류
-    public enum ConditionType
+    public enum eConditionType
     {
         Continuation = 0, // 지속형
         Tick    // 틱형
     }
 
     // 결제 수단 종류
-    public enum PaymentType
+    public enum ePaymentType
     {
         Cash,
         Diamond,
