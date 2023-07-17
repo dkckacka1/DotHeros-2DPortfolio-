@@ -70,7 +70,7 @@ namespace Portfolio.WorldMap
                     currentFomationSlotUI.Select();
                 }
 
-                // SOUND : 유닛 진형 팝업창 출정 사운드 재생
+                GameManager.AudioManager.PlaySoundOneShot("Sound_FomationPopupUnitSelect");
                 // 선택한 유닛의 정보를 보여줍니다.
                 Unit selectUnit = targetSelector.SelectUnit;
                 ShowUnit(selectUnit);

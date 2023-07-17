@@ -272,6 +272,7 @@ namespace Portfolio.Lobby.Hero
             // 강화 성공 여부를 확인해서 성공시 
             {
                 // 선택한 장비를 강화한다.
+                GameManager.AudioManager.PlaySoundOneShot("Sound_SkillLevelUp");
                 // SOUND : 장비 강화 성공 사운드
                 GameManager.ItemCreator.ReinforceEquipment(selectEquipmentItem);
             }
@@ -338,11 +339,11 @@ namespace Portfolio.Lobby.Hero
             if(!selectUnit.IsMaxLevel && selectUnit.CurrentExperience + getValue >= selectUnit.MaxExperience)
                 // 유닛의 최대 레벨이 아니고, 획득 경험치와 현재 경험치의 합이 최대 경험치를 넘어설 경우
             {
-                // SOUND : 레벨업 사운드 재생
+                GameManager.AudioManager.PlaySoundOneShot("Sound_HeroPanelUnitLevelup");
             }
             else 
             {
-                // SOUND : 경험치 획득 사운드 재생
+                GameManager.AudioManager.PlaySoundOneShot("Sound_GetExperience");
             }
 
             // 선택한 유닛의 경험치를 증가 시킵니다.
@@ -355,7 +356,7 @@ namespace Portfolio.Lobby.Hero
         // 스킬을 레벨업합니다.
         public void BTN_OnClick_SkillLevelUp()
         {
-            // SOUND : 스킬 레벨업 시 사운드
+            GameManager.AudioManager.PlaySoundOneShot("Sound_SkillLevelUp");
             skillLevelUpPopupUI.SkillLevelUP();
             // UI를 업데이트하고 유저 정보를 저장합니다.
             ReShow();

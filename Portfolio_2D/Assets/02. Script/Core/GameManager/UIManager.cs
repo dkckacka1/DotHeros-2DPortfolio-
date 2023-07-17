@@ -69,14 +69,14 @@ namespace Portfolio.UI
         // 경고 팝업창을 표시한다.
         public void ShowAlert(string text)
         {
-            // SOUND : 경고 시 경고음 재생
+            GameManager.AudioManager.PlaySoundOneShot("Sound_ShowAlert");
             alertPopup.Show(text);
         }
 
         // 확인 팝업창을 표시한다.
         public void ShowConfirmation(string title, string alertText, UnityAction confirmEvent)
         {
-            // SOUND : 확인 다이얼로그 사운드 재생
+            GameManager.AudioManager.PlaySoundOneShot("Sound_ShowDialog");
             confirmationPopup.Show(title, alertText, confirmEvent);
         }
 

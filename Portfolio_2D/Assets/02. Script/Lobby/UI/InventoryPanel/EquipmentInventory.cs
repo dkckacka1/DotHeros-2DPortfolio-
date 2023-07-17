@@ -184,6 +184,7 @@ namespace Portfolio.Lobby.Inventory
             if (GameManager.CurrentUser.CanDIamondConsume(Constant.EquipmentListSizeUpCount))
                 // 소지 다이아량과 소비 다이아량을 비교한다.
             {
+                GameManager.AudioManager.PlaySoundOneShot("Sound_ListSizeUP");
                 GameManager.CurrentUser.Diamond -= Constant.EquipmentListSizeUpCount;
                 GameManager.CurrentUser.MaxEquipmentListCount += Constant.EquipmentListSizeUpCount;
                 ShowEquipmentInventorySizeText();
@@ -213,7 +214,7 @@ namespace Portfolio.Lobby.Inventory
         // 장비 아이템을 버린다.
         private void DumpEquipment()
         {
-            // SOUND : 장비 버리는 사운드 재생
+            GameManager.AudioManager.PlaySoundOneShot("Sound_EquipmentItemDump");
             // 선택한 아이템을 인벤토리에서 제거해준다.
             foreach (var itemData in currentSelectorList.Select(selector => selector.unitEquipmentSlotUI.EquipmentData))
             {

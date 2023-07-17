@@ -102,7 +102,7 @@ namespace Portfolio.Lobby.Shop
                     // 확인 다이얼로그 창을 표시합니다.
                     GameManager.UIManager.ShowConfirmation("재화 구매", "정말로 구매하시겠습니까?", () =>
                     {
-                        // SOUND : 구매 사운드 재생
+                        GameManager.AudioManager.PlaySoundOneShot("Sound_BuyProduct");
                         // 재화을 지불합니다.
                         PayProduct();
                         // 해당 상품을 얻습니다.
@@ -114,7 +114,7 @@ namespace Portfolio.Lobby.Shop
                 else
                 // 사용하는 재화가 골드일 경우
                 {
-                    // SOUND : 구매 사운드 재생
+                    GameManager.AudioManager.PlaySoundOneShot("Sound_BuyProduct");
                     // 재화을 지불합니다.
                     PayProduct();
                     // 해당 상품을 얻습니다.
