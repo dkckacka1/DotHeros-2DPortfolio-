@@ -39,6 +39,9 @@ namespace Portfolio
         private static AudioManager audioManager;
         public static AudioManager AudioManager => audioManager;
 
+        // 네트워크 관리자
+        private static NetworkManager networkManager;
+        public static NetworkManager NetworkManager => networkManager;
 
         //===========================================================
         // Dictionary
@@ -76,6 +79,7 @@ namespace Portfolio
                 timeChecker = GetComponentInChildren<TimeChecker>();
                 uiManager = GetComponentInChildren<UIManager>();
                 audioManager = GetComponentInChildren<AudioManager>();
+                networkManager = GetComponentInChildren<NetworkManager>();
 
                 DontDestroyOnLoad(this.gameObject);
             }
@@ -84,6 +88,9 @@ namespace Portfolio
                 Destroy(this.gameObject);
                 return;
             }
+
+            // 파이어베이스와 연동을 실시합니다.
+            networkManager.CheckVaildFirebase();
 
             if (isTest)
             // 테스트 중이라면

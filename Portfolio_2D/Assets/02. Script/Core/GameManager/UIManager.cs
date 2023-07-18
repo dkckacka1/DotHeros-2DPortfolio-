@@ -32,6 +32,7 @@ namespace Portfolio.UI
         [SerializeField] AlertPoupUI alertPopup;                        // 경고 팝업창
         [SerializeField] ConfirmationPopupUI confirmationPopup;         // 확인 팝업창
 
+        [HideInInspector] public bool isNetworking = false;   // 현재 네트워크와 연결중인지 여부
         public UserInfoUI UserInfoUI => userInfoUI;
 
    
@@ -105,7 +106,7 @@ namespace Portfolio.UI
             loadingProgressText.text = "0%";
         }
 
-        public void ShowNetworkLoading()
+        public IEnumerator ShowNetworkLoading()
         {
             // 알맞는 오브젝트를 보여줍니다.
             sceneLoadingObj.SetActive(false);
@@ -115,6 +116,19 @@ namespace Portfolio.UI
             loadingCanvasGroup.gameObject.SetActive(true);
             // 알파값 1로 조정
             loadingCanvasGroup.alpha = 1;
+
+            isNetworking = true;
+
+            while (isNetworking)
+            {
+                // 현재 네트워크와 연결중이면 대기합니다.
+                yield return null;
+            }
+
+            // 네트워크와 연결이 끝나면 로딩 오브젝트를 숨겨줍니다.
+            loadingCanvasGroup.gameObject.SetActive(false);
+            networkLoadingObj.SetActive(false);
+
         }
 
         // 로딩한다.

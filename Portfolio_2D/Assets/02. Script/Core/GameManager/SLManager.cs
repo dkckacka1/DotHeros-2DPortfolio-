@@ -10,7 +10,7 @@ using Newtonsoft.Json;
 
 namespace Portfolio
 {
-    public static class SLManager 
+    public static class SLManager
     {
         private const string userDataPath = @"\UserData\";                                                  // 유저 저장 폴더 이름
         private static string slpath = Application.dataPath + Constant.ResorucesDataPath + userDataPath;    // 저장할 데이터 패스
@@ -68,6 +68,16 @@ namespace Portfolio
 #endif
         }
 
+        // 유저데이터를 Json 파일로 파싱해 리턴합니다.
+        public static string ParseUserDataToJson(UserData userData)
+        {
+            var json = JsonConvert.SerializeObject(userData, Formatting.Indented, new JsonSerializerSettings
+            {
+                TypeNameHandling = TypeNameHandling.Auto
+            });
+
+            return json;
+        }
 
         // 유저 정보를 불러온다.
         public static bool LoadUserData(string userID, out UserData loadData)
@@ -78,7 +88,7 @@ namespace Portfolio
             var json = Resources.Load<TextAsset>(@"Data/UserData/" + GameLib.ComputeSHA256(userID));
 
             if (json == null)
-                // json파일이 없으면 실패
+            // json파일이 없으면 실패
             {
                 loadData = null;
                 return false;
@@ -110,6 +120,16 @@ namespace Portfolio
             return true;
 #endif
         }
-    }
 
+        // TODO :
+        public static UserData LoadUserData(string userJson)
+        {
+            var loadData = JsonConvert.DeserializeObject<UserData>(userJson, new JsonSerializerSettings
+            {
+                TypeNameHandling = TypeNameHandling.Auto
+            });
+
+            return loadData;
+        }
+    }
 }

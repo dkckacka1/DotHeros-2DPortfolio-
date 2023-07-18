@@ -12,7 +12,7 @@ namespace Portfolio.Start
 {
     public class LoginPopupUI : MonoBehaviour
     {
-        [SerializeField] TMP_InputField idInputField;       // 아이디 입력 필드
+        [SerializeField] TMP_InputField emailInputField;       // 이메일 입력 필드
         [SerializeField] TMP_InputField passwordInputField; // 패스워드 입력 필드
 
         // 팝업창을 보여줍니다.
@@ -26,28 +26,41 @@ namespace Portfolio.Start
         {
             UserData loginUserData = null;
 
-            if (SLManager.LoadUserData(idInputField.text, out loginUserData))
-            // 입력한 ID로 저장되어있는 유저정보를 찾아봅니다.
-            {
-                // 유저 정보가 있으면 비밀번호를 비교합니다.
-                if (SLManager.CheckPassword(loginUserData, passwordInputField.text))
-                    // 비밀번호가 맞다면
+            GameManager.NetworkManager.Login(emailInputField.text, passwordInputField.text,
+                () =>
                 {
-                    // 로그인 확인 팝업 표시
-                    StartManager.UIManager.ShowLoginConfirm(loginUserData);
-                }
-                else
+                    // TODO : 데이터베이스에서 유저 정보 가져오기 만드는중
+                    Debug.Log("로그인 성공");
+                    var userDataJson = GameManager.NetworkManager.LoadUserData();
+                    Debug.Log(userDataJson);
+                },
+                () => 
                 {
-                    // 경고창 표시
-                    GameManager.UIManager.ShowAlert("패스워드 인증에 실패했습니다.");
-                }
-            }
-            else
-            // 유저정보가 없다면
-            {
-                // 경고창 표시
-                GameManager.UIManager.ShowAlert("해당 ID가 존재하지 않습니다.");
-            }
+                    Debug.Log("로그인 실패");
+                });
+
+            //if (SLManager.LoadUserData(eamilInputField.text, out loginUserData))
+            //// 입력한 ID로 저장되어있는 유저정보를 찾아봅니다.
+            //{
+            //    // 유저 정보가 있으면 비밀번호를 비교합니다.
+            //    if (SLManager.CheckPassword(loginUserData, passwordInputField.text))
+            //        // 비밀번호가 맞다면
+            //    {
+            //        // 로그인 확인 팝업 표시
+            //        StartManager.UIManager.ShowLoginConfirm(loginUserData);
+            //    }
+            //    else
+            //    {
+            //        // 경고창 표시
+            //        GameManager.UIManager.ShowAlert("패스워드 인증에 실패했습니다.");
+            //    }
+            //}
+            //else
+            //// 유저정보가 없다면
+            //{
+            //    // 경고창 표시
+            //    GameManager.UIManager.ShowAlert("해당 ID가 존재하지 않습니다.");
+            //}
         }
     }
 }

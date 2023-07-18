@@ -424,7 +424,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2eb34887c2bea3f42835468e2f6fc270, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  idInputField: {fileID: 4802893518345782406}
+  emailInputField: {fileID: 4802893518345782406}
   passwordInputField: {fileID: 550427103}
 --- !u!1 &149765662
 GameObject:
@@ -1091,7 +1091,7 @@ GameObject:
   m_Component:
   - component: {fileID: 299806933}
   m_Layer: 5
-  m_Name: ID Input
+  m_Name: E-mail Input
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2500,7 +2500,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e79e47c72378a240b4edc9d55a350ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  idInputField: {fileID: 1239375877}
+  emailInputField: {fileID: 1239375877}
   passwordInputField: {fileID: 1434539314}
   passwordErrorText: {fileID: 1155398332}
   passwordInputConfirmField: {fileID: 1746427140}
@@ -2948,7 +2948,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6044713625128713373, guid: 09980b618f778b04284b6a8dc97bb185, type: 3}
       propertyPath: m_text
-      value: ID
+      value: E-mail
       objectReference: {fileID: 0}
     - target: {fileID: 6044713625128713373, guid: 09980b618f778b04284b6a8dc97bb185, type: 3}
       propertyPath: m_fontSize
@@ -3472,7 +3472,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 727307476574490143, guid: c2f50363b75c0774fba8d211d089e6ef, type: 3}
       propertyPath: m_text
-      value: "ID\uB294 6\uAE00\uC790 \uC774\uC0C1\uC774\uC5B4\uC57C \uD569\uB2C8\uB2E4."
+      value: "\uC774\uBA54\uC77C \uD615\uC2DD\uC73C\uB85C \uC785\uB825\uD574\uC8FC\uC138\uC694."
       objectReference: {fileID: 0}
     - target: {fileID: 727307476574490143, guid: c2f50363b75c0774fba8d211d089e6ef, type: 3}
       propertyPath: m_fontSize
@@ -3516,7 +3516,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6688204727401352616, guid: c2f50363b75c0774fba8d211d089e6ef, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: INFUTFIELD_OnValueChanged_CheckID
+      value: INFUTFIELD_OnValueChanged_CheckEmail
       objectReference: {fileID: 0}
     - target: {fileID: 6688204727401352616, guid: c2f50363b75c0774fba8d211d089e6ef, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
@@ -4333,7 +4333,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1477803864}
   m_Layer: 5
-  m_Name: ID Input
+  m_Name: Email Input
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6127,7 +6127,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6044713625128713373, guid: 09980b618f778b04284b6a8dc97bb185, type: 3}
       propertyPath: m_text
-      value: ID
+      value: E-Mail
       objectReference: {fileID: 0}
     - target: {fileID: 6044713625128713373, guid: 09980b618f778b04284b6a8dc97bb185, type: 3}
       propertyPath: m_fontSize
@@ -6878,7 +6878,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 727307476574490143, guid: c2f50363b75c0774fba8d211d089e6ef, type: 3}
       propertyPath: m_text
-      value: "ID\uB97C \uC785\uB825\uD574\uC8FC\uC138\uC694."
+      value: "E-Mail\uC744 \uC785\uB825\uD574\uC8FC\uC138\uC694."
       objectReference: {fileID: 0}
     - target: {fileID: 727307476574490143, guid: c2f50363b75c0774fba8d211d089e6ef, type: 3}
       propertyPath: m_fontSize
