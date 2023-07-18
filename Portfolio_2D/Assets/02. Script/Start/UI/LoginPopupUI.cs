@@ -27,12 +27,11 @@ namespace Portfolio.Start
             UserData loginUserData = null;
 
             GameManager.NetworkManager.Login(emailInputField.text, passwordInputField.text,
-                () =>
+                (json) =>
                 {
                     // TODO : 데이터베이스에서 유저 정보 가져오기 만드는중
-                    Debug.Log("로그인 성공");
-                    var userDataJson = GameManager.NetworkManager.LoadUserData();
-                    Debug.Log(userDataJson);
+                    loginUserData = SLManager.LoadUserData(json);
+                    StartManager.UIManager.ShowLoginConfirm(loginUserData);
                 },
                 () => 
                 {

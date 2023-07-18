@@ -43,29 +43,37 @@ namespace Portfolio
         // 유저 정보를 저장한다.
         public static void SaveUserData(UserData userData)
         {
-#if UNITY_EDITOR
-            // 유저 정보를 직렬화 해서 저장한다.
-            //JsonSerializerSettings로 TypeNameHandling하지 않으면 장비아이템을 저장할 때 EquipmentData로 저장한다. (ArmorData 등으로 저장을 안함)
+            Debug.Log("데이터를 파이어베이스에 저장합니다.");
             var json = JsonConvert.SerializeObject(userData, Formatting.Indented, new JsonSerializerSettings
             {
                 TypeNameHandling = TypeNameHandling.Auto
             });
 
-            // 파일이름은 ID를 해시로 변환한 이름으로 저장한다.
-            string userHashID = GameLib.ComputeSHA256(userData.userID);
+            GameManager.NetworkManager.WriteCurrentUserData(json); 
 
-            // 새로운 파일을 만든다.
-            File.WriteAllText(slpath + userHashID + ".json", json);
-#else
-            var json = JsonConvert.SerializeObject(userData, Formatting.Indented, new JsonSerializerSettings
-            {
-                TypeNameHandling = TypeNameHandling.Auto
-            });
+//#if UNITY_EDITOR
+//            // 유저 정보를 직렬화 해서 저장한다.
+//            //JsonSerializerSettings로 TypeNameHandling하지 않으면 장비아이템을 저장할 때 EquipmentData로 저장한다. (ArmorData 등으로 저장을 안함)
+//            var json = JsonConvert.SerializeObject(userData, Formatting.Indented, new JsonSerializerSettings
+//            {
+//                TypeNameHandling = TypeNameHandling.Auto
+//            });
 
-            string userHashID = GameLib.ComputeSHA256(userData.userID);
+//            // 파일이름은 ID를 해시로 변환한 이름으로 저장한다.
+//            string userHashID = GameLib.ComputeSHA256(userData.userID);
 
-            PlayerPrefs.SetString(userHashID, json);
-#endif
+//            // 새로운 파일을 만든다.
+//            File.WriteAllText(slpath + userHashID + ".json", json);
+//#else
+//            var json = JsonConvert.SerializeObject(userData, Formatting.Indented, new JsonSerializerSettings
+//            {
+//                TypeNameHandling = TypeNameHandling.Auto
+//            });
+
+//            string userHashID = GameLib.ComputeSHA256(userData.userID);
+
+//            PlayerPrefs.SetString(userHashID, json);
+//#endif
         }
 
         // 유저데이터를 Json 파일로 파싱해 리턴합니다.

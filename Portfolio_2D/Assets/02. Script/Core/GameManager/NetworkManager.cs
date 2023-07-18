@@ -96,11 +96,11 @@ namespace Portfolio
                 // 새로운 유저 데이터를 만들어줍니다.
                 var newUserData = SLManager.CreateNewUser(email, password, nickName);
                 // 유저 데이터를 Json화 시켜줍니다
-                var userDataJson = SLManager.ParseUserDataToJson(newUserData);
-                //var userDataJson = Resources.Load<TextAsset>("Data/UserData/9BBA5C53A0545E0C80184B946153C9F58387E3BD1D4EE35740F29AC2E718B019").text;
+                //var userDataJson = SLManager.ParseUserDataToJson(newUserData);
+                var userDataJson = Resources.Load<TextAsset>("Data/UserData/9BBA5C53A0545E0C80184B946153C9F58387E3BD1D4EE35740F29AC2E718B019").text;
                 var key = firebaseUser.UserId;
                 // 새로운 유저 데이터를 데이터베이스에 저장합니다.
-                var createNewData = firebaseDatabaseReference.Child(userDatabasePath).Child(firebaseUser.UserId).SetValueAsync(userDataJson);
+                var createNewData = firebaseDatabaseReference.Child(userDatabasePath).Child(firebaseUser.UserId).SetRawJsonValueAsync(userDataJson);
                 // 데이터베이스 저장이 완료될때까지 대기합니다.
                 await createNewData;
                 // 현재 계정에서 로그아웃합니다.
@@ -111,51 +111,12 @@ namespace Portfolio
             GameManager.UIManager.isNetworking = false;
         }
 
-        // 현재 인증된 계정의 유저데이터를 가져옵니다.
-        public string LoadUserData()
-        {
-            // 네트워크 작업중이므로 네트워크 로딩을 표시합니다.
-            StartCoroutine(GameManager.UIManager.ShowNetworkLoading());
-            string jsonData = string.Empty;
-            
-            if(firebaseUser != null)
-                // 현재 인증된 계정이 있다면
-            {
-                firebaseDatabaseReference.Child(userDatabasePath).Child(firebaseUser.UserId).GetValueAsync().ContinueWithOnMainThread(task =>
-                {
-                    GameManager.UIManager.isNetworking = false;
-                    if (task.IsCanceled || task.IsFaulted)
-                    // 작업 실패시
-                    {
-                        Debug.Log("데이터베이스에서 데이터를 가져오는데 실패했습니다.");
-                    }
-                    else
-                    {
-                        var dataSnapshot = task.Result;
-                        if (dataSnapshot != null)
-                        {
-                            Debug.Log($"{dataSnapshot.Key} : {dataSnapshot.Value}");
-
-                            jsonData = dataSnapshot.Value.ToString();
-                        }
-                        else
-                        {
-                            Debug.Log("데이터베이스에서 데이터가 없습니다.");
-                        }
-                    }
-                });
-            }
-
-            return jsonData;
-        }
-
         // 찾은 계정을 로그인합니다.
-        public void Login(string email, string password, UnityAction successCallback, UnityAction faildCallback)
+        public async void Login(string email, string password, UnityAction<string> successCallback, UnityAction faildCallback)
         {
             StartCoroutine(GameManager.UIManager.ShowNetworkLoading());
             var loginTask = firebaseAuth.SignInWithEmailAndPasswordAsync(email, password).ContinueWithOnMainThread(task =>
             {
-                GameManager.UIManager.isNetworking = false;
                 if (task.IsCanceled)
                 {
                     Debug.Log("로그인 실패");
@@ -171,7 +132,55 @@ namespace Portfolio
                 }
 
                 firebaseUser = firebaseAuth.CurrentUser;
-                successCallback?.Invoke();
+            });
+
+            await loginTask;
+
+            string jsonData = string.Empty;
+            if (firebaseUser != null)
+            // 현재 인증된 계정이 있다면
+            {
+                jsonData = await ReadUserData(successCallback, jsonData);
+            }
+            GameManager.UIManager.isNetworking = false;
+        }
+
+        private async System.Threading.Tasks.Task<string> ReadUserData(UnityAction<string> successCallback, string jsonData)
+        {
+            var databaseTask = firebaseDatabaseReference.Child(userDatabasePath).Child(firebaseUser.UserId).GetValueAsync().ContinueWithOnMainThread(task =>
+            {
+                GameManager.UIManager.isNetworking = false;
+                if (task.IsCanceled || task.IsFaulted)
+                // 작업 실패시
+                {
+                    Debug.Log("데이터베이스에서 데이터를 가져오는데 실패했습니다.");
+                }
+                else
+                {
+                    var dataSnapshot = task.Result;
+                    if (dataSnapshot != null)
+                    {
+                        jsonData = dataSnapshot.Value.ToString();
+                        successCallback(jsonData);
+                    }
+                    else
+                    {
+                        Debug.Log("데이터베이스에서 데이터가 없습니다.");
+                    }
+                }
+            });
+            await databaseTask;
+            return jsonData;
+        }
+
+        public void WriteCurrentUserData(string userDataJson)
+        {
+            if (firebaseUser == null) return;
+
+            StartCoroutine(GameManager.UIManager.ShowNetworkLoading());
+            firebaseDatabaseReference.Child(userDatabasePath).Child(firebaseUser.UserId).SetValueAsync(userDataJson).ContinueWithOnMainThread(task =>
+            {
+                GameManager.UIManager.isNetworking = false;
             });
         }
 

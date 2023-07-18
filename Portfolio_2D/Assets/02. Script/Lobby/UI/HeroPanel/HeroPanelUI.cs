@@ -160,7 +160,6 @@ namespace Portfolio.Lobby.Hero
             unitCompositionToggle.onValueChanged?.Invoke(false);
             unitStatusToggle.isOn = true;
             unitStatusToggle.onValueChanged?.Invoke(true);
-            GameManager.Instance.SaveUser();
         }
 
         // 모든 영웅창의 UI를 업데이트 해준다.
