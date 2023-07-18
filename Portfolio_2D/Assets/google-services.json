@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "751281059868",
+    "firebase_url": "https://dotheros-22b74-default-rtdb.firebaseio.com",
+    "project_id": "dotheros-22b74",
+    "storage_bucket": "dotheros-22b74.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:751281059868:android:c95bd501309e0b658087d9",
+        "android_client_info": {
+          "package_name": "com.DotHeros"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "751281059868-epefi3ngiafitidf53td1iuq0qkamuhn.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCnj13uD8qbZt8tkPoQnlKzjRddc2Co9DY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "751281059868-epefi3ngiafitidf53td1iuq0qkamuhn.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
