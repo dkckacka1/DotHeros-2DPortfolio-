@@ -45,7 +45,8 @@ namespace Portfolio.Lobby
                 if (itemData == null) return;
 
                 GameManager.CurrentUser.AddEquipmentItem(itemData);
-                GameManager.Instance.SaveUser();
+                // SAVE : 
+                //GameManager.Instance.SaveUser();
             }
 
             if (GUI.Button(new Rect(10, 450, 100, 100), "골드 추가하기"))

@@ -122,6 +122,11 @@ namespace Portfolio
         // 유저의 음악 볼륨 값이 저장된 플레이어프랩스의 이름
         public const string MusicVolumeConfigureLoadPath = "MusicVolume";
 
+        //===========================================================
+        // Network
+        //===========================================================
+        public const string userDatabasePath = "UserData";
+
 
     }
 }

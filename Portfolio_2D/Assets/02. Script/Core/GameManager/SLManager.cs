@@ -5,7 +5,7 @@ using UnityEngine;
 using Newtonsoft.Json;
 
 /*
- * Save 와 Load함수를 모아놓은 static 클래스
+ * 저장과 불러오기함수를 모아놓은 static 클래스
  */
 
 namespace Portfolio
@@ -49,31 +49,7 @@ namespace Portfolio
                 TypeNameHandling = TypeNameHandling.Auto
             });
 
-            GameManager.NetworkManager.WriteCurrentUserData(json); 
-
-//#if UNITY_EDITOR
-//            // 유저 정보를 직렬화 해서 저장한다.
-//            //JsonSerializerSettings로 TypeNameHandling하지 않으면 장비아이템을 저장할 때 EquipmentData로 저장한다. (ArmorData 등으로 저장을 안함)
-//            var json = JsonConvert.SerializeObject(userData, Formatting.Indented, new JsonSerializerSettings
-//            {
-//                TypeNameHandling = TypeNameHandling.Auto
-//            });
-
-//            // 파일이름은 ID를 해시로 변환한 이름으로 저장한다.
-//            string userHashID = GameLib.ComputeSHA256(userData.userID);
-
-//            // 새로운 파일을 만든다.
-//            File.WriteAllText(slpath + userHashID + ".json", json);
-//#else
-//            var json = JsonConvert.SerializeObject(userData, Formatting.Indented, new JsonSerializerSettings
-//            {
-//                TypeNameHandling = TypeNameHandling.Auto
-//            });
-
-//            string userHashID = GameLib.ComputeSHA256(userData.userID);
-
-//            PlayerPrefs.SetString(userHashID, json);
-//#endif
+            GameManager.NetworkManager.WriteCurrentUserDataProcess(json); 
         }
 
         // 유저데이터를 Json 파일로 파싱해 리턴합니다.
@@ -129,7 +105,7 @@ namespace Portfolio
 #endif
         }
 
-        // TODO :
+        // json파일로 유저데이터를 만들어 리턴합니다
         public static UserData LoadUserData(string userJson)
         {
             var loadData = JsonConvert.DeserializeObject<UserData>(userJson, new JsonSerializerSettings

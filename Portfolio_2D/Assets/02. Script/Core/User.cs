@@ -229,7 +229,8 @@ namespace Portfolio
         {
             userUnitList.Add(unit);
             userData.unitDataList.Add(new UserUnitData(unit));
-            GameManager.Instance.SaveUser();
+                // SAVE : 
+            //GameManager.Instance.SaveUser();
         }
 
         // 유닛 리스트를 통해서 유닛 추가 (유닛 10명 뽑기)
@@ -241,7 +242,8 @@ namespace Portfolio
                 userData.unitDataList.Add(new UserUnitData(unit));
             }
 
-            GameManager.Instance.SaveUser();
+                // SAVE : 
+            //GameManager.Instance.SaveUser();
         }
 
         // 유닛이 장착한 아이템들을 전부 해제한 후 장비 인벤토리에 넣어준다.

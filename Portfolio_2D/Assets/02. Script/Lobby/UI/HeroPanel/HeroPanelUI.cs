@@ -281,7 +281,8 @@ namespace Portfolio.Lobby.Hero
 
             // UI를 업데이트하고 유저 정보를 저장합니다.
             ReShow();
-            GameManager.Instance.SaveUser();
+                // SAVE : 
+            //GameManager.Instance.SaveUser();
         }
 
         // 장비를 해제한다.
@@ -303,7 +304,8 @@ namespace Portfolio.Lobby.Hero
                 equipmentListPopupUI.ChoiceItemReset();
                 // UI를 업데이트하고 유저 정보를 저장합니다.
                 ReShow();
-                GameManager.Instance.SaveUser();
+                // SAVE : 
+                //GameManager.Instance.SaveUser();
             }
         }
 
@@ -328,7 +330,8 @@ namespace Portfolio.Lobby.Hero
             equipmentListPopupUI.ChoiceItemReset();
             // UI를 업데이트하고 유저 정보를 저장합니다.
             ReShow();
-            GameManager.Instance.SaveUser();
+                // SAVE : 
+            //GameManager.Instance.SaveUser();
         }
 
         // 경험치를 획득합니다.
@@ -348,7 +351,8 @@ namespace Portfolio.Lobby.Hero
             selectUnit.CurrentExperience += getValue;
             // UI를 업데이트하고 유저 정보를 저장합니다.
             ReShow();
-            GameManager.Instance.SaveUser();
+                // SAVE : 
+            //GameManager.Instance.SaveUser();
         }
 
         // 스킬을 레벨업합니다.
@@ -358,7 +362,8 @@ namespace Portfolio.Lobby.Hero
             skillLevelUpPopupUI.SkillLevelUP();
             // UI를 업데이트하고 유저 정보를 저장합니다.
             ReShow();
-            GameManager.Instance.SaveUser();
+                // SAVE : 
+            //GameManager.Instance.SaveUser();
         }
 
         // 유저의 유닛 슬롯의 최대갯수를 늘립니다.

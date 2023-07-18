@@ -96,7 +96,8 @@ namespace Portfolio.UI
             // 유저 정보를 업데이트한다.
             GameManager.UIManager.ShowUserInfo();
             // 유저 데이터를 저장한다.
-            GameManager.Instance.SaveUser();
+                // SAVE : 
+            //GameManager.Instance.SaveUser();
             // 팝업창을 꺼준다.
             this.gameObject.SetActive(false);
         }

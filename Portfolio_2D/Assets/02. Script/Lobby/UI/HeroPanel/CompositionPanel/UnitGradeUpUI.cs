@@ -41,8 +41,7 @@ namespace Portfolio.Lobby.Hero.Composition
 
         public void SetStar()
         {
-            // SOUND : 별 추가 사운드
-            //GameManager.AudioManager.PlaySound("");
+            GameManager.AudioManager.PlaySound("Sound_SetStar");
         }
     } 
 }

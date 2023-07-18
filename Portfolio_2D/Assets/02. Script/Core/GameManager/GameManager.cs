@@ -113,7 +113,7 @@ namespace Portfolio
 
         private void Start()
         {
-            if (!isTest)
+            if (isTest)
             {
                 Debug.LogWarning("GameManager Test");
             }
@@ -177,7 +177,8 @@ namespace Portfolio
                 CurrentUser.AddConsumableItem(2000, 10);
                 CurrentUser.AddConsumableItem(2001, 10);
                 CurrentUser.AddConsumableItem(2002, 10);
-                SaveUser();
+                // SAVE : 
+                //SaveUser();
             }
         }
 
@@ -461,6 +462,9 @@ namespace Portfolio
         {
             UIManager.ShowConfirmation("로그아웃", "정말로 로그아웃 하시겠습니까?", () =>
             {
+                // 유저 정보를 저장하고 로그아웃 합니다.
+                SaveUser();
+                networkManager.Logout();
                 SceneLoader.LoadStartScene();
             });
         }

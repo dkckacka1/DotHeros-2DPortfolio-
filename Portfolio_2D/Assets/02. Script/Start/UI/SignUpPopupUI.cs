@@ -61,19 +61,17 @@ namespace Portfolio.Start
         // 계정을 생성합니다.
         private void CreateUser()
         {
-            GameManager.NetworkManager.CreateUser(emailInputField.text, passwordInputField.text, nickNameInputField.text);
-
-            //            // 입력한 ID와 패스워드, 닉네임으로 유저정보를 생성합니다.
-            //            var newUserData = SLManager.CreateNewUser(emailInputField.text, passwordInputField.text, nickNameInputField.text);
-            //            // 유저 정보를 저장합니다.
-            //            SLManager.SaveUserData(newUserData);
-            //            GameManager.UIManager.ShowAlert("계정 생성을 완료했습니다.\n새로 만든 계정으로 로그인 해주세요.");
-            //            // 팝업창을 꺼줍니다.
-            //            this.gameObject.SetActive(false);
-            //#if UNITY_EDITOR
-            //            // 에셋폴더를 새로 고침합니다.
-            //            AssetDatabase.Refresh();
-            //#endif
+            GameManager.NetworkManager.CreateUserProcess(emailInputField.text, passwordInputField.text, nickNameInputField.text,
+                () => 
+                {
+                    // 계정 생성에 성공했습니다.
+                    GameManager.UIManager.ShowAlert("계정 생성을 완료했습니다.\n새로 만든 계정으로 로그인 해주세요.");
+                    this.gameObject.SetActive(false);
+                },
+                (errorMessage) => 
+                {
+                    GameManager.UIManager.ShowAlert(errorMessage);
+                });
         }
 
         // 아이디 입력을 확인합니다.

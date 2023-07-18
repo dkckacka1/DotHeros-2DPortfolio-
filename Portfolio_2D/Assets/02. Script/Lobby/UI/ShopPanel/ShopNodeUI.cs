@@ -108,7 +108,8 @@ namespace Portfolio.Lobby.Shop
                         // 해당 상품을 얻습니다.
                         GetProduct();
                         // 유저 정보를 저장합니다.
-                        GameManager.Instance.SaveUser();
+                // SAVE : 
+                        //GameManager.Instance.SaveUser();
                     });
                 }
                 else
@@ -120,7 +121,8 @@ namespace Portfolio.Lobby.Shop
                     // 해당 상품을 얻습니다.
                     GetProduct();
                     // 유저 정보를 저장합니다.
-                    GameManager.Instance.SaveUser();
+                // SAVE : 
+                    //GameManager.Instance.SaveUser();
                 }
             }
             else

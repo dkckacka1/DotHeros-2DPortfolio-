@@ -26,40 +26,20 @@ namespace Portfolio.Start
         {
             UserData loginUserData = null;
 
-            GameManager.NetworkManager.Login(emailInputField.text, passwordInputField.text,
+            // 네트워크 매니저의 로그인 프로세스를 수행합니다.
+            GameManager.NetworkManager.LoginProcess(emailInputField.text, passwordInputField.text,
                 (json) =>
                 {
-                    // TODO : 데이터베이스에서 유저 정보 가져오기 만드는중
+                    // 성공 이벤트입니다.
+                    // 성공시 가져온 json파일로 유저데이터로 가져옵니다.
                     loginUserData = SLManager.LoadUserData(json);
                     StartManager.UIManager.ShowLoginConfirm(loginUserData);
                 },
-                () => 
+                (errorMessage) => 
                 {
-                    Debug.Log("로그인 실패");
+                    // 실패시 경고 팝업창을 표시합니다.
+                    GameManager.UIManager.ShowAlert(errorMessage);
                 });
-
-            //if (SLManager.LoadUserData(eamilInputField.text, out loginUserData))
-            //// 입력한 ID로 저장되어있는 유저정보를 찾아봅니다.
-            //{
-            //    // 유저 정보가 있으면 비밀번호를 비교합니다.
-            //    if (SLManager.CheckPassword(loginUserData, passwordInputField.text))
-            //        // 비밀번호가 맞다면
-            //    {
-            //        // 로그인 확인 팝업 표시
-            //        StartManager.UIManager.ShowLoginConfirm(loginUserData);
-            //    }
-            //    else
-            //    {
-            //        // 경고창 표시
-            //        GameManager.UIManager.ShowAlert("패스워드 인증에 실패했습니다.");
-            //    }
-            //}
-            //else
-            //// 유저정보가 없다면
-            //{
-            //    // 경고창 표시
-            //    GameManager.UIManager.ShowAlert("해당 ID가 존재하지 않습니다.");
-            //}
         }
     }
 }
