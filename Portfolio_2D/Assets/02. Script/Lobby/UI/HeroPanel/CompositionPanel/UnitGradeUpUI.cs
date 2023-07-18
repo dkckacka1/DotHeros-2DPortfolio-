@@ -33,8 +33,16 @@ namespace Portfolio.Lobby.Hero.Composition
             GetComponent<UIAnimationPlayer>().PlayAnim();
         }
 
-        // TODO : 별 획득 애니메이션 이벤트 추가
-        // SOUND : 별 진동 사운드
-        // SOUND : 별 추가 사운드
+        public void VibrateStar()
+        {
+            // SOUND : 별 진동 사운드
+            //GameManager.AudioManager.PlaySound("");
+        }
+
+        public void SetStar()
+        {
+            // SOUND : 별 추가 사운드
+            //GameManager.AudioManager.PlaySound("");
+        }
     } 
 }
