@@ -223,6 +223,7 @@ namespace Portfolio
         public void Logout()
         {
             firebaseAuth.SignOut();
+            firebaseUser = null;
         }
 
 

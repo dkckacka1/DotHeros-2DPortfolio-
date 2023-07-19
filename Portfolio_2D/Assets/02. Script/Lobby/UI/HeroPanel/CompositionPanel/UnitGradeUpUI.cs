@@ -27,6 +27,15 @@ namespace Portfolio.Lobby.Hero.Composition
             }
         }
 
+        // 합성창이 꺼졌을 때 초기상태로 원복 시킵니다.
+        private void OnDisable()
+        {
+            this.transform.Rotate(Vector3.zero);
+            unActiveStarImage.rectTransform.anchoredPosition = Vector2.zero;
+            glowImage.transform.Rotate(Vector3.zero);
+            activeStarImage.rectTransform.localScale = Vector3.one;
+        }
+
         // 이펙트 애니메이션을 플레이한다.
         public void PlayEffect()
         {

@@ -8,34 +8,35 @@ namespace Portfolio.Lobby
 {
     public class LobbyTester : MonoBehaviour
     {
-        [SerializeField] string alertText;
-     
+        [SerializeField] int unitID = 100;
+        [SerializeField] eEquipmentItemType equipmentItemType = eEquipmentItemType.Weapon;
+        [SerializeField] eGradeType randomType = eGradeType.Normal;
+
         private void OnGUI()
         {
-            if (GUI.Button(new Rect(10, 340, 100, 100), "랜덤 아이템 추가하기"))
+            if (GUI.Button(new Rect(10, 10, 100, 100), "랜덤 아이템 추가하기"))
             {
                 EquipmentItemData itemData = null;
 
-                eEquipmentItemType type = (eEquipmentItemType)Random.Range(0, 6);
-                switch (type)
+                switch (equipmentItemType)
                 {
                     case eEquipmentItemType.Weapon:
-                        itemData = GameManager.ItemCreator.CreateEquipmentItemData<WeaponData>(eGradeType.Normal);
+                        itemData = GameManager.ItemCreator.CreateEquipmentItemData<WeaponData>(randomType);
                         break;
                     case eEquipmentItemType.Helmet:
-                        itemData = GameManager.ItemCreator.CreateEquipmentItemData<HelmetData>(eGradeType.Normal);
+                        itemData = GameManager.ItemCreator.CreateEquipmentItemData<HelmetData>(randomType);
                         break;
                     case eEquipmentItemType.Armor:
-                        itemData = GameManager.ItemCreator.CreateEquipmentItemData<ArmorData>(eGradeType.Normal);
+                        itemData = GameManager.ItemCreator.CreateEquipmentItemData<ArmorData>(randomType);
                         break;
                     case eEquipmentItemType.Amulet:
-                        itemData = GameManager.ItemCreator.CreateEquipmentItemData<AmuletData>(eGradeType.Normal);
+                        itemData = GameManager.ItemCreator.CreateEquipmentItemData<AmuletData>(randomType);
                         break;
                     case eEquipmentItemType.Ring:
-                        itemData = GameManager.ItemCreator.CreateEquipmentItemData<RingData>(eGradeType.Normal);
+                        itemData = GameManager.ItemCreator.CreateEquipmentItemData<RingData>(randomType);
                         break;
                     case eEquipmentItemType.Shoe:
-                        itemData = GameManager.ItemCreator.CreateEquipmentItemData<ShoeData>(eGradeType.Normal);
+                        itemData = GameManager.ItemCreator.CreateEquipmentItemData<ShoeData>(randomType);
                         break;
                     default:
                         Debug.LogWarning("unknownType");
@@ -49,14 +50,27 @@ namespace Portfolio.Lobby
                 //GameManager.Instance.SaveUser();
             }
 
-            if (GUI.Button(new Rect(10, 450, 100, 100), "골드 추가하기"))
+            if (GUI.Button(new Rect(10, 110, 100, 100), "최강 유닛 생성하기"))
             {
-                GameManager.CurrentUser.Gold += 10000000;
+                if (GameManager.Instance.TryGetData(unitID, out UnitData data))
+                {
+                    UserUnitData unitData = new UserUnitData(data);
+                    unitData.unitLevel = 50;
+                    unitData.unitGrade = 5;
+                    Unit summonUnit = new Unit(data, unitData);
+                    GameManager.CurrentUser.AddNewUnit(summonUnit);
+                    // SAVE : 
+                    //GameManager.Instance.SaveUser();
+                }
             }
 
-            if (GUI.Button(new Rect(110, 450, 100, 100), "다이아 추가하기"))
+            if (GUI.Button(new Rect(10, 210, 100, 100), "모든맵 클리어하기"))
             {
-                GameManager.CurrentUser.Diamond += 1000;
+                var list = GameManager.Instance.GetDatas<MapData>();
+                foreach (var mapData in list)
+                {
+                    GameManager.CurrentUser.ClearMap(mapData.ID);
+                }
             }
         }
     }

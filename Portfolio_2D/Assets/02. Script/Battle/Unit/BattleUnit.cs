@@ -600,7 +600,6 @@ namespace Portfolio.Battle
         // AbnormalConditionSystem
         //===========================================================
         #region AbnormalConditionSystem
-
         // 현재 걸린 상태이상을 가져온다.
         public List<ConditionSystem> GetActiveConditionSystems => conditionDic.Values.ToList();
         // 상태이상 ID로 현재 상태이상을 가지고 있는지 확인
@@ -735,6 +734,7 @@ namespace Portfolio.Battle
             var removeIDList = conditionDic.Values.Where(conditionSystem => conditionSystem.isCountEnd).Select(conditionSystem => conditionSystem.Condition.conditionID).ToList();
             foreach (var id in removeIDList)
             {
+
                 // 상태이상 Dic에서 제거
                 conditionDic.Remove(id);
             }
@@ -743,10 +743,20 @@ namespace Portfolio.Battle
         private void ResetCondition()
             // 모든 상태이상 초기화
         {
-            foreach (var condition in conditionDic.Values)
+            foreach (var conditionSystem in conditionDic.Values)
             {
+                if (conditionSystem.Condition is ContinuationCondition)
+                    // 지속형 상태이상이라면
+                {
+                    for (int i = 0; i < conditionSystem.OverlapingCount; i++)
+                    // 중첩되어있다면 중첩된 횟수만큼 되돌려준다.
+                    {
+                        (conditionSystem.Condition as ContinuationCondition).UnApplyCondition(this);
+                    }
+                }
+
                 // 모든 상태이상을 종료
-                condition.EndCondition();
+                conditionSystem.EndCondition();
             }
             // 상태이상 Dic 초기화
             conditionDic.Clear();
