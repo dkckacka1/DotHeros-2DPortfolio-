@@ -168,6 +168,7 @@ namespace Portfolio.Lobby.Hero
             unitListUI.ShowUnitList();
             LobbyManager.UIManager.OnUnitChanged();
             LobbyManager.UIManager.OnEquipmentItemChanged();
+            LobbyManager.UIManager.ShowMainUnits();
         }
 
         //===========================================================

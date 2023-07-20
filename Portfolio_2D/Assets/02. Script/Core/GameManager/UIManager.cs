@@ -36,6 +36,18 @@ namespace Portfolio.UI
         public UserInfoUI UserInfoUI => userInfoUI;
 
    
+        // 현재 스크린 사이즈와 UI캔버스 사이즈의 비율을 반환합니다.
+        public float GetScreenCanvasRate
+        {
+            get
+            {
+                int screenResolutionSize = (PlayerPrefs.GetInt("ScreenSize", 0));
+                int currentResolution = Constant.resolutions[screenResolutionSize].width;
+                float rate = 1920 / (float)currentResolution;
+                return rate;
+            }
+        }
+
         // 유저 인포를 현재 사용자에 맞게 업데이트 한다.
         public void ShowUserInfo()
         {

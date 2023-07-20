@@ -136,7 +136,6 @@ namespace Portfolio
             // 게임 종료시 유저 정보에 마지막 접속 시간 넣기
             if (CurrentUser != null)
             {
-                CurrentUser.LastAccessTime = DateTime.Now;
                 // 유저 정보 저장
                 SaveUser();
             }
@@ -194,6 +193,7 @@ namespace Portfolio
         // 유저 정보 저장
         public void SaveUser()
         {
+            CurrentUser.LastAccessTime = DateTime.Now;
             SLManager.SaveUserData(CurrentUser.GetSaveUserData());
         }
 

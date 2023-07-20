@@ -97,6 +97,8 @@ namespace Portfolio
         // 장비 속성 텍스트 출력
         public static string GetSetTypeText(eSetType type)
         {
+            return "";
+
             switch (type)
             {
                 case eSetType.Critical:

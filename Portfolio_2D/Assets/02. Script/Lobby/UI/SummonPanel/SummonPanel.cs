@@ -103,6 +103,9 @@ namespace Portfolio.Lobby.Summon
 
                 // 소환 결과창에 뽑은 유닛을 보여줍니다.
                 summonResultUI.ShowSummonResult(new List<Unit>() { newUnit });
+
+                // 메인 유닛을 업데이트 합니다.
+                LobbyManager.UIManager.ShowMainUnits();
             }
         }
 
@@ -131,6 +134,9 @@ namespace Portfolio.Lobby.Summon
                 GameManager.CurrentUser.AddNewUnit(summonList);
 
                 summonResultUI.ShowSummonResult(summonList);
+
+                // 메인 유닛을 업데이트 합니다.
+                LobbyManager.UIManager.ShowMainUnits();
             }
         }
 

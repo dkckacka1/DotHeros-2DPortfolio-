@@ -21,6 +21,7 @@ namespace Portfolio.WorldMap
 
         List<MapNode> worldNodeList = new List<MapNode>();  // 맵 노드 리스트
         MapNode currentUserChoiceNode;                      // 현재 유저가 선택한 맵
+        float resolutionRate = 0f;                          // 현재 스크린 사이즈와 캔버스 해상도 사이즈 비율
 
         public MapNode CurrentUserChoiceNode
         {
@@ -36,7 +37,6 @@ namespace Portfolio.WorldMap
                 currentUserChoiceNode = value;
             }
         }
-
 
         // 싱글턴 생성
         private void Awake()
@@ -61,6 +61,9 @@ namespace Portfolio.WorldMap
 
         private void Start()
         {
+            // 현재 스크린 비율을 가져옵니다.
+            resolutionRate = GameManager.UIManager.GetScreenCanvasRate;
+
             // 노드 끼리 이어주는 함수 재귀형으로 되어있음
             NodeSetting(worldNodeList[0]);
             // 처음 키면 첫번째 맵 노드로 이동합니다.
@@ -82,7 +85,8 @@ namespace Portfolio.WorldMap
                 // 맵노드 라인을 생성합니다.
                 RectTransform nodeLine = Instantiate(nodeLinePrefab, currentMapNode.transform.position, Quaternion.identity, nodeLineParent);
                 // 맵 노드 라인의 길이는 현재 맵 노드와 다음 맵 노드의 사이 길이입니다.
-                (nodeLine.transform as RectTransform).sizeDelta = new Vector2(Vector2.Distance(currentMapNode.transform.position, nextNode.transform.position), (nodeLine.transform as RectTransform).sizeDelta.y);
+                float lineDistance = Vector2.Distance(currentMapNode.transform.position, nextNode.transform.position) * resolutionRate;
+                (nodeLine.transform as RectTransform).sizeDelta = new Vector2(lineDistance, (nodeLine.transform as RectTransform).sizeDelta.y);
                 // 맵 노드 라인이 각 맵노드를 이어주도록 회전 시켜 줍니다.
                 Vector2 direction = nextNode.transform.position - currentMapNode.transform.position;
                 var angle = Vector2.SignedAngle(Vector2.right, direction);
