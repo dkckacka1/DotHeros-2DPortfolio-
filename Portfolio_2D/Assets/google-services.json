@@ -34,6 +34,35 @@
           ]
         }
       }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:751281059868:android:51df21526fff088a8087d9",
+        "android_client_info": {
+          "package_name": "com.KHW.Portfolio_2D"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "751281059868-epefi3ngiafitidf53td1iuq0qkamuhn.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCnj13uD8qbZt8tkPoQnlKzjRddc2Co9DY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "751281059868-epefi3ngiafitidf53td1iuq0qkamuhn.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
     }
   ],
   "configuration_version": "1"

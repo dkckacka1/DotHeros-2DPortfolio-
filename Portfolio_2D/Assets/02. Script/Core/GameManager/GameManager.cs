@@ -113,6 +113,7 @@ namespace Portfolio
 
         private void Start()
         {
+
             if (isTest)
             {
                 Debug.LogWarning("GameManager Test");
@@ -438,10 +439,23 @@ namespace Portfolio
         }
         #endregion
 
+
+
+        // 게임 기본 환경설정
         private void SetDefualtConfigure()
         {
             // 이 게임의 기본 프레임은 60
             Application.targetFrameRate = Constant.GameDefualtFrame;
+            LoadScreenConfigureData();
+        }
+
+        // 화면 설정 값을 가져와 세팅합니다.
+        private void LoadScreenConfigureData()
+        {
+            Screen.fullScreenMode = (PlayerPrefs.GetInt("FullScreenMode", 1) == 1) ? FullScreenMode.FullScreenWindow : FullScreenMode.Windowed;
+            int screenResolutionSize = (PlayerPrefs.GetInt("ScreenSize", 0));
+            var currentResolution = Constant.resolutions[screenResolutionSize];
+            Screen.SetResolution(currentResolution.width, currentResolution.height, Screen.fullScreenMode);
         }
 
         // 게임 종료 버튼
@@ -467,6 +481,39 @@ namespace Portfolio
                 networkManager.Logout();
                 SceneLoader.LoadStartScene();
             });
+        }
+
+        // 전체화면 모드를 설정합니다.
+        public void Toggle_OnValueChaned_SetWindowScreenMode(bool isOn)
+        {
+            Screen.fullScreenMode = isOn ? FullScreenMode.FullScreenWindow : FullScreenMode.Windowed;
+            PlayerPrefs.SetInt("FullScreenMode", isOn ? 1 : 0);
+        }
+
+        // 해상도를 더 높게 설정합니다.
+        public void BTN_OnClick_SetHigherResolution()
+        {
+            int screenResolutionSize = (PlayerPrefs.GetInt("ScreenSize", 0));
+            // 가장 높은 사이즈면 리턴
+            if (screenResolutionSize == 0) return;
+
+            screenResolutionSize--;
+            var currentResolution = Constant.resolutions[screenResolutionSize];
+            Screen.SetResolution(currentResolution.width, currentResolution.height, Screen.fullScreenMode);
+            PlayerPrefs.SetInt("ScreenSize", screenResolutionSize);
+        }
+
+        // 해상도를 너 낮게 설정합니다.
+        public void BTN_OnClick_SetLowerResolution()
+        {
+            int screenResolutionSize = (PlayerPrefs.GetInt("ScreenSize", 0));
+            // 가장 낮은 사이즈면 리턴
+            if (screenResolutionSize == Constant.resolutions.Length - 1) return;
+
+            screenResolutionSize++;
+            var currentResolution = Constant.resolutions[screenResolutionSize];
+            Screen.SetResolution(currentResolution.width, currentResolution.height, Screen.fullScreenMode);
+            PlayerPrefs.SetInt("ScreenSize", screenResolutionSize);
         }
     }
 }

@@ -14,7 +14,7 @@ namespace Portfolio
         // 최대 강화 횟수
         public const float MaxReinforceCount = 15;
         // 강화 레벨에 따른 강화 비용
-        public static readonly int[] ReinforceConsumeGoldValues = { 100, 500, 1000, 2000, 4000, 10000, 15000, 30000,75000,100000,150000,300000,750000,1500000,2000000 };
+        public static readonly int[] ReinforceConsumeGoldValues = { 100, 500, 1000, 2000, 4000, 10000, 15000, 30000, 75000, 100000, 150000, 300000, 750000, 1500000, 2000000 };
         // 평범 등급 아이템의 색
         public static readonly Color NormalItemGradeColor = new Color(1, 1, 1, 1);
         // 희귀 등급 아이템의 색
@@ -56,6 +56,7 @@ namespace Portfolio
         // 마지막 맵의 ID
         public const int LastMapID = 505;
 
+
         //===========================================================
         // RandomValue
         //===========================================================
@@ -66,7 +67,7 @@ namespace Portfolio
         // 유닛 소환 시 3성 등급 유닛이 나올 확률
         public const float UniqueUnitSummonPercent = 0.05f;
         // 장비 강화시 강화 레벨에 따른 강화 확률
-        public static readonly float[] ReinforceProbabilitys = { 1f, 0.95f, 0.9f, 0.85f, 0.8f, 0.78f, 0.75f, 0.73f, 0.71f, 0.7f, 0.69f, 0.67f, 0.65f, 0.63f, 0.6f};
+        public static readonly float[] ReinforceProbabilitys = { 1f, 0.95f, 0.9f, 0.85f, 0.8f, 0.78f, 0.75f, 0.73f, 0.71f, 0.7f, 0.69f, 0.67f, 0.65f, 0.63f, 0.6f };
         // 상점의 할인율
         public static readonly float[] ShopProductDiscountValues = { 0f, 0.1f, 0.25f, 0.33f, 0.5f, 0.7f, 0.9f };
 
@@ -127,6 +128,16 @@ namespace Portfolio
         //===========================================================
         public const string userDatabasePath = "UserData";
 
-
+        //===========================================================
+        // Configure
+        //===========================================================
+        // 해상도 설정 사이즈 배열
+        public static readonly Resolution[] resolutions =
+        {
+            new Resolution(){ width = 1920, height = 1080, refreshRate = 60},
+            new Resolution(){ width = 1600, height = 900, refreshRate = 60 },
+            new Resolution(){ width = 1280, height = 720, refreshRate = 60 },
+            new Resolution(){ width = 960, height = 540, refreshRate = 60 },
+        };
     }
 }

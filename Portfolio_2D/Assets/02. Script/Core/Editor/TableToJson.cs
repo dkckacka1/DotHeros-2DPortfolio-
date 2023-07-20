@@ -237,7 +237,6 @@ namespace Portfolio.Editor
             return false;
         }
         #endregion
-
         #region 아이템 데이터 로드
         public static bool GetItemTable()
         {
