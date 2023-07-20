@@ -30,6 +30,9 @@ namespace Portfolio.skill
             e.actionUnit.StartCoroutine(PlaySkill(e));
         }
 
+        // 액티브 스킬은 타겟을 설정해야한다.
+        public abstract IEnumerable<BattleUnit> SetTarget(BattleUnit actionUnit, List<GridPosition> targetUnits);
+
         // 액티브 스킬을 사용할 때 로그에 표시될 로그 텍스트
         protected override string GetLogString(SkillActionEventArgs e)
         {
@@ -87,9 +90,6 @@ namespace Portfolio.skill
 
             return log;
         }
-
-        // 액티브 스킬은 타겟을 설정해야한다.
-        public abstract IEnumerable<BattleUnit> SetTarget(BattleUnit actionUnit, List<GridPosition> targetUnits);
 
         // 액티브 스킬은 로직과 연출을 구현해야한다.
         protected abstract IEnumerator PlaySkill(SkillActionEventArgs e);

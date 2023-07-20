@@ -11,7 +11,7 @@ namespace Portfolio.skill
 {
     public class Skill_LOSA_PassiveSkill_1 : PassiveSkill
     {
-        public Skill_LOSA_PassiveSkill_1(SkillData skillData) : base(skillData)
+        public Skill_LOSA_PassiveSkill_1(PassiveSkillData skillData) : base(skillData)
         {
         }
 

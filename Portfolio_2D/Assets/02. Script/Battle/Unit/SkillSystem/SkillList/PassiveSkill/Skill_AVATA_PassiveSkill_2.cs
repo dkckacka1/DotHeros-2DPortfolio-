@@ -11,7 +11,7 @@ namespace Portfolio.skill
 {
     public class Skill_AVATA_PassiveSkill_2 : PassiveSkill
     {
-        public Skill_AVATA_PassiveSkill_2(SkillData skillData) : base(skillData)
+        public Skill_AVATA_PassiveSkill_2(PassiveSkillData skillData) : base(skillData)
         {
         }
         public override void SetPassiveSkill(SkillActionEventArgs e)

@@ -21,6 +21,7 @@ namespace Portfolio.skill
 
         public override IEnumerable<BattleUnit> SetTarget(BattleUnit actionUnit, List<GridPosition> targetUnits)
         {
+            // 체력이 가장 낮은 적 한명 타겟
             return targetUnits.GetEnemyTarget(actionUnit, this).OrderLowHealth().GetTargetNum(this).SelectBattleUnit();
         }
 

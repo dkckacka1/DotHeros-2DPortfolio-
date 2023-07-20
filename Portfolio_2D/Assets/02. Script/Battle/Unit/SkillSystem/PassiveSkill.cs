@@ -15,7 +15,7 @@ namespace Portfolio.skill
         // 패시브 스킬의 데이터를 가져온다. 부모 클래스의 GetData를 호출하면 SkillData를 호출하기에 new 키워드를 통해 부모클래스의 GetData 메서드를 숨긴다.
         public new PassiveSkillData GetData { get => (this.skillData as PassiveSkillData); }
 
-        public PassiveSkill(SkillData skillData) : base(skillData)
+        public PassiveSkill(PassiveSkillData skillData) : base(skillData)
         {
         }
 

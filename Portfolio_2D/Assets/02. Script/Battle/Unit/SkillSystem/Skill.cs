@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-// ORDER : 상속을 이용하여 만든 스킬 시스템 구현
+// ORDER : #2) 상속을 이용하여 만든 스킬 시스템 구현
 /*
  * 스킬의 기본을 만들 추상 클래스
  */
@@ -84,16 +84,6 @@ namespace Portfolio.skill
             }
         }
 
-        // 스킬을 사용할때 호출되는 가상 함수
-        public virtual void Action(object sender, SkillActionEventArgs e)
-        {
-            // 스킬을 사용하면 로그에 등록된다.
-            BattleManager.UIManager.AddLog(GetLogString(e));
-        }
-
-        // 로그에 등록될 로그 정보를 만드는 순수 가상 함수
-        protected abstract string GetLogString(SkillActionEventArgs e);
-
         // ORDER : string.Format을 활용한 스킬 설명 구현
         // 스킬 설명을 보여준다.
         public virtual string GetDesc(int skillLevel)
@@ -122,6 +112,16 @@ namespace Portfolio.skill
             return desc;
         }
 
+        // 스킬을 사용할때 호출되는 가상 함수
+        public virtual void Action(object sender, SkillActionEventArgs e)
+        {
+            // 스킬을 사용하면 로그에 등록된다.
+            BattleManager.UIManager.AddLog(GetLogString(e));
+        }
+
+        // 로그에 등록될 로그 정보를 만드는 순수 가상 함수
+        protected abstract string GetLogString(SkillActionEventArgs e);
+
         // 스킬 데이터에서 수치를 가져온다.
         private object[] GetLevelValue()
         {
@@ -143,7 +143,5 @@ namespace Portfolio.skill
 
             return levelValues.ToArray();
         }
-
-
     } 
 }
