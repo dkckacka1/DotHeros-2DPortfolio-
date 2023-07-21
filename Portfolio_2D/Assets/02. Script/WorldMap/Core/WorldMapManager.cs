@@ -22,6 +22,7 @@ namespace Portfolio.WorldMap
         List<MapNode> worldNodeList = new List<MapNode>();  // 맵 노드 리스트
         MapNode currentUserChoiceNode;                      // 현재 유저가 선택한 맵
         float resolutionRate = 0f;                          // 현재 스크린 사이즈와 캔버스 해상도 사이즈 비율
+        public MapNode rootNode;                            // 모든 맵노드의 루트 노드
 
         public MapNode CurrentUserChoiceNode
         {
@@ -37,6 +38,8 @@ namespace Portfolio.WorldMap
                 currentUserChoiceNode = value;
             }
         }
+
+        public WorldMapUIManager GetComponentinchildren { get; set; }
 
         // 싱글턴 생성
         private void Awake()
@@ -74,48 +77,12 @@ namespace Portfolio.WorldMap
         // 맵 노드끼리 이어 줍니다
         private void NodeSetting(MapNode currentMapNode)
         {
-            // 현재 맵 노드의 라인 부모 오브젝트, 라인 프리팹, 맵 노드 화살표 부모 오브젝트를 참조합니다.
-            RectTransform nodeLinePrefab = UIManager.NodeLinePrefab;
-            RectTransform nodeLineParent = UIManager.NodeLineParent;
-            RectTransform nodeArrowPrefab = UIManager.NodeArrowPrefab;
-
             foreach (var nextNode in currentMapNode.nextNodeList)
             // 현재 맵노드의 다음 노드들을 순회합니다.
             {
-                // 맵노드 라인을 생성합니다.
-                RectTransform nodeLine = Instantiate(nodeLinePrefab, currentMapNode.transform.position, Quaternion.identity, nodeLineParent);
-                // 맵 노드 라인의 길이는 현재 맵 노드와 다음 맵 노드의 사이 길이입니다.
-                float lineDistance = Vector2.Distance(currentMapNode.transform.position, nextNode.transform.position) * resolutionRate;
-                (nodeLine.transform as RectTransform).sizeDelta = new Vector2(lineDistance, (nodeLine.transform as RectTransform).sizeDelta.y);
-                // 맵 노드 라인이 각 맵노드를 이어주도록 회전 시켜 줍니다.
-                Vector2 direction = nextNode.transform.position - currentMapNode.transform.position;
-                var angle = Vector2.SignedAngle(Vector2.right, direction);
-                nodeLine.transform.rotation = Quaternion.Euler(0, 0, angle);
-
-                // 맵 노드 화살표를 생성합니다.
-                RectTransform nodeArrow = Instantiate(nodeArrowPrefab, currentMapNode.transform.position, Quaternion.identity, currentMapNode.NodeArrowParent.transform);
-                // 화살표를 다음 맵 노드를 바라보도록 회전 시킵니다.
-                nodeArrow.transform.rotation = Quaternion.Euler(0, 0, angle - 90);
-
-                // 화살표를 누르면 유저가 선택한 맵노드를 변경하고 화면 가운데로 이동시킵니다.
-                nodeArrow.GetComponentInChildren<Button>().onClick.AddListener(() => { CurrentUserChoiceNode = nextNode; UIManager.ShowMapInfo(nextNode.Map); });
-
-                // 이 노드는 이 다음 노드의 이전 노드가 됩니다.
-                nextNode.SetPrevNode(currentMapNode);
                 // 다음 노드도 노드 세팅을 수행합니다. DFS 재귀
                 NodeSetting(nextNode);
             }
-
-            if (currentMapNode.prevNode != null)
-            // 이 노드가 이전 노드가 존재한다면
-            {
-                // 맵 노드 화살표를 생성합니다.
-                RectTransform nodeArrow = Instantiate(nodeArrowPrefab, currentMapNode.transform.position, Quaternion.identity, currentMapNode.NodeArrowParent.transform);
-                var arrowAngle = Mathf.Atan2(currentMapNode.prevNode.transform.position.y - currentMapNode.transform.position.y, currentMapNode.prevNode.transform.position.x - currentMapNode.transform.position.x) * Mathf.Rad2Deg;
-                nodeArrow.transform.rotation = Quaternion.Euler(0, 0, arrowAngle - 90);
-                nodeArrow.GetComponentInChildren<Button>().onClick.AddListener(() => { CurrentUserChoiceNode = currentMapNode.prevNode; UIManager.ShowMapInfo(currentMapNode.prevNode.Map); });
-            }
-
 
             if (GameManager.CurrentUser.IsClearMap(currentMapNode.Map.MapID))
             // 이미 클리어한 맵이라면
@@ -137,16 +104,24 @@ namespace Portfolio.WorldMap
             {
                 currentMapNode.SetNodeBtnInteractable(true);
                 currentMapNode.ShowLockImage(false);
-
             }
 
             // 이중 클리어한 맵노드는 클리어 표시를 합니다.
             currentMapNode.ShowClearObject(GameManager.CurrentUser.IsClearMap(currentMapNode.Map.MapID));
         }
 
+        // 로비로 돌아갑니다.
         public void BTN_OnClick_ReturnToLobby()
         {
             SceneLoader.LoadLobbyScene();
+        }
+
+        // 맵 노드의 화살표에 넣어줄 버튼 클릭 리스너
+        // 화살표를 누르면 해당 맵노드로 이동합니다.
+        public void BTN_OnClick_ChoiceNode(MapNode choiceNode)
+        {
+            CurrentUserChoiceNode = choiceNode;
+            UIManager.ShowMapInfo(choiceNode.Map);
         }
     }
 
