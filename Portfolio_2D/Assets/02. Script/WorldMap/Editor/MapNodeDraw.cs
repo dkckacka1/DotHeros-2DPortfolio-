@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 using UnityEngine.UI;
-// TODO : 주석
+using Portfolio.WorldMap;
 /*
- * 에디터상에서 월드맵씬의 맵 노드를 이어주는 라인과 화살표를 자동적으로 만들어주는 에디터 클래스
- */
+* 에디터상에서 월드맵씬의 맵 노드를 이어주는 라인과 화살표를 자동적으로 만들어주는 에디터 클래스
+*/
 
-namespace Portfolio.WorldMap
+namespace Portfolio.Editor
 {
     // 월드맵 매니저 스크립트 인스펙터창을 수정하기 위한 클래스
     [CustomEditor(typeof(WorldMapManager))]

@@ -99,6 +99,7 @@ namespace Portfolio.Lobby.Inventory
                 // 다중 선택이 비활성화 상태라면
             {
                 // 선택 리스트에서 첫번째 요소를 가져온다.
+                // 리스트에 선택한 장비 슬롯이 있다면 가져오고 아니면 null 값이 됩니다.
                 var currentSelect = currentSelectorList.SingleOrDefault();
                 if (currentSelect != null)
                     // 이미 선택한 장비 슬롯이 있다면

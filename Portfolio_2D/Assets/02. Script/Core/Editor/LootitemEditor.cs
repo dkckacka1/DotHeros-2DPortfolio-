@@ -9,7 +9,7 @@ using Portfolio;
  */
 
 
-namespace Portfolio
+namespace Portfolio.Editor
 {
     [CustomEditor(typeof(LootItemTable))]
     public class LootitemEditor : UnityEditor.Editor
