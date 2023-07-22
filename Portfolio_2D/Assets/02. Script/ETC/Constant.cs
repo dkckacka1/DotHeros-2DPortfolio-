@@ -30,7 +30,7 @@ namespace Portfolio
         // 유닛 레벨당 올라갈 최대 경험치 량
         public const float UnitLevelUpExperienceValue = 1000f;
         // 에너지 회복 시간
-        public const float EnergyChargeTime = 10f;
+        public const float EnergyChargeTime = 60f;
         // 유저 유닛 리스트 최대 갯수를 올릴 때 소비할 다이아 량
         public const int UnitListSizeUPDiaConsumeValue = 50;
         // 유저 유닛 리스트 최대 갯수를 올릴 때 올라갈 갯수
