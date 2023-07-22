@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-// ORDER : 루팅 테이블을 만드는 스크립테이블 오브젝트 (인스펙터창에 버튼을 추가)
+// ORDER : #22) 루팅 테이블을 만드는 스크립테이블 오브젝트 (인스펙터창에 버튼을 추가)
 /*
  * 맵에 붙여줄 루팅 아이템 테이블 스크립테이블오브젝트 클래스
  */

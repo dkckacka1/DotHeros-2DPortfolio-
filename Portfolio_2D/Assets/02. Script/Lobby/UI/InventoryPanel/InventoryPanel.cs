@@ -63,7 +63,7 @@ namespace Portfolio.Lobby.Inventory
             consumableItemInventory.gameObject.SetActive(isActive);
         }
 
-        // ORDER : UGUI 에서 피봇과 포지션 좌표를 통한 툴팁 생성
+        // ORDER : #08) UGUI 에서 피봇과 포지션 좌표를 통한 툴팁 생성
         // 툴팁을 보여줍니다.
         public void ShowTooltip(ItemData data, RectTransform slotTransform)
         {

@@ -21,5 +21,4 @@ namespace Portfolio.skill
             e.actionUnit.OnStartBattleEvent += (object sender, System.EventArgs s) => { e.actionUnit.AttackPoint *= (1 + (GetData.skillLevelValue_1 * e.skillLevel * 0.01f)); };
         }
     }
-
 }

@@ -60,7 +60,7 @@ namespace Portfolio
         }
 
 
-        // ORDER : #4) JSON을 Data 클래스로 변환 한 후 Dictionary 저장해서 데이터 관리
+        // ORDER : #04) JSON을 Data 클래스로 변환 한 후 Dictionary 저장해서 데이터 관리
         // 데이터 타입을 로드한다.
         private static void LoadData<T>(Dictionary<int, Data> dataDic, string jsonPath) where T : Data
         {

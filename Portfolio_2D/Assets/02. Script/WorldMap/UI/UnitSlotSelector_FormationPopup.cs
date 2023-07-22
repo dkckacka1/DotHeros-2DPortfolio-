@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using TargetSelector = Portfolio.WorldMap.UnitSlotSelector_FormationPopupTarget;    // 셀렉터 이름이 너무 길어서 별칭 사용
 
-// ORDER : 드래그 앤 드랍으로 만든 유닛 포지션 배정 시스템
+// ORDER : #12) 드래그 앤 드랍으로 만든 유닛 포지션 배정 시스템
 /*
  * 유닛 슬롯을 드래그앤 드랍해서 진형을 만들 수 있게하는 셀렉터 클래스
  * 유닛 슬롯 UI가있는 오브젝트에만 부착할 수 있다.
@@ -83,5 +83,4 @@ namespace Portfolio.WorldMap
             SelectedUI.gameObject.SetActive(false);
         }
     }
-
 }

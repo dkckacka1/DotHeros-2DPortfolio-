@@ -10,7 +10,7 @@ using Newtonsoft.Json;
 using Portfolio.skill;
 using Portfolio.condition;
 
-// ORDER : #3) ExcelDataReader 와 Newtonsoft.Json 을 활용해서 만든 데이터 테이블 JSON 변환
+// ORDER : #03) ExcelDataReader 와 Newtonsoft.Json 을 활용해서 만든 데이터 테이블 JSON 변환
 /*
  * 엑셀 데이터 테이블을 JSON 파일로 변환 해주는 함수를 모아놓은 static 클래스 입니다
  */

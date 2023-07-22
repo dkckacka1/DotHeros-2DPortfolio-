@@ -26,5 +26,4 @@ namespace Portfolio.skill
             };
         }
     }
-
 }

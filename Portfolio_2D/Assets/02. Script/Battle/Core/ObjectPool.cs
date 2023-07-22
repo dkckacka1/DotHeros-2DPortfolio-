@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-// ORDER : 오브젝트 풀링 사용 예
+// ORDER : #18) 오브젝트 풀링 사용 예
 
 /*
  * 전투중 자주 생성되는 프리팹에 대한 오브젝트 풀

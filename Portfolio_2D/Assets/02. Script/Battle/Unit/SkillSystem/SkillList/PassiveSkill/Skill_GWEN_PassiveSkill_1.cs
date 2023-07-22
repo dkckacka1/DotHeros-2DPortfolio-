@@ -26,8 +26,6 @@ namespace Portfolio.skill
                 {
                     s.targetUnit.AddCondition(GetData.conditinID_1, conditionList[0], 1);
                 }
-
-
             };
         }
     }

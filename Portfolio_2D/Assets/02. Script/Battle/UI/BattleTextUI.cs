@@ -62,5 +62,4 @@ namespace Portfolio.Battle
             BattleManager.ObjectPool.ReleaseBattleText(this);
         }
     }
-
 }

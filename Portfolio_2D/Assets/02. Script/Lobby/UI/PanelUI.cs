@@ -28,5 +28,4 @@ namespace Portfolio.Lobby
             LobbyManager.UIManager.Undo();
         }
     }
-
 }

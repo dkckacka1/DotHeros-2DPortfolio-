@@ -6,6 +6,7 @@ using System.Linq;
 using UnityEngine;
 
 /*
+ * ORDER : #20) 자동 전투 시스템 구현
  * 자동 전투 혹은 적이 사용할 AI 시스템
  */
 
@@ -37,7 +38,6 @@ namespace Portfolio.Battle
             activeSkill_1 = unit.activeSkill_1;
             activeSkill_2 = unit.activeSkill_2;
         }
-
 
         private void Update()
         {
@@ -106,8 +106,6 @@ namespace Portfolio.Battle
                 {
                     return;
                 }
-
-
 
                 // 기본 공격으로 세팅
                 BattleManager.ActionSystem.SetActiveSkill(battleUnit.Unit.basicAttackSkill);

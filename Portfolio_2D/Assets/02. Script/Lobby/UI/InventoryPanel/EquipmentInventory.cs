@@ -74,25 +74,25 @@ namespace Portfolio.Lobby.Inventory
             ClearSelect();
         }
 
-        // ORDER : 다중 선택 토글에 의한 장비아이템 일반 선택 혹은 다중 선택 시스템 구현
-        public void EquipmentSlotSelect(EquipmentSlotSelector_EquipmentInventory equipmentSlotUIInventorySelector)
+        // ORDER : #09) 다중 선택 토글에 의한 장비아이템 일반 선택 혹은 다중 선택 시스템 구현
+        public void EquipmentSlotSelect(Selector selector)
         {
             if (multipleSelectionToggle.isOn)
                 // 다중 선택이 활성화 상태라면
             {
-                if (currentSelectorList.Contains(equipmentSlotUIInventorySelector))
+                if (currentSelectorList.Contains(selector))
                     // 이미 선택한 슬롯이라면
                 {
                     // 선택을 취소하고 리스트에서 제외 시켜준다.
-                    equipmentSlotUIInventorySelector.IsSelect = false;
-                    currentSelectorList.Remove(equipmentSlotUIInventorySelector);
+                    selector.IsSelect = false;
+                    currentSelectorList.Remove(selector);
                 }
                 else
                     // 선택한 슬롯이 아니라면
                 {
                     // 선택해주고 리스트에 추가한다.
-                    equipmentSlotUIInventorySelector.IsSelect = true;
-                    currentSelectorList.Add(equipmentSlotUIInventorySelector);
+                    selector.IsSelect = true;
+                    currentSelectorList.Add(selector);
                 }
             }
             else
@@ -107,18 +107,18 @@ namespace Portfolio.Lobby.Inventory
                     // 해당 슬롯 선택을 취소하고 리스트에서 제외시켜준다.
                     currentSelect.IsSelect = false;
                     currentSelectorList.Remove(currentSelect);
-                    if (currentSelect != equipmentSlotUIInventorySelector)
+                    if (currentSelect != selector)
                         // 기 선택한 슬롯이 이번에 선택한 슬롯과 같지 않다면
                     {
-                        equipmentSlotUIInventorySelector.IsSelect = true;
-                        currentSelectorList.Add(equipmentSlotUIInventorySelector);
+                        selector.IsSelect = true;
+                        currentSelectorList.Add(selector);
                     }
                 }
                 else
                     // 기 선택한 장비 슬롯이 없다면 그냥 선택
                 {
-                    equipmentSlotUIInventorySelector.IsSelect = true;
-                    currentSelectorList.Add(equipmentSlotUIInventorySelector);
+                    selector.IsSelect = true;
+                    currentSelectorList.Add(selector);
                 }
             }
 

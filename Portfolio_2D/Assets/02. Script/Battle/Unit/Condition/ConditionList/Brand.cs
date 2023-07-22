@@ -28,5 +28,4 @@ namespace Portfolio.condition
             unit.DefencePoint /= 0.8f;
         }
     }
-
 }

@@ -20,7 +20,7 @@ namespace Portfolio.Editor
         RectTransform nodeLineParent;       // 노드 라인의 부모 오브젝트
         RectTransform nodeArrowPrefab;      // 노드 화살표 프리팹
 
-        // ORDER : 트리 구조로 만든 맵 노드 트리를 DFS 재귀를 이용해서 만든 맵노드 끼리 노드 연결 (에디터 모드에서 버튼하나로 노드라인과 노드 애로우를 그려주고 버튼 리스너 까지 등록해주는 자동화)
+        // ORDER : #23) 트리 구조로 만든 맵 노드 트리를 DFS 재귀를 이용해서 만든 맵노드 끼리 노드 연결 (에디터 모드에서 버튼하나로 노드라인과 노드 애로우를 그려주고 버튼 리스너 까지 등록해주는 자동화)
         // 게임씬 resolution이 1920 * 1080 이여야지 제대로 동작한다.
         public override void OnInspectorGUI()
         {
@@ -107,10 +107,17 @@ namespace Portfolio.Editor
         // 에디터 모드에서 게임오브젝트를 제거하려면 Destory 대신 DestroyImmediate를 사용해야한다.
         private void ClearLineAndArrow(MapNode currentMapNode)
         {
+            var list = new List<Transform>();
             foreach(var nodeLine in nodeLineParent)
             {
-                DestroyImmediate((nodeLine as Transform).gameObject);
+                list.Add((nodeLine as Transform));
             }
+
+            foreach (var nodeLine in list)
+            {
+                DestroyImmediate(nodeLine.gameObject);
+            }
+            list.Clear();
 
             ClearArrow(currentMapNode);
         }
@@ -118,12 +125,19 @@ namespace Portfolio.Editor
         // 맵 노드들을 순회하면서 맵 노드의 화살표를 제거합니다.
         private void ClearArrow(MapNode currentMapNode)
         {
+            var list = new List<Transform>();
             foreach(var arrow in currentMapNode.NodeArrowParent.transform)
             {
-                DestroyImmediate((arrow as Transform).gameObject);
+                list.Add(arrow as Transform);
             }
 
-            foreach(var nextNode in currentMapNode.nextNodeList)
+            foreach (var arrow in list)
+            {
+                DestroyImmediate(arrow.gameObject);
+            }
+            list.Clear();
+
+            foreach (var nextNode in currentMapNode.nextNodeList)
             {
                 ClearArrow(nextNode);
             }

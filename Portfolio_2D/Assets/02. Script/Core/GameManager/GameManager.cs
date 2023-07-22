@@ -382,7 +382,7 @@ namespace Portfolio
             }
         }
 
-        // ORDER : #5) C# 리플렉션을 이용해서 스킬, 상태이상 클래스 런타임 생성 후 데이터 관리
+        // ORDER : #05) C# 리플렉션을 이용해서 스킬, 상태이상 클래스 런타임 생성 후 데이터 관리
         // 스킬 데이터로 스킬 클래스 생성
         private void LoadSkill()
         {

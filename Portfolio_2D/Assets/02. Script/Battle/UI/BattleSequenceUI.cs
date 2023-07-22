@@ -36,5 +36,4 @@ namespace Portfolio.Battle
             (targetSequenceUI.transform as RectTransform).anchoredPosition = new Vector2(0, yPos);
         }
     }
-
 }

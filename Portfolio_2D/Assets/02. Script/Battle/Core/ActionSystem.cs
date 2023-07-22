@@ -6,7 +6,7 @@ using UnityEngine.Events;
 using System;
 using Portfolio.skill;
 
-// ORDER : 선택한 스킬에 따라 적 유닛을 선택하는 액션시스템 구현
+// ORDER : #21) 선택한 스킬에 따라 적 유닛을 선택하는 액션시스템 구현
 /*
  * 전투중 선택 관련 시스템
  */

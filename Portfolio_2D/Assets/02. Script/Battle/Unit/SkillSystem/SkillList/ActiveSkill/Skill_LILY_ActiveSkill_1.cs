@@ -37,5 +37,4 @@ namespace Portfolio.skill
             e.actionUnit.isSkillUsing = false;
         }
     }
-
 }

@@ -4,7 +4,6 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-
 /*
  *  전투 패배 팝업 UI 클래스
  */

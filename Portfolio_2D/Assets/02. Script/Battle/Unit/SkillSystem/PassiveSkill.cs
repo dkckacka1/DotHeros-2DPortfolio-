@@ -46,5 +46,4 @@ namespace Portfolio.skill
         // 패시브 스킬은 타겟을 설정해야 한다.
         public abstract void SetPassiveSkill(SkillActionEventArgs e);
     }
-
 }

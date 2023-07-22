@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-// ORDER : 큐를 이용한 로그 시스템
+// ORDER : #10) 큐를 이용한 로그 시스템
 /*
  * 전투 로그를 표시하는 UI 클래스
  */
@@ -13,7 +13,6 @@ namespace Portfolio.Battle
 {
     public class BattleLogUI : MonoBehaviour
     {
-
         [SerializeField] int logCount = 5;                          // 로그가 표시될 최대 갯수
         [SerializeField] TextMeshProUGUI logText;                   // 로그 텍스트
 

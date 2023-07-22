@@ -36,5 +36,4 @@ namespace Portfolio.condition
             e.hitUnit.TakeDamage(e.damage / 2, e.hitUnit ,false, false);
         }
     }
-
 }

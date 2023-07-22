@@ -117,8 +117,6 @@ namespace Portfolio.skill
                         e.actionUnit.isSkillUsing = false;
                     }
                 });
-
-
             }
 
             yield return new WaitForSeconds(1f);
@@ -135,5 +133,4 @@ namespace Portfolio.skill
             }
         }
     }
-
 }

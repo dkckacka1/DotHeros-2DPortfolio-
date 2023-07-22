@@ -62,6 +62,5 @@ namespace Portfolio.Battle
 
             this.gameObject.SetActive(true);
         }
-
     }
 }

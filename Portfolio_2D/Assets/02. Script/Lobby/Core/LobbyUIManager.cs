@@ -16,7 +16,6 @@ namespace Portfolio.Lobby
 {
     public class LobbyUIManager : MonoBehaviour
     {
-        private Stack<IUndoable> undoStack;             // Undo 시스템을 위한 Undo 인터페이스 스택
 
         [SerializeField] HeroPanelUI heroPanel;         // 영웅창 UI
         [SerializeField] SummonPanel summonPanel;       // 소환창 UI
@@ -97,8 +96,9 @@ namespace Portfolio.Lobby
         //===========================================================
         // UndoSystem
         //===========================================================
-        // ORDER : 커맨드 패턴을 이용한 Undo 시스템
+        // ORDER : #14) 커맨드 패턴을 이용한 Undo 시스템
         // 활성화된 Undo의 카운트
+        private Stack<IUndoable> undoStack;             // Undo 시스템을 위한 Undo 인터페이스 스택
         public int UndoCount()
         {
             return undoStack.Count;

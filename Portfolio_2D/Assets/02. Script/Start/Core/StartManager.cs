@@ -36,7 +36,7 @@ namespace Portfolio.Start
             GameManager.AudioManager.PlayMusic("Music_StartScene");
         }
 
-        // ORDER : 비동기 씬 호출을 통한 로딩 구현
+        // ORDER : #17) 비동기 씬 호출을 통한 로딩 구현
         // 로비씬으로 들어가기전 로딩창을 보여주고 데이터를 로드한다.
         public void GotoLobby(UserData loginUserData)
         {

@@ -96,7 +96,6 @@ namespace Portfolio.skill
                         // 스킬 종료
                         e.actionUnit.isSkillUsing = false;
                     });
-
                 });
             }
         }

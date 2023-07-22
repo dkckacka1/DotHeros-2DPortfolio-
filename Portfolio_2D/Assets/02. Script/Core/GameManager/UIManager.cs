@@ -78,7 +78,7 @@ namespace Portfolio.UI
             configurePopupUI.Show();
         }
 
-        // ORDER : 자주 사용되는 UI 팝업창을 재활용
+        // ORDER : #13) 자주 사용되는 UI 팝업창을 재활용
         // 경고 팝업창을 표시한다.
         public void ShowAlert(string text)
         {

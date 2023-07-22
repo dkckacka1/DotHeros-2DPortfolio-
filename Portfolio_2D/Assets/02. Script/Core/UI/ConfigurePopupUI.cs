@@ -73,6 +73,11 @@ namespace Portfolio
         // 현재 화면 설정을 가져옵니다.
         private void ShowScreenSize()
         {
+            if (windowToggle == null)
+            {
+                return;
+            }
+
             windowToggle.isOn = Screen.fullScreenMode == FullScreenMode.FullScreenWindow;
             ShowCurrentResolution();
         }

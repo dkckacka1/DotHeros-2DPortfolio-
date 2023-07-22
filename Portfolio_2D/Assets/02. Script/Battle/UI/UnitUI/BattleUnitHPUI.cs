@@ -105,10 +105,8 @@ namespace Portfolio.Battle
                 yield return null;
             }
 
-
             // 체력 감소 끝
             isDamaged = false;
         }
     }
-
 }

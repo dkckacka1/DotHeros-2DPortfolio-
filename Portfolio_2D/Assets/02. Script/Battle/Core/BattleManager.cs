@@ -64,7 +64,7 @@ namespace Portfolio.Battle
         }
         public List<BattleUnit> UnitList => unitList;
 
-        // ORDER : 싱글톤 클래스 생성 예
+        // ORDER : #16) 싱글톤 매니저 클래스 생성 예
         private void Awake()
         {
             // 싱글톤 생성
@@ -443,9 +443,9 @@ namespace Portfolio.Battle
         //===========================================================
         // StateEvent
         //===========================================================
-        // ORDER : 이벤트 버스를 이용해서 만든 전투 상태에 따른 이벤트 구독 시스템
-        public void PublishEvent(eBattleState state, UnityAction action)
+        // ORDER : #15) 이벤트 버스를 이용해서 만든 전투 상태에 따른 이벤트 호출 시스템
         // 전투 상태에 이벤트 구독
+        public void PublishEvent(eBattleState state, UnityAction action)
         {
             if (StateEventHandlerDic.ContainsKey(state))
             // 이벤트 Dic에 해당 전투 상태 KEY가 있다면
@@ -461,8 +461,8 @@ namespace Portfolio.Battle
             }
         }
 
-        public void UnPublishEvent(eBattleState state, UnityAction action)
         // 이벤트 구독 해제
+        public void UnPublishEvent(eBattleState state, UnityAction action)
         {
             if (StateEventHandlerDic.ContainsKey(state))
             {
@@ -470,8 +470,8 @@ namespace Portfolio.Battle
             }
         }
 
-        public void InvokeStateEvent(eBattleState state)
         // 구독한 이벤트 모두 호출
+        public void InvokeStateEvent(eBattleState state)
         {
             if (StateEventHandlerDic.ContainsKey(state))
             {
@@ -516,5 +516,4 @@ namespace Portfolio.Battle
             });
         }
     }
-
 }

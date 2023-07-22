@@ -8,7 +8,6 @@ using Portfolio;
  * 루팅아이템 테이블을 만들때 커스텀 인스펙터를 만들기위한 에디터 클래스
  */
 
-
 namespace Portfolio.Editor
 {
     [CustomEditor(typeof(LootItemTable))]

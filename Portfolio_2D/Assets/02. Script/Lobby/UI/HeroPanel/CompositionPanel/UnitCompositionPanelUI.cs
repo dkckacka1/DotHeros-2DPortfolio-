@@ -7,7 +7,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using Selector = Portfolio.Lobby.Hero.Composition.UnitSlotSelector_HeroComposition; // 클래스 이름이 너무 길어서 별칭 사용
 
-// ORDER : 스택을 이용한 영웅 합성 시스템
+// ORDER : #11) 스택을 이용한 영웅 합성 시스템
 /*
  * 영웅 합성 창 UI 클래스
  */
@@ -168,7 +168,6 @@ namespace Portfolio.Lobby.Hero.Composition
 
                 return null;
             }
-
         }
 
         // 메인 슬롯에 유닛을 넣었을 때
@@ -259,8 +258,6 @@ namespace Portfolio.Lobby.Hero.Composition
             unitListUI.ResetCompositionList();
             unitListUI.ShowUnitList();
             SelectSlot(mainUnitSlot);
-
         }
     }
-
 }
