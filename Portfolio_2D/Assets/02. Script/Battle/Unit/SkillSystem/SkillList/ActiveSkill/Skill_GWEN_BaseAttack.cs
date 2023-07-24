@@ -26,7 +26,7 @@ namespace Portfolio.skill
             return targetUnits.GetEnemyTarget(actionUnit, this).OrderLowHealth().GetTargetNum(this).SelectBattleUnit();
         }
 
-        // ORDER : Dotween을 활용한 투사체 던지기 스킬 구현
+        // ORDER : #24) Dotween을 활용한 투사체 던지기 스킬 구현
         protected override IEnumerator PlaySkill(SkillActionEventArgs e)
         {
             var targetList = e.targetUnits.ToList();

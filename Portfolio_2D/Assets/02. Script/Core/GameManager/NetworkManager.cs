@@ -1,13 +1,11 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using Firebase;
 using Firebase.Auth;
 using Firebase.Database;
 using UnityEngine.Events;
 using Firebase.Extensions;
-using Newtonsoft.Json;
 
+// ORDER : #25) 파이어베이스 연동 구현
 /*
  *  파이어베이스와 연동을 담당하는 매니저 클래스
  */
