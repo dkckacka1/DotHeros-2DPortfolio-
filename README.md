@@ -7,6 +7,10 @@
 ---
 <hr/>
 
+개발 목적 : 즐겨 했던 턴제 RPG 게임 기능 직접 구현
+---
+<hr/>
+
 사용 엔진 : UNITY 2021.3.25f1
 ---
 
@@ -19,7 +23,7 @@
 
 포트폴리오 영상
 ---
-[유튜브 영상 링크](https://youtu.be/'ZACqozWcwWE')
+[유튜브 영상 링크](https://www.youtube.com/watch?v=ZACqozWcwWE&ab_channel=%EB%85%B8%EC%96%B4%EC%9D%B4)
 
 <hr/>
 
