@@ -20,7 +20,7 @@ namespace Portfolio.Editor
         RectTransform nodeLineParent;       // 노드 라인의 부모 오브젝트
         RectTransform nodeArrowPrefab;      // 노드 화살표 프리팹
 
-        // ORDER : #23) 트리 구조로 만든 맵 노드 트리를 프리오더 종주를 이용해서 만든 맵노드 끼리 노드 연결 (에디터 모드에서 버튼하나로 노드라인과 노드 애로우를 그려주고 버튼 리스너 까지 등록해주는 자동화)
+        // ORDER : #23) 트리 구조로 만든 맵 노드 트리를 DFS 재귀를 이용해서 만든 맵노드 끼리 노드 연결 (에디터 모드에서 버튼하나로 노드라인과 노드 애로우를 그려주고 버튼 리스너 까지 등록해주는 자동화)
         // 게임씬 resolution이 1920 * 1080 이여야지 제대로 동작한다.
         public override void OnInspectorGUI()
         {
