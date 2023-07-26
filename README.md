@@ -51,22 +51,96 @@
 * #04)([스크립트](https://github.com/dkckacka1/DotHeros-2DPortfolio-/blob/b66275919473052e85dca84890841800e42a5f15/Portfolio_2D/Assets/02.%20Script/Core/GameManager/ResourcesLoader.cs#L63C1-L63C1)) [JSON을 Data 클래스로 변환 한 후 Dictionary 저장해서 데이터 관리](https://copractice.tistory.com/62)
 * #05)([스크립트](https://github.com/dkckacka1/DotHeros-2DPortfolio-/blob/b66275919473052e85dca84890841800e42a5f15/Portfolio_2D/Assets/02.%20Script/Core/GameManager/GameManager.cs#L385)) [C# 리플렉션을 이용해서 스킬, 상태이상 클래스 런타임 생성 후 데이터 관리](https://copractice.tistory.com/63)
 * #06)([스크립트](https://github.com/dkckacka1/DotHeros-2DPortfolio-/blob/b66275919473052e85dca84890841800e42a5f15/Portfolio_2D/Assets/02.%20Script/Battle/Unit/SkillSystem/Skill.cs#L87)) [string.Format을 활용한 스킬 설명 구현](https://copractice.tistory.com/64)
+
+
+![#6](https://github.com/dkckacka1/DotHeros-2DPortfolio-/assets/125544460/1dd11497-3c97-4ac4-be72-2e4e5faa055b)
+
+
 * #07)([스크립트](https://github.com/dkckacka1/DotHeros-2DPortfolio-/blob/main/Portfolio_2D/Assets/02.%20Script/Core/GameManager/ItemGenerator.cs)) [ScriptableObject로 만든 랜덤 데이터 생성기를 통한 랜덤 아이템 데이터 생성 구현](https://copractice.tistory.com/65)
 * #08)([스크립트](https://github.com/dkckacka1/DotHeros-2DPortfolio-/blob/b66275919473052e85dca84890841800e42a5f15/Portfolio_2D/Assets/02.%20Script/Lobby/UI/InventoryPanel/InventoryPanel.cs#L66)) [UGUI 에서 피봇과 포지션 좌표를 통한 툴팁 생성](https://copractice.tistory.com/66)
+
+
+![#8](https://github.com/dkckacka1/DotHeros-2DPortfolio-/assets/125544460/b39df7ac-075d-482b-99f5-038cbb2c6a7c)
+
+
 * #09)([스크립트](https://github.com/dkckacka1/DotHeros-2DPortfolio-/blob/b66275919473052e85dca84890841800e42a5f15/Portfolio_2D/Assets/02.%20Script/Lobby/UI/InventoryPanel/EquipmentInventory.cs#L77)) [다중 선택 토글에 의한 장비아이템 일반 선택 혹은 다중 선택 시스템 구현](https://copractice.tistory.com/67)
+
+
+![#9](https://github.com/dkckacka1/DotHeros-2DPortfolio-/assets/125544460/3028fbff-a6e4-409e-b511-b4b3d7553578)
+
+
 * #10)([스크립트](https://github.com/dkckacka1/DotHeros-2DPortfolio-/blob/main/Portfolio_2D/Assets/02.%20Script/Battle/UI/BattleLogUI.cs)) [큐를 이용한 로그 시스템](https://copractice.tistory.com/68)
 * #11)([스크립트](https://github.com/dkckacka1/DotHeros-2DPortfolio-/blob/main/Portfolio_2D/Assets/02.%20Script/Lobby/UI/HeroPanel/CompositionPanel/UnitCompositionPanelUI.cs)) [스택을 이용한 영웅 합성 시스템](https://copractice.tistory.com/69)
+
+
+![#11](https://github.com/dkckacka1/DotHeros-2DPortfolio-/assets/125544460/729f0a24-42f3-401c-96d6-1dc18f628ec7)
+
+
 * #12)([스크립트](https://github.com/dkckacka1/DotHeros-2DPortfolio-/blob/main/Portfolio_2D/Assets/02.%20Script/WorldMap/UI/UnitSlotSelector_FormationPopup.cs)) [드래그 앤 드랍으로 만든 유닛 포지션 배정 시스템](https://copractice.tistory.com/70)
+
+
+![#12](https://github.com/dkckacka1/DotHeros-2DPortfolio-/assets/125544460/224bd48d-5c42-4eb5-bc88-954dd662589c)
+
+
 * #13)([스크립트](https://github.com/dkckacka1/DotHeros-2DPortfolio-/blob/b66275919473052e85dca84890841800e42a5f15/Portfolio_2D/Assets/02.%20Script/Core/GameManager/UIManager.cs#L81)) [자주 사용되는 UI 팝업창을 재활용](https://copractice.tistory.com/71)
+
+
+![#13](https://github.com/dkckacka1/DotHeros-2DPortfolio-/assets/125544460/90c5387c-f1fa-45df-b579-bcbbdb51c8ac)
+
+
 * #14)([스크립트](https://github.com/dkckacka1/DotHeros-2DPortfolio-/blob/b66275919473052e85dca84890841800e42a5f15/Portfolio_2D/Assets/02.%20Script/Lobby/Core/LobbyUIManager.cs#L99)) [커맨드 패턴을 이용한 Undo 시스템](https://copractice.tistory.com/72)
+
+
+![#14](https://github.com/dkckacka1/DotHeros-2DPortfolio-/assets/125544460/166bedf4-37e4-4bfd-a6a5-6dca7cc76a7b)
+
+
 * #15)([스크립트](https://github.com/dkckacka1/DotHeros-2DPortfolio-/blob/b66275919473052e85dca84890841800e42a5f15/Portfolio_2D/Assets/02.%20Script/Battle/Core/BattleManager.cs#L446)) [이벤트 버스를 이용해서 만든 전투 상태에 따른 이벤트 호출 시스템](https://copractice.tistory.com/73)
 * #16)([스크립트](https://github.com/dkckacka1/DotHeros-2DPortfolio-/blob/b66275919473052e85dca84890841800e42a5f15/Portfolio_2D/Assets/02.%20Script/Battle/Core/BattleManager.cs#L67)) [싱글톤 매니저 클래스 생성](https://copractice.tistory.com/74)
 * #17)([스크립트](https://github.com/dkckacka1/DotHeros-2DPortfolio-/blob/b66275919473052e85dca84890841800e42a5f15/Portfolio_2D/Assets/02.%20Script/Start/Core/StartManager.cs#L39)) [비동기 씬 호출을 통한 로딩 구현](https://copractice.tistory.com/75)
+
+
+![#17](https://github.com/dkckacka1/DotHeros-2DPortfolio-/assets/125544460/9a905e9d-2552-496d-9095-95486a522306)
+
+
 * #18)([스크립트](https://github.com/dkckacka1/DotHeros-2DPortfolio-/blob/main/Portfolio_2D/Assets/02.%20Script/Battle/Core/ObjectPool.cs)) [오브젝트 풀링 사용 예](https://copractice.tistory.com/76)
 * #19)([스크립트](https://github.com/dkckacka1/DotHeros-2DPortfolio-/blob/main/Portfolio_2D/Assets/02.%20Script/Battle/Core/TurnBaseSystem.cs)) [게임 턴제 배틀 시스템 구현](https://copractice.tistory.com/77)
+
+
+![#19](https://github.com/dkckacka1/DotHeros-2DPortfolio-/assets/125544460/bfc3008d-2696-4982-bce4-b865e7ff82b6)
+
+
 * #20)([스크립트](https://github.com/dkckacka1/DotHeros-2DPortfolio-/blob/main/Portfolio_2D/Assets/02.%20Script/Battle/Unit/AISystem/AISystem.cs)) [자동 전투 시스템 구현](https://copractice.tistory.com/78)
+
+
+![#20](https://github.com/dkckacka1/DotHeros-2DPortfolio-/assets/125544460/4626c4a3-f49e-4b40-ac75-6789a2ca3068)
+
+
 * #21)([스크립트](https://github.com/dkckacka1/DotHeros-2DPortfolio-/blob/main/Portfolio_2D/Assets/02.%20Script/Battle/Core/ActionSystem.cs)) [선택한 스킬에 따라 유닛을 선택하는 액션시스템 구현](https://copractice.tistory.com/79)
+
+
+![#21](https://github.com/dkckacka1/DotHeros-2DPortfolio-/assets/125544460/ceba155a-1576-462d-9332-66c081b5df31)
+
+
 * #22)([스크립트](https://github.com/dkckacka1/DotHeros-2DPortfolio-/blob/main/Portfolio_2D/Assets/02.%20Script/Core/Map/LootItemTable.cs)) [루팅 테이블을 만드는 스크립테이블 오브젝트 (커스텀 인스펙터)](https://copractice.tistory.com/80)
+
+
+![#22](https://github.com/dkckacka1/DotHeros-2DPortfolio-/assets/125544460/5a5c8dd1-a873-45f0-b6c3-6581743de457)
+
+
 * #23)([스크립트](https://github.com/dkckacka1/DotHeros-2DPortfolio-/blob/b66275919473052e85dca84890841800e42a5f15/Portfolio_2D/Assets/02.%20Script/WorldMap/Editor/MapNodeDraw.cs#L23)) [트리 구조로 만든 맵 노드 트리를 DFS 재귀를 이용해서 만든 맵노드 끼리 노드 연결 자동화](https://copractice.tistory.com/81)
+
+
+![#23](https://github.com/dkckacka1/DotHeros-2DPortfolio-/assets/125544460/c8a91640-0a4a-4c55-b3f2-d8c6af7b8f4c)
+
+
 * #24)([스크립트](https://github.com/dkckacka1/DotHeros-2DPortfolio-/blob/f98487a65e925662b1aa78bcfee3bd133d675ace/Portfolio_2D/Assets/02.%20Script/Battle/Unit/SkillSystem/SkillList/ActiveSkill/Skill_GWEN_BaseAttack.cs#L29)) [Dotween을 활용한 투사체 던지기 스킬 구현](https://copractice.tistory.com/85)
+
+
+![#24](https://github.com/dkckacka1/DotHeros-2DPortfolio-/assets/125544460/2b56d2a5-cccc-44f9-81a2-5b59f14e581f)
+
+
 * #25)([스크립트](https://github.com/dkckacka1/DotHeros-2DPortfolio-/blob/main/Portfolio_2D/Assets/02.%20Script/Core/GameManager/NetworkManager.cs)) [파이어베이스 연동 구현](https://copractice.tistory.com/86)
+
+
+![#25](https://github.com/dkckacka1/DotHeros-2DPortfolio-/assets/125544460/34a7f0a6-9041-47e5-a17f-e8356e62c14b)
+
