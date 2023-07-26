@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 206ad011b82433e44b7d8a8be12b0657, type: 3}
+  m_Name: TestTable
+  m_EditorClassIdentifier: 
+  lootItemList:
+  - rid: 7405136644950458368
+  - rid: 7405136644950458369
+  references:
+    version: 2
+    RefIds:
+    - rid: 7405136644950458368
+      type: {class: LootItemTable/LootingConsumableItem, ns: Portfolio, asm: Assembly-CSharp}
+      data:
+        lootingPercent: 0.347
+        ID: 1000
+        minCount: 1
+        maxCount: 3
+    - rid: 7405136644950458369
+      type: {class: LootItemTable/LootingEquipmentItem, ns: Portfolio, asm: Assembly-CSharp}
+      data:
+        lootingPercent: 0.654
+        gradeType: 2
