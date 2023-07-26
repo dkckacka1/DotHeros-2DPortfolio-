@@ -39,6 +39,7 @@
 * NewtonJSON
 * google Firebase
 * Dotween
+* TextMeshPro
 
 <hr/>
 
