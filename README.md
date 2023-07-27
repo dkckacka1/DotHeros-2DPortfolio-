@@ -58,7 +58,8 @@ public override IEnumerable<BattleUnit> SetTarget(BattleUnit actionUnit, List<Gr
 <details>
 <summary>예시 UML</summary>
 
-![SkillSystem](https://github.com/dkckacka1/DotHeros-2DPortfolio-/assets/125544460/7ec60752-4d17-450c-bd20-de34812935a7)
+![SkillSystem](https://github.com/dkckacka1/DotHeros-2DPortfolio-/assets/125544460/ab31661a-247f-41c9-a62b-4fc06d5780e7)
+
 
 </details>
 
