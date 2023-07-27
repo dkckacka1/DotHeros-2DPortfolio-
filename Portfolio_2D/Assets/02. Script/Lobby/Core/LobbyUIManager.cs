@@ -96,7 +96,7 @@ namespace Portfolio.Lobby
         //===========================================================
         // UndoSystem
         //===========================================================
-        // ORDER : #14) 커맨드 패턴을 이용한 Undo 시스템
+        // ORDER : #14) 커맨드 패턴을 이용한 패널닫기 시스템
         // 활성화된 Undo의 카운트
         private Stack<IUndoable> undoStack;             // Undo 시스템을 위한 Undo 인터페이스 스택
         public int UndoCount()

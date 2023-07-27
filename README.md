@@ -638,7 +638,7 @@ public class BattleLogUI : MonoBehaviour
 </details>
 
 ---
-* #14)([스크립트](https://github.com/dkckacka1/DotHeros-2DPortfolio-/blob/b66275919473052e85dca84890841800e42a5f15/Portfolio_2D/Assets/02.%20Script/Lobby/Core/LobbyUIManager.cs#L99)) [커맨드 패턴을 이용한 Undo 시스템](https://copractice.tistory.com/72)
+* #14)([스크립트](https://github.com/dkckacka1/DotHeros-2DPortfolio-/blob/b66275919473052e85dca84890841800e42a5f15/Portfolio_2D/Assets/02.%20Script/Lobby/Core/LobbyUIManager.cs#L99)) [커맨드 패턴을 이용한 패널닫기 시스템](https://copractice.tistory.com/72)
 
 <details>
 <summary>Ex</summary>
