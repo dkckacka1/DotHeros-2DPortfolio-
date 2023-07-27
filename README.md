@@ -1,47 +1,39 @@
 도트 히어로즈
 ===
 
-<hr/>
 
 게임 장르 : 2D 턴제 RPG
 ---
-<hr/>
 
 개발 목적 : 즐겨 했던 턴제 RPG 게임 기능 직접 구현
 ---
-<hr/>
 
 사용 엔진 : UNITY 2021.3.25f1
 ---
 
-<hr/>
 
 개발 기간 : 10주 (2023.05.12 ~ 2023.07.23)
 ---
 
-<hr/>
 
 포트폴리오 영상
 ---
 [유튜브 영상 링크](https://www.youtube.com/watch?v=ZACqozWcwWE&ab_channel=%EB%85%B8%EC%96%B4%EC%9D%B4)
 
-<hr/>
 
 빌드 파일
 ---
 [구들 드라이브 다운로드 링크](https://drive.google.com/file/d/1AINMf5aS2t6UDCPbDsIh2ihyqnkEpRmg/view?usp=sharing)
 
-<hr/>
 
 사용 서드파티
 ---
 * ExcelDataReader
 * NewtonJSON
-
-<hr/>
 * google Firebase
 * Dotween
 * TextMeshPro
+
 
 주요 활용 기술
 ---
