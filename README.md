@@ -29,6 +29,12 @@
 [네이버MYBOX 다운로드 링크](http://naver.me/FniSex8K)
 
 
+테스트용 계정 : tester@test.com / asdqwe123
+
+
+시작 시 노래가 커 주의 부탁드립니다.
+
+
 사용 서드파티
 ---
 * ExcelDataReader
