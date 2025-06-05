@@ -37,3 +37,6 @@
 - google Firebase
 - Dotween
 - TextMeshPro
+
+## 포트폴리오 설명
+[포트폴리오 설명](https://comfortable-reptile-21e.notion.site/Dot-Heros-208126f05304802f8559f0cf9d1f82ab?source=copy_link)
